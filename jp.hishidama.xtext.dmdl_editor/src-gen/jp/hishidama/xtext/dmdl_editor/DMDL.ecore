@@ -6,11 +6,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="list" upperBound="-1" eType="#//ModelDefinition"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelDefinition"/>
-  <eClassifiers xsi:type="ecore:EClass" name="RecordModelDefinition" eSuperTypes="#//ModelDefinition">
+  <eClassifiers xsi:type="ecore:EClass" name="ModelDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" eType="#//AttributeList"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RecordModelDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" eType="#//RecordExpression"
         containment="true"/>
@@ -36,9 +39,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//Type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SummarizeModelDefinition">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" eType="#//AttributeList"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" eType="#//SummarizeExpression"
         containment="true"/>
@@ -49,6 +49,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SummarizeTerm">
     <eStructuralFeatures xsi:type="ecore:EReference" name="reference" eType="#//ModelReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="folding" eType="#//ModelFolding"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="grouping" eType="#//Grouping"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeList">
@@ -77,6 +81,23 @@
   <eClassifiers xsi:type="ecore:EClass" name="AttributeValueArray">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//AttributeValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Grouping">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelFolding">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="foldings" upperBound="-1"
+        eType="#//PropertyFolding" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyFolding">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" eType="#//AttributeList"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aggregator" eType="#//QualifiedName"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QualifiedName">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" unique="false" upperBound="-1"

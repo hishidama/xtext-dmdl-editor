@@ -167,6 +167,33 @@ public interface DmdlFactory extends EFactory
   AttributeValueArray createAttributeValueArray();
 
   /**
+   * Returns a new object of class '<em>Grouping</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Grouping</em>'.
+   * @generated
+   */
+  Grouping createGrouping();
+
+  /**
+   * Returns a new object of class '<em>Model Folding</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Model Folding</em>'.
+   * @generated
+   */
+  ModelFolding createModelFolding();
+
+  /**
+   * Returns a new object of class '<em>Property Folding</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Property Folding</em>'.
+   * @generated
+   */
+  PropertyFolding createPropertyFolding();
+
+  /**
    * Returns a new object of class '<em>Qualified Name</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

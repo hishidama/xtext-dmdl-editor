@@ -12,12 +12,14 @@ Models:
 	(list+=ModelDefinition)*;
 
 ModelDefinition:
-	RecordModelDefinition;
-
-RecordModelDefinition:
 	(description=Description)?
 	(attributes=AttributeList)?
-	name=Name '=' rhs=RecordExpression ';';
+	(model=RecordModelDefinition
+	| model=SummarizeModelDefinition)
+	';';
+
+RecordModelDefinition:
+	name=Name '=' rhs=RecordExpression;
 
 RecordExpression:
 	terms+=RecordTerm
@@ -39,19 +41,16 @@ PropertyDefinition:
 	';';
 
 SummarizeModelDefinition:
-	(description=Description)?
-	(attributes=AttributeList)?
 	'summarized'
-	name=Name '=' rhs=SummarizeExpression ';';
+	name=Name '=' rhs=SummarizeExpression;
 
 SummarizeExpression:
 	terms+=SummarizeTerm ('+' terms+=SummarizeTerm)*;
 
 SummarizeTerm:
 	reference=ModelReference
-	//	folding=ModelFolding
-	//	(grouping=Grouping)?
-;
+	folding=ModelFolding
+	(grouping=Grouping)?;
 
 Description:
 	STRING;
@@ -73,7 +72,18 @@ AttributeValue:
 	value=AttributeValueArray | value=QualifiedName | value=Literal;
 
 AttributeValueArray:
-	'{' elements+=AttributeValue ("," elements+=AttributeValue)* ","? '}';
+	'{' elements+=AttributeValue (',' elements+=AttributeValue)* ','? '}';
+
+Grouping:
+	'%'
+	name+=Name (',' name+=Name)*;
+
+ModelFolding:
+	'=>' '{' (foldings+=PropertyFolding)+ '}';
+
+PropertyFolding:
+	(description=Description)? (attributes=AttributeList)? aggregator=QualifiedName from=Name ('->' | '=>') name=Name
+	';';
 
 QualifiedName:
 	name+=Name ('.' name+=Name)*;

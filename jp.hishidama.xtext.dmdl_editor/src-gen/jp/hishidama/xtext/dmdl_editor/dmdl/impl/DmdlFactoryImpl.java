@@ -81,6 +81,9 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
       case DmdlPackage.ATTRIBUTE_ELEMENT: return createAttributeElement();
       case DmdlPackage.ATTRIBUTE_VALUE: return createAttributeValue();
       case DmdlPackage.ATTRIBUTE_VALUE_ARRAY: return createAttributeValueArray();
+      case DmdlPackage.GROUPING: return createGrouping();
+      case DmdlPackage.MODEL_FOLDING: return createModelFolding();
+      case DmdlPackage.PROPERTY_FOLDING: return createPropertyFolding();
       case DmdlPackage.QUALIFIED_NAME: return createQualifiedName();
       case DmdlPackage.LITERAL: return createLiteral();
       default:
@@ -300,6 +303,39 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
   {
     AttributeValueArrayImpl attributeValueArray = new AttributeValueArrayImpl();
     return attributeValueArray;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Grouping createGrouping()
+  {
+    GroupingImpl grouping = new GroupingImpl();
+    return grouping;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ModelFolding createModelFolding()
+  {
+    ModelFoldingImpl modelFolding = new ModelFoldingImpl();
+    return modelFolding;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PropertyFolding createPropertyFolding()
+  {
+    PropertyFoldingImpl propertyFolding = new PropertyFoldingImpl();
+    return propertyFolding;
   }
 
   /**

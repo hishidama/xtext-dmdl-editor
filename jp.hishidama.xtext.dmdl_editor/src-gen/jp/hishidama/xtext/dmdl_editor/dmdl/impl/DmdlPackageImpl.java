@@ -10,11 +10,14 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValue;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueArray;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlFactory;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Grouping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Literal;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Models;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedName;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition;
@@ -157,6 +160,27 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass groupingEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass modelFoldingEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass propertyFoldingEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass qualifiedNameEClass = null;
 
   /**
@@ -278,6 +302,36 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getModelDefinition_Description()
+  {
+    return (EAttribute)modelDefinitionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getModelDefinition_Attributes()
+  {
+    return (EReference)modelDefinitionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getModelDefinition_Model()
+  {
+    return (EReference)modelDefinitionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getRecordModelDefinition()
   {
     return recordModelDefinitionEClass;
@@ -288,7 +342,7 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getRecordModelDefinition_Description()
+  public EAttribute getRecordModelDefinition_Name()
   {
     return (EAttribute)recordModelDefinitionEClass.getEStructuralFeatures().get(0);
   }
@@ -298,29 +352,9 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getRecordModelDefinition_Attributes()
-  {
-    return (EReference)recordModelDefinitionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getRecordModelDefinition_Name()
-  {
-    return (EAttribute)recordModelDefinitionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getRecordModelDefinition_Rhs()
   {
-    return (EReference)recordModelDefinitionEClass.getEStructuralFeatures().get(3);
+    return (EReference)recordModelDefinitionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -458,7 +492,7 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getSummarizeModelDefinition_Description()
+  public EAttribute getSummarizeModelDefinition_Name()
   {
     return (EAttribute)summarizeModelDefinitionEClass.getEStructuralFeatures().get(0);
   }
@@ -468,29 +502,9 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSummarizeModelDefinition_Attributes()
-  {
-    return (EReference)summarizeModelDefinitionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getSummarizeModelDefinition_Name()
-  {
-    return (EAttribute)summarizeModelDefinitionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getSummarizeModelDefinition_Rhs()
   {
-    return (EReference)summarizeModelDefinitionEClass.getEStructuralFeatures().get(3);
+    return (EReference)summarizeModelDefinitionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -531,6 +545,26 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
   public EReference getSummarizeTerm_Reference()
   {
     return (EReference)summarizeTermEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSummarizeTerm_Folding()
+  {
+    return (EReference)summarizeTermEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSummarizeTerm_Grouping()
+  {
+    return (EReference)summarizeTermEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -678,6 +712,106 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getGrouping()
+  {
+    return groupingEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getGrouping_Name()
+  {
+    return (EAttribute)groupingEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getModelFolding()
+  {
+    return modelFoldingEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getModelFolding_Foldings()
+  {
+    return (EReference)modelFoldingEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPropertyFolding()
+  {
+    return propertyFoldingEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPropertyFolding_Description()
+  {
+    return (EAttribute)propertyFoldingEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPropertyFolding_Attributes()
+  {
+    return (EReference)propertyFoldingEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPropertyFolding_Aggregator()
+  {
+    return (EReference)propertyFoldingEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPropertyFolding_From()
+  {
+    return (EAttribute)propertyFoldingEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPropertyFolding_Name()
+  {
+    return (EAttribute)propertyFoldingEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getQualifiedName()
   {
     return qualifiedNameEClass;
@@ -797,10 +931,11 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     createEReference(modelsEClass, MODELS__LIST);
 
     modelDefinitionEClass = createEClass(MODEL_DEFINITION);
+    createEAttribute(modelDefinitionEClass, MODEL_DEFINITION__DESCRIPTION);
+    createEReference(modelDefinitionEClass, MODEL_DEFINITION__ATTRIBUTES);
+    createEReference(modelDefinitionEClass, MODEL_DEFINITION__MODEL);
 
     recordModelDefinitionEClass = createEClass(RECORD_MODEL_DEFINITION);
-    createEAttribute(recordModelDefinitionEClass, RECORD_MODEL_DEFINITION__DESCRIPTION);
-    createEReference(recordModelDefinitionEClass, RECORD_MODEL_DEFINITION__ATTRIBUTES);
     createEAttribute(recordModelDefinitionEClass, RECORD_MODEL_DEFINITION__NAME);
     createEReference(recordModelDefinitionEClass, RECORD_MODEL_DEFINITION__RHS);
 
@@ -821,8 +956,6 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     createEAttribute(propertyDefinitionEClass, PROPERTY_DEFINITION__TYPE);
 
     summarizeModelDefinitionEClass = createEClass(SUMMARIZE_MODEL_DEFINITION);
-    createEAttribute(summarizeModelDefinitionEClass, SUMMARIZE_MODEL_DEFINITION__DESCRIPTION);
-    createEReference(summarizeModelDefinitionEClass, SUMMARIZE_MODEL_DEFINITION__ATTRIBUTES);
     createEAttribute(summarizeModelDefinitionEClass, SUMMARIZE_MODEL_DEFINITION__NAME);
     createEReference(summarizeModelDefinitionEClass, SUMMARIZE_MODEL_DEFINITION__RHS);
 
@@ -831,6 +964,8 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
 
     summarizeTermEClass = createEClass(SUMMARIZE_TERM);
     createEReference(summarizeTermEClass, SUMMARIZE_TERM__REFERENCE);
+    createEReference(summarizeTermEClass, SUMMARIZE_TERM__FOLDING);
+    createEReference(summarizeTermEClass, SUMMARIZE_TERM__GROUPING);
 
     attributeListEClass = createEClass(ATTRIBUTE_LIST);
     createEReference(attributeListEClass, ATTRIBUTE_LIST__ATTRIBUTES);
@@ -851,6 +986,19 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
 
     attributeValueArrayEClass = createEClass(ATTRIBUTE_VALUE_ARRAY);
     createEReference(attributeValueArrayEClass, ATTRIBUTE_VALUE_ARRAY__ELEMENTS);
+
+    groupingEClass = createEClass(GROUPING);
+    createEAttribute(groupingEClass, GROUPING__NAME);
+
+    modelFoldingEClass = createEClass(MODEL_FOLDING);
+    createEReference(modelFoldingEClass, MODEL_FOLDING__FOLDINGS);
+
+    propertyFoldingEClass = createEClass(PROPERTY_FOLDING);
+    createEAttribute(propertyFoldingEClass, PROPERTY_FOLDING__DESCRIPTION);
+    createEReference(propertyFoldingEClass, PROPERTY_FOLDING__ATTRIBUTES);
+    createEReference(propertyFoldingEClass, PROPERTY_FOLDING__AGGREGATOR);
+    createEAttribute(propertyFoldingEClass, PROPERTY_FOLDING__FROM);
+    createEAttribute(propertyFoldingEClass, PROPERTY_FOLDING__NAME);
 
     qualifiedNameEClass = createEClass(QUALIFIED_NAME);
     createEAttribute(qualifiedNameEClass, QUALIFIED_NAME__NAME);
@@ -895,17 +1043,17 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    recordModelDefinitionEClass.getESuperTypes().add(this.getModelDefinition());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelsEClass, Models.class, "Models", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getModels_List(), this.getModelDefinition(), null, "list", null, 0, -1, Models.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(modelDefinitionEClass, ModelDefinition.class, "ModelDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getModelDefinition_Description(), ecorePackage.getEString(), "description", null, 0, 1, ModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModelDefinition_Attributes(), this.getAttributeList(), null, "attributes", null, 0, 1, ModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModelDefinition_Model(), ecorePackage.getEObject(), null, "model", null, 0, 1, ModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(recordModelDefinitionEClass, RecordModelDefinition.class, "RecordModelDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getRecordModelDefinition_Description(), ecorePackage.getEString(), "description", null, 0, 1, RecordModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRecordModelDefinition_Attributes(), this.getAttributeList(), null, "attributes", null, 0, 1, RecordModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRecordModelDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, RecordModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRecordModelDefinition_Rhs(), this.getRecordExpression(), null, "rhs", null, 0, 1, RecordModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -926,8 +1074,6 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     initEAttribute(getPropertyDefinition_Type(), this.getType(), "type", null, 0, 1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(summarizeModelDefinitionEClass, SummarizeModelDefinition.class, "SummarizeModelDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSummarizeModelDefinition_Description(), ecorePackage.getEString(), "description", null, 0, 1, SummarizeModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSummarizeModelDefinition_Attributes(), this.getAttributeList(), null, "attributes", null, 0, 1, SummarizeModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSummarizeModelDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, SummarizeModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSummarizeModelDefinition_Rhs(), this.getSummarizeExpression(), null, "rhs", null, 0, 1, SummarizeModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -936,6 +1082,8 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
 
     initEClass(summarizeTermEClass, SummarizeTerm.class, "SummarizeTerm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSummarizeTerm_Reference(), this.getModelReference(), null, "reference", null, 0, 1, SummarizeTerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSummarizeTerm_Folding(), this.getModelFolding(), null, "folding", null, 0, 1, SummarizeTerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSummarizeTerm_Grouping(), this.getGrouping(), null, "grouping", null, 0, 1, SummarizeTerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attributeListEClass, AttributeList.class, "AttributeList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAttributeList_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, AttributeList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -956,6 +1104,19 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
 
     initEClass(attributeValueArrayEClass, AttributeValueArray.class, "AttributeValueArray", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAttributeValueArray_Elements(), this.getAttributeValue(), null, "elements", null, 0, -1, AttributeValueArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(groupingEClass, Grouping.class, "Grouping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getGrouping_Name(), ecorePackage.getEString(), "name", null, 0, -1, Grouping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(modelFoldingEClass, ModelFolding.class, "ModelFolding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getModelFolding_Foldings(), this.getPropertyFolding(), null, "foldings", null, 0, -1, ModelFolding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(propertyFoldingEClass, PropertyFolding.class, "PropertyFolding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPropertyFolding_Description(), ecorePackage.getEString(), "description", null, 0, 1, PropertyFolding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPropertyFolding_Attributes(), this.getAttributeList(), null, "attributes", null, 0, 1, PropertyFolding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPropertyFolding_Aggregator(), this.getQualifiedName(), null, "aggregator", null, 0, 1, PropertyFolding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPropertyFolding_From(), ecorePackage.getEString(), "from", null, 0, 1, PropertyFolding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPropertyFolding_Name(), ecorePackage.getEString(), "name", null, 0, 1, PropertyFolding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(qualifiedNameEClass, QualifiedName.class, "QualifiedName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getQualifiedName_Name(), ecorePackage.getEString(), "name", null, 0, -1, QualifiedName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

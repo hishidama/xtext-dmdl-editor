@@ -90,7 +90,6 @@ public class DmdlSwitch<T> extends Switch<T>
       {
         RecordModelDefinition recordModelDefinition = (RecordModelDefinition)theEObject;
         T result = caseRecordModelDefinition(recordModelDefinition);
-        if (result == null) result = caseModelDefinition(recordModelDefinition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -182,6 +181,27 @@ public class DmdlSwitch<T> extends Switch<T>
       {
         AttributeValueArray attributeValueArray = (AttributeValueArray)theEObject;
         T result = caseAttributeValueArray(attributeValueArray);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DmdlPackage.GROUPING:
+      {
+        Grouping grouping = (Grouping)theEObject;
+        T result = caseGrouping(grouping);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DmdlPackage.MODEL_FOLDING:
+      {
+        ModelFolding modelFolding = (ModelFolding)theEObject;
+        T result = caseModelFolding(modelFolding);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DmdlPackage.PROPERTY_FOLDING:
+      {
+        PropertyFolding propertyFolding = (PropertyFolding)theEObject;
+        T result = casePropertyFolding(propertyFolding);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -455,6 +475,54 @@ public class DmdlSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseAttributeValueArray(AttributeValueArray object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Grouping</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Grouping</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseGrouping(Grouping object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Model Folding</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Model Folding</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseModelFolding(ModelFolding object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Property Folding</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Property Folding</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePropertyFolding(PropertyFolding object)
   {
     return null;
   }

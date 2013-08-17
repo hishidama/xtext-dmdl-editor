@@ -155,6 +155,21 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
         return createAttributeValueArrayAdapter();
       }
       @Override
+      public Adapter caseGrouping(Grouping object)
+      {
+        return createGroupingAdapter();
+      }
+      @Override
+      public Adapter caseModelFolding(ModelFolding object)
+      {
+        return createModelFoldingAdapter();
+      }
+      @Override
+      public Adapter casePropertyFolding(PropertyFolding object)
+      {
+        return createPropertyFoldingAdapter();
+      }
+      @Override
       public Adapter caseQualifiedName(QualifiedName object)
       {
         return createQualifiedNameAdapter();
@@ -422,6 +437,51 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAttributeValueArrayAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Grouping <em>Grouping</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Grouping
+   * @generated
+   */
+  public Adapter createGroupingAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelFolding <em>Model Folding</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.ModelFolding
+   * @generated
+   */
+  public Adapter createModelFoldingAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding <em>Property Folding</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding
+   * @generated
+   */
+  public Adapter createPropertyFoldingAdapter()
   {
     return null;
   }
