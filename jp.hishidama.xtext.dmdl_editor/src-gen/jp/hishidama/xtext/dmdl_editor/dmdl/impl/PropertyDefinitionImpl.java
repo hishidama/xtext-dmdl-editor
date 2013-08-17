@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyDefinitionImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyDefinitionImpl#getType <em>Type</em>}</li>
  * </ul>
@@ -29,6 +30,26 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class PropertyDefinitionImpl extends MinimalEObjectImpl.Container implements PropertyDefinition
 {
+  /**
+   * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDescription()
+   * @generated
+   * @ordered
+   */
+  protected static final String DESCRIPTION_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDescription()
+   * @generated
+   * @ordered
+   */
+  protected String description = DESCRIPTION_EDEFAULT;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -95,6 +116,29 @@ public class PropertyDefinitionImpl extends MinimalEObjectImpl.Container impleme
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getDescription()
+  {
+    return description;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDescription(String newDescription)
+  {
+    String oldDescription = description;
+    description = newDescription;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DmdlPackage.PROPERTY_DEFINITION__DESCRIPTION, oldDescription, description));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getName()
   {
     return name;
@@ -146,6 +190,8 @@ public class PropertyDefinitionImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
+      case DmdlPackage.PROPERTY_DEFINITION__DESCRIPTION:
+        return getDescription();
       case DmdlPackage.PROPERTY_DEFINITION__NAME:
         return getName();
       case DmdlPackage.PROPERTY_DEFINITION__TYPE:
@@ -164,6 +210,9 @@ public class PropertyDefinitionImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
+      case DmdlPackage.PROPERTY_DEFINITION__DESCRIPTION:
+        setDescription((String)newValue);
+        return;
       case DmdlPackage.PROPERTY_DEFINITION__NAME:
         setName((String)newValue);
         return;
@@ -184,6 +233,9 @@ public class PropertyDefinitionImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
+      case DmdlPackage.PROPERTY_DEFINITION__DESCRIPTION:
+        setDescription(DESCRIPTION_EDEFAULT);
+        return;
       case DmdlPackage.PROPERTY_DEFINITION__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -204,6 +256,8 @@ public class PropertyDefinitionImpl extends MinimalEObjectImpl.Container impleme
   {
     switch (featureID)
     {
+      case DmdlPackage.PROPERTY_DEFINITION__DESCRIPTION:
+        return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
       case DmdlPackage.PROPERTY_DEFINITION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case DmdlPackage.PROPERTY_DEFINITION__TYPE:
@@ -223,7 +277,9 @@ public class PropertyDefinitionImpl extends MinimalEObjectImpl.Container impleme
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
+    result.append(" (description: ");
+    result.append(description);
+    result.append(", name: ");
     result.append(name);
     result.append(", type: ");
     result.append(type);

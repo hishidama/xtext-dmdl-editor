@@ -11,15 +11,12 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
 import jp.hishidama.xtext.dmdl_editor.services.DMDLGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
-import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.diagnostic.ISemanticSequencerDiagnosticProvider;
 import org.eclipse.xtext.serializer.diagnostic.ISerializationDiagnostic.Acceptor;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.GenericSequencer;
-import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEObjectProvider;
 import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
-import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 
 @SuppressWarnings("all")
 public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -75,26 +72,16 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (name=Name type=Type)
+	 *     (description=Description? name=Name type=Type)
 	 */
 	protected void sequence_PropertyDefinition(EObject context, PropertyDefinition semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.PROPERTY_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.PROPERTY_DEFINITION__NAME));
-			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.PROPERTY_DEFINITION__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.PROPERTY_DEFINITION__TYPE));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPropertyDefinitionAccess().getNameNameParserRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getPropertyDefinitionAccess().getTypeTypeEnumRuleCall_2_0(), semanticObject.getType());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (block+=RecordTerm block+=RecordTerm*)
+	 *     (terms+=RecordTerm terms+=RecordTerm*)
 	 */
 	protected void sequence_RecordExpression(EObject context, RecordExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -103,20 +90,10 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (name=Name rhs=RecordExpression)
+	 *     (description=Description? name=Name rhs=RecordExpression)
 	 */
 	protected void sequence_RecordModelDefinition(EObject context, RecordModelDefinition semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.RECORD_MODEL_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.RECORD_MODEL_DEFINITION__NAME));
-			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.RECORD_MODEL_DEFINITION__RHS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.RECORD_MODEL_DEFINITION__RHS));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getRecordModelDefinitionAccess().getNameNameParserRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getRecordModelDefinitionAccess().getRhsRecordExpressionParserRuleCall_2_0(), semanticObject.getRhs());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

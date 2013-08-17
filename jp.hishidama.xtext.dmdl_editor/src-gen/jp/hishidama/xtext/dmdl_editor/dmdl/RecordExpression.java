@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression#getBlock <em>Block</em>}</li>
+ *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression#getTerms <em>Terms</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,19 +25,19 @@ import org.eclipse.emf.ecore.EObject;
 public interface RecordExpression extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Block</b></em>' containment reference list.
+   * Returns the value of the '<em><b>Terms</b></em>' containment reference list.
    * The list contents are of type {@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Block</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Terms</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Block</em>' containment reference list.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage#getRecordExpression_Block()
+   * @return the value of the '<em>Terms</em>' containment reference list.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage#getRecordExpression_Terms()
    * @model containment="true"
    * @generated
    */
-  EList<RecordTerm> getBlock();
+  EList<RecordTerm> getTerms();
 
 } // RecordExpression

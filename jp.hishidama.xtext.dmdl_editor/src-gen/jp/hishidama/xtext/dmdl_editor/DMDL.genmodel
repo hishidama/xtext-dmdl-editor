@@ -25,16 +25,18 @@
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//ModelDefinition"/>
     <genClasses ecoreClass="DMDL.ecore#//RecordModelDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//RecordModelDefinition/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//RecordModelDefinition/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//RecordModelDefinition/rhs"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//RecordExpression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//RecordExpression/block"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//RecordExpression/terms"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//RecordTerm">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//RecordTerm/properties"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//PropertyDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyDefinition/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyDefinition/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyDefinition/type"/>
     </genClasses>

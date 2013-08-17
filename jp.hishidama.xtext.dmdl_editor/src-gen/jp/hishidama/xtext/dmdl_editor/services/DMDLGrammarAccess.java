@@ -50,75 +50,83 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	public class RecordModelDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RecordModelDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cRhsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cRhsRecordExpressionParserRuleCall_2_0 = (RuleCall)cRhsAssignment_2.eContents().get(0);
-		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cDescriptionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cDescriptionDescriptionParserRuleCall_0_0 = (RuleCall)cDescriptionAssignment_0.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cRhsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cRhsRecordExpressionParserRuleCall_3_0 = (RuleCall)cRhsAssignment_3.eContents().get(0);
+		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//RecordModelDefinition:
 		//
-		//	name=Name "=" rhs=RecordExpression ";";
+		//	description=Description? name=Name "=" rhs=RecordExpression ";";
 		public ParserRule getRule() { return rule; }
 
-		//name=Name "=" rhs=RecordExpression ";"
+		//description=Description? name=Name "=" rhs=RecordExpression ";"
 		public Group getGroup() { return cGroup; }
 
+		//description=Description?
+		public Assignment getDescriptionAssignment_0() { return cDescriptionAssignment_0; }
+
+		//Description
+		public RuleCall getDescriptionDescriptionParserRuleCall_0_0() { return cDescriptionDescriptionParserRuleCall_0_0; }
+
 		//name=Name
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 
 		//Name
-		public RuleCall getNameNameParserRuleCall_0_0() { return cNameNameParserRuleCall_0_0; }
+		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
 
 		//"="
-		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
 
 		//rhs=RecordExpression
-		public Assignment getRhsAssignment_2() { return cRhsAssignment_2; }
+		public Assignment getRhsAssignment_3() { return cRhsAssignment_3; }
 
 		//RecordExpression
-		public RuleCall getRhsRecordExpressionParserRuleCall_2_0() { return cRhsRecordExpressionParserRuleCall_2_0; }
+		public RuleCall getRhsRecordExpressionParserRuleCall_3_0() { return cRhsRecordExpressionParserRuleCall_3_0; }
 
 		//";"
-		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
+		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
 	}
 
 	public class RecordExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RecordExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cBlockAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cBlockRecordTermParserRuleCall_0_0 = (RuleCall)cBlockAssignment_0.eContents().get(0);
+		private final Assignment cTermsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cTermsRecordTermParserRuleCall_0_0 = (RuleCall)cTermsAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cPlusSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cBlockAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cBlockRecordTermParserRuleCall_1_1_0 = (RuleCall)cBlockAssignment_1_1.eContents().get(0);
+		private final Assignment cTermsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cTermsRecordTermParserRuleCall_1_1_0 = (RuleCall)cTermsAssignment_1_1.eContents().get(0);
 		
 		//RecordExpression:
 		//
-		//	block+=RecordTerm ("+" block+=RecordTerm)*;
+		//	terms+=RecordTerm ("+" terms+=RecordTerm)*;
 		public ParserRule getRule() { return rule; }
 
-		//block+=RecordTerm ("+" block+=RecordTerm)*
+		//terms+=RecordTerm ("+" terms+=RecordTerm)*
 		public Group getGroup() { return cGroup; }
 
-		//block+=RecordTerm
-		public Assignment getBlockAssignment_0() { return cBlockAssignment_0; }
+		//terms+=RecordTerm
+		public Assignment getTermsAssignment_0() { return cTermsAssignment_0; }
 
 		//RecordTerm
-		public RuleCall getBlockRecordTermParserRuleCall_0_0() { return cBlockRecordTermParserRuleCall_0_0; }
+		public RuleCall getTermsRecordTermParserRuleCall_0_0() { return cTermsRecordTermParserRuleCall_0_0; }
 
-		//("+" block+=RecordTerm)*
+		//("+" terms+=RecordTerm)*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//"+"
 		public Keyword getPlusSignKeyword_1_0() { return cPlusSignKeyword_1_0; }
 
-		//block+=RecordTerm
-		public Assignment getBlockAssignment_1_1() { return cBlockAssignment_1_1; }
+		//terms+=RecordTerm
+		public Assignment getTermsAssignment_1_1() { return cTermsAssignment_1_1; }
 
 		//RecordTerm
-		public RuleCall getBlockRecordTermParserRuleCall_1_1_0() { return cBlockRecordTermParserRuleCall_1_1_0; }
+		public RuleCall getTermsRecordTermParserRuleCall_1_1_0() { return cTermsRecordTermParserRuleCall_1_1_0; }
 	}
 
 	public class RecordTermElements extends AbstractParserRuleElementFinder {
@@ -153,38 +161,59 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	public class PropertyDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cTypeTypeEnumRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
-		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cDescriptionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cDescriptionDescriptionParserRuleCall_0_0 = (RuleCall)cDescriptionAssignment_0.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cTypeTypeEnumRuleCall_3_0 = (RuleCall)cTypeAssignment_3.eContents().get(0);
+		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//PropertyDefinition:
 		//
-		//	name=Name ":" type=Type ";";
+		//	description=Description? name=Name ":" type=Type ";";
 		public ParserRule getRule() { return rule; }
 
-		//name=Name ":" type=Type ";"
+		//description=Description? name=Name ":" type=Type ";"
 		public Group getGroup() { return cGroup; }
 
+		//description=Description?
+		public Assignment getDescriptionAssignment_0() { return cDescriptionAssignment_0; }
+
+		//Description
+		public RuleCall getDescriptionDescriptionParserRuleCall_0_0() { return cDescriptionDescriptionParserRuleCall_0_0; }
+
 		//name=Name
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 
 		//Name
-		public RuleCall getNameNameParserRuleCall_0_0() { return cNameNameParserRuleCall_0_0; }
+		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
 
 		//":"
-		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 
 		//type=Type
-		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+		public Assignment getTypeAssignment_3() { return cTypeAssignment_3; }
 
 		//Type
-		public RuleCall getTypeTypeEnumRuleCall_2_0() { return cTypeTypeEnumRuleCall_2_0; }
+		public RuleCall getTypeTypeEnumRuleCall_3_0() { return cTypeTypeEnumRuleCall_3_0; }
 
 		//";"
-		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
+		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
+	}
+
+	public class DescriptionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Description");
+		private final RuleCall cSTRINGTerminalRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//Description:
+		//
+		//	STRING;
+		public ParserRule getRule() { return rule; }
+
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall() { return cSTRINGTerminalRuleCall; }
 	}
 
 	public class NameElements extends AbstractParserRuleElementFinder {
@@ -308,9 +337,11 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	private RecordExpressionElements pRecordExpression;
 	private RecordTermElements pRecordTerm;
 	private PropertyDefinitionElements pPropertyDefinition;
+	private DescriptionElements pDescription;
 	private NameElements pName;
 	private TerminalRule tNAME_TOKEN;
 	private TypeElements unknownRuleType;
+	private TerminalRule tSTRING;
 	private TerminalRule tML_COMMENT;
 	private TerminalRule tSL_COMMENT;
 	private TerminalRule tWS;
@@ -369,7 +400,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//RecordModelDefinition:
 	//
-	//	name=Name "=" rhs=RecordExpression ";";
+	//	description=Description? name=Name "=" rhs=RecordExpression ";";
 	public RecordModelDefinitionElements getRecordModelDefinitionAccess() {
 		return (pRecordModelDefinition != null) ? pRecordModelDefinition : (pRecordModelDefinition = new RecordModelDefinitionElements());
 	}
@@ -380,7 +411,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//RecordExpression:
 	//
-	//	block+=RecordTerm ("+" block+=RecordTerm)*;
+	//	terms+=RecordTerm ("+" terms+=RecordTerm)*;
 	public RecordExpressionElements getRecordExpressionAccess() {
 		return (pRecordExpression != null) ? pRecordExpression : (pRecordExpression = new RecordExpressionElements());
 	}
@@ -402,13 +433,24 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//PropertyDefinition:
 	//
-	//	name=Name ":" type=Type ";";
+	//	description=Description? name=Name ":" type=Type ";";
 	public PropertyDefinitionElements getPropertyDefinitionAccess() {
 		return (pPropertyDefinition != null) ? pPropertyDefinition : (pPropertyDefinition = new PropertyDefinitionElements());
 	}
 	
 	public ParserRule getPropertyDefinitionRule() {
 		return getPropertyDefinitionAccess().getRule();
+	}
+
+	//Description:
+	//
+	//	STRING;
+	public DescriptionElements getDescriptionAccess() {
+		return (pDescription != null) ? pDescription : (pDescription = new DescriptionElements());
+	}
+	
+	public ParserRule getDescriptionRule() {
+		return getDescriptionAccess().getRule();
 	}
 
 	//Name:
@@ -439,6 +481,13 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	public EnumRule getTypeRule() {
 		return getTypeAccess().getRule();
 	}
+
+	//terminal STRING:
+	//
+	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\\") | !("\\" | "\""))* "\"";
+	public TerminalRule getSTRINGRule() {
+		return (tSTRING != null) ? tSTRING : (tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING"));
+	} 
 
 	//terminal ML_COMMENT:
 	//

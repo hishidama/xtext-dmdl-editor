@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordExpressionImpl#getBlock <em>Block</em>}</li>
+ *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordExpressionImpl#getTerms <em>Terms</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,14 +36,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class RecordExpressionImpl extends MinimalEObjectImpl.Container implements RecordExpression
 {
   /**
-   * The cached value of the '{@link #getBlock() <em>Block</em>}' containment reference list.
+   * The cached value of the '{@link #getTerms() <em>Terms</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBlock()
+   * @see #getTerms()
    * @generated
    * @ordered
    */
-  protected EList<RecordTerm> block;
+  protected EList<RecordTerm> terms;
 
   /**
    * <!-- begin-user-doc -->
@@ -71,13 +71,13 @@ public class RecordExpressionImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<RecordTerm> getBlock()
+  public EList<RecordTerm> getTerms()
   {
-    if (block == null)
+    if (terms == null)
     {
-      block = new EObjectContainmentEList<RecordTerm>(RecordTerm.class, this, DmdlPackage.RECORD_EXPRESSION__BLOCK);
+      terms = new EObjectContainmentEList<RecordTerm>(RecordTerm.class, this, DmdlPackage.RECORD_EXPRESSION__TERMS);
     }
-    return block;
+    return terms;
   }
 
   /**
@@ -90,8 +90,8 @@ public class RecordExpressionImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case DmdlPackage.RECORD_EXPRESSION__BLOCK:
-        return ((InternalEList<?>)getBlock()).basicRemove(otherEnd, msgs);
+      case DmdlPackage.RECORD_EXPRESSION__TERMS:
+        return ((InternalEList<?>)getTerms()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -106,8 +106,8 @@ public class RecordExpressionImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case DmdlPackage.RECORD_EXPRESSION__BLOCK:
-        return getBlock();
+      case DmdlPackage.RECORD_EXPRESSION__TERMS:
+        return getTerms();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -123,9 +123,9 @@ public class RecordExpressionImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case DmdlPackage.RECORD_EXPRESSION__BLOCK:
-        getBlock().clear();
-        getBlock().addAll((Collection<? extends RecordTerm>)newValue);
+      case DmdlPackage.RECORD_EXPRESSION__TERMS:
+        getTerms().clear();
+        getTerms().addAll((Collection<? extends RecordTerm>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -141,8 +141,8 @@ public class RecordExpressionImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case DmdlPackage.RECORD_EXPRESSION__BLOCK:
-        getBlock().clear();
+      case DmdlPackage.RECORD_EXPRESSION__TERMS:
+        getTerms().clear();
         return;
     }
     super.eUnset(featureID);
@@ -158,8 +158,8 @@ public class RecordExpressionImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case DmdlPackage.RECORD_EXPRESSION__BLOCK:
-        return block != null && !block.isEmpty();
+      case DmdlPackage.RECORD_EXPRESSION__TERMS:
+        return terms != null && !terms.isEmpty();
     }
     return super.eIsSet(featureID);
   }

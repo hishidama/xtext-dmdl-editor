@@ -185,7 +185,7 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getRecordModelDefinition_Name()
+  public EAttribute getRecordModelDefinition_Description()
   {
     return (EAttribute)recordModelDefinitionEClass.getEStructuralFeatures().get(0);
   }
@@ -195,9 +195,19 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getRecordModelDefinition_Name()
+  {
+    return (EAttribute)recordModelDefinitionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getRecordModelDefinition_Rhs()
   {
-    return (EReference)recordModelDefinitionEClass.getEStructuralFeatures().get(1);
+    return (EReference)recordModelDefinitionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -215,7 +225,7 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getRecordExpression_Block()
+  public EReference getRecordExpression_Terms()
   {
     return (EReference)recordExpressionEClass.getEStructuralFeatures().get(0);
   }
@@ -255,7 +265,7 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPropertyDefinition_Name()
+  public EAttribute getPropertyDefinition_Description()
   {
     return (EAttribute)propertyDefinitionEClass.getEStructuralFeatures().get(0);
   }
@@ -265,9 +275,19 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPropertyDefinition_Type()
+  public EAttribute getPropertyDefinition_Name()
   {
     return (EAttribute)propertyDefinitionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPropertyDefinition_Type()
+  {
+    return (EAttribute)propertyDefinitionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -316,16 +336,18 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     modelDefinitionEClass = createEClass(MODEL_DEFINITION);
 
     recordModelDefinitionEClass = createEClass(RECORD_MODEL_DEFINITION);
+    createEAttribute(recordModelDefinitionEClass, RECORD_MODEL_DEFINITION__DESCRIPTION);
     createEAttribute(recordModelDefinitionEClass, RECORD_MODEL_DEFINITION__NAME);
     createEReference(recordModelDefinitionEClass, RECORD_MODEL_DEFINITION__RHS);
 
     recordExpressionEClass = createEClass(RECORD_EXPRESSION);
-    createEReference(recordExpressionEClass, RECORD_EXPRESSION__BLOCK);
+    createEReference(recordExpressionEClass, RECORD_EXPRESSION__TERMS);
 
     recordTermEClass = createEClass(RECORD_TERM);
     createEReference(recordTermEClass, RECORD_TERM__PROPERTIES);
 
     propertyDefinitionEClass = createEClass(PROPERTY_DEFINITION);
+    createEAttribute(propertyDefinitionEClass, PROPERTY_DEFINITION__DESCRIPTION);
     createEAttribute(propertyDefinitionEClass, PROPERTY_DEFINITION__NAME);
     createEAttribute(propertyDefinitionEClass, PROPERTY_DEFINITION__TYPE);
 
@@ -371,16 +393,18 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     initEClass(modelDefinitionEClass, ModelDefinition.class, "ModelDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(recordModelDefinitionEClass, RecordModelDefinition.class, "RecordModelDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRecordModelDefinition_Description(), ecorePackage.getEString(), "description", null, 0, 1, RecordModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRecordModelDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, RecordModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRecordModelDefinition_Rhs(), this.getRecordExpression(), null, "rhs", null, 0, 1, RecordModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(recordExpressionEClass, RecordExpression.class, "RecordExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRecordExpression_Block(), this.getRecordTerm(), null, "block", null, 0, -1, RecordExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRecordExpression_Terms(), this.getRecordTerm(), null, "terms", null, 0, -1, RecordExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(recordTermEClass, RecordTerm.class, "RecordTerm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRecordTerm_Properties(), this.getPropertyDefinition(), null, "properties", null, 0, -1, RecordTerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(propertyDefinitionEClass, PropertyDefinition.class, "PropertyDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPropertyDefinition_Description(), ecorePackage.getEString(), "description", null, 0, 1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPropertyDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPropertyDefinition_Type(), this.getType(), "type", null, 0, 1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

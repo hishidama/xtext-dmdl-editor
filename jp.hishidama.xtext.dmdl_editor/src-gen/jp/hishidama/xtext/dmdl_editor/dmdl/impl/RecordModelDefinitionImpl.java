@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordModelDefinitionImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordModelDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordModelDefinitionImpl#getRhs <em>Rhs</em>}</li>
  * </ul>
@@ -30,6 +31,26 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class RecordModelDefinitionImpl extends ModelDefinitionImpl implements RecordModelDefinition
 {
+  /**
+   * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDescription()
+   * @generated
+   * @ordered
+   */
+  protected static final String DESCRIPTION_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDescription()
+   * @generated
+   * @ordered
+   */
+  protected String description = DESCRIPTION_EDEFAULT;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -79,6 +100,29 @@ public class RecordModelDefinitionImpl extends ModelDefinitionImpl implements Re
   protected EClass eStaticClass()
   {
     return DmdlPackage.Literals.RECORD_MODEL_DEFINITION;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getDescription()
+  {
+    return description;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDescription(String newDescription)
+  {
+    String oldDescription = description;
+    description = newDescription;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DmdlPackage.RECORD_MODEL_DEFINITION__DESCRIPTION, oldDescription, description));
   }
 
   /**
@@ -178,6 +222,8 @@ public class RecordModelDefinitionImpl extends ModelDefinitionImpl implements Re
   {
     switch (featureID)
     {
+      case DmdlPackage.RECORD_MODEL_DEFINITION__DESCRIPTION:
+        return getDescription();
       case DmdlPackage.RECORD_MODEL_DEFINITION__NAME:
         return getName();
       case DmdlPackage.RECORD_MODEL_DEFINITION__RHS:
@@ -196,6 +242,9 @@ public class RecordModelDefinitionImpl extends ModelDefinitionImpl implements Re
   {
     switch (featureID)
     {
+      case DmdlPackage.RECORD_MODEL_DEFINITION__DESCRIPTION:
+        setDescription((String)newValue);
+        return;
       case DmdlPackage.RECORD_MODEL_DEFINITION__NAME:
         setName((String)newValue);
         return;
@@ -216,6 +265,9 @@ public class RecordModelDefinitionImpl extends ModelDefinitionImpl implements Re
   {
     switch (featureID)
     {
+      case DmdlPackage.RECORD_MODEL_DEFINITION__DESCRIPTION:
+        setDescription(DESCRIPTION_EDEFAULT);
+        return;
       case DmdlPackage.RECORD_MODEL_DEFINITION__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -236,6 +288,8 @@ public class RecordModelDefinitionImpl extends ModelDefinitionImpl implements Re
   {
     switch (featureID)
     {
+      case DmdlPackage.RECORD_MODEL_DEFINITION__DESCRIPTION:
+        return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
       case DmdlPackage.RECORD_MODEL_DEFINITION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case DmdlPackage.RECORD_MODEL_DEFINITION__RHS:
@@ -255,7 +309,9 @@ public class RecordModelDefinitionImpl extends ModelDefinitionImpl implements Re
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
+    result.append(" (description: ");
+    result.append(description);
+    result.append(", name: ");
     result.append(name);
     result.append(')');
     return result.toString();

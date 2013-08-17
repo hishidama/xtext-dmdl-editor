@@ -44,13 +44,15 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRecordTermAccess().getGroup(), "rule__RecordTerm__Group__0");
 					put(grammarAccess.getPropertyDefinitionAccess().getGroup(), "rule__PropertyDefinition__Group__0");
 					put(grammarAccess.getModelsAccess().getListAssignment(), "rule__Models__ListAssignment");
-					put(grammarAccess.getRecordModelDefinitionAccess().getNameAssignment_0(), "rule__RecordModelDefinition__NameAssignment_0");
-					put(grammarAccess.getRecordModelDefinitionAccess().getRhsAssignment_2(), "rule__RecordModelDefinition__RhsAssignment_2");
-					put(grammarAccess.getRecordExpressionAccess().getBlockAssignment_0(), "rule__RecordExpression__BlockAssignment_0");
-					put(grammarAccess.getRecordExpressionAccess().getBlockAssignment_1_1(), "rule__RecordExpression__BlockAssignment_1_1");
+					put(grammarAccess.getRecordModelDefinitionAccess().getDescriptionAssignment_0(), "rule__RecordModelDefinition__DescriptionAssignment_0");
+					put(grammarAccess.getRecordModelDefinitionAccess().getNameAssignment_1(), "rule__RecordModelDefinition__NameAssignment_1");
+					put(grammarAccess.getRecordModelDefinitionAccess().getRhsAssignment_3(), "rule__RecordModelDefinition__RhsAssignment_3");
+					put(grammarAccess.getRecordExpressionAccess().getTermsAssignment_0(), "rule__RecordExpression__TermsAssignment_0");
+					put(grammarAccess.getRecordExpressionAccess().getTermsAssignment_1_1(), "rule__RecordExpression__TermsAssignment_1_1");
 					put(grammarAccess.getRecordTermAccess().getPropertiesAssignment_1(), "rule__RecordTerm__PropertiesAssignment_1");
-					put(grammarAccess.getPropertyDefinitionAccess().getNameAssignment_0(), "rule__PropertyDefinition__NameAssignment_0");
-					put(grammarAccess.getPropertyDefinitionAccess().getTypeAssignment_2(), "rule__PropertyDefinition__TypeAssignment_2");
+					put(grammarAccess.getPropertyDefinitionAccess().getDescriptionAssignment_0(), "rule__PropertyDefinition__DescriptionAssignment_0");
+					put(grammarAccess.getPropertyDefinitionAccess().getNameAssignment_1(), "rule__PropertyDefinition__NameAssignment_1");
+					put(grammarAccess.getPropertyDefinitionAccess().getTypeAssignment_3(), "rule__PropertyDefinition__TypeAssignment_3");
 				}
 			};
 		}

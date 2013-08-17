@@ -15,11 +15,12 @@ ModelDefinition:
 	RecordModelDefinition;
 
 RecordModelDefinition:
+	(description=Description)?
 	name=Name '=' rhs=RecordExpression ';';
 
 RecordExpression:
-	block+=RecordTerm
-	("+" block+=RecordTerm)*;
+	terms+=RecordTerm
+	("+" terms+=RecordTerm)*;
 
 RecordTerm:
 	'{'
@@ -27,8 +28,12 @@ RecordTerm:
 	'}';
 
 PropertyDefinition:
+	(description=Description)?
 	name=Name ':' type=Type
 	';';
+
+Description:
+	STRING;
 
 Name:
 	NAME_TOKEN;
@@ -39,6 +44,9 @@ terminal NAME_TOKEN:
 /* Basic Types */
 enum Type:
 	INT | LONG | BYTE | SHORT | DECIMAL | FLOAT | DOUBLE | TEXT | BOOLEAN | DATE | DATETIME;
+
+terminal STRING:
+	'"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | '\\') | !('\\' | '"'))* '"';
 
 terminal ML_COMMENT:
 	'/*'->'*/';

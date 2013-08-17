@@ -115,13 +115,22 @@ public interface DmdlPackage extends EPackage
   int RECORD_MODEL_DEFINITION = 2;
 
   /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RECORD_MODEL_DEFINITION__DESCRIPTION = MODEL_DEFINITION_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RECORD_MODEL_DEFINITION__NAME = MODEL_DEFINITION_FEATURE_COUNT + 0;
+  int RECORD_MODEL_DEFINITION__NAME = MODEL_DEFINITION_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Rhs</b></em>' containment reference.
@@ -130,7 +139,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RECORD_MODEL_DEFINITION__RHS = MODEL_DEFINITION_FEATURE_COUNT + 1;
+  int RECORD_MODEL_DEFINITION__RHS = MODEL_DEFINITION_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Record Model Definition</em>' class.
@@ -139,7 +148,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RECORD_MODEL_DEFINITION_FEATURE_COUNT = MODEL_DEFINITION_FEATURE_COUNT + 2;
+  int RECORD_MODEL_DEFINITION_FEATURE_COUNT = MODEL_DEFINITION_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordExpressionImpl <em>Record Expression</em>}' class.
@@ -152,13 +161,13 @@ public interface DmdlPackage extends EPackage
   int RECORD_EXPRESSION = 3;
 
   /**
-   * The feature id for the '<em><b>Block</b></em>' containment reference list.
+   * The feature id for the '<em><b>Terms</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RECORD_EXPRESSION__BLOCK = 0;
+  int RECORD_EXPRESSION__TERMS = 0;
 
   /**
    * The number of structural features of the '<em>Record Expression</em>' class.
@@ -208,13 +217,22 @@ public interface DmdlPackage extends EPackage
   int PROPERTY_DEFINITION = 5;
 
   /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DEFINITION__DESCRIPTION = 0;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_DEFINITION__NAME = 0;
+  int PROPERTY_DEFINITION__NAME = 1;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -223,7 +241,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_DEFINITION__TYPE = 1;
+  int PROPERTY_DEFINITION__TYPE = 2;
 
   /**
    * The number of structural features of the '<em>Property Definition</em>' class.
@@ -232,7 +250,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_DEFINITION_FEATURE_COUNT = 2;
+  int PROPERTY_DEFINITION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Type <em>Type</em>}' enum.
@@ -287,6 +305,17 @@ public interface DmdlPackage extends EPackage
   EClass getRecordModelDefinition();
 
   /**
+   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition#getDescription <em>Description</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Description</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition#getDescription()
+   * @see #getRecordModelDefinition()
+   * @generated
+   */
+  EAttribute getRecordModelDefinition_Description();
+
+  /**
    * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -319,15 +348,15 @@ public interface DmdlPackage extends EPackage
   EClass getRecordExpression();
 
   /**
-   * Returns the meta object for the containment reference list '{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression#getBlock <em>Block</em>}'.
+   * Returns the meta object for the containment reference list '{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression#getTerms <em>Terms</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Block</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression#getBlock()
+   * @return the meta object for the containment reference list '<em>Terms</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression#getTerms()
    * @see #getRecordExpression()
    * @generated
    */
-  EReference getRecordExpression_Block();
+  EReference getRecordExpression_Terms();
 
   /**
    * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm <em>Record Term</em>}'.
@@ -359,6 +388,17 @@ public interface DmdlPackage extends EPackage
    * @generated
    */
   EClass getPropertyDefinition();
+
+  /**
+   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition#getDescription <em>Description</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Description</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition#getDescription()
+   * @see #getPropertyDefinition()
+   * @generated
+   */
+  EAttribute getPropertyDefinition_Description();
 
   /**
    * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition#getName <em>Name</em>}'.
@@ -454,6 +494,14 @@ public interface DmdlPackage extends EPackage
     EClass RECORD_MODEL_DEFINITION = eINSTANCE.getRecordModelDefinition();
 
     /**
+     * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RECORD_MODEL_DEFINITION__DESCRIPTION = eINSTANCE.getRecordModelDefinition_Description();
+
+    /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -480,12 +528,12 @@ public interface DmdlPackage extends EPackage
     EClass RECORD_EXPRESSION = eINSTANCE.getRecordExpression();
 
     /**
-     * The meta object literal for the '<em><b>Block</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Terms</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RECORD_EXPRESSION__BLOCK = eINSTANCE.getRecordExpression_Block();
+    EReference RECORD_EXPRESSION__TERMS = eINSTANCE.getRecordExpression_Terms();
 
     /**
      * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordTermImpl <em>Record Term</em>}' class.
@@ -514,6 +562,14 @@ public interface DmdlPackage extends EPackage
      * @generated
      */
     EClass PROPERTY_DEFINITION = eINSTANCE.getPropertyDefinition();
+
+    /**
+     * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PROPERTY_DEFINITION__DESCRIPTION = eINSTANCE.getPropertyDefinition_Description();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
