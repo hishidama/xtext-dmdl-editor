@@ -26,13 +26,32 @@ RecordExpression:
 RecordTerm:
 	'{'
 	(properties+=PropertyDefinition)+
-	'}';
+	'}'
+	| reference=ModelReference;
+
+ModelReference:
+	name=Name;
 
 PropertyDefinition:
 	(description=Description)?
 	(attributes=AttributeList)?
 	name=Name ':' type=Type
 	';';
+
+SummarizeModelDefinition:
+	(description=Description)?
+	(attributes=AttributeList)?
+	'summarized'
+	name=Name '=' rhs=SummarizeExpression ';';
+
+SummarizeExpression:
+	terms+=SummarizeTerm ('+' terms+=SummarizeTerm)*;
+
+SummarizeTerm:
+	reference=ModelReference
+	//	folding=ModelFolding
+	//	(grouping=Grouping)?
+;
 
 Description:
 	STRING;
@@ -42,11 +61,7 @@ AttributeList:
 	(attributes+=Attribute)+;
 
 Attribute:
-	"@"
-	name=QualifiedName
-	('('
-	(elements=AttributeElementList ","?)?
-	')')?;
+	"@" name=QualifiedName ('(' (elements=AttributeElementList ","?)? ')')?;
 
 AttributeElementList:
 	elements+=AttributeElement ("," elements+=AttributeElement)*;
@@ -55,14 +70,10 @@ AttributeElement:
 	name=Name "=" value=AttributeValue;
 
 AttributeValue:
-	value=AttributeValueArray
-	| value=QualifiedName
-	| value=Literal;
+	value=AttributeValueArray | value=QualifiedName | value=Literal;
 
 AttributeValueArray:
-	'{'
-	elements+=AttributeValue ("," elements+=AttributeValue)* ","?
-	'}';
+	'{' elements+=AttributeValue ("," elements+=AttributeValue)* ","? '}';
 
 QualifiedName:
 	name+=Name ('.' name+=Name)*;

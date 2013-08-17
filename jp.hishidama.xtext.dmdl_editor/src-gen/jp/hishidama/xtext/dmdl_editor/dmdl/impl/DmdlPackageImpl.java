@@ -12,12 +12,16 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlFactory;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Literal;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Models;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedName;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
+import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression;
+import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Type;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -76,7 +80,35 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass modelReferenceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass propertyDefinitionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass summarizeModelDefinitionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass summarizeExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass summarizeTermEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -336,6 +368,36 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getRecordTerm_Reference()
+  {
+    return (EReference)recordTermEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getModelReference()
+  {
+    return modelReferenceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getModelReference_Name()
+  {
+    return (EAttribute)modelReferenceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getPropertyDefinition()
   {
     return propertyDefinitionEClass;
@@ -379,6 +441,96 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
   public EAttribute getPropertyDefinition_Type()
   {
     return (EAttribute)propertyDefinitionEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSummarizeModelDefinition()
+  {
+    return summarizeModelDefinitionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSummarizeModelDefinition_Description()
+  {
+    return (EAttribute)summarizeModelDefinitionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSummarizeModelDefinition_Attributes()
+  {
+    return (EReference)summarizeModelDefinitionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSummarizeModelDefinition_Name()
+  {
+    return (EAttribute)summarizeModelDefinitionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSummarizeModelDefinition_Rhs()
+  {
+    return (EReference)summarizeModelDefinitionEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSummarizeExpression()
+  {
+    return summarizeExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSummarizeExpression_Terms()
+  {
+    return (EReference)summarizeExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSummarizeTerm()
+  {
+    return summarizeTermEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSummarizeTerm_Reference()
+  {
+    return (EReference)summarizeTermEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -657,12 +809,28 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
 
     recordTermEClass = createEClass(RECORD_TERM);
     createEReference(recordTermEClass, RECORD_TERM__PROPERTIES);
+    createEReference(recordTermEClass, RECORD_TERM__REFERENCE);
+
+    modelReferenceEClass = createEClass(MODEL_REFERENCE);
+    createEAttribute(modelReferenceEClass, MODEL_REFERENCE__NAME);
 
     propertyDefinitionEClass = createEClass(PROPERTY_DEFINITION);
     createEAttribute(propertyDefinitionEClass, PROPERTY_DEFINITION__DESCRIPTION);
     createEReference(propertyDefinitionEClass, PROPERTY_DEFINITION__ATTRIBUTES);
     createEAttribute(propertyDefinitionEClass, PROPERTY_DEFINITION__NAME);
     createEAttribute(propertyDefinitionEClass, PROPERTY_DEFINITION__TYPE);
+
+    summarizeModelDefinitionEClass = createEClass(SUMMARIZE_MODEL_DEFINITION);
+    createEAttribute(summarizeModelDefinitionEClass, SUMMARIZE_MODEL_DEFINITION__DESCRIPTION);
+    createEReference(summarizeModelDefinitionEClass, SUMMARIZE_MODEL_DEFINITION__ATTRIBUTES);
+    createEAttribute(summarizeModelDefinitionEClass, SUMMARIZE_MODEL_DEFINITION__NAME);
+    createEReference(summarizeModelDefinitionEClass, SUMMARIZE_MODEL_DEFINITION__RHS);
+
+    summarizeExpressionEClass = createEClass(SUMMARIZE_EXPRESSION);
+    createEReference(summarizeExpressionEClass, SUMMARIZE_EXPRESSION__TERMS);
+
+    summarizeTermEClass = createEClass(SUMMARIZE_TERM);
+    createEReference(summarizeTermEClass, SUMMARIZE_TERM__REFERENCE);
 
     attributeListEClass = createEClass(ATTRIBUTE_LIST);
     createEReference(attributeListEClass, ATTRIBUTE_LIST__ATTRIBUTES);
@@ -746,12 +914,28 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
 
     initEClass(recordTermEClass, RecordTerm.class, "RecordTerm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRecordTerm_Properties(), this.getPropertyDefinition(), null, "properties", null, 0, -1, RecordTerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRecordTerm_Reference(), this.getModelReference(), null, "reference", null, 0, 1, RecordTerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(modelReferenceEClass, ModelReference.class, "ModelReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getModelReference_Name(), ecorePackage.getEString(), "name", null, 0, 1, ModelReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(propertyDefinitionEClass, PropertyDefinition.class, "PropertyDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPropertyDefinition_Description(), ecorePackage.getEString(), "description", null, 0, 1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPropertyDefinition_Attributes(), this.getAttributeList(), null, "attributes", null, 0, 1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPropertyDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPropertyDefinition_Type(), this.getType(), "type", null, 0, 1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(summarizeModelDefinitionEClass, SummarizeModelDefinition.class, "SummarizeModelDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSummarizeModelDefinition_Description(), ecorePackage.getEString(), "description", null, 0, 1, SummarizeModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSummarizeModelDefinition_Attributes(), this.getAttributeList(), null, "attributes", null, 0, 1, SummarizeModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSummarizeModelDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, SummarizeModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSummarizeModelDefinition_Rhs(), this.getSummarizeExpression(), null, "rhs", null, 0, 1, SummarizeModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(summarizeExpressionEClass, SummarizeExpression.class, "SummarizeExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSummarizeExpression_Terms(), this.getSummarizeTerm(), null, "terms", null, 0, -1, SummarizeExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(summarizeTermEClass, SummarizeTerm.class, "SummarizeTerm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSummarizeTerm_Reference(), this.getModelReference(), null, "reference", null, 0, 1, SummarizeTerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attributeListEClass, AttributeList.class, "AttributeList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAttributeList_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, AttributeList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

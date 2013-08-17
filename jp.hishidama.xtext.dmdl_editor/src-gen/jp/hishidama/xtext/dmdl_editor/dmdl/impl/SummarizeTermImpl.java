@@ -2,17 +2,12 @@
  */
 package jp.hishidama.xtext.dmdl_editor.dmdl.impl;
 
-import java.util.Collection;
-
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
-import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
-import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
+import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -20,35 +15,21 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Record Term</b></em>'.
+ * An implementation of the model object '<em><b>Summarize Term</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordTermImpl#getProperties <em>Properties</em>}</li>
- *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordTermImpl#getReference <em>Reference</em>}</li>
+ *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.SummarizeTermImpl#getReference <em>Reference</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class RecordTermImpl extends MinimalEObjectImpl.Container implements RecordTerm
+public class SummarizeTermImpl extends MinimalEObjectImpl.Container implements SummarizeTerm
 {
-  /**
-   * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getProperties()
-   * @generated
-   * @ordered
-   */
-  protected EList<PropertyDefinition> properties;
-
   /**
    * The cached value of the '{@link #getReference() <em>Reference</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -64,7 +45,7 @@ public class RecordTermImpl extends MinimalEObjectImpl.Container implements Reco
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RecordTermImpl()
+  protected SummarizeTermImpl()
   {
     super();
   }
@@ -77,21 +58,7 @@ public class RecordTermImpl extends MinimalEObjectImpl.Container implements Reco
   @Override
   protected EClass eStaticClass()
   {
-    return DmdlPackage.Literals.RECORD_TERM;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<PropertyDefinition> getProperties()
-  {
-    if (properties == null)
-    {
-      properties = new EObjectContainmentEList<PropertyDefinition>(PropertyDefinition.class, this, DmdlPackage.RECORD_TERM__PROPERTIES);
-    }
-    return properties;
+    return DmdlPackage.Literals.SUMMARIZE_TERM;
   }
 
   /**
@@ -115,7 +82,7 @@ public class RecordTermImpl extends MinimalEObjectImpl.Container implements Reco
     reference = newReference;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DmdlPackage.RECORD_TERM__REFERENCE, oldReference, newReference);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DmdlPackage.SUMMARIZE_TERM__REFERENCE, oldReference, newReference);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -132,14 +99,14 @@ public class RecordTermImpl extends MinimalEObjectImpl.Container implements Reco
     {
       NotificationChain msgs = null;
       if (reference != null)
-        msgs = ((InternalEObject)reference).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DmdlPackage.RECORD_TERM__REFERENCE, null, msgs);
+        msgs = ((InternalEObject)reference).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DmdlPackage.SUMMARIZE_TERM__REFERENCE, null, msgs);
       if (newReference != null)
-        msgs = ((InternalEObject)newReference).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DmdlPackage.RECORD_TERM__REFERENCE, null, msgs);
+        msgs = ((InternalEObject)newReference).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DmdlPackage.SUMMARIZE_TERM__REFERENCE, null, msgs);
       msgs = basicSetReference(newReference, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DmdlPackage.RECORD_TERM__REFERENCE, newReference, newReference));
+      eNotify(new ENotificationImpl(this, Notification.SET, DmdlPackage.SUMMARIZE_TERM__REFERENCE, newReference, newReference));
   }
 
   /**
@@ -152,9 +119,7 @@ public class RecordTermImpl extends MinimalEObjectImpl.Container implements Reco
   {
     switch (featureID)
     {
-      case DmdlPackage.RECORD_TERM__PROPERTIES:
-        return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
-      case DmdlPackage.RECORD_TERM__REFERENCE:
+      case DmdlPackage.SUMMARIZE_TERM__REFERENCE:
         return basicSetReference(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -170,9 +135,7 @@ public class RecordTermImpl extends MinimalEObjectImpl.Container implements Reco
   {
     switch (featureID)
     {
-      case DmdlPackage.RECORD_TERM__PROPERTIES:
-        return getProperties();
-      case DmdlPackage.RECORD_TERM__REFERENCE:
+      case DmdlPackage.SUMMARIZE_TERM__REFERENCE:
         return getReference();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -183,17 +146,12 @@ public class RecordTermImpl extends MinimalEObjectImpl.Container implements Reco
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case DmdlPackage.RECORD_TERM__PROPERTIES:
-        getProperties().clear();
-        getProperties().addAll((Collection<? extends PropertyDefinition>)newValue);
-        return;
-      case DmdlPackage.RECORD_TERM__REFERENCE:
+      case DmdlPackage.SUMMARIZE_TERM__REFERENCE:
         setReference((ModelReference)newValue);
         return;
     }
@@ -210,10 +168,7 @@ public class RecordTermImpl extends MinimalEObjectImpl.Container implements Reco
   {
     switch (featureID)
     {
-      case DmdlPackage.RECORD_TERM__PROPERTIES:
-        getProperties().clear();
-        return;
-      case DmdlPackage.RECORD_TERM__REFERENCE:
+      case DmdlPackage.SUMMARIZE_TERM__REFERENCE:
         setReference((ModelReference)null);
         return;
     }
@@ -230,12 +185,10 @@ public class RecordTermImpl extends MinimalEObjectImpl.Container implements Reco
   {
     switch (featureID)
     {
-      case DmdlPackage.RECORD_TERM__PROPERTIES:
-        return properties != null && !properties.isEmpty();
-      case DmdlPackage.RECORD_TERM__REFERENCE:
+      case DmdlPackage.SUMMARIZE_TERM__REFERENCE:
         return reference != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //RecordTermImpl
+} //SummarizeTermImpl

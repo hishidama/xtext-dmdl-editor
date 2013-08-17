@@ -100,9 +100,29 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
         return createRecordTermAdapter();
       }
       @Override
+      public Adapter caseModelReference(ModelReference object)
+      {
+        return createModelReferenceAdapter();
+      }
+      @Override
       public Adapter casePropertyDefinition(PropertyDefinition object)
       {
         return createPropertyDefinitionAdapter();
+      }
+      @Override
+      public Adapter caseSummarizeModelDefinition(SummarizeModelDefinition object)
+      {
+        return createSummarizeModelDefinitionAdapter();
+      }
+      @Override
+      public Adapter caseSummarizeExpression(SummarizeExpression object)
+      {
+        return createSummarizeExpressionAdapter();
+      }
+      @Override
+      public Adapter caseSummarizeTerm(SummarizeTerm object)
+      {
+        return createSummarizeTermAdapter();
       }
       @Override
       public Adapter caseAttributeList(AttributeList object)
@@ -242,6 +262,21 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference <em>Model Reference</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference
+   * @generated
+   */
+  public Adapter createModelReferenceAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition <em>Property Definition</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -252,6 +287,51 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPropertyDefinitionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeModelDefinition <em>Summarize Model Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeModelDefinition
+   * @generated
+   */
+  public Adapter createSummarizeModelDefinitionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression <em>Summarize Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression
+   * @generated
+   */
+  public Adapter createSummarizeExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm <em>Summarize Term</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm
+   * @generated
+   */
+  public Adapter createSummarizeTermAdapter()
   {
     return null;
   }

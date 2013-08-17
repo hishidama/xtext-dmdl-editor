@@ -10,12 +10,16 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValue;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueArray;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Literal;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Models;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedName;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
+import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression;
+import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm;
 import jp.hishidama.xtext.dmdl_editor.services.DMDLGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
@@ -79,6 +83,12 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case DmdlPackage.MODEL_REFERENCE:
+				if(context == grammarAccess.getModelReferenceRule()) {
+					sequence_ModelReference(context, (ModelReference) semanticObject); 
+					return; 
+				}
+				else break;
 			case DmdlPackage.MODELS:
 				if(context == grammarAccess.getModelsRule()) {
 					sequence_Models(context, (Models) semanticObject); 
@@ -113,6 +123,24 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case DmdlPackage.RECORD_TERM:
 				if(context == grammarAccess.getRecordTermRule()) {
 					sequence_RecordTerm(context, (RecordTerm) semanticObject); 
+					return; 
+				}
+				else break;
+			case DmdlPackage.SUMMARIZE_EXPRESSION:
+				if(context == grammarAccess.getSummarizeExpressionRule()) {
+					sequence_SummarizeExpression(context, (SummarizeExpression) semanticObject); 
+					return; 
+				}
+				else break;
+			case DmdlPackage.SUMMARIZE_MODEL_DEFINITION:
+				if(context == grammarAccess.getSummarizeModelDefinitionRule()) {
+					sequence_SummarizeModelDefinition(context, (SummarizeModelDefinition) semanticObject); 
+					return; 
+				}
+				else break;
+			case DmdlPackage.SUMMARIZE_TERM:
+				if(context == grammarAccess.getSummarizeTermRule()) {
+					sequence_SummarizeTerm(context, (SummarizeTerm) semanticObject); 
 					return; 
 				}
 				else break;
@@ -195,6 +223,22 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     name=Name
+	 */
+	protected void sequence_ModelReference(EObject context, ModelReference semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.MODEL_REFERENCE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.MODEL_REFERENCE__NAME));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getModelReferenceAccess().getNameNameParserRuleCall_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     list+=ModelDefinition*
 	 */
 	protected void sequence_Models(EObject context, Models semanticObject) {
@@ -240,9 +284,43 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     properties+=PropertyDefinition+
+	 *     (properties+=PropertyDefinition+ | reference=ModelReference)
 	 */
 	protected void sequence_RecordTerm(EObject context, RecordTerm semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (terms+=SummarizeTerm terms+=SummarizeTerm*)
+	 */
+	protected void sequence_SummarizeExpression(EObject context, SummarizeExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (description=Description? attributes=AttributeList? name=Name rhs=SummarizeExpression)
+	 */
+	protected void sequence_SummarizeModelDefinition(EObject context, SummarizeModelDefinition semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     reference=ModelReference
+	 */
+	protected void sequence_SummarizeTerm(EObject context, SummarizeTerm semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.SUMMARIZE_TERM__REFERENCE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.SUMMARIZE_TERM__REFERENCE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getSummarizeTermAccess().getReferenceModelReferenceParserRuleCall_0(), semanticObject.getReference());
+		feeder.finish();
 	}
 }

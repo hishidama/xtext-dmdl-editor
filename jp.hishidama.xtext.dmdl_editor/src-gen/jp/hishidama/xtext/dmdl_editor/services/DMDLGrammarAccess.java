@@ -139,31 +139,60 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class RecordTermElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RecordTerm");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cPropertiesAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cPropertiesPropertyDefinitionParserRuleCall_1_0 = (RuleCall)cPropertiesAssignment_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Assignment cPropertiesAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cPropertiesPropertyDefinitionParserRuleCall_0_1_0 = (RuleCall)cPropertiesAssignment_0_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
+		private final Assignment cReferenceAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cReferenceModelReferenceParserRuleCall_1_0 = (RuleCall)cReferenceAssignment_1.eContents().get(0);
 		
 		//RecordTerm:
 		//
-		//	"{" properties+=PropertyDefinition+ "}";
+		//	"{" properties+=PropertyDefinition+ "}" | reference=ModelReference;
 		public ParserRule getRule() { return rule; }
 
+		//"{" properties+=PropertyDefinition+ "}" | reference=ModelReference
+		public Alternatives getAlternatives() { return cAlternatives; }
+
 		//"{" properties+=PropertyDefinition+ "}"
-		public Group getGroup() { return cGroup; }
+		public Group getGroup_0() { return cGroup_0; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
+		public Keyword getLeftCurlyBracketKeyword_0_0() { return cLeftCurlyBracketKeyword_0_0; }
 
 		//properties+=PropertyDefinition+
-		public Assignment getPropertiesAssignment_1() { return cPropertiesAssignment_1; }
+		public Assignment getPropertiesAssignment_0_1() { return cPropertiesAssignment_0_1; }
 
 		//PropertyDefinition
-		public RuleCall getPropertiesPropertyDefinitionParserRuleCall_1_0() { return cPropertiesPropertyDefinitionParserRuleCall_1_0; }
+		public RuleCall getPropertiesPropertyDefinitionParserRuleCall_0_1_0() { return cPropertiesPropertyDefinitionParserRuleCall_0_1_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_2() { return cRightCurlyBracketKeyword_2; }
+		public Keyword getRightCurlyBracketKeyword_0_2() { return cRightCurlyBracketKeyword_0_2; }
+
+		//reference=ModelReference
+		public Assignment getReferenceAssignment_1() { return cReferenceAssignment_1; }
+
+		//ModelReference
+		public RuleCall getReferenceModelReferenceParserRuleCall_1_0() { return cReferenceModelReferenceParserRuleCall_1_0; }
+	}
+
+	public class ModelReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ModelReference");
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNameNameParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		
+		//ModelReference:
+		//
+		//	name=Name;
+		public ParserRule getRule() { return rule; }
+
+		//name=Name
+		public Assignment getNameAssignment() { return cNameAssignment; }
+
+		//Name
+		public RuleCall getNameNameParserRuleCall_0() { return cNameNameParserRuleCall_0; }
 	}
 
 	public class PropertyDefinitionElements extends AbstractParserRuleElementFinder {
@@ -217,6 +246,121 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 		//";"
 		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
+	}
+
+	public class SummarizeModelDefinitionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SummarizeModelDefinition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cDescriptionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cDescriptionDescriptionParserRuleCall_0_0 = (RuleCall)cDescriptionAssignment_0.eContents().get(0);
+		private final Assignment cAttributesAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cAttributesAttributeListParserRuleCall_1_0 = (RuleCall)cAttributesAssignment_1.eContents().get(0);
+		private final Keyword cSummarizedKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cNameNameParserRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cRhsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cRhsSummarizeExpressionParserRuleCall_5_0 = (RuleCall)cRhsAssignment_5.eContents().get(0);
+		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		
+		//SummarizeModelDefinition:
+		//
+		//	description=Description? attributes=AttributeList? "summarized" name=Name "=" rhs=SummarizeExpression ";";
+		public ParserRule getRule() { return rule; }
+
+		//description=Description? attributes=AttributeList? "summarized" name=Name "=" rhs=SummarizeExpression ";"
+		public Group getGroup() { return cGroup; }
+
+		//description=Description?
+		public Assignment getDescriptionAssignment_0() { return cDescriptionAssignment_0; }
+
+		//Description
+		public RuleCall getDescriptionDescriptionParserRuleCall_0_0() { return cDescriptionDescriptionParserRuleCall_0_0; }
+
+		//attributes=AttributeList?
+		public Assignment getAttributesAssignment_1() { return cAttributesAssignment_1; }
+
+		//AttributeList
+		public RuleCall getAttributesAttributeListParserRuleCall_1_0() { return cAttributesAttributeListParserRuleCall_1_0; }
+
+		//"summarized"
+		public Keyword getSummarizedKeyword_2() { return cSummarizedKeyword_2; }
+
+		//name=Name
+		public Assignment getNameAssignment_3() { return cNameAssignment_3; }
+
+		//Name
+		public RuleCall getNameNameParserRuleCall_3_0() { return cNameNameParserRuleCall_3_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_4() { return cEqualsSignKeyword_4; }
+
+		//rhs=SummarizeExpression
+		public Assignment getRhsAssignment_5() { return cRhsAssignment_5; }
+
+		//SummarizeExpression
+		public RuleCall getRhsSummarizeExpressionParserRuleCall_5_0() { return cRhsSummarizeExpressionParserRuleCall_5_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
+	}
+
+	public class SummarizeExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SummarizeExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cTermsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cTermsSummarizeTermParserRuleCall_0_0 = (RuleCall)cTermsAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cPlusSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cTermsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cTermsSummarizeTermParserRuleCall_1_1_0 = (RuleCall)cTermsAssignment_1_1.eContents().get(0);
+		
+		//SummarizeExpression:
+		//
+		//	terms+=SummarizeTerm ("+" terms+=SummarizeTerm)*;
+		public ParserRule getRule() { return rule; }
+
+		//terms+=SummarizeTerm ("+" terms+=SummarizeTerm)*
+		public Group getGroup() { return cGroup; }
+
+		//terms+=SummarizeTerm
+		public Assignment getTermsAssignment_0() { return cTermsAssignment_0; }
+
+		//SummarizeTerm
+		public RuleCall getTermsSummarizeTermParserRuleCall_0_0() { return cTermsSummarizeTermParserRuleCall_0_0; }
+
+		//("+" terms+=SummarizeTerm)*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"+"
+		public Keyword getPlusSignKeyword_1_0() { return cPlusSignKeyword_1_0; }
+
+		//terms+=SummarizeTerm
+		public Assignment getTermsAssignment_1_1() { return cTermsAssignment_1_1; }
+
+		//SummarizeTerm
+		public RuleCall getTermsSummarizeTermParserRuleCall_1_1_0() { return cTermsSummarizeTermParserRuleCall_1_1_0; }
+	}
+
+	public class SummarizeTermElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SummarizeTerm");
+		private final Assignment cReferenceAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cReferenceModelReferenceParserRuleCall_0 = (RuleCall)cReferenceAssignment.eContents().get(0);
+		
+		////	folding=ModelFolding
+		//
+		////	(grouping=Grouping)?
+		//
+		//SummarizeTerm:
+		//
+		//	reference=ModelReference;
+		public ParserRule getRule() { return rule; }
+
+		//reference=ModelReference
+		public Assignment getReferenceAssignment() { return cReferenceAssignment; }
+
+		//ModelReference
+		public RuleCall getReferenceModelReferenceParserRuleCall_0() { return cReferenceModelReferenceParserRuleCall_0; }
 	}
 
 	public class DescriptionElements extends AbstractParserRuleElementFinder {
@@ -689,7 +833,11 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	private RecordModelDefinitionElements pRecordModelDefinition;
 	private RecordExpressionElements pRecordExpression;
 	private RecordTermElements pRecordTerm;
+	private ModelReferenceElements pModelReference;
 	private PropertyDefinitionElements pPropertyDefinition;
+	private SummarizeModelDefinitionElements pSummarizeModelDefinition;
+	private SummarizeExpressionElements pSummarizeExpression;
+	private SummarizeTermElements pSummarizeTerm;
 	private DescriptionElements pDescription;
 	private AttributeListElements pAttributeList;
 	private AttributeElements pAttribute;
@@ -786,13 +934,24 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//RecordTerm:
 	//
-	//	"{" properties+=PropertyDefinition+ "}";
+	//	"{" properties+=PropertyDefinition+ "}" | reference=ModelReference;
 	public RecordTermElements getRecordTermAccess() {
 		return (pRecordTerm != null) ? pRecordTerm : (pRecordTerm = new RecordTermElements());
 	}
 	
 	public ParserRule getRecordTermRule() {
 		return getRecordTermAccess().getRule();
+	}
+
+	//ModelReference:
+	//
+	//	name=Name;
+	public ModelReferenceElements getModelReferenceAccess() {
+		return (pModelReference != null) ? pModelReference : (pModelReference = new ModelReferenceElements());
+	}
+	
+	public ParserRule getModelReferenceRule() {
+		return getModelReferenceAccess().getRule();
 	}
 
 	//PropertyDefinition:
@@ -804,6 +963,43 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPropertyDefinitionRule() {
 		return getPropertyDefinitionAccess().getRule();
+	}
+
+	//SummarizeModelDefinition:
+	//
+	//	description=Description? attributes=AttributeList? "summarized" name=Name "=" rhs=SummarizeExpression ";";
+	public SummarizeModelDefinitionElements getSummarizeModelDefinitionAccess() {
+		return (pSummarizeModelDefinition != null) ? pSummarizeModelDefinition : (pSummarizeModelDefinition = new SummarizeModelDefinitionElements());
+	}
+	
+	public ParserRule getSummarizeModelDefinitionRule() {
+		return getSummarizeModelDefinitionAccess().getRule();
+	}
+
+	//SummarizeExpression:
+	//
+	//	terms+=SummarizeTerm ("+" terms+=SummarizeTerm)*;
+	public SummarizeExpressionElements getSummarizeExpressionAccess() {
+		return (pSummarizeExpression != null) ? pSummarizeExpression : (pSummarizeExpression = new SummarizeExpressionElements());
+	}
+	
+	public ParserRule getSummarizeExpressionRule() {
+		return getSummarizeExpressionAccess().getRule();
+	}
+
+	////	folding=ModelFolding
+	//
+	////	(grouping=Grouping)?
+	//
+	//SummarizeTerm:
+	//
+	//	reference=ModelReference;
+	public SummarizeTermElements getSummarizeTermAccess() {
+		return (pSummarizeTerm != null) ? pSummarizeTerm : (pSummarizeTerm = new SummarizeTermElements());
+	}
+	
+	public ParserRule getSummarizeTermRule() {
+		return getSummarizeTermAccess().getRule();
 	}
 
 	//Description:

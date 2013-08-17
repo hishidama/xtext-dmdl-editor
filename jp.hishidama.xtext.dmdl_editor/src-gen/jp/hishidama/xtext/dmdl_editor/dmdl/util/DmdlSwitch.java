@@ -108,10 +108,38 @@ public class DmdlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case DmdlPackage.MODEL_REFERENCE:
+      {
+        ModelReference modelReference = (ModelReference)theEObject;
+        T result = caseModelReference(modelReference);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case DmdlPackage.PROPERTY_DEFINITION:
       {
         PropertyDefinition propertyDefinition = (PropertyDefinition)theEObject;
         T result = casePropertyDefinition(propertyDefinition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DmdlPackage.SUMMARIZE_MODEL_DEFINITION:
+      {
+        SummarizeModelDefinition summarizeModelDefinition = (SummarizeModelDefinition)theEObject;
+        T result = caseSummarizeModelDefinition(summarizeModelDefinition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DmdlPackage.SUMMARIZE_EXPRESSION:
+      {
+        SummarizeExpression summarizeExpression = (SummarizeExpression)theEObject;
+        T result = caseSummarizeExpression(summarizeExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DmdlPackage.SUMMARIZE_TERM:
+      {
+        SummarizeTerm summarizeTerm = (SummarizeTerm)theEObject;
+        T result = caseSummarizeTerm(summarizeTerm);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -256,6 +284,22 @@ public class DmdlSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Model Reference</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Model Reference</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseModelReference(ModelReference object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Property Definition</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -267,6 +311,54 @@ public class DmdlSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePropertyDefinition(PropertyDefinition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Summarize Model Definition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Summarize Model Definition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSummarizeModelDefinition(SummarizeModelDefinition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Summarize Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Summarize Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSummarizeExpression(SummarizeExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Summarize Term</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Summarize Term</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSummarizeTerm(SummarizeTerm object)
   {
     return null;
   }

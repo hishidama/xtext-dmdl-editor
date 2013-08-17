@@ -68,6 +68,15 @@ public interface DmdlFactory extends EFactory
   RecordTerm createRecordTerm();
 
   /**
+   * Returns a new object of class '<em>Model Reference</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Model Reference</em>'.
+   * @generated
+   */
+  ModelReference createModelReference();
+
+  /**
    * Returns a new object of class '<em>Property Definition</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -75,6 +84,33 @@ public interface DmdlFactory extends EFactory
    * @generated
    */
   PropertyDefinition createPropertyDefinition();
+
+  /**
+   * Returns a new object of class '<em>Summarize Model Definition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Summarize Model Definition</em>'.
+   * @generated
+   */
+  SummarizeModelDefinition createSummarizeModelDefinition();
+
+  /**
+   * Returns a new object of class '<em>Summarize Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Summarize Expression</em>'.
+   * @generated
+   */
+  SummarizeExpression createSummarizeExpression();
+
+  /**
+   * Returns a new object of class '<em>Summarize Term</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Summarize Term</em>'.
+   * @generated
+   */
+  SummarizeTerm createSummarizeTerm();
 
   /**
    * Returns a new object of class '<em>Attribute List</em>'.

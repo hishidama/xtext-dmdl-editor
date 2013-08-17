@@ -37,6 +37,7 @@ public class DMDLParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getRecordTermAccess().getAlternatives(), "rule__RecordTerm__Alternatives");
 					put(grammarAccess.getAttributeValueAccess().getAlternatives(), "rule__AttributeValue__Alternatives");
 					put(grammarAccess.getLiteralAccess().getAlternatives(), "rule__Literal__Alternatives");
 					put(grammarAccess.getTypeAccess().getAlternatives(), "rule__Type__Alternatives");
@@ -44,8 +45,11 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRecordModelDefinitionAccess().getGroup(), "rule__RecordModelDefinition__Group__0");
 					put(grammarAccess.getRecordExpressionAccess().getGroup(), "rule__RecordExpression__Group__0");
 					put(grammarAccess.getRecordExpressionAccess().getGroup_1(), "rule__RecordExpression__Group_1__0");
-					put(grammarAccess.getRecordTermAccess().getGroup(), "rule__RecordTerm__Group__0");
+					put(grammarAccess.getRecordTermAccess().getGroup_0(), "rule__RecordTerm__Group_0__0");
 					put(grammarAccess.getPropertyDefinitionAccess().getGroup(), "rule__PropertyDefinition__Group__0");
+					put(grammarAccess.getSummarizeModelDefinitionAccess().getGroup(), "rule__SummarizeModelDefinition__Group__0");
+					put(grammarAccess.getSummarizeExpressionAccess().getGroup(), "rule__SummarizeExpression__Group__0");
+					put(grammarAccess.getSummarizeExpressionAccess().getGroup_1(), "rule__SummarizeExpression__Group_1__0");
 					put(grammarAccess.getAttributeAccess().getGroup(), "rule__Attribute__Group__0");
 					put(grammarAccess.getAttributeAccess().getGroup_2(), "rule__Attribute__Group_2__0");
 					put(grammarAccess.getAttributeAccess().getGroup_2_1(), "rule__Attribute__Group_2_1__0");
@@ -63,11 +67,20 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRecordModelDefinitionAccess().getRhsAssignment_4(), "rule__RecordModelDefinition__RhsAssignment_4");
 					put(grammarAccess.getRecordExpressionAccess().getTermsAssignment_0(), "rule__RecordExpression__TermsAssignment_0");
 					put(grammarAccess.getRecordExpressionAccess().getTermsAssignment_1_1(), "rule__RecordExpression__TermsAssignment_1_1");
-					put(grammarAccess.getRecordTermAccess().getPropertiesAssignment_1(), "rule__RecordTerm__PropertiesAssignment_1");
+					put(grammarAccess.getRecordTermAccess().getPropertiesAssignment_0_1(), "rule__RecordTerm__PropertiesAssignment_0_1");
+					put(grammarAccess.getRecordTermAccess().getReferenceAssignment_1(), "rule__RecordTerm__ReferenceAssignment_1");
+					put(grammarAccess.getModelReferenceAccess().getNameAssignment(), "rule__ModelReference__NameAssignment");
 					put(grammarAccess.getPropertyDefinitionAccess().getDescriptionAssignment_0(), "rule__PropertyDefinition__DescriptionAssignment_0");
 					put(grammarAccess.getPropertyDefinitionAccess().getAttributesAssignment_1(), "rule__PropertyDefinition__AttributesAssignment_1");
 					put(grammarAccess.getPropertyDefinitionAccess().getNameAssignment_2(), "rule__PropertyDefinition__NameAssignment_2");
 					put(grammarAccess.getPropertyDefinitionAccess().getTypeAssignment_4(), "rule__PropertyDefinition__TypeAssignment_4");
+					put(grammarAccess.getSummarizeModelDefinitionAccess().getDescriptionAssignment_0(), "rule__SummarizeModelDefinition__DescriptionAssignment_0");
+					put(grammarAccess.getSummarizeModelDefinitionAccess().getAttributesAssignment_1(), "rule__SummarizeModelDefinition__AttributesAssignment_1");
+					put(grammarAccess.getSummarizeModelDefinitionAccess().getNameAssignment_3(), "rule__SummarizeModelDefinition__NameAssignment_3");
+					put(grammarAccess.getSummarizeModelDefinitionAccess().getRhsAssignment_5(), "rule__SummarizeModelDefinition__RhsAssignment_5");
+					put(grammarAccess.getSummarizeExpressionAccess().getTermsAssignment_0(), "rule__SummarizeExpression__TermsAssignment_0");
+					put(grammarAccess.getSummarizeExpressionAccess().getTermsAssignment_1_1(), "rule__SummarizeExpression__TermsAssignment_1_1");
+					put(grammarAccess.getSummarizeTermAccess().getReferenceAssignment(), "rule__SummarizeTerm__ReferenceAssignment");
 					put(grammarAccess.getAttributeListAccess().getAttributesAssignment(), "rule__AttributeList__AttributesAssignment");
 					put(grammarAccess.getAttributeAccess().getNameAssignment_1(), "rule__Attribute__NameAssignment_1");
 					put(grammarAccess.getAttributeAccess().getElementsAssignment_2_1_0(), "rule__Attribute__ElementsAssignment_2_1_0");

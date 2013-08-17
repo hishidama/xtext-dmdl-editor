@@ -70,7 +70,11 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
       case DmdlPackage.RECORD_MODEL_DEFINITION: return createRecordModelDefinition();
       case DmdlPackage.RECORD_EXPRESSION: return createRecordExpression();
       case DmdlPackage.RECORD_TERM: return createRecordTerm();
+      case DmdlPackage.MODEL_REFERENCE: return createModelReference();
       case DmdlPackage.PROPERTY_DEFINITION: return createPropertyDefinition();
+      case DmdlPackage.SUMMARIZE_MODEL_DEFINITION: return createSummarizeModelDefinition();
+      case DmdlPackage.SUMMARIZE_EXPRESSION: return createSummarizeExpression();
+      case DmdlPackage.SUMMARIZE_TERM: return createSummarizeTerm();
       case DmdlPackage.ATTRIBUTE_LIST: return createAttributeList();
       case DmdlPackage.ATTRIBUTE: return createAttribute();
       case DmdlPackage.ATTRIBUTE_ELEMENT_LIST: return createAttributeElementList();
@@ -182,10 +186,54 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public ModelReference createModelReference()
+  {
+    ModelReferenceImpl modelReference = new ModelReferenceImpl();
+    return modelReference;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PropertyDefinition createPropertyDefinition()
   {
     PropertyDefinitionImpl propertyDefinition = new PropertyDefinitionImpl();
     return propertyDefinition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SummarizeModelDefinition createSummarizeModelDefinition()
+  {
+    SummarizeModelDefinitionImpl summarizeModelDefinition = new SummarizeModelDefinitionImpl();
+    return summarizeModelDefinition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SummarizeExpression createSummarizeExpression()
+  {
+    SummarizeExpressionImpl summarizeExpression = new SummarizeExpressionImpl();
+    return summarizeExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SummarizeTerm createSummarizeTerm()
+  {
+    SummarizeTermImpl summarizeTerm = new SummarizeTermImpl();
+    return summarizeTerm;
   }
 
   /**

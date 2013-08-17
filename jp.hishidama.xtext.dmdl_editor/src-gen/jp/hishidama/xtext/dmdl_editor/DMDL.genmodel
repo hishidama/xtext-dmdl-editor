@@ -39,12 +39,28 @@
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//RecordTerm">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//RecordTerm/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//RecordTerm/reference"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//ModelReference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//ModelReference/name"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//PropertyDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyDefinition/description"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//PropertyDefinition/attributes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyDefinition/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyDefinition/type"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//SummarizeModelDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//SummarizeModelDefinition/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//SummarizeModelDefinition/attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//SummarizeModelDefinition/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//SummarizeModelDefinition/rhs"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//SummarizeExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//SummarizeExpression/terms"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//SummarizeTerm">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//SummarizeTerm/reference"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//AttributeList">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//AttributeList/attributes"/>
