@@ -11,13 +11,18 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueArray;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlFactory;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Grouping;
+import jp.hishidama.xtext.dmdl_editor.dmdl.JoinExpression;
+import jp.hishidama.xtext.dmdl_editor.dmdl.JoinTerm;
+import jp.hishidama.xtext.dmdl_editor.dmdl.JoinedModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Literal;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelFolding;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ProjectiveModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedName;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition;
@@ -105,6 +110,27 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass joinedModelDefinitionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass joinExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass joinTermEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass summarizeModelDefinitionEClass = null;
 
   /**
@@ -169,6 +195,20 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * @generated
    */
   private EClass groupingEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass modelMappingEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass propertyMappingEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -520,6 +560,96 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getJoinedModelDefinition()
+  {
+    return joinedModelDefinitionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getJoinedModelDefinition_Name()
+  {
+    return (EAttribute)joinedModelDefinitionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getJoinedModelDefinition_Rhs()
+  {
+    return (EReference)joinedModelDefinitionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getJoinExpression()
+  {
+    return joinExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getJoinExpression_Terms()
+  {
+    return (EReference)joinExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getJoinTerm()
+  {
+    return joinTermEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getJoinTerm_Reference()
+  {
+    return (EReference)joinTermEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getJoinTerm_Mapping()
+  {
+    return (EReference)joinTermEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getJoinTerm_Grouping()
+  {
+    return (EReference)joinTermEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getSummarizeModelDefinition()
   {
     return summarizeModelDefinitionEClass;
@@ -770,6 +900,76 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getModelMapping()
+  {
+    return modelMappingEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getModelMapping_Mappings()
+  {
+    return (EReference)modelMappingEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPropertyMapping()
+  {
+    return propertyMappingEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPropertyMapping_Description()
+  {
+    return (EAttribute)propertyMappingEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPropertyMapping_Attributes()
+  {
+    return (EReference)propertyMappingEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPropertyMapping_From()
+  {
+    return (EAttribute)propertyMappingEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPropertyMapping_Name()
+  {
+    return (EAttribute)propertyMappingEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getModelFolding()
   {
     return modelFoldingEClass;
@@ -997,6 +1197,18 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     createEAttribute(propertyDefinitionEClass, PROPERTY_DEFINITION__NAME);
     createEAttribute(propertyDefinitionEClass, PROPERTY_DEFINITION__TYPE);
 
+    joinedModelDefinitionEClass = createEClass(JOINED_MODEL_DEFINITION);
+    createEAttribute(joinedModelDefinitionEClass, JOINED_MODEL_DEFINITION__NAME);
+    createEReference(joinedModelDefinitionEClass, JOINED_MODEL_DEFINITION__RHS);
+
+    joinExpressionEClass = createEClass(JOIN_EXPRESSION);
+    createEReference(joinExpressionEClass, JOIN_EXPRESSION__TERMS);
+
+    joinTermEClass = createEClass(JOIN_TERM);
+    createEReference(joinTermEClass, JOIN_TERM__REFERENCE);
+    createEReference(joinTermEClass, JOIN_TERM__MAPPING);
+    createEReference(joinTermEClass, JOIN_TERM__GROUPING);
+
     summarizeModelDefinitionEClass = createEClass(SUMMARIZE_MODEL_DEFINITION);
     createEAttribute(summarizeModelDefinitionEClass, SUMMARIZE_MODEL_DEFINITION__NAME);
     createEReference(summarizeModelDefinitionEClass, SUMMARIZE_MODEL_DEFINITION__RHS);
@@ -1031,6 +1243,15 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
 
     groupingEClass = createEClass(GROUPING);
     createEAttribute(groupingEClass, GROUPING__NAME);
+
+    modelMappingEClass = createEClass(MODEL_MAPPING);
+    createEReference(modelMappingEClass, MODEL_MAPPING__MAPPINGS);
+
+    propertyMappingEClass = createEClass(PROPERTY_MAPPING);
+    createEAttribute(propertyMappingEClass, PROPERTY_MAPPING__DESCRIPTION);
+    createEReference(propertyMappingEClass, PROPERTY_MAPPING__ATTRIBUTES);
+    createEAttribute(propertyMappingEClass, PROPERTY_MAPPING__FROM);
+    createEAttribute(propertyMappingEClass, PROPERTY_MAPPING__NAME);
 
     modelFoldingEClass = createEClass(MODEL_FOLDING);
     createEReference(modelFoldingEClass, MODEL_FOLDING__FOLDINGS);
@@ -1119,6 +1340,18 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     initEAttribute(getPropertyDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPropertyDefinition_Type(), this.getType(), "type", null, 0, 1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(joinedModelDefinitionEClass, JoinedModelDefinition.class, "JoinedModelDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getJoinedModelDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, JoinedModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getJoinedModelDefinition_Rhs(), this.getJoinExpression(), null, "rhs", null, 0, 1, JoinedModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(joinExpressionEClass, JoinExpression.class, "JoinExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getJoinExpression_Terms(), this.getJoinTerm(), null, "terms", null, 0, -1, JoinExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(joinTermEClass, JoinTerm.class, "JoinTerm", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getJoinTerm_Reference(), this.getModelReference(), null, "reference", null, 0, 1, JoinTerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getJoinTerm_Mapping(), this.getModelMapping(), null, "mapping", null, 0, 1, JoinTerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getJoinTerm_Grouping(), this.getGrouping(), null, "grouping", null, 0, 1, JoinTerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(summarizeModelDefinitionEClass, SummarizeModelDefinition.class, "SummarizeModelDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getSummarizeModelDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, SummarizeModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSummarizeModelDefinition_Rhs(), this.getSummarizeExpression(), null, "rhs", null, 0, 1, SummarizeModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1153,6 +1386,15 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
 
     initEClass(groupingEClass, Grouping.class, "Grouping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGrouping_Name(), ecorePackage.getEString(), "name", null, 0, -1, Grouping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(modelMappingEClass, ModelMapping.class, "ModelMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getModelMapping_Mappings(), this.getPropertyMapping(), null, "mappings", null, 0, -1, ModelMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(propertyMappingEClass, PropertyMapping.class, "PropertyMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPropertyMapping_Description(), ecorePackage.getEString(), "description", null, 0, 1, PropertyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPropertyMapping_Attributes(), this.getAttributeList(), null, "attributes", null, 0, 1, PropertyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPropertyMapping_From(), ecorePackage.getEString(), "from", null, 0, 1, PropertyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPropertyMapping_Name(), ecorePackage.getEString(), "name", null, 0, 1, PropertyMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(modelFoldingEClass, ModelFolding.class, "ModelFolding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getModelFolding_Foldings(), this.getPropertyFolding(), null, "foldings", null, 0, -1, ModelFolding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

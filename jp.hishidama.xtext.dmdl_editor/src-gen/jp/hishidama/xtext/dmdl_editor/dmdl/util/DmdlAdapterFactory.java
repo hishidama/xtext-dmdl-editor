@@ -115,6 +115,21 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
         return createPropertyDefinitionAdapter();
       }
       @Override
+      public Adapter caseJoinedModelDefinition(JoinedModelDefinition object)
+      {
+        return createJoinedModelDefinitionAdapter();
+      }
+      @Override
+      public Adapter caseJoinExpression(JoinExpression object)
+      {
+        return createJoinExpressionAdapter();
+      }
+      @Override
+      public Adapter caseJoinTerm(JoinTerm object)
+      {
+        return createJoinTermAdapter();
+      }
+      @Override
       public Adapter caseSummarizeModelDefinition(SummarizeModelDefinition object)
       {
         return createSummarizeModelDefinitionAdapter();
@@ -163,6 +178,16 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
       public Adapter caseGrouping(Grouping object)
       {
         return createGroupingAdapter();
+      }
+      @Override
+      public Adapter caseModelMapping(ModelMapping object)
+      {
+        return createModelMappingAdapter();
+      }
+      @Override
+      public Adapter casePropertyMapping(PropertyMapping object)
+      {
+        return createPropertyMappingAdapter();
       }
       @Override
       public Adapter caseModelFolding(ModelFolding object)
@@ -327,6 +352,51 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.JoinedModelDefinition <em>Joined Model Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.JoinedModelDefinition
+   * @generated
+   */
+  public Adapter createJoinedModelDefinitionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.JoinExpression <em>Join Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.JoinExpression
+   * @generated
+   */
+  public Adapter createJoinExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.JoinTerm <em>Join Term</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.JoinTerm
+   * @generated
+   */
+  public Adapter createJoinTermAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeModelDefinition <em>Summarize Model Definition</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -472,6 +542,36 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createGroupingAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelMapping <em>Model Mapping</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.ModelMapping
+   * @generated
+   */
+  public Adapter createModelMappingAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping <em>Property Mapping</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping
+   * @generated
+   */
+  public Adapter createPropertyMappingAdapter()
   {
     return null;
   }

@@ -16,6 +16,7 @@ ModelDefinition:
 	(attributes=AttributeList)?
 	(model=RecordModelDefinition
 	| model=ProjectiveModelDefinition
+	| model=JoinedModelDefinition
 	| model=SummarizeModelDefinition)
 	';';
 
@@ -43,6 +44,18 @@ PropertyDefinition:
 	(attributes=AttributeList)?
 	name=Name ':' type=Type
 	';';
+
+JoinedModelDefinition:
+	"joined"
+	name=Name '=' rhs=JoinExpression;
+
+JoinExpression:
+	terms+=JoinTerm ('+' terms+=JoinTerm)*;
+
+JoinTerm:
+	reference=ModelReference
+	(mapping=ModelMapping)?
+	(grouping=Grouping)?;
 
 SummarizeModelDefinition:
 	'summarized'
@@ -79,21 +92,32 @@ AttributeValueArray:
 	'{' elements+=AttributeValue (',' elements+=AttributeValue)* ','? '}';
 
 Grouping:
-	'%'
-	name+=Name (',' name+=Name)*;
+	'%' name+=Name (',' name+=Name)*;
+
+ModelMapping:
+	'->' '{' (mappings+=PropertyMapping)+ '}';
+
+PropertyMapping:
+	(description=Description)?
+	(attributes=AttributeList)?
+	from=Name '->' name=Name
+	';';
 
 ModelFolding:
 	'=>' '{' (foldings+=PropertyFolding)+ '}';
 
 PropertyFolding:
-	(description=Description)? (attributes=AttributeList)? aggregator=QualifiedName from=Name ('->' | '=>') name=Name
+	(description=Description)?
+	(attributes=AttributeList)?
+	aggregator=QualifiedName
+	from=Name ('->' | '=>') name=Name
 	';';
 
 QualifiedName:
 	name+=Name ('.' name+=Name)*;
 
 Name:
-	NAME_TOKEN;
+	NAME_TOKEN | 'projective' | 'joined' | 'summarized';
 
 terminal NAME_TOKEN:
 	('a'..'z') ('a'..'z' | '0'..'9')* ('_' ('a'..'z' | '0'..'9')+)*;

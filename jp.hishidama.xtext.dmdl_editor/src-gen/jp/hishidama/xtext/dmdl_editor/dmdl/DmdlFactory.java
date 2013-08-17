@@ -95,6 +95,33 @@ public interface DmdlFactory extends EFactory
   PropertyDefinition createPropertyDefinition();
 
   /**
+   * Returns a new object of class '<em>Joined Model Definition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Joined Model Definition</em>'.
+   * @generated
+   */
+  JoinedModelDefinition createJoinedModelDefinition();
+
+  /**
+   * Returns a new object of class '<em>Join Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Join Expression</em>'.
+   * @generated
+   */
+  JoinExpression createJoinExpression();
+
+  /**
+   * Returns a new object of class '<em>Join Term</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Join Term</em>'.
+   * @generated
+   */
+  JoinTerm createJoinTerm();
+
+  /**
    * Returns a new object of class '<em>Summarize Model Definition</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -183,6 +210,24 @@ public interface DmdlFactory extends EFactory
    * @generated
    */
   Grouping createGrouping();
+
+  /**
+   * Returns a new object of class '<em>Model Mapping</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Model Mapping</em>'.
+   * @generated
+   */
+  ModelMapping createModelMapping();
+
+  /**
+   * Returns a new object of class '<em>Property Mapping</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Property Mapping</em>'.
+   * @generated
+   */
+  PropertyMapping createPropertyMapping();
 
   /**
    * Returns a new object of class '<em>Model Folding</em>'.

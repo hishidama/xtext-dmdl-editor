@@ -73,6 +73,9 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
       case DmdlPackage.RECORD_TERM: return createRecordTerm();
       case DmdlPackage.MODEL_REFERENCE: return createModelReference();
       case DmdlPackage.PROPERTY_DEFINITION: return createPropertyDefinition();
+      case DmdlPackage.JOINED_MODEL_DEFINITION: return createJoinedModelDefinition();
+      case DmdlPackage.JOIN_EXPRESSION: return createJoinExpression();
+      case DmdlPackage.JOIN_TERM: return createJoinTerm();
       case DmdlPackage.SUMMARIZE_MODEL_DEFINITION: return createSummarizeModelDefinition();
       case DmdlPackage.SUMMARIZE_EXPRESSION: return createSummarizeExpression();
       case DmdlPackage.SUMMARIZE_TERM: return createSummarizeTerm();
@@ -83,6 +86,8 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
       case DmdlPackage.ATTRIBUTE_VALUE: return createAttributeValue();
       case DmdlPackage.ATTRIBUTE_VALUE_ARRAY: return createAttributeValueArray();
       case DmdlPackage.GROUPING: return createGrouping();
+      case DmdlPackage.MODEL_MAPPING: return createModelMapping();
+      case DmdlPackage.PROPERTY_MAPPING: return createPropertyMapping();
       case DmdlPackage.MODEL_FOLDING: return createModelFolding();
       case DmdlPackage.PROPERTY_FOLDING: return createPropertyFolding();
       case DmdlPackage.QUALIFIED_NAME: return createQualifiedName();
@@ -223,6 +228,39 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public JoinedModelDefinition createJoinedModelDefinition()
+  {
+    JoinedModelDefinitionImpl joinedModelDefinition = new JoinedModelDefinitionImpl();
+    return joinedModelDefinition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public JoinExpression createJoinExpression()
+  {
+    JoinExpressionImpl joinExpression = new JoinExpressionImpl();
+    return joinExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public JoinTerm createJoinTerm()
+  {
+    JoinTermImpl joinTerm = new JoinTermImpl();
+    return joinTerm;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public SummarizeModelDefinition createSummarizeModelDefinition()
   {
     SummarizeModelDefinitionImpl summarizeModelDefinition = new SummarizeModelDefinitionImpl();
@@ -326,6 +364,28 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
   {
     GroupingImpl grouping = new GroupingImpl();
     return grouping;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ModelMapping createModelMapping()
+  {
+    ModelMappingImpl modelMapping = new ModelMappingImpl();
+    return modelMapping;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PropertyMapping createPropertyMapping()
+  {
+    PropertyMappingImpl propertyMapping = new PropertyMappingImpl();
+    return propertyMapping;
   }
 
   /**

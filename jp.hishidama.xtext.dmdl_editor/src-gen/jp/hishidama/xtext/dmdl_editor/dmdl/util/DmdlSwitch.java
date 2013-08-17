@@ -128,6 +128,27 @@ public class DmdlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case DmdlPackage.JOINED_MODEL_DEFINITION:
+      {
+        JoinedModelDefinition joinedModelDefinition = (JoinedModelDefinition)theEObject;
+        T result = caseJoinedModelDefinition(joinedModelDefinition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DmdlPackage.JOIN_EXPRESSION:
+      {
+        JoinExpression joinExpression = (JoinExpression)theEObject;
+        T result = caseJoinExpression(joinExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DmdlPackage.JOIN_TERM:
+      {
+        JoinTerm joinTerm = (JoinTerm)theEObject;
+        T result = caseJoinTerm(joinTerm);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case DmdlPackage.SUMMARIZE_MODEL_DEFINITION:
       {
         SummarizeModelDefinition summarizeModelDefinition = (SummarizeModelDefinition)theEObject;
@@ -195,6 +216,20 @@ public class DmdlSwitch<T> extends Switch<T>
       {
         Grouping grouping = (Grouping)theEObject;
         T result = caseGrouping(grouping);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DmdlPackage.MODEL_MAPPING:
+      {
+        ModelMapping modelMapping = (ModelMapping)theEObject;
+        T result = caseModelMapping(modelMapping);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DmdlPackage.PROPERTY_MAPPING:
+      {
+        PropertyMapping propertyMapping = (PropertyMapping)theEObject;
+        T result = casePropertyMapping(propertyMapping);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -359,6 +394,54 @@ public class DmdlSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Joined Model Definition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Joined Model Definition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseJoinedModelDefinition(JoinedModelDefinition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Join Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Join Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseJoinExpression(JoinExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Join Term</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Join Term</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseJoinTerm(JoinTerm object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Summarize Model Definition</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -514,6 +597,38 @@ public class DmdlSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseGrouping(Grouping object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Model Mapping</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Model Mapping</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseModelMapping(ModelMapping object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Property Mapping</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Property Mapping</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePropertyMapping(PropertyMapping object)
   {
     return null;
   }

@@ -56,6 +56,18 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyDefinition/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyDefinition/type"/>
     </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//JoinedModelDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//JoinedModelDefinition/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//JoinedModelDefinition/rhs"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//JoinExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//JoinExpression/terms"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//JoinTerm">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//JoinTerm/reference"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//JoinTerm/mapping"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//JoinTerm/grouping"/>
+    </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//SummarizeModelDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//SummarizeModelDefinition/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//SummarizeModelDefinition/rhs"/>
@@ -90,6 +102,15 @@
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//Grouping">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//Grouping/name"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//ModelMapping">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//ModelMapping/mappings"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//PropertyMapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyMapping/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//PropertyMapping/attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyMapping/from"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyMapping/name"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//ModelFolding">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//ModelFolding/foldings"/>

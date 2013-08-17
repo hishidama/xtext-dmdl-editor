@@ -10,13 +10,18 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValue;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueArray;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Grouping;
+import jp.hishidama.xtext.dmdl_editor.dmdl.JoinExpression;
+import jp.hishidama.xtext.dmdl_editor.dmdl.JoinTerm;
+import jp.hishidama.xtext.dmdl_editor.dmdl.JoinedModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Literal;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelFolding;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ProjectiveModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedName;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition;
@@ -88,6 +93,24 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case DmdlPackage.JOIN_EXPRESSION:
+				if(context == grammarAccess.getJoinExpressionRule()) {
+					sequence_JoinExpression(context, (JoinExpression) semanticObject); 
+					return; 
+				}
+				else break;
+			case DmdlPackage.JOIN_TERM:
+				if(context == grammarAccess.getJoinTermRule()) {
+					sequence_JoinTerm(context, (JoinTerm) semanticObject); 
+					return; 
+				}
+				else break;
+			case DmdlPackage.JOINED_MODEL_DEFINITION:
+				if(context == grammarAccess.getJoinedModelDefinitionRule()) {
+					sequence_JoinedModelDefinition(context, (JoinedModelDefinition) semanticObject); 
+					return; 
+				}
+				else break;
 			case DmdlPackage.LITERAL:
 				if(context == grammarAccess.getLiteralRule()) {
 					sequence_Literal(context, (Literal) semanticObject); 
@@ -103,6 +126,12 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case DmdlPackage.MODEL_FOLDING:
 				if(context == grammarAccess.getModelFoldingRule()) {
 					sequence_ModelFolding(context, (ModelFolding) semanticObject); 
+					return; 
+				}
+				else break;
+			case DmdlPackage.MODEL_MAPPING:
+				if(context == grammarAccess.getModelMappingRule()) {
+					sequence_ModelMapping(context, (ModelMapping) semanticObject); 
 					return; 
 				}
 				else break;
@@ -127,6 +156,12 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case DmdlPackage.PROPERTY_FOLDING:
 				if(context == grammarAccess.getPropertyFoldingRule()) {
 					sequence_PropertyFolding(context, (PropertyFolding) semanticObject); 
+					return; 
+				}
+				else break;
+			case DmdlPackage.PROPERTY_MAPPING:
+				if(context == grammarAccess.getPropertyMappingRule()) {
+					sequence_PropertyMapping(context, (PropertyMapping) semanticObject); 
 					return; 
 				}
 				else break;
@@ -257,6 +292,43 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     (terms+=JoinTerm terms+=JoinTerm*)
+	 */
+	protected void sequence_JoinExpression(EObject context, JoinExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (reference=ModelReference mapping=ModelMapping? grouping=Grouping?)
+	 */
+	protected void sequence_JoinTerm(EObject context, JoinTerm semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=Name rhs=JoinExpression)
+	 */
+	protected void sequence_JoinedModelDefinition(EObject context, JoinedModelDefinition semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.JOINED_MODEL_DEFINITION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.JOINED_MODEL_DEFINITION__NAME));
+			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.JOINED_MODEL_DEFINITION__RHS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.JOINED_MODEL_DEFINITION__RHS));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getJoinedModelDefinitionAccess().getNameNameParserRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getJoinedModelDefinitionAccess().getRhsJoinExpressionParserRuleCall_3_0(), semanticObject.getRhs());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (stringValue=STRING | intValue=INT | decimalValue=DECIMAL | booleanValue=BOOLEAN)
 	 */
 	protected void sequence_Literal(EObject context, Literal semanticObject) {
@@ -269,7 +341,7 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         description=Description? 
 	 *         attributes=AttributeList? 
-	 *         (model=RecordModelDefinition | model=ProjectiveModelDefinition | model=SummarizeModelDefinition)
+	 *         (model=RecordModelDefinition | model=ProjectiveModelDefinition | model=JoinedModelDefinition | model=SummarizeModelDefinition)
 	 *     )
 	 */
 	protected void sequence_ModelDefinition(EObject context, ModelDefinition semanticObject) {
@@ -282,6 +354,15 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     foldings+=PropertyFolding+
 	 */
 	protected void sequence_ModelFolding(EObject context, ModelFolding semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     mappings+=PropertyMapping+
+	 */
+	protected void sequence_ModelMapping(EObject context, ModelMapping semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -335,6 +416,15 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (description=Description? attributes=AttributeList? aggregator=QualifiedName from=Name name=Name)
 	 */
 	protected void sequence_PropertyFolding(EObject context, PropertyFolding semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (description=Description? attributes=AttributeList? from=Name name=Name)
+	 */
+	protected void sequence_PropertyMapping(EObject context, PropertyMapping semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

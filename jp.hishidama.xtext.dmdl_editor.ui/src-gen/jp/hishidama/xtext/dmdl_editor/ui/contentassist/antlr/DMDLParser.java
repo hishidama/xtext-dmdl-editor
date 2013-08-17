@@ -41,6 +41,7 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRecordTermAccess().getAlternatives(), "rule__RecordTerm__Alternatives");
 					put(grammarAccess.getAttributeValueAccess().getAlternatives(), "rule__AttributeValue__Alternatives");
 					put(grammarAccess.getPropertyFoldingAccess().getAlternatives_4(), "rule__PropertyFolding__Alternatives_4");
+					put(grammarAccess.getNameAccess().getAlternatives(), "rule__Name__Alternatives");
 					put(grammarAccess.getLiteralAccess().getAlternatives(), "rule__Literal__Alternatives");
 					put(grammarAccess.getTypeAccess().getAlternatives(), "rule__Type__Alternatives");
 					put(grammarAccess.getBOOLEANAccess().getAlternatives(), "rule__BOOLEAN__Alternatives");
@@ -51,6 +52,10 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRecordExpressionAccess().getGroup_1(), "rule__RecordExpression__Group_1__0");
 					put(grammarAccess.getRecordTermAccess().getGroup_0(), "rule__RecordTerm__Group_0__0");
 					put(grammarAccess.getPropertyDefinitionAccess().getGroup(), "rule__PropertyDefinition__Group__0");
+					put(grammarAccess.getJoinedModelDefinitionAccess().getGroup(), "rule__JoinedModelDefinition__Group__0");
+					put(grammarAccess.getJoinExpressionAccess().getGroup(), "rule__JoinExpression__Group__0");
+					put(grammarAccess.getJoinExpressionAccess().getGroup_1(), "rule__JoinExpression__Group_1__0");
+					put(grammarAccess.getJoinTermAccess().getGroup(), "rule__JoinTerm__Group__0");
 					put(grammarAccess.getSummarizeModelDefinitionAccess().getGroup(), "rule__SummarizeModelDefinition__Group__0");
 					put(grammarAccess.getSummarizeExpressionAccess().getGroup(), "rule__SummarizeExpression__Group__0");
 					put(grammarAccess.getSummarizeExpressionAccess().getGroup_1(), "rule__SummarizeExpression__Group_1__0");
@@ -65,6 +70,8 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAttributeValueArrayAccess().getGroup_2(), "rule__AttributeValueArray__Group_2__0");
 					put(grammarAccess.getGroupingAccess().getGroup(), "rule__Grouping__Group__0");
 					put(grammarAccess.getGroupingAccess().getGroup_2(), "rule__Grouping__Group_2__0");
+					put(grammarAccess.getModelMappingAccess().getGroup(), "rule__ModelMapping__Group__0");
+					put(grammarAccess.getPropertyMappingAccess().getGroup(), "rule__PropertyMapping__Group__0");
 					put(grammarAccess.getModelFoldingAccess().getGroup(), "rule__ModelFolding__Group__0");
 					put(grammarAccess.getPropertyFoldingAccess().getGroup(), "rule__PropertyFolding__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
@@ -75,6 +82,7 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getModelDefinitionAccess().getModelAssignment_2_0(), "rule__ModelDefinition__ModelAssignment_2_0");
 					put(grammarAccess.getModelDefinitionAccess().getModelAssignment_2_1(), "rule__ModelDefinition__ModelAssignment_2_1");
 					put(grammarAccess.getModelDefinitionAccess().getModelAssignment_2_2(), "rule__ModelDefinition__ModelAssignment_2_2");
+					put(grammarAccess.getModelDefinitionAccess().getModelAssignment_2_3(), "rule__ModelDefinition__ModelAssignment_2_3");
 					put(grammarAccess.getRecordModelDefinitionAccess().getNameAssignment_0(), "rule__RecordModelDefinition__NameAssignment_0");
 					put(grammarAccess.getRecordModelDefinitionAccess().getRhsAssignment_2(), "rule__RecordModelDefinition__RhsAssignment_2");
 					put(grammarAccess.getProjectiveModelDefinitionAccess().getNameAssignment_1(), "rule__ProjectiveModelDefinition__NameAssignment_1");
@@ -88,6 +96,13 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPropertyDefinitionAccess().getAttributesAssignment_1(), "rule__PropertyDefinition__AttributesAssignment_1");
 					put(grammarAccess.getPropertyDefinitionAccess().getNameAssignment_2(), "rule__PropertyDefinition__NameAssignment_2");
 					put(grammarAccess.getPropertyDefinitionAccess().getTypeAssignment_4(), "rule__PropertyDefinition__TypeAssignment_4");
+					put(grammarAccess.getJoinedModelDefinitionAccess().getNameAssignment_1(), "rule__JoinedModelDefinition__NameAssignment_1");
+					put(grammarAccess.getJoinedModelDefinitionAccess().getRhsAssignment_3(), "rule__JoinedModelDefinition__RhsAssignment_3");
+					put(grammarAccess.getJoinExpressionAccess().getTermsAssignment_0(), "rule__JoinExpression__TermsAssignment_0");
+					put(grammarAccess.getJoinExpressionAccess().getTermsAssignment_1_1(), "rule__JoinExpression__TermsAssignment_1_1");
+					put(grammarAccess.getJoinTermAccess().getReferenceAssignment_0(), "rule__JoinTerm__ReferenceAssignment_0");
+					put(grammarAccess.getJoinTermAccess().getMappingAssignment_1(), "rule__JoinTerm__MappingAssignment_1");
+					put(grammarAccess.getJoinTermAccess().getGroupingAssignment_2(), "rule__JoinTerm__GroupingAssignment_2");
 					put(grammarAccess.getSummarizeModelDefinitionAccess().getNameAssignment_1(), "rule__SummarizeModelDefinition__NameAssignment_1");
 					put(grammarAccess.getSummarizeModelDefinitionAccess().getRhsAssignment_3(), "rule__SummarizeModelDefinition__RhsAssignment_3");
 					put(grammarAccess.getSummarizeExpressionAccess().getTermsAssignment_0(), "rule__SummarizeExpression__TermsAssignment_0");
@@ -109,6 +124,11 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAttributeValueArrayAccess().getElementsAssignment_2_1(), "rule__AttributeValueArray__ElementsAssignment_2_1");
 					put(grammarAccess.getGroupingAccess().getNameAssignment_1(), "rule__Grouping__NameAssignment_1");
 					put(grammarAccess.getGroupingAccess().getNameAssignment_2_1(), "rule__Grouping__NameAssignment_2_1");
+					put(grammarAccess.getModelMappingAccess().getMappingsAssignment_2(), "rule__ModelMapping__MappingsAssignment_2");
+					put(grammarAccess.getPropertyMappingAccess().getDescriptionAssignment_0(), "rule__PropertyMapping__DescriptionAssignment_0");
+					put(grammarAccess.getPropertyMappingAccess().getAttributesAssignment_1(), "rule__PropertyMapping__AttributesAssignment_1");
+					put(grammarAccess.getPropertyMappingAccess().getFromAssignment_2(), "rule__PropertyMapping__FromAssignment_2");
+					put(grammarAccess.getPropertyMappingAccess().getNameAssignment_4(), "rule__PropertyMapping__NameAssignment_4");
 					put(grammarAccess.getModelFoldingAccess().getFoldingsAssignment_2(), "rule__ModelFolding__FoldingsAssignment_2");
 					put(grammarAccess.getPropertyFoldingAccess().getDescriptionAssignment_0(), "rule__PropertyFolding__DescriptionAssignment_0");
 					put(grammarAccess.getPropertyFoldingAccess().getAttributesAssignment_1(), "rule__PropertyFolding__AttributesAssignment_1");
