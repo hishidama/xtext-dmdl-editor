@@ -24,8 +24,8 @@
       <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//BOOLEAN/TRUE"/>
       <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//BOOLEAN/FALSE"/>
     </genEnums>
-    <genClasses ecoreClass="DMDL.ecore#//Models">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//Models/list"/>
+    <genClasses ecoreClass="DMDL.ecore#//Script">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//Script/list"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//ModelDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//ModelDefinition/description"/>
@@ -35,6 +35,10 @@
     <genClasses ecoreClass="DMDL.ecore#//RecordModelDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//RecordModelDefinition/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//RecordModelDefinition/rhs"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//ProjectiveModelDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//ProjectiveModelDefinition/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//ProjectiveModelDefinition/rhs"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//RecordExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//RecordExpression/terms"/>

@@ -65,9 +65,10 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
   {
     switch (eClass.getClassifierID())
     {
-      case DmdlPackage.MODELS: return createModels();
+      case DmdlPackage.SCRIPT: return createScript();
       case DmdlPackage.MODEL_DEFINITION: return createModelDefinition();
       case DmdlPackage.RECORD_MODEL_DEFINITION: return createRecordModelDefinition();
+      case DmdlPackage.PROJECTIVE_MODEL_DEFINITION: return createProjectiveModelDefinition();
       case DmdlPackage.RECORD_EXPRESSION: return createRecordExpression();
       case DmdlPackage.RECORD_TERM: return createRecordTerm();
       case DmdlPackage.MODEL_REFERENCE: return createModelReference();
@@ -134,10 +135,10 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Models createModels()
+  public Script createScript()
   {
-    ModelsImpl models = new ModelsImpl();
-    return models;
+    ScriptImpl script = new ScriptImpl();
+    return script;
   }
 
   /**
@@ -160,6 +161,17 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
   {
     RecordModelDefinitionImpl recordModelDefinition = new RecordModelDefinitionImpl();
     return recordModelDefinition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ProjectiveModelDefinition createProjectiveModelDefinition()
+  {
+    ProjectiveModelDefinitionImpl projectiveModelDefinition = new ProjectiveModelDefinitionImpl();
+    return projectiveModelDefinition;
   }
 
   /**

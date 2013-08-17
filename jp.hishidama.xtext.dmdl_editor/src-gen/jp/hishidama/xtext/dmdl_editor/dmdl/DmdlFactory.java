@@ -23,13 +23,13 @@ public interface DmdlFactory extends EFactory
   DmdlFactory eINSTANCE = jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>Models</em>'.
+   * Returns a new object of class '<em>Script</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Models</em>'.
+   * @return a new object of class '<em>Script</em>'.
    * @generated
    */
-  Models createModels();
+  Script createScript();
 
   /**
    * Returns a new object of class '<em>Model Definition</em>'.
@@ -48,6 +48,15 @@ public interface DmdlFactory extends EFactory
    * @generated
    */
   RecordModelDefinition createRecordModelDefinition();
+
+  /**
+   * Returns a new object of class '<em>Projective Model Definition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Projective Model Definition</em>'.
+   * @generated
+   */
+  ProjectiveModelDefinition createProjectiveModelDefinition();
 
   /**
    * Returns a new object of class '<em>Record Expression</em>'.

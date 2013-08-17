@@ -15,13 +15,14 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.Literal;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
-import jp.hishidama.xtext.dmdl_editor.dmdl.Models;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ProjectiveModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedName;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Script;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm;
@@ -48,7 +49,7 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass modelsEClass = null;
+  private EClass scriptEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -63,6 +64,13 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * @generated
    */
   private EClass recordModelDefinitionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass projectiveModelDefinitionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -272,9 +280,9 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getModels()
+  public EClass getScript()
   {
-    return modelsEClass;
+    return scriptEClass;
   }
 
   /**
@@ -282,9 +290,9 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModels_List()
+  public EReference getScript_List()
   {
-    return (EReference)modelsEClass.getEStructuralFeatures().get(0);
+    return (EReference)scriptEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -355,6 +363,36 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
   public EReference getRecordModelDefinition_Rhs()
   {
     return (EReference)recordModelDefinitionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getProjectiveModelDefinition()
+  {
+    return projectiveModelDefinitionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getProjectiveModelDefinition_Name()
+  {
+    return (EAttribute)projectiveModelDefinitionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getProjectiveModelDefinition_Rhs()
+  {
+    return (EReference)projectiveModelDefinitionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -927,8 +965,8 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     isCreated = true;
 
     // Create classes and their features
-    modelsEClass = createEClass(MODELS);
-    createEReference(modelsEClass, MODELS__LIST);
+    scriptEClass = createEClass(SCRIPT);
+    createEReference(scriptEClass, SCRIPT__LIST);
 
     modelDefinitionEClass = createEClass(MODEL_DEFINITION);
     createEAttribute(modelDefinitionEClass, MODEL_DEFINITION__DESCRIPTION);
@@ -938,6 +976,10 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     recordModelDefinitionEClass = createEClass(RECORD_MODEL_DEFINITION);
     createEAttribute(recordModelDefinitionEClass, RECORD_MODEL_DEFINITION__NAME);
     createEReference(recordModelDefinitionEClass, RECORD_MODEL_DEFINITION__RHS);
+
+    projectiveModelDefinitionEClass = createEClass(PROJECTIVE_MODEL_DEFINITION);
+    createEAttribute(projectiveModelDefinitionEClass, PROJECTIVE_MODEL_DEFINITION__NAME);
+    createEReference(projectiveModelDefinitionEClass, PROJECTIVE_MODEL_DEFINITION__RHS);
 
     recordExpressionEClass = createEClass(RECORD_EXPRESSION);
     createEReference(recordExpressionEClass, RECORD_EXPRESSION__TERMS);
@@ -1045,8 +1087,8 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     // Add supertypes to classes
 
     // Initialize classes and features; add operations and parameters
-    initEClass(modelsEClass, Models.class, "Models", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModels_List(), this.getModelDefinition(), null, "list", null, 0, -1, Models.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(scriptEClass, Script.class, "Script", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getScript_List(), this.getModelDefinition(), null, "list", null, 0, -1, Script.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(modelDefinitionEClass, ModelDefinition.class, "ModelDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getModelDefinition_Description(), ecorePackage.getEString(), "description", null, 0, 1, ModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1056,6 +1098,10 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     initEClass(recordModelDefinitionEClass, RecordModelDefinition.class, "RecordModelDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getRecordModelDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, RecordModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRecordModelDefinition_Rhs(), this.getRecordExpression(), null, "rhs", null, 0, 1, RecordModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(projectiveModelDefinitionEClass, ProjectiveModelDefinition.class, "ProjectiveModelDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getProjectiveModelDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, ProjectiveModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getProjectiveModelDefinition_Rhs(), this.getRecordExpression(), null, "rhs", null, 0, 1, ProjectiveModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(recordExpressionEClass, RecordExpression.class, "RecordExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRecordExpression_Terms(), this.getRecordTerm(), null, "terms", null, 0, -1, RecordExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

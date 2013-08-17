@@ -6,7 +6,7 @@ import java.util.Collection;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
-import jp.hishidama.xtext.dmdl_editor.dmdl.Models;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Script;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -22,18 +22,18 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Models</b></em>'.
+ * An implementation of the model object '<em><b>Script</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.ModelsImpl#getList <em>List</em>}</li>
+ *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.ScriptImpl#getList <em>List</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ModelsImpl extends MinimalEObjectImpl.Container implements Models
+public class ScriptImpl extends MinimalEObjectImpl.Container implements Script
 {
   /**
    * The cached value of the '{@link #getList() <em>List</em>}' containment reference list.
@@ -50,7 +50,7 @@ public class ModelsImpl extends MinimalEObjectImpl.Container implements Models
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ModelsImpl()
+  protected ScriptImpl()
   {
     super();
   }
@@ -63,7 +63,7 @@ public class ModelsImpl extends MinimalEObjectImpl.Container implements Models
   @Override
   protected EClass eStaticClass()
   {
-    return DmdlPackage.Literals.MODELS;
+    return DmdlPackage.Literals.SCRIPT;
   }
 
   /**
@@ -75,7 +75,7 @@ public class ModelsImpl extends MinimalEObjectImpl.Container implements Models
   {
     if (list == null)
     {
-      list = new EObjectContainmentEList<ModelDefinition>(ModelDefinition.class, this, DmdlPackage.MODELS__LIST);
+      list = new EObjectContainmentEList<ModelDefinition>(ModelDefinition.class, this, DmdlPackage.SCRIPT__LIST);
     }
     return list;
   }
@@ -90,7 +90,7 @@ public class ModelsImpl extends MinimalEObjectImpl.Container implements Models
   {
     switch (featureID)
     {
-      case DmdlPackage.MODELS__LIST:
+      case DmdlPackage.SCRIPT__LIST:
         return ((InternalEList<?>)getList()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -106,7 +106,7 @@ public class ModelsImpl extends MinimalEObjectImpl.Container implements Models
   {
     switch (featureID)
     {
-      case DmdlPackage.MODELS__LIST:
+      case DmdlPackage.SCRIPT__LIST:
         return getList();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -123,7 +123,7 @@ public class ModelsImpl extends MinimalEObjectImpl.Container implements Models
   {
     switch (featureID)
     {
-      case DmdlPackage.MODELS__LIST:
+      case DmdlPackage.SCRIPT__LIST:
         getList().clear();
         getList().addAll((Collection<? extends ModelDefinition>)newValue);
         return;
@@ -141,7 +141,7 @@ public class ModelsImpl extends MinimalEObjectImpl.Container implements Models
   {
     switch (featureID)
     {
-      case DmdlPackage.MODELS__LIST:
+      case DmdlPackage.SCRIPT__LIST:
         getList().clear();
         return;
     }
@@ -158,10 +158,10 @@ public class ModelsImpl extends MinimalEObjectImpl.Container implements Models
   {
     switch (featureID)
     {
-      case DmdlPackage.MODELS__LIST:
+      case DmdlPackage.SCRIPT__LIST:
         return list != null && !list.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //ModelsImpl
+} //ScriptImpl

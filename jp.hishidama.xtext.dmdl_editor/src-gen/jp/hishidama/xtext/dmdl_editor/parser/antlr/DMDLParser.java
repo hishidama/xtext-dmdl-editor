@@ -25,7 +25,7 @@ public class DMDLParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrPars
 	
 	@Override 
 	protected String getDefaultRuleName() {
-		return "Models";
+		return "Script";
 	}
 	
 	public DMDLGrammarAccess getGrammarAccess() {

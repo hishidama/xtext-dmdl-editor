@@ -46,6 +46,7 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBOOLEANAccess().getAlternatives(), "rule__BOOLEAN__Alternatives");
 					put(grammarAccess.getModelDefinitionAccess().getGroup(), "rule__ModelDefinition__Group__0");
 					put(grammarAccess.getRecordModelDefinitionAccess().getGroup(), "rule__RecordModelDefinition__Group__0");
+					put(grammarAccess.getProjectiveModelDefinitionAccess().getGroup(), "rule__ProjectiveModelDefinition__Group__0");
 					put(grammarAccess.getRecordExpressionAccess().getGroup(), "rule__RecordExpression__Group__0");
 					put(grammarAccess.getRecordExpressionAccess().getGroup_1(), "rule__RecordExpression__Group_1__0");
 					put(grammarAccess.getRecordTermAccess().getGroup_0(), "rule__RecordTerm__Group_0__0");
@@ -68,13 +69,16 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPropertyFoldingAccess().getGroup(), "rule__PropertyFolding__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
-					put(grammarAccess.getModelsAccess().getListAssignment(), "rule__Models__ListAssignment");
+					put(grammarAccess.getScriptAccess().getListAssignment(), "rule__Script__ListAssignment");
 					put(grammarAccess.getModelDefinitionAccess().getDescriptionAssignment_0(), "rule__ModelDefinition__DescriptionAssignment_0");
 					put(grammarAccess.getModelDefinitionAccess().getAttributesAssignment_1(), "rule__ModelDefinition__AttributesAssignment_1");
 					put(grammarAccess.getModelDefinitionAccess().getModelAssignment_2_0(), "rule__ModelDefinition__ModelAssignment_2_0");
 					put(grammarAccess.getModelDefinitionAccess().getModelAssignment_2_1(), "rule__ModelDefinition__ModelAssignment_2_1");
+					put(grammarAccess.getModelDefinitionAccess().getModelAssignment_2_2(), "rule__ModelDefinition__ModelAssignment_2_2");
 					put(grammarAccess.getRecordModelDefinitionAccess().getNameAssignment_0(), "rule__RecordModelDefinition__NameAssignment_0");
 					put(grammarAccess.getRecordModelDefinitionAccess().getRhsAssignment_2(), "rule__RecordModelDefinition__RhsAssignment_2");
+					put(grammarAccess.getProjectiveModelDefinitionAccess().getNameAssignment_1(), "rule__ProjectiveModelDefinition__NameAssignment_1");
+					put(grammarAccess.getProjectiveModelDefinitionAccess().getRhsAssignment_3(), "rule__ProjectiveModelDefinition__RhsAssignment_3");
 					put(grammarAccess.getRecordExpressionAccess().getTermsAssignment_0(), "rule__RecordExpression__TermsAssignment_0");
 					put(grammarAccess.getRecordExpressionAccess().getTermsAssignment_1_1(), "rule__RecordExpression__TermsAssignment_1_1");
 					put(grammarAccess.getRecordTermAccess().getPropertiesAssignment_0_1(), "rule__RecordTerm__PropertiesAssignment_0_1");
@@ -127,7 +131,7 @@ public class DMDLParser extends AbstractContentAssistParser {
 	protected Collection<FollowElement> getFollowElements(AbstractInternalContentAssistParser parser) {
 		try {
 			jp.hishidama.xtext.dmdl_editor.ui.contentassist.antlr.internal.InternalDMDLParser typedParser = (jp.hishidama.xtext.dmdl_editor.ui.contentassist.antlr.internal.InternalDMDLParser) parser;
-			typedParser.entryRuleModels();
+			typedParser.entryRuleScript();
 			return typedParser.getFollowElements();
 		} catch(RecognitionException ex) {
 			throw new RuntimeException(ex);

@@ -14,13 +14,14 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.Literal;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
-import jp.hishidama.xtext.dmdl_editor.dmdl.Models;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ProjectiveModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedName;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Script;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm;
@@ -111,9 +112,9 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
-			case DmdlPackage.MODELS:
-				if(context == grammarAccess.getModelsRule()) {
-					sequence_Models(context, (Models) semanticObject); 
+			case DmdlPackage.PROJECTIVE_MODEL_DEFINITION:
+				if(context == grammarAccess.getProjectiveModelDefinitionRule()) {
+					sequence_ProjectiveModelDefinition(context, (ProjectiveModelDefinition) semanticObject); 
 					return; 
 				}
 				else break;
@@ -150,6 +151,12 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case DmdlPackage.RECORD_TERM:
 				if(context == grammarAccess.getRecordTermRule()) {
 					sequence_RecordTerm(context, (RecordTerm) semanticObject); 
+					return; 
+				}
+				else break;
+			case DmdlPackage.SCRIPT:
+				if(context == grammarAccess.getScriptRule()) {
+					sequence_Script(context, (Script) semanticObject); 
 					return; 
 				}
 				else break;
@@ -259,7 +266,11 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (description=Description? attributes=AttributeList? (model=RecordModelDefinition | model=SummarizeModelDefinition))
+	 *     (
+	 *         description=Description? 
+	 *         attributes=AttributeList? 
+	 *         (model=RecordModelDefinition | model=ProjectiveModelDefinition | model=SummarizeModelDefinition)
+	 *     )
 	 */
 	protected void sequence_ModelDefinition(EObject context, ModelDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -293,10 +304,20 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     list+=ModelDefinition*
+	 *     (name=Name rhs=RecordExpression)
 	 */
-	protected void sequence_Models(EObject context, Models semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_ProjectiveModelDefinition(EObject context, ProjectiveModelDefinition semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.PROJECTIVE_MODEL_DEFINITION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.PROJECTIVE_MODEL_DEFINITION__NAME));
+			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.PROJECTIVE_MODEL_DEFINITION__RHS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.PROJECTIVE_MODEL_DEFINITION__RHS));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getProjectiveModelDefinitionAccess().getNameNameParserRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getProjectiveModelDefinitionAccess().getRhsRecordExpressionParserRuleCall_3_0(), semanticObject.getRhs());
+		feeder.finish();
 	}
 	
 	
@@ -360,6 +381,15 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (properties+=PropertyDefinition+ | reference=ModelReference)
 	 */
 	protected void sequence_RecordTerm(EObject context, RecordTerm semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     list+=ModelDefinition*
+	 */
+	protected void sequence_Script(EObject context, Script semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

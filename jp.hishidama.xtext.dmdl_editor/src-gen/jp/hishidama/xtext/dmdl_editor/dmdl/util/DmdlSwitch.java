@@ -72,10 +72,10 @@ public class DmdlSwitch<T> extends Switch<T>
   {
     switch (classifierID)
     {
-      case DmdlPackage.MODELS:
+      case DmdlPackage.SCRIPT:
       {
-        Models models = (Models)theEObject;
-        T result = caseModels(models);
+        Script script = (Script)theEObject;
+        T result = caseScript(script);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -90,6 +90,13 @@ public class DmdlSwitch<T> extends Switch<T>
       {
         RecordModelDefinition recordModelDefinition = (RecordModelDefinition)theEObject;
         T result = caseRecordModelDefinition(recordModelDefinition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DmdlPackage.PROJECTIVE_MODEL_DEFINITION:
+      {
+        ProjectiveModelDefinition projectiveModelDefinition = (ProjectiveModelDefinition)theEObject;
+        T result = caseProjectiveModelDefinition(projectiveModelDefinition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -224,17 +231,17 @@ public class DmdlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Models</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Script</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Models</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Script</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseModels(Models object)
+  public T caseScript(Script object)
   {
     return null;
   }
@@ -267,6 +274,22 @@ public class DmdlSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseRecordModelDefinition(RecordModelDefinition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Projective Model Definition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Projective Model Definition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseProjectiveModelDefinition(ProjectiveModelDefinition object)
   {
     return null;
   }

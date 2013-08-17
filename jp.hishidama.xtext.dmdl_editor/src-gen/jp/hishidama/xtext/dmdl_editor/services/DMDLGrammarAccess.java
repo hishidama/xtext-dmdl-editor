@@ -17,12 +17,12 @@ import org.eclipse.xtext.service.AbstractElementFinder.*;
 public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
-	public class ModelsElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Models");
+	public class ScriptElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Script");
 		private final Assignment cListAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cListModelDefinitionParserRuleCall_0 = (RuleCall)cListAssignment.eContents().get(0);
 		
-		//Models:
+		//Script:
 		//
 		//	list+=ModelDefinition*;
 		public ParserRule getRule() { return rule; }
@@ -45,17 +45,21 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cModelAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
 		private final RuleCall cModelRecordModelDefinitionParserRuleCall_2_0_0 = (RuleCall)cModelAssignment_2_0.eContents().get(0);
 		private final Assignment cModelAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
-		private final RuleCall cModelSummarizeModelDefinitionParserRuleCall_2_1_0 = (RuleCall)cModelAssignment_2_1.eContents().get(0);
+		private final RuleCall cModelProjectiveModelDefinitionParserRuleCall_2_1_0 = (RuleCall)cModelAssignment_2_1.eContents().get(0);
+		private final Assignment cModelAssignment_2_2 = (Assignment)cAlternatives_2.eContents().get(2);
+		private final RuleCall cModelSummarizeModelDefinitionParserRuleCall_2_2_0 = (RuleCall)cModelAssignment_2_2.eContents().get(0);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//ModelDefinition:
 		//
-		//	description=Description? attributes=AttributeList? (model=RecordModelDefinition | model=SummarizeModelDefinition)
+		//	description=Description? attributes=AttributeList? (model=RecordModelDefinition | model=ProjectiveModelDefinition |
 		//
-		//	";";
+		//	model=SummarizeModelDefinition) ";";
 		public ParserRule getRule() { return rule; }
 
-		//description=Description? attributes=AttributeList? (model=RecordModelDefinition | model=SummarizeModelDefinition) ";"
+		//description=Description? attributes=AttributeList? (model=RecordModelDefinition | model=ProjectiveModelDefinition |
+		//
+		//model=SummarizeModelDefinition) ";"
 		public Group getGroup() { return cGroup; }
 
 		//description=Description?
@@ -70,7 +74,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		//AttributeList
 		public RuleCall getAttributesAttributeListParserRuleCall_1_0() { return cAttributesAttributeListParserRuleCall_1_0; }
 
-		//model=RecordModelDefinition | model=SummarizeModelDefinition
+		//model=RecordModelDefinition | model=ProjectiveModelDefinition | model=SummarizeModelDefinition
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
 		//model=RecordModelDefinition
@@ -79,11 +83,17 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		//RecordModelDefinition
 		public RuleCall getModelRecordModelDefinitionParserRuleCall_2_0_0() { return cModelRecordModelDefinitionParserRuleCall_2_0_0; }
 
-		//model=SummarizeModelDefinition
+		//model=ProjectiveModelDefinition
 		public Assignment getModelAssignment_2_1() { return cModelAssignment_2_1; }
 
+		//ProjectiveModelDefinition
+		public RuleCall getModelProjectiveModelDefinitionParserRuleCall_2_1_0() { return cModelProjectiveModelDefinitionParserRuleCall_2_1_0; }
+
+		//model=SummarizeModelDefinition
+		public Assignment getModelAssignment_2_2() { return cModelAssignment_2_2; }
+
 		//SummarizeModelDefinition
-		public RuleCall getModelSummarizeModelDefinitionParserRuleCall_2_1_0() { return cModelSummarizeModelDefinitionParserRuleCall_2_1_0; }
+		public RuleCall getModelSummarizeModelDefinitionParserRuleCall_2_2_0() { return cModelSummarizeModelDefinitionParserRuleCall_2_2_0; }
 
 		//";"
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
@@ -120,6 +130,43 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 		//RecordExpression
 		public RuleCall getRhsRecordExpressionParserRuleCall_2_0() { return cRhsRecordExpressionParserRuleCall_2_0; }
+	}
+
+	public class ProjectiveModelDefinitionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ProjectiveModelDefinition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cProjectiveKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cRhsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cRhsRecordExpressionParserRuleCall_3_0 = (RuleCall)cRhsAssignment_3.eContents().get(0);
+		
+		//ProjectiveModelDefinition:
+		//
+		//	"projective" name=Name "=" rhs=RecordExpression;
+		public ParserRule getRule() { return rule; }
+
+		//"projective" name=Name "=" rhs=RecordExpression
+		public Group getGroup() { return cGroup; }
+
+		//"projective"
+		public Keyword getProjectiveKeyword_0() { return cProjectiveKeyword_0; }
+
+		//name=Name
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//Name
+		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
+
+		//rhs=RecordExpression
+		public Assignment getRhsAssignment_3() { return cRhsAssignment_3; }
+
+		//RecordExpression
+		public RuleCall getRhsRecordExpressionParserRuleCall_3_0() { return cRhsRecordExpressionParserRuleCall_3_0; }
 	}
 
 	public class RecordExpressionElements extends AbstractParserRuleElementFinder {
@@ -989,9 +1036,10 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getFALSEFALSEKeyword_1_0() { return cFALSEFALSEKeyword_1_0; }
 	}
 	
-	private ModelsElements pModels;
+	private ScriptElements pScript;
 	private ModelDefinitionElements pModelDefinition;
 	private RecordModelDefinitionElements pRecordModelDefinition;
+	private ProjectiveModelDefinitionElements pProjectiveModelDefinition;
 	private RecordExpressionElements pRecordExpression;
 	private RecordTermElements pRecordTerm;
 	private ModelReferenceElements pModelReference;
@@ -1052,22 +1100,22 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	
 
 	
-	//Models:
+	//Script:
 	//
 	//	list+=ModelDefinition*;
-	public ModelsElements getModelsAccess() {
-		return (pModels != null) ? pModels : (pModels = new ModelsElements());
+	public ScriptElements getScriptAccess() {
+		return (pScript != null) ? pScript : (pScript = new ScriptElements());
 	}
 	
-	public ParserRule getModelsRule() {
-		return getModelsAccess().getRule();
+	public ParserRule getScriptRule() {
+		return getScriptAccess().getRule();
 	}
 
 	//ModelDefinition:
 	//
-	//	description=Description? attributes=AttributeList? (model=RecordModelDefinition | model=SummarizeModelDefinition)
+	//	description=Description? attributes=AttributeList? (model=RecordModelDefinition | model=ProjectiveModelDefinition |
 	//
-	//	";";
+	//	model=SummarizeModelDefinition) ";";
 	public ModelDefinitionElements getModelDefinitionAccess() {
 		return (pModelDefinition != null) ? pModelDefinition : (pModelDefinition = new ModelDefinitionElements());
 	}
@@ -1085,6 +1133,17 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getRecordModelDefinitionRule() {
 		return getRecordModelDefinitionAccess().getRule();
+	}
+
+	//ProjectiveModelDefinition:
+	//
+	//	"projective" name=Name "=" rhs=RecordExpression;
+	public ProjectiveModelDefinitionElements getProjectiveModelDefinitionAccess() {
+		return (pProjectiveModelDefinition != null) ? pProjectiveModelDefinition : (pProjectiveModelDefinition = new ProjectiveModelDefinitionElements());
+	}
+	
+	public ParserRule getProjectiveModelDefinitionRule() {
+		return getProjectiveModelDefinitionAccess().getRule();
 	}
 
 	//RecordExpression:

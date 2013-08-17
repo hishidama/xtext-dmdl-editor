@@ -45,7 +45,7 @@ import jp.hishidama.xtext.dmdl_editor.services.DMDLGrammarAccess;
     
     @Override
     protected String getFirstRuleName() {
-    	return "Models";	
+    	return "Script";	
    	}
    	
    	@Override
@@ -64,28 +64,28 @@ import jp.hishidama.xtext.dmdl_editor.services.DMDLGrammarAccess;
 
 
 
-// Entry rule entryRuleModels
-entryRuleModels returns [EObject current=null] 
+// Entry rule entryRuleScript
+entryRuleScript returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getModelsRule()); }
-	 iv_ruleModels=ruleModels 
-	 { $current=$iv_ruleModels.current; } 
+	{ newCompositeNode(grammarAccess.getScriptRule()); }
+	 iv_ruleScript=ruleScript 
+	 { $current=$iv_ruleScript.current; } 
 	 EOF 
 ;
 
-// Rule Models
-ruleModels returns [EObject current=null] 
+// Rule Script
+ruleScript returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getModelsAccess().getListModelDefinitionParserRuleCall_0()); 
+	        newCompositeNode(grammarAccess.getScriptAccess().getListModelDefinitionParserRuleCall_0()); 
 	    }
 		lv_list_0_0=ruleModelDefinition		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getModelsRule());
+	            $current = createModelElementForParent(grammarAccess.getScriptRule());
 	        }
        		add(
        			$current, 
@@ -175,9 +175,9 @@ ruleModelDefinition returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getModelDefinitionAccess().getModelSummarizeModelDefinitionParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getModelDefinitionAccess().getModelProjectiveModelDefinitionParserRuleCall_2_1_0()); 
 	    }
-		lv_model_3_0=ruleSummarizeModelDefinition		{
+		lv_model_3_0=ruleProjectiveModelDefinition		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getModelDefinitionRule());
 	        }
@@ -185,14 +185,33 @@ ruleModelDefinition returns [EObject current=null]
        			$current, 
        			"model",
         		lv_model_3_0, 
+        		"ProjectiveModelDefinition");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+    |(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getModelDefinitionAccess().getModelSummarizeModelDefinitionParserRuleCall_2_2_0()); 
+	    }
+		lv_model_4_0=ruleSummarizeModelDefinition		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getModelDefinitionRule());
+	        }
+       		set(
+       			$current, 
+       			"model",
+        		lv_model_4_0, 
         		"SummarizeModelDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))	otherlv_4=';' 
+))	otherlv_5=';' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getModelDefinitionAccess().getSemicolonKeyword_3());
+    	newLeafNode(otherlv_5, grammarAccess.getModelDefinitionAccess().getSemicolonKeyword_3());
     }
 )
 ;
@@ -250,6 +269,71 @@ ruleRecordModelDefinition returns [EObject current=null]
        			$current, 
        			"rhs",
         		lv_rhs_2_0, 
+        		"RecordExpression");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleProjectiveModelDefinition
+entryRuleProjectiveModelDefinition returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getProjectiveModelDefinitionRule()); }
+	 iv_ruleProjectiveModelDefinition=ruleProjectiveModelDefinition 
+	 { $current=$iv_ruleProjectiveModelDefinition.current; } 
+	 EOF 
+;
+
+// Rule ProjectiveModelDefinition
+ruleProjectiveModelDefinition returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='projective' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getProjectiveModelDefinitionAccess().getProjectiveKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getProjectiveModelDefinitionAccess().getNameNameParserRuleCall_1_0()); 
+	    }
+		lv_name_1_0=ruleName		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getProjectiveModelDefinitionRule());
+	        }
+       		set(
+       			$current, 
+       			"name",
+        		lv_name_1_0, 
+        		"Name");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_2='=' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getProjectiveModelDefinitionAccess().getEqualsSignKeyword_2());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getProjectiveModelDefinitionAccess().getRhsRecordExpressionParserRuleCall_3_0()); 
+	    }
+		lv_rhs_3_0=ruleRecordExpression		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getProjectiveModelDefinitionRule());
+	        }
+       		set(
+       			$current, 
+       			"rhs",
+        		lv_rhs_3_0, 
         		"RecordExpression");
 	        afterParserOrEnumRuleCall();
 	    }

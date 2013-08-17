@@ -75,9 +75,9 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
     new DmdlSwitch<Adapter>()
     {
       @Override
-      public Adapter caseModels(Models object)
+      public Adapter caseScript(Script object)
       {
-        return createModelsAdapter();
+        return createScriptAdapter();
       }
       @Override
       public Adapter caseModelDefinition(ModelDefinition object)
@@ -88,6 +88,11 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
       public Adapter caseRecordModelDefinition(RecordModelDefinition object)
       {
         return createRecordModelDefinitionAdapter();
+      }
+      @Override
+      public Adapter caseProjectiveModelDefinition(ProjectiveModelDefinition object)
+      {
+        return createProjectiveModelDefinitionAdapter();
       }
       @Override
       public Adapter caseRecordExpression(RecordExpression object)
@@ -202,16 +207,16 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
 
 
   /**
-   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Models <em>Models</em>}'.
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Script <em>Script</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Models
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Script
    * @generated
    */
-  public Adapter createModelsAdapter()
+  public Adapter createScriptAdapter()
   {
     return null;
   }
@@ -242,6 +247,21 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRecordModelDefinitionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ProjectiveModelDefinition <em>Projective Model Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.ProjectiveModelDefinition
+   * @generated
+   */
+  public Adapter createProjectiveModelDefinitionAdapter()
   {
     return null;
   }
