@@ -36,20 +36,33 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class ModelDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ModelDefinition");
+		private final RuleCall cRecordModelDefinitionParserRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//ModelDefinition:
+		//
+		//	RecordModelDefinition;
+		public ParserRule getRule() { return rule; }
+
+		//RecordModelDefinition
+		public RuleCall getRecordModelDefinitionParserRuleCall() { return cRecordModelDefinitionParserRuleCall; }
+	}
+
+	public class RecordModelDefinitionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RecordModelDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cRhsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cRhsRecordExpressionParserRuleCall_2_0 = (RuleCall)cRhsAssignment_2.eContents().get(0);
+		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//ModelDefinition:
+		//RecordModelDefinition:
 		//
-		//	name=Name "=" "{" "}" ";";
+		//	name=Name "=" rhs=RecordExpression ";";
 		public ParserRule getRule() { return rule; }
 
-		//name=Name "=" "{" "}" ";"
+		//name=Name "=" rhs=RecordExpression ";"
 		public Group getGroup() { return cGroup; }
 
 		//name=Name
@@ -61,14 +74,117 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		//rhs=RecordExpression
+		public Assignment getRhsAssignment_2() { return cRhsAssignment_2; }
 
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
+		//RecordExpression
+		public RuleCall getRhsRecordExpressionParserRuleCall_2_0() { return cRhsRecordExpressionParserRuleCall_2_0; }
 
 		//";"
-		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
+		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
+	}
+
+	public class RecordExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RecordExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cBlockAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cBlockRecordTermParserRuleCall_0_0 = (RuleCall)cBlockAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cPlusSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cBlockAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cBlockRecordTermParserRuleCall_1_1_0 = (RuleCall)cBlockAssignment_1_1.eContents().get(0);
+		
+		//RecordExpression:
+		//
+		//	block+=RecordTerm ("+" block+=RecordTerm)*;
+		public ParserRule getRule() { return rule; }
+
+		//block+=RecordTerm ("+" block+=RecordTerm)*
+		public Group getGroup() { return cGroup; }
+
+		//block+=RecordTerm
+		public Assignment getBlockAssignment_0() { return cBlockAssignment_0; }
+
+		//RecordTerm
+		public RuleCall getBlockRecordTermParserRuleCall_0_0() { return cBlockRecordTermParserRuleCall_0_0; }
+
+		//("+" block+=RecordTerm)*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"+"
+		public Keyword getPlusSignKeyword_1_0() { return cPlusSignKeyword_1_0; }
+
+		//block+=RecordTerm
+		public Assignment getBlockAssignment_1_1() { return cBlockAssignment_1_1; }
+
+		//RecordTerm
+		public RuleCall getBlockRecordTermParserRuleCall_1_1_0() { return cBlockRecordTermParserRuleCall_1_1_0; }
+	}
+
+	public class RecordTermElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RecordTerm");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cPropertiesAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cPropertiesPropertyDefinitionParserRuleCall_1_0 = (RuleCall)cPropertiesAssignment_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//RecordTerm:
+		//
+		//	"{" properties+=PropertyDefinition+ "}";
+		public ParserRule getRule() { return rule; }
+
+		//"{" properties+=PropertyDefinition+ "}"
+		public Group getGroup() { return cGroup; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
+
+		//properties+=PropertyDefinition+
+		public Assignment getPropertiesAssignment_1() { return cPropertiesAssignment_1; }
+
+		//PropertyDefinition
+		public RuleCall getPropertiesPropertyDefinitionParserRuleCall_1_0() { return cPropertiesPropertyDefinitionParserRuleCall_1_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_2() { return cRightCurlyBracketKeyword_2; }
+	}
+
+	public class PropertyDefinitionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyDefinition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTypeTypeEnumRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
+		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//PropertyDefinition:
+		//
+		//	name=Name ":" type=Type ";";
+		public ParserRule getRule() { return rule; }
+
+		//name=Name ":" type=Type ";"
+		public Group getGroup() { return cGroup; }
+
+		//name=Name
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+
+		//Name
+		public RuleCall getNameNameParserRuleCall_0_0() { return cNameNameParserRuleCall_0_0; }
+
+		//":"
+		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+
+		//type=Type
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+
+		//Type
+		public RuleCall getTypeTypeEnumRuleCall_2_0() { return cTypeTypeEnumRuleCall_2_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 
 	public class NameElements extends AbstractParserRuleElementFinder {
@@ -85,10 +201,116 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
+	public class TypeElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "Type");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cINTEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cINTINTKeyword_0_0 = (Keyword)cINTEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cLONGEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cLONGLONGKeyword_1_0 = (Keyword)cLONGEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cBYTEEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cBYTEBYTEKeyword_2_0 = (Keyword)cBYTEEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cSHORTEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cSHORTSHORTKeyword_3_0 = (Keyword)cSHORTEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cDECIMALEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cDECIMALDECIMALKeyword_4_0 = (Keyword)cDECIMALEnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cFLOATEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cFLOATFLOATKeyword_5_0 = (Keyword)cFLOATEnumLiteralDeclaration_5.eContents().get(0);
+		private final EnumLiteralDeclaration cDOUBLEEnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
+		private final Keyword cDOUBLEDOUBLEKeyword_6_0 = (Keyword)cDOUBLEEnumLiteralDeclaration_6.eContents().get(0);
+		private final EnumLiteralDeclaration cTEXTEnumLiteralDeclaration_7 = (EnumLiteralDeclaration)cAlternatives.eContents().get(7);
+		private final Keyword cTEXTTEXTKeyword_7_0 = (Keyword)cTEXTEnumLiteralDeclaration_7.eContents().get(0);
+		private final EnumLiteralDeclaration cBOOLEANEnumLiteralDeclaration_8 = (EnumLiteralDeclaration)cAlternatives.eContents().get(8);
+		private final Keyword cBOOLEANBOOLEANKeyword_8_0 = (Keyword)cBOOLEANEnumLiteralDeclaration_8.eContents().get(0);
+		private final EnumLiteralDeclaration cDATEEnumLiteralDeclaration_9 = (EnumLiteralDeclaration)cAlternatives.eContents().get(9);
+		private final Keyword cDATEDATEKeyword_9_0 = (Keyword)cDATEEnumLiteralDeclaration_9.eContents().get(0);
+		private final EnumLiteralDeclaration cDATETIMEEnumLiteralDeclaration_10 = (EnumLiteralDeclaration)cAlternatives.eContents().get(10);
+		private final Keyword cDATETIMEDATETIMEKeyword_10_0 = (Keyword)cDATETIMEEnumLiteralDeclaration_10.eContents().get(0);
+		
+		/// * Basic Types * / enum Type:
+		//
+		//	INT | LONG | BYTE | SHORT | DECIMAL | FLOAT | DOUBLE | TEXT | BOOLEAN | DATE | DATETIME;
+		public EnumRule getRule() { return rule; }
+
+		//INT | LONG | BYTE | SHORT | DECIMAL | FLOAT | DOUBLE | TEXT | BOOLEAN | DATE | DATETIME
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//INT
+		public EnumLiteralDeclaration getINTEnumLiteralDeclaration_0() { return cINTEnumLiteralDeclaration_0; }
+
+		//"INT"
+		public Keyword getINTINTKeyword_0_0() { return cINTINTKeyword_0_0; }
+
+		//LONG
+		public EnumLiteralDeclaration getLONGEnumLiteralDeclaration_1() { return cLONGEnumLiteralDeclaration_1; }
+
+		//"LONG"
+		public Keyword getLONGLONGKeyword_1_0() { return cLONGLONGKeyword_1_0; }
+
+		//BYTE
+		public EnumLiteralDeclaration getBYTEEnumLiteralDeclaration_2() { return cBYTEEnumLiteralDeclaration_2; }
+
+		//"BYTE"
+		public Keyword getBYTEBYTEKeyword_2_0() { return cBYTEBYTEKeyword_2_0; }
+
+		//SHORT
+		public EnumLiteralDeclaration getSHORTEnumLiteralDeclaration_3() { return cSHORTEnumLiteralDeclaration_3; }
+
+		//"SHORT"
+		public Keyword getSHORTSHORTKeyword_3_0() { return cSHORTSHORTKeyword_3_0; }
+
+		//DECIMAL
+		public EnumLiteralDeclaration getDECIMALEnumLiteralDeclaration_4() { return cDECIMALEnumLiteralDeclaration_4; }
+
+		//"DECIMAL"
+		public Keyword getDECIMALDECIMALKeyword_4_0() { return cDECIMALDECIMALKeyword_4_0; }
+
+		//FLOAT
+		public EnumLiteralDeclaration getFLOATEnumLiteralDeclaration_5() { return cFLOATEnumLiteralDeclaration_5; }
+
+		//"FLOAT"
+		public Keyword getFLOATFLOATKeyword_5_0() { return cFLOATFLOATKeyword_5_0; }
+
+		//DOUBLE
+		public EnumLiteralDeclaration getDOUBLEEnumLiteralDeclaration_6() { return cDOUBLEEnumLiteralDeclaration_6; }
+
+		//"DOUBLE"
+		public Keyword getDOUBLEDOUBLEKeyword_6_0() { return cDOUBLEDOUBLEKeyword_6_0; }
+
+		//TEXT
+		public EnumLiteralDeclaration getTEXTEnumLiteralDeclaration_7() { return cTEXTEnumLiteralDeclaration_7; }
+
+		//"TEXT"
+		public Keyword getTEXTTEXTKeyword_7_0() { return cTEXTTEXTKeyword_7_0; }
+
+		//BOOLEAN
+		public EnumLiteralDeclaration getBOOLEANEnumLiteralDeclaration_8() { return cBOOLEANEnumLiteralDeclaration_8; }
+
+		//"BOOLEAN"
+		public Keyword getBOOLEANBOOLEANKeyword_8_0() { return cBOOLEANBOOLEANKeyword_8_0; }
+
+		//DATE
+		public EnumLiteralDeclaration getDATEEnumLiteralDeclaration_9() { return cDATEEnumLiteralDeclaration_9; }
+
+		//"DATE"
+		public Keyword getDATEDATEKeyword_9_0() { return cDATEDATEKeyword_9_0; }
+
+		//DATETIME
+		public EnumLiteralDeclaration getDATETIMEEnumLiteralDeclaration_10() { return cDATETIMEEnumLiteralDeclaration_10; }
+
+		//"DATETIME"
+		public Keyword getDATETIMEDATETIMEKeyword_10_0() { return cDATETIMEDATETIMEKeyword_10_0; }
+	}
+	
 	private ModelsElements pModels;
 	private ModelDefinitionElements pModelDefinition;
+	private RecordModelDefinitionElements pRecordModelDefinition;
+	private RecordExpressionElements pRecordExpression;
+	private RecordTermElements pRecordTerm;
+	private PropertyDefinitionElements pPropertyDefinition;
 	private NameElements pName;
 	private TerminalRule tNAME_TOKEN;
+	private TypeElements unknownRuleType;
 	private TerminalRule tML_COMMENT;
 	private TerminalRule tSL_COMMENT;
 	private TerminalRule tWS;
@@ -136,13 +358,57 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//ModelDefinition:
 	//
-	//	name=Name "=" "{" "}" ";";
+	//	RecordModelDefinition;
 	public ModelDefinitionElements getModelDefinitionAccess() {
 		return (pModelDefinition != null) ? pModelDefinition : (pModelDefinition = new ModelDefinitionElements());
 	}
 	
 	public ParserRule getModelDefinitionRule() {
 		return getModelDefinitionAccess().getRule();
+	}
+
+	//RecordModelDefinition:
+	//
+	//	name=Name "=" rhs=RecordExpression ";";
+	public RecordModelDefinitionElements getRecordModelDefinitionAccess() {
+		return (pRecordModelDefinition != null) ? pRecordModelDefinition : (pRecordModelDefinition = new RecordModelDefinitionElements());
+	}
+	
+	public ParserRule getRecordModelDefinitionRule() {
+		return getRecordModelDefinitionAccess().getRule();
+	}
+
+	//RecordExpression:
+	//
+	//	block+=RecordTerm ("+" block+=RecordTerm)*;
+	public RecordExpressionElements getRecordExpressionAccess() {
+		return (pRecordExpression != null) ? pRecordExpression : (pRecordExpression = new RecordExpressionElements());
+	}
+	
+	public ParserRule getRecordExpressionRule() {
+		return getRecordExpressionAccess().getRule();
+	}
+
+	//RecordTerm:
+	//
+	//	"{" properties+=PropertyDefinition+ "}";
+	public RecordTermElements getRecordTermAccess() {
+		return (pRecordTerm != null) ? pRecordTerm : (pRecordTerm = new RecordTermElements());
+	}
+	
+	public ParserRule getRecordTermRule() {
+		return getRecordTermAccess().getRule();
+	}
+
+	//PropertyDefinition:
+	//
+	//	name=Name ":" type=Type ";";
+	public PropertyDefinitionElements getPropertyDefinitionAccess() {
+		return (pPropertyDefinition != null) ? pPropertyDefinition : (pPropertyDefinition = new PropertyDefinitionElements());
+	}
+	
+	public ParserRule getPropertyDefinitionRule() {
+		return getPropertyDefinitionAccess().getRule();
 	}
 
 	//Name:
@@ -162,6 +428,17 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	public TerminalRule getNAME_TOKENRule() {
 		return (tNAME_TOKEN != null) ? tNAME_TOKEN : (tNAME_TOKEN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NAME_TOKEN"));
 	} 
+
+	/// * Basic Types * / enum Type:
+	//
+	//	INT | LONG | BYTE | SHORT | DECIMAL | FLOAT | DOUBLE | TEXT | BOOLEAN | DATE | DATETIME;
+	public TypeElements getTypeAccess() {
+		return (unknownRuleType != null) ? unknownRuleType : (unknownRuleType = new TypeElements());
+	}
+	
+	public EnumRule getTypeRule() {
+		return getTypeAccess().getRule();
+	}
 
 	//terminal ML_COMMENT:
 	//

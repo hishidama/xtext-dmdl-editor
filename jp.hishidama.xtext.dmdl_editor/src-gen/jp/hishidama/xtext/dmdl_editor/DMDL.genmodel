@@ -7,11 +7,36 @@
     editorPluginID="jp.hishidama.xtext.dmdl_editor.editor" runtimeVersion="2.9">
   <genPackages prefix="Dmdl" basePackage="jp.hishidama.xtext.dmdl_editor" disposableProviderFactory="true"
       fileExtensions="dmdl" ecorePackage="DMDL.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="DMDL.ecore#//Type">
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/INT"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/LONG"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/BYTE"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/SHORT"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/DECIMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/FLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/DOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/TEXT"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/BOOLEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/DATE"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/DATETIME"/>
+    </genEnums>
     <genClasses ecoreClass="DMDL.ecore#//Models">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//Models/list"/>
     </genClasses>
-    <genClasses ecoreClass="DMDL.ecore#//ModelDefinition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//ModelDefinition/name"/>
+    <genClasses ecoreClass="DMDL.ecore#//ModelDefinition"/>
+    <genClasses ecoreClass="DMDL.ecore#//RecordModelDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//RecordModelDefinition/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//RecordModelDefinition/rhs"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//RecordExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//RecordExpression/block"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//RecordTerm">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//RecordTerm/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//PropertyDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyDefinition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyDefinition/type"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

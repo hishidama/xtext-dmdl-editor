@@ -6,7 +6,35 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="list" upperBound="-1" eType="#//ModelDefinition"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelDefinition">
+  <eClassifiers xsi:type="ecore:EClass" name="ModelDefinition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RecordModelDefinition" eSuperTypes="#//ModelDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" eType="#//RecordExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RecordExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" upperBound="-1"
+        eType="#//RecordTerm" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RecordTerm">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//PropertyDefinition" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Type">
+    <eLiterals name="INT" literal="INT"/>
+    <eLiterals name="LONG" value="1" literal="LONG"/>
+    <eLiterals name="BYTE" value="2" literal="BYTE"/>
+    <eLiterals name="SHORT" value="3" literal="SHORT"/>
+    <eLiterals name="DECIMAL" value="4" literal="DECIMAL"/>
+    <eLiterals name="FLOAT" value="5" literal="FLOAT"/>
+    <eLiterals name="DOUBLE" value="6" literal="DOUBLE"/>
+    <eLiterals name="TEXT" value="7" literal="TEXT"/>
+    <eLiterals name="BOOLEAN" value="8" literal="BOOLEAN"/>
+    <eLiterals name="DATE" value="9" literal="DATE"/>
+    <eLiterals name="DATETIME" value="10" literal="DATETIME"/>
   </eClassifiers>
 </ecore:EPackage>

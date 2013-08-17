@@ -12,13 +12,33 @@ Models:
 	(list+=ModelDefinition)*;
 
 ModelDefinition:
-	name=Name '=' '{' '}' ';';
+	RecordModelDefinition;
+
+RecordModelDefinition:
+	name=Name '=' rhs=RecordExpression ';';
+
+RecordExpression:
+	block+=RecordTerm
+	("+" block+=RecordTerm)*;
+
+RecordTerm:
+	'{'
+	(properties+=PropertyDefinition)+
+	'}';
+
+PropertyDefinition:
+	name=Name ':' type=Type
+	';';
 
 Name:
 	NAME_TOKEN;
 
 terminal NAME_TOKEN:
 	('a'..'z') ('a'..'z' | '0'..'9')* ('_' ('a'..'z' | '0'..'9')+)*;
+
+/* Basic Types */
+enum Type:
+	INT | LONG | BYTE | SHORT | DECIMAL | FLOAT | DOUBLE | TEXT | BOOLEAN | DATE | DATETIME;
 
 terminal ML_COMMENT:
 	'/*'->'*/';

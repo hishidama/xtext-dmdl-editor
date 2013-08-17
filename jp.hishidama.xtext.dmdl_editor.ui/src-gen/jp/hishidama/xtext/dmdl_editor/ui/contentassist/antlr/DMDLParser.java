@@ -37,9 +37,20 @@ public class DMDLParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getModelDefinitionAccess().getGroup(), "rule__ModelDefinition__Group__0");
+					put(grammarAccess.getTypeAccess().getAlternatives(), "rule__Type__Alternatives");
+					put(grammarAccess.getRecordModelDefinitionAccess().getGroup(), "rule__RecordModelDefinition__Group__0");
+					put(grammarAccess.getRecordExpressionAccess().getGroup(), "rule__RecordExpression__Group__0");
+					put(grammarAccess.getRecordExpressionAccess().getGroup_1(), "rule__RecordExpression__Group_1__0");
+					put(grammarAccess.getRecordTermAccess().getGroup(), "rule__RecordTerm__Group__0");
+					put(grammarAccess.getPropertyDefinitionAccess().getGroup(), "rule__PropertyDefinition__Group__0");
 					put(grammarAccess.getModelsAccess().getListAssignment(), "rule__Models__ListAssignment");
-					put(grammarAccess.getModelDefinitionAccess().getNameAssignment_0(), "rule__ModelDefinition__NameAssignment_0");
+					put(grammarAccess.getRecordModelDefinitionAccess().getNameAssignment_0(), "rule__RecordModelDefinition__NameAssignment_0");
+					put(grammarAccess.getRecordModelDefinitionAccess().getRhsAssignment_2(), "rule__RecordModelDefinition__RhsAssignment_2");
+					put(grammarAccess.getRecordExpressionAccess().getBlockAssignment_0(), "rule__RecordExpression__BlockAssignment_0");
+					put(grammarAccess.getRecordExpressionAccess().getBlockAssignment_1_1(), "rule__RecordExpression__BlockAssignment_1_1");
+					put(grammarAccess.getRecordTermAccess().getPropertiesAssignment_1(), "rule__RecordTerm__PropertiesAssignment_1");
+					put(grammarAccess.getPropertyDefinitionAccess().getNameAssignment_0(), "rule__PropertyDefinition__NameAssignment_0");
+					put(grammarAccess.getPropertyDefinitionAccess().getTypeAssignment_2(), "rule__PropertyDefinition__TypeAssignment_2");
 				}
 			};
 		}

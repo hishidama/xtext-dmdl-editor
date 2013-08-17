@@ -41,6 +41,42 @@ public interface DmdlFactory extends EFactory
   ModelDefinition createModelDefinition();
 
   /**
+   * Returns a new object of class '<em>Record Model Definition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Record Model Definition</em>'.
+   * @generated
+   */
+  RecordModelDefinition createRecordModelDefinition();
+
+  /**
+   * Returns a new object of class '<em>Record Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Record Expression</em>'.
+   * @generated
+   */
+  RecordExpression createRecordExpression();
+
+  /**
+   * Returns a new object of class '<em>Record Term</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Record Term</em>'.
+   * @generated
+   */
+  RecordTerm createRecordTerm();
+
+  /**
+   * Returns a new object of class '<em>Property Definition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Property Definition</em>'.
+   * @generated
+   */
+  PropertyDefinition createPropertyDefinition();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

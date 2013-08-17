@@ -85,6 +85,26 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
         return createModelDefinitionAdapter();
       }
       @Override
+      public Adapter caseRecordModelDefinition(RecordModelDefinition object)
+      {
+        return createRecordModelDefinitionAdapter();
+      }
+      @Override
+      public Adapter caseRecordExpression(RecordExpression object)
+      {
+        return createRecordExpressionAdapter();
+      }
+      @Override
+      public Adapter caseRecordTerm(RecordTerm object)
+      {
+        return createRecordTermAdapter();
+      }
+      @Override
+      public Adapter casePropertyDefinition(PropertyDefinition object)
+      {
+        return createPropertyDefinitionAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -132,6 +152,66 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createModelDefinitionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition <em>Record Model Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition
+   * @generated
+   */
+  public Adapter createRecordModelDefinitionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression <em>Record Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression
+   * @generated
+   */
+  public Adapter createRecordExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm <em>Record Term</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm
+   * @generated
+   */
+  public Adapter createRecordTermAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition <em>Property Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition
+   * @generated
+   */
+  public Adapter createPropertyDefinitionAdapter()
   {
     return null;
   }
