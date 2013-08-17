@@ -1,3 +1,1 @@
-jp.hishidama.xtext.dmdl_editor/bin
-jp.hishidama.xtext.dmdl_editor.tests/bin
-jp.hishidama.xtext.dmdl_editor.ui/bin
+*.class
