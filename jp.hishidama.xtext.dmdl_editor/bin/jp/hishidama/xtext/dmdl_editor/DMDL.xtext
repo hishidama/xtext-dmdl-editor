@@ -1,9 +1,30 @@
-grammar jp.hishidama.xtext.dmdl_editor.DMDL with org.eclipse.xtext.common.Terminals
+/*
+ * Asakusa Framework DMDL (DataModel Definition Language)
+ * 
+ * https://github.com/asakusafw/asakusafw/blob/master/dmdl-project/asakusa-dmdl-core/src/main/javacc/DmdlParser.jj
+ */
+grammar jp.hishidama.xtext.dmdl_editor.DMDL hidden(WS, ML_COMMENT, SL_COMMENT)
 
-generate dMDL "http://www.hishidama.jp/xtext/dmdl_editor/DMDL"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+generate dmdl "http://www.hishidama.jp/xtext/dmdl_editor/dmdl"
 
-Model:
-	greetings+=Greeting*;
-	
-Greeting:
-	'Hello' name=ID '!';
+Models:
+	(list+=ModelDefinition)*;
+
+ModelDefinition:
+	name=Name '=' '{' '}' ';';
+
+Name:
+	NAME_TOKEN;
+
+terminal NAME_TOKEN:
+	('a'..'z') ('a'..'z' | '0'..'9')* ('_' ('a'..'z' | '0'..'9')+)*;
+
+terminal ML_COMMENT:
+	'/*'->'*/';
+
+terminal SL_COMMENT:
+	('//' | '--') !('\n' | '\r')* ('\r'? '\n')?;
+
+terminal WS:
+	(' ' | '\t' | '\r' | '\n')+;
