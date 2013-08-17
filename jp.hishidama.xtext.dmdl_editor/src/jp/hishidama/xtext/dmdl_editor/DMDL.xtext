@@ -1,0 +1,9 @@
+grammar jp.hishidama.xtext.dmdl_editor.DMDL with org.eclipse.xtext.common.Terminals
+
+generate dMDL "http://www.hishidama.jp/xtext/dmdl_editor/DMDL"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
