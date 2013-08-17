@@ -12,6 +12,7 @@ package jp.hishidama.xtext.dmdl_editor.dmdl;
  * The following features are supported:
  * <ul>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition#getDescription <em>Description</em>}</li>
+ *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition#getName <em>Name</em>}</li>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition#getRhs <em>Rhs</em>}</li>
  * </ul>
@@ -48,6 +49,32 @@ public interface RecordModelDefinition extends ModelDefinition
    * @generated
    */
   void setDescription(String value);
+
+  /**
+   * Returns the value of the '<em><b>Attributes</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Attributes</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Attributes</em>' containment reference.
+   * @see #setAttributes(AttributeList)
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage#getRecordModelDefinition_Attributes()
+   * @model containment="true"
+   * @generated
+   */
+  AttributeList getAttributes();
+
+  /**
+   * Sets the value of the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition#getAttributes <em>Attributes</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Attributes</em>' containment reference.
+   * @see #getAttributes()
+   * @generated
+   */
+  void setAttributes(AttributeList value);
 
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

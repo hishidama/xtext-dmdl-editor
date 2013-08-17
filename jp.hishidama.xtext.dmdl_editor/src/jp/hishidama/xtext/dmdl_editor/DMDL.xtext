@@ -16,6 +16,7 @@ ModelDefinition:
 
 RecordModelDefinition:
 	(description=Description)?
+	(attributes=AttributeList)?
 	name=Name '=' rhs=RecordExpression ';';
 
 RecordExpression:
@@ -29,11 +30,42 @@ RecordTerm:
 
 PropertyDefinition:
 	(description=Description)?
+	(attributes=AttributeList)?
 	name=Name ':' type=Type
 	';';
 
 Description:
 	STRING;
+
+/* Attributes */
+AttributeList:
+	(attributes+=Attribute)+;
+
+Attribute:
+	"@"
+	name=QualifiedName
+	('('
+	(elements=AttributeElementList ","?)?
+	')')?;
+
+AttributeElementList:
+	elements+=AttributeElement ("," elements+=AttributeElement)*;
+
+AttributeElement:
+	name=Name "=" value=AttributeValue;
+
+AttributeValue:
+	value=AttributeValueArray
+	| value=QualifiedName
+	| value=Literal;
+
+AttributeValueArray:
+	'{'
+	elements+=AttributeValue ("," elements+=AttributeValue)* ","?
+	'}';
+
+QualifiedName:
+	name+=Name ('.' name+=Name)*;
 
 Name:
 	NAME_TOKEN;
@@ -45,8 +77,23 @@ terminal NAME_TOKEN:
 enum Type:
 	INT | LONG | BYTE | SHORT | DECIMAL | FLOAT | DOUBLE | TEXT | BOOLEAN | DATE | DATETIME;
 
+Literal:
+	stringValue=STRING | intValue=INT | decimalValue=DECIMAL | booleanValue=BOOLEAN;
+
 terminal STRING:
 	'"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | '\\') | !('\\' | '"'))* '"';
+
+terminal INT returns ecore::EInt:
+	'0'
+	| ('1'..'9') ('0'..'9')*;
+
+terminal DECIMAL returns ecore::EBigDecimal:
+	'.' ('0'..'9')+
+	| "0." ('0'..'9')*
+	| ('1'..'9') ('0'..'9')* '.' ('0'..'9')*;
+
+enum BOOLEAN:
+	TRUE | FALSE;
 
 terminal ML_COMMENT:
 	'/*'->'*/';

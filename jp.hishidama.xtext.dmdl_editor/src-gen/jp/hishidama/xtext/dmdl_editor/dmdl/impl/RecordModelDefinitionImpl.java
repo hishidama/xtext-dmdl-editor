@@ -2,6 +2,7 @@
  */
 package jp.hishidama.xtext.dmdl_editor.dmdl.impl;
 
+import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition;
@@ -22,6 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordModelDefinitionImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordModelDefinitionImpl#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordModelDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordModelDefinitionImpl#getRhs <em>Rhs</em>}</li>
  * </ul>
@@ -50,6 +52,16 @@ public class RecordModelDefinitionImpl extends ModelDefinitionImpl implements Re
    * @ordered
    */
   protected String description = DESCRIPTION_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAttributes()
+   * @generated
+   * @ordered
+   */
+  protected AttributeList attributes;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -123,6 +135,54 @@ public class RecordModelDefinitionImpl extends ModelDefinitionImpl implements Re
     description = newDescription;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DmdlPackage.RECORD_MODEL_DEFINITION__DESCRIPTION, oldDescription, description));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AttributeList getAttributes()
+  {
+    return attributes;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetAttributes(AttributeList newAttributes, NotificationChain msgs)
+  {
+    AttributeList oldAttributes = attributes;
+    attributes = newAttributes;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DmdlPackage.RECORD_MODEL_DEFINITION__ATTRIBUTES, oldAttributes, newAttributes);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setAttributes(AttributeList newAttributes)
+  {
+    if (newAttributes != attributes)
+    {
+      NotificationChain msgs = null;
+      if (attributes != null)
+        msgs = ((InternalEObject)attributes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DmdlPackage.RECORD_MODEL_DEFINITION__ATTRIBUTES, null, msgs);
+      if (newAttributes != null)
+        msgs = ((InternalEObject)newAttributes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DmdlPackage.RECORD_MODEL_DEFINITION__ATTRIBUTES, null, msgs);
+      msgs = basicSetAttributes(newAttributes, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DmdlPackage.RECORD_MODEL_DEFINITION__ATTRIBUTES, newAttributes, newAttributes));
   }
 
   /**
@@ -206,6 +266,8 @@ public class RecordModelDefinitionImpl extends ModelDefinitionImpl implements Re
   {
     switch (featureID)
     {
+      case DmdlPackage.RECORD_MODEL_DEFINITION__ATTRIBUTES:
+        return basicSetAttributes(null, msgs);
       case DmdlPackage.RECORD_MODEL_DEFINITION__RHS:
         return basicSetRhs(null, msgs);
     }
@@ -224,6 +286,8 @@ public class RecordModelDefinitionImpl extends ModelDefinitionImpl implements Re
     {
       case DmdlPackage.RECORD_MODEL_DEFINITION__DESCRIPTION:
         return getDescription();
+      case DmdlPackage.RECORD_MODEL_DEFINITION__ATTRIBUTES:
+        return getAttributes();
       case DmdlPackage.RECORD_MODEL_DEFINITION__NAME:
         return getName();
       case DmdlPackage.RECORD_MODEL_DEFINITION__RHS:
@@ -244,6 +308,9 @@ public class RecordModelDefinitionImpl extends ModelDefinitionImpl implements Re
     {
       case DmdlPackage.RECORD_MODEL_DEFINITION__DESCRIPTION:
         setDescription((String)newValue);
+        return;
+      case DmdlPackage.RECORD_MODEL_DEFINITION__ATTRIBUTES:
+        setAttributes((AttributeList)newValue);
         return;
       case DmdlPackage.RECORD_MODEL_DEFINITION__NAME:
         setName((String)newValue);
@@ -268,6 +335,9 @@ public class RecordModelDefinitionImpl extends ModelDefinitionImpl implements Re
       case DmdlPackage.RECORD_MODEL_DEFINITION__DESCRIPTION:
         setDescription(DESCRIPTION_EDEFAULT);
         return;
+      case DmdlPackage.RECORD_MODEL_DEFINITION__ATTRIBUTES:
+        setAttributes((AttributeList)null);
+        return;
       case DmdlPackage.RECORD_MODEL_DEFINITION__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -290,6 +360,8 @@ public class RecordModelDefinitionImpl extends ModelDefinitionImpl implements Re
     {
       case DmdlPackage.RECORD_MODEL_DEFINITION__DESCRIPTION:
         return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+      case DmdlPackage.RECORD_MODEL_DEFINITION__ATTRIBUTES:
+        return attributes != null;
       case DmdlPackage.RECORD_MODEL_DEFINITION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case DmdlPackage.RECORD_MODEL_DEFINITION__RHS:

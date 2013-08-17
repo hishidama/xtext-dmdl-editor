@@ -77,6 +77,78 @@ public interface DmdlFactory extends EFactory
   PropertyDefinition createPropertyDefinition();
 
   /**
+   * Returns a new object of class '<em>Attribute List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attribute List</em>'.
+   * @generated
+   */
+  AttributeList createAttributeList();
+
+  /**
+   * Returns a new object of class '<em>Attribute</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attribute</em>'.
+   * @generated
+   */
+  Attribute createAttribute();
+
+  /**
+   * Returns a new object of class '<em>Attribute Element List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attribute Element List</em>'.
+   * @generated
+   */
+  AttributeElementList createAttributeElementList();
+
+  /**
+   * Returns a new object of class '<em>Attribute Element</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attribute Element</em>'.
+   * @generated
+   */
+  AttributeElement createAttributeElement();
+
+  /**
+   * Returns a new object of class '<em>Attribute Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attribute Value</em>'.
+   * @generated
+   */
+  AttributeValue createAttributeValue();
+
+  /**
+   * Returns a new object of class '<em>Attribute Value Array</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attribute Value Array</em>'.
+   * @generated
+   */
+  AttributeValueArray createAttributeValueArray();
+
+  /**
+   * Returns a new object of class '<em>Qualified Name</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Qualified Name</em>'.
+   * @generated
+   */
+  QualifiedName createQualifiedName();
+
+  /**
+   * Returns a new object of class '<em>Literal</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Literal</em>'.
+   * @generated
+   */
+  Literal createLiteral();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
