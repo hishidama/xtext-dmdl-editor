@@ -3,12 +3,12 @@
  */
 package jp.hishidama.xtext.dmdl_editor.ui.outline;
 
-import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
+import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
 
 /**
  * Customization of the default outline structure.
@@ -16,6 +16,13 @@ import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
  * see http://www.eclipse.org/Xtext/documentation.html#outline
  */
 public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
+
+	@Override
+	protected void _createChildren(DocumentRootNode parentNode, EObject modelElement) {
+		for (EObject childElement : modelElement.eContents()) {
+			createNode(parentNode, childElement);
+		}
+	}
 
 	@Override
 	protected void _createChildren(IOutlineNode parentNode, EObject modelElement) {
@@ -31,9 +38,6 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	protected Object _text(Object modelElement) {
 		if (modelElement instanceof AttributeList) {
 			return "<attributes>";
-		}
-		if (modelElement instanceof Attribute) {
-			return super._text(((Attribute) modelElement).getName());
 		}
 		return super._text(modelElement);
 	}
