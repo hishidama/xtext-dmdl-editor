@@ -42,26 +42,49 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cAttributesAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cAttributesAttributeListParserRuleCall_1_0 = (RuleCall)cAttributesAssignment_1.eContents().get(0);
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Assignment cModelAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
-		private final RuleCall cModelRecordModelDefinitionParserRuleCall_2_0_0 = (RuleCall)cModelAssignment_2_0.eContents().get(0);
-		private final Assignment cModelAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
-		private final RuleCall cModelProjectiveModelDefinitionParserRuleCall_2_1_0 = (RuleCall)cModelAssignment_2_1.eContents().get(0);
-		private final Assignment cModelAssignment_2_2 = (Assignment)cAlternatives_2.eContents().get(2);
-		private final RuleCall cModelJoinedModelDefinitionParserRuleCall_2_2_0 = (RuleCall)cModelAssignment_2_2.eContents().get(0);
-		private final Assignment cModelAssignment_2_3 = (Assignment)cAlternatives_2.eContents().get(3);
-		private final RuleCall cModelSummarizeModelDefinitionParserRuleCall_2_3_0 = (RuleCall)cModelAssignment_2_3.eContents().get(0);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final Assignment cNameAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
+		private final RuleCall cNameNameParserRuleCall_2_0_0_0 = (RuleCall)cNameAssignment_2_0_0.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_2_0_1 = (Keyword)cGroup_2_0.eContents().get(1);
+		private final Assignment cRhsAssignment_2_0_2 = (Assignment)cGroup_2_0.eContents().get(2);
+		private final RuleCall cRhsRecordExpressionParserRuleCall_2_0_2_0 = (RuleCall)cRhsAssignment_2_0_2.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
+		private final Keyword cProjectiveKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cNameAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cNameNameParserRuleCall_2_1_1_0 = (RuleCall)cNameAssignment_2_1_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_2_1_2 = (Keyword)cGroup_2_1.eContents().get(2);
+		private final Assignment cRhsAssignment_2_1_3 = (Assignment)cGroup_2_1.eContents().get(3);
+		private final RuleCall cRhsRecordExpressionParserRuleCall_2_1_3_0 = (RuleCall)cRhsAssignment_2_1_3.eContents().get(0);
+		private final Group cGroup_2_2 = (Group)cAlternatives_2.eContents().get(2);
+		private final Keyword cJoinedKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
+		private final Assignment cNameAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
+		private final RuleCall cNameNameParserRuleCall_2_2_1_0 = (RuleCall)cNameAssignment_2_2_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_2_2_2 = (Keyword)cGroup_2_2.eContents().get(2);
+		private final Assignment cRhsAssignment_2_2_3 = (Assignment)cGroup_2_2.eContents().get(3);
+		private final RuleCall cRhsJoinExpressionParserRuleCall_2_2_3_0 = (RuleCall)cRhsAssignment_2_2_3.eContents().get(0);
+		private final Group cGroup_2_3 = (Group)cAlternatives_2.eContents().get(3);
+		private final Keyword cSummarizedKeyword_2_3_0 = (Keyword)cGroup_2_3.eContents().get(0);
+		private final Assignment cNameAssignment_2_3_1 = (Assignment)cGroup_2_3.eContents().get(1);
+		private final RuleCall cNameNameParserRuleCall_2_3_1_0 = (RuleCall)cNameAssignment_2_3_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_2_3_2 = (Keyword)cGroup_2_3.eContents().get(2);
+		private final Assignment cRhsAssignment_2_3_3 = (Assignment)cGroup_2_3.eContents().get(3);
+		private final RuleCall cRhsSummarizeExpressionParserRuleCall_2_3_3_0 = (RuleCall)cRhsAssignment_2_3_3.eContents().get(0);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//ModelDefinition:
 		//
-		//	description=Description? attributes=AttributeList? (model=RecordModelDefinition | model=ProjectiveModelDefinition |
+		//	description=Description? attributes=AttributeList? (name=Name "=" rhs=RecordExpression | "projective" name=Name "="
 		//
-		//	model=JoinedModelDefinition | model=SummarizeModelDefinition) ";";
+		//	rhs=RecordExpression | "joined" name=Name "=" rhs=JoinExpression | "summarized" name=Name "="
+		//
+		//	rhs=SummarizeExpression) ";";
 		public ParserRule getRule() { return rule; }
 
-		//description=Description? attributes=AttributeList? (model=RecordModelDefinition | model=ProjectiveModelDefinition |
+		//description=Description? attributes=AttributeList? (name=Name "=" rhs=RecordExpression | "projective" name=Name "="
 		//
-		//model=JoinedModelDefinition | model=SummarizeModelDefinition) ";"
+		//rhs=RecordExpression | "joined" name=Name "=" rhs=JoinExpression | "summarized" name=Name "=" rhs=SummarizeExpression)
+		//
+		//";"
 		public Group getGroup() { return cGroup; }
 
 		//description=Description?
@@ -76,107 +99,94 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		//AttributeList
 		public RuleCall getAttributesAttributeListParserRuleCall_1_0() { return cAttributesAttributeListParserRuleCall_1_0; }
 
-		//model=RecordModelDefinition | model=ProjectiveModelDefinition | model=JoinedModelDefinition |
+		//name=Name "=" rhs=RecordExpression | "projective" name=Name "=" rhs=RecordExpression | "joined" name=Name "="
 		//
-		//model=SummarizeModelDefinition
+		//rhs=JoinExpression | "summarized" name=Name "=" rhs=SummarizeExpression
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
-		//model=RecordModelDefinition
-		public Assignment getModelAssignment_2_0() { return cModelAssignment_2_0; }
+		//name=Name "=" rhs=RecordExpression
+		public Group getGroup_2_0() { return cGroup_2_0; }
 
-		//RecordModelDefinition
-		public RuleCall getModelRecordModelDefinitionParserRuleCall_2_0_0() { return cModelRecordModelDefinitionParserRuleCall_2_0_0; }
+		//name=Name
+		public Assignment getNameAssignment_2_0_0() { return cNameAssignment_2_0_0; }
 
-		//model=ProjectiveModelDefinition
-		public Assignment getModelAssignment_2_1() { return cModelAssignment_2_1; }
+		//Name
+		public RuleCall getNameNameParserRuleCall_2_0_0_0() { return cNameNameParserRuleCall_2_0_0_0; }
 
-		//ProjectiveModelDefinition
-		public RuleCall getModelProjectiveModelDefinitionParserRuleCall_2_1_0() { return cModelProjectiveModelDefinitionParserRuleCall_2_1_0; }
+		//"="
+		public Keyword getEqualsSignKeyword_2_0_1() { return cEqualsSignKeyword_2_0_1; }
 
-		//model=JoinedModelDefinition
-		public Assignment getModelAssignment_2_2() { return cModelAssignment_2_2; }
+		//rhs=RecordExpression
+		public Assignment getRhsAssignment_2_0_2() { return cRhsAssignment_2_0_2; }
 
-		//JoinedModelDefinition
-		public RuleCall getModelJoinedModelDefinitionParserRuleCall_2_2_0() { return cModelJoinedModelDefinitionParserRuleCall_2_2_0; }
+		//RecordExpression
+		public RuleCall getRhsRecordExpressionParserRuleCall_2_0_2_0() { return cRhsRecordExpressionParserRuleCall_2_0_2_0; }
 
-		//model=SummarizeModelDefinition
-		public Assignment getModelAssignment_2_3() { return cModelAssignment_2_3; }
+		//"projective" name=Name "=" rhs=RecordExpression
+		public Group getGroup_2_1() { return cGroup_2_1; }
 
-		//SummarizeModelDefinition
-		public RuleCall getModelSummarizeModelDefinitionParserRuleCall_2_3_0() { return cModelSummarizeModelDefinitionParserRuleCall_2_3_0; }
+		//"projective"
+		public Keyword getProjectiveKeyword_2_1_0() { return cProjectiveKeyword_2_1_0; }
+
+		//name=Name
+		public Assignment getNameAssignment_2_1_1() { return cNameAssignment_2_1_1; }
+
+		//Name
+		public RuleCall getNameNameParserRuleCall_2_1_1_0() { return cNameNameParserRuleCall_2_1_1_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_2_1_2() { return cEqualsSignKeyword_2_1_2; }
+
+		//rhs=RecordExpression
+		public Assignment getRhsAssignment_2_1_3() { return cRhsAssignment_2_1_3; }
+
+		//RecordExpression
+		public RuleCall getRhsRecordExpressionParserRuleCall_2_1_3_0() { return cRhsRecordExpressionParserRuleCall_2_1_3_0; }
+
+		//"joined" name=Name "=" rhs=JoinExpression
+		public Group getGroup_2_2() { return cGroup_2_2; }
+
+		//"joined"
+		public Keyword getJoinedKeyword_2_2_0() { return cJoinedKeyword_2_2_0; }
+
+		//name=Name
+		public Assignment getNameAssignment_2_2_1() { return cNameAssignment_2_2_1; }
+
+		//Name
+		public RuleCall getNameNameParserRuleCall_2_2_1_0() { return cNameNameParserRuleCall_2_2_1_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_2_2_2() { return cEqualsSignKeyword_2_2_2; }
+
+		//rhs=JoinExpression
+		public Assignment getRhsAssignment_2_2_3() { return cRhsAssignment_2_2_3; }
+
+		//JoinExpression
+		public RuleCall getRhsJoinExpressionParserRuleCall_2_2_3_0() { return cRhsJoinExpressionParserRuleCall_2_2_3_0; }
+
+		//"summarized" name=Name "=" rhs=SummarizeExpression
+		public Group getGroup_2_3() { return cGroup_2_3; }
+
+		//"summarized"
+		public Keyword getSummarizedKeyword_2_3_0() { return cSummarizedKeyword_2_3_0; }
+
+		//name=Name
+		public Assignment getNameAssignment_2_3_1() { return cNameAssignment_2_3_1; }
+
+		//Name
+		public RuleCall getNameNameParserRuleCall_2_3_1_0() { return cNameNameParserRuleCall_2_3_1_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_2_3_2() { return cEqualsSignKeyword_2_3_2; }
+
+		//rhs=SummarizeExpression
+		public Assignment getRhsAssignment_2_3_3() { return cRhsAssignment_2_3_3; }
+
+		//SummarizeExpression
+		public RuleCall getRhsSummarizeExpressionParserRuleCall_2_3_3_0() { return cRhsSummarizeExpressionParserRuleCall_2_3_3_0; }
 
 		//";"
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
-	}
-
-	public class RecordModelDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RecordModelDefinition");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cRhsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cRhsRecordExpressionParserRuleCall_2_0 = (RuleCall)cRhsAssignment_2.eContents().get(0);
-		
-		//RecordModelDefinition:
-		//
-		//	name=Name "=" rhs=RecordExpression;
-		public ParserRule getRule() { return rule; }
-
-		//name=Name "=" rhs=RecordExpression
-		public Group getGroup() { return cGroup; }
-
-		//name=Name
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-
-		//Name
-		public RuleCall getNameNameParserRuleCall_0_0() { return cNameNameParserRuleCall_0_0; }
-
-		//"="
-		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
-
-		//rhs=RecordExpression
-		public Assignment getRhsAssignment_2() { return cRhsAssignment_2; }
-
-		//RecordExpression
-		public RuleCall getRhsRecordExpressionParserRuleCall_2_0() { return cRhsRecordExpressionParserRuleCall_2_0; }
-	}
-
-	public class ProjectiveModelDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ProjectiveModelDefinition");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cProjectiveKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cRhsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cRhsRecordExpressionParserRuleCall_3_0 = (RuleCall)cRhsAssignment_3.eContents().get(0);
-		
-		//ProjectiveModelDefinition:
-		//
-		//	"projective" name=Name "=" rhs=RecordExpression;
-		public ParserRule getRule() { return rule; }
-
-		//"projective" name=Name "=" rhs=RecordExpression
-		public Group getGroup() { return cGroup; }
-
-		//"projective"
-		public Keyword getProjectiveKeyword_0() { return cProjectiveKeyword_0; }
-
-		//name=Name
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-
-		//Name
-		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
-
-		//"="
-		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
-
-		//rhs=RecordExpression
-		public Assignment getRhsAssignment_3() { return cRhsAssignment_3; }
-
-		//RecordExpression
-		public RuleCall getRhsRecordExpressionParserRuleCall_3_0() { return cRhsRecordExpressionParserRuleCall_3_0; }
 	}
 
 	public class RecordExpressionElements extends AbstractParserRuleElementFinder {
@@ -327,43 +337,6 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
 	}
 
-	public class JoinedModelDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "JoinedModelDefinition");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cJoinedKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cRhsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cRhsJoinExpressionParserRuleCall_3_0 = (RuleCall)cRhsAssignment_3.eContents().get(0);
-		
-		//JoinedModelDefinition:
-		//
-		//	"joined" name=Name "=" rhs=JoinExpression;
-		public ParserRule getRule() { return rule; }
-
-		//"joined" name=Name "=" rhs=JoinExpression
-		public Group getGroup() { return cGroup; }
-
-		//"joined"
-		public Keyword getJoinedKeyword_0() { return cJoinedKeyword_0; }
-
-		//name=Name
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-
-		//Name
-		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
-
-		//"="
-		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
-
-		//rhs=JoinExpression
-		public Assignment getRhsAssignment_3() { return cRhsAssignment_3; }
-
-		//JoinExpression
-		public RuleCall getRhsJoinExpressionParserRuleCall_3_0() { return cRhsJoinExpressionParserRuleCall_3_0; }
-	}
-
 	public class JoinExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "JoinExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -436,43 +409,6 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Grouping
 		public RuleCall getGroupingGroupingParserRuleCall_2_0() { return cGroupingGroupingParserRuleCall_2_0; }
-	}
-
-	public class SummarizeModelDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SummarizeModelDefinition");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cSummarizedKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cRhsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cRhsSummarizeExpressionParserRuleCall_3_0 = (RuleCall)cRhsAssignment_3.eContents().get(0);
-		
-		//SummarizeModelDefinition:
-		//
-		//	"summarized" name=Name "=" rhs=SummarizeExpression;
-		public ParserRule getRule() { return rule; }
-
-		//"summarized" name=Name "=" rhs=SummarizeExpression
-		public Group getGroup() { return cGroup; }
-
-		//"summarized"
-		public Keyword getSummarizedKeyword_0() { return cSummarizedKeyword_0; }
-
-		//name=Name
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-
-		//Name
-		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
-
-		//"="
-		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
-
-		//rhs=SummarizeExpression
-		public Assignment getRhsAssignment_3() { return cRhsAssignment_3; }
-
-		//SummarizeExpression
-		public RuleCall getRhsSummarizeExpressionParserRuleCall_3_0() { return cRhsSummarizeExpressionParserRuleCall_3_0; }
 	}
 
 	public class SummarizeExpressionElements extends AbstractParserRuleElementFinder {
@@ -1270,16 +1206,12 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private ScriptElements pScript;
 	private ModelDefinitionElements pModelDefinition;
-	private RecordModelDefinitionElements pRecordModelDefinition;
-	private ProjectiveModelDefinitionElements pProjectiveModelDefinition;
 	private RecordExpressionElements pRecordExpression;
 	private RecordTermElements pRecordTerm;
 	private ModelReferenceElements pModelReference;
 	private PropertyDefinitionElements pPropertyDefinition;
-	private JoinedModelDefinitionElements pJoinedModelDefinition;
 	private JoinExpressionElements pJoinExpression;
 	private JoinTermElements pJoinTerm;
-	private SummarizeModelDefinitionElements pSummarizeModelDefinition;
 	private SummarizeExpressionElements pSummarizeExpression;
 	private SummarizeTermElements pSummarizeTerm;
 	private DescriptionElements pDescription;
@@ -1351,37 +1283,17 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//ModelDefinition:
 	//
-	//	description=Description? attributes=AttributeList? (model=RecordModelDefinition | model=ProjectiveModelDefinition |
+	//	description=Description? attributes=AttributeList? (name=Name "=" rhs=RecordExpression | "projective" name=Name "="
 	//
-	//	model=JoinedModelDefinition | model=SummarizeModelDefinition) ";";
+	//	rhs=RecordExpression | "joined" name=Name "=" rhs=JoinExpression | "summarized" name=Name "="
+	//
+	//	rhs=SummarizeExpression) ";";
 	public ModelDefinitionElements getModelDefinitionAccess() {
 		return (pModelDefinition != null) ? pModelDefinition : (pModelDefinition = new ModelDefinitionElements());
 	}
 	
 	public ParserRule getModelDefinitionRule() {
 		return getModelDefinitionAccess().getRule();
-	}
-
-	//RecordModelDefinition:
-	//
-	//	name=Name "=" rhs=RecordExpression;
-	public RecordModelDefinitionElements getRecordModelDefinitionAccess() {
-		return (pRecordModelDefinition != null) ? pRecordModelDefinition : (pRecordModelDefinition = new RecordModelDefinitionElements());
-	}
-	
-	public ParserRule getRecordModelDefinitionRule() {
-		return getRecordModelDefinitionAccess().getRule();
-	}
-
-	//ProjectiveModelDefinition:
-	//
-	//	"projective" name=Name "=" rhs=RecordExpression;
-	public ProjectiveModelDefinitionElements getProjectiveModelDefinitionAccess() {
-		return (pProjectiveModelDefinition != null) ? pProjectiveModelDefinition : (pProjectiveModelDefinition = new ProjectiveModelDefinitionElements());
-	}
-	
-	public ParserRule getProjectiveModelDefinitionRule() {
-		return getProjectiveModelDefinitionAccess().getRule();
 	}
 
 	//RecordExpression:
@@ -1428,17 +1340,6 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPropertyDefinitionAccess().getRule();
 	}
 
-	//JoinedModelDefinition:
-	//
-	//	"joined" name=Name "=" rhs=JoinExpression;
-	public JoinedModelDefinitionElements getJoinedModelDefinitionAccess() {
-		return (pJoinedModelDefinition != null) ? pJoinedModelDefinition : (pJoinedModelDefinition = new JoinedModelDefinitionElements());
-	}
-	
-	public ParserRule getJoinedModelDefinitionRule() {
-		return getJoinedModelDefinitionAccess().getRule();
-	}
-
 	//JoinExpression:
 	//
 	//	terms+=JoinTerm ("+" terms+=JoinTerm)*;
@@ -1459,17 +1360,6 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getJoinTermRule() {
 		return getJoinTermAccess().getRule();
-	}
-
-	//SummarizeModelDefinition:
-	//
-	//	"summarized" name=Name "=" rhs=SummarizeExpression;
-	public SummarizeModelDefinitionElements getSummarizeModelDefinitionAccess() {
-		return (pSummarizeModelDefinition != null) ? pSummarizeModelDefinition : (pSummarizeModelDefinition = new SummarizeModelDefinitionElements());
-	}
-	
-	public ParserRule getSummarizeModelDefinitionRule() {
-		return getSummarizeModelDefinitionAccess().getRule();
 	}
 
 	//SummarizeExpression:

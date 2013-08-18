@@ -67,16 +67,12 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
     {
       case DmdlPackage.SCRIPT: return createScript();
       case DmdlPackage.MODEL_DEFINITION: return createModelDefinition();
-      case DmdlPackage.RECORD_MODEL_DEFINITION: return createRecordModelDefinition();
-      case DmdlPackage.PROJECTIVE_MODEL_DEFINITION: return createProjectiveModelDefinition();
       case DmdlPackage.RECORD_EXPRESSION: return createRecordExpression();
       case DmdlPackage.RECORD_TERM: return createRecordTerm();
       case DmdlPackage.MODEL_REFERENCE: return createModelReference();
       case DmdlPackage.PROPERTY_DEFINITION: return createPropertyDefinition();
-      case DmdlPackage.JOINED_MODEL_DEFINITION: return createJoinedModelDefinition();
       case DmdlPackage.JOIN_EXPRESSION: return createJoinExpression();
       case DmdlPackage.JOIN_TERM: return createJoinTerm();
-      case DmdlPackage.SUMMARIZE_MODEL_DEFINITION: return createSummarizeModelDefinition();
       case DmdlPackage.SUMMARIZE_EXPRESSION: return createSummarizeExpression();
       case DmdlPackage.SUMMARIZE_TERM: return createSummarizeTerm();
       case DmdlPackage.ATTRIBUTE_LIST: return createAttributeList();
@@ -162,28 +158,6 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public RecordModelDefinition createRecordModelDefinition()
-  {
-    RecordModelDefinitionImpl recordModelDefinition = new RecordModelDefinitionImpl();
-    return recordModelDefinition;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ProjectiveModelDefinition createProjectiveModelDefinition()
-  {
-    ProjectiveModelDefinitionImpl projectiveModelDefinition = new ProjectiveModelDefinitionImpl();
-    return projectiveModelDefinition;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public RecordExpression createRecordExpression()
   {
     RecordExpressionImpl recordExpression = new RecordExpressionImpl();
@@ -228,17 +202,6 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public JoinedModelDefinition createJoinedModelDefinition()
-  {
-    JoinedModelDefinitionImpl joinedModelDefinition = new JoinedModelDefinitionImpl();
-    return joinedModelDefinition;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public JoinExpression createJoinExpression()
   {
     JoinExpressionImpl joinExpression = new JoinExpressionImpl();
@@ -254,17 +217,6 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
   {
     JoinTermImpl joinTerm = new JoinTermImpl();
     return joinTerm;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public SummarizeModelDefinition createSummarizeModelDefinition()
-  {
-    SummarizeModelDefinitionImpl summarizeModelDefinition = new SummarizeModelDefinitionImpl();
-    return summarizeModelDefinition;
   }
 
   /**

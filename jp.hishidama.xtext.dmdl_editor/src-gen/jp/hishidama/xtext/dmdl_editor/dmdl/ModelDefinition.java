@@ -14,7 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getDescription <em>Description</em>}</li>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getAttributes <em>Attributes</em>}</li>
- *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getModel <em>Model</em>}</li>
+ *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getName <em>Name</em>}</li>
+ *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getRhs <em>Rhs</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,29 +78,55 @@ public interface ModelDefinition extends EObject
   void setAttributes(AttributeList value);
 
   /**
-   * Returns the value of the '<em><b>Model</b></em>' containment reference.
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Model</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Model</em>' containment reference.
-   * @see #setModel(EObject)
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage#getModelDefinition_Model()
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage#getModelDefinition_Name()
+   * @model
+   * @generated
+   */
+  String getName();
+
+  /**
+   * Sets the value of the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getName <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
+   * @generated
+   */
+  void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Rhs</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Rhs</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Rhs</em>' containment reference.
+   * @see #setRhs(EObject)
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage#getModelDefinition_Rhs()
    * @model containment="true"
    * @generated
    */
-  EObject getModel();
+  EObject getRhs();
 
   /**
-   * Sets the value of the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getModel <em>Model</em>}' containment reference.
+   * Sets the value of the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getRhs <em>Rhs</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Model</em>' containment reference.
-   * @see #getModel()
+   * @param value the new value of the '<em>Rhs</em>' containment reference.
+   * @see #getRhs()
    * @generated
    */
-  void setModel(EObject value);
+  void setRhs(EObject value);
 
 } // ModelDefinition

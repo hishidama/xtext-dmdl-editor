@@ -5,11 +5,6 @@ package jp.hishidama.xtext.dmdl_editor.ui.outline;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
-import jp.hishidama.xtext.dmdl_editor.dmdl.JoinedModelDefinition;
-import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
-import jp.hishidama.xtext.dmdl_editor.dmdl.ProjectiveModelDefinition;
-import jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition;
-import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeModelDefinition;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
@@ -36,22 +31,6 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	protected Object _text(Object modelElement) {
 		if (modelElement instanceof AttributeList) {
 			return "<attributes>";
-		}
-		if (modelElement instanceof ModelDefinition) {
-			ModelDefinition model = (ModelDefinition) modelElement;
-			EObject m = model.getModel();
-			if (m instanceof RecordModelDefinition) {
-				return ((RecordModelDefinition) m).getName();
-			}
-			if (m instanceof ProjectiveModelDefinition) {
-				return ((ProjectiveModelDefinition) m).getName();
-			}
-			if (m instanceof JoinedModelDefinition) {
-				return ((JoinedModelDefinition) m).getName();
-			}
-			if (m instanceof SummarizeModelDefinition) {
-				return ((SummarizeModelDefinition) m).getName();
-			}
 		}
 		if (modelElement instanceof Attribute) {
 			return super._text(((Attribute) modelElement).getName());

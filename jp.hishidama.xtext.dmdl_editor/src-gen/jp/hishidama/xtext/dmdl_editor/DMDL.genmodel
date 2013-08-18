@@ -30,15 +30,8 @@
     <genClasses ecoreClass="DMDL.ecore#//ModelDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//ModelDefinition/description"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//ModelDefinition/attributes"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//ModelDefinition/model"/>
-    </genClasses>
-    <genClasses ecoreClass="DMDL.ecore#//RecordModelDefinition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//RecordModelDefinition/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//RecordModelDefinition/rhs"/>
-    </genClasses>
-    <genClasses ecoreClass="DMDL.ecore#//ProjectiveModelDefinition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//ProjectiveModelDefinition/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//ProjectiveModelDefinition/rhs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//ModelDefinition/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//ModelDefinition/rhs"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//RecordExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//RecordExpression/terms"/>
@@ -56,10 +49,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyDefinition/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyDefinition/type"/>
     </genClasses>
-    <genClasses ecoreClass="DMDL.ecore#//JoinedModelDefinition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//JoinedModelDefinition/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//JoinedModelDefinition/rhs"/>
-    </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//JoinExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//JoinExpression/terms"/>
     </genClasses>
@@ -67,10 +56,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//JoinTerm/reference"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//JoinTerm/mapping"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//JoinTerm/grouping"/>
-    </genClasses>
-    <genClasses ecoreClass="DMDL.ecore#//SummarizeModelDefinition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//SummarizeModelDefinition/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//SummarizeModelDefinition/rhs"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//SummarizeExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//SummarizeExpression/terms"/>

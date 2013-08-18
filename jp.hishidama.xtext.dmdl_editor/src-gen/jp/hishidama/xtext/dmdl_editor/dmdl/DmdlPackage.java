@@ -114,13 +114,22 @@ public interface DmdlPackage extends EPackage
   int MODEL_DEFINITION__ATTRIBUTES = 1;
 
   /**
-   * The feature id for the '<em><b>Model</b></em>' containment reference.
+   * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL_DEFINITION__MODEL = 2;
+  int MODEL_DEFINITION__NAME = 2;
+
+  /**
+   * The feature id for the '<em><b>Rhs</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODEL_DEFINITION__RHS = 3;
 
   /**
    * The number of structural features of the '<em>Model Definition</em>' class.
@@ -129,81 +138,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MODEL_DEFINITION_FEATURE_COUNT = 3;
-
-  /**
-   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordModelDefinitionImpl <em>Record Model Definition</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordModelDefinitionImpl
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getRecordModelDefinition()
-   * @generated
-   */
-  int RECORD_MODEL_DEFINITION = 2;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RECORD_MODEL_DEFINITION__NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Rhs</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RECORD_MODEL_DEFINITION__RHS = 1;
-
-  /**
-   * The number of structural features of the '<em>Record Model Definition</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RECORD_MODEL_DEFINITION_FEATURE_COUNT = 2;
-
-  /**
-   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.ProjectiveModelDefinitionImpl <em>Projective Model Definition</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.ProjectiveModelDefinitionImpl
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getProjectiveModelDefinition()
-   * @generated
-   */
-  int PROJECTIVE_MODEL_DEFINITION = 3;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROJECTIVE_MODEL_DEFINITION__NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Rhs</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROJECTIVE_MODEL_DEFINITION__RHS = 1;
-
-  /**
-   * The number of structural features of the '<em>Projective Model Definition</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROJECTIVE_MODEL_DEFINITION_FEATURE_COUNT = 2;
+  int MODEL_DEFINITION_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordExpressionImpl <em>Record Expression</em>}' class.
@@ -213,7 +148,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getRecordExpression()
    * @generated
    */
-  int RECORD_EXPRESSION = 4;
+  int RECORD_EXPRESSION = 2;
 
   /**
    * The feature id for the '<em><b>Terms</b></em>' containment reference list.
@@ -241,7 +176,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getRecordTerm()
    * @generated
    */
-  int RECORD_TERM = 5;
+  int RECORD_TERM = 3;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -278,7 +213,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getModelReference()
    * @generated
    */
-  int MODEL_REFERENCE = 6;
+  int MODEL_REFERENCE = 4;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -306,7 +241,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyDefinition()
    * @generated
    */
-  int PROPERTY_DEFINITION = 7;
+  int PROPERTY_DEFINITION = 5;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -354,43 +289,6 @@ public interface DmdlPackage extends EPackage
   int PROPERTY_DEFINITION_FEATURE_COUNT = 4;
 
   /**
-   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.JoinedModelDefinitionImpl <em>Joined Model Definition</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.JoinedModelDefinitionImpl
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getJoinedModelDefinition()
-   * @generated
-   */
-  int JOINED_MODEL_DEFINITION = 8;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int JOINED_MODEL_DEFINITION__NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Rhs</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int JOINED_MODEL_DEFINITION__RHS = 1;
-
-  /**
-   * The number of structural features of the '<em>Joined Model Definition</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int JOINED_MODEL_DEFINITION_FEATURE_COUNT = 2;
-
-  /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.JoinExpressionImpl <em>Join Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -398,7 +296,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getJoinExpression()
    * @generated
    */
-  int JOIN_EXPRESSION = 9;
+  int JOIN_EXPRESSION = 6;
 
   /**
    * The feature id for the '<em><b>Terms</b></em>' containment reference list.
@@ -426,7 +324,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getJoinTerm()
    * @generated
    */
-  int JOIN_TERM = 10;
+  int JOIN_TERM = 7;
 
   /**
    * The feature id for the '<em><b>Reference</b></em>' containment reference.
@@ -465,43 +363,6 @@ public interface DmdlPackage extends EPackage
   int JOIN_TERM_FEATURE_COUNT = 3;
 
   /**
-   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.SummarizeModelDefinitionImpl <em>Summarize Model Definition</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.SummarizeModelDefinitionImpl
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getSummarizeModelDefinition()
-   * @generated
-   */
-  int SUMMARIZE_MODEL_DEFINITION = 11;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUMMARIZE_MODEL_DEFINITION__NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Rhs</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUMMARIZE_MODEL_DEFINITION__RHS = 1;
-
-  /**
-   * The number of structural features of the '<em>Summarize Model Definition</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SUMMARIZE_MODEL_DEFINITION_FEATURE_COUNT = 2;
-
-  /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.SummarizeExpressionImpl <em>Summarize Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -509,7 +370,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getSummarizeExpression()
    * @generated
    */
-  int SUMMARIZE_EXPRESSION = 12;
+  int SUMMARIZE_EXPRESSION = 8;
 
   /**
    * The feature id for the '<em><b>Terms</b></em>' containment reference list.
@@ -537,7 +398,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getSummarizeTerm()
    * @generated
    */
-  int SUMMARIZE_TERM = 13;
+  int SUMMARIZE_TERM = 9;
 
   /**
    * The feature id for the '<em><b>Reference</b></em>' containment reference.
@@ -583,7 +444,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeList()
    * @generated
    */
-  int ATTRIBUTE_LIST = 14;
+  int ATTRIBUTE_LIST = 10;
 
   /**
    * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -611,7 +472,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttribute()
    * @generated
    */
-  int ATTRIBUTE = 15;
+  int ATTRIBUTE = 11;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -648,7 +509,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeElementList()
    * @generated
    */
-  int ATTRIBUTE_ELEMENT_LIST = 16;
+  int ATTRIBUTE_ELEMENT_LIST = 12;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -676,7 +537,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeElement()
    * @generated
    */
-  int ATTRIBUTE_ELEMENT = 17;
+  int ATTRIBUTE_ELEMENT = 13;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -713,7 +574,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeValue()
    * @generated
    */
-  int ATTRIBUTE_VALUE = 18;
+  int ATTRIBUTE_VALUE = 14;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -741,7 +602,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeValueArray()
    * @generated
    */
-  int ATTRIBUTE_VALUE_ARRAY = 19;
+  int ATTRIBUTE_VALUE_ARRAY = 15;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -769,7 +630,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getGrouping()
    * @generated
    */
-  int GROUPING = 20;
+  int GROUPING = 16;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute list.
@@ -797,7 +658,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getModelMapping()
    * @generated
    */
-  int MODEL_MAPPING = 21;
+  int MODEL_MAPPING = 17;
 
   /**
    * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
@@ -825,7 +686,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyMapping()
    * @generated
    */
-  int PROPERTY_MAPPING = 22;
+  int PROPERTY_MAPPING = 18;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -880,7 +741,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getModelFolding()
    * @generated
    */
-  int MODEL_FOLDING = 23;
+  int MODEL_FOLDING = 19;
 
   /**
    * The feature id for the '<em><b>Foldings</b></em>' containment reference list.
@@ -908,7 +769,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyFolding()
    * @generated
    */
-  int PROPERTY_FOLDING = 24;
+  int PROPERTY_FOLDING = 20;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -972,7 +833,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getQualifiedNameObject()
    * @generated
    */
-  int QUALIFIED_NAME_OBJECT = 25;
+  int QUALIFIED_NAME_OBJECT = 21;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1000,7 +861,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 26;
+  int LITERAL = 22;
 
   /**
    * The feature id for the '<em><b>String Value</b></em>' attribute.
@@ -1055,7 +916,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getType()
    * @generated
    */
-  int TYPE = 27;
+  int TYPE = 23;
 
   /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.BOOLEAN <em>BOOLEAN</em>}' enum.
@@ -1065,7 +926,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getBOOLEAN()
    * @generated
    */
-  int BOOLEAN = 28;
+  int BOOLEAN = 24;
 
 
   /**
@@ -1122,79 +983,26 @@ public interface DmdlPackage extends EPackage
   EReference getModelDefinition_Attributes();
 
   /**
-   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getModel <em>Model</em>}'.
+   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Model</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getModel()
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getName()
    * @see #getModelDefinition()
    * @generated
    */
-  EReference getModelDefinition_Model();
+  EAttribute getModelDefinition_Name();
 
   /**
-   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition <em>Record Model Definition</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Record Model Definition</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition
-   * @generated
-   */
-  EClass getRecordModelDefinition();
-
-  /**
-   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition#getName()
-   * @see #getRecordModelDefinition()
-   * @generated
-   */
-  EAttribute getRecordModelDefinition_Name();
-
-  /**
-   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition#getRhs <em>Rhs</em>}'.
+   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getRhs <em>Rhs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Rhs</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition#getRhs()
-   * @see #getRecordModelDefinition()
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getRhs()
+   * @see #getModelDefinition()
    * @generated
    */
-  EReference getRecordModelDefinition_Rhs();
-
-  /**
-   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ProjectiveModelDefinition <em>Projective Model Definition</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Projective Model Definition</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.ProjectiveModelDefinition
-   * @generated
-   */
-  EClass getProjectiveModelDefinition();
-
-  /**
-   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ProjectiveModelDefinition#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.ProjectiveModelDefinition#getName()
-   * @see #getProjectiveModelDefinition()
-   * @generated
-   */
-  EAttribute getProjectiveModelDefinition_Name();
-
-  /**
-   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ProjectiveModelDefinition#getRhs <em>Rhs</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Rhs</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.ProjectiveModelDefinition#getRhs()
-   * @see #getProjectiveModelDefinition()
-   * @generated
-   */
-  EReference getProjectiveModelDefinition_Rhs();
+  EReference getModelDefinition_Rhs();
 
   /**
    * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression <em>Record Expression</em>}'.
@@ -1325,38 +1133,6 @@ public interface DmdlPackage extends EPackage
   EAttribute getPropertyDefinition_Type();
 
   /**
-   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.JoinedModelDefinition <em>Joined Model Definition</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Joined Model Definition</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.JoinedModelDefinition
-   * @generated
-   */
-  EClass getJoinedModelDefinition();
-
-  /**
-   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.JoinedModelDefinition#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.JoinedModelDefinition#getName()
-   * @see #getJoinedModelDefinition()
-   * @generated
-   */
-  EAttribute getJoinedModelDefinition_Name();
-
-  /**
-   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.JoinedModelDefinition#getRhs <em>Rhs</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Rhs</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.JoinedModelDefinition#getRhs()
-   * @see #getJoinedModelDefinition()
-   * @generated
-   */
-  EReference getJoinedModelDefinition_Rhs();
-
-  /**
    * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.JoinExpression <em>Join Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1419,38 +1195,6 @@ public interface DmdlPackage extends EPackage
    * @generated
    */
   EReference getJoinTerm_Grouping();
-
-  /**
-   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeModelDefinition <em>Summarize Model Definition</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Summarize Model Definition</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeModelDefinition
-   * @generated
-   */
-  EClass getSummarizeModelDefinition();
-
-  /**
-   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeModelDefinition#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeModelDefinition#getName()
-   * @see #getSummarizeModelDefinition()
-   * @generated
-   */
-  EAttribute getSummarizeModelDefinition_Name();
-
-  /**
-   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeModelDefinition#getRhs <em>Rhs</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Rhs</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeModelDefinition#getRhs()
-   * @see #getSummarizeModelDefinition()
-   * @generated
-   */
-  EReference getSummarizeModelDefinition_Rhs();
 
   /**
    * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression <em>Summarize Expression</em>}'.
@@ -2009,30 +1753,12 @@ public interface DmdlPackage extends EPackage
     EReference MODEL_DEFINITION__ATTRIBUTES = eINSTANCE.getModelDefinition_Attributes();
 
     /**
-     * The meta object literal for the '<em><b>Model</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MODEL_DEFINITION__MODEL = eINSTANCE.getModelDefinition_Model();
-
-    /**
-     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordModelDefinitionImpl <em>Record Model Definition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordModelDefinitionImpl
-     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getRecordModelDefinition()
-     * @generated
-     */
-    EClass RECORD_MODEL_DEFINITION = eINSTANCE.getRecordModelDefinition();
-
-    /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute RECORD_MODEL_DEFINITION__NAME = eINSTANCE.getRecordModelDefinition_Name();
+    EAttribute MODEL_DEFINITION__NAME = eINSTANCE.getModelDefinition_Name();
 
     /**
      * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
@@ -2040,33 +1766,7 @@ public interface DmdlPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RECORD_MODEL_DEFINITION__RHS = eINSTANCE.getRecordModelDefinition_Rhs();
-
-    /**
-     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.ProjectiveModelDefinitionImpl <em>Projective Model Definition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.ProjectiveModelDefinitionImpl
-     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getProjectiveModelDefinition()
-     * @generated
-     */
-    EClass PROJECTIVE_MODEL_DEFINITION = eINSTANCE.getProjectiveModelDefinition();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROJECTIVE_MODEL_DEFINITION__NAME = eINSTANCE.getProjectiveModelDefinition_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PROJECTIVE_MODEL_DEFINITION__RHS = eINSTANCE.getProjectiveModelDefinition_Rhs();
+    EReference MODEL_DEFINITION__RHS = eINSTANCE.getModelDefinition_Rhs();
 
     /**
      * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordExpressionImpl <em>Record Expression</em>}' class.
@@ -2173,32 +1873,6 @@ public interface DmdlPackage extends EPackage
     EAttribute PROPERTY_DEFINITION__TYPE = eINSTANCE.getPropertyDefinition_Type();
 
     /**
-     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.JoinedModelDefinitionImpl <em>Joined Model Definition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.JoinedModelDefinitionImpl
-     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getJoinedModelDefinition()
-     * @generated
-     */
-    EClass JOINED_MODEL_DEFINITION = eINSTANCE.getJoinedModelDefinition();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute JOINED_MODEL_DEFINITION__NAME = eINSTANCE.getJoinedModelDefinition_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference JOINED_MODEL_DEFINITION__RHS = eINSTANCE.getJoinedModelDefinition_Rhs();
-
-    /**
      * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.JoinExpressionImpl <em>Join Expression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2249,32 +1923,6 @@ public interface DmdlPackage extends EPackage
      * @generated
      */
     EReference JOIN_TERM__GROUPING = eINSTANCE.getJoinTerm_Grouping();
-
-    /**
-     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.SummarizeModelDefinitionImpl <em>Summarize Model Definition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.SummarizeModelDefinitionImpl
-     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getSummarizeModelDefinition()
-     * @generated
-     */
-    EClass SUMMARIZE_MODEL_DEFINITION = eINSTANCE.getSummarizeModelDefinition();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SUMMARIZE_MODEL_DEFINITION__NAME = eINSTANCE.getSummarizeModelDefinition_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SUMMARIZE_MODEL_DEFINITION__RHS = eINSTANCE.getSummarizeModelDefinition_Rhs();
 
     /**
      * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.SummarizeExpressionImpl <em>Summarize Expression</em>}' class.

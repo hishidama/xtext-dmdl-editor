@@ -86,20 +86,6 @@ public class DmdlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case DmdlPackage.RECORD_MODEL_DEFINITION:
-      {
-        RecordModelDefinition recordModelDefinition = (RecordModelDefinition)theEObject;
-        T result = caseRecordModelDefinition(recordModelDefinition);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case DmdlPackage.PROJECTIVE_MODEL_DEFINITION:
-      {
-        ProjectiveModelDefinition projectiveModelDefinition = (ProjectiveModelDefinition)theEObject;
-        T result = caseProjectiveModelDefinition(projectiveModelDefinition);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case DmdlPackage.RECORD_EXPRESSION:
       {
         RecordExpression recordExpression = (RecordExpression)theEObject;
@@ -128,13 +114,6 @@ public class DmdlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case DmdlPackage.JOINED_MODEL_DEFINITION:
-      {
-        JoinedModelDefinition joinedModelDefinition = (JoinedModelDefinition)theEObject;
-        T result = caseJoinedModelDefinition(joinedModelDefinition);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case DmdlPackage.JOIN_EXPRESSION:
       {
         JoinExpression joinExpression = (JoinExpression)theEObject;
@@ -146,13 +125,6 @@ public class DmdlSwitch<T> extends Switch<T>
       {
         JoinTerm joinTerm = (JoinTerm)theEObject;
         T result = caseJoinTerm(joinTerm);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case DmdlPackage.SUMMARIZE_MODEL_DEFINITION:
-      {
-        SummarizeModelDefinition summarizeModelDefinition = (SummarizeModelDefinition)theEObject;
-        T result = caseSummarizeModelDefinition(summarizeModelDefinition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -298,38 +270,6 @@ public class DmdlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Record Model Definition</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Record Model Definition</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseRecordModelDefinition(RecordModelDefinition object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Projective Model Definition</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Projective Model Definition</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseProjectiveModelDefinition(ProjectiveModelDefinition object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Record Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -394,22 +334,6 @@ public class DmdlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Joined Model Definition</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Joined Model Definition</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseJoinedModelDefinition(JoinedModelDefinition object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Join Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -437,22 +361,6 @@ public class DmdlSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseJoinTerm(JoinTerm object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Summarize Model Definition</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Summarize Model Definition</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseSummarizeModelDefinition(SummarizeModelDefinition object)
   {
     return null;
   }

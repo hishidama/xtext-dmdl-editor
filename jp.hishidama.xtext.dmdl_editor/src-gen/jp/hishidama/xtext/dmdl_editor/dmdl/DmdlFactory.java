@@ -41,24 +41,6 @@ public interface DmdlFactory extends EFactory
   ModelDefinition createModelDefinition();
 
   /**
-   * Returns a new object of class '<em>Record Model Definition</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Record Model Definition</em>'.
-   * @generated
-   */
-  RecordModelDefinition createRecordModelDefinition();
-
-  /**
-   * Returns a new object of class '<em>Projective Model Definition</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Projective Model Definition</em>'.
-   * @generated
-   */
-  ProjectiveModelDefinition createProjectiveModelDefinition();
-
-  /**
    * Returns a new object of class '<em>Record Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -95,15 +77,6 @@ public interface DmdlFactory extends EFactory
   PropertyDefinition createPropertyDefinition();
 
   /**
-   * Returns a new object of class '<em>Joined Model Definition</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Joined Model Definition</em>'.
-   * @generated
-   */
-  JoinedModelDefinition createJoinedModelDefinition();
-
-  /**
    * Returns a new object of class '<em>Join Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -120,15 +93,6 @@ public interface DmdlFactory extends EFactory
    * @generated
    */
   JoinTerm createJoinTerm();
-
-  /**
-   * Returns a new object of class '<em>Summarize Model Definition</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Summarize Model Definition</em>'.
-   * @generated
-   */
-  SummarizeModelDefinition createSummarizeModelDefinition();
 
   /**
    * Returns a new object of class '<em>Summarize Expression</em>'.

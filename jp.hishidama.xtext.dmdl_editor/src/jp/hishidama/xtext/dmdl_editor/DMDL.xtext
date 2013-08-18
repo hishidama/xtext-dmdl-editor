@@ -14,18 +14,11 @@ Script:
 ModelDefinition:
 	(description=Description)?
 	(attributes=AttributeList)?
-	(model=RecordModelDefinition
-	| model=ProjectiveModelDefinition
-	| model=JoinedModelDefinition
-	| model=SummarizeModelDefinition)
+	((name=Name '=' rhs=RecordExpression)
+	| ("projective" name=Name '=' rhs=RecordExpression)
+	| ("joined" name=Name '=' rhs=JoinExpression)
+	| ('summarized' name=Name '=' rhs=SummarizeExpression))
 	';';
-
-RecordModelDefinition:
-	name=Name '=' rhs=RecordExpression;
-
-ProjectiveModelDefinition:
-	"projective"
-	name=Name '=' rhs=RecordExpression;
 
 RecordExpression:
 	terms+=RecordTerm ('+' terms+=RecordTerm)*;
@@ -45,10 +38,6 @@ PropertyDefinition:
 	name=Name ':' type=Type
 	';';
 
-JoinedModelDefinition:
-	"joined"
-	name=Name '=' rhs=JoinExpression;
-
 JoinExpression:
 	terms+=JoinTerm ('+' terms+=JoinTerm)*;
 
@@ -56,10 +45,6 @@ JoinTerm:
 	reference=ModelReference
 	(mapping=ModelMapping)?
 	(grouping=Grouping)?;
-
-SummarizeModelDefinition:
-	'summarized'
-	name=Name '=' rhs=SummarizeExpression;
 
 SummarizeExpression:
 	terms+=SummarizeTerm ('+' terms+=SummarizeTerm)*;

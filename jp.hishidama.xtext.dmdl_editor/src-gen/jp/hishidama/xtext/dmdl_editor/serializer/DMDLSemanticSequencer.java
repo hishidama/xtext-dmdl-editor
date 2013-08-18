@@ -12,23 +12,19 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Grouping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.JoinExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.JoinTerm;
-import jp.hishidama.xtext.dmdl_editor.dmdl.JoinedModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Literal;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
-import jp.hishidama.xtext.dmdl_editor.dmdl.ProjectiveModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedNameObject;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
-import jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Script;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression;
-import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm;
 import jp.hishidama.xtext.dmdl_editor.services.DMDLGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
@@ -105,12 +101,6 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
-			case DmdlPackage.JOINED_MODEL_DEFINITION:
-				if(context == grammarAccess.getJoinedModelDefinitionRule()) {
-					sequence_JoinedModelDefinition(context, (JoinedModelDefinition) semanticObject); 
-					return; 
-				}
-				else break;
 			case DmdlPackage.LITERAL:
 				if(context == grammarAccess.getLiteralRule()) {
 					sequence_Literal(context, (Literal) semanticObject); 
@@ -138,12 +128,6 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case DmdlPackage.MODEL_REFERENCE:
 				if(context == grammarAccess.getModelReferenceRule()) {
 					sequence_ModelReference(context, (ModelReference) semanticObject); 
-					return; 
-				}
-				else break;
-			case DmdlPackage.PROJECTIVE_MODEL_DEFINITION:
-				if(context == grammarAccess.getProjectiveModelDefinitionRule()) {
-					sequence_ProjectiveModelDefinition(context, (ProjectiveModelDefinition) semanticObject); 
 					return; 
 				}
 				else break;
@@ -177,12 +161,6 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
-			case DmdlPackage.RECORD_MODEL_DEFINITION:
-				if(context == grammarAccess.getRecordModelDefinitionRule()) {
-					sequence_RecordModelDefinition(context, (RecordModelDefinition) semanticObject); 
-					return; 
-				}
-				else break;
 			case DmdlPackage.RECORD_TERM:
 				if(context == grammarAccess.getRecordTermRule()) {
 					sequence_RecordTerm(context, (RecordTerm) semanticObject); 
@@ -198,12 +176,6 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case DmdlPackage.SUMMARIZE_EXPRESSION:
 				if(context == grammarAccess.getSummarizeExpressionRule()) {
 					sequence_SummarizeExpression(context, (SummarizeExpression) semanticObject); 
-					return; 
-				}
-				else break;
-			case DmdlPackage.SUMMARIZE_MODEL_DEFINITION:
-				if(context == grammarAccess.getSummarizeModelDefinitionRule()) {
-					sequence_SummarizeModelDefinition(context, (SummarizeModelDefinition) semanticObject); 
 					return; 
 				}
 				else break;
@@ -310,25 +282,6 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (name=Name rhs=JoinExpression)
-	 */
-	protected void sequence_JoinedModelDefinition(EObject context, JoinedModelDefinition semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.JOINED_MODEL_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.JOINED_MODEL_DEFINITION__NAME));
-			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.JOINED_MODEL_DEFINITION__RHS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.JOINED_MODEL_DEFINITION__RHS));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getJoinedModelDefinitionAccess().getNameNameParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getJoinedModelDefinitionAccess().getRhsJoinExpressionParserRuleCall_3_0(), semanticObject.getRhs());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (stringValue=STRING | intValue=INT | decimalValue=DECIMAL | booleanValue=BOOLEAN)
 	 */
 	protected void sequence_Literal(EObject context, Literal semanticObject) {
@@ -341,7 +294,7 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         description=Description? 
 	 *         attributes=AttributeList? 
-	 *         (model=RecordModelDefinition | model=ProjectiveModelDefinition | model=JoinedModelDefinition | model=SummarizeModelDefinition)
+	 *         ((name=Name rhs=RecordExpression) | (name=Name rhs=RecordExpression) | (name=Name rhs=JoinExpression) | (name=Name rhs=SummarizeExpression))
 	 *     )
 	 */
 	protected void sequence_ModelDefinition(EObject context, ModelDefinition semanticObject) {
@@ -379,25 +332,6 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getModelReferenceAccess().getNameNameParserRuleCall_0(), semanticObject.getName());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=Name rhs=RecordExpression)
-	 */
-	protected void sequence_ProjectiveModelDefinition(EObject context, ProjectiveModelDefinition semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.PROJECTIVE_MODEL_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.PROJECTIVE_MODEL_DEFINITION__NAME));
-			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.PROJECTIVE_MODEL_DEFINITION__RHS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.PROJECTIVE_MODEL_DEFINITION__RHS));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getProjectiveModelDefinitionAccess().getNameNameParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getProjectiveModelDefinitionAccess().getRhsRecordExpressionParserRuleCall_3_0(), semanticObject.getRhs());
 		feeder.finish();
 	}
 	
@@ -456,25 +390,6 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (name=Name rhs=RecordExpression)
-	 */
-	protected void sequence_RecordModelDefinition(EObject context, RecordModelDefinition semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.RECORD_MODEL_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.RECORD_MODEL_DEFINITION__NAME));
-			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.RECORD_MODEL_DEFINITION__RHS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.RECORD_MODEL_DEFINITION__RHS));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getRecordModelDefinitionAccess().getNameNameParserRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getRecordModelDefinitionAccess().getRhsRecordExpressionParserRuleCall_2_0(), semanticObject.getRhs());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     (properties+=PropertyDefinition+ | reference=ModelReference)
 	 */
 	protected void sequence_RecordTerm(EObject context, RecordTerm semanticObject) {
@@ -497,25 +412,6 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_SummarizeExpression(EObject context, SummarizeExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=Name rhs=SummarizeExpression)
-	 */
-	protected void sequence_SummarizeModelDefinition(EObject context, SummarizeModelDefinition semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.SUMMARIZE_MODEL_DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.SUMMARIZE_MODEL_DEFINITION__NAME));
-			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.SUMMARIZE_MODEL_DEFINITION__RHS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.SUMMARIZE_MODEL_DEFINITION__RHS));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getSummarizeModelDefinitionAccess().getNameNameParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getSummarizeModelDefinitionAccess().getRhsSummarizeExpressionParserRuleCall_3_0(), semanticObject.getRhs());
-		feeder.finish();
 	}
 	
 	
