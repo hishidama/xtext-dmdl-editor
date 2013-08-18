@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.ui.ISharedImages;
 import org.eclipse.jdt.ui.JavaUI;
+import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
@@ -104,7 +105,9 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		String name = p.getName();
 		Type type = p.getType();
 		if (type != null) {
-			return String.format("%s : %s", name, type);
+			StyledString ss = new StyledString(name);
+			ss.append(" : " + type, StyledString.DECORATIONS_STYLER);
+			return ss;
 		}
 		return name;
 	}
@@ -113,7 +116,10 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		String name = p.getName();
 		String aggr = p.getAggregator();
 		String from = p.getFrom();
-		return String.format("%s <- %s(%s)", name, aggr, from);
+
+		StyledString ss = new StyledString(name);
+		ss.append(String.format(" <- %s(%s)", aggr, from), StyledString.DECORATIONS_STYLER);
+		return ss;
 	}
 
 	protected Image _image(ModelDefinition model) {
