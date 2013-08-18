@@ -64,6 +64,9 @@ public class DMDLFormatter extends AbstractDeclarativeFormatter {
 		// joinedの+の直前は改行する
 		c.setLinewrap().before(f.getJoinExpressionAccess().getPlusSignKeyword_1_0());
 
+		// モデル定義の後は1行空ける
+		c.setLinewrap(2).after(f.getModelDefinitionRule());
+
 		// コメント
 		c.setLinewrap(0, 1, 2).before(f.getSL_COMMENTRule());
 		c.setLinewrap(0, 1, 2).before(f.getML_COMMENTRule());
