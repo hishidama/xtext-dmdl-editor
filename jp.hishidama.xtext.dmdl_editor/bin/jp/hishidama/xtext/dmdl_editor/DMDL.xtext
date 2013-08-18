@@ -86,7 +86,7 @@ AttributeElement:
 	name=Name "=" value=AttributeValue;
 
 AttributeValue:
-	value=AttributeValueArray | value=QualifiedName | value=Literal;
+	value=AttributeValueArray | value=QualifiedNameObject | value=Literal;
 
 AttributeValueArray:
 	'{' elements+=AttributeValue (',' elements+=AttributeValue)* ','? '}';
@@ -113,8 +113,11 @@ PropertyFolding:
 	from=Name ('->' | '=>') name=Name
 	';';
 
-QualifiedName:
-	name+=Name ('.' name+=Name)*;
+QualifiedNameObject:
+	name=QualifiedName;
+
+QualifiedName returns ecore::EString:
+	Name ('.' Name)*;
 
 Name:
 	NAME_TOKEN | 'projective' | 'joined' | 'summarized';

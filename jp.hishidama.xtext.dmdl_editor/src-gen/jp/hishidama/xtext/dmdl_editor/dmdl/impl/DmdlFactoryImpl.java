@@ -90,7 +90,7 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
       case DmdlPackage.PROPERTY_MAPPING: return createPropertyMapping();
       case DmdlPackage.MODEL_FOLDING: return createModelFolding();
       case DmdlPackage.PROPERTY_FOLDING: return createPropertyFolding();
-      case DmdlPackage.QUALIFIED_NAME: return createQualifiedName();
+      case DmdlPackage.QUALIFIED_NAME_OBJECT: return createQualifiedNameObject();
       case DmdlPackage.LITERAL: return createLiteral();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -415,10 +415,10 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public QualifiedName createQualifiedName()
+  public QualifiedNameObject createQualifiedNameObject()
   {
-    QualifiedNameImpl qualifiedName = new QualifiedNameImpl();
-    return qualifiedName;
+    QualifiedNameObjectImpl qualifiedNameObject = new QualifiedNameObjectImpl();
+    return qualifiedNameObject;
   }
 
   /**

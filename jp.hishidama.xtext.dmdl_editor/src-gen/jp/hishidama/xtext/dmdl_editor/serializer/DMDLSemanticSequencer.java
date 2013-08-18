@@ -22,7 +22,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ProjectiveModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
-import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedName;
+import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedNameObject;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
@@ -165,9 +165,9 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
-			case DmdlPackage.QUALIFIED_NAME:
-				if(context == grammarAccess.getQualifiedNameRule()) {
-					sequence_QualifiedName(context, (QualifiedName) semanticObject); 
+			case DmdlPackage.QUALIFIED_NAME_OBJECT:
+				if(context == grammarAccess.getQualifiedNameObjectRule()) {
+					sequence_QualifiedNameObject(context, (QualifiedNameObject) semanticObject); 
 					return; 
 				}
 				else break;
@@ -265,7 +265,7 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (value=AttributeValueArray | value=QualifiedName | value=Literal)
+	 *     (value=AttributeValueArray | value=QualifiedNameObject | value=Literal)
 	 */
 	protected void sequence_AttributeValue(EObject context, AttributeValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -431,10 +431,17 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (name+=Name name+=Name*)
+	 *     name=QualifiedName
 	 */
-	protected void sequence_QualifiedName(EObject context, QualifiedName semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_QualifiedNameObject(EObject context, QualifiedNameObject semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.QUALIFIED_NAME_OBJECT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.QUALIFIED_NAME_OBJECT__NAME));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getQualifiedNameObjectAccess().getNameQualifiedNameParserRuleCall_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	

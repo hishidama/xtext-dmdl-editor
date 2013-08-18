@@ -84,7 +84,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//AttributeList/attributes"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//Attribute">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//Attribute/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//Attribute/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//Attribute/elements"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//AttributeElementList">
@@ -118,12 +118,12 @@
     <genClasses ecoreClass="DMDL.ecore#//PropertyFolding">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyFolding/description"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//PropertyFolding/attributes"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//PropertyFolding/aggregator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyFolding/aggregator"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyFolding/from"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyFolding/name"/>
     </genClasses>
-    <genClasses ecoreClass="DMDL.ecore#//QualifiedName">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//QualifiedName/name"/>
+    <genClasses ecoreClass="DMDL.ecore#//QualifiedNameObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//QualifiedNameObject/name"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//Literal">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//Literal/stringValue"/>

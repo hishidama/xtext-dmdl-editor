@@ -79,30 +79,30 @@ public interface PropertyFolding extends EObject
   void setAttributes(AttributeList value);
 
   /**
-   * Returns the value of the '<em><b>Aggregator</b></em>' containment reference.
+   * Returns the value of the '<em><b>Aggregator</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Aggregator</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Aggregator</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Aggregator</em>' containment reference.
-   * @see #setAggregator(QualifiedName)
+   * @return the value of the '<em>Aggregator</em>' attribute.
+   * @see #setAggregator(String)
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage#getPropertyFolding_Aggregator()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  QualifiedName getAggregator();
+  String getAggregator();
 
   /**
-   * Sets the value of the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding#getAggregator <em>Aggregator</em>}' containment reference.
+   * Sets the value of the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding#getAggregator <em>Aggregator</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Aggregator</em>' containment reference.
+   * @param value the new value of the '<em>Aggregator</em>' attribute.
    * @see #getAggregator()
    * @generated
    */
-  void setAggregator(QualifiedName value);
+  void setAggregator(String value);
 
   /**
    * Returns the value of the '<em><b>From</b></em>' attribute.

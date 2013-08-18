@@ -82,8 +82,7 @@
         eType="#//Attribute" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attribute">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//QualifiedName"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" eType="#//AttributeElementList"
         containment="true"/>
   </eClassifiers>
@@ -127,14 +126,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" eType="#//AttributeList"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="aggregator" eType="#//QualifiedName"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="QualifiedName">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" unique="false" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="QualifiedNameObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Type">
     <eLiterals name="INT" literal="INT"/>

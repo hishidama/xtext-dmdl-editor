@@ -135,8 +135,7 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPropertyFoldingAccess().getAggregatorAssignment_2(), "rule__PropertyFolding__AggregatorAssignment_2");
 					put(grammarAccess.getPropertyFoldingAccess().getFromAssignment_3(), "rule__PropertyFolding__FromAssignment_3");
 					put(grammarAccess.getPropertyFoldingAccess().getNameAssignment_5(), "rule__PropertyFolding__NameAssignment_5");
-					put(grammarAccess.getQualifiedNameAccess().getNameAssignment_0(), "rule__QualifiedName__NameAssignment_0");
-					put(grammarAccess.getQualifiedNameAccess().getNameAssignment_1_1(), "rule__QualifiedName__NameAssignment_1_1");
+					put(grammarAccess.getQualifiedNameObjectAccess().getNameAssignment(), "rule__QualifiedNameObject__NameAssignment");
 					put(grammarAccess.getLiteralAccess().getStringValueAssignment_0(), "rule__Literal__StringValueAssignment_0");
 					put(grammarAccess.getLiteralAccess().getIntValueAssignment_1(), "rule__Literal__IntValueAssignment_1");
 					put(grammarAccess.getLiteralAccess().getDecimalValueAssignment_2(), "rule__Literal__DecimalValueAssignment_2");

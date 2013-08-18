@@ -5,7 +5,6 @@ package jp.hishidama.xtext.dmdl_editor.dmdl.impl;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
-import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedName;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -66,14 +65,24 @@ public class PropertyFoldingImpl extends MinimalEObjectImpl.Container implements
   protected AttributeList attributes;
 
   /**
-   * The cached value of the '{@link #getAggregator() <em>Aggregator</em>}' containment reference.
+   * The default value of the '{@link #getAggregator() <em>Aggregator</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getAggregator()
    * @generated
    * @ordered
    */
-  protected QualifiedName aggregator;
+  protected static final String AGGREGATOR_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getAggregator() <em>Aggregator</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAggregator()
+   * @generated
+   * @ordered
+   */
+  protected String aggregator = AGGREGATOR_EDEFAULT;
 
   /**
    * The default value of the '{@link #getFrom() <em>From</em>}' attribute.
@@ -212,7 +221,7 @@ public class PropertyFoldingImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public QualifiedName getAggregator()
+  public String getAggregator()
   {
     return aggregator;
   }
@@ -222,37 +231,12 @@ public class PropertyFoldingImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAggregator(QualifiedName newAggregator, NotificationChain msgs)
+  public void setAggregator(String newAggregator)
   {
-    QualifiedName oldAggregator = aggregator;
+    String oldAggregator = aggregator;
     aggregator = newAggregator;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DmdlPackage.PROPERTY_FOLDING__AGGREGATOR, oldAggregator, newAggregator);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setAggregator(QualifiedName newAggregator)
-  {
-    if (newAggregator != aggregator)
-    {
-      NotificationChain msgs = null;
-      if (aggregator != null)
-        msgs = ((InternalEObject)aggregator).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DmdlPackage.PROPERTY_FOLDING__AGGREGATOR, null, msgs);
-      if (newAggregator != null)
-        msgs = ((InternalEObject)newAggregator).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DmdlPackage.PROPERTY_FOLDING__AGGREGATOR, null, msgs);
-      msgs = basicSetAggregator(newAggregator, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DmdlPackage.PROPERTY_FOLDING__AGGREGATOR, newAggregator, newAggregator));
+      eNotify(new ENotificationImpl(this, Notification.SET, DmdlPackage.PROPERTY_FOLDING__AGGREGATOR, oldAggregator, aggregator));
   }
 
   /**
@@ -313,8 +297,6 @@ public class PropertyFoldingImpl extends MinimalEObjectImpl.Container implements
     {
       case DmdlPackage.PROPERTY_FOLDING__ATTRIBUTES:
         return basicSetAttributes(null, msgs);
-      case DmdlPackage.PROPERTY_FOLDING__AGGREGATOR:
-        return basicSetAggregator(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -360,7 +342,7 @@ public class PropertyFoldingImpl extends MinimalEObjectImpl.Container implements
         setAttributes((AttributeList)newValue);
         return;
       case DmdlPackage.PROPERTY_FOLDING__AGGREGATOR:
-        setAggregator((QualifiedName)newValue);
+        setAggregator((String)newValue);
         return;
       case DmdlPackage.PROPERTY_FOLDING__FROM:
         setFrom((String)newValue);
@@ -389,7 +371,7 @@ public class PropertyFoldingImpl extends MinimalEObjectImpl.Container implements
         setAttributes((AttributeList)null);
         return;
       case DmdlPackage.PROPERTY_FOLDING__AGGREGATOR:
-        setAggregator((QualifiedName)null);
+        setAggregator(AGGREGATOR_EDEFAULT);
         return;
       case DmdlPackage.PROPERTY_FOLDING__FROM:
         setFrom(FROM_EDEFAULT);
@@ -416,7 +398,7 @@ public class PropertyFoldingImpl extends MinimalEObjectImpl.Container implements
       case DmdlPackage.PROPERTY_FOLDING__ATTRIBUTES:
         return attributes != null;
       case DmdlPackage.PROPERTY_FOLDING__AGGREGATOR:
-        return aggregator != null;
+        return AGGREGATOR_EDEFAULT == null ? aggregator != null : !AGGREGATOR_EDEFAULT.equals(aggregator);
       case DmdlPackage.PROPERTY_FOLDING__FROM:
         return FROM_EDEFAULT == null ? from != null : !FROM_EDEFAULT.equals(from);
       case DmdlPackage.PROPERTY_FOLDING__NAME:
@@ -438,6 +420,8 @@ public class PropertyFoldingImpl extends MinimalEObjectImpl.Container implements
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (description: ");
     result.append(description);
+    result.append(", aggregator: ");
+    result.append(aggregator);
     result.append(", from: ");
     result.append(from);
     result.append(", name: ");

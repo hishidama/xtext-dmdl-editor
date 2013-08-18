@@ -614,7 +614,7 @@ public interface DmdlPackage extends EPackage
   int ATTRIBUTE = 15;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
+   * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -929,7 +929,7 @@ public interface DmdlPackage extends EPackage
   int PROPERTY_FOLDING__ATTRIBUTES = 1;
 
   /**
-   * The feature id for the '<em><b>Aggregator</b></em>' containment reference.
+   * The feature id for the '<em><b>Aggregator</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -965,32 +965,32 @@ public interface DmdlPackage extends EPackage
   int PROPERTY_FOLDING_FEATURE_COUNT = 5;
 
   /**
-   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.QualifiedNameImpl <em>Qualified Name</em>}' class.
+   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.QualifiedNameObjectImpl <em>Qualified Name Object</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.QualifiedNameImpl
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getQualifiedName()
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.QualifiedNameObjectImpl
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getQualifiedNameObject()
    * @generated
    */
-  int QUALIFIED_NAME = 25;
+  int QUALIFIED_NAME_OBJECT = 25;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute list.
+   * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int QUALIFIED_NAME__NAME = 0;
+  int QUALIFIED_NAME_OBJECT__NAME = 0;
 
   /**
-   * The number of structural features of the '<em>Qualified Name</em>' class.
+   * The number of structural features of the '<em>Qualified Name Object</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int QUALIFIED_NAME_FEATURE_COUNT = 1;
+  int QUALIFIED_NAME_OBJECT_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.LiteralImpl <em>Literal</em>}' class.
@@ -1548,15 +1548,15 @@ public interface DmdlPackage extends EPackage
   EClass getAttribute();
 
   /**
-   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Attribute#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Attribute#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
+   * @return the meta object for the attribute '<em>Name</em>'.
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.Attribute#getName()
    * @see #getAttribute()
    * @generated
    */
-  EReference getAttribute_Name();
+  EAttribute getAttribute_Name();
 
   /**
    * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Attribute#getElements <em>Elements</em>}'.
@@ -1814,15 +1814,15 @@ public interface DmdlPackage extends EPackage
   EReference getPropertyFolding_Attributes();
 
   /**
-   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding#getAggregator <em>Aggregator</em>}'.
+   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding#getAggregator <em>Aggregator</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Aggregator</em>'.
+   * @return the meta object for the attribute '<em>Aggregator</em>'.
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding#getAggregator()
    * @see #getPropertyFolding()
    * @generated
    */
-  EReference getPropertyFolding_Aggregator();
+  EAttribute getPropertyFolding_Aggregator();
 
   /**
    * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding#getFrom <em>From</em>}'.
@@ -1847,25 +1847,25 @@ public interface DmdlPackage extends EPackage
   EAttribute getPropertyFolding_Name();
 
   /**
-   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedName <em>Qualified Name</em>}'.
+   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedNameObject <em>Qualified Name Object</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Qualified Name</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedName
+   * @return the meta object for class '<em>Qualified Name Object</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedNameObject
    * @generated
    */
-  EClass getQualifiedName();
+  EClass getQualifiedNameObject();
 
   /**
-   * Returns the meta object for the attribute list '{@link jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedName#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedNameObject#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Name</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedName#getName()
-   * @see #getQualifiedName()
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedNameObject#getName()
+   * @see #getQualifiedNameObject()
    * @generated
    */
-  EAttribute getQualifiedName_Name();
+  EAttribute getQualifiedNameObject_Name();
 
   /**
    * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Literal <em>Literal</em>}'.
@@ -2357,12 +2357,12 @@ public interface DmdlPackage extends EPackage
     EClass ATTRIBUTE = eINSTANCE.getAttribute();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ATTRIBUTE__NAME = eINSTANCE.getAttribute_Name();
+    EAttribute ATTRIBUTE__NAME = eINSTANCE.getAttribute_Name();
 
     /**
      * The meta object literal for the '<em><b>Elements</b></em>' containment reference feature.
@@ -2575,12 +2575,12 @@ public interface DmdlPackage extends EPackage
     EReference PROPERTY_FOLDING__ATTRIBUTES = eINSTANCE.getPropertyFolding_Attributes();
 
     /**
-     * The meta object literal for the '<em><b>Aggregator</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Aggregator</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PROPERTY_FOLDING__AGGREGATOR = eINSTANCE.getPropertyFolding_Aggregator();
+    EAttribute PROPERTY_FOLDING__AGGREGATOR = eINSTANCE.getPropertyFolding_Aggregator();
 
     /**
      * The meta object literal for the '<em><b>From</b></em>' attribute feature.
@@ -2599,22 +2599,22 @@ public interface DmdlPackage extends EPackage
     EAttribute PROPERTY_FOLDING__NAME = eINSTANCE.getPropertyFolding_Name();
 
     /**
-     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.QualifiedNameImpl <em>Qualified Name</em>}' class.
+     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.QualifiedNameObjectImpl <em>Qualified Name Object</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.QualifiedNameImpl
-     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getQualifiedName()
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.QualifiedNameObjectImpl
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getQualifiedNameObject()
      * @generated
      */
-    EClass QUALIFIED_NAME = eINSTANCE.getQualifiedName();
+    EClass QUALIFIED_NAME_OBJECT = eINSTANCE.getQualifiedNameObject();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute QUALIFIED_NAME__NAME = eINSTANCE.getQualifiedName_Name();
+    EAttribute QUALIFIED_NAME_OBJECT__NAME = eINSTANCE.getQualifiedNameObject_Name();
 
     /**
      * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.LiteralImpl <em>Literal</em>}' class.

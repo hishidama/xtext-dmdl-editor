@@ -1332,9 +1332,9 @@ ruleAttributeValue returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAttributeValueAccess().getValueQualifiedNameParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getAttributeValueAccess().getValueQualifiedNameObjectParserRuleCall_1_0()); 
 	    }
-		lv_value_1_0=ruleQualifiedName		{
+		lv_value_1_0=ruleQualifiedNameObject		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAttributeValueRule());
 	        }
@@ -1342,7 +1342,7 @@ ruleAttributeValue returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_1_0, 
-        		"QualifiedName");
+        		"QualifiedNameObject");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1838,62 +1838,89 @@ rulePropertyFolding returns [EObject current=null]
 
 
 
-// Entry rule entryRuleQualifiedName
-entryRuleQualifiedName returns [EObject current=null] 
+// Entry rule entryRuleQualifiedNameObject
+entryRuleQualifiedNameObject returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getQualifiedNameRule()); }
+	{ newCompositeNode(grammarAccess.getQualifiedNameObjectRule()); }
+	 iv_ruleQualifiedNameObject=ruleQualifiedNameObject 
+	 { $current=$iv_ruleQualifiedNameObject.current; } 
+	 EOF 
+;
+
+// Rule QualifiedNameObject
+ruleQualifiedNameObject returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getQualifiedNameObjectAccess().getNameQualifiedNameParserRuleCall_0()); 
+	    }
+		lv_name_0_0=ruleQualifiedName		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getQualifiedNameObjectRule());
+	        }
+       		set(
+       			$current, 
+       			"name",
+        		lv_name_0_0, 
+        		"QualifiedName");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+;
+
+
+
+
+
+// Entry rule entryRuleQualifiedName
+entryRuleQualifiedName returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getQualifiedNameRule()); } 
 	 iv_ruleQualifiedName=ruleQualifiedName 
-	 { $current=$iv_ruleQualifiedName.current; } 
+	 { $current=$iv_ruleQualifiedName.current.getText(); }  
 	 EOF 
 ;
 
 // Rule QualifiedName
-ruleQualifiedName returns [EObject current=null] 
+ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
 (
-		{ 
-	        newCompositeNode(grammarAccess.getQualifiedNameAccess().getNameNameParserRuleCall_0_0()); 
-	    }
-		lv_name_0_0=ruleName		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getQualifiedNameRule());
-	        }
-       		add(
-       			$current, 
-       			"name",
-        		lv_name_0_0, 
-        		"Name");
-	        afterParserOrEnumRuleCall();
-	    }
+    { 
+        newCompositeNode(grammarAccess.getQualifiedNameAccess().getNameParserRuleCall_0()); 
+    }
+    this_Name_0=ruleName    {
+		$current.merge(this_Name_0);
+    }
 
-)
-)(	otherlv_1='.' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0());
+    { 
+        afterParserOrEnumRuleCall();
     }
 (
-(
-		{ 
-	        newCompositeNode(grammarAccess.getQualifiedNameAccess().getNameNameParserRuleCall_1_1_0()); 
-	    }
-		lv_name_2_0=ruleName		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getQualifiedNameRule());
-	        }
-       		add(
-       			$current, 
-       			"name",
-        		lv_name_2_0, 
-        		"Name");
-	        afterParserOrEnumRuleCall();
-	    }
+	kw='.' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
+    }
 
-)
-))*)
-;
+    { 
+        newCompositeNode(grammarAccess.getQualifiedNameAccess().getNameParserRuleCall_1_1()); 
+    }
+    this_Name_2=ruleName    {
+		$current.merge(this_Name_2);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+)*)
+    ;
 
 
 

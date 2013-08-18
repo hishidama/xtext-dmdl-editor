@@ -248,13 +248,13 @@ public interface DmdlFactory extends EFactory
   PropertyFolding createPropertyFolding();
 
   /**
-   * Returns a new object of class '<em>Qualified Name</em>'.
+   * Returns a new object of class '<em>Qualified Name Object</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Qualified Name</em>'.
+   * @return a new object of class '<em>Qualified Name Object</em>'.
    * @generated
    */
-  QualifiedName createQualifiedName();
+  QualifiedNameObject createQualifiedNameObject();
 
   /**
    * Returns a new object of class '<em>Literal</em>'.

@@ -200,9 +200,9 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
         return createPropertyFoldingAdapter();
       }
       @Override
-      public Adapter caseQualifiedName(QualifiedName object)
+      public Adapter caseQualifiedNameObject(QualifiedNameObject object)
       {
-        return createQualifiedNameAdapter();
+        return createQualifiedNameObjectAdapter();
       }
       @Override
       public Adapter caseLiteral(Literal object)
@@ -607,16 +607,16 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedName <em>Qualified Name</em>}'.
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedNameObject <em>Qualified Name Object</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedName
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedNameObject
    * @generated
    */
-  public Adapter createQualifiedNameAdapter()
+  public Adapter createQualifiedNameObjectAdapter()
   {
     return null;
   }

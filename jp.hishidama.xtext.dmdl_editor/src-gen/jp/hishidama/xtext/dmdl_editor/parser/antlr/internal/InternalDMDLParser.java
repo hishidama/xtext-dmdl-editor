@@ -377,11 +377,11 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                 {
                 int LA4_2 = input.LA(2);
 
-                if ( (LA4_2==12) ) {
-                    alt4=1;
-                }
-                else if ( (LA4_2==RULE_NAME_TOKEN||LA4_2==13||(LA4_2>=18 && LA4_2<=19)) ) {
+                if ( (LA4_2==RULE_NAME_TOKEN||LA4_2==13||(LA4_2>=18 && LA4_2<=19)) ) {
                     alt4=2;
+                }
+                else if ( (LA4_2==12) ) {
+                    alt4=1;
                 }
                 else {
                     NoViableAltException nvae =
@@ -2838,7 +2838,7 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
         Token otherlv_2=null;
         Token otherlv_4=null;
         Token otherlv_5=null;
-        EObject lv_name_1_0 = null;
+        AntlrDatatypeRuleToken lv_name_1_0 = null;
 
         EObject lv_elements_3_0 = null;
 
@@ -3352,7 +3352,7 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAttributeValue"
-    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1309:1: ruleAttributeValue returns [EObject current=null] : ( ( (lv_value_0_0= ruleAttributeValueArray ) ) | ( (lv_value_1_0= ruleQualifiedName ) ) | ( (lv_value_2_0= ruleLiteral ) ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1309:1: ruleAttributeValue returns [EObject current=null] : ( ( (lv_value_0_0= ruleAttributeValueArray ) ) | ( (lv_value_1_0= ruleQualifiedNameObject ) ) | ( (lv_value_2_0= ruleLiteral ) ) ) ;
     public final EObject ruleAttributeValue() throws RecognitionException {
         EObject current = null;
 
@@ -3366,10 +3366,10 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1312:28: ( ( ( (lv_value_0_0= ruleAttributeValueArray ) ) | ( (lv_value_1_0= ruleQualifiedName ) ) | ( (lv_value_2_0= ruleLiteral ) ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1313:1: ( ( (lv_value_0_0= ruleAttributeValueArray ) ) | ( (lv_value_1_0= ruleQualifiedName ) ) | ( (lv_value_2_0= ruleLiteral ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1312:28: ( ( ( (lv_value_0_0= ruleAttributeValueArray ) ) | ( (lv_value_1_0= ruleQualifiedNameObject ) ) | ( (lv_value_2_0= ruleLiteral ) ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1313:1: ( ( (lv_value_0_0= ruleAttributeValueArray ) ) | ( (lv_value_1_0= ruleQualifiedNameObject ) ) | ( (lv_value_2_0= ruleLiteral ) ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1313:1: ( ( (lv_value_0_0= ruleAttributeValueArray ) ) | ( (lv_value_1_0= ruleQualifiedName ) ) | ( (lv_value_2_0= ruleLiteral ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1313:1: ( ( (lv_value_0_0= ruleAttributeValueArray ) ) | ( (lv_value_1_0= ruleQualifiedNameObject ) ) | ( (lv_value_2_0= ruleLiteral ) ) )
             int alt20=3;
             switch ( input.LA(1) ) {
             case 15:
@@ -3440,19 +3440,19 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1332:6: ( (lv_value_1_0= ruleQualifiedName ) )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1332:6: ( (lv_value_1_0= ruleQualifiedNameObject ) )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1332:6: ( (lv_value_1_0= ruleQualifiedName ) )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1333:1: (lv_value_1_0= ruleQualifiedName )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1332:6: ( (lv_value_1_0= ruleQualifiedNameObject ) )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1333:1: (lv_value_1_0= ruleQualifiedNameObject )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1333:1: (lv_value_1_0= ruleQualifiedName )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1334:3: lv_value_1_0= ruleQualifiedName
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1333:1: (lv_value_1_0= ruleQualifiedNameObject )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1334:3: lv_value_1_0= ruleQualifiedNameObject
                     {
                      
-                    	        newCompositeNode(grammarAccess.getAttributeValueAccess().getValueQualifiedNameParserRuleCall_1_0()); 
+                    	        newCompositeNode(grammarAccess.getAttributeValueAccess().getValueQualifiedNameObjectParserRuleCall_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleAttributeValue2697);
-                    lv_value_1_0=ruleQualifiedName();
+                    pushFollow(FOLLOW_ruleQualifiedNameObject_in_ruleAttributeValue2697);
+                    lv_value_1_0=ruleQualifiedNameObject();
 
                     state._fsp--;
 
@@ -3464,7 +3464,7 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                            			current, 
                            			"value",
                             		lv_value_1_0, 
-                            		"QualifiedName");
+                            		"QualifiedNameObject");
                     	        afterParserOrEnumRuleCall();
                     	    
 
@@ -4475,7 +4475,7 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
         EObject lv_attributes_1_0 = null;
 
-        EObject lv_aggregator_2_0 = null;
+        AntlrDatatypeRuleToken lv_aggregator_2_0 = null;
 
         AntlrDatatypeRuleToken lv_from_3_0 = null;
 
@@ -4732,26 +4732,124 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
     // $ANTLR end "rulePropertyFolding"
 
 
-    // $ANTLR start "entryRuleQualifiedName"
-    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1842:1: entryRuleQualifiedName returns [EObject current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
-    public final EObject entryRuleQualifiedName() throws RecognitionException {
+    // $ANTLR start "entryRuleQualifiedNameObject"
+    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1842:1: entryRuleQualifiedNameObject returns [EObject current=null] : iv_ruleQualifiedNameObject= ruleQualifiedNameObject EOF ;
+    public final EObject entryRuleQualifiedNameObject() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleQualifiedName = null;
+        EObject iv_ruleQualifiedNameObject = null;
 
 
         try {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1843:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1844:2: iv_ruleQualifiedName= ruleQualifiedName EOF
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1843:2: (iv_ruleQualifiedNameObject= ruleQualifiedNameObject EOF )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1844:2: iv_ruleQualifiedNameObject= ruleQualifiedNameObject EOF
+            {
+             newCompositeNode(grammarAccess.getQualifiedNameObjectRule()); 
+            pushFollow(FOLLOW_ruleQualifiedNameObject_in_entryRuleQualifiedNameObject3728);
+            iv_ruleQualifiedNameObject=ruleQualifiedNameObject();
+
+            state._fsp--;
+
+             current =iv_ruleQualifiedNameObject; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedNameObject3738); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleQualifiedNameObject"
+
+
+    // $ANTLR start "ruleQualifiedNameObject"
+    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1851:1: ruleQualifiedNameObject returns [EObject current=null] : ( (lv_name_0_0= ruleQualifiedName ) ) ;
+    public final EObject ruleQualifiedNameObject() throws RecognitionException {
+        EObject current = null;
+
+        AntlrDatatypeRuleToken lv_name_0_0 = null;
+
+
+         enterRule(); 
+            
+        try {
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1854:28: ( ( (lv_name_0_0= ruleQualifiedName ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1855:1: ( (lv_name_0_0= ruleQualifiedName ) )
+            {
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1855:1: ( (lv_name_0_0= ruleQualifiedName ) )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1856:1: (lv_name_0_0= ruleQualifiedName )
+            {
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1856:1: (lv_name_0_0= ruleQualifiedName )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1857:3: lv_name_0_0= ruleQualifiedName
+            {
+             
+            	        newCompositeNode(grammarAccess.getQualifiedNameObjectAccess().getNameQualifiedNameParserRuleCall_0()); 
+            	    
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleQualifiedNameObject3783);
+            lv_name_0_0=ruleQualifiedName();
+
+            state._fsp--;
+
+
+            	        if (current==null) {
+            	            current = createModelElementForParent(grammarAccess.getQualifiedNameObjectRule());
+            	        }
+                   		set(
+                   			current, 
+                   			"name",
+                    		lv_name_0_0, 
+                    		"QualifiedName");
+            	        afterParserOrEnumRuleCall();
+            	    
+
+            }
+
+
+            }
+
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleQualifiedNameObject"
+
+
+    // $ANTLR start "entryRuleQualifiedName"
+    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1881:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
+    public final String entryRuleQualifiedName() throws RecognitionException {
+        String current = null;
+
+        AntlrDatatypeRuleToken iv_ruleQualifiedName = null;
+
+
+        try {
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1882:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1883:2: iv_ruleQualifiedName= ruleQualifiedName EOF
             {
              newCompositeNode(grammarAccess.getQualifiedNameRule()); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName3728);
+            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName3819);
             iv_ruleQualifiedName=ruleQualifiedName();
 
             state._fsp--;
 
-             current =iv_ruleQualifiedName; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName3738); 
+             current =iv_ruleQualifiedName.getText(); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName3830); 
 
             }
 
@@ -4769,57 +4867,40 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQualifiedName"
-    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1851:1: ruleQualifiedName returns [EObject current=null] : ( ( (lv_name_0_0= ruleName ) ) (otherlv_1= '.' ( (lv_name_2_0= ruleName ) ) )* ) ;
-    public final EObject ruleQualifiedName() throws RecognitionException {
-        EObject current = null;
+    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1890:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_Name_0= ruleName (kw= '.' this_Name_2= ruleName )* ) ;
+    public final AntlrDatatypeRuleToken ruleQualifiedName() throws RecognitionException {
+        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
-        Token otherlv_1=null;
-        AntlrDatatypeRuleToken lv_name_0_0 = null;
+        Token kw=null;
+        AntlrDatatypeRuleToken this_Name_0 = null;
 
-        AntlrDatatypeRuleToken lv_name_2_0 = null;
+        AntlrDatatypeRuleToken this_Name_2 = null;
 
 
          enterRule(); 
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1854:28: ( ( ( (lv_name_0_0= ruleName ) ) (otherlv_1= '.' ( (lv_name_2_0= ruleName ) ) )* ) )
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1855:1: ( ( (lv_name_0_0= ruleName ) ) (otherlv_1= '.' ( (lv_name_2_0= ruleName ) ) )* )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1893:28: ( (this_Name_0= ruleName (kw= '.' this_Name_2= ruleName )* ) )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1894:1: (this_Name_0= ruleName (kw= '.' this_Name_2= ruleName )* )
             {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1855:1: ( ( (lv_name_0_0= ruleName ) ) (otherlv_1= '.' ( (lv_name_2_0= ruleName ) ) )* )
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1855:2: ( (lv_name_0_0= ruleName ) ) (otherlv_1= '.' ( (lv_name_2_0= ruleName ) ) )*
-            {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1855:2: ( (lv_name_0_0= ruleName ) )
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1856:1: (lv_name_0_0= ruleName )
-            {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1856:1: (lv_name_0_0= ruleName )
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1857:3: lv_name_0_0= ruleName
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1894:1: (this_Name_0= ruleName (kw= '.' this_Name_2= ruleName )* )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1895:5: this_Name_0= ruleName (kw= '.' this_Name_2= ruleName )*
             {
              
-            	        newCompositeNode(grammarAccess.getQualifiedNameAccess().getNameNameParserRuleCall_0_0()); 
-            	    
-            pushFollow(FOLLOW_ruleName_in_ruleQualifiedName3784);
-            lv_name_0_0=ruleName();
+                    newCompositeNode(grammarAccess.getQualifiedNameAccess().getNameParserRuleCall_0()); 
+                
+            pushFollow(FOLLOW_ruleName_in_ruleQualifiedName3877);
+            this_Name_0=ruleName();
 
             state._fsp--;
 
 
-            	        if (current==null) {
-            	            current = createModelElementForParent(grammarAccess.getQualifiedNameRule());
-            	        }
-                   		add(
-                   			current, 
-                   			"name",
-                    		lv_name_0_0, 
-                    		"Name");
-            	        afterParserOrEnumRuleCall();
-            	    
-
-            }
-
-
-            }
-
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1873:2: (otherlv_1= '.' ( (lv_name_2_0= ruleName ) ) )*
+            		current.merge(this_Name_0);
+                
+             
+                    afterParserOrEnumRuleCall();
+                
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1905:1: (kw= '.' this_Name_2= ruleName )*
             loop31:
             do {
                 int alt31=2;
@@ -4832,43 +4913,27 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
                 switch (alt31) {
             	case 1 :
-            	    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1873:4: otherlv_1= '.' ( (lv_name_2_0= ruleName ) )
+            	    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1906:2: kw= '.' this_Name_2= ruleName
             	    {
-            	    otherlv_1=(Token)match(input,27,FOLLOW_27_in_ruleQualifiedName3797); 
+            	    kw=(Token)match(input,27,FOLLOW_27_in_ruleQualifiedName3896); 
 
-            	        	newLeafNode(otherlv_1, grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0());
+            	            current.merge(kw);
+            	            newLeafNode(kw, grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
             	        
-            	    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1877:1: ( (lv_name_2_0= ruleName ) )
-            	    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1878:1: (lv_name_2_0= ruleName )
-            	    {
-            	    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1878:1: (lv_name_2_0= ruleName )
-            	    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1879:3: lv_name_2_0= ruleName
-            	    {
             	     
-            	    	        newCompositeNode(grammarAccess.getQualifiedNameAccess().getNameNameParserRuleCall_1_1_0()); 
-            	    	    
-            	    pushFollow(FOLLOW_ruleName_in_ruleQualifiedName3818);
-            	    lv_name_2_0=ruleName();
+            	            newCompositeNode(grammarAccess.getQualifiedNameAccess().getNameParserRuleCall_1_1()); 
+            	        
+            	    pushFollow(FOLLOW_ruleName_in_ruleQualifiedName3918);
+            	    this_Name_2=ruleName();
 
             	    state._fsp--;
 
 
-            	    	        if (current==null) {
-            	    	            current = createModelElementForParent(grammarAccess.getQualifiedNameRule());
-            	    	        }
-            	           		add(
-            	           			current, 
-            	           			"name",
-            	            		lv_name_2_0, 
-            	            		"Name");
-            	    	        afterParserOrEnumRuleCall();
-            	    	    
-
-            	    }
-
-
-            	    }
-
+            	    		current.merge(this_Name_2);
+            	        
+            	     
+            	            afterParserOrEnumRuleCall();
+            	        
 
             	    }
             	    break;
@@ -4899,7 +4964,7 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleName"
-    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1903:1: entryRuleName returns [String current=null] : iv_ruleName= ruleName EOF ;
+    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1930:1: entryRuleName returns [String current=null] : iv_ruleName= ruleName EOF ;
     public final String entryRuleName() throws RecognitionException {
         String current = null;
 
@@ -4907,17 +4972,17 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1904:2: (iv_ruleName= ruleName EOF )
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1905:2: iv_ruleName= ruleName EOF
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1931:2: (iv_ruleName= ruleName EOF )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1932:2: iv_ruleName= ruleName EOF
             {
              newCompositeNode(grammarAccess.getNameRule()); 
-            pushFollow(FOLLOW_ruleName_in_entryRuleName3857);
+            pushFollow(FOLLOW_ruleName_in_entryRuleName3966);
             iv_ruleName=ruleName();
 
             state._fsp--;
 
              current =iv_ruleName.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleName3868); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleName3977); 
 
             }
 
@@ -4935,7 +5000,7 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleName"
-    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1912:1: ruleName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_NAME_TOKEN_0= RULE_NAME_TOKEN | kw= 'projective' | kw= 'joined' | kw= 'summarized' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1939:1: ruleName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_NAME_TOKEN_0= RULE_NAME_TOKEN | kw= 'projective' | kw= 'joined' | kw= 'summarized' ) ;
     public final AntlrDatatypeRuleToken ruleName() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -4945,10 +5010,10 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1915:28: ( (this_NAME_TOKEN_0= RULE_NAME_TOKEN | kw= 'projective' | kw= 'joined' | kw= 'summarized' ) )
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1916:1: (this_NAME_TOKEN_0= RULE_NAME_TOKEN | kw= 'projective' | kw= 'joined' | kw= 'summarized' )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1942:28: ( (this_NAME_TOKEN_0= RULE_NAME_TOKEN | kw= 'projective' | kw= 'joined' | kw= 'summarized' ) )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1943:1: (this_NAME_TOKEN_0= RULE_NAME_TOKEN | kw= 'projective' | kw= 'joined' | kw= 'summarized' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1916:1: (this_NAME_TOKEN_0= RULE_NAME_TOKEN | kw= 'projective' | kw= 'joined' | kw= 'summarized' )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1943:1: (this_NAME_TOKEN_0= RULE_NAME_TOKEN | kw= 'projective' | kw= 'joined' | kw= 'summarized' )
             int alt32=4;
             switch ( input.LA(1) ) {
             case RULE_NAME_TOKEN:
@@ -4980,9 +5045,9 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
             switch (alt32) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1916:6: this_NAME_TOKEN_0= RULE_NAME_TOKEN
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1943:6: this_NAME_TOKEN_0= RULE_NAME_TOKEN
                     {
-                    this_NAME_TOKEN_0=(Token)match(input,RULE_NAME_TOKEN,FOLLOW_RULE_NAME_TOKEN_in_ruleName3908); 
+                    this_NAME_TOKEN_0=(Token)match(input,RULE_NAME_TOKEN,FOLLOW_RULE_NAME_TOKEN_in_ruleName4017); 
 
                     		current.merge(this_NAME_TOKEN_0);
                         
@@ -4993,9 +5058,9 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1925:2: kw= 'projective'
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1952:2: kw= 'projective'
                     {
-                    kw=(Token)match(input,13,FOLLOW_13_in_ruleName3932); 
+                    kw=(Token)match(input,13,FOLLOW_13_in_ruleName4041); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getNameAccess().getProjectiveKeyword_1()); 
@@ -5004,9 +5069,9 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1932:2: kw= 'joined'
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1959:2: kw= 'joined'
                     {
-                    kw=(Token)match(input,18,FOLLOW_18_in_ruleName3951); 
+                    kw=(Token)match(input,18,FOLLOW_18_in_ruleName4060); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getNameAccess().getJoinedKeyword_2()); 
@@ -5015,9 +5080,9 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1939:2: kw= 'summarized'
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1966:2: kw= 'summarized'
                     {
-                    kw=(Token)match(input,19,FOLLOW_19_in_ruleName3970); 
+                    kw=(Token)match(input,19,FOLLOW_19_in_ruleName4079); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getNameAccess().getSummarizedKeyword_3()); 
@@ -5046,7 +5111,7 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLiteral"
-    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1952:1: entryRuleLiteral returns [EObject current=null] : iv_ruleLiteral= ruleLiteral EOF ;
+    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1979:1: entryRuleLiteral returns [EObject current=null] : iv_ruleLiteral= ruleLiteral EOF ;
     public final EObject entryRuleLiteral() throws RecognitionException {
         EObject current = null;
 
@@ -5054,17 +5119,17 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1953:2: (iv_ruleLiteral= ruleLiteral EOF )
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1954:2: iv_ruleLiteral= ruleLiteral EOF
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1980:2: (iv_ruleLiteral= ruleLiteral EOF )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1981:2: iv_ruleLiteral= ruleLiteral EOF
             {
              newCompositeNode(grammarAccess.getLiteralRule()); 
-            pushFollow(FOLLOW_ruleLiteral_in_entryRuleLiteral4010);
+            pushFollow(FOLLOW_ruleLiteral_in_entryRuleLiteral4119);
             iv_ruleLiteral=ruleLiteral();
 
             state._fsp--;
 
              current =iv_ruleLiteral; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleLiteral4020); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleLiteral4129); 
 
             }
 
@@ -5082,7 +5147,7 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLiteral"
-    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1961:1: ruleLiteral returns [EObject current=null] : ( ( (lv_stringValue_0_0= RULE_STRING ) ) | ( (lv_intValue_1_0= RULE_INT ) ) | ( (lv_decimalValue_2_0= RULE_DECIMAL ) ) | ( (lv_booleanValue_3_0= ruleBOOLEAN ) ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1988:1: ruleLiteral returns [EObject current=null] : ( ( (lv_stringValue_0_0= RULE_STRING ) ) | ( (lv_intValue_1_0= RULE_INT ) ) | ( (lv_decimalValue_2_0= RULE_DECIMAL ) ) | ( (lv_booleanValue_3_0= ruleBOOLEAN ) ) ) ;
     public final EObject ruleLiteral() throws RecognitionException {
         EObject current = null;
 
@@ -5095,10 +5160,10 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1964:28: ( ( ( (lv_stringValue_0_0= RULE_STRING ) ) | ( (lv_intValue_1_0= RULE_INT ) ) | ( (lv_decimalValue_2_0= RULE_DECIMAL ) ) | ( (lv_booleanValue_3_0= ruleBOOLEAN ) ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1965:1: ( ( (lv_stringValue_0_0= RULE_STRING ) ) | ( (lv_intValue_1_0= RULE_INT ) ) | ( (lv_decimalValue_2_0= RULE_DECIMAL ) ) | ( (lv_booleanValue_3_0= ruleBOOLEAN ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1991:28: ( ( ( (lv_stringValue_0_0= RULE_STRING ) ) | ( (lv_intValue_1_0= RULE_INT ) ) | ( (lv_decimalValue_2_0= RULE_DECIMAL ) ) | ( (lv_booleanValue_3_0= ruleBOOLEAN ) ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1992:1: ( ( (lv_stringValue_0_0= RULE_STRING ) ) | ( (lv_intValue_1_0= RULE_INT ) ) | ( (lv_decimalValue_2_0= RULE_DECIMAL ) ) | ( (lv_booleanValue_3_0= ruleBOOLEAN ) ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1965:1: ( ( (lv_stringValue_0_0= RULE_STRING ) ) | ( (lv_intValue_1_0= RULE_INT ) ) | ( (lv_decimalValue_2_0= RULE_DECIMAL ) ) | ( (lv_booleanValue_3_0= ruleBOOLEAN ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1992:1: ( ( (lv_stringValue_0_0= RULE_STRING ) ) | ( (lv_intValue_1_0= RULE_INT ) ) | ( (lv_decimalValue_2_0= RULE_DECIMAL ) ) | ( (lv_booleanValue_3_0= ruleBOOLEAN ) ) )
             int alt33=4;
             switch ( input.LA(1) ) {
             case RULE_STRING:
@@ -5131,15 +5196,15 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
             switch (alt33) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1965:2: ( (lv_stringValue_0_0= RULE_STRING ) )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1992:2: ( (lv_stringValue_0_0= RULE_STRING ) )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1965:2: ( (lv_stringValue_0_0= RULE_STRING ) )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1966:1: (lv_stringValue_0_0= RULE_STRING )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1992:2: ( (lv_stringValue_0_0= RULE_STRING ) )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1993:1: (lv_stringValue_0_0= RULE_STRING )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1966:1: (lv_stringValue_0_0= RULE_STRING )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1967:3: lv_stringValue_0_0= RULE_STRING
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1993:1: (lv_stringValue_0_0= RULE_STRING )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1994:3: lv_stringValue_0_0= RULE_STRING
                     {
-                    lv_stringValue_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleLiteral4062); 
+                    lv_stringValue_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleLiteral4171); 
 
                     			newLeafNode(lv_stringValue_0_0, grammarAccess.getLiteralAccess().getStringValueSTRINGTerminalRuleCall_0_0()); 
                     		
@@ -5163,15 +5228,15 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1984:6: ( (lv_intValue_1_0= RULE_INT ) )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2011:6: ( (lv_intValue_1_0= RULE_INT ) )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1984:6: ( (lv_intValue_1_0= RULE_INT ) )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1985:1: (lv_intValue_1_0= RULE_INT )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2011:6: ( (lv_intValue_1_0= RULE_INT ) )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2012:1: (lv_intValue_1_0= RULE_INT )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1985:1: (lv_intValue_1_0= RULE_INT )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:1986:3: lv_intValue_1_0= RULE_INT
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2012:1: (lv_intValue_1_0= RULE_INT )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2013:3: lv_intValue_1_0= RULE_INT
                     {
-                    lv_intValue_1_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleLiteral4090); 
+                    lv_intValue_1_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleLiteral4199); 
 
                     			newLeafNode(lv_intValue_1_0, grammarAccess.getLiteralAccess().getIntValueINTTerminalRuleCall_1_0()); 
                     		
@@ -5195,15 +5260,15 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2003:6: ( (lv_decimalValue_2_0= RULE_DECIMAL ) )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2030:6: ( (lv_decimalValue_2_0= RULE_DECIMAL ) )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2003:6: ( (lv_decimalValue_2_0= RULE_DECIMAL ) )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2004:1: (lv_decimalValue_2_0= RULE_DECIMAL )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2030:6: ( (lv_decimalValue_2_0= RULE_DECIMAL ) )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2031:1: (lv_decimalValue_2_0= RULE_DECIMAL )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2004:1: (lv_decimalValue_2_0= RULE_DECIMAL )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2005:3: lv_decimalValue_2_0= RULE_DECIMAL
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2031:1: (lv_decimalValue_2_0= RULE_DECIMAL )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2032:3: lv_decimalValue_2_0= RULE_DECIMAL
                     {
-                    lv_decimalValue_2_0=(Token)match(input,RULE_DECIMAL,FOLLOW_RULE_DECIMAL_in_ruleLiteral4118); 
+                    lv_decimalValue_2_0=(Token)match(input,RULE_DECIMAL,FOLLOW_RULE_DECIMAL_in_ruleLiteral4227); 
 
                     			newLeafNode(lv_decimalValue_2_0, grammarAccess.getLiteralAccess().getDecimalValueDECIMALTerminalRuleCall_2_0()); 
                     		
@@ -5227,18 +5292,18 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2022:6: ( (lv_booleanValue_3_0= ruleBOOLEAN ) )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2049:6: ( (lv_booleanValue_3_0= ruleBOOLEAN ) )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2022:6: ( (lv_booleanValue_3_0= ruleBOOLEAN ) )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2023:1: (lv_booleanValue_3_0= ruleBOOLEAN )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2049:6: ( (lv_booleanValue_3_0= ruleBOOLEAN ) )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2050:1: (lv_booleanValue_3_0= ruleBOOLEAN )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2023:1: (lv_booleanValue_3_0= ruleBOOLEAN )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2024:3: lv_booleanValue_3_0= ruleBOOLEAN
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2050:1: (lv_booleanValue_3_0= ruleBOOLEAN )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2051:3: lv_booleanValue_3_0= ruleBOOLEAN
                     {
                      
                     	        newCompositeNode(grammarAccess.getLiteralAccess().getBooleanValueBOOLEANEnumRuleCall_3_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleBOOLEAN_in_ruleLiteral4150);
+                    pushFollow(FOLLOW_ruleBOOLEAN_in_ruleLiteral4259);
                     lv_booleanValue_3_0=ruleBOOLEAN();
 
                     state._fsp--;
@@ -5284,7 +5349,7 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleType"
-    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2048:1: ruleType returns [Enumerator current=null] : ( (enumLiteral_0= 'INT' ) | (enumLiteral_1= 'LONG' ) | (enumLiteral_2= 'BYTE' ) | (enumLiteral_3= 'SHORT' ) | (enumLiteral_4= 'DECIMAL' ) | (enumLiteral_5= 'FLOAT' ) | (enumLiteral_6= 'DOUBLE' ) | (enumLiteral_7= 'TEXT' ) | (enumLiteral_8= 'BOOLEAN' ) | (enumLiteral_9= 'DATE' ) | (enumLiteral_10= 'DATETIME' ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2075:1: ruleType returns [Enumerator current=null] : ( (enumLiteral_0= 'INT' ) | (enumLiteral_1= 'LONG' ) | (enumLiteral_2= 'BYTE' ) | (enumLiteral_3= 'SHORT' ) | (enumLiteral_4= 'DECIMAL' ) | (enumLiteral_5= 'FLOAT' ) | (enumLiteral_6= 'DOUBLE' ) | (enumLiteral_7= 'TEXT' ) | (enumLiteral_8= 'BOOLEAN' ) | (enumLiteral_9= 'DATE' ) | (enumLiteral_10= 'DATETIME' ) ) ;
     public final Enumerator ruleType() throws RecognitionException {
         Enumerator current = null;
 
@@ -5302,10 +5367,10 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2050:28: ( ( (enumLiteral_0= 'INT' ) | (enumLiteral_1= 'LONG' ) | (enumLiteral_2= 'BYTE' ) | (enumLiteral_3= 'SHORT' ) | (enumLiteral_4= 'DECIMAL' ) | (enumLiteral_5= 'FLOAT' ) | (enumLiteral_6= 'DOUBLE' ) | (enumLiteral_7= 'TEXT' ) | (enumLiteral_8= 'BOOLEAN' ) | (enumLiteral_9= 'DATE' ) | (enumLiteral_10= 'DATETIME' ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2051:1: ( (enumLiteral_0= 'INT' ) | (enumLiteral_1= 'LONG' ) | (enumLiteral_2= 'BYTE' ) | (enumLiteral_3= 'SHORT' ) | (enumLiteral_4= 'DECIMAL' ) | (enumLiteral_5= 'FLOAT' ) | (enumLiteral_6= 'DOUBLE' ) | (enumLiteral_7= 'TEXT' ) | (enumLiteral_8= 'BOOLEAN' ) | (enumLiteral_9= 'DATE' ) | (enumLiteral_10= 'DATETIME' ) )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2077:28: ( ( (enumLiteral_0= 'INT' ) | (enumLiteral_1= 'LONG' ) | (enumLiteral_2= 'BYTE' ) | (enumLiteral_3= 'SHORT' ) | (enumLiteral_4= 'DECIMAL' ) | (enumLiteral_5= 'FLOAT' ) | (enumLiteral_6= 'DOUBLE' ) | (enumLiteral_7= 'TEXT' ) | (enumLiteral_8= 'BOOLEAN' ) | (enumLiteral_9= 'DATE' ) | (enumLiteral_10= 'DATETIME' ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2078:1: ( (enumLiteral_0= 'INT' ) | (enumLiteral_1= 'LONG' ) | (enumLiteral_2= 'BYTE' ) | (enumLiteral_3= 'SHORT' ) | (enumLiteral_4= 'DECIMAL' ) | (enumLiteral_5= 'FLOAT' ) | (enumLiteral_6= 'DOUBLE' ) | (enumLiteral_7= 'TEXT' ) | (enumLiteral_8= 'BOOLEAN' ) | (enumLiteral_9= 'DATE' ) | (enumLiteral_10= 'DATETIME' ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2051:1: ( (enumLiteral_0= 'INT' ) | (enumLiteral_1= 'LONG' ) | (enumLiteral_2= 'BYTE' ) | (enumLiteral_3= 'SHORT' ) | (enumLiteral_4= 'DECIMAL' ) | (enumLiteral_5= 'FLOAT' ) | (enumLiteral_6= 'DOUBLE' ) | (enumLiteral_7= 'TEXT' ) | (enumLiteral_8= 'BOOLEAN' ) | (enumLiteral_9= 'DATE' ) | (enumLiteral_10= 'DATETIME' ) )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2078:1: ( (enumLiteral_0= 'INT' ) | (enumLiteral_1= 'LONG' ) | (enumLiteral_2= 'BYTE' ) | (enumLiteral_3= 'SHORT' ) | (enumLiteral_4= 'DECIMAL' ) | (enumLiteral_5= 'FLOAT' ) | (enumLiteral_6= 'DOUBLE' ) | (enumLiteral_7= 'TEXT' ) | (enumLiteral_8= 'BOOLEAN' ) | (enumLiteral_9= 'DATE' ) | (enumLiteral_10= 'DATETIME' ) )
             int alt34=11;
             switch ( input.LA(1) ) {
             case 28:
@@ -5372,12 +5437,12 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
             switch (alt34) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2051:2: (enumLiteral_0= 'INT' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2078:2: (enumLiteral_0= 'INT' )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2051:2: (enumLiteral_0= 'INT' )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2051:4: enumLiteral_0= 'INT'
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2078:2: (enumLiteral_0= 'INT' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2078:4: enumLiteral_0= 'INT'
                     {
-                    enumLiteral_0=(Token)match(input,28,FOLLOW_28_in_ruleType4200); 
+                    enumLiteral_0=(Token)match(input,28,FOLLOW_28_in_ruleType4309); 
 
                             current = grammarAccess.getTypeAccess().getINTEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getTypeAccess().getINTEnumLiteralDeclaration_0()); 
@@ -5389,12 +5454,12 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2057:6: (enumLiteral_1= 'LONG' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2084:6: (enumLiteral_1= 'LONG' )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2057:6: (enumLiteral_1= 'LONG' )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2057:8: enumLiteral_1= 'LONG'
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2084:6: (enumLiteral_1= 'LONG' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2084:8: enumLiteral_1= 'LONG'
                     {
-                    enumLiteral_1=(Token)match(input,29,FOLLOW_29_in_ruleType4217); 
+                    enumLiteral_1=(Token)match(input,29,FOLLOW_29_in_ruleType4326); 
 
                             current = grammarAccess.getTypeAccess().getLONGEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getTypeAccess().getLONGEnumLiteralDeclaration_1()); 
@@ -5406,12 +5471,12 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2063:6: (enumLiteral_2= 'BYTE' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2090:6: (enumLiteral_2= 'BYTE' )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2063:6: (enumLiteral_2= 'BYTE' )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2063:8: enumLiteral_2= 'BYTE'
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2090:6: (enumLiteral_2= 'BYTE' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2090:8: enumLiteral_2= 'BYTE'
                     {
-                    enumLiteral_2=(Token)match(input,30,FOLLOW_30_in_ruleType4234); 
+                    enumLiteral_2=(Token)match(input,30,FOLLOW_30_in_ruleType4343); 
 
                             current = grammarAccess.getTypeAccess().getBYTEEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getTypeAccess().getBYTEEnumLiteralDeclaration_2()); 
@@ -5423,12 +5488,12 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2069:6: (enumLiteral_3= 'SHORT' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2096:6: (enumLiteral_3= 'SHORT' )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2069:6: (enumLiteral_3= 'SHORT' )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2069:8: enumLiteral_3= 'SHORT'
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2096:6: (enumLiteral_3= 'SHORT' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2096:8: enumLiteral_3= 'SHORT'
                     {
-                    enumLiteral_3=(Token)match(input,31,FOLLOW_31_in_ruleType4251); 
+                    enumLiteral_3=(Token)match(input,31,FOLLOW_31_in_ruleType4360); 
 
                             current = grammarAccess.getTypeAccess().getSHORTEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_3, grammarAccess.getTypeAccess().getSHORTEnumLiteralDeclaration_3()); 
@@ -5440,12 +5505,12 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2075:6: (enumLiteral_4= 'DECIMAL' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2102:6: (enumLiteral_4= 'DECIMAL' )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2075:6: (enumLiteral_4= 'DECIMAL' )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2075:8: enumLiteral_4= 'DECIMAL'
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2102:6: (enumLiteral_4= 'DECIMAL' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2102:8: enumLiteral_4= 'DECIMAL'
                     {
-                    enumLiteral_4=(Token)match(input,32,FOLLOW_32_in_ruleType4268); 
+                    enumLiteral_4=(Token)match(input,32,FOLLOW_32_in_ruleType4377); 
 
                             current = grammarAccess.getTypeAccess().getDECIMALEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_4, grammarAccess.getTypeAccess().getDECIMALEnumLiteralDeclaration_4()); 
@@ -5457,12 +5522,12 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2081:6: (enumLiteral_5= 'FLOAT' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2108:6: (enumLiteral_5= 'FLOAT' )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2081:6: (enumLiteral_5= 'FLOAT' )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2081:8: enumLiteral_5= 'FLOAT'
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2108:6: (enumLiteral_5= 'FLOAT' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2108:8: enumLiteral_5= 'FLOAT'
                     {
-                    enumLiteral_5=(Token)match(input,33,FOLLOW_33_in_ruleType4285); 
+                    enumLiteral_5=(Token)match(input,33,FOLLOW_33_in_ruleType4394); 
 
                             current = grammarAccess.getTypeAccess().getFLOATEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_5, grammarAccess.getTypeAccess().getFLOATEnumLiteralDeclaration_5()); 
@@ -5474,12 +5539,12 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2087:6: (enumLiteral_6= 'DOUBLE' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2114:6: (enumLiteral_6= 'DOUBLE' )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2087:6: (enumLiteral_6= 'DOUBLE' )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2087:8: enumLiteral_6= 'DOUBLE'
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2114:6: (enumLiteral_6= 'DOUBLE' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2114:8: enumLiteral_6= 'DOUBLE'
                     {
-                    enumLiteral_6=(Token)match(input,34,FOLLOW_34_in_ruleType4302); 
+                    enumLiteral_6=(Token)match(input,34,FOLLOW_34_in_ruleType4411); 
 
                             current = grammarAccess.getTypeAccess().getDOUBLEEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_6, grammarAccess.getTypeAccess().getDOUBLEEnumLiteralDeclaration_6()); 
@@ -5491,12 +5556,12 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2093:6: (enumLiteral_7= 'TEXT' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2120:6: (enumLiteral_7= 'TEXT' )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2093:6: (enumLiteral_7= 'TEXT' )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2093:8: enumLiteral_7= 'TEXT'
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2120:6: (enumLiteral_7= 'TEXT' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2120:8: enumLiteral_7= 'TEXT'
                     {
-                    enumLiteral_7=(Token)match(input,35,FOLLOW_35_in_ruleType4319); 
+                    enumLiteral_7=(Token)match(input,35,FOLLOW_35_in_ruleType4428); 
 
                             current = grammarAccess.getTypeAccess().getTEXTEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_7, grammarAccess.getTypeAccess().getTEXTEnumLiteralDeclaration_7()); 
@@ -5508,12 +5573,12 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 9 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2099:6: (enumLiteral_8= 'BOOLEAN' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2126:6: (enumLiteral_8= 'BOOLEAN' )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2099:6: (enumLiteral_8= 'BOOLEAN' )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2099:8: enumLiteral_8= 'BOOLEAN'
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2126:6: (enumLiteral_8= 'BOOLEAN' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2126:8: enumLiteral_8= 'BOOLEAN'
                     {
-                    enumLiteral_8=(Token)match(input,36,FOLLOW_36_in_ruleType4336); 
+                    enumLiteral_8=(Token)match(input,36,FOLLOW_36_in_ruleType4445); 
 
                             current = grammarAccess.getTypeAccess().getBOOLEANEnumLiteralDeclaration_8().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_8, grammarAccess.getTypeAccess().getBOOLEANEnumLiteralDeclaration_8()); 
@@ -5525,12 +5590,12 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 10 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2105:6: (enumLiteral_9= 'DATE' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2132:6: (enumLiteral_9= 'DATE' )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2105:6: (enumLiteral_9= 'DATE' )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2105:8: enumLiteral_9= 'DATE'
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2132:6: (enumLiteral_9= 'DATE' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2132:8: enumLiteral_9= 'DATE'
                     {
-                    enumLiteral_9=(Token)match(input,37,FOLLOW_37_in_ruleType4353); 
+                    enumLiteral_9=(Token)match(input,37,FOLLOW_37_in_ruleType4462); 
 
                             current = grammarAccess.getTypeAccess().getDATEEnumLiteralDeclaration_9().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_9, grammarAccess.getTypeAccess().getDATEEnumLiteralDeclaration_9()); 
@@ -5542,12 +5607,12 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 11 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2111:6: (enumLiteral_10= 'DATETIME' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2138:6: (enumLiteral_10= 'DATETIME' )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2111:6: (enumLiteral_10= 'DATETIME' )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2111:8: enumLiteral_10= 'DATETIME'
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2138:6: (enumLiteral_10= 'DATETIME' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2138:8: enumLiteral_10= 'DATETIME'
                     {
-                    enumLiteral_10=(Token)match(input,38,FOLLOW_38_in_ruleType4370); 
+                    enumLiteral_10=(Token)match(input,38,FOLLOW_38_in_ruleType4479); 
 
                             current = grammarAccess.getTypeAccess().getDATETIMEEnumLiteralDeclaration_10().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_10, grammarAccess.getTypeAccess().getDATETIMEEnumLiteralDeclaration_10()); 
@@ -5579,7 +5644,7 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBOOLEAN"
-    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2121:1: ruleBOOLEAN returns [Enumerator current=null] : ( (enumLiteral_0= 'TRUE' ) | (enumLiteral_1= 'FALSE' ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2148:1: ruleBOOLEAN returns [Enumerator current=null] : ( (enumLiteral_0= 'TRUE' ) | (enumLiteral_1= 'FALSE' ) ) ;
     public final Enumerator ruleBOOLEAN() throws RecognitionException {
         Enumerator current = null;
 
@@ -5588,10 +5653,10 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2123:28: ( ( (enumLiteral_0= 'TRUE' ) | (enumLiteral_1= 'FALSE' ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2124:1: ( (enumLiteral_0= 'TRUE' ) | (enumLiteral_1= 'FALSE' ) )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2150:28: ( ( (enumLiteral_0= 'TRUE' ) | (enumLiteral_1= 'FALSE' ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2151:1: ( (enumLiteral_0= 'TRUE' ) | (enumLiteral_1= 'FALSE' ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2124:1: ( (enumLiteral_0= 'TRUE' ) | (enumLiteral_1= 'FALSE' ) )
+            // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2151:1: ( (enumLiteral_0= 'TRUE' ) | (enumLiteral_1= 'FALSE' ) )
             int alt35=2;
             int LA35_0 = input.LA(1);
 
@@ -5609,12 +5674,12 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
             }
             switch (alt35) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2124:2: (enumLiteral_0= 'TRUE' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2151:2: (enumLiteral_0= 'TRUE' )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2124:2: (enumLiteral_0= 'TRUE' )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2124:4: enumLiteral_0= 'TRUE'
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2151:2: (enumLiteral_0= 'TRUE' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2151:4: enumLiteral_0= 'TRUE'
                     {
-                    enumLiteral_0=(Token)match(input,39,FOLLOW_39_in_ruleBOOLEAN4415); 
+                    enumLiteral_0=(Token)match(input,39,FOLLOW_39_in_ruleBOOLEAN4524); 
 
                             current = grammarAccess.getBOOLEANAccess().getTRUEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getBOOLEANAccess().getTRUEEnumLiteralDeclaration_0()); 
@@ -5626,12 +5691,12 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2130:6: (enumLiteral_1= 'FALSE' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2157:6: (enumLiteral_1= 'FALSE' )
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2130:6: (enumLiteral_1= 'FALSE' )
-                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2130:8: enumLiteral_1= 'FALSE'
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2157:6: (enumLiteral_1= 'FALSE' )
+                    // ../jp.hishidama.xtext.dmdl_editor/src-gen/jp/hishidama/xtext/dmdl_editor/parser/antlr/internal/InternalDMDL.g:2157:8: enumLiteral_1= 'FALSE'
                     {
-                    enumLiteral_1=(Token)match(input,40,FOLLOW_40_in_ruleBOOLEAN4432); 
+                    enumLiteral_1=(Token)match(input,40,FOLLOW_40_in_ruleBOOLEAN4541); 
 
                             current = grammarAccess.getBOOLEANAccess().getFALSEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getBOOLEANAccess().getFALSEEnumLiteralDeclaration_1()); 
@@ -5770,7 +5835,7 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleAttributeValue_in_entryRuleAttributeValue2614 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAttributeValue2624 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAttributeValueArray_in_ruleAttributeValue2670 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleAttributeValue2697 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedNameObject_in_ruleAttributeValue2697 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLiteral_in_ruleAttributeValue2724 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAttributeValueArray_in_entryRuleAttributeValueArray2760 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAttributeValueArray2770 = new BitSet(new long[]{0x0000000000000002L});
@@ -5816,35 +5881,38 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_26_in_rulePropertyFolding3658 = new BitSet(new long[]{0x00000000000C2020L});
     public static final BitSet FOLLOW_ruleName_in_rulePropertyFolding3680 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_11_in_rulePropertyFolding3692 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName3728 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName3738 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleName_in_ruleQualifiedName3784 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_27_in_ruleQualifiedName3797 = new BitSet(new long[]{0x00000000000C2020L});
-    public static final BitSet FOLLOW_ruleName_in_ruleQualifiedName3818 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_ruleName_in_entryRuleName3857 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleName3868 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_NAME_TOKEN_in_ruleName3908 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_ruleName3932 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_ruleName3951 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_ruleName3970 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLiteral_in_entryRuleLiteral4010 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleLiteral4020 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleLiteral4062 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleLiteral4090 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DECIMAL_in_ruleLiteral4118 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBOOLEAN_in_ruleLiteral4150 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_ruleType4200 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_ruleType4217 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_ruleType4234 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_ruleType4251 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_ruleType4268 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_ruleType4285 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleType4302 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_ruleType4319 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_ruleType4336 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_ruleType4353 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_ruleType4370 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_ruleBOOLEAN4415 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_ruleBOOLEAN4432 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedNameObject_in_entryRuleQualifiedNameObject3728 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedNameObject3738 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedNameObject3783 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName3819 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName3830 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleName_in_ruleQualifiedName3877 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_27_in_ruleQualifiedName3896 = new BitSet(new long[]{0x00000000000C2020L});
+    public static final BitSet FOLLOW_ruleName_in_ruleQualifiedName3918 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_ruleName_in_entryRuleName3966 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleName3977 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_NAME_TOKEN_in_ruleName4017 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_ruleName4041 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_ruleName4060 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_ruleName4079 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLiteral_in_entryRuleLiteral4119 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleLiteral4129 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleLiteral4171 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleLiteral4199 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DECIMAL_in_ruleLiteral4227 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBOOLEAN_in_ruleLiteral4259 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_ruleType4309 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_ruleType4326 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_ruleType4343 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_ruleType4360 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_ruleType4377 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_ruleType4394 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleType4411 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_ruleType4428 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_ruleType4445 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_ruleType4462 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_ruleType4479 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_ruleBOOLEAN4524 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_ruleBOOLEAN4541 = new BitSet(new long[]{0x0000000000000002L});
 
 }

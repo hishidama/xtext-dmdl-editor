@@ -23,7 +23,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ProjectiveModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
-import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedName;
+import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedNameObject;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
@@ -229,7 +229,7 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass qualifiedNameEClass = null;
+  private EClass qualifiedNameObjectEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -770,9 +770,9 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAttribute_Name()
+  public EAttribute getAttribute_Name()
   {
-    return (EReference)attributeEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)attributeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1020,9 +1020,9 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPropertyFolding_Aggregator()
+  public EAttribute getPropertyFolding_Aggregator()
   {
-    return (EReference)propertyFoldingEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)propertyFoldingEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1050,9 +1050,9 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getQualifiedName()
+  public EClass getQualifiedNameObject()
   {
-    return qualifiedNameEClass;
+    return qualifiedNameObjectEClass;
   }
 
   /**
@@ -1060,9 +1060,9 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getQualifiedName_Name()
+  public EAttribute getQualifiedNameObject_Name()
   {
-    return (EAttribute)qualifiedNameEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)qualifiedNameObjectEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1225,7 +1225,7 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     createEReference(attributeListEClass, ATTRIBUTE_LIST__ATTRIBUTES);
 
     attributeEClass = createEClass(ATTRIBUTE);
-    createEReference(attributeEClass, ATTRIBUTE__NAME);
+    createEAttribute(attributeEClass, ATTRIBUTE__NAME);
     createEReference(attributeEClass, ATTRIBUTE__ELEMENTS);
 
     attributeElementListEClass = createEClass(ATTRIBUTE_ELEMENT_LIST);
@@ -1259,12 +1259,12 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     propertyFoldingEClass = createEClass(PROPERTY_FOLDING);
     createEAttribute(propertyFoldingEClass, PROPERTY_FOLDING__DESCRIPTION);
     createEReference(propertyFoldingEClass, PROPERTY_FOLDING__ATTRIBUTES);
-    createEReference(propertyFoldingEClass, PROPERTY_FOLDING__AGGREGATOR);
+    createEAttribute(propertyFoldingEClass, PROPERTY_FOLDING__AGGREGATOR);
     createEAttribute(propertyFoldingEClass, PROPERTY_FOLDING__FROM);
     createEAttribute(propertyFoldingEClass, PROPERTY_FOLDING__NAME);
 
-    qualifiedNameEClass = createEClass(QUALIFIED_NAME);
-    createEAttribute(qualifiedNameEClass, QUALIFIED_NAME__NAME);
+    qualifiedNameObjectEClass = createEClass(QUALIFIED_NAME_OBJECT);
+    createEAttribute(qualifiedNameObjectEClass, QUALIFIED_NAME_OBJECT__NAME);
 
     literalEClass = createEClass(LITERAL);
     createEAttribute(literalEClass, LITERAL__STRING_VALUE);
@@ -1368,7 +1368,7 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     initEReference(getAttributeList_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, AttributeList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAttribute_Name(), this.getQualifiedName(), null, "name", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAttribute_Elements(), this.getAttributeElementList(), null, "elements", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attributeElementListEClass, AttributeElementList.class, "AttributeElementList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1402,12 +1402,12 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     initEClass(propertyFoldingEClass, PropertyFolding.class, "PropertyFolding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPropertyFolding_Description(), ecorePackage.getEString(), "description", null, 0, 1, PropertyFolding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPropertyFolding_Attributes(), this.getAttributeList(), null, "attributes", null, 0, 1, PropertyFolding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPropertyFolding_Aggregator(), this.getQualifiedName(), null, "aggregator", null, 0, 1, PropertyFolding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPropertyFolding_Aggregator(), ecorePackage.getEString(), "aggregator", null, 0, 1, PropertyFolding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPropertyFolding_From(), ecorePackage.getEString(), "from", null, 0, 1, PropertyFolding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPropertyFolding_Name(), ecorePackage.getEString(), "name", null, 0, 1, PropertyFolding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(qualifiedNameEClass, QualifiedName.class, "QualifiedName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getQualifiedName_Name(), ecorePackage.getEString(), "name", null, 0, -1, QualifiedName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(qualifiedNameObjectEClass, QualifiedNameObject.class, "QualifiedNameObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getQualifiedNameObject_Name(), ecorePackage.getEString(), "name", null, 0, 1, QualifiedNameObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(literalEClass, Literal.class, "Literal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getLiteral_StringValue(), ecorePackage.getEString(), "stringValue", null, 0, 1, Literal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

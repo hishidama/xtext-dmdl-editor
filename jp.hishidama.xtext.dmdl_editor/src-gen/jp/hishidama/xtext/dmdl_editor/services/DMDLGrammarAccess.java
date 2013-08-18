@@ -708,16 +708,16 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
 		private final RuleCall cValueAttributeValueArrayParserRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
 		private final Assignment cValueAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cValueQualifiedNameParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		private final RuleCall cValueQualifiedNameObjectParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
 		private final Assignment cValueAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
 		private final RuleCall cValueLiteralParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
 		//AttributeValue:
 		//
-		//	value=AttributeValueArray | value=QualifiedName | value=Literal;
+		//	value=AttributeValueArray | value=QualifiedNameObject | value=Literal;
 		public ParserRule getRule() { return rule; }
 
-		//value=AttributeValueArray | value=QualifiedName | value=Literal
+		//value=AttributeValueArray | value=QualifiedNameObject | value=Literal
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//value=AttributeValueArray
@@ -726,11 +726,11 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		//AttributeValueArray
 		public RuleCall getValueAttributeValueArrayParserRuleCall_0_0() { return cValueAttributeValueArrayParserRuleCall_0_0; }
 
-		//value=QualifiedName
+		//value=QualifiedNameObject
 		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
 
-		//QualifiedName
-		public RuleCall getValueQualifiedNameParserRuleCall_1_0() { return cValueQualifiedNameParserRuleCall_1_0; }
+		//QualifiedNameObject
+		public RuleCall getValueQualifiedNameObjectParserRuleCall_1_0() { return cValueQualifiedNameObjectParserRuleCall_1_0; }
 
 		//value=Literal
 		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
@@ -1017,41 +1017,50 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
 	}
 
+	public class QualifiedNameObjectElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedNameObject");
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNameQualifiedNameParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		
+		//QualifiedNameObject:
+		//
+		//	name=QualifiedName;
+		public ParserRule getRule() { return rule; }
+
+		//name=QualifiedName
+		public Assignment getNameAssignment() { return cNameAssignment; }
+
+		//QualifiedName
+		public RuleCall getNameQualifiedNameParserRuleCall_0() { return cNameQualifiedNameParserRuleCall_0; }
+	}
+
 	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedName");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final RuleCall cNameParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cNameNameParserRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
+		private final RuleCall cNameParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
-		//QualifiedName:
+		//QualifiedName returns ecore::EString:
 		//
-		//	name+=Name ("." name+=Name)*;
+		//	Name ("." Name)*;
 		public ParserRule getRule() { return rule; }
 
-		//name+=Name ("." name+=Name)*
+		//Name ("." Name)*
 		public Group getGroup() { return cGroup; }
 
-		//name+=Name
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-
 		//Name
-		public RuleCall getNameNameParserRuleCall_0_0() { return cNameNameParserRuleCall_0_0; }
+		public RuleCall getNameParserRuleCall_0() { return cNameParserRuleCall_0; }
 
-		//("." name+=Name)*
+		//("." Name)*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//"."
 		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
 
-		//name+=Name
-		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
-
 		//Name
-		public RuleCall getNameNameParserRuleCall_1_1_0() { return cNameNameParserRuleCall_1_1_0; }
+		public RuleCall getNameParserRuleCall_1_1() { return cNameParserRuleCall_1_1; }
 	}
 
 	public class NameElements extends AbstractParserRuleElementFinder {
@@ -1285,6 +1294,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	private PropertyMappingElements pPropertyMapping;
 	private ModelFoldingElements pModelFolding;
 	private PropertyFoldingElements pPropertyFolding;
+	private QualifiedNameObjectElements pQualifiedNameObject;
 	private QualifiedNameElements pQualifiedName;
 	private NameElements pName;
 	private TerminalRule tNAME_TOKEN;
@@ -1541,7 +1551,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//AttributeValue:
 	//
-	//	value=AttributeValueArray | value=QualifiedName | value=Literal;
+	//	value=AttributeValueArray | value=QualifiedNameObject | value=Literal;
 	public AttributeValueElements getAttributeValueAccess() {
 		return (pAttributeValue != null) ? pAttributeValue : (pAttributeValue = new AttributeValueElements());
 	}
@@ -1616,9 +1626,20 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPropertyFoldingAccess().getRule();
 	}
 
-	//QualifiedName:
+	//QualifiedNameObject:
 	//
-	//	name+=Name ("." name+=Name)*;
+	//	name=QualifiedName;
+	public QualifiedNameObjectElements getQualifiedNameObjectAccess() {
+		return (pQualifiedNameObject != null) ? pQualifiedNameObject : (pQualifiedNameObject = new QualifiedNameObjectElements());
+	}
+	
+	public ParserRule getQualifiedNameObjectRule() {
+		return getQualifiedNameObjectAccess().getRule();
+	}
+
+	//QualifiedName returns ecore::EString:
+	//
+	//	Name ("." Name)*;
 	public QualifiedNameElements getQualifiedNameAccess() {
 		return (pQualifiedName != null) ? pQualifiedName : (pQualifiedName = new QualifiedNameElements());
 	}

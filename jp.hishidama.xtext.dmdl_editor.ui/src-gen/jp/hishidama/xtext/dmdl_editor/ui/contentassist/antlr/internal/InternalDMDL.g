@@ -791,6 +791,34 @@ finally {
 
 
 
+// Entry rule entryRuleQualifiedNameObject
+entryRuleQualifiedNameObject 
+:
+{ before(grammarAccess.getQualifiedNameObjectRule()); }
+	 ruleQualifiedNameObject
+{ after(grammarAccess.getQualifiedNameObjectRule()); } 
+	 EOF 
+;
+
+// Rule QualifiedNameObject
+ruleQualifiedNameObject
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getQualifiedNameObjectAccess().getNameAssignment()); }
+(rule__QualifiedNameObject__NameAssignment)
+{ after(grammarAccess.getQualifiedNameObjectAccess().getNameAssignment()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleQualifiedName
 entryRuleQualifiedName 
 :
@@ -4207,9 +4235,9 @@ rule__QualifiedName__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getQualifiedNameAccess().getNameAssignment_0()); }
-(rule__QualifiedName__NameAssignment_0)
-{ after(grammarAccess.getQualifiedNameAccess().getNameAssignment_0()); }
+{ before(grammarAccess.getQualifiedNameAccess().getNameParserRuleCall_0()); }
+	ruleName
+{ after(grammarAccess.getQualifiedNameAccess().getNameParserRuleCall_0()); }
 )
 
 ;
@@ -4298,9 +4326,9 @@ rule__QualifiedName__Group_1__1__Impl
     }
 :
 (
-{ before(grammarAccess.getQualifiedNameAccess().getNameAssignment_1_1()); }
-(rule__QualifiedName__NameAssignment_1_1)
-{ after(grammarAccess.getQualifiedNameAccess().getNameAssignment_1_1()); }
+{ before(grammarAccess.getQualifiedNameAccess().getNameParserRuleCall_1_1()); }
+	ruleName
+{ after(grammarAccess.getQualifiedNameAccess().getNameParserRuleCall_1_1()); }
 )
 
 ;
@@ -4950,8 +4978,8 @@ rule__AttributeValue__ValueAssignment_1
     }
 :
 (
-{ before(grammarAccess.getAttributeValueAccess().getValueQualifiedNameParserRuleCall_1_0()); }
-	ruleQualifiedName{ after(grammarAccess.getAttributeValueAccess().getValueQualifiedNameParserRuleCall_1_0()); }
+{ before(grammarAccess.getAttributeValueAccess().getValueQualifiedNameObjectParserRuleCall_1_0()); }
+	ruleQualifiedNameObject{ after(grammarAccess.getAttributeValueAccess().getValueQualifiedNameObjectParserRuleCall_1_0()); }
 )
 
 ;
@@ -5199,29 +5227,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__QualifiedName__NameAssignment_0
+rule__QualifiedNameObject__NameAssignment
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getQualifiedNameAccess().getNameNameParserRuleCall_0_0()); }
-	ruleName{ after(grammarAccess.getQualifiedNameAccess().getNameNameParserRuleCall_0_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__QualifiedName__NameAssignment_1_1
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getQualifiedNameAccess().getNameNameParserRuleCall_1_1_0()); }
-	ruleName{ after(grammarAccess.getQualifiedNameAccess().getNameNameParserRuleCall_1_1_0()); }
+{ before(grammarAccess.getQualifiedNameObjectAccess().getNameQualifiedNameParserRuleCall_0()); }
+	ruleQualifiedName{ after(grammarAccess.getQualifiedNameObjectAccess().getNameQualifiedNameParserRuleCall_0()); }
 )
 
 ;
