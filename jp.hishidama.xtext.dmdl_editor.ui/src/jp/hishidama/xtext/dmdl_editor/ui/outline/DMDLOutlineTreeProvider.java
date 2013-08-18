@@ -3,9 +3,25 @@
  */
 package jp.hishidama.xtext.dmdl_editor.ui.outline;
 
+import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
+import jp.hishidama.xtext.dmdl_editor.dmdl.JoinExpression;
+import jp.hishidama.xtext.dmdl_editor.dmdl.JoinTerm;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
+import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
+import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
+import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression;
+import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Type;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.ui.ISharedImages;
+import org.eclipse.jdt.ui.JavaUI;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
@@ -24,9 +40,51 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 
-	@Override
-	protected void _createChildren(IOutlineNode parentNode, EObject modelElement) {
-		super._createChildren(parentNode, modelElement);
+	protected void _createChildren(IOutlineNode parentNode, ModelDefinition model) {
+		AttributeList attributes = model.getAttributes();
+		if (attributes != null) {
+			createNode(parentNode, attributes);
+			// for (Attribute attr : attributes.getAttributes()) {
+			// createNode(parentNode, attr);
+			// }
+		}
+
+		EObject rhs = model.getRhs();
+		if (rhs instanceof RecordExpression) {
+			for (RecordTerm term : ((RecordExpression) rhs).getTerms()) {
+				EList<PropertyDefinition> properties = term.getProperties();
+				if (properties != null) {
+					for (PropertyDefinition p : properties) {
+						createNode(parentNode, p);
+					}
+				}
+			}
+			return;
+		}
+		if (rhs instanceof JoinExpression) {
+			for (JoinTerm term : ((JoinExpression) rhs).getTerms()) {
+				EList<PropertyMapping> properties = term.getMapping().getMappings();
+				if (properties != null) {
+					for (PropertyMapping p : properties) {
+						createNode(parentNode, p);
+					}
+				}
+			}
+			return;
+		}
+		if (rhs instanceof SummarizeExpression) {
+			for (SummarizeTerm term : ((SummarizeExpression) rhs).getTerms()) {
+				EList<PropertyFolding> properties = term.getFolding().getFoldings();
+				if (properties != null) {
+					for (PropertyFolding p : properties) {
+						createNode(parentNode, p);
+					}
+				}
+			}
+			return;
+		}
+
+		throw new IllegalStateException("rhs=" + rhs);
 	}
 
 	@Override
@@ -34,11 +92,43 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		return super._isLeaf(modelElement);
 	}
 
-	@Override
-	protected Object _text(Object modelElement) {
-		if (modelElement instanceof AttributeList) {
-			return "<attributes>";
+	protected Object _text(AttributeList a) {
+		return "<attributes>";
+	}
+
+	protected Object _text(Attribute a) {
+		return "@" + a.getName();
+	}
+
+	protected Object _text(PropertyDefinition p) {
+		String name = p.getName();
+		Type type = p.getType();
+		if (type != null) {
+			return String.format("%s : %s", name, type);
 		}
-		return super._text(modelElement);
+		return name;
+	}
+
+	protected Object _text(PropertyFolding p) {
+		String name = p.getName();
+		String aggr = p.getAggregator();
+		String from = p.getFrom();
+		return String.format("%s <- %s(%s)", name, aggr, from);
+	}
+
+	protected Image _image(ModelDefinition model) {
+		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_OBJS_CLASS);
+	}
+
+	protected Image _image(PropertyDefinition p) {
+		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_OBJS_PUBLIC);
+	}
+
+	protected Image _image(PropertyFolding p) {
+		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_OBJS_PUBLIC);
+	}
+
+	protected Image _image(Attribute a) {
+		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_OBJS_ANNOTATION);
 	}
 }
