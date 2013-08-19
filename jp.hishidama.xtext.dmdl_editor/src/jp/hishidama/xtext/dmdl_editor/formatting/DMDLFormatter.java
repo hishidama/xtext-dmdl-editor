@@ -10,6 +10,9 @@ import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
 import org.eclipse.xtext.service.AbstractElementFinder;
 import org.eclipse.xtext.util.Pair;
+import org.eclipse.xtext.xbase.lib.Extension;
+
+import com.google.inject.Inject;
 
 /**
  * This class contains custom formatting description.
@@ -21,11 +24,12 @@ import org.eclipse.xtext.util.Pair;
  * example
  */
 public class DMDLFormatter extends AbstractDeclarativeFormatter {
+	@Inject
+	@Extension
+	private DMDLGrammarAccess f;
 
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
-		DMDLGrammarAccess f = (DMDLGrammarAccess) getGrammarAccess();
-
 		c.setAutoLinewrap(120);
 
 		// 丸括弧
