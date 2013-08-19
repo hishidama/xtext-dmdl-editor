@@ -85,7 +85,9 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			return;
 		}
 
-		throw new IllegalStateException("rhs=" + rhs);
+		if (rhs != null) {
+			throw new IllegalStateException("rhs=" + rhs);
+		}
 	}
 
 	@Override
