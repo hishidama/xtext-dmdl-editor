@@ -1233,6 +1233,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	private TypeElements unknownRuleType;
 	private LiteralElements pLiteral;
 	private TerminalRule tSTRING;
+	private TerminalRule tHEX_CHAR;
 	private TerminalRule tINT;
 	private TerminalRule tDECIMAL;
 	private BOOLEANElements unknownRuleBOOLEAN;
@@ -1580,9 +1581,18 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//terminal STRING:
 	//
-	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\\") | !("\\" | "\""))* "\"";
+	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\\") | "\\u" HEX_CHAR HEX_CHAR HEX_CHAR HEX_CHAR | !("\\" | "\""))*
+	//
+	//	"\"";
 	public TerminalRule getSTRINGRule() {
 		return (tSTRING != null) ? tSTRING : (tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING"));
+	} 
+
+	//terminal fragment HEX_CHAR:
+	//
+	//	"0".."9" | "a".."f" | "A".."F";
+	public TerminalRule getHEX_CHARRule() {
+		return (tHEX_CHAR != null) ? tHEX_CHAR : (tHEX_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HEX_CHAR"));
 	} 
 
 	//terminal INT returns ecore::EInt:

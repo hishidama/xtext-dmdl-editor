@@ -2009,7 +2009,9 @@ ruleBOOLEAN returns [Enumerator current=null]
 
 RULE_NAME_TOKEN : 'a'..'z' ('a'..'z'|'0'..'9')* ('_' ('a'..'z'|'0'..'9')+)*;
 
-RULE_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\\')|~(('\\'|'"')))* '"';
+RULE_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\\')|'\\u' RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR|~(('\\'|'"')))* '"';
+
+fragment RULE_HEX_CHAR : ('0'..'9'|'a'..'f'|'A'..'F');
 
 RULE_INT : ('0'|'1'..'9' ('0'..'9')*);
 
