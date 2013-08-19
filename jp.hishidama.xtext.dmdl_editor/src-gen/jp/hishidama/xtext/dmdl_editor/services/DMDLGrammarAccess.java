@@ -1581,9 +1581,9 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//terminal STRING:
 	//
-	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\\") | "\\u" HEX_CHAR HEX_CHAR HEX_CHAR HEX_CHAR | !("\\" | "\""))*
+	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\\") //TODO	| '\\0' ('0'..'3')? ('0'..'9')? ('0'..'9')?
 	//
-	//	"\"";
+	//	| "\\u" HEX_CHAR HEX_CHAR HEX_CHAR HEX_CHAR | !("\\" | "\""))* "\"";
 	public TerminalRule getSTRINGRule() {
 		return (tSTRING != null) ? tSTRING : (tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING"));
 	} 
