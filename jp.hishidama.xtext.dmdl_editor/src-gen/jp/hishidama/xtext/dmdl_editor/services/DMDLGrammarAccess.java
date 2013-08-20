@@ -1234,6 +1234,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	private LiteralElements pLiteral;
 	private TerminalRule tSTRING;
 	private TerminalRule tHEX_CHAR;
+	private TerminalRule tOCTAL_ESCAPE;
 	private TerminalRule tINT;
 	private TerminalRule tDECIMAL;
 	private BOOLEANElements unknownRuleBOOLEAN;
@@ -1581,9 +1582,9 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//terminal STRING:
 	//
-	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\\") //TODO	| '\\0' ('0'..'3')? ('0'..'9')? ('0'..'9')?
+	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\\") | "\\u" HEX_CHAR HEX_CHAR HEX_CHAR HEX_CHAR | OCTAL_ESCAPE |
 	//
-	//	| "\\u" HEX_CHAR HEX_CHAR HEX_CHAR HEX_CHAR | !("\\" | "\""))* "\"";
+	//	!("\\" | "\""))* "\"";
 	public TerminalRule getSTRINGRule() {
 		return (tSTRING != null) ? tSTRING : (tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING"));
 	} 
@@ -1593,6 +1594,13 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//	"0".."9" | "a".."f" | "A".."F";
 	public TerminalRule getHEX_CHARRule() {
 		return (tHEX_CHAR != null) ? tHEX_CHAR : (tHEX_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HEX_CHAR"));
+	} 
+
+	//terminal fragment OCTAL_ESCAPE:
+	//
+	//	"\\o" ("0".."7" | "0".."7" "0".."7" | "0".."3" "0".."7" "0".."7");
+	public TerminalRule getOCTAL_ESCAPERule() {
+		return (tOCTAL_ESCAPE != null) ? tOCTAL_ESCAPE : (tOCTAL_ESCAPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OCTAL_ESCAPE"));
 	} 
 
 	//terminal INT returns ecore::EInt:

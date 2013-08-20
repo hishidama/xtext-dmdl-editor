@@ -5133,9 +5133,11 @@ finally {
 
 RULE_NAME_TOKEN : 'a'..'z' ('a'..'z'|'0'..'9')* ('_' ('a'..'z'|'0'..'9')+)*;
 
-RULE_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\\')|'\\u' RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR|~(('\\'|'"')))* '"';
+RULE_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\\')|'\\u' RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR|RULE_OCTAL_ESCAPE|~(('\\'|'"')))* '"';
 
 fragment RULE_HEX_CHAR : ('0'..'9'|'a'..'f'|'A'..'F');
+
+fragment RULE_OCTAL_ESCAPE : '\\o' ('0'..'7'|'0'..'7' '0'..'7'|'0'..'3' '0'..'7' '0'..'7');
 
 RULE_INT : ('0'|'1'..'9' ('0'..'9')*);
 
