@@ -482,18 +482,15 @@ ruleModelReference returns [EObject current=null]
     @after { leaveRule(); }:
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getModelReferenceAccess().getNameNameParserRuleCall_0()); 
-	    }
-		lv_name_0_0=ruleName		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getModelReferenceRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getModelReferenceRule());
 	        }
-       		set(
-       			$current, 
-       			"name",
-        		lv_name_0_0, 
-        		"Name");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getModelReferenceAccess().getNameModelDefinitionCrossReference_0()); 
+	    }
+		ruleName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2013,7 +2010,7 @@ RULE_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\\')|'\\u' RULE_HEX_CHAR RULE_
 
 fragment RULE_HEX_CHAR : ('0'..'9'|'a'..'f'|'A'..'F');
 
-fragment RULE_OCTAL_ESCAPE : '\\o' ('0'..'7'|'0'..'7' '0'..'7'|'0'..'3' '0'..'7' '0'..'7');
+fragment RULE_OCTAL_ESCAPE : '\\0' ('0'..'7'|'0'..'7' '0'..'7'|'0'..'3' '0'..'7' '0'..'7');
 
 RULE_INT : ('0'|'1'..'9' ('0'..'9')*);
 

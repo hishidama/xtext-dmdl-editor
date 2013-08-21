@@ -689,11 +689,11 @@ public class InternalDMDLLexer extends Lexer {
         try {
             int _type = RULE_NAME_TOKEN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5134:17: ( 'a' .. 'z' ( 'a' .. 'z' | '0' .. '9' )* ( '_' ( 'a' .. 'z' | '0' .. '9' )+ )* )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5134:19: 'a' .. 'z' ( 'a' .. 'z' | '0' .. '9' )* ( '_' ( 'a' .. 'z' | '0' .. '9' )+ )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5138:17: ( 'a' .. 'z' ( 'a' .. 'z' | '0' .. '9' )* ( '_' ( 'a' .. 'z' | '0' .. '9' )+ )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5138:19: 'a' .. 'z' ( 'a' .. 'z' | '0' .. '9' )* ( '_' ( 'a' .. 'z' | '0' .. '9' )+ )*
             {
             matchRange('a','z'); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5134:28: ( 'a' .. 'z' | '0' .. '9' )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5138:28: ( 'a' .. 'z' | '0' .. '9' )*
             loop1:
             do {
                 int alt1=2;
@@ -726,7 +726,7 @@ public class InternalDMDLLexer extends Lexer {
                 }
             } while (true);
 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5134:49: ( '_' ( 'a' .. 'z' | '0' .. '9' )+ )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5138:49: ( '_' ( 'a' .. 'z' | '0' .. '9' )+ )*
             loop3:
             do {
                 int alt3=2;
@@ -739,10 +739,10 @@ public class InternalDMDLLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5134:50: '_' ( 'a' .. 'z' | '0' .. '9' )+
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5138:50: '_' ( 'a' .. 'z' | '0' .. '9' )+
             	    {
             	    match('_'); 
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5134:54: ( 'a' .. 'z' | '0' .. '9' )+
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5138:54: ( 'a' .. 'z' | '0' .. '9' )+
             	    int cnt2=0;
             	    loop2:
             	    do {
@@ -805,11 +805,11 @@ public class InternalDMDLLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5136:13: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\\\' ) | '\\\\u' RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR | RULE_OCTAL_ESCAPE | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5136:15: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\\\' ) | '\\\\u' RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR | RULE_OCTAL_ESCAPE | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5140:13: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\\\' ) | '\\\\u' RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR | RULE_OCTAL_ESCAPE | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5140:15: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\\\' ) | '\\\\u' RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR | RULE_OCTAL_ESCAPE | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5136:19: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\\\' ) | '\\\\u' RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR | RULE_OCTAL_ESCAPE | ~ ( ( '\\\\' | '\"' ) ) )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5140:19: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\\\' ) | '\\\\u' RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR | RULE_OCTAL_ESCAPE | ~ ( ( '\\\\' | '\"' ) ) )*
             loop4:
             do {
                 int alt4=5;
@@ -833,7 +833,7 @@ public class InternalDMDLLexer extends Lexer {
                         alt4=2;
                         }
                         break;
-                    case 'o':
+                    case '0':
                         {
                         alt4=3;
                         }
@@ -849,7 +849,7 @@ public class InternalDMDLLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5136:20: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\\\' )
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5140:20: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\\\' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -865,7 +865,7 @@ public class InternalDMDLLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5136:56: '\\\\u' RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5140:56: '\\\\u' RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR
             	    {
             	    match("\\u"); 
 
@@ -877,14 +877,14 @@ public class InternalDMDLLexer extends Lexer {
             	    }
             	    break;
             	case 3 :
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5136:118: RULE_OCTAL_ESCAPE
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5140:118: RULE_OCTAL_ESCAPE
             	    {
             	    mRULE_OCTAL_ESCAPE(); 
 
             	    }
             	    break;
             	case 4 :
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5136:136: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5140:136: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -919,8 +919,8 @@ public class InternalDMDLLexer extends Lexer {
     // $ANTLR start "RULE_HEX_CHAR"
     public final void mRULE_HEX_CHAR() throws RecognitionException {
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5138:24: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5138:26: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5142:24: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5142:26: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -943,12 +943,12 @@ public class InternalDMDLLexer extends Lexer {
     // $ANTLR start "RULE_OCTAL_ESCAPE"
     public final void mRULE_OCTAL_ESCAPE() throws RecognitionException {
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5140:28: ( '\\\\o' ( '0' .. '7' | '0' .. '7' '0' .. '7' | '0' .. '3' '0' .. '7' '0' .. '7' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5140:30: '\\\\o' ( '0' .. '7' | '0' .. '7' '0' .. '7' | '0' .. '3' '0' .. '7' '0' .. '7' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:28: ( '\\\\0' ( '0' .. '7' | '0' .. '7' '0' .. '7' | '0' .. '3' '0' .. '7' '0' .. '7' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:30: '\\\\0' ( '0' .. '7' | '0' .. '7' '0' .. '7' | '0' .. '3' '0' .. '7' '0' .. '7' )
             {
-            match("\\o"); 
+            match("\\0"); 
 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5140:36: ( '0' .. '7' | '0' .. '7' '0' .. '7' | '0' .. '3' '0' .. '7' '0' .. '7' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:36: ( '0' .. '7' | '0' .. '7' '0' .. '7' | '0' .. '3' '0' .. '7' '0' .. '7' )
             int alt5=3;
             int LA5_0 = input.LA(1);
 
@@ -984,14 +984,14 @@ public class InternalDMDLLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5140:37: '0' .. '7'
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:37: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
                     break;
                 case 2 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5140:46: '0' .. '7' '0' .. '7'
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:46: '0' .. '7' '0' .. '7'
                     {
                     matchRange('0','7'); 
                     matchRange('0','7'); 
@@ -999,7 +999,7 @@ public class InternalDMDLLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5140:64: '0' .. '3' '0' .. '7' '0' .. '7'
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:64: '0' .. '3' '0' .. '7' '0' .. '7'
                     {
                     matchRange('0','3'); 
                     matchRange('0','7'); 
@@ -1024,10 +1024,10 @@ public class InternalDMDLLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5142:10: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5142:12: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5146:10: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5146:12: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5142:12: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5146:12: ( '0' | '1' .. '9' ( '0' .. '9' )* )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1045,17 +1045,17 @@ public class InternalDMDLLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5142:13: '0'
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5146:13: '0'
                     {
                     match('0'); 
 
                     }
                     break;
                 case 2 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5142:17: '1' .. '9' ( '0' .. '9' )*
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5146:17: '1' .. '9' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5142:26: ( '0' .. '9' )*
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5146:26: ( '0' .. '9' )*
                     loop6:
                     do {
                         int alt6=2;
@@ -1068,7 +1068,7 @@ public class InternalDMDLLexer extends Lexer {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5142:27: '0' .. '9'
+                    	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5146:27: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1102,10 +1102,10 @@ public class InternalDMDLLexer extends Lexer {
         try {
             int _type = RULE_DECIMAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:14: ( ( '.' ( '0' .. '9' )+ | '0.' ( '0' .. '9' )* | '1' .. '9' ( '0' .. '9' )* '.' ( '0' .. '9' )* ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:16: ( '.' ( '0' .. '9' )+ | '0.' ( '0' .. '9' )* | '1' .. '9' ( '0' .. '9' )* '.' ( '0' .. '9' )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:14: ( ( '.' ( '0' .. '9' )+ | '0.' ( '0' .. '9' )* | '1' .. '9' ( '0' .. '9' )* '.' ( '0' .. '9' )* ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:16: ( '.' ( '0' .. '9' )+ | '0.' ( '0' .. '9' )* | '1' .. '9' ( '0' .. '9' )* '.' ( '0' .. '9' )* )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:16: ( '.' ( '0' .. '9' )+ | '0.' ( '0' .. '9' )* | '1' .. '9' ( '0' .. '9' )* '.' ( '0' .. '9' )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:16: ( '.' ( '0' .. '9' )+ | '0.' ( '0' .. '9' )* | '1' .. '9' ( '0' .. '9' )* '.' ( '0' .. '9' )* )
             int alt12=3;
             switch ( input.LA(1) ) {
             case '.':
@@ -1140,10 +1140,10 @@ public class InternalDMDLLexer extends Lexer {
 
             switch (alt12) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:17: '.' ( '0' .. '9' )+
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:17: '.' ( '0' .. '9' )+
                     {
                     match('.'); 
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:21: ( '0' .. '9' )+
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:21: ( '0' .. '9' )+
                     int cnt8=0;
                     loop8:
                     do {
@@ -1157,7 +1157,7 @@ public class InternalDMDLLexer extends Lexer {
 
                         switch (alt8) {
                     	case 1 :
-                    	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:22: '0' .. '9'
+                    	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:22: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1177,11 +1177,11 @@ public class InternalDMDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:33: '0.' ( '0' .. '9' )*
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:33: '0.' ( '0' .. '9' )*
                     {
                     match("0."); 
 
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:38: ( '0' .. '9' )*
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:38: ( '0' .. '9' )*
                     loop9:
                     do {
                         int alt9=2;
@@ -1194,7 +1194,7 @@ public class InternalDMDLLexer extends Lexer {
 
                         switch (alt9) {
                     	case 1 :
-                    	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:39: '0' .. '9'
+                    	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:39: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1210,10 +1210,10 @@ public class InternalDMDLLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:50: '1' .. '9' ( '0' .. '9' )* '.' ( '0' .. '9' )*
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:50: '1' .. '9' ( '0' .. '9' )* '.' ( '0' .. '9' )*
                     {
                     matchRange('1','9'); 
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:59: ( '0' .. '9' )*
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:59: ( '0' .. '9' )*
                     loop10:
                     do {
                         int alt10=2;
@@ -1226,7 +1226,7 @@ public class InternalDMDLLexer extends Lexer {
 
                         switch (alt10) {
                     	case 1 :
-                    	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:60: '0' .. '9'
+                    	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:60: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1239,7 +1239,7 @@ public class InternalDMDLLexer extends Lexer {
                     } while (true);
 
                     match('.'); 
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:75: ( '0' .. '9' )*
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:75: ( '0' .. '9' )*
                     loop11:
                     do {
                         int alt11=2;
@@ -1252,7 +1252,7 @@ public class InternalDMDLLexer extends Lexer {
 
                         switch (alt11) {
                     	case 1 :
-                    	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5144:76: '0' .. '9'
+                    	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:76: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1286,12 +1286,12 @@ public class InternalDMDLLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5146:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5146:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5150:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5150:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5146:24: ( options {greedy=false; } : . )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5150:24: ( options {greedy=false; } : . )*
             loop13:
             do {
                 int alt13=2;
@@ -1316,7 +1316,7 @@ public class InternalDMDLLexer extends Lexer {
 
                 switch (alt13) {
             	case 1 :
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5146:52: .
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5150:52: .
             	    {
             	    matchAny(); 
 
@@ -1346,10 +1346,10 @@ public class InternalDMDLLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:17: ( ( '//' | '--' ) (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:19: ( '//' | '--' ) (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5152:17: ( ( '//' | '--' ) (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5152:19: ( '//' | '--' ) (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:19: ( '//' | '--' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5152:19: ( '//' | '--' )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1367,7 +1367,7 @@ public class InternalDMDLLexer extends Lexer {
             }
             switch (alt14) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:20: '//'
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5152:20: '//'
                     {
                     match("//"); 
 
@@ -1375,7 +1375,7 @@ public class InternalDMDLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:25: '--'
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5152:25: '--'
                     {
                     match("--"); 
 
@@ -1385,7 +1385,7 @@ public class InternalDMDLLexer extends Lexer {
 
             }
 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:31: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5152:31: (~ ( ( '\\n' | '\\r' ) ) )*
             loop15:
             do {
                 int alt15=2;
@@ -1398,7 +1398,7 @@ public class InternalDMDLLexer extends Lexer {
 
                 switch (alt15) {
             	case 1 :
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:31: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5152:31: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1418,7 +1418,7 @@ public class InternalDMDLLexer extends Lexer {
                 }
             } while (true);
 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:47: ( ( '\\r' )? '\\n' )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5152:47: ( ( '\\r' )? '\\n' )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -1427,9 +1427,9 @@ public class InternalDMDLLexer extends Lexer {
             }
             switch (alt17) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:48: ( '\\r' )? '\\n'
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5152:48: ( '\\r' )? '\\n'
                     {
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:48: ( '\\r' )?
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5152:48: ( '\\r' )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -1438,7 +1438,7 @@ public class InternalDMDLLexer extends Lexer {
                     }
                     switch (alt16) {
                         case 1 :
-                            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5148:48: '\\r'
+                            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5152:48: '\\r'
                             {
                             match('\r'); 
 
@@ -1470,10 +1470,10 @@ public class InternalDMDLLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5150:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5150:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5154:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5154:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5150:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5154:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt18=0;
             loop18:
             do {

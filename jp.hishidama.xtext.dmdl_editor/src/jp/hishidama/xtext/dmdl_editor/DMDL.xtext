@@ -30,7 +30,7 @@ RecordTerm:
 	| reference=ModelReference;
 
 ModelReference:
-	name=Name;
+	name=[ModelDefinition|Name];
 
 PropertyDefinition:
 	(description=Description)?

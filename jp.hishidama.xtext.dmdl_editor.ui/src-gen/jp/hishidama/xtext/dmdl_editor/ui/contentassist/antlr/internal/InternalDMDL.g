@@ -4461,8 +4461,12 @@ rule__ModelReference__NameAssignment
     }
 :
 (
-{ before(grammarAccess.getModelReferenceAccess().getNameNameParserRuleCall_0()); }
-	ruleName{ after(grammarAccess.getModelReferenceAccess().getNameNameParserRuleCall_0()); }
+{ before(grammarAccess.getModelReferenceAccess().getNameModelDefinitionCrossReference_0()); }
+(
+{ before(grammarAccess.getModelReferenceAccess().getNameModelDefinitionNameParserRuleCall_0_1()); }
+	ruleName{ after(grammarAccess.getModelReferenceAccess().getNameModelDefinitionNameParserRuleCall_0_1()); }
+)
+{ after(grammarAccess.getModelReferenceAccess().getNameModelDefinitionCrossReference_0()); }
 )
 
 ;
@@ -5137,7 +5141,7 @@ RULE_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\\')|'\\u' RULE_HEX_CHAR RULE_
 
 fragment RULE_HEX_CHAR : ('0'..'9'|'a'..'f'|'A'..'F');
 
-fragment RULE_OCTAL_ESCAPE : '\\o' ('0'..'7'|'0'..'7' '0'..'7'|'0'..'3' '0'..'7' '0'..'7');
+fragment RULE_OCTAL_ESCAPE : '\\0' ('0'..'7'|'0'..'7' '0'..'7'|'0'..'3' '0'..'7' '0'..'7');
 
 RULE_INT : ('0'|'1'..'9' ('0'..'9')*);
 

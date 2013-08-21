@@ -216,7 +216,7 @@ public interface DmdlPackage extends EPackage
   int MODEL_REFERENCE = 4;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Name</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1068,15 +1068,15 @@ public interface DmdlPackage extends EPackage
   EClass getModelReference();
 
   /**
-   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference#getName <em>Name</em>}'.
+   * Returns the meta object for the reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
+   * @return the meta object for the reference '<em>Name</em>'.
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference#getName()
    * @see #getModelReference()
    * @generated
    */
-  EAttribute getModelReference_Name();
+  EReference getModelReference_Name();
 
   /**
    * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition <em>Property Definition</em>}'.
@@ -1823,12 +1823,12 @@ public interface DmdlPackage extends EPackage
     EClass MODEL_REFERENCE = eINSTANCE.getModelReference();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Name</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MODEL_REFERENCE__NAME = eINSTANCE.getModelReference_Name();
+    EReference MODEL_REFERENCE__NAME = eINSTANCE.getModelReference_Name();
 
     /**
      * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyDefinitionImpl <em>Property Definition</em>}' class.

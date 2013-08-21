@@ -41,7 +41,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//RecordTerm/reference"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//ModelReference">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//ModelReference/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DMDL.ecore#//ModelReference/name"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//PropertyDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyDefinition/description"/>

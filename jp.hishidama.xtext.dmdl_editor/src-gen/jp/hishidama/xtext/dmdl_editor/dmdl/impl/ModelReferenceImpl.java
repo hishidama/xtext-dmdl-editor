@@ -3,11 +3,13 @@
 package jp.hishidama.xtext.dmdl_editor.dmdl.impl;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -28,24 +30,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class ModelReferenceImpl extends MinimalEObjectImpl.Container implements ModelReference
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
+  protected ModelDefinition name;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,7 +65,27 @@ public class ModelReferenceImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public ModelDefinition getName()
+  {
+    if (name != null && name.eIsProxy())
+    {
+      InternalEObject oldName = (InternalEObject)name;
+      name = (ModelDefinition)eResolveProxy(oldName);
+      if (name != oldName)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, DmdlPackage.MODEL_REFERENCE__NAME, oldName, name));
+      }
+    }
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ModelDefinition basicGetName()
   {
     return name;
   }
@@ -83,9 +95,9 @@ public class ModelReferenceImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public void setName(ModelDefinition newName)
   {
-    String oldName = name;
+    ModelDefinition oldName = name;
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DmdlPackage.MODEL_REFERENCE__NAME, oldName, name));
@@ -102,7 +114,8 @@ public class ModelReferenceImpl extends MinimalEObjectImpl.Container implements 
     switch (featureID)
     {
       case DmdlPackage.MODEL_REFERENCE__NAME:
-        return getName();
+        if (resolve) return getName();
+        return basicGetName();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -118,7 +131,7 @@ public class ModelReferenceImpl extends MinimalEObjectImpl.Container implements 
     switch (featureID)
     {
       case DmdlPackage.MODEL_REFERENCE__NAME:
-        setName((String)newValue);
+        setName((ModelDefinition)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -135,7 +148,7 @@ public class ModelReferenceImpl extends MinimalEObjectImpl.Container implements 
     switch (featureID)
     {
       case DmdlPackage.MODEL_REFERENCE__NAME:
-        setName(NAME_EDEFAULT);
+        setName((ModelDefinition)null);
         return;
     }
     super.eUnset(featureID);
@@ -152,26 +165,9 @@ public class ModelReferenceImpl extends MinimalEObjectImpl.Container implements 
     switch (featureID)
     {
       case DmdlPackage.MODEL_REFERENCE__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+        return name != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //ModelReferenceImpl

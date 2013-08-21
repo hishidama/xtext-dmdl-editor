@@ -270,18 +270,22 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	public class ModelReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ModelReference");
 		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cNameNameParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		private final CrossReference cNameModelDefinitionCrossReference_0 = (CrossReference)cNameAssignment.eContents().get(0);
+		private final RuleCall cNameModelDefinitionNameParserRuleCall_0_1 = (RuleCall)cNameModelDefinitionCrossReference_0.eContents().get(1);
 		
 		//ModelReference:
 		//
-		//	name=Name;
+		//	name=[ModelDefinition|Name];
 		public ParserRule getRule() { return rule; }
 
-		//name=Name
+		//name=[ModelDefinition|Name]
 		public Assignment getNameAssignment() { return cNameAssignment; }
 
+		//[ModelDefinition|Name]
+		public CrossReference getNameModelDefinitionCrossReference_0() { return cNameModelDefinitionCrossReference_0; }
+
 		//Name
-		public RuleCall getNameNameParserRuleCall_0() { return cNameNameParserRuleCall_0; }
+		public RuleCall getNameModelDefinitionNameParserRuleCall_0_1() { return cNameModelDefinitionNameParserRuleCall_0_1; }
 	}
 
 	public class PropertyDefinitionElements extends AbstractParserRuleElementFinder {
@@ -1322,7 +1326,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//ModelReference:
 	//
-	//	name=Name;
+	//	name=[ModelDefinition|Name];
 	public ModelReferenceElements getModelReferenceAccess() {
 		return (pModelReference != null) ? pModelReference : (pModelReference = new ModelReferenceElements());
 	}
@@ -1598,7 +1602,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//terminal fragment OCTAL_ESCAPE:
 	//
-	//	"\\o" ("0".."7" | "0".."7" "0".."7" | "0".."3" "0".."7" "0".."7");
+	//	"\\0" ("0".."7" | "0".."7" "0".."7" | "0".."3" "0".."7" "0".."7");
 	public TerminalRule getOCTAL_ESCAPERule() {
 		return (tOCTAL_ESCAPE != null) ? tOCTAL_ESCAPE : (tOCTAL_ESCAPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OCTAL_ESCAPE"));
 	} 

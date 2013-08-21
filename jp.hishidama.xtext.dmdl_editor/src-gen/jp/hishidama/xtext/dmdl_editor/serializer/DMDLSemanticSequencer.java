@@ -322,7 +322,7 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     name=Name
+	 *     name=[ModelDefinition|Name]
 	 */
 	protected void sequence_ModelReference(EObject context, ModelReference semanticObject) {
 		if(errorAcceptor != null) {
@@ -331,7 +331,7 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getModelReferenceAccess().getNameNameParserRuleCall_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getModelReferenceAccess().getNameModelDefinitionNameParserRuleCall_0_1(), semanticObject.getName());
 		feeder.finish();
 	}
 	

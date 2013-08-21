@@ -418,9 +418,9 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getModelReference_Name()
+  public EReference getModelReference_Name()
   {
-    return (EAttribute)modelReferenceEClass.getEStructuralFeatures().get(0);
+    return (EReference)modelReferenceEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1040,7 +1040,7 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     createEReference(recordTermEClass, RECORD_TERM__REFERENCE);
 
     modelReferenceEClass = createEClass(MODEL_REFERENCE);
-    createEAttribute(modelReferenceEClass, MODEL_REFERENCE__NAME);
+    createEReference(modelReferenceEClass, MODEL_REFERENCE__NAME);
 
     propertyDefinitionEClass = createEClass(PROPERTY_DEFINITION);
     createEAttribute(propertyDefinitionEClass, PROPERTY_DEFINITION__DESCRIPTION);
@@ -1168,7 +1168,7 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     initEReference(getRecordTerm_Reference(), this.getModelReference(), null, "reference", null, 0, 1, RecordTerm.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(modelReferenceEClass, ModelReference.class, "ModelReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getModelReference_Name(), ecorePackage.getEString(), "name", null, 0, 1, ModelReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModelReference_Name(), this.getModelDefinition(), null, "name", null, 0, 1, ModelReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(propertyDefinitionEClass, PropertyDefinition.class, "PropertyDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPropertyDefinition_Description(), ecorePackage.getEString(), "description", null, 0, 1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
