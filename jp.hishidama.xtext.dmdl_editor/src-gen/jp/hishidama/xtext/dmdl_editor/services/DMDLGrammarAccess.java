@@ -43,48 +43,41 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAttributesAttributeListParserRuleCall_1_0 = (RuleCall)cAttributesAssignment_1.eContents().get(0);
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
 		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
-		private final Assignment cNameAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
-		private final RuleCall cNameNameParserRuleCall_2_0_0_0 = (RuleCall)cNameAssignment_2_0_0.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_2_0_1 = (Keyword)cGroup_2_0.eContents().get(1);
-		private final Assignment cRhsAssignment_2_0_2 = (Assignment)cGroup_2_0.eContents().get(2);
-		private final RuleCall cRhsRecordExpressionParserRuleCall_2_0_2_0 = (RuleCall)cRhsAssignment_2_0_2.eContents().get(0);
+		private final Assignment cTypeAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
+		private final Keyword cTypeProjectiveKeyword_2_0_0_0 = (Keyword)cTypeAssignment_2_0_0.eContents().get(0);
+		private final Assignment cNameAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
+		private final RuleCall cNameNameParserRuleCall_2_0_1_0 = (RuleCall)cNameAssignment_2_0_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_2_0_2 = (Keyword)cGroup_2_0.eContents().get(2);
+		private final Assignment cRhsAssignment_2_0_3 = (Assignment)cGroup_2_0.eContents().get(3);
+		private final RuleCall cRhsRecordExpressionParserRuleCall_2_0_3_0 = (RuleCall)cRhsAssignment_2_0_3.eContents().get(0);
 		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final Keyword cProjectiveKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cTypeAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
+		private final Keyword cTypeJoinedKeyword_2_1_0_0 = (Keyword)cTypeAssignment_2_1_0.eContents().get(0);
 		private final Assignment cNameAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
 		private final RuleCall cNameNameParserRuleCall_2_1_1_0 = (RuleCall)cNameAssignment_2_1_1.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_2_1_2 = (Keyword)cGroup_2_1.eContents().get(2);
 		private final Assignment cRhsAssignment_2_1_3 = (Assignment)cGroup_2_1.eContents().get(3);
-		private final RuleCall cRhsRecordExpressionParserRuleCall_2_1_3_0 = (RuleCall)cRhsAssignment_2_1_3.eContents().get(0);
+		private final RuleCall cRhsJoinExpressionParserRuleCall_2_1_3_0 = (RuleCall)cRhsAssignment_2_1_3.eContents().get(0);
 		private final Group cGroup_2_2 = (Group)cAlternatives_2.eContents().get(2);
-		private final Keyword cJoinedKeyword_2_2_0 = (Keyword)cGroup_2_2.eContents().get(0);
+		private final Assignment cTypeAssignment_2_2_0 = (Assignment)cGroup_2_2.eContents().get(0);
+		private final Keyword cTypeSummarizedKeyword_2_2_0_0 = (Keyword)cTypeAssignment_2_2_0.eContents().get(0);
 		private final Assignment cNameAssignment_2_2_1 = (Assignment)cGroup_2_2.eContents().get(1);
 		private final RuleCall cNameNameParserRuleCall_2_2_1_0 = (RuleCall)cNameAssignment_2_2_1.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_2_2_2 = (Keyword)cGroup_2_2.eContents().get(2);
 		private final Assignment cRhsAssignment_2_2_3 = (Assignment)cGroup_2_2.eContents().get(3);
-		private final RuleCall cRhsJoinExpressionParserRuleCall_2_2_3_0 = (RuleCall)cRhsAssignment_2_2_3.eContents().get(0);
-		private final Group cGroup_2_3 = (Group)cAlternatives_2.eContents().get(3);
-		private final Keyword cSummarizedKeyword_2_3_0 = (Keyword)cGroup_2_3.eContents().get(0);
-		private final Assignment cNameAssignment_2_3_1 = (Assignment)cGroup_2_3.eContents().get(1);
-		private final RuleCall cNameNameParserRuleCall_2_3_1_0 = (RuleCall)cNameAssignment_2_3_1.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_2_3_2 = (Keyword)cGroup_2_3.eContents().get(2);
-		private final Assignment cRhsAssignment_2_3_3 = (Assignment)cGroup_2_3.eContents().get(3);
-		private final RuleCall cRhsSummarizeExpressionParserRuleCall_2_3_3_0 = (RuleCall)cRhsAssignment_2_3_3.eContents().get(0);
+		private final RuleCall cRhsSummarizeExpressionParserRuleCall_2_2_3_0 = (RuleCall)cRhsAssignment_2_2_3.eContents().get(0);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//ModelDefinition:
 		//
-		//	description=Description? attributes=AttributeList? (name=Name "=" rhs=RecordExpression | "projective" name=Name "="
+		//	description=Description? attributes=AttributeList? (type="projective"? name=Name "=" rhs=RecordExpression |
 		//
-		//	rhs=RecordExpression | "joined" name=Name "=" rhs=JoinExpression | "summarized" name=Name "="
-		//
-		//	rhs=SummarizeExpression) ";";
+		//	type="joined" name=Name "=" rhs=JoinExpression | type="summarized" name=Name "=" rhs=SummarizeExpression) ";";
 		public ParserRule getRule() { return rule; }
 
-		//description=Description? attributes=AttributeList? (name=Name "=" rhs=RecordExpression | "projective" name=Name "="
+		//description=Description? attributes=AttributeList? (type="projective"? name=Name "=" rhs=RecordExpression |
 		//
-		//rhs=RecordExpression | "joined" name=Name "=" rhs=JoinExpression | "summarized" name=Name "=" rhs=SummarizeExpression)
-		//
-		//";"
+		//type="joined" name=Name "=" rhs=JoinExpression | type="summarized" name=Name "=" rhs=SummarizeExpression) ";"
 		public Group getGroup() { return cGroup; }
 
 		//description=Description?
@@ -99,34 +92,43 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		//AttributeList
 		public RuleCall getAttributesAttributeListParserRuleCall_1_0() { return cAttributesAttributeListParserRuleCall_1_0; }
 
-		//name=Name "=" rhs=RecordExpression | "projective" name=Name "=" rhs=RecordExpression | "joined" name=Name "="
+		//type="projective"? name=Name "=" rhs=RecordExpression | type="joined" name=Name "=" rhs=JoinExpression |
 		//
-		//rhs=JoinExpression | "summarized" name=Name "=" rhs=SummarizeExpression
+		//type="summarized" name=Name "=" rhs=SummarizeExpression
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
-		//name=Name "=" rhs=RecordExpression
+		//type="projective"? name=Name "=" rhs=RecordExpression
 		public Group getGroup_2_0() { return cGroup_2_0; }
 
-		//name=Name
-		public Assignment getNameAssignment_2_0_0() { return cNameAssignment_2_0_0; }
-
-		//Name
-		public RuleCall getNameNameParserRuleCall_2_0_0_0() { return cNameNameParserRuleCall_2_0_0_0; }
-
-		//"="
-		public Keyword getEqualsSignKeyword_2_0_1() { return cEqualsSignKeyword_2_0_1; }
-
-		//rhs=RecordExpression
-		public Assignment getRhsAssignment_2_0_2() { return cRhsAssignment_2_0_2; }
-
-		//RecordExpression
-		public RuleCall getRhsRecordExpressionParserRuleCall_2_0_2_0() { return cRhsRecordExpressionParserRuleCall_2_0_2_0; }
-
-		//"projective" name=Name "=" rhs=RecordExpression
-		public Group getGroup_2_1() { return cGroup_2_1; }
+		//type="projective"?
+		public Assignment getTypeAssignment_2_0_0() { return cTypeAssignment_2_0_0; }
 
 		//"projective"
-		public Keyword getProjectiveKeyword_2_1_0() { return cProjectiveKeyword_2_1_0; }
+		public Keyword getTypeProjectiveKeyword_2_0_0_0() { return cTypeProjectiveKeyword_2_0_0_0; }
+
+		//name=Name
+		public Assignment getNameAssignment_2_0_1() { return cNameAssignment_2_0_1; }
+
+		//Name
+		public RuleCall getNameNameParserRuleCall_2_0_1_0() { return cNameNameParserRuleCall_2_0_1_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_2_0_2() { return cEqualsSignKeyword_2_0_2; }
+
+		//rhs=RecordExpression
+		public Assignment getRhsAssignment_2_0_3() { return cRhsAssignment_2_0_3; }
+
+		//RecordExpression
+		public RuleCall getRhsRecordExpressionParserRuleCall_2_0_3_0() { return cRhsRecordExpressionParserRuleCall_2_0_3_0; }
+
+		//type="joined" name=Name "=" rhs=JoinExpression
+		public Group getGroup_2_1() { return cGroup_2_1; }
+
+		//type="joined"
+		public Assignment getTypeAssignment_2_1_0() { return cTypeAssignment_2_1_0; }
+
+		//"joined"
+		public Keyword getTypeJoinedKeyword_2_1_0_0() { return cTypeJoinedKeyword_2_1_0_0; }
 
 		//name=Name
 		public Assignment getNameAssignment_2_1_1() { return cNameAssignment_2_1_1; }
@@ -137,17 +139,20 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_2_1_2() { return cEqualsSignKeyword_2_1_2; }
 
-		//rhs=RecordExpression
+		//rhs=JoinExpression
 		public Assignment getRhsAssignment_2_1_3() { return cRhsAssignment_2_1_3; }
 
-		//RecordExpression
-		public RuleCall getRhsRecordExpressionParserRuleCall_2_1_3_0() { return cRhsRecordExpressionParserRuleCall_2_1_3_0; }
+		//JoinExpression
+		public RuleCall getRhsJoinExpressionParserRuleCall_2_1_3_0() { return cRhsJoinExpressionParserRuleCall_2_1_3_0; }
 
-		//"joined" name=Name "=" rhs=JoinExpression
+		//type="summarized" name=Name "=" rhs=SummarizeExpression
 		public Group getGroup_2_2() { return cGroup_2_2; }
 
-		//"joined"
-		public Keyword getJoinedKeyword_2_2_0() { return cJoinedKeyword_2_2_0; }
+		//type="summarized"
+		public Assignment getTypeAssignment_2_2_0() { return cTypeAssignment_2_2_0; }
+
+		//"summarized"
+		public Keyword getTypeSummarizedKeyword_2_2_0_0() { return cTypeSummarizedKeyword_2_2_0_0; }
 
 		//name=Name
 		public Assignment getNameAssignment_2_2_1() { return cNameAssignment_2_2_1; }
@@ -158,32 +163,11 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_2_2_2() { return cEqualsSignKeyword_2_2_2; }
 
-		//rhs=JoinExpression
+		//rhs=SummarizeExpression
 		public Assignment getRhsAssignment_2_2_3() { return cRhsAssignment_2_2_3; }
 
-		//JoinExpression
-		public RuleCall getRhsJoinExpressionParserRuleCall_2_2_3_0() { return cRhsJoinExpressionParserRuleCall_2_2_3_0; }
-
-		//"summarized" name=Name "=" rhs=SummarizeExpression
-		public Group getGroup_2_3() { return cGroup_2_3; }
-
-		//"summarized"
-		public Keyword getSummarizedKeyword_2_3_0() { return cSummarizedKeyword_2_3_0; }
-
-		//name=Name
-		public Assignment getNameAssignment_2_3_1() { return cNameAssignment_2_3_1; }
-
-		//Name
-		public RuleCall getNameNameParserRuleCall_2_3_1_0() { return cNameNameParserRuleCall_2_3_1_0; }
-
-		//"="
-		public Keyword getEqualsSignKeyword_2_3_2() { return cEqualsSignKeyword_2_3_2; }
-
-		//rhs=SummarizeExpression
-		public Assignment getRhsAssignment_2_3_3() { return cRhsAssignment_2_3_3; }
-
 		//SummarizeExpression
-		public RuleCall getRhsSummarizeExpressionParserRuleCall_2_3_3_0() { return cRhsSummarizeExpressionParserRuleCall_2_3_3_0; }
+		public RuleCall getRhsSummarizeExpressionParserRuleCall_2_2_3_0() { return cRhsSummarizeExpressionParserRuleCall_2_2_3_0; }
 
 		//";"
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
@@ -1289,11 +1273,9 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//ModelDefinition:
 	//
-	//	description=Description? attributes=AttributeList? (name=Name "=" rhs=RecordExpression | "projective" name=Name "="
+	//	description=Description? attributes=AttributeList? (type="projective"? name=Name "=" rhs=RecordExpression |
 	//
-	//	rhs=RecordExpression | "joined" name=Name "=" rhs=JoinExpression | "summarized" name=Name "="
-	//
-	//	rhs=SummarizeExpression) ";";
+	//	type="joined" name=Name "=" rhs=JoinExpression | type="summarized" name=Name "=" rhs=SummarizeExpression) ";";
 	public ModelDefinitionElements getModelDefinitionAccess() {
 		return (pModelDefinition != null) ? pModelDefinition : (pModelDefinition = new ModelDefinitionElements());
 	}

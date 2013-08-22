@@ -5,10 +5,12 @@ package jp.hishidama.xtext.dmdl_editor.ui;
 
 import jp.hishidama.xtext.dmdl_editor.ui.highlighting.DMDLHighlightingConfiguration;
 import jp.hishidama.xtext.dmdl_editor.ui.highlighting.DMDLLexicalTokenToAttributeIdMapper;
+import jp.hishidama.xtext.dmdl_editor.ui.highlighting.DMDLSemanticHighlightingCalculator;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -20,6 +22,10 @@ public class DMDLUiModule extends jp.hishidama.xtext.dmdl_editor.ui.AbstractDMDL
 
 	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindTokenToAttributeIdMapper() {
 		return DMDLLexicalTokenToAttributeIdMapper.class;
+	}
+
+	public Class<? extends ISemanticHighlightingCalculator> bindSemanticHighlightingCalculator() {
+		return DMDLSemanticHighlightingCalculator.class;
 	}
 
 	public Class<? extends IHighlightingConfiguration> bindHighlightingConfiguration() {

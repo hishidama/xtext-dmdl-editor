@@ -49,7 +49,6 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getModelDefinitionAccess().getGroup_2_0(), "rule__ModelDefinition__Group_2_0__0");
 					put(grammarAccess.getModelDefinitionAccess().getGroup_2_1(), "rule__ModelDefinition__Group_2_1__0");
 					put(grammarAccess.getModelDefinitionAccess().getGroup_2_2(), "rule__ModelDefinition__Group_2_2__0");
-					put(grammarAccess.getModelDefinitionAccess().getGroup_2_3(), "rule__ModelDefinition__Group_2_3__0");
 					put(grammarAccess.getRecordExpressionAccess().getGroup(), "rule__RecordExpression__Group__0");
 					put(grammarAccess.getRecordExpressionAccess().getGroup_1(), "rule__RecordExpression__Group_1__0");
 					put(grammarAccess.getRecordTermAccess().getGroup_0(), "rule__RecordTerm__Group_0__0");
@@ -79,14 +78,15 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getScriptAccess().getListAssignment(), "rule__Script__ListAssignment");
 					put(grammarAccess.getModelDefinitionAccess().getDescriptionAssignment_0(), "rule__ModelDefinition__DescriptionAssignment_0");
 					put(grammarAccess.getModelDefinitionAccess().getAttributesAssignment_1(), "rule__ModelDefinition__AttributesAssignment_1");
-					put(grammarAccess.getModelDefinitionAccess().getNameAssignment_2_0_0(), "rule__ModelDefinition__NameAssignment_2_0_0");
-					put(grammarAccess.getModelDefinitionAccess().getRhsAssignment_2_0_2(), "rule__ModelDefinition__RhsAssignment_2_0_2");
+					put(grammarAccess.getModelDefinitionAccess().getTypeAssignment_2_0_0(), "rule__ModelDefinition__TypeAssignment_2_0_0");
+					put(grammarAccess.getModelDefinitionAccess().getNameAssignment_2_0_1(), "rule__ModelDefinition__NameAssignment_2_0_1");
+					put(grammarAccess.getModelDefinitionAccess().getRhsAssignment_2_0_3(), "rule__ModelDefinition__RhsAssignment_2_0_3");
+					put(grammarAccess.getModelDefinitionAccess().getTypeAssignment_2_1_0(), "rule__ModelDefinition__TypeAssignment_2_1_0");
 					put(grammarAccess.getModelDefinitionAccess().getNameAssignment_2_1_1(), "rule__ModelDefinition__NameAssignment_2_1_1");
 					put(grammarAccess.getModelDefinitionAccess().getRhsAssignment_2_1_3(), "rule__ModelDefinition__RhsAssignment_2_1_3");
+					put(grammarAccess.getModelDefinitionAccess().getTypeAssignment_2_2_0(), "rule__ModelDefinition__TypeAssignment_2_2_0");
 					put(grammarAccess.getModelDefinitionAccess().getNameAssignment_2_2_1(), "rule__ModelDefinition__NameAssignment_2_2_1");
 					put(grammarAccess.getModelDefinitionAccess().getRhsAssignment_2_2_3(), "rule__ModelDefinition__RhsAssignment_2_2_3");
-					put(grammarAccess.getModelDefinitionAccess().getNameAssignment_2_3_1(), "rule__ModelDefinition__NameAssignment_2_3_1");
-					put(grammarAccess.getModelDefinitionAccess().getRhsAssignment_2_3_3(), "rule__ModelDefinition__RhsAssignment_2_3_3");
 					put(grammarAccess.getRecordExpressionAccess().getTermsAssignment_0(), "rule__RecordExpression__TermsAssignment_0");
 					put(grammarAccess.getRecordExpressionAccess().getTermsAssignment_1_1(), "rule__RecordExpression__TermsAssignment_1_1");
 					put(grammarAccess.getRecordTermAccess().getPropertiesAssignment_0_1(), "rule__RecordTerm__PropertiesAssignment_0_1");

@@ -14,10 +14,9 @@ Script:
 ModelDefinition:
 	(description=Description)?
 	(attributes=AttributeList)?
-	((name=Name '=' rhs=RecordExpression)
-	| ("projective" name=Name '=' rhs=RecordExpression)
-	| ("joined" name=Name '=' rhs=JoinExpression)
-	| ('summarized' name=Name '=' rhs=SummarizeExpression))
+	((type='projective'? name=Name '=' rhs=RecordExpression)
+	| (type='joined' name=Name '=' rhs=JoinExpression)
+	| (type='summarized' name=Name '=' rhs=SummarizeExpression))
 	';';
 
 RecordExpression:

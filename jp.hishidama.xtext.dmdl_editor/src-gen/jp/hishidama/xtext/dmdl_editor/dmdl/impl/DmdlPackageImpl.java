@@ -338,7 +338,7 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getModelDefinition_Name()
+  public EAttribute getModelDefinition_Type()
   {
     return (EAttribute)modelDefinitionEClass.getEStructuralFeatures().get(2);
   }
@@ -348,9 +348,19 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getModelDefinition_Name()
+  {
+    return (EAttribute)modelDefinitionEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getModelDefinition_Rhs()
   {
-    return (EReference)modelDefinitionEClass.getEStructuralFeatures().get(3);
+    return (EReference)modelDefinitionEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1029,6 +1039,7 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     modelDefinitionEClass = createEClass(MODEL_DEFINITION);
     createEAttribute(modelDefinitionEClass, MODEL_DEFINITION__DESCRIPTION);
     createEReference(modelDefinitionEClass, MODEL_DEFINITION__ATTRIBUTES);
+    createEAttribute(modelDefinitionEClass, MODEL_DEFINITION__TYPE);
     createEAttribute(modelDefinitionEClass, MODEL_DEFINITION__NAME);
     createEReference(modelDefinitionEClass, MODEL_DEFINITION__RHS);
 
@@ -1157,6 +1168,7 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     initEClass(modelDefinitionEClass, ModelDefinition.class, "ModelDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getModelDefinition_Description(), ecorePackage.getEString(), "description", null, 0, 1, ModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModelDefinition_Attributes(), this.getAttributeList(), null, "attributes", null, 0, 1, ModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getModelDefinition_Type(), ecorePackage.getEString(), "type", null, 0, 1, ModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getModelDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, ModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModelDefinition_Rhs(), ecorePackage.getEObject(), null, "rhs", null, 0, 1, ModelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.ModelDefinitionImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.ModelDefinitionImpl#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.ModelDefinitionImpl#getType <em>Type</em>}</li>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.ModelDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.ModelDefinitionImpl#getRhs <em>Rhs</em>}</li>
  * </ul>
@@ -63,6 +64,26 @@ public class ModelDefinitionImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected AttributeList attributes;
+
+  /**
+   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected static final String TYPE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected String type = TYPE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -191,6 +212,29 @@ public class ModelDefinitionImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getType()
+  {
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setType(String newType)
+  {
+    String oldType = type;
+    type = newType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DmdlPackage.MODEL_DEFINITION__TYPE, oldType, type));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getName()
   {
     return name;
@@ -289,6 +333,8 @@ public class ModelDefinitionImpl extends MinimalEObjectImpl.Container implements
         return getDescription();
       case DmdlPackage.MODEL_DEFINITION__ATTRIBUTES:
         return getAttributes();
+      case DmdlPackage.MODEL_DEFINITION__TYPE:
+        return getType();
       case DmdlPackage.MODEL_DEFINITION__NAME:
         return getName();
       case DmdlPackage.MODEL_DEFINITION__RHS:
@@ -312,6 +358,9 @@ public class ModelDefinitionImpl extends MinimalEObjectImpl.Container implements
         return;
       case DmdlPackage.MODEL_DEFINITION__ATTRIBUTES:
         setAttributes((AttributeList)newValue);
+        return;
+      case DmdlPackage.MODEL_DEFINITION__TYPE:
+        setType((String)newValue);
         return;
       case DmdlPackage.MODEL_DEFINITION__NAME:
         setName((String)newValue);
@@ -339,6 +388,9 @@ public class ModelDefinitionImpl extends MinimalEObjectImpl.Container implements
       case DmdlPackage.MODEL_DEFINITION__ATTRIBUTES:
         setAttributes((AttributeList)null);
         return;
+      case DmdlPackage.MODEL_DEFINITION__TYPE:
+        setType(TYPE_EDEFAULT);
+        return;
       case DmdlPackage.MODEL_DEFINITION__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -363,6 +415,8 @@ public class ModelDefinitionImpl extends MinimalEObjectImpl.Container implements
         return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
       case DmdlPackage.MODEL_DEFINITION__ATTRIBUTES:
         return attributes != null;
+      case DmdlPackage.MODEL_DEFINITION__TYPE:
+        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
       case DmdlPackage.MODEL_DEFINITION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case DmdlPackage.MODEL_DEFINITION__RHS:
@@ -384,6 +438,8 @@ public class ModelDefinitionImpl extends MinimalEObjectImpl.Container implements
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (description: ");
     result.append(description);
+    result.append(", type: ");
+    result.append(type);
     result.append(", name: ");
     result.append(name);
     result.append(')');

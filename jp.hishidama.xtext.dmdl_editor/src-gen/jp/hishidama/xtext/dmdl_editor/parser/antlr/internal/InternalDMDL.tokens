@@ -45,7 +45,7 @@ RULE_DECIMAL=7
 'DOUBLE'=36
 'DATETIME'=40
 ';'=17
-'='=13
+'='=14
 '@'=22
 '+'=18
 'summarized'=16
@@ -57,7 +57,7 @@ RULE_DECIMAL=7
 '%'=26
 '->'=27
 'FALSE'=42
-'projective'=14
+'projective'=13
 '}'=20
 'TRUE'=41
 'DATE'=39

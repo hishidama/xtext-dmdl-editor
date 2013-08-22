@@ -294,7 +294,11 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (
 	 *         description=Description? 
 	 *         attributes=AttributeList? 
-	 *         ((name=Name rhs=RecordExpression) | (name=Name rhs=RecordExpression) | (name=Name rhs=JoinExpression) | (name=Name rhs=SummarizeExpression))
+	 *         (
+	 *             (type='projective'? name=Name rhs=RecordExpression) | 
+	 *             (type='joined' name=Name rhs=JoinExpression) | 
+	 *             (type='summarized' name=Name rhs=SummarizeExpression)
+	 *         )
 	 *     )
 	 */
 	protected void sequence_ModelDefinition(EObject context, ModelDefinition semanticObject) {

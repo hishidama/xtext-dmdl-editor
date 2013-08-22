@@ -114,13 +114,22 @@ public interface DmdlPackage extends EPackage
   int MODEL_DEFINITION__ATTRIBUTES = 1;
 
   /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODEL_DEFINITION__TYPE = 2;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL_DEFINITION__NAME = 2;
+  int MODEL_DEFINITION__NAME = 3;
 
   /**
    * The feature id for the '<em><b>Rhs</b></em>' containment reference.
@@ -129,7 +138,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MODEL_DEFINITION__RHS = 3;
+  int MODEL_DEFINITION__RHS = 4;
 
   /**
    * The number of structural features of the '<em>Model Definition</em>' class.
@@ -138,7 +147,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MODEL_DEFINITION_FEATURE_COUNT = 4;
+  int MODEL_DEFINITION_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.RecordExpressionImpl <em>Record Expression</em>}' class.
@@ -983,6 +992,17 @@ public interface DmdlPackage extends EPackage
   EReference getModelDefinition_Attributes();
 
   /**
+   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getType()
+   * @see #getModelDefinition()
+   * @generated
+   */
+  EAttribute getModelDefinition_Type();
+
+  /**
    * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1751,6 +1771,14 @@ public interface DmdlPackage extends EPackage
      * @generated
      */
     EReference MODEL_DEFINITION__ATTRIBUTES = eINSTANCE.getModelDefinition_Attributes();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MODEL_DEFINITION__TYPE = eINSTANCE.getModelDefinition_Type();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
