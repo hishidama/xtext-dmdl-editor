@@ -243,6 +243,52 @@ public interface DmdlPackage extends EPackage
   int MODEL_REFERENCE_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyImpl <em>Property</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyImpl
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getProperty()
+   * @generated
+   */
+  int PROPERTY = 21;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY__DESCRIPTION = 0;
+
+  /**
+   * The feature id for the '<em><b>Attributes</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY__ATTRIBUTES = 1;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY__NAME = 2;
+
+  /**
+   * The number of structural features of the '<em>Property</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_FEATURE_COUNT = 3;
+
+  /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyDefinitionImpl <em>Property Definition</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -259,7 +305,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_DEFINITION__DESCRIPTION = 0;
+  int PROPERTY_DEFINITION__DESCRIPTION = PROPERTY__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Attributes</b></em>' containment reference.
@@ -268,7 +314,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_DEFINITION__ATTRIBUTES = 1;
+  int PROPERTY_DEFINITION__ATTRIBUTES = PROPERTY__ATTRIBUTES;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -277,7 +323,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_DEFINITION__NAME = 2;
+  int PROPERTY_DEFINITION__NAME = PROPERTY__NAME;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -286,7 +332,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_DEFINITION__TYPE = 3;
+  int PROPERTY_DEFINITION__TYPE = PROPERTY_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Property Definition</em>' class.
@@ -295,7 +341,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_DEFINITION_FEATURE_COUNT = 4;
+  int PROPERTY_DEFINITION_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.JoinExpressionImpl <em>Join Expression</em>}' class.
@@ -642,7 +688,7 @@ public interface DmdlPackage extends EPackage
   int GROUPING = 16;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute list.
+   * The feature id for the '<em><b>Name</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -704,7 +750,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_MAPPING__DESCRIPTION = 0;
+  int PROPERTY_MAPPING__DESCRIPTION = PROPERTY__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Attributes</b></em>' containment reference.
@@ -713,16 +759,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_MAPPING__ATTRIBUTES = 1;
-
-  /**
-   * The feature id for the '<em><b>From</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_MAPPING__FROM = 2;
+  int PROPERTY_MAPPING__ATTRIBUTES = PROPERTY__ATTRIBUTES;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -731,7 +768,16 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_MAPPING__NAME = 3;
+  int PROPERTY_MAPPING__NAME = PROPERTY__NAME;
+
+  /**
+   * The feature id for the '<em><b>From</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_MAPPING__FROM = PROPERTY_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Property Mapping</em>' class.
@@ -740,7 +786,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_MAPPING_FEATURE_COUNT = 4;
+  int PROPERTY_MAPPING_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.ModelFoldingImpl <em>Model Folding</em>}' class.
@@ -787,7 +833,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_FOLDING__DESCRIPTION = 0;
+  int PROPERTY_FOLDING__DESCRIPTION = PROPERTY__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Attributes</b></em>' containment reference.
@@ -796,25 +842,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_FOLDING__ATTRIBUTES = 1;
-
-  /**
-   * The feature id for the '<em><b>Aggregator</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_FOLDING__AGGREGATOR = 2;
-
-  /**
-   * The feature id for the '<em><b>From</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PROPERTY_FOLDING__FROM = 3;
+  int PROPERTY_FOLDING__ATTRIBUTES = PROPERTY__ATTRIBUTES;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -823,7 +851,25 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_FOLDING__NAME = 4;
+  int PROPERTY_FOLDING__NAME = PROPERTY__NAME;
+
+  /**
+   * The feature id for the '<em><b>Aggregator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_FOLDING__AGGREGATOR = PROPERTY_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>From</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_FOLDING__FROM = PROPERTY_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Property Folding</em>' class.
@@ -832,7 +878,7 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_FOLDING_FEATURE_COUNT = 5;
+  int PROPERTY_FOLDING_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.QualifiedNameObjectImpl <em>Qualified Name Object</em>}' class.
@@ -842,7 +888,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getQualifiedNameObject()
    * @generated
    */
-  int QUALIFIED_NAME_OBJECT = 21;
+  int QUALIFIED_NAME_OBJECT = 22;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -870,7 +916,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 22;
+  int LITERAL = 23;
 
   /**
    * The feature id for the '<em><b>String Value</b></em>' attribute.
@@ -925,7 +971,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getType()
    * @generated
    */
-  int TYPE = 23;
+  int TYPE = 24;
 
   /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.BOOLEAN <em>BOOLEAN</em>}' enum.
@@ -935,7 +981,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getBOOLEAN()
    * @generated
    */
-  int BOOLEAN = 24;
+  int BOOLEAN = 25;
 
 
   /**
@@ -1107,39 +1153,6 @@ public interface DmdlPackage extends EPackage
    * @generated
    */
   EClass getPropertyDefinition();
-
-  /**
-   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition#getDescription <em>Description</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Description</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition#getDescription()
-   * @see #getPropertyDefinition()
-   * @generated
-   */
-  EAttribute getPropertyDefinition_Description();
-
-  /**
-   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition#getAttributes <em>Attributes</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Attributes</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition#getAttributes()
-   * @see #getPropertyDefinition()
-   * @generated
-   */
-  EReference getPropertyDefinition_Attributes();
-
-  /**
-   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition#getName()
-   * @see #getPropertyDefinition()
-   * @generated
-   */
-  EAttribute getPropertyDefinition_Name();
 
   /**
    * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition#getType <em>Type</em>}'.
@@ -1439,15 +1452,15 @@ public interface DmdlPackage extends EPackage
   EClass getGrouping();
 
   /**
-   * Returns the meta object for the attribute list '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Grouping#getName <em>Name</em>}'.
+   * Returns the meta object for the reference list '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Grouping#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Name</em>'.
+   * @return the meta object for the reference list '<em>Name</em>'.
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.Grouping#getName()
    * @see #getGrouping()
    * @generated
    */
-  EAttribute getGrouping_Name();
+  EReference getGrouping_Name();
 
   /**
    * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelMapping <em>Model Mapping</em>}'.
@@ -1481,48 +1494,15 @@ public interface DmdlPackage extends EPackage
   EClass getPropertyMapping();
 
   /**
-   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping#getDescription <em>Description</em>}'.
+   * Returns the meta object for the reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping#getFrom <em>From</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Description</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping#getDescription()
-   * @see #getPropertyMapping()
-   * @generated
-   */
-  EAttribute getPropertyMapping_Description();
-
-  /**
-   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping#getAttributes <em>Attributes</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Attributes</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping#getAttributes()
-   * @see #getPropertyMapping()
-   * @generated
-   */
-  EReference getPropertyMapping_Attributes();
-
-  /**
-   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping#getFrom <em>From</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>From</em>'.
+   * @return the meta object for the reference '<em>From</em>'.
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping#getFrom()
    * @see #getPropertyMapping()
    * @generated
    */
-  EAttribute getPropertyMapping_From();
-
-  /**
-   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping#getName()
-   * @see #getPropertyMapping()
-   * @generated
-   */
-  EAttribute getPropertyMapping_Name();
+  EReference getPropertyMapping_From();
 
   /**
    * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.ModelFolding <em>Model Folding</em>}'.
@@ -1556,28 +1536,6 @@ public interface DmdlPackage extends EPackage
   EClass getPropertyFolding();
 
   /**
-   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding#getDescription <em>Description</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Description</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding#getDescription()
-   * @see #getPropertyFolding()
-   * @generated
-   */
-  EAttribute getPropertyFolding_Description();
-
-  /**
-   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding#getAttributes <em>Attributes</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Attributes</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding#getAttributes()
-   * @see #getPropertyFolding()
-   * @generated
-   */
-  EReference getPropertyFolding_Attributes();
-
-  /**
    * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding#getAggregator <em>Aggregator</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1589,26 +1547,58 @@ public interface DmdlPackage extends EPackage
   EAttribute getPropertyFolding_Aggregator();
 
   /**
-   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding#getFrom <em>From</em>}'.
+   * Returns the meta object for the reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding#getFrom <em>From</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>From</em>'.
+   * @return the meta object for the reference '<em>From</em>'.
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding#getFrom()
    * @see #getPropertyFolding()
    * @generated
    */
-  EAttribute getPropertyFolding_From();
+  EReference getPropertyFolding_From();
 
   /**
-   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding#getName <em>Name</em>}'.
+   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Property <em>Property</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Property</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Property
+   * @generated
+   */
+  EClass getProperty();
+
+  /**
+   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Property#getDescription <em>Description</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Description</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Property#getDescription()
+   * @see #getProperty()
+   * @generated
+   */
+  EAttribute getProperty_Description();
+
+  /**
+   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Property#getAttributes <em>Attributes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Attributes</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Property#getAttributes()
+   * @see #getProperty()
+   * @generated
+   */
+  EReference getProperty_Attributes();
+
+  /**
+   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Property#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding#getName()
-   * @see #getPropertyFolding()
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Property#getName()
+   * @see #getProperty()
    * @generated
    */
-  EAttribute getPropertyFolding_Name();
+  EAttribute getProperty_Name();
 
   /**
    * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedNameObject <em>Qualified Name Object</em>}'.
@@ -1869,30 +1859,6 @@ public interface DmdlPackage extends EPackage
     EClass PROPERTY_DEFINITION = eINSTANCE.getPropertyDefinition();
 
     /**
-     * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROPERTY_DEFINITION__DESCRIPTION = eINSTANCE.getPropertyDefinition_Description();
-
-    /**
-     * The meta object literal for the '<em><b>Attributes</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PROPERTY_DEFINITION__ATTRIBUTES = eINSTANCE.getPropertyDefinition_Attributes();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROPERTY_DEFINITION__NAME = eINSTANCE.getPropertyDefinition_Name();
-
-    /**
      * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2139,12 +2105,12 @@ public interface DmdlPackage extends EPackage
     EClass GROUPING = eINSTANCE.getGrouping();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Name</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute GROUPING__NAME = eINSTANCE.getGrouping_Name();
+    EReference GROUPING__NAME = eINSTANCE.getGrouping_Name();
 
     /**
      * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.ModelMappingImpl <em>Model Mapping</em>}' class.
@@ -2175,36 +2141,12 @@ public interface DmdlPackage extends EPackage
     EClass PROPERTY_MAPPING = eINSTANCE.getPropertyMapping();
 
     /**
-     * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>From</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PROPERTY_MAPPING__DESCRIPTION = eINSTANCE.getPropertyMapping_Description();
-
-    /**
-     * The meta object literal for the '<em><b>Attributes</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PROPERTY_MAPPING__ATTRIBUTES = eINSTANCE.getPropertyMapping_Attributes();
-
-    /**
-     * The meta object literal for the '<em><b>From</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROPERTY_MAPPING__FROM = eINSTANCE.getPropertyMapping_From();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROPERTY_MAPPING__NAME = eINSTANCE.getPropertyMapping_Name();
+    EReference PROPERTY_MAPPING__FROM = eINSTANCE.getPropertyMapping_From();
 
     /**
      * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.ModelFoldingImpl <em>Model Folding</em>}' class.
@@ -2235,22 +2177,6 @@ public interface DmdlPackage extends EPackage
     EClass PROPERTY_FOLDING = eINSTANCE.getPropertyFolding();
 
     /**
-     * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PROPERTY_FOLDING__DESCRIPTION = eINSTANCE.getPropertyFolding_Description();
-
-    /**
-     * The meta object literal for the '<em><b>Attributes</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PROPERTY_FOLDING__ATTRIBUTES = eINSTANCE.getPropertyFolding_Attributes();
-
-    /**
      * The meta object literal for the '<em><b>Aggregator</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2259,12 +2185,38 @@ public interface DmdlPackage extends EPackage
     EAttribute PROPERTY_FOLDING__AGGREGATOR = eINSTANCE.getPropertyFolding_Aggregator();
 
     /**
-     * The meta object literal for the '<em><b>From</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>From</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PROPERTY_FOLDING__FROM = eINSTANCE.getPropertyFolding_From();
+    EReference PROPERTY_FOLDING__FROM = eINSTANCE.getPropertyFolding_From();
+
+    /**
+     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyImpl <em>Property</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyImpl
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getProperty()
+     * @generated
+     */
+    EClass PROPERTY = eINSTANCE.getProperty();
+
+    /**
+     * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PROPERTY__DESCRIPTION = eINSTANCE.getProperty_Description();
+
+    /**
+     * The meta object literal for the '<em><b>Attributes</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROPERTY__ATTRIBUTES = eINSTANCE.getProperty_Attributes();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -2272,7 +2224,7 @@ public interface DmdlPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PROPERTY_FOLDING__NAME = eINSTANCE.getPropertyFolding_Name();
+    EAttribute PROPERTY__NAME = eINSTANCE.getProperty_Name();
 
     /**
      * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.QualifiedNameObjectImpl <em>Qualified Name Object</em>}' class.

@@ -117,7 +117,7 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	protected Object _text(PropertyFolding p) {
 		String name = p.getName();
 		String aggr = p.getAggregator();
-		String from = p.getFrom();
+		String from = p.getFrom().getName();
 
 		StyledString ss = new StyledString(name);
 		ss.append(String.format(" <- %s(%s)", aggr, from), StyledString.DECORATIONS_STYLER);

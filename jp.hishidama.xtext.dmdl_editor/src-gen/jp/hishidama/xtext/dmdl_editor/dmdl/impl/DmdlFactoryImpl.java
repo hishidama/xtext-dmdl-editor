@@ -86,6 +86,7 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
       case DmdlPackage.PROPERTY_MAPPING: return createPropertyMapping();
       case DmdlPackage.MODEL_FOLDING: return createModelFolding();
       case DmdlPackage.PROPERTY_FOLDING: return createPropertyFolding();
+      case DmdlPackage.PROPERTY: return createProperty();
       case DmdlPackage.QUALIFIED_NAME_OBJECT: return createQualifiedNameObject();
       case DmdlPackage.LITERAL: return createLiteral();
       default:
@@ -360,6 +361,17 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
   {
     PropertyFoldingImpl propertyFolding = new PropertyFoldingImpl();
     return propertyFolding;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Property createProperty()
+  {
+    PropertyImpl property = new PropertyImpl();
+    return property;
   }
 
   /**

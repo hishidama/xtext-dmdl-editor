@@ -679,6 +679,8 @@ finally {
 
 
 
+
+
 // Entry rule entryRuleQualifiedNameObject
 entryRuleQualifiedNameObject 
 :
@@ -933,6 +935,7 @@ rule__PropertyFolding__Alternatives_4
 finally {
 	restoreStackSize(stackSize);
 }
+
 
 rule__Name__Alternatives
     @init {
@@ -4803,8 +4806,12 @@ rule__Grouping__NameAssignment_1
     }
 :
 (
-{ before(grammarAccess.getGroupingAccess().getNameNameParserRuleCall_1_0()); }
-	ruleName{ after(grammarAccess.getGroupingAccess().getNameNameParserRuleCall_1_0()); }
+{ before(grammarAccess.getGroupingAccess().getNamePropertyCrossReference_1_0()); }
+(
+{ before(grammarAccess.getGroupingAccess().getNamePropertyNameParserRuleCall_1_0_1()); }
+	ruleName{ after(grammarAccess.getGroupingAccess().getNamePropertyNameParserRuleCall_1_0_1()); }
+)
+{ after(grammarAccess.getGroupingAccess().getNamePropertyCrossReference_1_0()); }
 )
 
 ;
@@ -4818,8 +4825,12 @@ rule__Grouping__NameAssignment_2_1
     }
 :
 (
-{ before(grammarAccess.getGroupingAccess().getNameNameParserRuleCall_2_1_0()); }
-	ruleName{ after(grammarAccess.getGroupingAccess().getNameNameParserRuleCall_2_1_0()); }
+{ before(grammarAccess.getGroupingAccess().getNamePropertyCrossReference_2_1_0()); }
+(
+{ before(grammarAccess.getGroupingAccess().getNamePropertyNameParserRuleCall_2_1_0_1()); }
+	ruleName{ after(grammarAccess.getGroupingAccess().getNamePropertyNameParserRuleCall_2_1_0_1()); }
+)
+{ after(grammarAccess.getGroupingAccess().getNamePropertyCrossReference_2_1_0()); }
 )
 
 ;
@@ -4878,8 +4889,12 @@ rule__PropertyMapping__FromAssignment_2
     }
 :
 (
-{ before(grammarAccess.getPropertyMappingAccess().getFromNameParserRuleCall_2_0()); }
-	ruleName{ after(grammarAccess.getPropertyMappingAccess().getFromNameParserRuleCall_2_0()); }
+{ before(grammarAccess.getPropertyMappingAccess().getFromPropertyCrossReference_2_0()); }
+(
+{ before(grammarAccess.getPropertyMappingAccess().getFromPropertyNameParserRuleCall_2_0_1()); }
+	ruleName{ after(grammarAccess.getPropertyMappingAccess().getFromPropertyNameParserRuleCall_2_0_1()); }
+)
+{ after(grammarAccess.getPropertyMappingAccess().getFromPropertyCrossReference_2_0()); }
 )
 
 ;
@@ -4968,8 +4983,12 @@ rule__PropertyFolding__FromAssignment_3
     }
 :
 (
-{ before(grammarAccess.getPropertyFoldingAccess().getFromNameParserRuleCall_3_0()); }
-	ruleName{ after(grammarAccess.getPropertyFoldingAccess().getFromNameParserRuleCall_3_0()); }
+{ before(grammarAccess.getPropertyFoldingAccess().getFromPropertyCrossReference_3_0()); }
+(
+{ before(grammarAccess.getPropertyFoldingAccess().getFromPropertyNameParserRuleCall_3_0_1()); }
+	ruleName{ after(grammarAccess.getPropertyFoldingAccess().getFromPropertyNameParserRuleCall_3_0_1()); }
+)
+{ after(grammarAccess.getPropertyFoldingAccess().getFromPropertyCrossReference_3_0()); }
 )
 
 ;

@@ -25,19 +25,19 @@ import org.eclipse.emf.ecore.EObject;
 public interface Grouping extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Name</b></em>' reference list.
+   * The list contents are of type {@link jp.hishidama.xtext.dmdl_editor.dmdl.Property}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Name</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Name</em>' reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute list.
+   * @return the value of the '<em>Name</em>' reference list.
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage#getGrouping_Name()
-   * @model unique="false"
+   * @model
    * @generated
    */
-  EList<String> getName();
+  EList<Property> getName();
 
 } // Grouping

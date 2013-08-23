@@ -76,7 +76,7 @@ AttributeValueArray:
 	'{' elements+=AttributeValue (',' elements+=AttributeValue)* ','? '}';
 
 Grouping:
-	'%' name+=Name (',' name+=Name)*;
+	'%' name+=[Property|Name] (',' name+=[Property|Name])*;
 
 ModelMapping:
 	'->' '{' (mappings+=PropertyMapping)+ '}';
@@ -84,7 +84,7 @@ ModelMapping:
 PropertyMapping:
 	(description=Description)?
 	(attributes=AttributeList)?
-	from=Name '->' name=Name
+	from=[Property|Name] '->' name=Name
 	';';
 
 ModelFolding:
@@ -94,8 +94,11 @@ PropertyFolding:
 	(description=Description)?
 	(attributes=AttributeList)?
 	aggregator=QualifiedName
-	from=Name ('->' | '=>') name=Name
+	from=[Property|Name] ('->' | '=>') name=Name
 	';';
+
+Property:
+	PropertyDefinition | PropertyMapping | PropertyFolding;
 
 QualifiedNameObject:
 	name=QualifiedName;

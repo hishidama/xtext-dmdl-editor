@@ -6,6 +6,7 @@ import java.util.Collection;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Grouping;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -13,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,14 +32,14 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
 public class GroupingImpl extends MinimalEObjectImpl.Container implements Grouping
 {
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute list.
+   * The cached value of the '{@link #getName() <em>Name</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
    */
-  protected EList<String> name;
+  protected EList<Property> name;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,11 +67,11 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getName()
+  public EList<Property> getName()
   {
     if (name == null)
     {
-      name = new EDataTypeEList<String>(String.class, this, DmdlPackage.GROUPING__NAME);
+      name = new EObjectResolvingEList<Property>(Property.class, this, DmdlPackage.GROUPING__NAME);
     }
     return name;
   }
@@ -104,7 +105,7 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
     {
       case DmdlPackage.GROUPING__NAME:
         getName().clear();
-        getName().addAll((Collection<? extends String>)newValue);
+        getName().addAll((Collection<? extends Property>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -141,23 +142,6 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
         return name != null && !name.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //GroupingImpl

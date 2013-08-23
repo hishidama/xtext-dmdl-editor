@@ -41,6 +41,7 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRecordTermAccess().getAlternatives(), "rule__RecordTerm__Alternatives");
 					put(grammarAccess.getAttributeValueAccess().getAlternatives(), "rule__AttributeValue__Alternatives");
 					put(grammarAccess.getPropertyFoldingAccess().getAlternatives_4(), "rule__PropertyFolding__Alternatives_4");
+					put(grammarAccess.getPropertyAccess().getAlternatives(), "rule__Property__Alternatives");
 					put(grammarAccess.getNameAccess().getAlternatives(), "rule__Name__Alternatives");
 					put(grammarAccess.getLiteralAccess().getAlternatives(), "rule__Literal__Alternatives");
 					put(grammarAccess.getTypeAccess().getAlternatives(), "rule__Type__Alternatives");

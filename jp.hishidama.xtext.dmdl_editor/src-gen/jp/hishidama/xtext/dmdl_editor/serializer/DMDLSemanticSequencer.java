@@ -132,19 +132,22 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				}
 				else break;
 			case DmdlPackage.PROPERTY_DEFINITION:
-				if(context == grammarAccess.getPropertyDefinitionRule()) {
+				if(context == grammarAccess.getPropertyRule() ||
+				   context == grammarAccess.getPropertyDefinitionRule()) {
 					sequence_PropertyDefinition(context, (PropertyDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case DmdlPackage.PROPERTY_FOLDING:
-				if(context == grammarAccess.getPropertyFoldingRule()) {
+				if(context == grammarAccess.getPropertyRule() ||
+				   context == grammarAccess.getPropertyFoldingRule()) {
 					sequence_PropertyFolding(context, (PropertyFolding) semanticObject); 
 					return; 
 				}
 				else break;
 			case DmdlPackage.PROPERTY_MAPPING:
-				if(context == grammarAccess.getPropertyMappingRule()) {
+				if(context == grammarAccess.getPropertyRule() ||
+				   context == grammarAccess.getPropertyMappingRule()) {
 					sequence_PropertyMapping(context, (PropertyMapping) semanticObject); 
 					return; 
 				}
@@ -255,7 +258,7 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (name+=Name name+=Name*)
+	 *     (name+=[Property|Name] name+=[Property|Name]*)
 	 */
 	protected void sequence_Grouping(EObject context, Grouping semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -351,7 +354,7 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (description=Description? attributes=AttributeList? aggregator=QualifiedName from=Name name=Name)
+	 *     (description=Description? attributes=AttributeList? aggregator=QualifiedName from=[Property|Name] name=Name)
 	 */
 	protected void sequence_PropertyFolding(EObject context, PropertyFolding semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -360,7 +363,7 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (description=Description? attributes=AttributeList? from=Name name=Name)
+	 *     (description=Description? attributes=AttributeList? from=[Property|Name] name=Name)
 	 */
 	protected void sequence_PropertyMapping(EObject context, PropertyMapping semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

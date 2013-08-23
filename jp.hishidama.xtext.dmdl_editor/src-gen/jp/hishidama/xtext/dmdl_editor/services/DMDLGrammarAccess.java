@@ -717,40 +717,48 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cPercentSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final CrossReference cNamePropertyCrossReference_1_0 = (CrossReference)cNameAssignment_1.eContents().get(0);
+		private final RuleCall cNamePropertyNameParserRuleCall_1_0_1 = (RuleCall)cNamePropertyCrossReference_1_0.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cNameAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cNameNameParserRuleCall_2_1_0 = (RuleCall)cNameAssignment_2_1.eContents().get(0);
+		private final CrossReference cNamePropertyCrossReference_2_1_0 = (CrossReference)cNameAssignment_2_1.eContents().get(0);
+		private final RuleCall cNamePropertyNameParserRuleCall_2_1_0_1 = (RuleCall)cNamePropertyCrossReference_2_1_0.eContents().get(1);
 		
 		//Grouping:
 		//
-		//	"%" name+=Name ("," name+=Name)*;
+		//	"%" name+=[Property|Name] ("," name+=[Property|Name])*;
 		public ParserRule getRule() { return rule; }
 
-		//"%" name+=Name ("," name+=Name)*
+		//"%" name+=[Property|Name] ("," name+=[Property|Name])*
 		public Group getGroup() { return cGroup; }
 
 		//"%"
 		public Keyword getPercentSignKeyword_0() { return cPercentSignKeyword_0; }
 
-		//name+=Name
+		//name+=[Property|Name]
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 
-		//Name
-		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
+		//[Property|Name]
+		public CrossReference getNamePropertyCrossReference_1_0() { return cNamePropertyCrossReference_1_0; }
 
-		//("," name+=Name)*
+		//Name
+		public RuleCall getNamePropertyNameParserRuleCall_1_0_1() { return cNamePropertyNameParserRuleCall_1_0_1; }
+
+		//("," name+=[Property|Name])*
 		public Group getGroup_2() { return cGroup_2; }
 
 		//","
 		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
 
-		//name+=Name
+		//name+=[Property|Name]
 		public Assignment getNameAssignment_2_1() { return cNameAssignment_2_1; }
 
+		//[Property|Name]
+		public CrossReference getNamePropertyCrossReference_2_1_0() { return cNamePropertyCrossReference_2_1_0; }
+
 		//Name
-		public RuleCall getNameNameParserRuleCall_2_1_0() { return cNameNameParserRuleCall_2_1_0; }
+		public RuleCall getNamePropertyNameParserRuleCall_2_1_0_1() { return cNamePropertyNameParserRuleCall_2_1_0_1; }
 	}
 
 	public class ModelMappingElements extends AbstractParserRuleElementFinder {
@@ -794,7 +802,8 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cAttributesAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cAttributesAttributeListParserRuleCall_1_0 = (RuleCall)cAttributesAssignment_1.eContents().get(0);
 		private final Assignment cFromAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cFromNameParserRuleCall_2_0 = (RuleCall)cFromAssignment_2.eContents().get(0);
+		private final CrossReference cFromPropertyCrossReference_2_0 = (CrossReference)cFromAssignment_2.eContents().get(0);
+		private final RuleCall cFromPropertyNameParserRuleCall_2_0_1 = (RuleCall)cFromPropertyCrossReference_2_0.eContents().get(1);
 		private final Keyword cHyphenMinusGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cNameAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cNameNameParserRuleCall_4_0 = (RuleCall)cNameAssignment_4.eContents().get(0);
@@ -802,10 +811,10 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PropertyMapping:
 		//
-		//	description=Description? attributes=AttributeList? from=Name "->" name=Name ";";
+		//	description=Description? attributes=AttributeList? from=[Property|Name] "->" name=Name ";";
 		public ParserRule getRule() { return rule; }
 
-		//description=Description? attributes=AttributeList? from=Name "->" name=Name ";"
+		//description=Description? attributes=AttributeList? from=[Property|Name] "->" name=Name ";"
 		public Group getGroup() { return cGroup; }
 
 		//description=Description?
@@ -820,11 +829,14 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		//AttributeList
 		public RuleCall getAttributesAttributeListParserRuleCall_1_0() { return cAttributesAttributeListParserRuleCall_1_0; }
 
-		//from=Name
+		//from=[Property|Name]
 		public Assignment getFromAssignment_2() { return cFromAssignment_2; }
 
+		//[Property|Name]
+		public CrossReference getFromPropertyCrossReference_2_0() { return cFromPropertyCrossReference_2_0; }
+
 		//Name
-		public RuleCall getFromNameParserRuleCall_2_0() { return cFromNameParserRuleCall_2_0; }
+		public RuleCall getFromPropertyNameParserRuleCall_2_0_1() { return cFromPropertyNameParserRuleCall_2_0_1; }
 
 		//"->"
 		public Keyword getHyphenMinusGreaterThanSignKeyword_3() { return cHyphenMinusGreaterThanSignKeyword_3; }
@@ -882,7 +894,8 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cAggregatorAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cAggregatorQualifiedNameParserRuleCall_2_0 = (RuleCall)cAggregatorAssignment_2.eContents().get(0);
 		private final Assignment cFromAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cFromNameParserRuleCall_3_0 = (RuleCall)cFromAssignment_3.eContents().get(0);
+		private final CrossReference cFromPropertyCrossReference_3_0 = (CrossReference)cFromAssignment_3.eContents().get(0);
+		private final RuleCall cFromPropertyNameParserRuleCall_3_0_1 = (RuleCall)cFromPropertyCrossReference_3_0.eContents().get(1);
 		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
 		private final Keyword cHyphenMinusGreaterThanSignKeyword_4_0 = (Keyword)cAlternatives_4.eContents().get(0);
 		private final Keyword cEqualsSignGreaterThanSignKeyword_4_1 = (Keyword)cAlternatives_4.eContents().get(1);
@@ -892,10 +905,14 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PropertyFolding:
 		//
-		//	description=Description? attributes=AttributeList? aggregator=QualifiedName from=Name ("->" | "=>") name=Name ";";
+		//	description=Description? attributes=AttributeList? aggregator=QualifiedName from=[Property|Name] ("->" | "=>")
+		//
+		//	name=Name ";";
 		public ParserRule getRule() { return rule; }
 
-		//description=Description? attributes=AttributeList? aggregator=QualifiedName from=Name ("->" | "=>") name=Name ";"
+		//description=Description? attributes=AttributeList? aggregator=QualifiedName from=[Property|Name] ("->" | "=>") name=Name
+		//
+		//";"
 		public Group getGroup() { return cGroup; }
 
 		//description=Description?
@@ -916,11 +933,14 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getAggregatorQualifiedNameParserRuleCall_2_0() { return cAggregatorQualifiedNameParserRuleCall_2_0; }
 
-		//from=Name
+		//from=[Property|Name]
 		public Assignment getFromAssignment_3() { return cFromAssignment_3; }
 
+		//[Property|Name]
+		public CrossReference getFromPropertyCrossReference_3_0() { return cFromPropertyCrossReference_3_0; }
+
 		//Name
-		public RuleCall getFromNameParserRuleCall_3_0() { return cFromNameParserRuleCall_3_0; }
+		public RuleCall getFromPropertyNameParserRuleCall_3_0_1() { return cFromPropertyNameParserRuleCall_3_0_1; }
 
 		//"->" | "=>"
 		public Alternatives getAlternatives_4() { return cAlternatives_4; }
@@ -939,6 +959,31 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 		//";"
 		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
+	}
+
+	public class PropertyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Property");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cPropertyDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cPropertyMappingParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cPropertyFoldingParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//Property:
+		//
+		//	PropertyDefinition | PropertyMapping | PropertyFolding;
+		public ParserRule getRule() { return rule; }
+
+		//PropertyDefinition | PropertyMapping | PropertyFolding
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//PropertyDefinition
+		public RuleCall getPropertyDefinitionParserRuleCall_0() { return cPropertyDefinitionParserRuleCall_0; }
+
+		//PropertyMapping
+		public RuleCall getPropertyMappingParserRuleCall_1() { return cPropertyMappingParserRuleCall_1; }
+
+		//PropertyFolding
+		public RuleCall getPropertyFoldingParserRuleCall_2() { return cPropertyFoldingParserRuleCall_2; }
 	}
 
 	public class QualifiedNameObjectElements extends AbstractParserRuleElementFinder {
@@ -1214,6 +1259,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	private PropertyMappingElements pPropertyMapping;
 	private ModelFoldingElements pModelFolding;
 	private PropertyFoldingElements pPropertyFolding;
+	private PropertyElements pProperty;
 	private QualifiedNameObjectElements pQualifiedNameObject;
 	private QualifiedNameElements pQualifiedName;
 	private NameElements pName;
@@ -1451,7 +1497,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Grouping:
 	//
-	//	"%" name+=Name ("," name+=Name)*;
+	//	"%" name+=[Property|Name] ("," name+=[Property|Name])*;
 	public GroupingElements getGroupingAccess() {
 		return (pGrouping != null) ? pGrouping : (pGrouping = new GroupingElements());
 	}
@@ -1473,7 +1519,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//PropertyMapping:
 	//
-	//	description=Description? attributes=AttributeList? from=Name "->" name=Name ";";
+	//	description=Description? attributes=AttributeList? from=[Property|Name] "->" name=Name ";";
 	public PropertyMappingElements getPropertyMappingAccess() {
 		return (pPropertyMapping != null) ? pPropertyMapping : (pPropertyMapping = new PropertyMappingElements());
 	}
@@ -1495,13 +1541,26 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//PropertyFolding:
 	//
-	//	description=Description? attributes=AttributeList? aggregator=QualifiedName from=Name ("->" | "=>") name=Name ";";
+	//	description=Description? attributes=AttributeList? aggregator=QualifiedName from=[Property|Name] ("->" | "=>")
+	//
+	//	name=Name ";";
 	public PropertyFoldingElements getPropertyFoldingAccess() {
 		return (pPropertyFolding != null) ? pPropertyFolding : (pPropertyFolding = new PropertyFoldingElements());
 	}
 	
 	public ParserRule getPropertyFoldingRule() {
 		return getPropertyFoldingAccess().getRule();
+	}
+
+	//Property:
+	//
+	//	PropertyDefinition | PropertyMapping | PropertyFolding;
+	public PropertyElements getPropertyAccess() {
+		return (pProperty != null) ? pProperty : (pProperty = new PropertyElements());
+	}
+	
+	public ParserRule getPropertyRule() {
+		return getPropertyAccess().getRule();
 	}
 
 	//QualifiedNameObject:

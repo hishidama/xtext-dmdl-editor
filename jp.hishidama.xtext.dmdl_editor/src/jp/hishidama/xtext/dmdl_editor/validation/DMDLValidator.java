@@ -29,13 +29,13 @@ public class DMDLValidator extends AbstractDMDLValidator {
 	@Check
 	public void checkPropertyName(PropertyDefinition p) {
 		String name = p.getName();
-		checkName(name, DmdlPackage.Literals.PROPERTY_DEFINITION__NAME);
+		checkName(name, DmdlPackage.Literals.PROPERTY__NAME);
 	}
 
 	@Check
 	public void checkPropertyName(PropertyFolding p) {
 		String name = p.getName();
-		checkName(name, DmdlPackage.Literals.PROPERTY_FOLDING__NAME);
+		checkName(name, DmdlPackage.Literals.PROPERTY__NAME);
 	}
 
 	private void checkName(String name, EStructuralFeature feature) {

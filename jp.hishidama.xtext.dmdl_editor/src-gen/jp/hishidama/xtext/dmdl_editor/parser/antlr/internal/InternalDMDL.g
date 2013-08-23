@@ -1299,18 +1299,15 @@ ruleGrouping returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getGroupingAccess().getNameNameParserRuleCall_1_0()); 
-	    }
-		lv_name_1_0=ruleName		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getGroupingRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getGroupingRule());
 	        }
-       		add(
-       			$current, 
-       			"name",
-        		lv_name_1_0, 
-        		"Name");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getGroupingAccess().getNamePropertyCrossReference_1_0()); 
+	    }
+		ruleName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1321,18 +1318,15 @@ ruleGrouping returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getGroupingAccess().getNameNameParserRuleCall_2_1_0()); 
-	    }
-		lv_name_3_0=ruleName		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getGroupingRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getGroupingRule());
 	        }
-       		add(
-       			$current, 
-       			"name",
-        		lv_name_3_0, 
-        		"Name");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getGroupingAccess().getNamePropertyCrossReference_2_1_0()); 
+	    }
+		ruleName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1447,18 +1441,15 @@ rulePropertyMapping returns [EObject current=null]
 )
 )?(
 (
-		{ 
-	        newCompositeNode(grammarAccess.getPropertyMappingAccess().getFromNameParserRuleCall_2_0()); 
-	    }
-		lv_from_2_0=ruleName		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPropertyMappingRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPropertyMappingRule());
 	        }
-       		set(
-       			$current, 
-       			"from",
-        		lv_from_2_0, 
-        		"Name");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getPropertyMappingAccess().getFromPropertyCrossReference_2_0()); 
+	    }
+		ruleName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1617,18 +1608,15 @@ rulePropertyFolding returns [EObject current=null]
 )
 )(
 (
-		{ 
-	        newCompositeNode(grammarAccess.getPropertyFoldingAccess().getFromNameParserRuleCall_3_0()); 
-	    }
-		lv_from_3_0=ruleName		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPropertyFoldingRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPropertyFoldingRule());
 	        }
-       		set(
-       			$current, 
-       			"from",
-        		lv_from_3_0, 
-        		"Name");
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getPropertyFoldingAccess().getFromPropertyCrossReference_3_0()); 
+	    }
+		ruleName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1666,6 +1654,8 @@ rulePropertyFolding returns [EObject current=null]
     }
 )
 ;
+
+
 
 
 

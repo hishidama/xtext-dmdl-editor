@@ -180,6 +180,11 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
         return createPropertyFoldingAdapter();
       }
       @Override
+      public Adapter caseProperty(Property object)
+      {
+        return createPropertyAdapter();
+      }
+      @Override
       public Adapter caseQualifiedNameObject(QualifiedNameObject object)
       {
         return createQualifiedNameObjectAdapter();
@@ -522,6 +527,21 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPropertyFoldingAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Property <em>Property</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Property
+   * @generated
+   */
+  public Adapter createPropertyAdapter()
   {
     return null;
   }
