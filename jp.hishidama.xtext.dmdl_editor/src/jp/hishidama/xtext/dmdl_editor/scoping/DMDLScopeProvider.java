@@ -42,17 +42,16 @@ public class DMDLScopeProvider extends AbstractDeclarativeScopeProvider {
 
 	// joined
 	public IScope scope_PropertyMapping_from(ModelMapping modelMapping, EReference ref) {
-		JoinTerm term = EcoreUtil2.getContainerOfType(modelMapping, JoinTerm.class);
-		ModelDefinition model = term.getReference().getName();
-
-		List<EObject> list = new ArrayList<EObject>();
-		add(list, model);
-		return Scopes.scopeFor(list);
+		return joinScope(modelMapping, ref);
 	}
 
 	// joined
 	public IScope scope_PropertyMapping_from(PropertyMapping property, EReference ref) {
-		JoinTerm term = EcoreUtil2.getContainerOfType(property, JoinTerm.class);
+		return joinScope(property, ref);
+	}
+
+	private IScope joinScope(EObject context, EReference ref) {
+		JoinTerm term = EcoreUtil2.getContainerOfType(context, JoinTerm.class);
 		ModelDefinition model = term.getReference().getName();
 
 		List<EObject> list = new ArrayList<EObject>();
