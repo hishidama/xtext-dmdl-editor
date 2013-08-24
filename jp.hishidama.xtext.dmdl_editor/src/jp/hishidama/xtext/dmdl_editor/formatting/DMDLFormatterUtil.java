@@ -21,6 +21,10 @@ class DMDLFormatterUtil {
 		for (Pair<Keyword, Keyword> pair : f.findKeywordPairs("(", ")")) {
 			c.setNoSpace().after(pair.getFirst()); // 開き括弧の直後は詰める
 			c.setNoSpace().before(pair.getSecond()); // 閉じ括弧の直前は詰める
+
+			c.setIndentationIncrement().after(pair.getFirst());
+			c.setIndentationDecrement().before(pair.getSecond());
+
 		}
 		// 波括弧
 		curlyBrace(c, f.getRecordTermAccess());
@@ -48,9 +52,10 @@ class DMDLFormatterUtil {
 		// descriptionの直後は改行する
 		c.setLinewrap().after(f.getDescriptionRule());
 
-		// attributeの直後は改行する
-		c.setNoSpace().before(f.getAttributeAccess().getLeftParenthesisKeyword_2_0());
-		c.setLinewrap().after(f.getAttributeRule());
+		// attribute
+		c.setNoSpace().before(f.getAttributeAccess().getLeftParenthesisKeyword_2_0()); // (の直前は詰める
+		c.setLinewrap().after(f.getAttributeElementListAccess().getCommaKeyword_1_0()); // ,の直後は改行する
+		c.setLinewrap().after(f.getAttributeRule()); // 直後は改行する
 
 		// プロパティーの前は1行空ける
 		c.setLinewrap(2).before(f.getPropertyDefinitionRule());
