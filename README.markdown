@@ -8,7 +8,7 @@ Asakusa Framework DMDLエディター by Xtext
 インストール方法
 ----------------
 [Xtextのダウンロードサイト](http://www.eclipse.org/Xtext/download.html)のFull Eclipseに
-更新サイトとして[http://hishidama.github.io/xtext-dmdl-editor/jp.hishidama.xtext.dmdl_editor.site/](http://hishidama.github.io/xtext-dmdl-editor/jp.hishidama.xtext.dmdl_editor.site/)を指定して下さい。
+更新サイトとして[http://hishidama.github.io/xtext-dmdl-editor/site/](http://hishidama.github.io/xtext-dmdl-editor/site/)を指定して下さい。
 
 
 出来ること
