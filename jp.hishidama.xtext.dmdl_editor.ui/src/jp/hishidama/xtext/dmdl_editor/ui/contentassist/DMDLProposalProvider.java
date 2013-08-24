@@ -8,6 +8,9 @@ import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
+import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.ui.contentassist.AbstractDMDLProposalProvider;
 
 /**
@@ -24,5 +27,25 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 		acceptor.accept(createCompletionProposal("min", context));
 		acceptor.accept(createCompletionProposal("max", context));
 		acceptor.accept(createCompletionProposal("count", context));
+	}
+
+	@Override
+	public void completePropertyFolding_Name(EObject model, Assignment assignment, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		PropertyFolding property = (PropertyFolding) model;
+		Property ref = property.getFrom();
+		if (ref != null) {
+			acceptor.accept(createCompletionProposal(ref.getName(), context));
+		}
+	}
+
+	@Override
+	public void completePropertyMapping_Name(EObject model, Assignment assignment, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		PropertyMapping property = (PropertyMapping) model;
+		Property ref = property.getFrom();
+		if (ref != null) {
+			acceptor.accept(createCompletionProposal(ref.getName(), context));
+		}
 	}
 }
