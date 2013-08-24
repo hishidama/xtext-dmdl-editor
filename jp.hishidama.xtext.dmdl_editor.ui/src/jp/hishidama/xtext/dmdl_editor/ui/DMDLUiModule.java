@@ -6,8 +6,10 @@ package jp.hishidama.xtext.dmdl_editor.ui;
 import jp.hishidama.xtext.dmdl_editor.ui.highlighting.DMDLHighlightingConfiguration;
 import jp.hishidama.xtext.dmdl_editor.ui.highlighting.DMDLLexicalTokenToAttributeIdMapper;
 import jp.hishidama.xtext.dmdl_editor.ui.highlighting.DMDLSemanticHighlightingCalculator;
+import jp.hishidama.xtext.dmdl_editor.ui.labeling.DMDLHoverProvider;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
@@ -30,5 +32,9 @@ public class DMDLUiModule extends jp.hishidama.xtext.dmdl_editor.ui.AbstractDMDL
 
 	public Class<? extends IHighlightingConfiguration> bindHighlightingConfiguration() {
 		return DMDLHighlightingConfiguration.class;
+	}
+
+	public Class<? extends IEObjectHoverProvider> bindHoverProvider() {
+		return DMDLHoverProvider.class;
 	}
 }
