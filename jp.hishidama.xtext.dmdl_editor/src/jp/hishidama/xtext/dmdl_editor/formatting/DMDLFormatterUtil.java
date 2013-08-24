@@ -50,8 +50,12 @@ class DMDLFormatterUtil {
 
 		// attributeの直後は改行する
 		c.setNoSpace().before(f.getAttributeAccess().getLeftParenthesisKeyword_2_0());
-
 		c.setLinewrap().after(f.getAttributeRule());
+
+		// プロパティーの前は1行空ける
+		c.setLinewrap(2).before(f.getPropertyDefinitionRule());
+		c.setLinewrap(2).before(f.getPropertyMappingRule());
+		c.setLinewrap(2).before(f.getPropertyFoldingRule());
 
 		// joinedの+の直前は改行する
 		c.setLinewrap().before(f.getJoinExpressionAccess().getPlusSignKeyword_1_0());
