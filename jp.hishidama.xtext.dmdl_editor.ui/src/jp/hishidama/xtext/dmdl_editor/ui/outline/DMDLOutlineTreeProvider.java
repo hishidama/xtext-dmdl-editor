@@ -115,9 +115,6 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			} else {
 				ModelReference ref = term.getReference();
 				list.add(ref);
-				if (ref != null) {
-					// list.add(ref.getName());
-				}
 			}
 		}
 		for (EObject p : list) {
@@ -147,6 +144,10 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		_createChildren(parentNode, ref.getName());
 	}
 
+	/*
+	 * isLeaf
+	 */
+
 	protected boolean _isLeaf(Attribute modelElement) {
 		return true;
 	}
@@ -154,6 +155,10 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	protected boolean _isLeaf(ModelReference modelElement) {
 		return false;
 	}
+
+	/*
+	 * text
+	 */
 
 	protected Object _text(ModelReference ref) {
 		return _text(ref.getName());
@@ -201,6 +206,10 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		return new StyledString((text != null) ? text : "<undifined>");
 	}
 
+	/*
+	 * image
+	 */
+
 	protected Image _image(ModelDefinition model) {
 		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_OBJS_CLASS);
 	}
@@ -210,14 +219,18 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 
 	protected Image _image(PropertyDefinition p) {
-		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_FIELD_PUBLIC);
+		return propertyImage();
 	}
 
 	protected Image _image(PropertyMapping p) {
-		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_FIELD_PUBLIC);
+		return propertyImage();
 	}
 
 	protected Image _image(PropertyFolding p) {
+		return propertyImage();
+	}
+
+	private Image propertyImage() {
 		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_FIELD_PUBLIC);
 	}
 
