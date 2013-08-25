@@ -3,11 +3,19 @@
  */
 package jp.hishidama.xtext.dmdl_editor.ui.outline;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.JoinExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.JoinTerm;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelFolding;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelMapping;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
@@ -52,36 +60,15 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 		EObject rhs = model.getRhs();
 		if (rhs instanceof RecordExpression) {
-			for (RecordTerm term : ((RecordExpression) rhs).getTerms()) {
-				EList<PropertyDefinition> properties = term.getProperties();
-				if (properties != null) {
-					for (PropertyDefinition p : properties) {
-						createNode(parentNode, p);
-					}
-				}
-			}
+			createRecordModelChildren(parentNode, (RecordExpression) rhs);
 			return;
 		}
 		if (rhs instanceof JoinExpression) {
-			for (JoinTerm term : ((JoinExpression) rhs).getTerms()) {
-				EList<PropertyMapping> properties = term.getMapping().getMappings();
-				if (properties != null) {
-					for (PropertyMapping p : properties) {
-						createNode(parentNode, p);
-					}
-				}
-			}
+			createJoinModelChildren(parentNode, (JoinExpression) rhs);
 			return;
 		}
 		if (rhs instanceof SummarizeExpression) {
-			for (SummarizeTerm term : ((SummarizeExpression) rhs).getTerms()) {
-				EList<PropertyFolding> properties = term.getFolding().getFoldings();
-				if (properties != null) {
-					for (PropertyFolding p : properties) {
-						createNode(parentNode, p);
-					}
-				}
-			}
+			createSummarizeModelChildren(parentNode, (SummarizeExpression) rhs);
 			return;
 		}
 
@@ -90,9 +77,86 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 
-	@Override
-	protected boolean _isLeaf(EObject modelElement) {
-		return super._isLeaf(modelElement);
+	private void createRecordModelChildren(IOutlineNode parentNode, RecordExpression rhs) {
+		EList<RecordTerm> terms = rhs.getTerms();
+		if (terms == null) {
+			return;
+		}
+		for (RecordTerm term : terms) {
+			EList<PropertyDefinition> properties = term.getProperties();
+			if (properties != null) {
+				for (PropertyDefinition p : properties) {
+					createNode(parentNode, p);
+				}
+			}
+		}
+	}
+
+	private void createJoinModelChildren(IOutlineNode parentNode, JoinExpression rhs) {
+		EList<JoinTerm> terms = rhs.getTerms();
+		if (terms == null) {
+			return;
+		}
+		Set<String> set = new HashSet<String>();
+		List<EObject> list = new ArrayList<EObject>();
+		for (JoinTerm term : terms) {
+			ModelMapping mapping = term.getMapping();
+			if (mapping != null) {
+				EList<PropertyMapping> properties = mapping.getMappings();
+				if (properties != null) {
+					for (PropertyMapping p : properties) {
+						String key = p.getName();
+						if (!set.contains(key)) {
+							set.add(key);
+							list.add(p);
+						}
+					}
+				}
+			} else {
+				ModelReference ref = term.getReference();
+				list.add(ref);
+				if (ref != null) {
+					// list.add(ref.getName());
+				}
+			}
+		}
+		for (EObject p : list) {
+			createNode(parentNode, p);
+		}
+	}
+
+	private void createSummarizeModelChildren(IOutlineNode parentNode, SummarizeExpression rhs) {
+		EList<SummarizeTerm> terms = rhs.getTerms();
+		if (terms == null) {
+			return;
+		}
+		for (SummarizeTerm term : terms) {
+			ModelFolding folding = term.getFolding();
+			if (folding != null) {
+				EList<PropertyFolding> properties = folding.getFoldings();
+				if (properties != null) {
+					for (PropertyFolding p : properties) {
+						createNode(parentNode, p);
+					}
+				}
+			}
+		}
+	}
+
+	protected void _createChildren(IOutlineNode parentNode, ModelReference ref) {
+		_createChildren(parentNode, ref.getName());
+	}
+
+	protected boolean _isLeaf(Attribute modelElement) {
+		return true;
+	}
+
+	protected boolean _isLeaf(ModelReference modelElement) {
+		return false;
+	}
+
+	protected Object _text(ModelReference ref) {
+		return _text(ref.getName());
 	}
 
 	protected Object _text(AttributeList a) {
@@ -107,11 +171,20 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		String name = p.getName();
 		Type type = p.getType();
 		if (type != null) {
-			StyledString ss = new StyledString(name);
+			StyledString ss = newStyledString(name);
 			ss.append(" : " + type, StyledString.DECORATIONS_STYLER);
 			return ss;
 		}
 		return name;
+	}
+
+	protected Object _text(PropertyMapping p) {
+		String name = p.getName();
+		String from = p.getFrom().getName();
+
+		StyledString ss = newStyledString(name);
+		ss.append(String.format(" <- %s", from), StyledString.DECORATIONS_STYLER);
+		return ss;
 	}
 
 	protected Object _text(PropertyFolding p) {
@@ -119,21 +192,33 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		String aggr = p.getAggregator();
 		String from = p.getFrom().getName();
 
-		StyledString ss = new StyledString(name);
+		StyledString ss = newStyledString(name);
 		ss.append(String.format(" <- %s(%s)", aggr, from), StyledString.DECORATIONS_STYLER);
 		return ss;
+	}
+
+	private StyledString newStyledString(String text) {
+		return new StyledString((text != null) ? text : "<undifined>");
 	}
 
 	protected Image _image(ModelDefinition model) {
 		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_OBJS_CLASS);
 	}
 
+	protected Image _image(ModelReference ref) {
+		return _image(ref.getName());
+	}
+
 	protected Image _image(PropertyDefinition p) {
-		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_OBJS_PUBLIC);
+		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_FIELD_PUBLIC);
+	}
+
+	protected Image _image(PropertyMapping p) {
+		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_FIELD_PUBLIC);
 	}
 
 	protected Image _image(PropertyFolding p) {
-		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_OBJS_PUBLIC);
+		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_FIELD_PUBLIC);
 	}
 
 	protected Image _image(Attribute a) {
