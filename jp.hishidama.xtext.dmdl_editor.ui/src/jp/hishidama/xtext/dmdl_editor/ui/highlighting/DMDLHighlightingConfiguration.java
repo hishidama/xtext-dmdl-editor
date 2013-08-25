@@ -45,38 +45,42 @@ public class DMDLHighlightingConfiguration implements IHighlightingConfiguration
 		acceptor.acceptDefaultHighlighting(INVALID_TOKEN_ID, "Invalid Symbol", errorTextStyle());
 	}
 
-	protected TextStyle defaultTextStyle() {
+	protected TextStyle newDefaultTextStyle() {
 		TextStyle textStyle = new TextStyle();
 		textStyle.setColor(new RGB(0, 0, 0));
 		return textStyle;
 	}
 
+	protected TextStyle defaultTextStyle() {
+		return newDefaultTextStyle();
+	}
+
 	protected TextStyle errorTextStyle() {
-		TextStyle textStyle = defaultTextStyle().copy();
+		TextStyle textStyle = newDefaultTextStyle();
 		// textStyle.setColor(new RGB(255, 0, 0));
 		return textStyle;
 	}
 
 	protected TextStyle numberTextStyle() {
-		TextStyle textStyle = defaultTextStyle().copy();
+		TextStyle textStyle = newDefaultTextStyle();
 		textStyle.setColor(new RGB(125, 125, 125));
 		return textStyle;
 	}
 
 	protected TextStyle stringTextStyle() {
-		TextStyle textStyle = defaultTextStyle().copy();
+		TextStyle textStyle = newDefaultTextStyle();
 		textStyle.setColor(new RGB(42, 0, 255));
 		return textStyle;
 	}
 
 	protected TextStyle commentTextStyle() {
-		TextStyle textStyle = defaultTextStyle().copy();
+		TextStyle textStyle = newDefaultTextStyle();
 		textStyle.setColor(new RGB(63, 127, 95));
 		return textStyle;
 	}
 
 	protected TextStyle keywordTextStyle() {
-		TextStyle textStyle = defaultTextStyle().copy();
+		TextStyle textStyle = newDefaultTextStyle();
 		textStyle.setColor(new RGB(192, 0, 0));
 		return textStyle;
 	}
@@ -88,14 +92,14 @@ public class DMDLHighlightingConfiguration implements IHighlightingConfiguration
 	}
 
 	protected TextStyle attributeTextStyle() {
-		TextStyle textStyle = defaultTextStyle().copy();
+		TextStyle textStyle = newDefaultTextStyle();
 		textStyle.setColor(new RGB(127, 0, 127));
 		textStyle.setStyle(SWT.BOLD);
 		return textStyle;
 	}
 
 	protected TextStyle punctuationTextStyle() {
-		TextStyle textStyle = defaultTextStyle().copy();
+		TextStyle textStyle = newDefaultTextStyle();
 		return textStyle;
 	}
 }
