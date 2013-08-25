@@ -41,17 +41,11 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 public class DMDLScopeProvider extends AbstractDeclarativeScopeProvider {
 
 	// joined
-	public IScope scope_PropertyMapping_from(ModelMapping modelMapping, EReference ref) {
-		return joinScope(modelMapping, ref);
-	}
-
-	// joined
-	public IScope scope_PropertyMapping_from(PropertyMapping property, EReference ref) {
-		return joinScope(property, ref);
-	}
-
-	private IScope joinScope(EObject context, EReference ref) {
+	public IScope scope_PropertyMapping_from(EObject context, EReference ref) {
 		JoinTerm term = EcoreUtil2.getContainerOfType(context, JoinTerm.class);
+		if (term == null) {
+			return null;
+		}
 		ModelDefinition model = term.getReference().getName();
 
 		List<EObject> list = new ArrayList<EObject>();
@@ -60,8 +54,11 @@ public class DMDLScopeProvider extends AbstractDeclarativeScopeProvider {
 	}
 
 	// summarized
-	public IScope scope_PropertyFolding_from(PropertyFolding property, EReference ref) {
-		SummarizeTerm term = EcoreUtil2.getContainerOfType(property, SummarizeTerm.class);
+	public IScope scope_PropertyFolding_from(EObject context, EReference ref) {
+		SummarizeTerm term = EcoreUtil2.getContainerOfType(context, SummarizeTerm.class);
+		if (term == null) {
+			return null;
+		}
 		ModelDefinition model = term.getReference().getName();
 
 		List<EObject> list = new ArrayList<EObject>();
