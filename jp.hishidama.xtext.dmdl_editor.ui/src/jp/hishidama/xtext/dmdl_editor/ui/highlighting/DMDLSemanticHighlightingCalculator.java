@@ -3,8 +3,10 @@ package jp.hishidama.xtext.dmdl_editor.ui.highlighting;
 import java.util.Iterator;
 import java.util.List;
 
+import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.util.DmdlSwitch;
 
@@ -40,15 +42,35 @@ public class DMDLSemanticHighlightingCalculator implements ISemanticHighlighting
 		}
 
 		@Override
+		public Void caseAttribute(Attribute object) {
+			addPosition(object, DmdlPackage.Literals.ATTRIBUTE__NAME, DMDLHighlightingConfiguration.ATTRIBUTE_ID);
+
+			return null;
+		}
+
+		@Override
 		public Void caseModelDefinition(ModelDefinition object) {
-			return addPosition(object, DmdlPackage.Literals.MODEL_DEFINITION__TYPE,
-					DMDLHighlightingConfiguration.KEYWORD_ID);
+			addPosition(object, DmdlPackage.Literals.MODEL_DEFINITION__DESCRIPTION,
+					DMDLHighlightingConfiguration.DESCRIPTION_ID);
+			addPosition(object, DmdlPackage.Literals.MODEL_DEFINITION__TYPE, DMDLHighlightingConfiguration.MODELTYPE_ID);
+
+			return null;
+		}
+
+		@Override
+		public Void caseProperty(Property object) {
+			addPosition(object, DmdlPackage.Literals.PROPERTY__DESCRIPTION,
+					DMDLHighlightingConfiguration.DESCRIPTION_ID);
+
+			return null;
 		}
 
 		@Override
 		public Void casePropertyFolding(PropertyFolding object) {
-			return addPosition(object, DmdlPackage.Literals.PROPERTY_FOLDING__AGGREGATOR,
-					DMDLHighlightingConfiguration.KEYWORD_ID);
+			addPosition(object, DmdlPackage.Literals.PROPERTY_FOLDING__AGGREGATOR,
+					DMDLHighlightingConfiguration.AGGREGATOR_ID);
+
+			return null;
 		}
 
 		private Void addPosition(EObject object, EStructuralFeature feature, String id) {

@@ -4,7 +4,6 @@ import java.util.regex.Pattern;
 
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
-import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultHighlightingConfiguration;
 
 /**
  * @see DefaultAntlrTokenToAttributeIdMapper
@@ -15,25 +14,29 @@ public class DMDLLexicalTokenToAttributeIdMapper extends AbstractAntlrTokenToAtt
 
 	@Override
 	protected String calculateId(String tokenName, int tokenType) {
-		if (PUNCTUATION.matcher(tokenName).matches()) {
-			return DefaultHighlightingConfiguration.PUNCTUATION_ID;
+		if ("'@'".equals(tokenName)) {
+			return DMDLHighlightingConfiguration.ATTRIBUTE_ID;
 		}
+		if (PUNCTUATION.matcher(tokenName).matches()) {
+			return DMDLHighlightingConfiguration.PUNCTUATION_ID;
+		}
+
 		if ("'TRUE'".equals(tokenName) || "'FALSE'".equals(tokenName)) {
-			return DefaultHighlightingConfiguration.NUMBER_ID;
+			return DMDLHighlightingConfiguration.BOOLEAN_ID;
 		}
 		if (isKeyword(tokenName)) {
-			return DefaultHighlightingConfiguration.KEYWORD_ID;
+			return DMDLHighlightingConfiguration.DATATYPE_ID;
 		}
 		if ("RULE_STRING".equals(tokenName)) {
-			return DefaultHighlightingConfiguration.STRING_ID;
+			return DMDLHighlightingConfiguration.STRING_ID;
 		}
 		if ("RULE_INT".equals(tokenName) || "RULE_DECIMAL".equals(tokenName)) {
-			return DefaultHighlightingConfiguration.NUMBER_ID;
+			return DMDLHighlightingConfiguration.NUMBER_ID;
 		}
 		if ("RULE_ML_COMMENT".equals(tokenName) || "RULE_SL_COMMENT".equals(tokenName)) {
-			return DefaultHighlightingConfiguration.COMMENT_ID;
+			return DMDLHighlightingConfiguration.COMMENT_ID;
 		}
-		return DefaultHighlightingConfiguration.DEFAULT_ID;
+		return DMDLHighlightingConfiguration.DEFAULT_ID;
 	}
 
 	private boolean isKeyword(String tokenName) {
