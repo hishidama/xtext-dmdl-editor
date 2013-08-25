@@ -30,9 +30,9 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 	}
 
 	@Override
-	public void completePropertyFolding_Name(EObject model, Assignment assignment, ContentAssistContext context,
+	public void completePropertyMapping_Name(EObject model, Assignment assignment, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
-		PropertyFolding property = (PropertyFolding) model;
+		PropertyMapping property = (PropertyMapping) model;
 		Property ref = property.getFrom();
 		if (ref != null) {
 			acceptor.accept(createCompletionProposal(ref.getName(), context));
@@ -40,9 +40,9 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 	}
 
 	@Override
-	public void completePropertyMapping_Name(EObject model, Assignment assignment, ContentAssistContext context,
+	public void completePropertyFolding_Name(EObject model, Assignment assignment, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
-		PropertyMapping property = (PropertyMapping) model;
+		PropertyFolding property = (PropertyFolding) model;
 		Property ref = property.getFrom();
 		if (ref != null) {
 			acceptor.accept(createCompletionProposal(ref.getName(), context));
