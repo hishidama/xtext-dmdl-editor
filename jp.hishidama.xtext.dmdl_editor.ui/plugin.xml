@@ -11,7 +11,7 @@
             default="true"
             extensions="dmdl"
             id="jp.hishidama.xtext.dmdl_editor.DMDL"
-            name="DMDL Editor">
+            name="DMDL Editor by Xtext">
         </editor>
     </extension>
     <extension
@@ -82,7 +82,7 @@
         <page
             class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
             id="jp.hishidama.xtext.dmdl_editor.DMDL"
-            name="DMDL">
+            name="DMDL Editor by Xtext">
             <keywordReference id="jp.hishidama.xtext.dmdl_editor.ui.keyword_DMDL"/>
         </page>
         <page
@@ -105,7 +105,7 @@
         <page
             class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
             id="jp.hishidama.xtext.dmdl_editor.DMDL"
-            name="DMDL">
+            name="DMDL Editor by Xtext">
             <keywordReference id="jp.hishidama.xtext.dmdl_editor.ui.keyword_DMDL"/>
             <enabledWhen>
 	            <adapt type="org.eclipse.core.resources.IProject"/>
