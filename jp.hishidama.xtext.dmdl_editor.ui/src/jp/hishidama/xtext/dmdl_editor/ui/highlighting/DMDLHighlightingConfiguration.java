@@ -27,7 +27,6 @@ public class DMDLHighlightingConfiguration implements IHighlightingConfiguration
 	public static final String PUNCTUATION_ID = DefaultHighlightingConfiguration.PUNCTUATION_ID;
 	public static final String INVALID_TOKEN_ID = DefaultHighlightingConfiguration.INVALID_TOKEN_ID;
 
-	@Override
 	public void configure(IHighlightingConfigurationAcceptor acceptor) {
 		acceptor.acceptDefaultHighlighting(COMMENT_ID, "Comment", commentTextStyle());
 		acceptor.acceptDefaultHighlighting(DESCRIPTION_ID, "Description", stringTextStyle());

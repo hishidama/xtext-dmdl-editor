@@ -21,7 +21,6 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculato
 
 public class DMDLSemanticHighlightingCalculator implements ISemanticHighlightingCalculator {
 
-	@Override
 	public void provideHighlightingFor(XtextResource resource, IHighlightedPositionAcceptor acceptor) {
 		if (resource == null) {
 			return;
