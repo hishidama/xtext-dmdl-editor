@@ -7,7 +7,7 @@ import org.eclipse.xtext.formatting.impl.FormattingConfig;
 import org.eclipse.xtext.service.AbstractElementFinder;
 import org.eclipse.xtext.util.Pair;
 
-class DMDLFormatterUtil {
+class DMDLFormatterDelegator {
 
 	// findKeywordsの部分は、DMDLFormatterに直接書くと、
 	// （更新サイト経由でインストールして実行すると） 何故か「Guice provision errors」が発生する。
@@ -19,12 +19,12 @@ class DMDLFormatterUtil {
 
 		// 丸括弧
 		for (Pair<Keyword, Keyword> pair : f.findKeywordPairs("(", ")")) {
-			c.setNoSpace().after(pair.getFirst()); // 開き括弧の直後は詰める
-			c.setNoSpace().before(pair.getSecond()); // 閉じ括弧の直前は詰める
+			c.setLinewrap().after(pair.getFirst()); // 開き括弧の直後は改行する
+			c.setLinewrap().before(pair.getSecond()); // 閉じ括弧の直前は改行する
+			// 引数の個数に応じた改行有無はDMDLTokenStreamで実装
 
 			c.setIndentationIncrement().after(pair.getFirst());
 			c.setIndentationDecrement().before(pair.getSecond());
-
 		}
 		// 波括弧
 		curlyBrace(c, f.getRecordTermAccess());

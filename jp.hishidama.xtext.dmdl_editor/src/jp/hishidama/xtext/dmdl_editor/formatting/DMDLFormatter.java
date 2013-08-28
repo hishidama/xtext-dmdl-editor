@@ -5,8 +5,10 @@ package jp.hishidama.xtext.dmdl_editor.formatting;
 
 import jp.hishidama.xtext.dmdl_editor.services.DMDLGrammarAccess;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
+import org.eclipse.xtext.parsetree.reconstr.ITokenStream;
 import org.eclipse.xtext.xbase.lib.Extension;
 
 import com.google.inject.Inject;
@@ -27,6 +29,17 @@ public class DMDLFormatter extends AbstractDeclarativeFormatter {
 
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
-		DMDLFormatterUtil.configureFormatting(c, grammarAccess);
+		DMDLFormatterDelegator.configureFormatting(c, grammarAccess);
+	}
+
+	@Override
+	public ITokenStream createFormatterStream(String indent, ITokenStream out, boolean preserveWhitespaces) {
+		return super.createFormatterStream(indent, new DMDLTokenStream(out), preserveWhitespaces);
+	}
+
+	@Override
+	public ITokenStream createFormatterStream(EObject context, String indent, ITokenStream out,
+			boolean preserveWhitespaces) {
+		return super.createFormatterStream(context, indent, new DMDLTokenStream(out), preserveWhitespaces);
 	}
 }
