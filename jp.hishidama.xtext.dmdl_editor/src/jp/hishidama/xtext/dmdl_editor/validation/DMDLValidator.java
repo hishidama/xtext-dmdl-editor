@@ -17,7 +17,7 @@ import org.eclipse.xtext.validation.Check;
  * see http://www.eclipse.org/Xtext/documentation.html#validation
  */
 public class DMDLValidator extends AbstractDMDLValidator {
-	// „Ç®„É©„Éº„Ç≥„Éº„Éâ
+	// ÉGÉâÅ[ÉRÅ[Éh
 	public static final String INVALID_NAME = "invalidName";
 
 	@Check
@@ -43,7 +43,7 @@ public class DMDLValidator extends AbstractDMDLValidator {
 		for (String s : ss) {
 			char c = s.charAt(0);
 			if ('0' <= c && c <= '9') {
-				warning("„Ç¢„É≥„ÉÄ„Éº„Çπ„Ç≥„Ç¢„ÅßÂå∫Âàá„Çâ„Çå„ÅüÂêÑÈÉ®ÂàÜ„ÅØËã±Â≠ó„Åã„ÇâÂßã„ÇÅ„Çã„Åì„Å®„ÅåÊé®Â•®„Åï„Çå„Å¶„ÅÑ„Åæ„Åô„ÄÇ", feature, INVALID_NAME, s);
+				warning("ÉAÉìÉ_Å[ÉXÉRÉAÇ≈ãÊêÿÇÁÇÍÇΩäeïîï™ÇÕâpéöÇ©ÇÁénÇﬂÇÈÇ±Ç∆Ç™êÑèßÇ≥ÇÍÇƒÇ¢Ç‹Ç∑ÅB", feature, INVALID_NAME, s);
 				return;
 			}
 		}
