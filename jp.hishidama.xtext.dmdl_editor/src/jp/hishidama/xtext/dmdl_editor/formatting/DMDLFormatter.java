@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
+import org.eclipse.xtext.parsetree.reconstr.IHiddenTokenHelper;
 import org.eclipse.xtext.parsetree.reconstr.ITokenStream;
 import org.eclipse.xtext.service.AbstractElementFinder;
 import org.eclipse.xtext.util.Pair;
@@ -29,6 +30,9 @@ public class DMDLFormatter extends AbstractDeclarativeFormatter {
 	@Inject
 	@Extension
 	private DMDLGrammarAccess grammarAccess;
+
+	@Inject
+	private IHiddenTokenHelper hiddenTokenHelper;
 
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
@@ -103,12 +107,16 @@ public class DMDLFormatter extends AbstractDeclarativeFormatter {
 
 	@Override
 	public ITokenStream createFormatterStream(String indent, ITokenStream out, boolean preserveWhitespaces) {
-		return super.createFormatterStream(indent, new DMDLTokenStream(out), preserveWhitespaces);
+		return super.createFormatterStream(indent, wrapStream(out), preserveWhitespaces);
 	}
 
 	@Override
 	public ITokenStream createFormatterStream(EObject context, String indent, ITokenStream out,
 			boolean preserveWhitespaces) {
-		return super.createFormatterStream(context, indent, new DMDLTokenStream(out), preserveWhitespaces);
+		return super.createFormatterStream(context, indent, wrapStream(out), preserveWhitespaces);
+	}
+
+	protected ITokenStream wrapStream(ITokenStream out) {
+		return new DMDLTokenStream(out, hiddenTokenHelper);
 	}
 }

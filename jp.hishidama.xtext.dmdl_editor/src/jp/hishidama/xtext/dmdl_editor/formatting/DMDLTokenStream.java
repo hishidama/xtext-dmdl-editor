@@ -10,16 +10,14 @@ import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.formatting.impl.BaseTokenStream;
 import org.eclipse.xtext.parsetree.reconstr.IHiddenTokenHelper;
 import org.eclipse.xtext.parsetree.reconstr.ITokenStream;
-import org.eclipse.xtext.parsetree.reconstr.impl.DefaultHiddenTokenHelper;
 
 class DMDLTokenStream extends BaseTokenStream {
-	IHiddenTokenHelper hiddenHelper;
+	IHiddenTokenHelper hiddenTokenHelper;
 
-	public DMDLTokenStream(ITokenStream out) {
+	public DMDLTokenStream(ITokenStream out, IHiddenTokenHelper hiddenTokenHelper) {
 		super(out);
 
-		// TODO inject
-		hiddenHelper = new DefaultHiddenTokenHelper();
+		this.hiddenTokenHelper = hiddenTokenHelper;
 	}
 
 	private class Token {
@@ -36,7 +34,7 @@ class DMDLTokenStream extends BaseTokenStream {
 		public boolean isComment() {
 			AbstractRule rule = GrammarUtil.containingRule(grammarElement);
 			if (rule != null) {
-				return hiddenHelper.isComment(rule);
+				return hiddenTokenHelper.isComment(rule);
 			}
 			return false;
 		}
