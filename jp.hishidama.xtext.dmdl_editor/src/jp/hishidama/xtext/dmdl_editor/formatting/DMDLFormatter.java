@@ -36,58 +36,58 @@ public class DMDLFormatter extends AbstractDeclarativeFormatter {
 
 		c.setAutoLinewrap(120);
 
-		// ŠÛŠ‡ŒÊ
+		// ä¸¸æ‹¬å¼§
 		for (Pair<Keyword, Keyword> pair : f.findKeywordPairs("(", ")")) {
-			c.setLinewrap().after(pair.getFirst()); // ŠJ‚«Š‡ŒÊ‚Ì’¼Œã‚Í‰üs‚·‚é
-			c.setLinewrap().before(pair.getSecond()); // •Â‚¶Š‡ŒÊ‚Ì’¼‘O‚Í‰üs‚·‚é
-			// ˆø”‚ÌŒÂ”‚É‰‚¶‚½‰üs—L–³‚ÍDMDLTokenStream‚ÅÀ‘•
+			c.setLinewrap().after(pair.getFirst()); // é–‹ãæ‹¬å¼§ã®ç›´å¾Œã¯æ”¹è¡Œã™ã‚‹
+			c.setLinewrap().before(pair.getSecond()); // é–‰ã˜æ‹¬å¼§ã®ç›´å‰ã¯æ”¹è¡Œã™ã‚‹
+			// å¼•æ•°ã®å€‹æ•°ã«å¿œã˜ãŸæ”¹è¡Œæœ‰ç„¡ã¯DMDLTokenStreamã§å®Ÿè£…
 
 			c.setIndentationIncrement().after(pair.getFirst());
 			c.setIndentationDecrement().before(pair.getSecond());
 		}
-		// ”gŠ‡ŒÊ
+		// æ³¢æ‹¬å¼§
 		curlyBrace(c, f.getRecordTermAccess());
 		curlyBrace(c, f.getModelMappingAccess());
 		curlyBrace(c, f.getModelFoldingAccess());
 
-		// ƒJƒ“ƒ}
+		// ã‚«ãƒ³ãƒ
 		for (Keyword comma : f.findKeywords(",")) {
-			c.setNoSpace().before(comma); // ’¼‘O‚Í‹l‚ß‚é
+			c.setNoSpace().before(comma); // ç›´å‰ã¯è©°ã‚ã‚‹
 		}
-		// ƒZƒ~ƒRƒƒ“
+		// ã‚»ãƒŸã‚³ãƒ­ãƒ³
 		for (Keyword semicolon : f.findKeywords(";")) {
-			c.setNoSpace().before(semicolon); // ’¼‘O‚Í‹l‚ß‚é
-			c.setLinewrap().after(semicolon); // ’¼Œã‚Í‰üs‚·‚é
+			c.setNoSpace().before(semicolon); // ç›´å‰ã¯è©°ã‚ã‚‹
+			c.setLinewrap().after(semicolon); // ç›´å¾Œã¯æ”¹è¡Œã™ã‚‹
 		}
 		// @
 		for (Keyword atmark : f.findKeywords("@")) {
-			c.setNoSpace().after(atmark); // ’¼Œã‚Í‹l‚ß‚é
+			c.setNoSpace().after(atmark); // ç›´å¾Œã¯è©°ã‚ã‚‹
 		}
-		// ƒsƒŠƒIƒh
+		// ãƒ”ãƒªã‚ªãƒ‰
 		for (Keyword period : f.findKeywords(".")) {
-			c.setNoSpace().around(period); // —¼‘¤‚Æ‚à‹l‚ß‚é
+			c.setNoSpace().around(period); // ä¸¡å´ã¨ã‚‚è©°ã‚ã‚‹
 		}
 
-		// description‚Ì’¼Œã‚Í‰üs‚·‚é
+		// descriptionã®ç›´å¾Œã¯æ”¹è¡Œã™ã‚‹
 		c.setLinewrap().after(f.getDescriptionRule());
 
 		// attribute
-		c.setNoSpace().before(f.getAttributeAccess().getLeftParenthesisKeyword_2_0()); // (‚Ì’¼‘O‚Í‹l‚ß‚é
-		c.setLinewrap().after(f.getAttributeElementListAccess().getCommaKeyword_1_0()); // ,‚Ì’¼Œã‚Í‰üs‚·‚é
-		c.setLinewrap().after(f.getAttributeRule()); // ’¼Œã‚Í‰üs‚·‚é
+		c.setNoSpace().before(f.getAttributeAccess().getLeftParenthesisKeyword_2_0()); // (ã®ç›´å‰ã¯è©°ã‚ã‚‹
+		c.setLinewrap().after(f.getAttributeElementListAccess().getCommaKeyword_1_0()); // ,ã®ç›´å¾Œã¯æ”¹è¡Œã™ã‚‹
+		c.setLinewrap().after(f.getAttributeRule()); // ç›´å¾Œã¯æ”¹è¡Œã™ã‚‹
 
-		// ƒvƒƒpƒeƒB[‚Ì‘O‚Í1s‹ó‚¯‚é
+		// ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãƒ¼ã®å‰ã¯1è¡Œç©ºã‘ã‚‹
 		c.setLinewrap(2).before(f.getPropertyDefinitionRule());
 		c.setLinewrap(2).before(f.getPropertyMappingRule());
 		c.setLinewrap(2).before(f.getPropertyFoldingRule());
 
-		// joined‚Ì+‚Ì’¼‘O‚Í‰üs‚·‚é
+		// joinedã®+ã®ç›´å‰ã¯æ”¹è¡Œã™ã‚‹
 		c.setLinewrap().before(f.getJoinExpressionAccess().getPlusSignKeyword_1_0());
 
-		// ƒ‚ƒfƒ‹’è‹`‚ÌŒã‚Í1s‹ó‚¯‚é
+		// ãƒ¢ãƒ‡ãƒ«å®šç¾©ã®å¾Œã¯1è¡Œç©ºã‘ã‚‹
 		c.setLinewrap(2).after(f.getModelDefinitionRule());
 
-		// ƒRƒƒ“ƒg
+		// ã‚³ãƒ¡ãƒ³ãƒˆ
 		c.setLinewrap(0, 1, 2).before(f.getSL_COMMENTRule());
 		c.setLinewrap(0, 1, 2).before(f.getML_COMMENTRule());
 		c.setLinewrap(0, 1, 1).after(f.getML_COMMENTRule());
