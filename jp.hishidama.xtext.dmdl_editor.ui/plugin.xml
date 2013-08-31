@@ -10,6 +10,7 @@
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
             extensions="dmdl"
+            icon="icons/hishidama16.gif"
             id="jp.hishidama.xtext.dmdl_editor.DMDL"
             name="DMDL Editor by Xtext">
         </editor>
@@ -111,6 +112,18 @@
 	            <adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
 	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
+        </page>
+        <page
+              category="jp.hishidama.xtext.dmdl_editor.DMDL"
+              class="jp.hishidama.eclipse_plugin.asakusafw_wrapper.property.AsakusafwVersionPropertyPage"
+              id="jp.hishidama.xtext.dmdl_editor.ui.jp.hishidama.xtext.dmdl_editor.AsakusafwVersion"
+              name="Asakusa Framework">
+        </page>
+        <page
+              category="jp.hishidama.xtext.dmdl_editor.ui.jp.hishidama.xtext.dmdl_editor.AsakusafwVersion"
+              class="jp.hishidama.eclipse_plugin.asakusafw_wrapper.property.AsakusafwDmdlParserPropertyPage"
+              id="jp.hishidama.xtext.dmdl_editor.ui.jp.hishidama.xtext.dmdl_editor.AsakusafwDmdlParser"
+              name="DmdlParser">
         </page>
     </extension>
     <extension
@@ -392,5 +405,37 @@
             extensions="dmdl">
     </provider>
   </extension>
+
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.jdt.ui.PackageExplorer?after=additions">
+         <menu
+               label="DMDL Editor by Xtext">
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.dmdlErrorCheck">
+            </command>
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.dmdlCompile">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="dmdl-editor-plugin.toolbar">
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.dmdlErrorCheck"
+                  icon="icons/hishidama16.gif"
+                  tooltip="Asakusa FrameworkのDMDLパーサーを使用してDMDLのエラーチェックを行います。">
+            </command>
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.dmdlCompile"
+                  icon="icons/hishidama16.gif"
+                  tooltip="Asakusa FrameworkのDMDLコンパイラーを起動してJavaクラスを生成します。">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
 
 </plugin>
