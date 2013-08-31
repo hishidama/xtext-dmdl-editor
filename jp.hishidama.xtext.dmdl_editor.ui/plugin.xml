@@ -423,7 +423,7 @@
       <menuContribution
             locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
          <toolbar
-               id="dmdl-editor-plugin.toolbar">
+               id="jp.hishidama.xtext.dmdl_editor.toolbar">
             <command
                   commandId="jp.hishidama.asakusafwWrapper.command.dmdlErrorCheck"
                   icon="icons/hishidama16.gif"
@@ -433,6 +433,11 @@
                   commandId="jp.hishidama.asakusafwWrapper.command.dmdlCompile"
                   icon="icons/hishidama16.gif"
                   tooltip="Asakusa FrameworkのDMDLコンパイラーを起動してJavaクラスを生成します。">
+            </command>
+            <command
+                  commandId="org.eclipse.xtext.ui.shared.OpenXtextElementCommand"
+                  icon="icons/hishidama16.gif"
+                  tooltip="Xtextの機能を使用してデータモデル・プロパティーを検索します。">
             </command>
          </toolbar>
       </menuContribution>
