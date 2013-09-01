@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="jp.hishidama.xtext.dmdl_editor.feature"
-      label="DMDL Editor by xtext Feature"
+      label="DMDL EditorX Feature"
       version="0.0.1.qualifier"
       provider-name="hishidama">
 

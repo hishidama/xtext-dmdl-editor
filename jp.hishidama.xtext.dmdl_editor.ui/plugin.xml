@@ -12,7 +12,7 @@
             extensions="dmdl"
             icon="icons/hishidama16.gif"
             id="jp.hishidama.xtext.dmdl_editor.DMDL"
-            name="DMDL Editor by Xtext">
+            name="DMDL EditorX">
         </editor>
     </extension>
     <extension
@@ -83,7 +83,7 @@
         <page
             class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
             id="jp.hishidama.xtext.dmdl_editor.DMDL"
-            name="DMDL Editor by Xtext">
+            name="DMDL EditorX">
             <keywordReference id="jp.hishidama.xtext.dmdl_editor.ui.keyword_DMDL"/>
         </page>
         <page
@@ -106,7 +106,7 @@
         <page
             class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
             id="jp.hishidama.xtext.dmdl_editor.DMDL"
-            name="DMDL Editor by Xtext">
+            name="DMDL EditorX">
             <keywordReference id="jp.hishidama.xtext.dmdl_editor.ui.keyword_DMDL"/>
             <enabledWhen>
 	            <adapt type="org.eclipse.core.resources.IProject"/>
@@ -411,7 +411,7 @@
       <menuContribution
             locationURI="popup:org.eclipse.jdt.ui.PackageExplorer?after=additions">
          <menu
-               label="DMDL Editor by Xtext">
+               label="DMDL EditorX">
             <command
                   commandId="jp.hishidama.asakusafwWrapper.command.dmdlErrorCheck">
             </command>
