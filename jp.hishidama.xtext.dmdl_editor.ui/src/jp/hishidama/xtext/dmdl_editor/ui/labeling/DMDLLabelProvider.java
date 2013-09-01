@@ -10,8 +10,6 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jdt.ui.ISharedImages;
-import org.eclipse.jdt.ui.JavaUI;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
 
@@ -42,7 +40,7 @@ public class DMDLLabelProvider extends DefaultEObjectLabelProvider {
 	 */
 
 	protected Image image(ModelDefinition model) {
-		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_OBJS_CLASS);
+		return DMDLImages.getDataModelImage(model);
 	}
 
 	protected Image image(ModelReference ref) {
@@ -50,10 +48,10 @@ public class DMDLLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected Image image(Property p) {
-		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_FIELD_PUBLIC);
+		return DMDLImages.getPropertyImage();
 	}
 
 	protected Image _image(Attribute a) {
-		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_OBJS_ANNOTATION);
+		return DMDLImages.getAttributeImage();
 	}
 }

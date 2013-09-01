@@ -3,7 +3,7 @@ package jp.hishidama.xtext.dmdl_editor.ui.viewer;
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.DmdlFileUtil;
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.DMDLFileUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.labeling.DMDLLabelProvider;
 
@@ -42,7 +42,7 @@ public class DataModelTreeViewer extends TreeViewer {
 
 		ResourceSet resourceSet = InjectorUtil.getInstance(ResourceSet.class);
 
-		List<IFile> files = DmdlFileUtil.getDmdlFiles(project);
+		List<IFile> files = DMDLFileUtil.getDmdlFiles(project);
 		List<DMDLTreeData> list = new ArrayList<DMDLTreeData>(files.size());
 		for (IFile file : files) {
 			list.add(new DMDLTreeData.FileNode(file, resourceSet));

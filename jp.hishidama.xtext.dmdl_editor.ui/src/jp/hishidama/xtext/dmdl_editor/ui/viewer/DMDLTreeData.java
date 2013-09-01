@@ -8,7 +8,9 @@ import java.util.List;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Script;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
+import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -133,9 +135,10 @@ public abstract class DMDLTreeData {
 				EList<EObject> list = r.getContents();
 				children = new ArrayList<DMDLTreeData>(list.size());
 				for (EObject object : list) {
-					if (object instanceof ModelDefinition) {
-						ModelDefinition model = (ModelDefinition) object;
-						children.add(new ModelNode(project, this, model));
+					if (object instanceof Script) {
+						for (ModelDefinition model : ((Script) object).getList()) {
+							children.add(new ModelNode(project, this, model));
+						}
 					}
 				}
 			}
@@ -164,9 +167,7 @@ public abstract class DMDLTreeData {
 
 		@Override
 		protected String getText2() {
-			return model.getDescription(); // TODO
-			// return
-			// DataModelUtil.decodeDescription(model.getModelDescription());
+			return DMDLStringUtil.decodeDescription(model.getDescription());
 		}
 
 		@Override
@@ -216,9 +217,7 @@ public abstract class DMDLTreeData {
 
 		@Override
 		protected String getText2() {
-			return property.getDescription(); // TODO
-			// return
-			// DataModelUtil.decodeDescription(property.getDescription());
+			return DMDLStringUtil.decodeDescription(property.getDescription());
 		}
 
 		@Override

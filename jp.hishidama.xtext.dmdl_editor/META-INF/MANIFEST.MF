@@ -17,20 +17,29 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.emf.common,
  org.antlr.runtime,
  org.eclipse.xtext.common.types,
- org.eclipse.jdt.ui
+ org.eclipse.jdt.ui,
+ org.eclipse.core.resources,
+ org.eclipse.core.runtime,
+ jp.hishidama.asakusafw_wrapper,
+ jp.hishidama.eclipse_plugin.utility,
+ org.eclipse.ui.workbench,
+ org.eclipse.jface,
+ org.eclipse.jdt.core
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: jp.hishidama.xtext.dmdl_editor,
- jp.hishidama.xtext.dmdl_editor.services,
  jp.hishidama.xtext.dmdl_editor.dmdl,
  jp.hishidama.xtext.dmdl_editor.dmdl.impl,
  jp.hishidama.xtext.dmdl_editor.dmdl.util,
- jp.hishidama.xtext.dmdl_editor.serializer,
+ jp.hishidama.xtext.dmdl_editor.extension,
+ jp.hishidama.xtext.dmdl_editor.formatting,
+ jp.hishidama.xtext.dmdl_editor.generator,
  jp.hishidama.xtext.dmdl_editor.parser.antlr,
  jp.hishidama.xtext.dmdl_editor.parser.antlr.internal,
- jp.hishidama.xtext.dmdl_editor.validation,
  jp.hishidama.xtext.dmdl_editor.scoping,
- jp.hishidama.xtext.dmdl_editor.generator,
- jp.hishidama.xtext.dmdl_editor.formatting
+ jp.hishidama.xtext.dmdl_editor.serializer,
+ jp.hishidama.xtext.dmdl_editor.services,
+ jp.hishidama.xtext.dmdl_editor.util,
+ jp.hishidama.xtext.dmdl_editor.validation
 

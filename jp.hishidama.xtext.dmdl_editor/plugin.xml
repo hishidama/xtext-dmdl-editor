@@ -2,6 +2,7 @@
 <?eclipse version="3.0"?>
 
 <plugin>
+   <extension-point id="dmdlImporterExporterGenerator" name="DMDL Importer/Exporter generator" schema="schema/dmdlImporterExporterGenerator.exsd"/>
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
@@ -11,6 +12,38 @@
 	
   </extension>
 
-
+   <extension
+         point="jp.hishidama.xtext.dmdl_editor.dmdlImporterExporterGenerator">
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.portergen.DirectioCsvImporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.portergen.DirectioCsvExporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.portergen.DirectioSeqfileImporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.portergen.DirectioSeqfileExporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.portergen.WindgateCsvImporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.portergen.WindgateCsvExporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.portergen.WindgateJdbcImporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.portergen.WindgateJdbcExporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.portergen.WindgateTsvImporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.portergen.WindgateTsvExporterGenerator">
+      </classpath>
+   </extension>
 
 </plugin>

@@ -439,8 +439,37 @@
                   icon="icons/hishidama16.gif"
                   tooltip="Xtextの機能を使用してデータモデル・プロパティーを検索します。">
             </command>
+            <separator
+                  name="beginNewWizard"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.eclipse.ui.newWizard"
+                  style="push">
+               <parameter
+                     name="newWizardId"
+                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-importer-exporter">
+               </parameter>
+            </command>
          </toolbar>
       </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="jp.hishidama.xtext.dmdl_editor.ui.wizard-category"
+            name="DMDL EditorX">
+      </category>
+      <wizard
+            category="jp.hishidama.xtext.dmdl_editor.ui.wizard-category"
+            class="jp.hishidama.xtext.dmdl_editor.ui.wizard.NewImporterExporterWizard"
+            icon="icons/newclass_wiz.gif"
+            id="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-importer-exporter"
+            name="New Importer/Exporter class">
+         <description>
+            データモデルからImporter/Exporterクラスを生成します。
+         </description>
+      </wizard>
    </extension>
 
 </plugin>
