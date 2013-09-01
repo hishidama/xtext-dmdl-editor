@@ -17,7 +17,9 @@ Require-Bundle: jp.hishidama.xtext.dmdl_editor;visibility:=reexport,
  org.eclipse.xtext.ui.codetemplates.ui,
  org.eclipse.compare,
  org.eclipse.jdt.ui,
- jp.hishidama.asakusafw_wrapper
+ org.eclipse.gef,
+ jp.hishidama.asakusafw_wrapper,
+ jp.hishidama.eclipse_plugin.utility
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
