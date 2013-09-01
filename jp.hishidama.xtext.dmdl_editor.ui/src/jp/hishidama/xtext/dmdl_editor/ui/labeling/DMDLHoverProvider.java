@@ -5,6 +5,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Type;
 import jp.hishidama.xtext.dmdl_editor.dmdl.util.DmdlSwitch;
 
@@ -37,16 +38,16 @@ public class DMDLHoverProvider extends DefaultEObjectHoverProvider {
 		public String caseModelDefinition(ModelDefinition object) {
 			StringBuilder sb = new StringBuilder(64);
 
+			String desc = object.getDescription();
+			if (desc != null) {
+				sb.append(desc);
+				sb.append("<br>");
+			}
+
 			String name = object.getName();
 			sb.append("<b>");
 			sb.append(name);
 			sb.append("</b>");
-
-			String desc = object.getDescription();
-			if (desc != null) {
-				sb.append(" ");
-				sb.append(desc);
-			}
 
 			return sb.toString();
 		}
@@ -55,22 +56,7 @@ public class DMDLHoverProvider extends DefaultEObjectHoverProvider {
 		public String casePropertyDefinition(PropertyDefinition object) {
 			StringBuilder sb = new StringBuilder(64);
 
-			String name = object.getName();
-			sb.append("<b>");
-			sb.append(name);
-			sb.append("</b>");
-
-			String desc = object.getDescription();
-			if (desc != null) {
-				sb.append(" ");
-				sb.append(desc);
-			}
-
-			Type type = object.getType();
-			if (type != null) {
-				sb.append(" : ");
-				sb.append(type);
-			}
+			appendPropertyName(sb, object);
 
 			return sb.toString();
 		}
@@ -79,21 +65,19 @@ public class DMDLHoverProvider extends DefaultEObjectHoverProvider {
 		public String casePropertyMapping(PropertyMapping object) {
 			StringBuilder sb = new StringBuilder(64);
 
-			String name = object.getName();
-			sb.append("<b>");
-			sb.append(name);
-			sb.append("</b>");
-
-			String desc = object.getDescription();
-			if (desc != null) {
-				sb.append(" ");
-				sb.append(desc);
-			}
+			appendPropertyName(sb, object);
 
 			Property from = object.getFrom();
 			if (from != null) {
 				String n = from.getName();
-				sb.append(" <- ");
+				sb.append("<br> &lt;- ");
+				{
+					String modelName = PropertyUtil.getModelName(from);
+					if (modelName != null) {
+						sb.append(modelName);
+						sb.append(".");
+					}
+				}
 				sb.append(n);
 			}
 
@@ -104,32 +88,49 @@ public class DMDLHoverProvider extends DefaultEObjectHoverProvider {
 		public String casePropertyFolding(PropertyFolding object) {
 			StringBuilder sb = new StringBuilder(64);
 
-			String name = object.getName();
-			sb.append("<b>");
-			sb.append(name);
-			sb.append("</b>");
-
-			String desc = object.getDescription();
-			if (desc != null) {
-				sb.append(" ");
-				sb.append(desc);
-			}
+			appendPropertyName(sb, object);
 
 			String aggr = object.getAggregator();
 			if (aggr != null) {
-				sb.append(" <- ");
+				sb.append("<br> &lt;- ");
 				sb.append(aggr);
 
 				Property from = object.getFrom();
 				if (from != null) {
 					String n = from.getName();
 					sb.append("(");
+					{
+						String modelName = PropertyUtil.getModelName(from);
+						if (modelName != null) {
+							sb.append(modelName);
+							sb.append(".");
+						}
+					}
 					sb.append(n);
 					sb.append(")");
 				}
 			}
 
 			return sb.toString();
+		}
+
+		private void appendPropertyName(StringBuilder sb, Property object) {
+			String desc = object.getDescription();
+			if (desc != null) {
+				sb.append(desc);
+				sb.append("<br>");
+			}
+
+			String name = object.getName();
+			sb.append("<b>");
+			sb.append(name);
+			sb.append("</b>");
+
+			Type type = PropertyUtil.getResolvedDataType(object);
+			if (type != null) {
+				sb.append(" : ");
+				sb.append(type);
+			}
 		}
 	}
 }

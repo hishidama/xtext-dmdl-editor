@@ -16,9 +16,11 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression;
@@ -27,10 +29,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.Type;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jdt.ui.ISharedImages;
-import org.eclipse.jdt.ui.JavaUI;
 import org.eclipse.jface.viewers.StyledString;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
@@ -164,17 +163,9 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		return _text(ref.getName());
 	}
 
-	protected Object _text(AttributeList a) {
-		return "<attributes>";
-	}
-
-	protected Object _text(Attribute a) {
-		return "@" + a.getName();
-	}
-
-	protected Object _text(PropertyDefinition p) {
+	protected Object _text(Property p) {
 		String name = p.getName();
-		Type type = p.getType();
+		Type type = PropertyUtil.getResolvedDataType(p);
 		if (type != null) {
 			StyledString ss = newStyledString(name);
 			ss.append(" : " + type, StyledString.DECORATIONS_STYLER);
@@ -183,58 +174,7 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		return name;
 	}
 
-	protected Object _text(PropertyMapping p) {
-		String name = p.getName();
-		String from = p.getFrom().getName();
-
-		StyledString ss = newStyledString(name);
-		ss.append(String.format(" <- %s", from), StyledString.DECORATIONS_STYLER);
-		return ss;
-	}
-
-	protected Object _text(PropertyFolding p) {
-		String name = p.getName();
-		String aggr = p.getAggregator();
-		String from = p.getFrom().getName();
-
-		StyledString ss = newStyledString(name);
-		ss.append(String.format(" <- %s(%s)", aggr, from), StyledString.DECORATIONS_STYLER);
-		return ss;
-	}
-
 	private StyledString newStyledString(String text) {
 		return new StyledString((text != null) ? text : "<undifined>");
-	}
-
-	/*
-	 * image
-	 */
-
-	protected Image _image(ModelDefinition model) {
-		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_OBJS_CLASS);
-	}
-
-	protected Image _image(ModelReference ref) {
-		return _image(ref.getName());
-	}
-
-	protected Image _image(PropertyDefinition p) {
-		return propertyImage();
-	}
-
-	protected Image _image(PropertyMapping p) {
-		return propertyImage();
-	}
-
-	protected Image _image(PropertyFolding p) {
-		return propertyImage();
-	}
-
-	private Image propertyImage() {
-		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_FIELD_PUBLIC);
-	}
-
-	protected Image _image(Attribute a) {
-		return JavaUI.getSharedImages().getImage(ISharedImages.IMG_OBJS_ANNOTATION);
 	}
 }
