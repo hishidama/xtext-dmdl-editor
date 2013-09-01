@@ -17,6 +17,7 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 
 public class DataModelTreeViewer extends TreeViewer {
 
@@ -40,7 +41,8 @@ public class DataModelTreeViewer extends TreeViewer {
 	public void setInputAll(IProject project) {
 		setContentProvider(new DMDLTreeContentProvider());
 
-		ResourceSet resourceSet = InjectorUtil.getInstance(ResourceSet.class);
+		IResourceSetProvider provider = InjectorUtil.getInstance(IResourceSetProvider.class);
+		ResourceSet resourceSet = provider.get(project);
 
 		List<IFile> files = DMDLFileUtil.getDmdlFiles(project);
 		List<DMDLTreeData> list = new ArrayList<DMDLTreeData>(files.size());
