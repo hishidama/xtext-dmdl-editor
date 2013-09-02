@@ -76,7 +76,7 @@ public class DMDLFormatter extends AbstractDeclarativeFormatter {
 		c.setLinewrap().after(f.getDescriptionRule());
 
 		// attribute
-		c.setNoSpace().before(f.getAttributeAccess().getLeftParenthesisKeyword_2_0()); // (の直前は詰める
+		c.setNoSpace().before(f.getAttributeElementBlockAccess().getLeftParenthesisKeyword_1()); // (の直前は詰める
 		c.setLinewrap().after(f.getAttributeElementListAccess().getCommaKeyword_1_0()); // ,の直後は改行する
 		c.setLinewrap().after(f.getAttributeRule()); // 直後は改行する
 

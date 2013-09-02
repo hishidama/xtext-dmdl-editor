@@ -51,13 +51,13 @@ public class DMDLStringUtil {
 		if ("modelName".equals(key)) {
 			s = modelName;
 		} else if ("modelName.toUpper".equals(key)) {
-			s = modelName.toUpperCase();
+			s = (modelName != null) ? modelName.toUpperCase() : null;
 		} else if ("modelName.toCamelCase".equals(key)) {
 			s = toCamelCase(modelName);
 		} else if ("name".equals(key)) {
 			s = propName;
 		} else if ("name.toUpper".equals(key)) {
-			s = propName.toUpperCase();
+			s = (propName != null) ? propName.toUpperCase() : null;
 		} else if ("description".equals(key)) {
 			s = decodeDescription(propDesc);
 		} else {

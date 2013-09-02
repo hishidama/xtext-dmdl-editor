@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.Attribute#getName <em>Name</em>}</li>
- *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.Attribute#getElements <em>Elements</em>}</li>
+ *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.Attribute#getElementBlock <em>Element Block</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,29 +50,29 @@ public interface Attribute extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Elements</b></em>' containment reference.
+   * Returns the value of the '<em><b>Element Block</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Elements</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Element Block</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Elements</em>' containment reference.
-   * @see #setElements(AttributeElementList)
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage#getAttribute_Elements()
+   * @return the value of the '<em>Element Block</em>' containment reference.
+   * @see #setElementBlock(AttributeElementBlock)
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage#getAttribute_ElementBlock()
    * @model containment="true"
    * @generated
    */
-  AttributeElementList getElements();
+  AttributeElementBlock getElementBlock();
 
   /**
-   * Sets the value of the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Attribute#getElements <em>Elements</em>}' containment reference.
+   * Sets the value of the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Attribute#getElementBlock <em>Element Block</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Elements</em>' containment reference.
-   * @see #getElements()
+   * @param value the new value of the '<em>Element Block</em>' containment reference.
+   * @see #getElementBlock()
    * @generated
    */
-  void setElements(AttributeElementList value);
+  void setElementBlock(AttributeElementBlock value);
 
 } // Attribute

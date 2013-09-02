@@ -509,20 +509,15 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cCommercialAtKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cLeftParenthesisKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
-		private final Assignment cElementsAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
-		private final RuleCall cElementsAttributeElementListParserRuleCall_2_1_0_0 = (RuleCall)cElementsAssignment_2_1_0.eContents().get(0);
-		private final Keyword cCommaKeyword_2_1_1 = (Keyword)cGroup_2_1.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
+		private final Assignment cElementBlockAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cElementBlockAttributeElementBlockParserRuleCall_2_0 = (RuleCall)cElementBlockAssignment_2.eContents().get(0);
 		
 		//Attribute:
 		//
-		//	"@" name=QualifiedName ("(" (elements=AttributeElementList ","?)? ")")?;
+		//	"@" name=QualifiedName elementBlock=AttributeElementBlock?;
 		public ParserRule getRule() { return rule; }
 
-		//"@" name=QualifiedName ("(" (elements=AttributeElementList ","?)? ")")?
+		//"@" name=QualifiedName elementBlock=AttributeElementBlock?
 		public Group getGroup() { return cGroup; }
 
 		//"@"
@@ -534,26 +529,52 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getNameQualifiedNameParserRuleCall_1_0() { return cNameQualifiedNameParserRuleCall_1_0; }
 
-		//("(" (elements=AttributeElementList ","?)? ")")?
-		public Group getGroup_2() { return cGroup_2; }
+		//elementBlock=AttributeElementBlock?
+		public Assignment getElementBlockAssignment_2() { return cElementBlockAssignment_2; }
+
+		//AttributeElementBlock
+		public RuleCall getElementBlockAttributeElementBlockParserRuleCall_2_0() { return cElementBlockAttributeElementBlockParserRuleCall_2_0; }
+	}
+
+	public class AttributeElementBlockElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AttributeElementBlock");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cAttributeElementBlockAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cElementsAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cElementsAttributeElementListParserRuleCall_2_0_0 = (RuleCall)cElementsAssignment_2_0.eContents().get(0);
+		private final Keyword cCommaKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//AttributeElementBlock:
+		//
+		//	{AttributeElementBlock} "(" (elements=AttributeElementList ","?)? ")";
+		public ParserRule getRule() { return rule; }
+
+		//{AttributeElementBlock} "(" (elements=AttributeElementList ","?)? ")"
+		public Group getGroup() { return cGroup; }
+
+		//{AttributeElementBlock}
+		public Action getAttributeElementBlockAction_0() { return cAttributeElementBlockAction_0; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_2_0() { return cLeftParenthesisKeyword_2_0; }
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 
 		//(elements=AttributeElementList ","?)?
-		public Group getGroup_2_1() { return cGroup_2_1; }
+		public Group getGroup_2() { return cGroup_2; }
 
 		//elements=AttributeElementList
-		public Assignment getElementsAssignment_2_1_0() { return cElementsAssignment_2_1_0; }
+		public Assignment getElementsAssignment_2_0() { return cElementsAssignment_2_0; }
 
 		//AttributeElementList
-		public RuleCall getElementsAttributeElementListParserRuleCall_2_1_0_0() { return cElementsAttributeElementListParserRuleCall_2_1_0_0; }
+		public RuleCall getElementsAttributeElementListParserRuleCall_2_0_0() { return cElementsAttributeElementListParserRuleCall_2_0_0; }
 
 		//","?
-		public Keyword getCommaKeyword_2_1_1() { return cCommaKeyword_2_1_1; }
+		public Keyword getCommaKeyword_2_1() { return cCommaKeyword_2_1; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_2_2() { return cRightParenthesisKeyword_2_2; }
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 	}
 
 	public class AttributeElementListElements extends AbstractParserRuleElementFinder {
@@ -1250,6 +1271,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	private DescriptionElements pDescription;
 	private AttributeListElements pAttributeList;
 	private AttributeElements pAttribute;
+	private AttributeElementBlockElements pAttributeElementBlock;
 	private AttributeElementListElements pAttributeElementList;
 	private AttributeElementElements pAttributeElement;
 	private AttributeValueElements pAttributeValue;
@@ -1442,13 +1464,24 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Attribute:
 	//
-	//	"@" name=QualifiedName ("(" (elements=AttributeElementList ","?)? ")")?;
+	//	"@" name=QualifiedName elementBlock=AttributeElementBlock?;
 	public AttributeElements getAttributeAccess() {
 		return (pAttribute != null) ? pAttribute : (pAttribute = new AttributeElements());
 	}
 	
 	public ParserRule getAttributeRule() {
 		return getAttributeAccess().getRule();
+	}
+
+	//AttributeElementBlock:
+	//
+	//	{AttributeElementBlock} "(" (elements=AttributeElementList ","?)? ")";
+	public AttributeElementBlockElements getAttributeElementBlockAccess() {
+		return (pAttributeElementBlock != null) ? pAttributeElementBlock : (pAttributeElementBlock = new AttributeElementBlockElements());
+	}
+	
+	public ParserRule getAttributeElementBlockRule() {
+		return getAttributeElementBlockAccess().getRule();
 	}
 
 	//AttributeElementList:

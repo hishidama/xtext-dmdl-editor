@@ -970,37 +970,82 @@ ruleAttribute returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_2='(' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getAttributeAccess().getLeftParenthesisKeyword_2_0());
-    }
-((
+)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAttributeAccess().getElementsAttributeElementListParserRuleCall_2_1_0_0()); 
+	        newCompositeNode(grammarAccess.getAttributeAccess().getElementBlockAttributeElementBlockParserRuleCall_2_0()); 
 	    }
-		lv_elements_3_0=ruleAttributeElementList		{
+		lv_elementBlock_2_0=ruleAttributeElementBlock		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAttributeRule());
 	        }
        		set(
        			$current, 
+       			"elementBlock",
+        		lv_elementBlock_2_0, 
+        		"AttributeElementBlock");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?)
+;
+
+
+
+
+
+// Entry rule entryRuleAttributeElementBlock
+entryRuleAttributeElementBlock returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getAttributeElementBlockRule()); }
+	 iv_ruleAttributeElementBlock=ruleAttributeElementBlock 
+	 { $current=$iv_ruleAttributeElementBlock.current; } 
+	 EOF 
+;
+
+// Rule AttributeElementBlock
+ruleAttributeElementBlock returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getAttributeElementBlockAccess().getAttributeElementBlockAction_0(),
+            $current);
+    }
+)	otherlv_1='(' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getAttributeElementBlockAccess().getLeftParenthesisKeyword_1());
+    }
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getAttributeElementBlockAccess().getElementsAttributeElementListParserRuleCall_2_0_0()); 
+	    }
+		lv_elements_2_0=ruleAttributeElementList		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getAttributeElementBlockRule());
+	        }
+       		set(
+       			$current, 
        			"elements",
-        		lv_elements_3_0, 
+        		lv_elements_2_0, 
         		"AttributeElementList");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_4=',' 
+)(	otherlv_3=',' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getAttributeAccess().getCommaKeyword_2_1_1());
+    	newLeafNode(otherlv_3, grammarAccess.getAttributeElementBlockAccess().getCommaKeyword_2_1());
     }
-)?)?	otherlv_5=')' 
+)?)?	otherlv_4=')' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getAttributeAccess().getRightParenthesisKeyword_2_2());
+    	newLeafNode(otherlv_4, grammarAccess.getAttributeElementBlockAccess().getRightParenthesisKeyword_3());
     }
-)?)
+)
 ;
 
 

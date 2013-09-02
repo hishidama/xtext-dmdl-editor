@@ -61,8 +61,8 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSummarizeExpressionAccess().getGroup_1(), "rule__SummarizeExpression__Group_1__0");
 					put(grammarAccess.getSummarizeTermAccess().getGroup(), "rule__SummarizeTerm__Group__0");
 					put(grammarAccess.getAttributeAccess().getGroup(), "rule__Attribute__Group__0");
-					put(grammarAccess.getAttributeAccess().getGroup_2(), "rule__Attribute__Group_2__0");
-					put(grammarAccess.getAttributeAccess().getGroup_2_1(), "rule__Attribute__Group_2_1__0");
+					put(grammarAccess.getAttributeElementBlockAccess().getGroup(), "rule__AttributeElementBlock__Group__0");
+					put(grammarAccess.getAttributeElementBlockAccess().getGroup_2(), "rule__AttributeElementBlock__Group_2__0");
 					put(grammarAccess.getAttributeElementListAccess().getGroup(), "rule__AttributeElementList__Group__0");
 					put(grammarAccess.getAttributeElementListAccess().getGroup_1(), "rule__AttributeElementList__Group_1__0");
 					put(grammarAccess.getAttributeElementAccess().getGroup(), "rule__AttributeElement__Group__0");
@@ -109,7 +109,8 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSummarizeTermAccess().getGroupingAssignment_2(), "rule__SummarizeTerm__GroupingAssignment_2");
 					put(grammarAccess.getAttributeListAccess().getAttributesAssignment(), "rule__AttributeList__AttributesAssignment");
 					put(grammarAccess.getAttributeAccess().getNameAssignment_1(), "rule__Attribute__NameAssignment_1");
-					put(grammarAccess.getAttributeAccess().getElementsAssignment_2_1_0(), "rule__Attribute__ElementsAssignment_2_1_0");
+					put(grammarAccess.getAttributeAccess().getElementBlockAssignment_2(), "rule__Attribute__ElementBlockAssignment_2");
+					put(grammarAccess.getAttributeElementBlockAccess().getElementsAssignment_2_0(), "rule__AttributeElementBlock__ElementsAssignment_2_0");
 					put(grammarAccess.getAttributeElementListAccess().getElementsAssignment_0(), "rule__AttributeElementList__ElementsAssignment_0");
 					put(grammarAccess.getAttributeElementListAccess().getElementsAssignment_1_1(), "rule__AttributeElementList__ElementsAssignment_1_1");
 					put(grammarAccess.getAttributeElementAccess().getNameAssignment_0(), "rule__AttributeElement__NameAssignment_0");

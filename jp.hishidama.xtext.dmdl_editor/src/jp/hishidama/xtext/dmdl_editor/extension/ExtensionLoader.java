@@ -14,11 +14,34 @@ import org.eclipse.core.runtime.Platform;
 
 public class ExtensionLoader {
 	private static final String PLUGIN_ID = "jp.hishidama.xtext.dmdl_editor";
-	// private static final String ATTRIBUTE_DEF_POINT_ID = PLUGIN_ID +
-	// ".dmdlAttributeWizardDefinition";
+	private static final String ATTRIBUTE_DEF_POINT_ID = PLUGIN_ID + ".dmdlAttributeWizardDefinition";
 	private static final String GENERATOR_POINT_ID = PLUGIN_ID + ".dmdlImporterExporterGenerator";
 
+	private List<DMDLAttributeWizardDefinition> attrDefList;
 	private List<DMDLImporterExporterGenerator> generatorList;
+
+	public List<DMDLAttributeWizardDefinition> getAttributeWizardDefinitions() {
+		if (attrDefList != null) {
+			return attrDefList;
+		}
+
+		IExtensionPoint point = getExtensionPoint(ATTRIBUTE_DEF_POINT_ID);
+
+		attrDefList = new ArrayList<DMDLAttributeWizardDefinition>();
+		for (IExtension extension : point.getExtensions()) {
+			for (IConfigurationElement element : extension.getConfigurationElements()) {
+				try {
+					Object obj = element.createExecutableExtension("class");
+					if (obj instanceof DMDLAttributeWizardDefinition) {
+						attrDefList.add((DMDLAttributeWizardDefinition) obj);
+					}
+				} catch (CoreException e) {
+					e.printStackTrace(); // TODO log
+				}
+			}
+		}
+		return attrDefList;
+	}
 
 	public List<DMDLImporterExporterGenerator> getImporterExporterGenerators() {
 		if (generatorList != null) {
@@ -36,7 +59,7 @@ public class ExtensionLoader {
 						generatorList.add((DMDLImporterExporterGenerator) obj);
 					}
 				} catch (CoreException e) {
-					e.printStackTrace();
+					e.printStackTrace(); // TODO log
 				}
 			}
 		}

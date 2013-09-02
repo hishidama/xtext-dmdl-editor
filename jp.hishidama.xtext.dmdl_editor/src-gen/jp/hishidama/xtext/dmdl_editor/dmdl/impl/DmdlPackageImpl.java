@@ -4,6 +4,7 @@ package jp.hishidama.xtext.dmdl_editor.dmdl.impl;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElement;
+import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementBlock;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValue;
@@ -129,6 +130,13 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * @generated
    */
   private EClass attributeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass attributeElementBlockEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -626,9 +634,29 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAttribute_Elements()
+  public EReference getAttribute_ElementBlock()
   {
     return (EReference)attributeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAttributeElementBlock()
+  {
+    return attributeElementBlockEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAttributeElementBlock_Elements()
+  {
+    return (EReference)attributeElementBlockEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1035,7 +1063,10 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
 
     attributeEClass = createEClass(ATTRIBUTE);
     createEAttribute(attributeEClass, ATTRIBUTE__NAME);
-    createEReference(attributeEClass, ATTRIBUTE__ELEMENTS);
+    createEReference(attributeEClass, ATTRIBUTE__ELEMENT_BLOCK);
+
+    attributeElementBlockEClass = createEClass(ATTRIBUTE_ELEMENT_BLOCK);
+    createEReference(attributeElementBlockEClass, ATTRIBUTE_ELEMENT_BLOCK__ELEMENTS);
 
     attributeElementListEClass = createEClass(ATTRIBUTE_ELEMENT_LIST);
     createEReference(attributeElementListEClass, ATTRIBUTE_ELEMENT_LIST__ELEMENTS);
@@ -1163,7 +1194,10 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
 
     initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAttribute_Elements(), this.getAttributeElementList(), null, "elements", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAttribute_ElementBlock(), this.getAttributeElementBlock(), null, "elementBlock", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(attributeElementBlockEClass, AttributeElementBlock.class, "AttributeElementBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAttributeElementBlock_Elements(), this.getAttributeElementList(), null, "elements", null, 0, 1, AttributeElementBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attributeElementListEClass, AttributeElementList.class, "AttributeElementList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAttributeElementList_Elements(), this.getAttributeElement(), null, "elements", null, 0, -1, AttributeElementList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

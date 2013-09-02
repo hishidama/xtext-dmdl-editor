@@ -68,7 +68,10 @@
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//Attribute">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//Attribute/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//Attribute/elements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//Attribute/elementBlock"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//AttributeElementBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//AttributeElementBlock/elements"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//AttributeElementList">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//AttributeElementList/elements"/>

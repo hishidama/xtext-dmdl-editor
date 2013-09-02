@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElement;
+import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementBlock;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValue;
@@ -56,6 +57,12 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case DmdlPackage.ATTRIBUTE_ELEMENT:
 				if(context == grammarAccess.getAttributeElementRule()) {
 					sequence_AttributeElement(context, (AttributeElement) semanticObject); 
+					return; 
+				}
+				else break;
+			case DmdlPackage.ATTRIBUTE_ELEMENT_BLOCK:
+				if(context == grammarAccess.getAttributeElementBlockRule()) {
+					sequence_AttributeElementBlock(context, (AttributeElementBlock) semanticObject); 
 					return; 
 				}
 				else break;
@@ -194,6 +201,15 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     (elements=AttributeElementList?)
+	 */
+	protected void sequence_AttributeElementBlock(EObject context, AttributeElementBlock semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (elements+=AttributeElement elements+=AttributeElement*)
 	 */
 	protected void sequence_AttributeElementList(EObject context, AttributeElementList semanticObject) {
@@ -249,7 +265,7 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (name=QualifiedName elements=AttributeElementList?)
+	 *     (name=QualifiedName elementBlock=AttributeElementBlock?)
 	 */
 	protected void sequence_Attribute(EObject context, Attribute semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

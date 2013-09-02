@@ -61,7 +61,10 @@ AttributeList:
 	(attributes+=Attribute)+;
 
 Attribute:
-	"@" name=QualifiedName ('(' (elements=AttributeElementList ","?)? ')')?;
+	"@" name=QualifiedName elementBlock=AttributeElementBlock?;
+
+AttributeElementBlock:
+	{AttributeElementBlock} '(' (elements=AttributeElementList ","?)? ')';
 
 AttributeElementList:
 	elements+=AttributeElement ("," elements+=AttributeElement)*;

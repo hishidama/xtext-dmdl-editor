@@ -2,6 +2,7 @@
 <?eclipse version="3.0"?>
 
 <plugin>
+   <extension-point id="dmdlAttributeWizardDefinition" name="DMDL AttributeWizard definition" schema="schema/dmdlAttributeWizardDefinition.exsd"/>
    <extension-point id="dmdlImporterExporterGenerator" name="DMDL Importer/Exporter generator" schema="schema/dmdlImporterExporterGenerator.exsd"/>
 
   <extension point="org.eclipse.emf.ecore.generated_package">
@@ -12,6 +13,24 @@
 	
   </extension>
 
+   <extension
+         point="jp.hishidama.xtext.dmdl_editor.dmdlAttributeWizardDefinition">
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioCsvAttributeDefinition">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioSeqfileAttributeDefinition">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.WindgateCsvAttributeDefinition">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.WindgateJdbcAttributeDefinition">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.WindgateTsvAttributeDefinition">
+      </classpath>
+   </extension>
    <extension
          point="jp.hishidama.xtext.dmdl_editor.dmdlImporterExporterGenerator">
       <classpath

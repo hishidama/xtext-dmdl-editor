@@ -250,7 +250,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getProperty()
    * @generated
    */
-  int PROPERTY = 21;
+  int PROPERTY = 22;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -539,13 +539,13 @@ public interface DmdlPackage extends EPackage
   int ATTRIBUTE__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Elements</b></em>' containment reference.
+   * The feature id for the '<em><b>Element Block</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ATTRIBUTE__ELEMENTS = 1;
+  int ATTRIBUTE__ELEMENT_BLOCK = 1;
 
   /**
    * The number of structural features of the '<em>Attribute</em>' class.
@@ -557,6 +557,34 @@ public interface DmdlPackage extends EPackage
   int ATTRIBUTE_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributeElementBlockImpl <em>Attribute Element Block</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributeElementBlockImpl
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeElementBlock()
+   * @generated
+   */
+  int ATTRIBUTE_ELEMENT_BLOCK = 12;
+
+  /**
+   * The feature id for the '<em><b>Elements</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_ELEMENT_BLOCK__ELEMENTS = 0;
+
+  /**
+   * The number of structural features of the '<em>Attribute Element Block</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_ELEMENT_BLOCK_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributeElementListImpl <em>Attribute Element List</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -564,7 +592,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeElementList()
    * @generated
    */
-  int ATTRIBUTE_ELEMENT_LIST = 12;
+  int ATTRIBUTE_ELEMENT_LIST = 13;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -592,7 +620,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeElement()
    * @generated
    */
-  int ATTRIBUTE_ELEMENT = 13;
+  int ATTRIBUTE_ELEMENT = 14;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -629,7 +657,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeValue()
    * @generated
    */
-  int ATTRIBUTE_VALUE = 14;
+  int ATTRIBUTE_VALUE = 15;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -657,7 +685,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeValueArray()
    * @generated
    */
-  int ATTRIBUTE_VALUE_ARRAY = 15;
+  int ATTRIBUTE_VALUE_ARRAY = 16;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -685,7 +713,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getGrouping()
    * @generated
    */
-  int GROUPING = 16;
+  int GROUPING = 17;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' reference list.
@@ -713,7 +741,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getModelMapping()
    * @generated
    */
-  int MODEL_MAPPING = 17;
+  int MODEL_MAPPING = 18;
 
   /**
    * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
@@ -741,7 +769,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyMapping()
    * @generated
    */
-  int PROPERTY_MAPPING = 18;
+  int PROPERTY_MAPPING = 19;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -796,7 +824,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getModelFolding()
    * @generated
    */
-  int MODEL_FOLDING = 19;
+  int MODEL_FOLDING = 20;
 
   /**
    * The feature id for the '<em><b>Foldings</b></em>' containment reference list.
@@ -824,7 +852,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyFolding()
    * @generated
    */
-  int PROPERTY_FOLDING = 20;
+  int PROPERTY_FOLDING = 21;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -888,7 +916,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getQualifiedNameObject()
    * @generated
    */
-  int QUALIFIED_NAME_OBJECT = 22;
+  int QUALIFIED_NAME_OBJECT = 23;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -916,7 +944,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 23;
+  int LITERAL = 24;
 
   /**
    * The feature id for the '<em><b>String Value</b></em>' attribute.
@@ -971,7 +999,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getType()
    * @generated
    */
-  int TYPE = 24;
+  int TYPE = 25;
 
   /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.BOOLEAN <em>BOOLEAN</em>}' enum.
@@ -981,7 +1009,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getBOOLEAN()
    * @generated
    */
-  int BOOLEAN = 25;
+  int BOOLEAN = 26;
 
 
   /**
@@ -1336,15 +1364,36 @@ public interface DmdlPackage extends EPackage
   EAttribute getAttribute_Name();
 
   /**
-   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Attribute#getElements <em>Elements</em>}'.
+   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Attribute#getElementBlock <em>Element Block</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Elements</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Attribute#getElements()
+   * @return the meta object for the containment reference '<em>Element Block</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Attribute#getElementBlock()
    * @see #getAttribute()
    * @generated
    */
-  EReference getAttribute_Elements();
+  EReference getAttribute_ElementBlock();
+
+  /**
+   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementBlock <em>Attribute Element Block</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Attribute Element Block</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementBlock
+   * @generated
+   */
+  EClass getAttributeElementBlock();
+
+  /**
+   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementBlock#getElements <em>Elements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Elements</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementBlock#getElements()
+   * @see #getAttributeElementBlock()
+   * @generated
+   */
+  EReference getAttributeElementBlock_Elements();
 
   /**
    * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementList <em>Attribute Element List</em>}'.
@@ -2007,12 +2056,30 @@ public interface DmdlPackage extends EPackage
     EAttribute ATTRIBUTE__NAME = eINSTANCE.getAttribute_Name();
 
     /**
+     * The meta object literal for the '<em><b>Element Block</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ATTRIBUTE__ELEMENT_BLOCK = eINSTANCE.getAttribute_ElementBlock();
+
+    /**
+     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributeElementBlockImpl <em>Attribute Element Block</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributeElementBlockImpl
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeElementBlock()
+     * @generated
+     */
+    EClass ATTRIBUTE_ELEMENT_BLOCK = eINSTANCE.getAttributeElementBlock();
+
+    /**
      * The meta object literal for the '<em><b>Elements</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ATTRIBUTE__ELEMENTS = eINSTANCE.getAttribute_Elements();
+    EReference ATTRIBUTE_ELEMENT_BLOCK__ELEMENTS = eINSTANCE.getAttributeElementBlock_Elements();
 
     /**
      * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributeElementListImpl <em>Attribute Element List</em>}' class.

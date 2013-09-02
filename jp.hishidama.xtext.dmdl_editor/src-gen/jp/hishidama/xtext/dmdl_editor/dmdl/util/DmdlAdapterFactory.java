@@ -135,6 +135,11 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
         return createAttributeAdapter();
       }
       @Override
+      public Adapter caseAttributeElementBlock(AttributeElementBlock object)
+      {
+        return createAttributeElementBlockAdapter();
+      }
+      @Override
       public Adapter caseAttributeElementList(AttributeElementList object)
       {
         return createAttributeElementListAdapter();
@@ -392,6 +397,21 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAttributeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementBlock <em>Attribute Element Block</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementBlock
+   * @generated
+   */
+  public Adapter createAttributeElementBlockAdapter()
   {
     return null;
   }

@@ -77,6 +77,7 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
       case DmdlPackage.SUMMARIZE_TERM: return createSummarizeTerm();
       case DmdlPackage.ATTRIBUTE_LIST: return createAttributeList();
       case DmdlPackage.ATTRIBUTE: return createAttribute();
+      case DmdlPackage.ATTRIBUTE_ELEMENT_BLOCK: return createAttributeElementBlock();
       case DmdlPackage.ATTRIBUTE_ELEMENT_LIST: return createAttributeElementList();
       case DmdlPackage.ATTRIBUTE_ELEMENT: return createAttributeElement();
       case DmdlPackage.ATTRIBUTE_VALUE: return createAttributeValue();
@@ -262,6 +263,17 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
   {
     AttributeImpl attribute = new AttributeImpl();
     return attribute;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AttributeElementBlock createAttributeElementBlock()
+  {
+    AttributeElementBlockImpl attributeElementBlock = new AttributeElementBlockImpl();
+    return attributeElementBlock;
   }
 
   /**

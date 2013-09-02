@@ -131,6 +131,15 @@ public interface DmdlFactory extends EFactory
   Attribute createAttribute();
 
   /**
+   * Returns a new object of class '<em>Attribute Element Block</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attribute Element Block</em>'.
+   * @generated
+   */
+  AttributeElementBlock createAttributeElementBlock();
+
+  /**
    * Returns a new object of class '<em>Attribute Element List</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

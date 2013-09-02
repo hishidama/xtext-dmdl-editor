@@ -3,7 +3,7 @@
 package jp.hishidama.xtext.dmdl_editor.dmdl.impl;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
-import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementList;
+import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementBlock;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributeImpl#getName <em>Name</em>}</li>
- *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributeImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributeImpl#getElementBlock <em>Element Block</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,14 +52,14 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference.
+   * The cached value of the '{@link #getElementBlock() <em>Element Block</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getElements()
+   * @see #getElementBlock()
    * @generated
    * @ordered
    */
-  protected AttributeElementList elements;
+  protected AttributeElementBlock elementBlock;
 
   /**
    * <!-- begin-user-doc -->
@@ -110,9 +110,9 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
-  public AttributeElementList getElements()
+  public AttributeElementBlock getElementBlock()
   {
-    return elements;
+    return elementBlock;
   }
 
   /**
@@ -120,13 +120,13 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetElements(AttributeElementList newElements, NotificationChain msgs)
+  public NotificationChain basicSetElementBlock(AttributeElementBlock newElementBlock, NotificationChain msgs)
   {
-    AttributeElementList oldElements = elements;
-    elements = newElements;
+    AttributeElementBlock oldElementBlock = elementBlock;
+    elementBlock = newElementBlock;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DmdlPackage.ATTRIBUTE__ELEMENTS, oldElements, newElements);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DmdlPackage.ATTRIBUTE__ELEMENT_BLOCK, oldElementBlock, newElementBlock);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -137,20 +137,20 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setElements(AttributeElementList newElements)
+  public void setElementBlock(AttributeElementBlock newElementBlock)
   {
-    if (newElements != elements)
+    if (newElementBlock != elementBlock)
     {
       NotificationChain msgs = null;
-      if (elements != null)
-        msgs = ((InternalEObject)elements).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DmdlPackage.ATTRIBUTE__ELEMENTS, null, msgs);
-      if (newElements != null)
-        msgs = ((InternalEObject)newElements).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DmdlPackage.ATTRIBUTE__ELEMENTS, null, msgs);
-      msgs = basicSetElements(newElements, msgs);
+      if (elementBlock != null)
+        msgs = ((InternalEObject)elementBlock).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DmdlPackage.ATTRIBUTE__ELEMENT_BLOCK, null, msgs);
+      if (newElementBlock != null)
+        msgs = ((InternalEObject)newElementBlock).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DmdlPackage.ATTRIBUTE__ELEMENT_BLOCK, null, msgs);
+      msgs = basicSetElementBlock(newElementBlock, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DmdlPackage.ATTRIBUTE__ELEMENTS, newElements, newElements));
+      eNotify(new ENotificationImpl(this, Notification.SET, DmdlPackage.ATTRIBUTE__ELEMENT_BLOCK, newElementBlock, newElementBlock));
   }
 
   /**
@@ -163,8 +163,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
   {
     switch (featureID)
     {
-      case DmdlPackage.ATTRIBUTE__ELEMENTS:
-        return basicSetElements(null, msgs);
+      case DmdlPackage.ATTRIBUTE__ELEMENT_BLOCK:
+        return basicSetElementBlock(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -181,8 +181,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
     {
       case DmdlPackage.ATTRIBUTE__NAME:
         return getName();
-      case DmdlPackage.ATTRIBUTE__ELEMENTS:
-        return getElements();
+      case DmdlPackage.ATTRIBUTE__ELEMENT_BLOCK:
+        return getElementBlock();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -200,8 +200,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
       case DmdlPackage.ATTRIBUTE__NAME:
         setName((String)newValue);
         return;
-      case DmdlPackage.ATTRIBUTE__ELEMENTS:
-        setElements((AttributeElementList)newValue);
+      case DmdlPackage.ATTRIBUTE__ELEMENT_BLOCK:
+        setElementBlock((AttributeElementBlock)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -220,8 +220,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
       case DmdlPackage.ATTRIBUTE__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case DmdlPackage.ATTRIBUTE__ELEMENTS:
-        setElements((AttributeElementList)null);
+      case DmdlPackage.ATTRIBUTE__ELEMENT_BLOCK:
+        setElementBlock((AttributeElementBlock)null);
         return;
     }
     super.eUnset(featureID);
@@ -239,8 +239,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
     {
       case DmdlPackage.ATTRIBUTE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case DmdlPackage.ATTRIBUTE__ELEMENTS:
-        return elements != null;
+      case DmdlPackage.ATTRIBUTE__ELEMENT_BLOCK:
+        return elementBlock != null;
     }
     return super.eIsSet(featureID);
   }
