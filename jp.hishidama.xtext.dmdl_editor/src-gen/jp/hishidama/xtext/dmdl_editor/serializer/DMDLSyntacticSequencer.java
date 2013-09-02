@@ -70,7 +70,7 @@ public class DMDLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Syntax:
-	 *     '=>' | '->'
+	 *     '->' | '=>'
 	 */
 	protected void emit_PropertyFolding_EqualsSignGreaterThanSignKeyword_4_1_or_HyphenMinusGreaterThanSignKeyword_4_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

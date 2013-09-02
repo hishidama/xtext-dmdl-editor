@@ -448,6 +448,14 @@
                   style="push">
                <parameter
                      name="newWizardId"
+                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-datamodel">
+               </parameter>
+            </command>
+            <command
+                  commandId="org.eclipse.ui.newWizard"
+                  style="push">
+               <parameter
+                     name="newWizardId"
                      value="jp.hishidama.xtext.dmdl_editor.ui.wizard.attribute">
                </parameter>
             </command>
@@ -468,6 +476,16 @@
             id="jp.hishidama.xtext.dmdl_editor.ui.wizard-category"
             name="DMDL EditorX">
       </category>
+      <wizard
+            category="jp.hishidama.xtext.dmdl_editor.ui.wizard-category"
+            class="jp.hishidama.xtext.dmdl_editor.ui.wizard.NewDataModelWizard"
+            icon="icons/new_model.gif"
+            id="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-datamodel"
+            name="New DataModel">
+         <description>
+            データモデルを新規に作成します。
+         </description>
+      </wizard>
       <wizard
             category="jp.hishidama.xtext.dmdl_editor.ui.wizard-category"
             class="jp.hishidama.xtext.dmdl_editor.ui.wizard.AttributeWizard"

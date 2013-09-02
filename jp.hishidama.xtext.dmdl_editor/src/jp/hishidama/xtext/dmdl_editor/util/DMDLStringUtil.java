@@ -72,7 +72,7 @@ public class DMDLStringUtil {
 
 	public static String decodeDescription(String s) {
 		if (s == null) {
-			return s;
+			return null;
 		}
 		if (s.startsWith("\"")) {
 			s = s.substring(1);
