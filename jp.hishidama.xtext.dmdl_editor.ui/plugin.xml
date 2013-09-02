@@ -436,7 +436,7 @@
             </command>
             <command
                   commandId="org.eclipse.xtext.ui.shared.OpenXtextElementCommand"
-                  icon="icons/hishidama16.gif"
+                  icon="icons/find_obj.gif"
                   tooltip="Xtextの機能を使用してデータモデル・プロパティーを検索します。">
             </command>
             <separator
