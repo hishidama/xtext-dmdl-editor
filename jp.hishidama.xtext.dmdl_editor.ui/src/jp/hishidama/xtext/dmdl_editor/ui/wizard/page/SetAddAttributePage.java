@@ -1,11 +1,18 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page;
 
+import java.io.StringReader;
+import java.text.MessageFormat;
+
 import jp.hishidama.xtext.dmdl_editor.extension.DMDLAttributeWizardDefinition;
+import jp.hishidama.xtext.dmdl_editor.parser.antlr.DMDLParser;
+import jp.hishidama.xtext.dmdl_editor.services.DMDLGrammarAccess;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SelectAddRemovePage.AddPattern;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.update.AttributeAppender4Add;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.update.AttributeAppender4Nothing;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.update.AttributeAppender4Replace;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.update.AttributeUpdater;
+import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.Clipboard;
@@ -20,8 +27,12 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.parser.IParseResult;
 
 public class SetAddAttributePage extends SetAttributePage {
+	private DMDLParser parser = InjectorUtil.getInstance(DMDLParser.class);
 
 	public SetAddAttributePage() {
 		super("SetAttributePage");
@@ -87,6 +98,47 @@ public class SetAddAttributePage extends SetAttributePage {
 
 	protected String getDefaultPropertyAttribute(DMDLAttributeWizardDefinition def) {
 		return def.getAddPropertyAttribute();
+	}
+
+	@Override
+	protected void validate() {
+		setErrorMessage(null);
+		boolean ok = true;
+		ok &= validateParse("モデルの属性", modelText);
+		ok &= validateParse("プロパティーの属性", propertyText);
+		if (!ok) {
+			return;
+		}
+
+		super.validate();
+	}
+
+	private boolean validateParse(String title, Text text) {
+		String attr = text.getText();
+		if (attr.trim().isEmpty()) {
+			return true;
+		}
+		String resolved = DMDLStringUtil.replace(attr, "model_name", "property_name", "\"property description\"");
+		DMDLGrammarAccess grammar = parser.getGrammarAccess();
+		IParseResult result = parser.parse(grammar.getAttributeListRule(), new StringReader(resolved));
+		if (result.hasSyntaxErrors()) {
+			StringBuilder sb = new StringBuilder();
+			for (INode error : result.getSyntaxErrors()) {
+				if (sb.length() != 0) {
+					sb.append("\n");
+				}
+				sb.append(error.getSyntaxErrorMessage().getMessage());
+			}
+			if (getErrorMessage() == null) {
+				setErrorMessage(MessageFormat.format("{0}の内容が不正です。", title));
+			}
+			setPageComplete(false);
+			text.setToolTipText(sb.toString());
+			return false;
+		}
+
+		text.setToolTipText(null);
+		return true;
 	}
 
 	@Override

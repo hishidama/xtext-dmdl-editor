@@ -29,8 +29,8 @@ public abstract class SetAttributePage extends WizardPage {
 	private static final String SETTINGS_MODEL_ATTR = "AttributeWizard.modelAttribute";
 	private static final String SETTINGS_PROP_ATTR = "AttributeWizard.propertyAttribute";
 
-	private Text modelText;
-	private Text propertyText;
+	protected Text modelText;
+	protected Text propertyText;
 
 	public SetAttributePage(String pageName) {
 		super(pageName);
@@ -162,7 +162,7 @@ public abstract class SetAttributePage extends WizardPage {
 
 	protected abstract String getDefaultPropertyAttribute(DMDLAttributeWizardDefinition def);
 
-	private void validate() {
+	protected void validate() {
 		boolean complete = !modelText.getText().trim().isEmpty() || !propertyText.getText().trim().isEmpty();
 		setPageComplete(complete);
 	}
