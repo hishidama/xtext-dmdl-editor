@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import jp.hishidama.eclipse_plugin.util.StringUtil;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
@@ -88,5 +90,26 @@ public class ModelUtil {
 
 			list.add(property);
 		}
+	}
+
+	public static Property findProperty(ModelDefinition model, String name) {
+		List<Property> list = getProperties(model);
+		return findProperty(list, name);
+	}
+
+	public static Property findProperty(List<Property> list, String name) {
+		for (Property p : list) {
+			String pname = p.getName();
+			if (name.equals(pname)) {
+				return p;
+			}
+		}
+		for (Property p : list) {
+			String pname = StringUtil.toLowerCamelCase(p.getName());
+			if (name.equals(pname)) {
+				return p;
+			}
+		}
+		return null;
 	}
 }
