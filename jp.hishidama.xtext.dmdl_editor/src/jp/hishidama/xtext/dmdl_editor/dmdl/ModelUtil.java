@@ -84,7 +84,7 @@ public class ModelUtil {
 		for (Property property : properties) {
 			String name = property.getName();
 			if (set.contains(name)) {
-				return;
+				continue;
 			}
 			set.add(name);
 
