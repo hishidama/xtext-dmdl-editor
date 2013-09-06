@@ -114,7 +114,7 @@ class DataModelNormalRow extends DataModelRow {
 	}
 }
 
-public class CreateDataModelNormalPage extends CreateDataModelPage<DataModelNormalRow> {
+public class CreateDataModelNormalPage extends CreateDataModelMainPage<DataModelNormalRow> {
 
 	public CreateDataModelNormalPage() {
 		this("CreateDataModelNormalPage", "データモデルの作成", "データモデルを定義して下さい。");

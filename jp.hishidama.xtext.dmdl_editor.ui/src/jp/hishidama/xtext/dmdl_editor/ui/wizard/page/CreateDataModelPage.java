@@ -83,9 +83,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		}
 	}
 
-	protected void setInput() {
-		sourceViewer.setInputAll(project);
-	}
+	protected abstract void setInput();
 
 	public void setModelName(String name, String description) {
 		this.modelName = name;
@@ -324,7 +322,12 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 				setInput();
 			}
 		}
+		doVisible(visible);
 		super.setVisible(visible);
+	}
+
+	protected void doVisible(boolean visible) {
+		// do override
 	}
 
 	private class ModelLabelProvider extends CellLabelProvider {
@@ -500,9 +503,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 
 	protected abstract String getCopyToolTipText();
 
-	protected boolean enableCopy(ModelDefinition model, Property prop) {
-		return true;
-	}
+	protected abstract boolean enableCopy(ModelDefinition model, Property prop);
 
 	private void doCopy() {
 		ITreeSelection selection = sourceViewer.getSelection();
@@ -521,36 +522,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		validate(true);
 	}
 
-	protected void doCopy(int index, Iterator<DMDLTreeData> iterator) {
-		Set<Property> set = new HashSet<Property>();
-
-		for (Iterator<DMDLTreeData> i = iterator; i.hasNext();) {
-			DMDLTreeData data = i.next();
-			Object obj = data.getData();
-			if (obj instanceof ModelDefinition) {
-				List<DMDLTreeData> props = data.getChildren();
-				if (props != null) {
-					ModelDefinition model = (ModelDefinition) obj;
-					for (DMDLTreeData pd : props) {
-						Property p = (Property) pd.getData();
-						if (!set.contains(p)) {
-							set.add(p);
-							R row = newCopyRow(model, p);
-							index = addToList(index, row);
-						}
-					}
-				}
-			} else if (obj instanceof Property) {
-				Property p = (Property) obj;
-				if (!set.contains(p)) {
-					set.add(p);
-					ModelDefinition model = (ModelDefinition) data.getParent().getData();
-					R row = newCopyRow(model, p);
-					index = addToList(index, row);
-				}
-			}
-		}
-	}
+	protected abstract void doCopy(int index, Iterator<DMDLTreeData> iterator);
 
 	protected abstract R newCopyRow(ModelDefinition model, Property prop);
 

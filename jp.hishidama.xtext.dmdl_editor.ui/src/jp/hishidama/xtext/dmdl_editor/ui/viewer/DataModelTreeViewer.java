@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.DMDLFileUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 
 import org.eclipse.core.resources.IFile;
@@ -33,16 +34,14 @@ public class DataModelTreeViewer extends TreeViewer {
 		if (enableDrag) {
 			int operations = DND.DROP_COPY | DND.DROP_DEFAULT;
 			Transfer[] transferTypes = { DMDLTreeDataTransfer.getInstance() };
-			addDragSupport(operations, transferTypes,
-					new DMDLTreeDataDragListener(this));
+			addDragSupport(operations, transferTypes, new DMDLTreeDataDragListener(this));
 		}
 	}
 
 	public void setInputAll(IProject project) {
 		setContentProvider(new DMDLTreeContentProvider());
 
-		IResourceSetProvider provider = InjectorUtil
-				.getInstance(IResourceSetProvider.class);
+		IResourceSetProvider provider = InjectorUtil.getInstance(IResourceSetProvider.class);
 		ResourceSet resourceSet = provider.get(project);
 
 		List<IFile> files = DMDLFileUtil.getDmdlFiles(project);
@@ -66,8 +65,7 @@ public class DataModelTreeViewer extends TreeViewer {
 	protected static class DataModelFilter extends ViewerFilter {
 
 		@Override
-		public boolean select(Viewer viewer, Object parentElement,
-				Object element) {
+		public boolean select(Viewer viewer, Object parentElement, Object element) {
 			DMDLTreeData data = (DMDLTreeData) element;
 			return data.isFilterSelected();
 		}
@@ -86,5 +84,32 @@ public class DataModelTreeViewer extends TreeViewer {
 		} else {
 			refresh();
 		}
+	}
+
+	public ModelDefinition findModel(String modelName) {
+		@SuppressWarnings("unchecked")
+		List<DMDLTreeData> list = (List<DMDLTreeData>) getInput();
+		return findModel(list, modelName);
+	}
+
+	private ModelDefinition findModel(List<DMDLTreeData> list, String modelName) {
+		if (list == null) {
+			return null;
+		}
+		for (DMDLTreeData node : list) {
+			if (node instanceof DMDLTreeData.FileNode) {
+				ModelDefinition model = findModel(node.getChildren(), modelName);
+				if (model != null) {
+					return model;
+				}
+			}
+			if (node instanceof DMDLTreeData.ModelNode) {
+				ModelDefinition model = (ModelDefinition) node.getData();
+				if (model.getName().equals(modelName)) {
+					return model;
+				}
+			}
+		}
+		return null;
 	}
 }

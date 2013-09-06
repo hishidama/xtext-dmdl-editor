@@ -116,7 +116,7 @@ class DataModelJoinRow extends DataModelRow {
 	}
 }
 
-public class CreateDataModelJoinPage extends CreateDataModelPage<DataModelJoinRow> {
+public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJoinRow> {
 
 	public CreateDataModelJoinPage() {
 		super("CreateDataModelNormalPage", "結合データモデルの作成", "結合データモデルのプロパティーを定義して下さい。（結合キーは次ページで定義します）");
