@@ -260,19 +260,20 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 			return sb + "\n" + text;
 		case FILE_FIRST_COMMENT:
 			n = posAfterComment(sb, models, text);
+			text += "\n";
 			break;
 		case DM_BEFORE:
-			n = modelNode.getOffset();
-			text = "\n" + text;
+			n = modelNode.getTotalOffset();
+			text = "\n" + text + "\n";
 			break;
 		case DM_AFTER:
 			n = modelNode.getTotalEndOffset();
-			text = "\n" + text;
+			text = "\n" + text + "\n";
 			break;
 		case DM_REPLACE:
-			n = modelNode.getOffset();
-			sb.replace(modelNode.getOffset(), modelNode.getTotalEndOffset(), "");
-			text = "\n" + text;
+			n = modelNode.getTotalOffset();
+			sb.replace(modelNode.getTotalOffset(), modelNode.getTotalEndOffset(), "");
+			text = "\n" + text + "\n";
 			break;
 		default:
 			throw new UnsupportedOperationException("pos=" + pos);
@@ -289,18 +290,15 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 
 	private int posAfterComment(StringBuilder sb, Script models, String text) {
 		INode lastComment = null;
-		for (ModelDefinition model : models.getList()) {
-			ICompositeNode node = NodeModelUtils.getNode(model);
-			for (INode n : node.getChildren()) {
-				if (n instanceof ILeafNode) {
-					if (((ILeafNode) n).isHidden()) {
-						lastComment = n;
-						continue;
-					}
+		ICompositeNode root = NodeModelUtils.getNode(models);
+		for (INode node : root.getAsTreeIterable()) {
+			if (node instanceof ILeafNode) {
+				if (((ILeafNode) node).isHidden()) {
+					lastComment = node;
+					continue;
 				}
 				break;
 			}
-			break;
 		}
 		if (lastComment != null) {
 			int n = lastComment.getTotalEndOffset();
