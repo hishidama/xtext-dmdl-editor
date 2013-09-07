@@ -441,10 +441,47 @@
          <menu
                label="DMDL EditorX">
             <command
-                  commandId="jp.hishidama.asakusafwWrapper.command.dmdlErrorCheck">
+                  commandId="jp.hishidama.asakusafwWrapper.command.dmdlErrorCheck"
+                  icon="icons/hishidama16.gif"
+                  tooltip="Asakusa FrameworkのDMDLパーサーを使用してDMDLのエラーチェックを行います。">
             </command>
             <command
-                  commandId="jp.hishidama.asakusafwWrapper.command.dmdlCompile">
+                  commandId="jp.hishidama.asakusafwWrapper.command.dmdlCompile"
+                  icon="icons/hishidama16.gif"
+                  tooltip="Asakusa FrameworkのDMDLコンパイラーを起動してJavaクラスを生成します。">
+            </command>
+            <command
+                  commandId="org.eclipse.xtext.ui.shared.OpenXtextElementCommand"
+                  icon="icons/find_obj.gif"
+                  tooltip="Xtextの機能を使用してデータモデル・プロパティーを検索します。">
+            </command>
+            <separator
+                  name="beginNewWizard"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.eclipse.ui.newWizard"
+                  style="push">
+               <parameter
+                     name="newWizardId"
+                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-datamodel">
+               </parameter>
+            </command>
+            <command
+                  commandId="org.eclipse.ui.newWizard"
+                  style="push">
+               <parameter
+                     name="newWizardId"
+                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.attribute">
+               </parameter>
+            </command>
+            <command
+                  commandId="org.eclipse.ui.newWizard"
+                  style="push">
+               <parameter
+                     name="newWizardId"
+                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-importer-exporter">
+               </parameter>
             </command>
          </menu>
       </menuContribution>
