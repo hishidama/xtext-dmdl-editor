@@ -144,12 +144,17 @@ public class CreateDataModelNormalPage extends CreateDataModelMainPage<DataModel
 	}
 
 	@Override
-	protected DataModelNormalRow newCopyRow(ModelDefinition info, Property prop) {
+	protected DataModelNormalRow newCopyRow(ModelDefinition model, Property prop) {
 		DataModelNormalRow row = new DataModelNormalRow();
 		row.name = prop.getName();
 		row.description = DMDLStringUtil.decodeDescription(prop.getDescription());
 		row.dataType = PropertyUtil.getResolvedDataType(prop).name();
 		return row;
+	}
+
+	@Override
+	protected DataModelNormalRow newDefCopyRow(ModelDefinition model, Property prop) {
+		return newCopyRow(model, prop);
 	}
 
 	@Override

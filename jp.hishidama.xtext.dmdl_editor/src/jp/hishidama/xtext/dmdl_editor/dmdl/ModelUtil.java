@@ -1,8 +1,10 @@
 package jp.hishidama.xtext.dmdl_editor.dmdl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.util.StringUtil;
@@ -111,5 +113,79 @@ public class ModelUtil {
 			}
 		}
 		return null;
+	}
+
+	public static Map<ModelDefinition, List<Property>> getKeys(ModelDefinition model) {
+		Map<ModelDefinition, List<Property>> map = new HashMap<ModelDefinition, List<Property>>();
+
+		EObject rhs = model.getRhs();
+		if (rhs instanceof SummarizeExpression) {
+			EList<SummarizeTerm> terms = ((SummarizeExpression) rhs).getTerms();
+			for (SummarizeTerm term : terms) {
+				ModelReference ref = term.getReference();
+				Grouping group = term.getGrouping();
+				if (ref != null && group != null) {
+					map.put(ref.getName(), group.getName());
+				}
+			}
+		} else if (rhs instanceof JoinExpression) {
+			EList<JoinTerm> terms = ((JoinExpression) rhs).getTerms();
+			for (JoinTerm term : terms) {
+				ModelReference ref = term.getReference();
+				Grouping group = term.getGrouping();
+				if (ref != null && group != null) {
+					map.put(ref.getName(), group.getName());
+				}
+			}
+		}
+		return map;
+	}
+
+	public static boolean containsSummarizeKey(ModelDefinition model, String propertyName) {
+		if (model == null || propertyName == null) {
+			return false;
+		}
+
+		EObject rhs = model.getRhs();
+		if (rhs instanceof SummarizeExpression) {
+			EList<SummarizeTerm> terms = ((SummarizeExpression) rhs).getTerms();
+			for (SummarizeTerm term : terms) {
+				Grouping group = term.getGrouping();
+				if (group != null) {
+					for (Property p : group.getName()) {
+						if (propertyName.equals(p.getName())) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	public static boolean containsJoinKey(ModelDefinition model, String refModelName, String propertyName) {
+		if (model == null || refModelName == null || propertyName == null) {
+			return false;
+		}
+
+		EObject rhs = model.getRhs();
+		if (rhs instanceof JoinExpression) {
+			EList<JoinTerm> terms = ((JoinExpression) rhs).getTerms();
+			for (JoinTerm term : terms) {
+				ModelReference ref = term.getReference();
+				if (ref == null || !refModelName.equals(ref.getName())) {
+					continue;
+				}
+				Grouping group = term.getGrouping();
+				if (group != null) {
+					for (Property p : group.getName()) {
+						if (propertyName.equals(p.getName())) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
 	}
 }

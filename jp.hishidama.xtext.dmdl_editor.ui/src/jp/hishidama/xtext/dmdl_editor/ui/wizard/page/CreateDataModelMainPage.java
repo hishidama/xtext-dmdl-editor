@@ -1,12 +1,12 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData;
 
@@ -27,9 +27,12 @@ public abstract class CreateDataModelMainPage<R extends DataModelRow> extends Cr
 			if (defineList.isEmpty()) {
 				ModelDefinition model = sourceViewer.findModel(modelName);
 				if (model != null) {
-					DMDLTreeData node = new DMDLTreeData.ModelNode(null, null, model);
-					List<DMDLTreeData> list = Collections.singletonList(node);
-					doCopy(0, list.iterator());
+					List<Property> list = ModelUtil.getProperties(model);
+					int index = 0;
+					for (Property p : list) {
+						R row = newDefCopyRow(model, p);
+						index = addToList(index, row);
+					}
 					tableViewer.refresh();
 					validate(true);
 				}

@@ -3,15 +3,20 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Type;
 import jp.hishidama.xtext.dmdl_editor.dmdl.impl.ModelDefinitionImpl;
@@ -26,6 +31,7 @@ import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.xtext.EcoreUtil2;
 
 class DataModelJoinRow extends DataModelRow {
 	public static final String TP_NAME = "name";
@@ -38,7 +44,7 @@ class DataModelJoinRow extends DataModelRow {
 	public String refModelName;
 	public String refProperty;
 
-	public ModelDefinition info;
+	public ModelDefinition model;
 	public Property prop;
 
 	@Override
@@ -89,7 +95,7 @@ class DataModelJoinRow extends DataModelRow {
 		if (property.equals(TP_REF_MODEL)) {
 			String text = ((String) value).trim();
 			this.refModelName = text;
-			this.info = null;
+			this.model = null;
 			return true;
 		}
 		if (property.equals(TP_REF_PROPERTY)) {
@@ -117,6 +123,8 @@ class DataModelJoinRow extends DataModelRow {
 }
 
 public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJoinRow> {
+
+	private Set<JoinKey> keyBuffer = new HashSet<JoinKey>();
 
 	public CreateDataModelJoinPage() {
 		super("CreateDataModelNormalPage", "結合データモデルの作成", "結合データモデルのプロパティーを定義して下さい。（結合キーは次ページで定義します）");
@@ -153,9 +161,111 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 		row.description = DMDLStringUtil.decodeDescription(prop.getDescription());
 		row.refModelName = model.getName();
 		row.refProperty = prop.getName();
-		row.info = model;
+		row.model = model;
 		row.prop = prop;
 		return row;
+	}
+
+	@Override
+	protected boolean visibleDefCopy() {
+		return true;
+	}
+
+	@Override
+	protected String getDefCopyToolTipText() {
+		return "結合データモデルの定義をコピーします。";
+	}
+
+	@Override
+	protected boolean enableDefCopy(ModelDefinition model, Property prop) {
+		return "joined".equals(model.getType());
+	}
+
+	@Override
+	protected DataModelJoinRow newDefCopyRow(ModelDefinition model, Property prop) {
+		DataModelJoinRow row = new DataModelJoinRow();
+		row.name = prop.getName();
+		row.description = DMDLStringUtil.decodeDescription(prop.getDescription());
+
+		if (prop instanceof PropertyFolding) {
+			PropertyFolding folding = (PropertyFolding) prop;
+			ModelDefinition refModel = EcoreUtil2.getContainerOfType(folding.getFrom(), ModelDefinition.class);
+			if (refModel != null) {
+				row.refModelName = refModel.getName();
+			}
+			row.refProperty = folding.getFrom().getName();
+			row.model = refModel;
+			row.prop = folding.getFrom();
+			setKey(model, row.refModelName, row.name);
+		} else if (prop instanceof PropertyMapping) {
+			PropertyMapping mapping = (PropertyMapping) prop;
+			ModelDefinition refModel = EcoreUtil2.getContainerOfType(mapping.getFrom(), ModelDefinition.class);
+			if (refModel != null) {
+				row.refModelName = refModel.getName();
+			}
+			row.refProperty = mapping.getFrom().getName();
+			row.model = refModel;
+			row.prop = mapping.getFrom();
+			setKey(model, row.refModelName, row.name);
+		} else {
+			row.refModelName = model.getName();
+			row.refProperty = prop.getName();
+			row.model = model;
+			row.prop = prop;
+		}
+
+		return row;
+	}
+
+	private void setKey(ModelDefinition model, String refModelName, String propertyName) {
+		if (refModelName == null || propertyName == null) {
+			return;
+		}
+		Map<ModelDefinition, List<Property>> map = ModelUtil.getKeys(model);
+		int found = -1;
+		find: for (Entry<ModelDefinition, List<Property>> entry : map.entrySet()) {
+			if (refModelName.equals(entry.getKey().getName())) {
+				int i = 0;
+				for (Property p : entry.getValue()) {
+					if (propertyName.equals(p.getName())) {
+						found = i;
+						break find;
+					}
+					i++;
+				}
+			}
+		}
+		if (found >= 0) {
+			JoinKey key = new JoinKey();
+			for (Entry<ModelDefinition, List<Property>> entry : map.entrySet()) {
+				String modelName = entry.getKey().getName();
+				List<Property> list = entry.getValue();
+				if (found < list.size()) {
+					Property p = list.get(found);
+					key.add(modelName, p.getName());
+				}
+			}
+			keyBuffer.add(key);
+		}
+	}
+
+	static class JoinKey {
+		public final Map<String, String> map = new HashMap<String, String>();
+
+		public void add(String modelName, String propertyName) {
+			map.put(modelName, propertyName);
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			JoinKey that = (JoinKey) obj;
+			return map.equals(that.map);
+		}
+
+		@Override
+		public int hashCode() {
+			return map.hashCode();
+		}
 	}
 
 	@Override
@@ -164,8 +274,8 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 	}
 
 	@Override
-	protected boolean enableReference(ModelDefinition info, Property prop) {
-		return info != null;
+	protected boolean enableReference(ModelDefinition model, Property prop) {
+		return model != null;
 	}
 
 	@Override
@@ -221,24 +331,24 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 		List<DMDLTreeData> result = new ArrayList<DMDLTreeData>(map.size());
 		for (List<DataModelJoinRow> list : map.values()) {
 			String modelName = null;
-			ModelDefinition info = null;
+			ModelDefinition model = null;
 			List<Property> plist = null;
 			List<DMDLTreeData> children = new ArrayList<DMDLTreeData>();
 			for (DataModelJoinRow row : list) {
 				if (modelName == null) {
 					modelName = row.refModelName;
 				}
-				if (row.info != null) {
-					info = row.info;
+				if (row.model != null) {
+					model = row.model;
 				} else {
-					info = findModel(modelName);
+					model = findModel(modelName);
 				}
 				if (StringUtil.nonEmpty(row.name) || StringUtil.nonEmpty(row.refProperty)) {
 					Property p = row.prop;
 					if (p == null) {
 						String name = StringUtil.nonEmpty(row.refProperty) ? row.refProperty : row.name;
 						if (plist == null) {
-							plist = ModelUtil.getProperties(info);
+							plist = ModelUtil.getProperties(model);
 						}
 						for (Property org : plist) {
 							if (name.equals(org.getName())) {
@@ -248,8 +358,8 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 						}
 					}
 					String pname = StringUtil.nonEmpty(row.name) ? row.name : row.refProperty;
-					String pdesc = StringUtil.nonEmpty(row.description) ? row.description : ((p != null) ? p
-							.getDescription() : null);
+					String pdesc = StringUtil.nonEmpty(row.description) ? row.description
+							: ((p != null) ? DMDLStringUtil.decodeDescription(p.getDescription()) : null);
 					Type ptype = PropertyUtil.getResolvedDataType(p);
 					PropertyDefinition n = InjectorUtil.getInstance(PropertyDefinitionImpl.class);
 					n.setName(pname);
@@ -264,19 +374,19 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 				}
 			}
 
-			if (info == null) {
-				info = findModel(modelName);
-				if (info == null) {
-					info = InjectorUtil.getInstance(ModelDefinitionImpl.class);
-					info.setName(modelName);
+			if (model == null) {
+				model = findModel(modelName);
+				if (model == null) {
+					model = InjectorUtil.getInstance(ModelDefinitionImpl.class);
+					model.setName(modelName);
 				}
 			}
-			DMDLTreeData.ModelNode model = new DMDLTreeData.ModelNode(project, null, info);
+			DMDLTreeData.ModelNode modelNode = new DMDLTreeData.ModelNode(project, null, model);
 			if (children != null) {
-				model.setChildren(children);
+				modelNode.setChildren(children);
 			}
-			model.setOtherData(children != null);
-			result.add(model);
+			modelNode.setOtherData(children != null);
+			result.add(modelNode);
 		}
 		return result;
 	}
@@ -297,5 +407,9 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 			}
 		}
 		return modelMap.get(modelName);
+	}
+
+	public Set<JoinKey> getKeyBuffer() {
+		return keyBuffer;
 	}
 }

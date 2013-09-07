@@ -60,6 +60,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 	protected DataModelTreeViewer sourceViewer;
 	protected TableViewer tableViewer;
 	private Button copyButton;
+	private Button defCopyButton;
 	private Button referenceButton;
 
 	public CreateDataModelPage(String pageName, String pageTitle, String pageDescription) {
@@ -154,6 +155,19 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 					}
 				});
 				referenceButton = button;
+			}
+			if (visibleDefCopy()) {
+				Button button = new Button(column, SWT.NONE);
+				button.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+				button.setText("def copy->");
+				button.setToolTipText(getDefCopyToolTipText());
+				button.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						doDefCopy();
+					}
+				});
+				defCopyButton = button;
 			}
 		}
 		{
@@ -455,6 +469,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 
 	protected void doSelectionChange(ITreeSelection selection) {
 		boolean copy = false;
+		boolean defc = false;
 		boolean refe = false;
 
 		if (selection != null) {
@@ -465,17 +480,22 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 				if (obj instanceof ModelDefinition) {
 					ModelDefinition model = (ModelDefinition) obj;
 					copy |= enableCopy(model, null);
+					defc |= enableDefCopy(model, null);
 					refe |= enableReference(model, null);
 				} else if (obj instanceof Property) {
 					ModelDefinition model = (ModelDefinition) data.getParent().getData();
 					Property prop = (Property) obj;
 					copy |= enableCopy(model, prop);
+					defc |= enableDefCopy(model, prop);
 					refe |= enableReference(model, prop);
 				}
 			}
 		}
 
 		copyButton.setEnabled(copy);
+		if (defCopyButton != null) {
+			defCopyButton.setEnabled(defc);
+		}
 		if (referenceButton != null) {
 			referenceButton.setEnabled(refe);
 		}
@@ -525,6 +545,68 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 	protected abstract void doCopy(int index, Iterator<DMDLTreeData> iterator);
 
 	protected abstract R newCopyRow(ModelDefinition model, Property prop);
+
+	protected boolean visibleDefCopy() {
+		return false; // do override
+	}
+
+	protected String getDefCopyToolTipText() {
+		return null; // do override
+	}
+
+	protected boolean enableDefCopy(ModelDefinition model, Property prop) {
+		return false; // do override
+	}
+
+	private void doDefCopy() {
+		ITreeSelection selection = sourceViewer.getSelection();
+		if (selection.isEmpty()) {
+			return;
+		}
+		int index = tableViewer.getTable().getSelectionIndex();
+		doDefCopy(selection, index);
+	}
+
+	protected void doDefCopy(ITreeSelection selection, int index) {
+		@SuppressWarnings("unchecked")
+		Iterator<DMDLTreeData> iterator = selection.iterator();
+		doDefCopy(index, iterator);
+		tableViewer.refresh();
+		validate(true);
+	}
+
+	protected void doDefCopy(int index, Iterator<DMDLTreeData> iterator) {
+		Set<Property> set = new HashSet<Property>();
+
+		for (Iterator<DMDLTreeData> i = iterator; i.hasNext();) {
+			DMDLTreeData data = i.next();
+			Object obj = data.getData();
+			if (obj instanceof ModelDefinition) {
+				List<DMDLTreeData> props = data.getChildren();
+				if (props != null) {
+					ModelDefinition model = (ModelDefinition) obj;
+					for (DMDLTreeData pd : props) {
+						Property p = (Property) pd.getData();
+						if (!set.contains(p)) {
+							set.add(p);
+							R row = newDefCopyRow(model, p);
+							index = addToList(index, row);
+						}
+					}
+				}
+			} else if (obj instanceof Property) {
+				Property p = (Property) obj;
+				if (!set.contains(p)) {
+					set.add(p);
+					ModelDefinition model = (ModelDefinition) data.getParent().getData();
+					R row = newDefCopyRow(model, p);
+					index = addToList(index, row);
+				}
+			}
+		}
+	}
+
+	protected abstract R newDefCopyRow(ModelDefinition model, Property prop);
 
 	protected boolean visibleReference() {
 		return true; // do override

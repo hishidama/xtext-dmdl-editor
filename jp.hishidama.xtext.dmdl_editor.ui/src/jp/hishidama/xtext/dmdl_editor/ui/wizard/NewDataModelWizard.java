@@ -175,7 +175,7 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 
 	private IWizardPage getPage(IWizardPage page) {
 		if (page == joinKeyPage) {
-			joinKeyPage.setSourceList(joinPage.getSelectedModelList());
+			joinKeyPage.setSourceList(joinPage.getSelectedModelList(), joinPage.getKeyBuffer());
 		}
 		if (page instanceof CreateDataModelPage) {
 			CreateDataModelPage<?> createPage = (CreateDataModelPage<?>) page;

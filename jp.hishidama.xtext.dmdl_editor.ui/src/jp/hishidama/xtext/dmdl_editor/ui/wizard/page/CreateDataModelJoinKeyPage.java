@@ -5,11 +5,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.CreateDataModelJoinPage.JoinKey;
 
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
@@ -83,6 +86,7 @@ class DataModelJoinKey extends DataModelRow {
 public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoinKey> {
 
 	private List<DMDLTreeData> input;
+	private Set<JoinKey> keyBuffer;
 	private Map<String, String[]> comboMap = new HashMap<String, String[]>();
 	private Map<String, Map<String, Integer>> indexMap = new HashMap<String, Map<String, Integer>>();
 
@@ -131,8 +135,9 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 		}
 	}
 
-	public void setSourceList(List<DMDLTreeData> input) {
+	public void setSourceList(List<DMDLTreeData> input, Set<JoinKey> keys) {
 		this.input = input;
+		this.keyBuffer = keys;
 		if (sourceViewer != null) {
 			setInput();
 		}
@@ -155,6 +160,34 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 
 		tableViewer.refresh();
 		validate(false);
+	}
+
+	@Override
+	protected void doVisible(boolean visible) {
+		if (visible) {
+			Table table = tableViewer.getTable();
+			TableColumn[] cols = table.getColumns();
+			for (TableItem item : table.getItems()) {
+				JoinKey key = new JoinKey();
+				for (int i = 0; i < cols.length; i++) {
+					String mname = cols[i].getText();
+					String pname = item.getText(i);
+					key.add(mname, pname);
+				}
+				keyBuffer.remove(key);
+			}
+			int index = table.getItemCount();
+			for (JoinKey key : keyBuffer) {
+				DataModelJoinKey row = newAddRow();
+				for (Entry<String, String> entry : key.map.entrySet()) {
+					String mname = entry.getKey();
+					String pname = entry.getValue();
+					row.set(mname, pname);
+				}
+				index = addToList(index, row);
+			}
+			tableViewer.refresh();
+		}
 	}
 
 	@Override
@@ -197,6 +230,11 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 	@Override
 	protected DataModelJoinKey newCopyRow(ModelDefinition model, Property prop) {
 		return new DataModelJoinKey(tableViewer.getTable(), comboMap, indexMap);
+	}
+
+	@Override
+	protected DataModelJoinKey newDefCopyRow(ModelDefinition model, Property prop) {
+		return newCopyRow(model, prop);
 	}
 
 	@Override

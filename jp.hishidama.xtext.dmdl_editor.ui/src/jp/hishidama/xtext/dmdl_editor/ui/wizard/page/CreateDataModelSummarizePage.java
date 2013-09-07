@@ -5,7 +5,10 @@ import java.util.Map;
 
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
@@ -13,6 +16,7 @@ import org.eclipse.jface.viewers.CheckboxCellEditor;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.xtext.EcoreUtil2;
 
 class DataModelSummarizeRow extends DataModelRow {
 	public static final String TP_KEY = "key";
@@ -178,6 +182,56 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 		row.sumType = "any";
 		row.refModelName = model.getName();
 		row.refProperty = prop.getName();
+		row.key = false;
+		return row;
+	}
+
+	@Override
+	protected boolean visibleDefCopy() {
+		return true;
+	}
+
+	@Override
+	protected String getDefCopyToolTipText() {
+		return "集計データモデルの定義をコピーします。";
+	}
+
+	@Override
+	protected boolean enableDefCopy(ModelDefinition model, Property prop) {
+		return "summarized".equals(model.getType());
+	}
+
+	@Override
+	protected DataModelSummarizeRow newDefCopyRow(ModelDefinition model, Property prop) {
+		DataModelSummarizeRow row = new DataModelSummarizeRow();
+		row.name = prop.getName();
+		row.description = DMDLStringUtil.decodeDescription(prop.getDescription());
+
+		if (prop instanceof PropertyFolding) {
+			PropertyFolding folding = (PropertyFolding) prop;
+			row.sumType = folding.getAggregator();
+			ModelDefinition refModel = EcoreUtil2.getContainerOfType(folding.getFrom(), ModelDefinition.class);
+			if (refModel != null) {
+				row.refModelName = refModel.getName();
+			}
+			row.refProperty = folding.getFrom().getName();
+			row.key = ModelUtil.containsSummarizeKey(model, row.name);
+		} else if (prop instanceof PropertyMapping) {
+			PropertyMapping mapping = (PropertyMapping) prop;
+			row.sumType = "any";
+			ModelDefinition refModel = EcoreUtil2.getContainerOfType(mapping.getFrom(), ModelDefinition.class);
+			if (refModel != null) {
+				row.refModelName = refModel.getName();
+			}
+			row.refProperty = mapping.getFrom().getName();
+			row.key = ModelUtil.containsSummarizeKey(model, row.name);
+		} else {
+			row.sumType = "any";
+			row.refModelName = model.getName();
+			row.refProperty = prop.getName();
+			row.key = false;
+		}
+
 		return row;
 	}
 
