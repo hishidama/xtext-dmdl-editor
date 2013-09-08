@@ -24,8 +24,10 @@ Require-Bundle: jp.hishidama.xtext.dmdl_editor;visibility:=reexport,
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: jp.hishidama.xtext.dmdl_editor.ui.quickfix,
+Export-Package: jp.hishidama.xtext.dmdl_editor.dmdl,
  jp.hishidama.xtext.dmdl_editor.ui.contentassist,
  jp.hishidama.xtext.dmdl_editor.ui.contentassist.antlr,
- jp.hishidama.xtext.dmdl_editor.ui.internal
+ jp.hishidama.xtext.dmdl_editor.ui.dialog,
+ jp.hishidama.xtext.dmdl_editor.ui.internal,
+ jp.hishidama.xtext.dmdl_editor.ui.quickfix
 Bundle-Activator: jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator

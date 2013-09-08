@@ -7,6 +7,14 @@ import org.eclipse.emf.ecore.EObject;
 
 public class PropertyUtil {
 
+	public static String getResolvedDataTypeText(Property property) {
+		Type type = getResolvedDataType(property);
+		if (type != null) {
+			return type.name();
+		}
+		return "";
+	}
+
 	public static Type getResolvedDataType(Property property) {
 		return resoloveDataType(property, new HashSet<String>());
 	}

@@ -148,7 +148,7 @@ public class CreateDataModelNormalPage extends CreateDataModelMainPage<DataModel
 		DataModelNormalRow row = new DataModelNormalRow();
 		row.name = prop.getName();
 		row.description = DMDLStringUtil.decodeDescription(prop.getDescription());
-		row.dataType = PropertyUtil.getResolvedDataType(prop).name();
+		row.dataType = PropertyUtil.getResolvedDataTypeText(prop);
 		return row;
 	}
 

@@ -3,21 +3,17 @@ package jp.hishidama.xtext.dmdl_editor.jdt.hyperlink;
 import jp.hishidama.eclipse_plugin.jdt.hyperlink.JdtHyperlinkDetector;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
-import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
-import jp.hishidama.xtext.dmdl_editor.ui.search.DMDLEObjectSearch;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.core.IField;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.hyperlink.IHyperlink;
-import org.eclipse.xtext.resource.IEObjectDescription;
 
 // @see org.eclipse.jdt.internal.ui.javaeditor.JavaElementHyperlinkDetector
 public class OpenDeclaredDmdlHyperlinkDetector extends JdtHyperlinkDetector {
@@ -72,23 +68,7 @@ public class OpenDeclaredDmdlHyperlinkDetector extends JdtHyperlinkDetector {
 
 	private static ModelDefinition findModel(IType type) {
 		IProject project = type.getJavaProject().getProject();
-		DMDLEObjectSearch search = new DMDLEObjectSearch(project.getName());
-
 		String name = type.getElementName();
-		String pattern = DMDLEObjectSearch.getPattern(name);
-		Iterable<IEObjectDescription> list = search.findMatches(pattern, ModelDefinition.class.getSimpleName());
-		for (IEObjectDescription i : list) {
-			ModelDefinition model = (ModelDefinition) i.getEObjectOrProxy();
-			if (model.eIsProxy()) {
-				ResourceSet resourceSet = InjectorUtil.getInstance(ResourceSet.class);
-				model = (ModelDefinition) EcoreUtil.resolve(model, resourceSet);
-			}
-			String mname = model.getName();
-			mname = StringUtil.toCamelCase(mname);
-			if (name.equals(mname)) {
-				return model;
-			}
-		}
-		return null;
+		return ModelUiUtil.findModel(project, name);
 	}
 }
