@@ -117,7 +117,7 @@
               category="jp.hishidama.xtext.dmdl_editor.DMDL"
               class="jp.hishidama.eclipse_plugin.asakusafw_wrapper.property.AsakusafwVersionPropertyPage"
               id="jp.hishidama.xtext.dmdl_editor.ui.jp.hishidama.xtext.dmdl_editor.AsakusafwVersion"
-              name="Asakusa Framework">
+              name="Asakusa Framework wrapper">
         </page>
         <page
               category="jp.hishidama.xtext.dmdl_editor.ui.jp.hishidama.xtext.dmdl_editor.AsakusafwVersion"
