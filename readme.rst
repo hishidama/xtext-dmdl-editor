@@ -14,7 +14,7 @@ XtextのインストールされたEclipseが必要です。
 DMDL EditorXプラグインのインストールは、Eclipseの ``[新規ソフトウェアのインストール]`` で
 更新サイトとして http://hishidama.github.io/xtext-dmdl-editor/site/ を指定して下さい。
 
-起動した後で ``Xtext nature`` へ登録するかどうかを訊ねるダイアログが出ますので、OKを押してください。
+起動した後で「Do you want to add the Xtext nature to the project 'プロジェクト名'?」という ``Xtext nature`` へ登録するかどうかを訊ねるダイアログが出ますので、OKを押してください。
 
 
 出来ること
