@@ -7,6 +7,7 @@ import jp.hishidama.xtext.dmdl_editor.services.DMDLGrammarAccess;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.Keyword;
+import org.eclipse.xtext.formatting.IIndentationInformation;
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
 import org.eclipse.xtext.parsetree.reconstr.IHiddenTokenHelper;
@@ -20,11 +21,9 @@ import com.google.inject.Inject;
 /**
  * This class contains custom formatting description.
  * 
- * see : http://www.eclipse.org/Xtext/documentation.html#formatting on how and
- * when to use it
+ * see : http://www.eclipse.org/Xtext/documentation.html#formatting on how and when to use it
  * 
- * Also see {@link org.eclipse.xtext.xtext.XtextFormattingTokenSerializer} as an
- * example
+ * Also see {@link org.eclipse.xtext.xtext.XtextFormattingTokenSerializer} as an example
  */
 public class DMDLFormatter extends AbstractDeclarativeFormatter {
 	@Inject
@@ -46,8 +45,7 @@ public class DMDLFormatter extends AbstractDeclarativeFormatter {
 			c.setLinewrap().before(pair.getSecond()); // 閉じ括弧の直前は改行する
 			// 引数の個数に応じた改行有無はDMDLTokenStreamで実装
 
-			c.setIndentationIncrement().after(pair.getFirst());
-			c.setIndentationDecrement().before(pair.getSecond());
+			c.setIndentation(pair.getFirst(), pair.getSecond());
 		}
 		// 波括弧
 		curlyBrace(c, f.getRecordTermAccess());
@@ -99,10 +97,22 @@ public class DMDLFormatter extends AbstractDeclarativeFormatter {
 
 	private void curlyBrace(FormattingConfig c, AbstractElementFinder rule) {
 		for (Pair<Keyword, Keyword> pair : rule.findKeywordPairs("{", "}")) {
-			c.setIndentationIncrement().after(pair.getFirst());
 			c.setLinewrap().after(pair.getFirst());
-			c.setIndentationDecrement().before(pair.getSecond());
+
+			// インデントを二重（スペース4つ）にする
+			c.setIndentation(pair.getFirst(), pair.getSecond());
+			c.setIndentation(pair.getFirst(), pair.getSecond());
 		}
+	}
+
+	@Override
+	protected IIndentationInformation getIndentInfo() {
+		return new IIndentationInformation() {
+
+			public String getIndentString() {
+				return "  "; // 1つのインデントはスペース2つ
+			}
+		};
 	}
 
 	@Override
