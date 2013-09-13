@@ -118,12 +118,20 @@
               class="jp.hishidama.eclipse_plugin.asakusafw_wrapper.property.AsakusafwVersionPropertyPage"
               id="jp.hishidama.xtext.dmdl_editor.ui.jp.hishidama.xtext.dmdl_editor.AsakusafwVersion"
               name="Asakusa Framework wrapper">
+            <enabledWhen>
+	            <adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
         </page>
         <page
               category="jp.hishidama.xtext.dmdl_editor.ui.jp.hishidama.xtext.dmdl_editor.AsakusafwVersion"
               class="jp.hishidama.eclipse_plugin.asakusafw_wrapper.property.AsakusafwDmdlParserPropertyPage"
               id="jp.hishidama.xtext.dmdl_editor.ui.jp.hishidama.xtext.dmdl_editor.AsakusafwDmdlParser"
               name="DmdlParser">
+            <enabledWhen>
+	            <adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
         </page>
     </extension>
     <extension
