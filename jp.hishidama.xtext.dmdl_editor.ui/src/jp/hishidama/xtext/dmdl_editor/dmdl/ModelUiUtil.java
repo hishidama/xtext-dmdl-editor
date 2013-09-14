@@ -17,6 +17,9 @@ import org.eclipse.xtext.ui.editor.GlobalURIEditorOpener;
 public class ModelUiUtil {
 
 	public static ModelDefinition findModel(IProject project, String modelName) {
+		if (project == null || modelName == null) {
+			return null;
+		}
 		DMDLEObjectSearch search = new DMDLEObjectSearch(project.getName());
 
 		String pattern = DMDLEObjectSearch.getPattern(modelName);
