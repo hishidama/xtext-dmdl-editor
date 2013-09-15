@@ -22,7 +22,28 @@ public class ModelUiUtil {
 		}
 		DMDLEObjectSearch search = new DMDLEObjectSearch(project.getName());
 
-		String pattern = DMDLEObjectSearch.getPattern(modelName);
+		Iterable<IEObjectDescription> list = search.findMatches(modelName, ModelDefinition.class.getSimpleName());
+		for (IEObjectDescription i : list) {
+			ModelDefinition model = (ModelDefinition) i.getEObjectOrProxy();
+			if (model.eIsProxy()) {
+				ResourceSet resourceSet = InjectorUtil.getInstance(ResourceSet.class);
+				model = (ModelDefinition) EcoreUtil.resolve(model, resourceSet);
+			}
+			String mname = model.getName();
+			if (modelName.equals(mname)) {
+				return model;
+			}
+		}
+		return null;
+	}
+
+	public static ModelDefinition findModelByClass(IProject project, String modelClassName) {
+		if (project == null || modelClassName == null) {
+			return null;
+		}
+		DMDLEObjectSearch search = new DMDLEObjectSearch(project.getName());
+
+		String pattern = DMDLEObjectSearch.getPattern(modelClassName);
 		Iterable<IEObjectDescription> list = search.findMatches(pattern, ModelDefinition.class.getSimpleName());
 		for (IEObjectDescription i : list) {
 			ModelDefinition model = (ModelDefinition) i.getEObjectOrProxy();
@@ -32,7 +53,7 @@ public class ModelUiUtil {
 			}
 			String mname = model.getName();
 			mname = StringUtil.toCamelCase(mname);
-			if (modelName.equals(mname)) {
+			if (modelClassName.equals(mname)) {
 				return model;
 			}
 		}

@@ -69,6 +69,6 @@ public class OpenDeclaredDmdlHyperlinkDetector extends JdtHyperlinkDetector {
 	private static ModelDefinition findModel(IType type) {
 		IProject project = type.getJavaProject().getProject();
 		String name = type.getElementName();
-		return ModelUiUtil.findModel(project, name);
+		return ModelUiUtil.findModelByClass(project, name);
 	}
 }
