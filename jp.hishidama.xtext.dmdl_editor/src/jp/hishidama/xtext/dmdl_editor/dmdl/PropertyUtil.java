@@ -3,9 +3,19 @@ package jp.hishidama.xtext.dmdl_editor.dmdl;
 import java.util.HashSet;
 import java.util.Set;
 
+import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
+
 import org.eclipse.emf.ecore.EObject;
 
 public class PropertyUtil {
+
+	public static String getDecodedDescriptionText(Property property) {
+		String text = DMDLStringUtil.decodeDescription(property.getDescription());
+		if (text != null) {
+			return text;
+		}
+		return "";
+	}
 
 	public static String getResolvedDataTypeText(Property property) {
 		Type type = getResolvedDataType(property);
