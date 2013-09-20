@@ -268,6 +268,7 @@
 	    <persistent value="true"/>
 	</extension>
 
+<!--
    <extension
          point="org.eclipse.xtext.builder.participant">
       <participant
@@ -298,6 +299,7 @@
 	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
         </page>
     </extension>
+-->
 
 	<!-- Quick Outline -->
 	<extension
