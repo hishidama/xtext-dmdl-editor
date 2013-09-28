@@ -1,5 +1,6 @@
 package jp.hishidama.xtext.dmdl_editor.dmdl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.util.StringUtil;
@@ -7,21 +8,73 @@ import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.search.DMDLEObjectSearch;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jface.operation.IRunnableContext;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.ui.editor.GlobalURIEditorOpener;
 
 public class ModelUiUtil {
 
+	public static ModelDefinition findModel(IProject project, String modelName, IRunnableContext container) {
+		if (project == null || modelName == null) {
+			return null;
+		}
+		SearchModelTask task = new SearchModelTask(project, modelName);
+		try {
+			container.run(true, true, task);
+			return task.getModel();
+		} catch (InvocationTargetException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			return null;
+		}
+	}
+
+	private static class SearchModelTask implements IRunnableWithProgress {
+		private IProject project;
+		private String modelName;
+		private ModelDefinition model;
+
+		public SearchModelTask(IProject project, String modelName) {
+			this.project = project;
+			this.modelName = modelName;
+		}
+
+		public void run(final IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+			monitor.beginTask("search DataModel", IProgressMonitor.UNKNOWN);
+			try {
+				DMDLEObjectSearch search = new DMDLEObjectSearch(project.getName(), monitor);
+				model = findModel(search, modelName);
+			} catch (RuntimeException e) {
+				Throwable cause = e.getCause();
+				if (cause instanceof InterruptedException) {
+					throw (InterruptedException) cause;
+				}
+				throw e;
+			} finally {
+				monitor.done();
+			}
+		}
+
+		public ModelDefinition getModel() {
+			return model;
+		}
+	}
+
 	public static ModelDefinition findModel(IProject project, String modelName) {
 		if (project == null || modelName == null) {
 			return null;
 		}
 		DMDLEObjectSearch search = new DMDLEObjectSearch(project.getName());
+		return findModel(search, modelName);
+	}
 
+	private static ModelDefinition findModel(DMDLEObjectSearch search, String modelName) {
 		Iterable<IEObjectDescription> list = search.findMatches(modelName, ModelDefinition.class.getSimpleName());
 		for (IEObjectDescription i : list) {
 			ModelDefinition model = (ModelDefinition) i.getEObjectOrProxy();

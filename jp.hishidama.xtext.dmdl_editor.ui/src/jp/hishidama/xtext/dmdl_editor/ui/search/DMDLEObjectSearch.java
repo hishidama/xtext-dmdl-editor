@@ -1,10 +1,13 @@
 package jp.hishidama.xtext.dmdl_editor.ui.search;
 
+import java.util.Collection;
 import java.util.Collections;
 
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.ui.dialogs.SearchPattern;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.ui.search.IXtextEObjectSearch;
@@ -14,9 +17,15 @@ import com.google.common.collect.Iterables;
 
 public class DMDLEObjectSearch extends IXtextEObjectSearch.Default {
 	private String projectName;
+	private IProgressMonitor monitor;
 
 	public DMDLEObjectSearch(String projectName) {
+		this(projectName, null);
+	}
+
+	public DMDLEObjectSearch(String projectName, IProgressMonitor monitor) {
 		this.projectName = projectName;
+		this.monitor = monitor;
 		InjectorUtil.injectMembers(this);
 	}
 
@@ -25,6 +34,11 @@ public class DMDLEObjectSearch extends IXtextEObjectSearch.Default {
 		return Iterables.concat(Iterables.transform(getResourceDescriptions().getAllResourceDescriptions(),
 				new Function<IResourceDescription, Iterable<IEObjectDescription>>() {
 					public Iterable<IEObjectDescription> apply(IResourceDescription from) {
+						if (monitor != null) {
+							if (monitor.isCanceled()) {
+								throw new RuntimeException(new InterruptedException());
+							}
+						}
 						URI uri = from.getURI();
 						if (isTarget(uri)) {
 							return from.getExportedObjects();
@@ -42,6 +56,17 @@ public class DMDLEObjectSearch extends IXtextEObjectSearch.Default {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	protected boolean isNameMatches(SearchPattern searchPattern, IEObjectDescription eObjectDescription,
+			Collection<String> namespaceDelimiters) {
+		if (monitor != null) {
+			if (monitor.isCanceled()) {
+				throw new RuntimeException(new InterruptedException());
+			}
+		}
+		return super.isNameMatches(searchPattern, eObjectDescription, namespaceDelimiters);
 	}
 
 	public static String getPattern(String name) {
