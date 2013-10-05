@@ -31,8 +31,15 @@ public class ModelUtil {
 		if (rhs instanceof RecordExpression) {
 			EList<RecordTerm> terms = ((RecordExpression) rhs).getTerms();
 			for (RecordTerm term : terms) {
-				EList<PropertyDefinition> properties = term.getProperties();
-				list.addAll(properties);
+				ModelReference ref = term.getReference();
+				if (ref != null) {
+					List<Property> properties = new ArrayList<Property>();
+					resolveProperties(properties, ref.getName());
+					list.addAll(properties);
+				} else {
+					EList<PropertyDefinition> properties = term.getProperties();
+					list.addAll(properties);
+				}
 			}
 		} else if (rhs instanceof JoinExpression) {
 			EList<JoinTerm> terms = ((JoinExpression) rhs).getTerms();
