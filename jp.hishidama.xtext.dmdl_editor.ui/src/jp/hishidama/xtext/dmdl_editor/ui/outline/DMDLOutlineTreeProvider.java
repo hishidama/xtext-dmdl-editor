@@ -16,6 +16,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
@@ -49,6 +50,9 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 
 	protected void _createChildren(IOutlineNode parentNode, ModelDefinition model) {
+		if (model == null) {
+			return;
+		}
 		AttributeList attributes = model.getAttributes();
 		if (attributes != null) {
 			createNode(parentNode, attributes);
@@ -78,13 +82,12 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	private void createRecordModelChildren(IOutlineNode parentNode, RecordExpression rhs) {
 		EList<RecordTerm> terms = rhs.getTerms();
-		if (terms == null) {
-			return;
-		}
 		for (RecordTerm term : terms) {
 			ModelReference ref = term.getReference();
 			if (ref != null) {
-				createNode(parentNode, ref);
+				if (!ModelUtil.recursiveModel(term.eContainer(), ref.getName())) {
+					createNode(parentNode, ref);
+				}
 			} else {
 				EList<PropertyDefinition> properties = term.getProperties();
 				for (PropertyDefinition p : properties) {
@@ -96,27 +99,26 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	private void createJoinModelChildren(IOutlineNode parentNode, JoinExpression rhs) {
 		EList<JoinTerm> terms = rhs.getTerms();
-		if (terms == null) {
-			return;
-		}
 		Set<String> set = new HashSet<String>();
 		List<EObject> list = new ArrayList<EObject>();
 		for (JoinTerm term : terms) {
 			ModelMapping mapping = term.getMapping();
 			if (mapping != null) {
 				EList<PropertyMapping> properties = mapping.getMappings();
-				if (properties != null) {
-					for (PropertyMapping p : properties) {
-						String key = p.getName();
-						if (!set.contains(key)) {
-							set.add(key);
-							list.add(p);
-						}
+				for (PropertyMapping p : properties) {
+					String key = p.getName();
+					if (!set.contains(key)) {
+						set.add(key);
+						list.add(p);
 					}
 				}
 			} else {
 				ModelReference ref = term.getReference();
-				list.add(ref);
+				if (ref != null) {
+					if (!ModelUtil.recursiveModel(term.eContainer(), ref.getName())) {
+						list.add(ref);
+					}
+				}
 			}
 		}
 		for (EObject p : list) {
@@ -126,17 +128,12 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	private void createSummarizeModelChildren(IOutlineNode parentNode, SummarizeExpression rhs) {
 		EList<SummarizeTerm> terms = rhs.getTerms();
-		if (terms == null) {
-			return;
-		}
 		for (SummarizeTerm term : terms) {
 			ModelFolding folding = term.getFolding();
 			if (folding != null) {
 				EList<PropertyFolding> properties = folding.getFoldings();
-				if (properties != null) {
-					for (PropertyFolding p : properties) {
-						createNode(parentNode, p);
-					}
+				for (PropertyFolding p : properties) {
+					createNode(parentNode, p);
 				}
 			}
 		}

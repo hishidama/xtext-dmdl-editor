@@ -33,9 +33,11 @@ public class ModelUtil {
 			for (RecordTerm term : terms) {
 				ModelReference ref = term.getReference();
 				if (ref != null) {
-					List<Property> properties = new ArrayList<Property>();
-					resolveProperties(properties, ref.getName());
-					list.addAll(properties);
+					if (!recursiveModel(term.eContainer(), ref.getName())) {
+						List<Property> properties = new ArrayList<Property>();
+						resolveProperties(properties, ref.getName());
+						list.addAll(properties);
+					}
 				} else {
 					EList<PropertyDefinition> properties = term.getProperties();
 					list.addAll(properties);
@@ -52,9 +54,11 @@ public class ModelUtil {
 				} else {
 					ModelReference ref = term.getReference();
 					if (ref != null) {
-						List<Property> properties = new ArrayList<Property>();
-						resolveProperties(properties, ref.getName());
-						addProperties(list, properties, set);
+						if (!recursiveModel(term.eContainer(), ref.getName())) {
+							List<Property> properties = new ArrayList<Property>();
+							resolveProperties(properties, ref.getName());
+							addProperties(list, properties, set);
+						}
 					}
 				}
 			}
@@ -80,6 +84,15 @@ public class ModelUtil {
 
 			list.add(property);
 		}
+	}
+
+	public static boolean recursiveModel(EObject source, ModelDefinition model) {
+		for (EObject object = source; object != null; object = object.eContainer()) {
+			if (object == model) {
+				return true; // 循環参照
+			}
+		}
+		return false;
 	}
 
 	public static Property findProperty(ModelDefinition model, String name) {
