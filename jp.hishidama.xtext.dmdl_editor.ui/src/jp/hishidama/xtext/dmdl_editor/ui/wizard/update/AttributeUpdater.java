@@ -73,9 +73,6 @@ public abstract class AttributeUpdater {
 
 		private void recordExpression(XtextResource resource, RecordExpression rhs) {
 			EList<RecordTerm> terms = rhs.getTerms();
-			if (terms == null) {
-				return;
-			}
 			for (RecordTerm term : terms) {
 				EList<PropertyDefinition> properties = term.getProperties();
 				for (PropertyDefinition p : properties) {
@@ -86,17 +83,12 @@ public abstract class AttributeUpdater {
 
 		private void joinExpression(XtextResource resource, JoinExpression rhs) {
 			EList<JoinTerm> terms = rhs.getTerms();
-			if (terms == null) {
-				return;
-			}
 			for (JoinTerm term : terms) {
 				ModelMapping mapping = term.getMapping();
 				if (mapping != null) {
 					EList<PropertyMapping> properties = mapping.getMappings();
-					if (properties != null) {
-						for (PropertyMapping p : properties) {
-							execute(resource, p, p.getAttributes(), getPropertyAttribute());
-						}
+					for (PropertyMapping p : properties) {
+						execute(resource, p, p.getAttributes(), getPropertyAttribute());
 					}
 				}
 			}
@@ -104,17 +96,12 @@ public abstract class AttributeUpdater {
 
 		private void summarizeExpression(XtextResource resource, SummarizeExpression rhs) {
 			EList<SummarizeTerm> terms = rhs.getTerms();
-			if (terms == null) {
-				return;
-			}
 			for (SummarizeTerm term : terms) {
 				ModelFolding folding = term.getFolding();
 				if (folding != null) {
 					EList<PropertyFolding> properties = folding.getFoldings();
-					if (properties != null) {
-						for (PropertyFolding p : properties) {
-							execute(resource, p, p.getAttributes(), getPropertyAttribute());
-						}
+					for (PropertyFolding p : properties) {
+						execute(resource, p, p.getAttributes(), getPropertyAttribute());
 					}
 				}
 			}
