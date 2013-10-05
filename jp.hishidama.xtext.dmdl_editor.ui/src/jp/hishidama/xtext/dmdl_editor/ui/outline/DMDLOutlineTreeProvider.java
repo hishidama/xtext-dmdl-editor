@@ -82,8 +82,11 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			return;
 		}
 		for (RecordTerm term : terms) {
-			EList<PropertyDefinition> properties = term.getProperties();
-			if (properties != null) {
+			ModelReference ref = term.getReference();
+			if (ref != null) {
+				createNode(parentNode, ref);
+			} else {
+				EList<PropertyDefinition> properties = term.getProperties();
 				for (PropertyDefinition p : properties) {
 					createNode(parentNode, p);
 				}
