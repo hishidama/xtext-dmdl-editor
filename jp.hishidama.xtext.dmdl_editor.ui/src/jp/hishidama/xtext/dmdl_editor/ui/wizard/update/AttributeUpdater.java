@@ -78,10 +78,8 @@ public abstract class AttributeUpdater {
 			}
 			for (RecordTerm term : terms) {
 				EList<PropertyDefinition> properties = term.getProperties();
-				if (properties != null) {
-					for (PropertyDefinition p : properties) {
-						execute(resource, p, p.getAttributes(), getPropertyAttribute());
-					}
+				for (PropertyDefinition p : properties) {
+					execute(resource, p, p.getAttributes(), getPropertyAttribute());
 				}
 			}
 		}

@@ -74,9 +74,7 @@ public class DMDLScopeProvider extends AbstractDeclarativeScopeProvider {
 				ModelMapping mapping = term.getMapping();
 				if (mapping != null) {
 					EList<PropertyMapping> properties = mapping.getMappings();
-					if (properties != null) {
-						list.addAll(properties);
-					}
+					list.addAll(properties);
 				} else {
 					add(list, term.getReference());
 				}
@@ -88,9 +86,7 @@ public class DMDLScopeProvider extends AbstractDeclarativeScopeProvider {
 				ModelFolding folding = term.getFolding();
 				if (folding != null) {
 					EList<PropertyFolding> properties = folding.getFoldings();
-					if (properties != null) {
-						list.addAll(properties);
-					}
+					list.addAll(properties);
 				}
 			}
 		}
@@ -113,10 +109,8 @@ public class DMDLScopeProvider extends AbstractDeclarativeScopeProvider {
 		if (rhs instanceof RecordExpression) {
 			EList<RecordTerm> terms = ((RecordExpression) rhs).getTerms();
 			for (RecordTerm term : terms) {
-				EList<PropertyDefinition> props = term.getProperties();
-				if (props != null) {
-					list.addAll(props);
-				}
+				EList<PropertyDefinition> propertiess = term.getProperties();
+				list.addAll(propertiess);
 				add(list, term.getReference(), set);
 			}
 		} else if (rhs instanceof JoinExpression) {
@@ -124,10 +118,8 @@ public class DMDLScopeProvider extends AbstractDeclarativeScopeProvider {
 			for (JoinTerm term : terms) {
 				ModelMapping mappings = term.getMapping();
 				if (mappings != null) {
-					EList<PropertyMapping> props = mappings.getMappings();
-					if (props != null) {
-						list.addAll(props);
-					}
+					EList<PropertyMapping> properties = mappings.getMappings();
+					list.addAll(properties);
 				} else {
 					add(list, term.getReference(), set);
 				}
@@ -135,9 +127,10 @@ public class DMDLScopeProvider extends AbstractDeclarativeScopeProvider {
 		} else if (rhs instanceof SummarizeExpression) {
 			EList<SummarizeTerm> terms = ((SummarizeExpression) rhs).getTerms();
 			for (SummarizeTerm term : terms) {
-				EList<PropertyFolding> props = term.getFolding().getFoldings();
-				if (props != null) {
-					list.addAll(props);
+				ModelFolding folding = term.getFolding();
+				if (folding != null) {
+					EList<PropertyFolding> properties = folding.getFoldings();
+					list.addAll(properties);
 				}
 			}
 		}

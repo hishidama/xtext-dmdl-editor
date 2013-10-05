@@ -30,23 +30,12 @@ public class ModelUtil {
 		}
 		if (rhs instanceof RecordExpression) {
 			EList<RecordTerm> terms = ((RecordExpression) rhs).getTerms();
-			if (terms == null) {
-				return;
-			}
 			for (RecordTerm term : terms) {
-				EList<PropertyDefinition> ps = term.getProperties();
-				if (ps != null) {
-					EList<PropertyDefinition> properties = term.getProperties();
-					if (properties != null) {
-						list.addAll(properties);
-					}
-				}
+				EList<PropertyDefinition> properties = term.getProperties();
+				list.addAll(properties);
 			}
 		} else if (rhs instanceof JoinExpression) {
 			EList<JoinTerm> terms = ((JoinExpression) rhs).getTerms();
-			if (terms == null) {
-				return;
-			}
 			Set<String> set = new HashSet<String>();
 			for (JoinTerm term : terms) {
 				ModelMapping mapping = term.getMapping();
@@ -64,25 +53,17 @@ public class ModelUtil {
 			}
 		} else if (rhs instanceof SummarizeExpression) {
 			EList<SummarizeTerm> terms = ((SummarizeExpression) rhs).getTerms();
-			if (terms == null) {
-				return;
-			}
 			for (SummarizeTerm term : terms) {
 				ModelFolding folding = term.getFolding();
 				if (folding != null) {
 					EList<PropertyFolding> properties = folding.getFoldings();
-					if (properties != null) {
-						list.addAll(properties);
-					}
+					list.addAll(properties);
 				}
 			}
 		}
 	}
 
 	private static void addProperties(List<Property> list, List<? extends Property> properties, Set<String> set) {
-		if (properties == null) {
-			return;
-		}
 		for (Property property : properties) {
 			String name = property.getName();
 			if (set.contains(name)) {
