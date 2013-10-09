@@ -3,14 +3,24 @@
  */
 package jp.hishidama.xtext.dmdl_editor.ui.labeling;
 
+import java.util.List;
+
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
+import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Grouping;
+import jp.hishidama.xtext.dmdl_editor.dmdl.JoinTerm;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
 
 import com.google.inject.Inject;
@@ -33,6 +43,26 @@ public class DMDLLabelProvider extends DefaultEObjectLabelProvider {
 
 	protected Object text(Attribute a) {
 		return "@" + a.getName();
+	}
+
+	protected Object text(Grouping group) {
+		List<INode> list = null;
+		{
+			EObject term = group.eContainer();
+			if (term instanceof JoinTerm) {
+				list = NodeModelUtils.findNodesForFeature(term, DmdlPackage.Literals.JOIN_TERM__REFERENCE);
+			} else if (term instanceof SummarizeTerm) {
+				list = NodeModelUtils.findNodesForFeature(term, DmdlPackage.Literals.SUMMARIZE_TERM__REFERENCE);
+			}
+		}
+		if (list != null && !list.isEmpty()) {
+			String name = list.get(0).getText();
+			StyledString ss = new StyledString("<grouping>");
+			ss.append(" " + name, StyledString.DECORATIONS_STYLER);
+			return ss;
+		}
+
+		return "<grouping>";
 	}
 
 	/*

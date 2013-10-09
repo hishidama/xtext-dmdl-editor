@@ -10,6 +10,8 @@ import java.util.Set;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
+import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Grouping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.JoinExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.JoinTerm;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
@@ -27,13 +29,20 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Type;
+import jp.hishidama.xtext.dmdl_editor.ui.labeling.DMDLImages;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.StyledString;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
+import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode;
+import org.eclipse.xtext.util.TextRegion;
 
 /**
  * Customization of the default outline structure.
@@ -101,6 +110,7 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		EList<JoinTerm> terms = rhs.getTerms();
 		Set<String> set = new HashSet<String>();
 		List<EObject> list = new ArrayList<EObject>();
+		List<Grouping> glist = new ArrayList<Grouping>();
 		for (JoinTerm term : terms) {
 			ModelMapping mapping = term.getMapping();
 			if (mapping != null) {
@@ -120,9 +130,16 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 					}
 				}
 			}
+			Grouping group = term.getGrouping();
+			if (group != null) {
+				glist.add(group);
+			}
 		}
 		for (EObject p : list) {
 			createNode(parentNode, p);
+		}
+		for (Grouping g : glist) {
+			createNode(parentNode, g);
 		}
 	}
 
@@ -136,11 +153,28 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 					createNode(parentNode, p);
 				}
 			}
+			Grouping group = term.getGrouping();
+			if (group != null) {
+				createNode(parentNode, group);
+			}
 		}
 	}
 
 	protected void _createChildren(IOutlineNode parentNode, ModelReference ref) {
 		_createChildren(parentNode, ref.getName());
+	}
+
+	protected void _createChildren(IOutlineNode parentNode, Grouping group) {
+		EStructuralFeature feature = DmdlPackage.Literals.GROUPING__NAME;
+		Image image = DMDLImages.getPropertyImage();
+
+		List<INode> list = NodeModelUtils.findNodesForFeature(group, feature);
+		for (INode node : list) {
+			EStructuralFeatureNode snode = createEStructuralFeatureNode(parentNode, group, feature, image,
+					node.getText(), true);
+			TextRegion region = new TextRegion(node.getOffset(), node.getLength());
+			snode.setTextRegion(region);
+		}
 	}
 
 	/*
@@ -152,6 +186,10 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 
 	protected boolean _isLeaf(ModelReference modelElement) {
+		return false;
+	}
+
+	protected boolean _isLeaf(Grouping modelElement) {
 		return false;
 	}
 
