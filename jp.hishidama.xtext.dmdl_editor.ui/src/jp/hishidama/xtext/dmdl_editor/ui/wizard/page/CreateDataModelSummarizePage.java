@@ -12,6 +12,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.viewers.CheckboxCellEditor;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.TextCellEditor;
@@ -126,9 +127,9 @@ class DataModelSummarizeRow extends DataModelRow {
 			return "プロパティー名は必須です。";
 		}
 		if (StringUtil.nonEmpty(name)) {
-			String message = ValidationUtil.validateName("プロパティー名", name);
-			if (message != null) {
-				return message;
+			IStatus status = ValidationUtil.validateName("プロパティー名", name);
+			if (!status.isOK()) {
+				return status.getMessage();
 			}
 		}
 		if (StringUtil.isEmpty(sumType)) {

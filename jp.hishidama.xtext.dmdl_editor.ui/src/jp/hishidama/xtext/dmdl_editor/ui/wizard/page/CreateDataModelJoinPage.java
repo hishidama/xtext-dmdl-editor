@@ -27,6 +27,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData.ModelNode;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
@@ -110,9 +111,9 @@ class DataModelJoinRow extends DataModelRow {
 	@Override
 	public String validate() {
 		if (StringUtil.nonEmpty(name)) {
-			String message = ValidationUtil.validateName("プロパティー名", name);
-			if (message != null) {
-				return message;
+			IStatus status = ValidationUtil.validateName("プロパティー名", name);
+			if (!status.isOK()) {
+				return status.getMessage();
 			}
 		}
 		if (StringUtil.isEmpty(refModelName)) {

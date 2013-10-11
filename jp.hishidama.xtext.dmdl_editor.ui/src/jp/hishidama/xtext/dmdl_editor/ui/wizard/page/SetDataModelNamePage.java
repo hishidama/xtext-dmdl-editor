@@ -9,6 +9,7 @@ import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -206,6 +207,7 @@ public class SetDataModelNamePage extends WizardPage {
 
 	private void validate(boolean setError) {
 		setPageComplete(false);
+		String warningMessage = null;
 
 		String path = file.getText().trim();
 		if (path.isEmpty()) {
@@ -241,12 +243,18 @@ public class SetDataModelNamePage extends WizardPage {
 			return;
 		}
 		{
-			String message = ValidationUtil.validateName("データモデル名", name);
-			if (message != null) {
-				if (setError) {
-					setErrorMessage(message);
+			IStatus status = ValidationUtil.validateName("データモデル名", name);
+			if (!status.isOK()) {
+				if (status.getSeverity() == IStatus.WARNING) {
+					if (warningMessage == null) {
+						warningMessage = status.getMessage();
+					}
+				} else {
+					if (setError) {
+						setErrorMessage(status.getMessage());
+					}
+					return;
 				}
-				return;
 			}
 		}
 
@@ -272,6 +280,7 @@ public class SetDataModelNamePage extends WizardPage {
 		}
 
 		setErrorMessage(null);
+		setMessage(warningMessage, WARNING);
 		setPageComplete(true);
 	}
 
