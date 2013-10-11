@@ -35,6 +35,9 @@ public class DMDLImages {
 
 	public static Image getDataModelImage(String modelType) {
 		// TODO modelType image
+		if ("projective".equals(modelType)) {
+			return JavaUI.getSharedImages().getImage(org.eclipse.jdt.ui.ISharedImages.IMG_OBJS_INTERFACE);
+		}
 		return DMDLImages.getDataModelImage();
 	}
 
