@@ -5,7 +5,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
+
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData;
@@ -27,10 +30,18 @@ public abstract class CreateDataModelMainPage<R extends DataModelRow> extends Cr
 			if (defineList.isEmpty()) {
 				ModelDefinition model = sourceViewer.findModel(modelName);
 				if (model != null) {
-					List<Property> list = ModelUtil.getProperties(model);
+					List<EObject> list = ModelUtil.getRawProperties(model);
 					int index = 0;
-					for (Property p : list) {
-						R row = newDefCopyRow(model, p);
+					for (EObject object : list) {
+						R row;
+						if (object instanceof Property) {
+							row = newDefCopyRow(model, (Property) object);
+						} else if (object instanceof ModelReference) {
+							ModelReference ref = (ModelReference) object;
+							row = newReferenceRow(ref.getName(), null);
+						} else {
+							throw new UnsupportedOperationException("object=" + object);
+						}
 						index = addToList(index, row);
 					}
 					tableViewer.refresh();

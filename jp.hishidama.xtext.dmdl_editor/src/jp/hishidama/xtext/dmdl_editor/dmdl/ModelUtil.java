@@ -86,6 +86,64 @@ public class ModelUtil {
 		}
 	}
 
+	/**
+	 * 生プロパティー一覧取得.
+	 * 
+	 * @param model
+	 *            ModelDefinition
+	 * @return PropertyまたはModelReferenceのList
+	 */
+	public static List<EObject> getRawProperties(ModelDefinition model) {
+		List<EObject> list = new ArrayList<EObject>();
+		collectRawProperties(list, model);
+		return list;
+	}
+
+	private static void collectRawProperties(List<EObject> list, ModelDefinition model) {
+		if (model == null) {
+			return;
+		}
+		EObject rhs = model.getRhs();
+		if (rhs == null) {
+			return;
+		}
+		if (rhs instanceof RecordExpression) {
+			EList<RecordTerm> terms = ((RecordExpression) rhs).getTerms();
+			for (RecordTerm term : terms) {
+				ModelReference ref = term.getReference();
+				if (ref != null) {
+					list.add(ref);
+				} else {
+					EList<PropertyDefinition> properties = term.getProperties();
+					list.addAll(properties);
+				}
+			}
+		} else if (rhs instanceof JoinExpression) {
+			EList<JoinTerm> terms = ((JoinExpression) rhs).getTerms();
+			for (JoinTerm term : terms) {
+				ModelMapping mapping = term.getMapping();
+				if (mapping != null) {
+					EList<PropertyMapping> properties = mapping.getMappings();
+					list.addAll(properties);
+				} else {
+					ModelReference ref = term.getReference();
+					if (ref != null) {
+						list.add(ref);
+					}
+				}
+			}
+		} else if (rhs instanceof SummarizeExpression) {
+			EList<SummarizeTerm> terms = ((SummarizeExpression) rhs).getTerms();
+			for (SummarizeTerm term : terms) {
+				ModelFolding folding = term.getFolding();
+				if (folding != null) {
+					EList<PropertyFolding> properties = folding.getFoldings();
+					list.addAll(properties);
+				}
+			}
+		}
+	}
+
 	public static boolean recursiveModel(EObject source, ModelDefinition model) {
 		for (EObject object = source; object != null; object = object.eContainer()) {
 			if (object == model) {
