@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Text;
 
 public class SetDataModelNamePage extends WizardPage {
 	private IProject project;
+	private DataModelType fixType;
 	private String path;
 
 	public static enum PositionType {
@@ -46,9 +47,10 @@ public class SetDataModelNamePage extends WizardPage {
 		}
 	};
 
-	public SetDataModelNamePage(IProject project) {
+	public SetDataModelNamePage(IProject project, DataModelType fixType) {
 		super("SetDataModelNamePage");
 		this.project = project;
+		this.fixType = fixType;
 
 		setTitle("データモデル名の指定");
 		setDescription("作成するデータモデルの名前と種類を入力して下さい。");
@@ -80,10 +82,12 @@ public class SetDataModelNamePage extends WizardPage {
 			file.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusLost(FocusEvent e) {
-					String path = file.getText();
-					String path2 = FileUtil.addExtension(path.trim(), ".dmdl");
-					if (!path2.equals(path)) {
-						file.setText(path2);
+					String path = file.getText().trim();
+					if (!path.endsWith("/")) {
+						String path2 = FileUtil.addExtension(path, ".dmdl");
+						if (!path2.equals(path)) {
+							file.setText(path2);
+						}
 					}
 				}
 			});
@@ -153,7 +157,7 @@ public class SetDataModelNamePage extends WizardPage {
 
 			new Label(composite, SWT.NONE); // dummy
 		}
-		{
+		if (fixType == null) {
 			Label label = new Label(composite, SWT.NONE);
 			label.setText("データモデルの種類");
 
@@ -216,6 +220,12 @@ public class SetDataModelNamePage extends WizardPage {
 			}
 			return;
 		}
+		if (path.endsWith("/")) {
+			if (setError) {
+				setErrorMessage("作成先ファイル名にはファイルを入力して下さい。");
+			}
+			return;
+		}
 		IFile f = project.getFile(path);
 		if (FileUtil.exists(f) && !FileUtil.isFile(f)) {
 			if (setError) {
@@ -258,25 +268,27 @@ public class SetDataModelNamePage extends WizardPage {
 			}
 		}
 
-		int checked = 0;
-		for (Field field : fieldList) {
-			if (field.button.getSelection()) {
-				checked++;
+		if (fixType == null) {
+			int checked = 0;
+			for (Field field : fieldList) {
+				if (field.button.getSelection()) {
+					checked++;
+				}
 			}
-		}
-		switch (checked) {
-		case 0:
-			if (setError) {
-				setErrorMessage("データモデルの種類を選択して下さい。");
+			switch (checked) {
+			case 0:
+				if (setError) {
+					setErrorMessage("データモデルの種類を選択して下さい。");
+				}
+				return;
+			case 1: // 正常
+				break;
+			default:
+				if (setError) {
+					setErrorMessage("データモデルの種類を1つだけ選択して下さい。");
+				}
+				return;
 			}
-			return;
-		case 1: // 正常
-			break;
-		default:
-			if (setError) {
-				setErrorMessage("データモデルの種類を1つだけ選択して下さい。");
-			}
-			return;
 		}
 
 		setErrorMessage(null);
@@ -318,6 +330,9 @@ public class SetDataModelNamePage extends WizardPage {
 	}
 
 	public DataModelType getDataModelType() {
+		if (fixType != null) {
+			return fixType;
+		}
 		for (Field field : fieldList) {
 			if (field.button.getSelection()) {
 				return field.type;

@@ -46,6 +46,7 @@ import org.eclipse.xtext.parser.IParseResult;
 
 public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 	private IProject project;
+	private DataModelType fixType;
 	private String defaultFile = "src/main/dmdl/";
 
 	private SetDataModelNamePage modelPage;
@@ -53,6 +54,9 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 	private CreateDataModelJoinKeyPage joinKeyPage;
 	private Map<DataModelType, List<IWizardPage>> createPageMap = new EnumMap<DataModelType, List<IWizardPage>>(
 			DataModelType.class);
+
+	private String modelName;
+	private String modelDescription;
 
 	public NewDataModelWizard() {
 		setWindowTitle("データモデルの作成");
@@ -94,9 +98,14 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 		}
 	}
 
+	public void init(IProject project, DataModelType fixType) {
+		this.project = project;
+		this.fixType = fixType;
+	}
+
 	@Override
 	public void addPages() {
-		modelPage = new SetDataModelNamePage(project);
+		modelPage = new SetDataModelNamePage(project, fixType);
 		modelPage.setDmdlFile(defaultFile);
 		addPage(modelPage);
 
@@ -205,6 +214,9 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 	@Override
 	public boolean performFinish() {
 		try {
+			this.modelName = modelPage.getDataModelName();
+			this.modelDescription = modelPage.getDataModelDescription();
+
 			save();
 			return true;
 		} catch (CoreException e) {
@@ -226,7 +238,9 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 			String s = insert(sb, f, text);
 			FileUtil.save(file, s);
 		}
-		FileUtil.openEditor(file);
+		if (fixType == null) {
+			FileUtil.openEditor(file);
+		}
 	}
 
 	private String insert(StringBuilder sb, FilePosition f, String text) {
@@ -306,5 +320,13 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 		}
 
 		return sb.length();
+	}
+
+	public String getDataModelName() {
+		return modelName;
+	}
+
+	public String getDataModelDescription() {
+		return modelDescription;
 	}
 }
