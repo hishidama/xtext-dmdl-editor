@@ -16,11 +16,12 @@ public class ModelUtil {
 
 	public static List<Property> getProperties(ModelDefinition model) {
 		List<Property> list = new ArrayList<Property>();
-		resolveProperties(list, model);
+		Set<String> set = new HashSet<String>();
+		resolveProperties(list, model, set);
 		return list;
 	}
 
-	private static void resolveProperties(List<Property> list, ModelDefinition model) {
+	private static void resolveProperties(List<Property> list, ModelDefinition model, Set<String> set) {
 		if (model == null) {
 			return;
 		}
@@ -34,18 +35,15 @@ public class ModelUtil {
 				ModelReference ref = term.getReference();
 				if (ref != null) {
 					if (!recursiveModel(term.eContainer(), ref.getName())) {
-						List<Property> properties = new ArrayList<Property>();
-						resolveProperties(properties, ref.getName());
-						list.addAll(properties);
+						resolveProperties(list, ref.getName(), set);
 					}
 				} else {
 					EList<PropertyDefinition> properties = term.getProperties();
-					list.addAll(properties);
+					addProperties(list, properties, set);
 				}
 			}
 		} else if (rhs instanceof JoinExpression) {
 			EList<JoinTerm> terms = ((JoinExpression) rhs).getTerms();
-			Set<String> set = new HashSet<String>();
 			for (JoinTerm term : terms) {
 				ModelMapping mapping = term.getMapping();
 				if (mapping != null) {
@@ -55,9 +53,7 @@ public class ModelUtil {
 					ModelReference ref = term.getReference();
 					if (ref != null) {
 						if (!recursiveModel(term.eContainer(), ref.getName())) {
-							List<Property> properties = new ArrayList<Property>();
-							resolveProperties(properties, ref.getName());
-							addProperties(list, properties, set);
+							resolveProperties(list, ref.getName(), set);
 						}
 					}
 				}
@@ -68,7 +64,7 @@ public class ModelUtil {
 				ModelFolding folding = term.getFolding();
 				if (folding != null) {
 					EList<PropertyFolding> properties = folding.getFoldings();
-					list.addAll(properties);
+					addProperties(list, properties, set);
 				}
 			}
 		}
