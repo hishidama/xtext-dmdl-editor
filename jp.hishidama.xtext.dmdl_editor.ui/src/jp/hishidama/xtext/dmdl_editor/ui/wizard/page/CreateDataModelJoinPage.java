@@ -128,7 +128,7 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 	private Set<JoinKey> keyBuffer = new HashSet<JoinKey>();
 
 	public CreateDataModelJoinPage() {
-		super("CreateDataModelNormalPage", "結合データモデルの作成", "結合データモデルのプロパティーを定義して下さい。（結合キーは次ページで定義します）");
+		super("CreateDataModelNormalPage", "結合データモデルの定義", "結合データモデルのプロパティーを定義して下さい。（結合キーは次ページで定義します）");
 	}
 
 	@Override

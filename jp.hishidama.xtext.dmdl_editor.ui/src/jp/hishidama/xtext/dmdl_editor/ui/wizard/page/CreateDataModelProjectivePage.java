@@ -3,7 +3,7 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page;
 public class CreateDataModelProjectivePage extends CreateDataModelNormalPage {
 
 	public CreateDataModelProjectivePage() {
-		super("CreateDataModelProjectivePage", "射影データモデルの作成", "射影データモデルを定義して下さい。");
+		super("CreateDataModelProjectivePage", "射影データモデルの定義", "射影データモデルを定義して下さい。");
 	}
 
 	@Override

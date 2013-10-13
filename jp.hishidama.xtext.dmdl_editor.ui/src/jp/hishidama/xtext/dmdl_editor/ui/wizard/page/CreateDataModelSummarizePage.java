@@ -145,7 +145,7 @@ class DataModelSummarizeRow extends DataModelRow {
 public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataModelSummarizeRow> {
 
 	public CreateDataModelSummarizePage() {
-		super("CreateDataModelNormalPage", "集計データモデルの作成", "集計データモデルを定義して下さい。");
+		super("CreateDataModelNormalPage", "集計データモデルの定義", "集計データモデルを定義して下さい。");
 	}
 
 	@Override

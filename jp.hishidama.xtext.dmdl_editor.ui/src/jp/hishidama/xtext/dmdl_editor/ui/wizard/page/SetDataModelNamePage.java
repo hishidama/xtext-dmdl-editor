@@ -28,8 +28,11 @@ import org.eclipse.swt.widgets.Text;
 
 public class SetDataModelNamePage extends WizardPage {
 	private IProject project;
-	private DataModelType fixType;
 	private String path;
+
+	private String fixModelName;
+	private String fixModelDescription;
+	private DataModelType fixType;
 
 	public static enum PositionType {
 		FILE_FIRST, FILE_FIRST_COMMENT, FILE_LAST, DM_BEFORE, DM_REPLACE, DM_AFTER
@@ -61,6 +64,14 @@ public class SetDataModelNamePage extends WizardPage {
 		if (file != null) {
 			file.setText(path);
 		}
+	}
+
+	public void setDataModelName(String name) {
+		this.fixModelName = name;
+	}
+
+	public void setDataModelDescription(String desc) {
+		this.fixModelDescription = desc;
 	}
 
 	public void createControl(Composite parent) {
@@ -304,9 +315,15 @@ public class SetDataModelNamePage extends WizardPage {
 
 	public FilePosition getDmdlFile() {
 		FilePosition f = new FilePosition();
-		f.filePath = file.getText().trim();
-		f.position = getPosition();
-		f.modelName = positionModelName.getText().trim();
+		if (file == null) {
+			f.filePath = path;
+			f.position = PositionType.DM_REPLACE;
+			f.modelName = fixModelName;
+		} else {
+			f.filePath = file.getText().trim();
+			f.position = getPosition();
+			f.modelName = positionModelName.getText().trim();
+		}
 		return f;
 	}
 
@@ -320,11 +337,17 @@ public class SetDataModelNamePage extends WizardPage {
 	}
 
 	public String getDataModelName() {
+		if (modelName == null) {
+			return fixModelName;
+		}
 		String value = modelName.getText().trim();
 		return value;
 	}
 
 	public String getDataModelDescription() {
+		if (desc == null) {
+			return fixModelDescription;
+		}
 		String value = desc.getText().trim();
 		return value;
 	}

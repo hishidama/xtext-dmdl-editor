@@ -45,9 +45,9 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
 
 public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
-	private IProject project;
-	private DataModelType fixType;
-	private String defaultFile = "src/main/dmdl/";
+	protected IProject project;
+	protected DataModelType fixType;
+	protected String defaultFile = "src/main/dmdl/";
 
 	private SetDataModelNamePage modelPage;
 	private CreateDataModelJoinPage joinPage;
@@ -55,8 +55,8 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 	private Map<DataModelType, List<IWizardPage>> createPageMap = new EnumMap<DataModelType, List<IWizardPage>>(
 			DataModelType.class);
 
-	private String modelName;
-	private String modelDescription;
+	protected String modelName;
+	protected String modelDescription;
 
 	public NewDataModelWizard() {
 		setWindowTitle("データモデルの作成");
@@ -107,7 +107,7 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 	public void addPages() {
 		modelPage = new SetDataModelNamePage(project, fixType);
 		modelPage.setDmdlFile(defaultFile);
-		addPage(modelPage);
+		addModelPage(modelPage);
 
 		addPage(DataModelType.NORMAL, new CreateDataModelNormalPage());
 		addPage(DataModelType.SUMMARIZED, new CreateDataModelSummarizePage());
@@ -118,7 +118,16 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 		addPage(DataModelType.PROJECTIVE, new CreateDataModelProjectivePage());
 	}
 
+	protected void addModelPage(SetDataModelNamePage page) {
+		addPage(modelPage);
+	}
+
 	private void addPage(DataModelType type, WizardPage page) {
+		if (fixType != null) {
+			if (type != fixType) {
+				return;
+			}
+		}
 		List<IWizardPage> list = createPageMap.get(type);
 		if (list == null) {
 			list = new ArrayList<IWizardPage>();
@@ -130,6 +139,12 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 			((CreateDataModelPage<?>) page).setProject(project);
 		}
 		addPage(page);
+	}
+
+	@Override
+	public IWizardPage getStartingPage() {
+		IWizardPage page = super.getStartingPage();
+		return getPage(page);
 	}
 
 	@Override

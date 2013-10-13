@@ -418,31 +418,22 @@
 
    <extension
          point="org.eclipse.ui.commands">
-      <category
-            id="jp.hishidama.xtext.dmdl_editor.jdt.category"
-            name="DMDL EditorX">
-      </category>
       <command
-            categoryId="jp.hishidama.xtext.dmdl_editor.jdt.category"
-            id="jp.hishidama.jdt.xtext.dmdl_editor.openlink-command"
-            name="Open DMDL">
+            id="jp.hishidama.xtext.dmdl_editor.command.editDataModel"
+            name="Edit DataModel">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.OpenDeclaredDmdlHyperlinkHandler"
-            commandId="jp.hishidama.jdt.xtext.dmdl_editor.openlink-command">
+            class="jp.hishidama.xtext.dmdl_editor.ui.wizard.EditDataModelHandler"
+            commandId="jp.hishidama.xtext.dmdl_editor.command.editDataModel">
+         <enabledWhen>
+            <reference
+                  definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.Editor.opened">
+            </reference>
+         </enabledWhen>
       </handler>
-   </extension>
-   <extension
-         point="org.eclipse.ui.bindings">
-      <key
-            commandId="jp.hishidama.jdt.xtext.dmdl_editor.openlink-command"
-            contextId="org.eclipse.jdt.ui.javaEditorScope"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M2+F3">
-      </key>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -527,6 +518,11 @@
                </parameter>
             </command>
             <command
+                  commandId="jp.hishidama.xtext.dmdl_editor.command.editDataModel"
+                  icon="icons/hishidama16.gif"
+                  tooltip="既存のデータモデルを編集します。">
+            </command>
+            <command
                   commandId="org.eclipse.ui.newWizard"
                   style="push">
                <parameter
@@ -595,4 +591,32 @@
       </hyperlinkDetector>
    </extension>
 
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="jp.hishidama.xtext.dmdl_editor.jdt.category"
+            name="DMDL EditorX">
+      </category>
+      <command
+            categoryId="jp.hishidama.xtext.dmdl_editor.jdt.category"
+            id="jp.hishidama.jdt.xtext.dmdl_editor.command.openLink"
+            name="Open DMDL">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.OpenDeclaredDmdlHyperlinkHandler"
+            commandId="jp.hishidama.jdt.xtext.dmdl_editor.command.openLink">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="jp.hishidama.jdt.xtext.dmdl_editor.command.openLink"
+            contextId="org.eclipse.jdt.ui.javaEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M2+F3">
+      </key>
+   </extension>
 </plugin>

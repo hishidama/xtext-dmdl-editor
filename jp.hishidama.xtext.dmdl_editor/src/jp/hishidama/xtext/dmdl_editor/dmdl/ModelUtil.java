@@ -9,8 +9,15 @@ import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.EcoreUtil2;
 
 public class ModelUtil {
 
@@ -242,5 +249,13 @@ public class ModelUtil {
 			}
 		}
 		return false;
+	}
+
+	public static IFile getFile(ModelDefinition model) {
+		URI uri = EcoreUtil2.getNormalizedResourceURI(model);
+		String pathString = uri.toPlatformString(true);
+		IPath path = Path.fromPortableString(pathString);
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		return root.getFile(path);
 	}
 }
