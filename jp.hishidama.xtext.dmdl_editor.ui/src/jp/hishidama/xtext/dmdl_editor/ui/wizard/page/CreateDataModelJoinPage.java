@@ -11,6 +11,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import static jp.hishidama.eclipse_plugin.util.StringUtil.*;
+import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
@@ -29,6 +30,7 @@ import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.TreeItem;
@@ -157,8 +159,29 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 
 	@Override
 	protected boolean doEditDialog(DataModelJoinRow row) {
-		// TODO Auto-generated method stub
-		return true;
+		String initialModelName = row.getRefModelName();
+		if (StringUtil.isEmpty(initialModelName)) {
+			int index = tableViewer.getTable().getSelectionIndex();
+			for (int i = index; i >= 0; i--) {
+				DataModelJoinRow r = defineList.get(i);
+				if (StringUtil.nonEmpty(r.getRefModelName())) {
+					initialModelName = r.getRefModelName();
+					break;
+				}
+			}
+			if (StringUtil.isEmpty(initialModelName)) {
+				for (int i = defineList.size() - 1; i >= 0; i--) {
+					DataModelJoinRow r = defineList.get(i);
+					if (StringUtil.nonEmpty(r.getRefModelName())) {
+						initialModelName = r.getRefModelName();
+						break;
+					}
+				}
+			}
+		}
+
+		EditJoinPropertyDialog dialog = new EditJoinPropertyDialog(getShell(), project, row, initialModelName);
+		return dialog.open() == Window.OK;
 	}
 
 	@Override
