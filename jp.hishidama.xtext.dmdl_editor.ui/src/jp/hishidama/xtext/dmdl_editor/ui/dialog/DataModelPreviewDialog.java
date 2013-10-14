@@ -17,6 +17,7 @@ public class DataModelPreviewDialog extends Dialog {
 
 	public DataModelPreviewDialog(Shell parentShell, String windowTitle) {
 		super(parentShell);
+		setShellStyle(getShellStyle() | SWT.RESIZE);
 		this.windowTitle = windowTitle;
 	}
 
@@ -34,7 +35,7 @@ public class DataModelPreviewDialog extends Dialog {
 		textArea = new Text(composite, SWT.BORDER | SWT.MULTI | SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL);
 		// textArea.setFont(composite.getFont());
 		GridData grid = new GridData(GridData.FILL_BOTH);
-		grid.widthHint = 256;
+		grid.widthHint = 256 + 32;
 		grid.heightHint = 256;
 		textArea.setLayoutData(grid);
 		if (text != null) {
