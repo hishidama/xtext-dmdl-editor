@@ -102,7 +102,7 @@ public abstract class DataModelTreeDialog extends EditDialog {
 
 	@Override
 	protected void refresh() {
-		for (TreeItem row : tree.getTree().getItems()) {
+		all: for (TreeItem row : tree.getTree().getItems()) {
 			for (TreeItem item : row.getItems()) {
 				DMDLTreeData data = (DMDLTreeData) item.getData();
 				if (data == null) {
@@ -114,11 +114,19 @@ public abstract class DataModelTreeDialog extends EditDialog {
 					if (model.getName().equals(name)) {
 						this.treeData = data;
 						tree.getTree().setSelection(item);
-						return;
+						if (expandProperty()) {
+							tree.expandToLevel(data, 1);
+						}
+						break all;
 					}
 				}
 			}
 		}
+		refreshOkButton();
+	}
+
+	protected boolean expandProperty() {
+		return false;
 	}
 
 	@Override

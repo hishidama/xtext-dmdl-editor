@@ -4,6 +4,7 @@ import java.text.MessageFormat;
 import java.util.Map;
 
 import static jp.hishidama.eclipse_plugin.util.StringUtil.*;
+import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
@@ -17,6 +18,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.viewers.CheckboxCellEditor;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.xtext.EcoreUtil2;
 
@@ -180,8 +182,19 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 
 	@Override
 	protected boolean doEditDialog(DataModelSummarizeRow row) {
-		// TODO Auto-generated method stub
-		return true;
+		String initialModelName = row.getRefModelName();
+		if (StringUtil.isEmpty(initialModelName)) {
+			for (int i = defineList.size() - 1; i >= 0; i--) {
+				DataModelSummarizeRow r = defineList.get(i);
+				if (StringUtil.nonEmpty(r.getRefModelName())) {
+					initialModelName = r.getRefModelName();
+					break;
+				}
+			}
+		}
+
+		EditSummarizePropertyDialog dialog = new EditSummarizePropertyDialog(getShell(), project, row, initialModelName);
+		return dialog.open() == Window.OK;
 	}
 
 	@Override

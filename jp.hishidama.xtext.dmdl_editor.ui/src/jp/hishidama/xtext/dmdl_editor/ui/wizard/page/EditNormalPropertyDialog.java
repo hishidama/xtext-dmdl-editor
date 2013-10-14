@@ -104,6 +104,7 @@ public class EditNormalPropertyDialog extends EditDialog {
 
 	void referenceModel() {
 		DmdlModelSelectionDialog dialog = new DmdlModelSelectionDialog(getShell(), project);
+		dialog.setInitialModel(refModelText.getText().trim());
 		if (dialog.open() == Window.OK) {
 			ModelDefinition model = dialog.getSelectedDataModel();
 			refModelText.setText(nonNull(model.getName()));
