@@ -17,6 +17,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.CreateDataModelJoinPage.Joi
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
@@ -42,10 +43,18 @@ class DataModelJoinKey extends DataModelRow {
 		return keys.get(property);
 	}
 
+	public int getColumns() {
+		return table.getColumnCount();
+	}
+
+	public String getColumnText(int columnIndex) {
+		TableColumn c = table.getColumn(columnIndex);
+		return c.getText();
+	}
+
 	@Override
 	public String getText(int columnIndex) {
-		TableColumn c = table.getColumn(columnIndex);
-		String name = c.getText();
+		String name = getColumnText(columnIndex);
 		return keys.get(name);
 	}
 
@@ -212,8 +221,8 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 
 	@Override
 	protected boolean doEditDialog(DataModelJoinKey row) {
-		// TODO Auto-generated method stub
-		return true;
+		EditJoinKeyPropertyDialog dialog = new EditJoinKeyPropertyDialog(getShell(), project, row);
+		return dialog.open() == Window.OK;
 	}
 
 	@Override
