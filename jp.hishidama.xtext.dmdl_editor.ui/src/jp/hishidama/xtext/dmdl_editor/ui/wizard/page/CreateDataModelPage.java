@@ -66,6 +66,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 	private Button copyButton;
 	private Button defCopyButton;
 	private Button referenceButton;
+	private List<Button> selectionButtonList = new ArrayList<Button>();
 
 	public CreateDataModelPage(String pageName, String pageTitle, String pageDescription) {
 		super(pageName);
@@ -205,42 +206,43 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 			layout.marginHeight = 0;
 			field.setLayout(layout);
 
-			createButton(field, "add", new SelectionAdapter() {
+			createButton(field, "add", false, new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
 					doAdd();
 				}
 			});
-			createButton(field, "edit", new SelectionAdapter() {
+			createButton(field, "edit", true, new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
 					doEdit();
 				}
 			});
-			createButton(field, "up", new SelectionAdapter() {
+			createButton(field, "up", true, new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
 					doMove(-1);
 				}
 			});
-			createButton(field, "down", new SelectionAdapter() {
+			createButton(field, "down", true, new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
 					doMove(+1);
 				}
 			});
-			createButton(field, "delete", new SelectionAdapter() {
+			createButton(field, "delete", true, new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
 					doRemove();
 				}
 			});
-			createButton(field, "preview", new SelectionAdapter() {
+			createButton(field, "preview", false, new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
 					doPreview();
 				}
 			});
+			refreshSelectionButton();
 		}
 
 		doSelectionChange(null);
@@ -248,11 +250,14 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		setControl(composite);
 	}
 
-	private Button createButton(Composite field, String text, SelectionListener listener) {
+	private Button createButton(Composite field, String text, boolean select, SelectionListener listener) {
 		Button button = new Button(field, SWT.PUSH);
 		button.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		button.setText(text);
 		button.addSelectionListener(listener);
+		if (select) {
+			selectionButtonList.add(button);
+		}
 		return button;
 	}
 
@@ -269,6 +274,11 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		table.setLinesVisible(true);
 		defineColumns(table);
 
+		tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+			public void selectionChanged(SelectionChangedEvent event) {
+				refreshSelectionButton();
+			}
+		});
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDoubleClick(MouseEvent e) {
@@ -377,6 +387,13 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		}
 	}
 
+	void refreshSelectionButton() {
+		boolean enable = !tableViewer.getSelection().isEmpty();
+		for (Button button : selectionButtonList) {
+			button.setEnabled(enable);
+		}
+	}
+
 	void doAdd() {
 		int index = tableViewer.getTable().getSelectionIndex();
 		doAdd(index);
@@ -400,6 +417,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		Table table = tableViewer.getTable();
 		table.setSelection(index);
 		table.showSelection();
+		refreshSelectionButton();
 	}
 
 	protected abstract R newAddRow();
