@@ -1,16 +1,19 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page;
 
+import static jp.hishidama.eclipse_plugin.util.StringUtil.isEmpty;
+import static jp.hishidama.eclipse_plugin.util.StringUtil.nonEmpty;
+import static jp.hishidama.eclipse_plugin.util.StringUtil.nonNull;
+
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
-import static jp.hishidama.eclipse_plugin.util.StringUtil.*;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
@@ -29,7 +32,6 @@ import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
@@ -106,7 +108,7 @@ class DataModelJoinRow extends DataModelRow {
 
 public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJoinRow> {
 
-	private Set<JoinKey> keyBuffer = new HashSet<JoinKey>();
+	private List<JoinKey> keyBuffer = new ArrayList<JoinKey>();
 
 	public CreateDataModelJoinPage() {
 		super("CreateDataModelNormalPage", "結合データモデルの定義", "結合データモデルのプロパティーを定義して下さい。（結合キーは次ページで定義します）");
@@ -119,10 +121,10 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 
 	@Override
 	protected void defineColumns(Table table) {
-		addColumn("name", 128, DataModelJoinRow.TP_NAME, new TextCellEditor(table));
-		addColumn("description", 128, DataModelJoinRow.TP_DESC, new TextCellEditor(table));
-		addColumn("src model", 128, DataModelJoinRow.TP_REF_MODEL, new TextCellEditor(table));
-		addColumn("src property", 128, DataModelJoinRow.TP_REF_PROPERTY, new TextCellEditor(table));
+		addColumn("name", 128, DataModelJoinRow.TP_NAME);
+		addColumn("description", 128, DataModelJoinRow.TP_DESC);
+		addColumn("src model", 128, DataModelJoinRow.TP_REF_MODEL);
+		addColumn("src property", 128, DataModelJoinRow.TP_REF_PROPERTY);
 	}
 
 	@Override
@@ -248,7 +250,7 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 			}
 		}
 		if (found >= 0) {
-			JoinKey key = new JoinKey();
+			JoinKey key = new JoinKey(found);
 			for (Entry<ModelDefinition, List<Property>> entry : map.entrySet()) {
 				String modelName = entry.getKey().getName();
 				List<Property> list = entry.getValue();
@@ -257,12 +259,24 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 					key.add(modelName, p.getName());
 				}
 			}
-			keyBuffer.add(key);
+			if (!keyBuffer.contains(key)) {
+				keyBuffer.add(key);
+				Collections.sort(keyBuffer, new Comparator<JoinKey>() {
+					public int compare(JoinKey o1, JoinKey o2) {
+						return o1.no - o2.no;
+					}
+				});
+			}
 		}
 	}
 
 	static class JoinKey {
 		public final Map<String, String> map = new HashMap<String, String>();
+		public final int no;
+
+		public JoinKey(int no) {
+			this.no = no;
+		}
 
 		public void add(String modelName, String propertyName) {
 			map.put(modelName, propertyName);
@@ -423,7 +437,7 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 		return modelMap.get(modelName);
 	}
 
-	public Set<JoinKey> getKeyBuffer() {
+	public List<JoinKey> getKeyBuffer() {
 		return keyBuffer;
 	}
 }

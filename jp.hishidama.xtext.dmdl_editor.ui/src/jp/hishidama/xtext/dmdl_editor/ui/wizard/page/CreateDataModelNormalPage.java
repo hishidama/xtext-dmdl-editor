@@ -11,8 +11,6 @@ import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.jface.viewers.ComboBoxCellEditor;
-import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Table;
 
@@ -107,11 +105,10 @@ public class CreateDataModelNormalPage extends CreateDataModelMainPage<DataModel
 
 	@Override
 	protected void defineColumns(Table table) {
-		addColumn("name", 128, DataModelNormalRow.TP_NAME, new TextCellEditor(table));
-		addColumn("description", 128, DataModelNormalRow.TP_DESC, new TextCellEditor(table));
-		addColumn("type", 96, DataModelNormalRow.TP_DATATYPE, new ComboBoxCellEditor(table,
-				DataModelNormalRow.DATA_TYPE));
-		addColumn("ref model", 128, DataModelNormalRow.TP_REF_MODEL, new TextCellEditor(table));
+		addColumn("name", 128, DataModelNormalRow.TP_NAME);
+		addColumn("description", 128, DataModelNormalRow.TP_DESC);
+		addColumn("type", 96, DataModelNormalRow.TP_DATATYPE);
+		addColumn("ref model", 128, DataModelNormalRow.TP_REF_MODEL);
 	}
 
 	@Override

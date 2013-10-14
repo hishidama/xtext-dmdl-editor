@@ -20,7 +20,6 @@ import jp.hishidama.xtext.dmdl_editor.ui.viewer.DataModelTreeViewer;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -257,7 +256,6 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		return button;
 	}
 
-	protected List<CellEditor> editors = new ArrayList<CellEditor>();
 	protected List<String> cprops = new ArrayList<String>();
 
 	private void createTableViewer(Composite column) {
@@ -278,7 +276,6 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 			}
 		});
 
-		tableViewer.setCellEditors(editors.toArray(new CellEditor[editors.size()]));
 		tableViewer.setColumnProperties(cprops.toArray(new String[cprops.size()]));
 
 		int operations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_DEFAULT;
@@ -322,13 +319,12 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 
 	protected abstract void defineColumns(Table table);
 
-	protected final void addColumn(String text, int width, String propName, CellEditor editor) {
+	protected final void addColumn(String text, int width, String propName) {
 		Table table = tableViewer.getTable();
 		TableColumn column = new TableColumn(table, SWT.NONE);
 		column.setText(text);
 		column.setWidth(width);
 
-		editors.add(editor);
 		cprops.add(propName);
 	}
 

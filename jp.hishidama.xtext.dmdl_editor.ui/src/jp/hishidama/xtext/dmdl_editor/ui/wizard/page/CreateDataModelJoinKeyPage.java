@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
@@ -14,9 +13,6 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.CreateDataModelJoinPage.JoinKey;
 
-import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.viewers.ComboBoxCellEditor;
-import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -24,11 +20,16 @@ import org.eclipse.swt.widgets.TableItem;
 
 class DataModelJoinKey extends DataModelRow {
 	private Table table;
+	private Map<String, String[]> comboMap;
 	private Map<String, Map<String, Integer>> indexMap;
+	private Map<String, String> descMap;
 
-	public DataModelJoinKey(Table table, Map<String, Map<String, Integer>> indexMap) {
+	public DataModelJoinKey(Table table, Map<String, String[]> comboMap, Map<String, Map<String, Integer>> indexMap,
+			Map<String, String> descMap) {
 		this.table = table;
+		this.comboMap = comboMap;
 		this.indexMap = indexMap;
+		this.descMap = descMap;
 	}
 
 	private Map<String, String> keys = new HashMap<String, String>();
@@ -45,15 +46,24 @@ class DataModelJoinKey extends DataModelRow {
 		return table.getColumnCount();
 	}
 
-	public String getColumnText(int columnIndex) {
+	public String getModelName(int columnIndex) {
 		TableColumn c = table.getColumn(columnIndex);
 		return c.getText();
 	}
 
+	public String getModelDescription(int columnIndex) {
+		String name = getModelName(columnIndex);
+		return descMap.get(name);
+	}
+
 	@Override
 	public String getText(int columnIndex) {
-		String name = getColumnText(columnIndex);
+		String name = getModelName(columnIndex);
 		return keys.get(name);
+	}
+
+	public String[] getComboList(String property) {
+		return comboMap.get(property);
 	}
 
 	@Override
@@ -98,8 +108,10 @@ class DataModelJoinKey extends DataModelRow {
 public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoinKey> {
 
 	private List<DMDLTreeData> input;
-	private Set<JoinKey> keyBuffer;
+	private List<JoinKey> keyBuffer;
+	private Map<String, String[]> comboMap = new HashMap<String, String[]>();
 	private Map<String, Map<String, Integer>> indexMap = new HashMap<String, Map<String, Integer>>();
+	private Map<String, String> descMap = new HashMap<String, String>();
 
 	public CreateDataModelJoinKeyPage() {
 		super("CreateDataModelJoinKeyPage", "結合キーの指定",
@@ -119,8 +131,8 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 	@Override
 	protected void defineColumns(Table table) {
 		if (input == null) {
-			addColumn("key1", 256, "0", new TextCellEditor(table));
-			addColumn("key2", 256, "1", new TextCellEditor(table));
+			addColumn("key1", 256, "0");
+			addColumn("key2", 256, "1");
 		} else {
 			for (DMDLTreeData data : input) {
 				ModelDefinition model = (ModelDefinition) data.getData();
@@ -134,18 +146,22 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 				int i = 0;
 				for (DMDLTreeData c : children) {
 					Property prop = (Property) c.getData();
-					combo[i++] = prop.getName();
+					String name = prop.getName();
+					String desc = prop.getDescription();
+					combo[i++] = StringUtil.isEmpty(desc) ? name : name + " " + desc;
 				}
 
-				addColumn(modelName, 128, modelName, new ComboBoxCellEditor(table, combo));
+				addColumn(modelName, 128, modelName);
 
+				comboMap.put(modelName, combo);
 				Map<String, Integer> index = getComboIndexMap(null, combo);
 				indexMap.put(modelName, index);
+				descMap.put(modelName, model.getDescription());
 			}
 		}
 	}
 
-	public void setSourceList(List<DMDLTreeData> input, Set<JoinKey> keys) {
+	public void setSourceList(List<DMDLTreeData> input, List<JoinKey> keys) {
 		this.input = input;
 		this.keyBuffer = keys;
 		if (sourceViewer != null) {
@@ -159,10 +175,8 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 		for (TableColumn c : table.getColumns()) {
 			c.dispose();
 		}
-		editors.clear();
 		cprops.clear();
 		defineColumns(table);
-		tableViewer.setCellEditors(editors.toArray(new CellEditor[editors.size()]));
 		tableViewer.setColumnProperties(cprops.toArray(new String[cprops.size()]));
 
 		sourceViewer.setInputList(input);
@@ -178,7 +192,7 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 			Table table = tableViewer.getTable();
 			TableColumn[] cols = table.getColumns();
 			for (TableItem item : table.getItems()) {
-				JoinKey key = new JoinKey();
+				JoinKey key = new JoinKey(0);
 				for (int i = 0; i < cols.length; i++) {
 					String mname = cols[i].getText();
 					String pname = item.getText(i);
@@ -202,12 +216,12 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 
 	@Override
 	protected DataModelJoinKey newAddRow() {
-		return new DataModelJoinKey(tableViewer.getTable(), indexMap);
+		return new DataModelJoinKey(tableViewer.getTable(), comboMap, indexMap, descMap);
 	}
 
 	@Override
 	protected boolean doEditDialog(DataModelJoinKey row) {
-		EditJoinKeyPropertyDialog dialog = new EditJoinKeyPropertyDialog(getShell(), project, row);
+		EditJoinKeyPropertyDialog dialog = new EditJoinKeyPropertyDialog(getShell(), row);
 		return dialog.open() == Window.OK;
 	}
 
@@ -245,7 +259,7 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 
 	@Override
 	protected DataModelJoinKey newCopyRow(ModelDefinition model, Property prop) {
-		return new DataModelJoinKey(tableViewer.getTable(), indexMap);
+		return new DataModelJoinKey(tableViewer.getTable(), comboMap, indexMap, descMap);
 	}
 
 	@Override

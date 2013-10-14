@@ -15,9 +15,6 @@ import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.jface.viewers.CheckboxCellEditor;
-import org.eclipse.jface.viewers.ComboBoxCellEditor;
-import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.xtext.EcoreUtil2;
@@ -129,13 +126,12 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 
 	@Override
 	protected void defineColumns(Table table) {
-		addColumn("key", 40, DataModelSummarizeRow.TP_KEY, new CheckboxCellEditor(table));
-		addColumn("name", 128, DataModelSummarizeRow.TP_NAME, new TextCellEditor(table));
-		addColumn("description", 128, DataModelSummarizeRow.TP_DESC, new TextCellEditor(table));
-		addColumn("aggregate", 64, DataModelSummarizeRow.TP_SUM_TYPE, new ComboBoxCellEditor(table,
-				DataModelSummarizeRow.SUM_TYPE));
-		addColumn("src model", 128, DataModelSummarizeRow.TP_REF_MODEL, new TextCellEditor(table));
-		addColumn("src property", 128, DataModelSummarizeRow.TP_REF_PROPERTY, new TextCellEditor(table));
+		addColumn("key", 40, DataModelSummarizeRow.TP_KEY);
+		addColumn("name", 128, DataModelSummarizeRow.TP_NAME);
+		addColumn("description", 128, DataModelSummarizeRow.TP_DESC);
+		addColumn("aggregate", 64, DataModelSummarizeRow.TP_SUM_TYPE);
+		addColumn("src model", 128, DataModelSummarizeRow.TP_REF_MODEL);
+		addColumn("src property", 128, DataModelSummarizeRow.TP_REF_PROPERTY);
 	}
 
 	@Override
