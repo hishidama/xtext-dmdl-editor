@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import jp.hishidama.eclipse_plugin.util.StringUtil;
+import static jp.hishidama.eclipse_plugin.util.StringUtil.*;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
@@ -35,15 +35,6 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.xtext.EcoreUtil2;
 
 class DataModelJoinRow extends DataModelRow {
-	public static final String TP_NAME = "name";
-	public static final String TP_DESC = "description";
-	public static final String TP_REF_MODEL = "refModel";
-	public static final String TP_REF_PROPERTY = "refProperty";
-
-	public String name;
-	public String description;
-	public String refModelName;
-	public String refProperty;
 
 	public ModelDefinition model;
 	public Property prop;
@@ -58,7 +49,7 @@ class DataModelJoinRow extends DataModelRow {
 		case 2:
 			return refModelName;
 		case 3:
-			return refProperty;
+			return refPropertyName;
 		default:
 			throw new UnsupportedOperationException(MessageFormat.format("index={0}", columnIndex));
 		}
@@ -76,7 +67,7 @@ class DataModelJoinRow extends DataModelRow {
 			return nonNull(refModelName);
 		}
 		if (property.equals(TP_REF_PROPERTY)) {
-			return nonNull(refProperty);
+			return nonNull(refPropertyName);
 		}
 		throw new UnsupportedOperationException(MessageFormat.format("property={0}", property));
 	}
@@ -101,7 +92,7 @@ class DataModelJoinRow extends DataModelRow {
 		}
 		if (property.equals(TP_REF_PROPERTY)) {
 			String text = ((String) value).trim();
-			this.refProperty = text;
+			this.refPropertyName = text;
 			this.prop = null;
 			return true;
 		}
@@ -110,15 +101,30 @@ class DataModelJoinRow extends DataModelRow {
 
 	@Override
 	public String validate() {
-		if (StringUtil.nonEmpty(name)) {
+		if (nonEmpty(name)) {
 			IStatus status = ValidationUtil.validateName("プロパティー名", name);
 			if (!status.isOK()) {
 				return status.getMessage();
 			}
 		}
-		if (StringUtil.isEmpty(refModelName)) {
+		if (isEmpty(refModelName)) {
 			return "結合元データモデルは必須です。";
 		}
+		return null;
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public String getDescription() {
+		return description;
+	}
+
+	@Override
+	public String getDataType() {
 		return null;
 	}
 }
@@ -161,7 +167,7 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 		row.name = prop.getName();
 		row.description = DMDLStringUtil.decodeDescription(prop.getDescription());
 		row.refModelName = model.getName();
-		row.refProperty = prop.getName();
+		row.refPropertyName = prop.getName();
 		row.model = model;
 		row.prop = prop;
 		return row;
@@ -183,10 +189,13 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 	}
 
 	@Override
-	protected DataModelJoinRow newDefCopyRow(ModelDefinition model, Property prop) {
+	protected DataModelJoinRow newDefCopyRow(ModelDefinition model, Property prop, boolean copyAttribute) {
 		DataModelJoinRow row = new DataModelJoinRow();
 		row.name = prop.getName();
 		row.description = DMDLStringUtil.decodeDescription(prop.getDescription());
+		if (copyAttribute) {
+			row.attribute = PropertyUtil.getAttributeString(prop);
+		}
 
 		if (prop instanceof PropertyFolding) {
 			PropertyFolding folding = (PropertyFolding) prop;
@@ -194,7 +203,7 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 			if (refModel != null) {
 				row.refModelName = refModel.getName();
 			}
-			row.refProperty = folding.getFrom().getName();
+			row.refPropertyName = folding.getFrom().getName();
 			row.model = refModel;
 			row.prop = folding.getFrom();
 			setKey(model, row.refModelName, row.name);
@@ -204,13 +213,13 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 			if (refModel != null) {
 				row.refModelName = refModel.getName();
 			}
-			row.refProperty = mapping.getFrom().getName();
+			row.refPropertyName = mapping.getFrom().getName();
 			row.model = refModel;
 			row.prop = mapping.getFrom();
 			setKey(model, row.refModelName, row.name);
 		} else {
 			row.refModelName = model.getName();
-			row.refProperty = prop.getName();
+			row.refPropertyName = prop.getName();
 			row.model = model;
 			row.prop = prop;
 		}
@@ -318,8 +327,8 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 
 	@Override
 	protected void setGeneratorProperty(DataModelTextGenerator gen, DataModelJoinRow row) {
-		if (StringUtil.nonEmpty(row.name)) {
-			gen.appendRefProperty(row.name, row.description, row.refModelName, row.refProperty);
+		if (nonEmpty(row.name)) {
+			gen.appendRefProperty(row.name, row.description, row.refModelName, row.refPropertyName, row.attribute);
 		} else {
 			gen.appendRefProperty(row.refModelName);
 		}
@@ -344,10 +353,10 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 				} else {
 					model = findModel(modelName);
 				}
-				if (StringUtil.nonEmpty(row.name) || StringUtil.nonEmpty(row.refProperty)) {
+				if (nonEmpty(row.name) || nonEmpty(row.refPropertyName)) {
 					Property p = row.prop;
 					if (p == null) {
-						String name = StringUtil.nonEmpty(row.refProperty) ? row.refProperty : row.name;
+						String name = nonEmpty(row.refPropertyName) ? row.refPropertyName : row.name;
 						if (plist == null) {
 							plist = ModelUtil.getProperties(model);
 						}
@@ -358,9 +367,9 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 							}
 						}
 					}
-					String pname = StringUtil.nonEmpty(row.name) ? row.name : row.refProperty;
-					String pdesc = StringUtil.nonEmpty(row.description) ? row.description
-							: ((p != null) ? DMDLStringUtil.decodeDescription(p.getDescription()) : null);
+					String pname = nonEmpty(row.name) ? row.name : row.refPropertyName;
+					String pdesc = nonEmpty(row.description) ? row.description : ((p != null) ? DMDLStringUtil
+							.decodeDescription(p.getDescription()) : null);
 					Type ptype = PropertyUtil.getResolvedDataType(p);
 					PropertyDefinition n = InjectorUtil.getInstance(PropertyDefinitionImpl.class);
 					n.setName(pname);
@@ -401,9 +410,11 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 			for (TreeItem item : items) {
 				for (TreeItem i : item.getItems()) {
 					ModelNode node = (ModelNode) i.getData();
-					ModelDefinition model = (ModelDefinition) node.getData();
-					String name = model.getName();
-					modelMap.put(name, model);
+					if (node != null) {
+						ModelDefinition model = (ModelDefinition) node.getData();
+						String name = model.getName();
+						modelMap.put(name, model);
+					}
 				}
 			}
 		}

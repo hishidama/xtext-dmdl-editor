@@ -3,19 +3,20 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page;
 import java.io.StringReader;
 import java.text.MessageFormat;
 
-import org.eclipse.xtext.formatting.INodeModelFormatter;
-import org.eclipse.xtext.formatting.INodeModelFormatter.IFormattedRegion;
-import org.eclipse.xtext.parser.IParseResult;
-
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.parser.antlr.DMDLParser;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
+import org.eclipse.xtext.formatting.INodeModelFormatter;
+import org.eclipse.xtext.formatting.INodeModelFormatter.IFormattedRegion;
+import org.eclipse.xtext.parser.IParseResult;
+
 public class DataModelTextGenerator {
 	private String modelName;
 	private String modelDescription;
+	private String modelAttribute;
 	private String modelType;
 
 	public void setModelName(String name) {
@@ -24,6 +25,10 @@ public class DataModelTextGenerator {
 
 	public void setModelDescription(String description) {
 		this.modelDescription = description;
+	}
+
+	public void setModelAttribute(String attribute) {
+		this.modelAttribute = attribute;
 	}
 
 	public void setModelType(String type) {
@@ -37,10 +42,11 @@ public class DataModelTextGenerator {
 	private static final String NOTHING = "\0nothing\0";
 	private String refNameOnly = null;
 
-	public void appendProperty(String name, String desc, String type) {
+	public void appendProperty(String name, String desc, String type, String attribute) {
 		block("", null, true, true);
 
 		appendDescription(desc);
+		appendAttribute(attribute);
 		sb.append(indent);
 		sb.append(StringUtil.get(name, "プロパティー名が未定義"));
 		sb.append(" : ");
@@ -57,10 +63,11 @@ public class DataModelTextGenerator {
 		}
 	}
 
-	public void appendRefProperty(String name, String desc, String refModelName, String refName) {
+	public void appendRefProperty(String name, String desc, String refModelName, String refName, String attribute) {
 		block(refModelName, "->", true, true);
 
 		appendDescription(desc);
+		appendAttribute(attribute);
 		sb.append(indent);
 		sb.append(StringUtil.nonEmpty(refName) ? refName : StringUtil.get(name, "参照元プロパティー名が未定義"));
 		sb.append(" -> ");
@@ -68,10 +75,12 @@ public class DataModelTextGenerator {
 		sb.append(";\n");
 	}
 
-	public void appendSumProperty(String name, String desc, String type, String refModelName, String refName) {
+	public void appendSumProperty(String name, String desc, String type, String refModelName, String refName,
+			String attribute) {
 		block(StringUtil.get(refModelName, "集計元データモデル名が未定義"), "=>", true, true);
 
 		appendDescription(desc);
+		appendAttribute(attribute);
 		sb.append(indent);
 		sb.append(StringUtil.get(type, "集計方法が未定義"));
 		sb.append(" ");
@@ -132,6 +141,14 @@ public class DataModelTextGenerator {
 		}
 	}
 
+	private void appendAttribute(String attribute) {
+		if (StringUtil.nonEmpty(attribute)) {
+			sb.append(indent);
+			sb.append(attribute);
+			sb.append("\n");
+		}
+	}
+
 	public String getText() {
 		if (sb.length() == 0) {
 			sb.append(" {}");
@@ -145,6 +162,10 @@ public class DataModelTextGenerator {
 		StringBuilder all = new StringBuilder(256 + sb.length());
 		if (StringUtil.nonEmpty(modelDescription)) {
 			all.append(DMDLStringUtil.encodeDescription(modelDescription));
+			all.append("\n");
+		}
+		if (StringUtil.nonEmpty(modelAttribute)) {
+			all.append(modelAttribute);
 			all.append("\n");
 		}
 		if (StringUtil.nonEmpty(modelType)) {

@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Set;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.ui.dialog.DataModelPreviewDialog;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData;
@@ -17,6 +19,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeDataTransfer;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DataModelTreeViewer;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -51,9 +54,11 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
 public abstract class CreateDataModelPage<R extends DataModelRow> extends WizardPage {
+	private DataModelType type;
 	protected IProject project;
 	protected String modelName;
 	protected String modelDescription;
+	private String modelAttribute;
 
 	protected List<R> defineList = new ArrayList<R>();
 
@@ -77,6 +82,14 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		return "データモデル定義";
 	}
 
+	public void setDataModelType(DataModelType type) {
+		this.type = type;
+	}
+
+	public DataModelType getDataModelType() {
+		return type;
+	}
+
 	public void setProject(IProject project) {
 		this.project = project;
 		if (sourceViewer != null) {
@@ -89,6 +102,10 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 	public void setModelName(String name, String description) {
 		this.modelName = name;
 		this.modelDescription = description;
+	}
+
+	public void setModelAttribute(String attribute) {
+		this.modelAttribute = attribute;
 	}
 
 	public void createControl(Composite parent) {
@@ -576,37 +593,33 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 	}
 
 	protected void doDefCopy(int index, Iterator<DMDLTreeData> iterator) {
-		Set<Property> set = new HashSet<Property>();
-
 		for (Iterator<DMDLTreeData> i = iterator; i.hasNext();) {
 			DMDLTreeData data = i.next();
 			Object obj = data.getData();
 			if (obj instanceof ModelDefinition) {
-				List<DMDLTreeData> props = data.getChildren();
-				if (props != null) {
-					ModelDefinition model = (ModelDefinition) obj;
-					for (DMDLTreeData pd : props) {
-						Property p = (Property) pd.getData();
-						if (!set.contains(p)) {
-							set.add(p);
-							R row = newDefCopyRow(model, p);
-							index = addToList(index, row);
-						}
+				ModelDefinition model = (ModelDefinition) obj;
+				List<EObject> properties = ModelUtil.getRawProperties(model);
+				for (EObject object : properties) {
+					if (object instanceof Property) {
+						Property p = (Property) object;
+						R row = newDefCopyRow(model, p, false);
+						index = addToList(index, row);
+					} else if (object instanceof ModelReference) {
+						ModelReference ref = (ModelReference) object;
+						R row = newReferenceRow(ref.getName(), null);
+						index = addToList(index, row);
 					}
 				}
 			} else if (obj instanceof Property) {
 				Property p = (Property) obj;
-				if (!set.contains(p)) {
-					set.add(p);
-					ModelDefinition model = (ModelDefinition) data.getParent().getData();
-					R row = newDefCopyRow(model, p);
-					index = addToList(index, row);
-				}
+				ModelDefinition model = (ModelDefinition) data.getParent().getData();
+				R row = newDefCopyRow(model, p, false);
+				index = addToList(index, row);
 			}
 		}
 	}
 
-	protected abstract R newDefCopyRow(ModelDefinition model, Property prop);
+	protected abstract R newDefCopyRow(ModelDefinition model, Property prop, boolean copyAttribute);
 
 	protected boolean visibleReference() {
 		return true; // do override
@@ -715,6 +728,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		gen.setModelType(getModelType());
 		gen.setModelName(modelName);
 		gen.setModelDescription(modelDescription);
+		gen.setModelAttribute(modelAttribute);
 
 		Table table = tableViewer.getTable();
 		TableItem[] items = table.getItems();
@@ -734,4 +748,8 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 	}
 
 	protected abstract void setGeneratorProperty(DataModelTextGenerator gen, R row);
+
+	public List<? extends DataModelRow> getDefinedPropertyList() {
+		return defineList;
+	}
 }

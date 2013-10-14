@@ -3,7 +3,7 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page;
 import java.text.MessageFormat;
 import java.util.Map;
 
-import jp.hishidama.eclipse_plugin.util.StringUtil;
+import static jp.hishidama.eclipse_plugin.util.StringUtil.*;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
@@ -16,17 +16,8 @@ import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.swt.widgets.Table;
 
 class DataModelNormalRow extends DataModelRow {
-	public static final String TP_NAME = "name";
-	public static final String TP_DESC = "description";
-	public static final String TP_DATATYPE = "dataType";
-	public static final String TP_REF_MODEL = "refModel";
 	public static final String[] DATA_TYPE = { "INT", "LONG", "FLOAT", "DOUBLE", "TEXT", "DECIMAL", "DATE", "DATETIME",
 			"BOOLEAN", "BYTE", "SHORT" };
-
-	public String name;
-	public String description;
-	public String dataType;
-	public String refModelName;
 
 	@Override
 	public String getText(int columnIndex) {
@@ -97,21 +88,36 @@ class DataModelNormalRow extends DataModelRow {
 
 	@Override
 	public String validate() {
-		if (StringUtil.nonEmpty(name)) {
+		if (nonEmpty(name)) {
 			IStatus status = ValidationUtil.validateName("プロパティー名", name);
 			if (!status.isOK()) {
 				return status.getMessage();
 			}
 		}
-		if (StringUtil.isEmpty(refModelName)) {
-			if (StringUtil.isEmpty(name)) {
+		if (isEmpty(refModelName)) {
+			if (isEmpty(name)) {
 				return "プロパティー名は必須です。";
 			}
-			if (StringUtil.isEmpty(dataType)) {
+			if (isEmpty(dataType)) {
 				return "プロパティーの型は必須です。";
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public String getDescription() {
+		return description;
+	}
+
+	@Override
+	public String getDataType() {
+		return dataType;
 	}
 }
 
@@ -154,8 +160,12 @@ public class CreateDataModelNormalPage extends CreateDataModelMainPage<DataModel
 	}
 
 	@Override
-	protected DataModelNormalRow newDefCopyRow(ModelDefinition model, Property prop) {
-		return newCopyRow(model, prop);
+	protected DataModelNormalRow newDefCopyRow(ModelDefinition model, Property prop, boolean copyAttribute) {
+		DataModelNormalRow row = newCopyRow(model, prop);
+		if (copyAttribute) {
+			row.attribute = PropertyUtil.getAttributeString(prop);
+		}
+		return row;
 	}
 
 	@Override
@@ -187,12 +197,12 @@ public class CreateDataModelNormalPage extends CreateDataModelMainPage<DataModel
 
 	@Override
 	protected void setGeneratorProperty(DataModelTextGenerator gen, DataModelNormalRow row) {
-		if (StringUtil.nonEmpty(row.dataType)) {
-			gen.appendProperty(row.name, row.description, row.dataType);
-		} else if (StringUtil.nonEmpty(row.refModelName)) {
+		if (nonEmpty(row.dataType)) {
+			gen.appendProperty(row.name, row.description, row.dataType, row.attribute);
+		} else if (nonEmpty(row.refModelName)) {
 			gen.appendRefProperty(row.refModelName);
 		} else {
-			gen.appendProperty(row.name, row.description, row.dataType);
+			gen.appendProperty(row.name, row.description, row.dataType, row.attribute);
 		}
 	}
 }

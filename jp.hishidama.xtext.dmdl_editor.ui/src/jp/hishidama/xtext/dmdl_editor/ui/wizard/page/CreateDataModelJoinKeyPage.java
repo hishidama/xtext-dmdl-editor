@@ -81,6 +81,21 @@ class DataModelJoinKey extends DataModelRow {
 		}
 		return null;
 	}
+
+	@Override
+	public String getName() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public String getDescription() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public String getDataType() {
+		throw new UnsupportedOperationException();
+	}
 }
 
 public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoinKey> {
@@ -233,7 +248,7 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 	}
 
 	@Override
-	protected DataModelJoinKey newDefCopyRow(ModelDefinition model, Property prop) {
+	protected DataModelJoinKey newDefCopyRow(ModelDefinition model, Property prop, boolean copyAttribute) {
 		return newCopyRow(model, prop);
 	}
 
@@ -261,7 +276,8 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 				List<DMDLTreeData> children = data.getChildren();
 				for (DMDLTreeData c : children) {
 					DataModelJoinRow row = (DataModelJoinRow) c.getOtherData();
-					gen.appendRefProperty(row.name, row.description, row.refModelName, row.refProperty);
+					gen.appendRefProperty(row.name, row.description, row.refModelName, row.refPropertyName,
+							row.attribute);
 				}
 			} else {
 				gen.appendRefProperty(modelName);

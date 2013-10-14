@@ -41,6 +41,7 @@ public class EditDataModelHandler extends AbstractHandler {
 			return;
 		}
 		WizardDialog dialog = new WizardDialog(editor.getSite().getShell(), wizard);
+		dialog.setHelpAvailable(false);
 		dialog.open();
 	}
 

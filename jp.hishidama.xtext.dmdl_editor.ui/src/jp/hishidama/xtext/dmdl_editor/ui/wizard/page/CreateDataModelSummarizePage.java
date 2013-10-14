@@ -3,12 +3,13 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page;
 import java.text.MessageFormat;
 import java.util.Map;
 
-import jp.hishidama.eclipse_plugin.util.StringUtil;
+import static jp.hishidama.eclipse_plugin.util.StringUtil.*;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
@@ -21,19 +22,11 @@ import org.eclipse.xtext.EcoreUtil2;
 
 class DataModelSummarizeRow extends DataModelRow {
 	public static final String TP_KEY = "key";
-	public static final String TP_NAME = "name";
-	public static final String TP_DESC = "description";
 	public static final String TP_SUM_TYPE = "sumType";
-	public static final String TP_REF_MODEL = "refModel";
-	public static final String TP_REF_PROPERTY = "refProperty";
 	public static final String[] SUM_TYPE = { "any", "sum", "min", "max", "count" };
 
 	public boolean key;
-	public String name;
-	public String description;
 	public String sumType;
-	public String refModelName;
-	public String refProperty;
 
 	@Override
 	public String getText(int columnIndex) {
@@ -49,7 +42,7 @@ class DataModelSummarizeRow extends DataModelRow {
 		case 4:
 			return refModelName;
 		case 5:
-			return refProperty;
+			return refPropertyName;
 		default:
 			throw new UnsupportedOperationException(MessageFormat.format("index={0}", columnIndex));
 		}
@@ -80,7 +73,7 @@ class DataModelSummarizeRow extends DataModelRow {
 			return nonNull(refModelName);
 		}
 		if (property.equals(TP_REF_PROPERTY)) {
-			return nonNull(refProperty);
+			return nonNull(refPropertyName);
 		}
 		throw new UnsupportedOperationException(MessageFormat.format("property={0}", property));
 	}
@@ -115,7 +108,7 @@ class DataModelSummarizeRow extends DataModelRow {
 		}
 		if (property.equals(TP_REF_PROPERTY)) {
 			String text = ((String) value).trim();
-			this.refProperty = text;
+			this.refPropertyName = text;
 			return true;
 		}
 		throw new UnsupportedOperationException(MessageFormat.format("property={0}", property));
@@ -123,21 +116,37 @@ class DataModelSummarizeRow extends DataModelRow {
 
 	@Override
 	public String validate() {
-		if (StringUtil.isEmpty(name) && StringUtil.isEmpty(refProperty)) {
+		if (isEmpty(name) && isEmpty(refPropertyName)) {
 			return "プロパティー名は必須です。";
 		}
-		if (StringUtil.nonEmpty(name)) {
+		if (nonEmpty(name)) {
 			IStatus status = ValidationUtil.validateName("プロパティー名", name);
 			if (!status.isOK()) {
 				return status.getMessage();
 			}
 		}
-		if (StringUtil.isEmpty(sumType)) {
+		if (isEmpty(sumType)) {
 			return "集約関数は必須です。";
 		}
-		if (StringUtil.isEmpty(refModelName)) {
+		if (isEmpty(refModelName)) {
 			return "集計元データモデルは必須です。";
 		}
+		return null;
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public String getDescription() {
+		return description;
+	}
+
+	@Override
+	public String getDataType() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }
@@ -182,7 +191,7 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 		row.description = DMDLStringUtil.decodeDescription(prop.getDescription());
 		row.sumType = "any";
 		row.refModelName = model.getName();
-		row.refProperty = prop.getName();
+		row.refPropertyName = prop.getName();
 		row.key = false;
 		return row;
 	}
@@ -203,10 +212,13 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 	}
 
 	@Override
-	protected DataModelSummarizeRow newDefCopyRow(ModelDefinition model, Property prop) {
+	protected DataModelSummarizeRow newDefCopyRow(ModelDefinition model, Property prop, boolean copyAttribute) {
 		DataModelSummarizeRow row = new DataModelSummarizeRow();
 		row.name = prop.getName();
 		row.description = DMDLStringUtil.decodeDescription(prop.getDescription());
+		if (copyAttribute) {
+			row.attribute = PropertyUtil.getAttributeString(prop);
+		}
 
 		if (prop instanceof PropertyFolding) {
 			PropertyFolding folding = (PropertyFolding) prop;
@@ -215,7 +227,7 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 			if (refModel != null) {
 				row.refModelName = refModel.getName();
 			}
-			row.refProperty = folding.getFrom().getName();
+			row.refPropertyName = folding.getFrom().getName();
 			row.key = ModelUtil.containsSummarizeKey(model, row.name);
 		} else if (prop instanceof PropertyMapping) {
 			PropertyMapping mapping = (PropertyMapping) prop;
@@ -224,12 +236,12 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 			if (refModel != null) {
 				row.refModelName = refModel.getName();
 			}
-			row.refProperty = mapping.getFrom().getName();
+			row.refPropertyName = mapping.getFrom().getName();
 			row.key = ModelUtil.containsSummarizeKey(model, row.name);
 		} else {
 			row.sumType = "any";
 			row.refModelName = model.getName();
-			row.refProperty = prop.getName();
+			row.refPropertyName = prop.getName();
 			row.key = false;
 		}
 
@@ -263,9 +275,10 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 
 	@Override
 	protected void setGeneratorProperty(DataModelTextGenerator gen, DataModelSummarizeRow row) {
-		gen.appendSumProperty(row.name, row.description, row.sumType, row.refModelName, row.refProperty);
+		gen.appendSumProperty(row.name, row.description, row.sumType, row.refModelName, row.refPropertyName,
+				row.attribute);
 		if (row.key) {
-			gen.appendKey(row.name, row.refProperty);
+			gen.appendKey(row.name, row.refPropertyName);
 		}
 	}
 }

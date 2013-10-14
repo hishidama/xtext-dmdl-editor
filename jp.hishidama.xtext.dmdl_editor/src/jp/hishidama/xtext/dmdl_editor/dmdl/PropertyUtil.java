@@ -6,6 +6,8 @@ import java.util.Set;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class PropertyUtil {
 
@@ -100,5 +102,23 @@ public class PropertyUtil {
 			object = object.eContainer();
 		}
 		return null;
+	}
+
+	public static String getAttributeString(Property property) {
+		AttributeList as = property.getAttributes();
+		if (as == null) {
+			return null;
+		}
+		StringBuilder sb = new StringBuilder(128);
+		for (Attribute a : as.getAttributes()) {
+			ICompositeNode node = NodeModelUtils.getNode(a);
+			if (node != null) {
+				if (sb.length() != 0) {
+					sb.append("\n");
+				}
+				sb.append(NodeModelUtils.getTokenText(node));
+			}
+		}
+		return sb.toString();
 	}
 }

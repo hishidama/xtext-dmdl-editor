@@ -32,7 +32,6 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
@@ -116,13 +115,14 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 		addPage(DataModelType.JOINED, joinPage);
 		addPage(DataModelType.JOINED, joinKeyPage);
 		addPage(DataModelType.PROJECTIVE, new CreateDataModelProjectivePage());
+
 	}
 
 	protected void addModelPage(SetDataModelNamePage page) {
 		addPage(modelPage);
 	}
 
-	private void addPage(DataModelType type, WizardPage page) {
+	private void addPage(DataModelType type, CreateDataModelPage<?> page) {
 		if (fixType != null) {
 			if (type != fixType) {
 				return;
@@ -135,9 +135,8 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 		}
 		list.add(page);
 
-		if (page instanceof CreateDataModelPage) {
-			((CreateDataModelPage<?>) page).setProject(project);
-		}
+		page.setProject(project);
+		page.setDataModelType(type);
 		addPage(page);
 	}
 
@@ -150,24 +149,14 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 	@Override
 	public IWizardPage getNextPage(IWizardPage page) {
 		DataModelType type = modelPage.getDataModelType();
-		List<IWizardPage> list = createPageMap.get(type);
 
-		IWizardPage nextPage;
-		if (page == modelPage) {
-			nextPage = list.get(0);
-		} else {
-			nextPage = null;
-			for (int i = 0; i < list.size(); i++) {
-				IWizardPage p = list.get(i);
-				if (p == page) {
-					if (i + 1 < list.size()) {
-						nextPage = list.get(i + 1);
-					} else {
-						nextPage = null;
-					}
-					break;
-				}
+		IWizardPage nextPage = super.getNextPage(page);
+		while (nextPage instanceof CreateDataModelPage) {
+			CreateDataModelPage<?> cpage = (CreateDataModelPage<?>) nextPage;
+			if (cpage.getDataModelType() == type) {
+				break;
 			}
+			nextPage = super.getNextPage(nextPage);
 		}
 		return getPage(nextPage);
 	}
@@ -175,29 +164,19 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 	@Override
 	public IWizardPage getPreviousPage(IWizardPage page) {
 		DataModelType type = modelPage.getDataModelType();
-		List<IWizardPage> list = createPageMap.get(type);
 
-		IWizardPage prevPage;
-		if (page == list.get(0)) {
-			prevPage = modelPage;
-		} else {
-			prevPage = modelPage;
-			for (int i = 0; i < list.size(); i++) {
-				IWizardPage p = list.get(i);
-				if (p == page) {
-					if (i - 1 >= 0) {
-						prevPage = list.get(i - 1);
-					} else {
-						prevPage = modelPage;
-					}
-					break;
-				}
+		IWizardPage prevPage = super.getPreviousPage(page);
+		while (prevPage instanceof CreateDataModelPage) {
+			CreateDataModelPage<?> cpage = (CreateDataModelPage<?>) prevPage;
+			if (cpage.getDataModelType() == type) {
+				break;
 			}
+			prevPage = super.getPreviousPage(prevPage);
 		}
 		return getPage(prevPage);
 	}
 
-	private IWizardPage getPage(IWizardPage page) {
+	protected IWizardPage getPage(IWizardPage page) {
 		if (page == joinKeyPage) {
 			joinKeyPage.setSourceList(joinPage.getSelectedModelList(), joinPage.getKeyBuffer());
 		}
@@ -212,18 +191,26 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 	@Override
 	public boolean canFinish() {
 		IWizardPage page = getContainer().getCurrentPage();
-		CreateDataModelPage<?> lastPage = getLastPage();
+		CreateDataModelPage<?> lastPage = getLastCreatePage();
 		if (page != lastPage) {
 			return false;
 		}
 		return lastPage.isPageComplete();
 	}
 
-	private CreateDataModelPage<?> getLastPage() {
+	protected List<IWizardPage> getCreatePages() {
 		DataModelType type = modelPage.getDataModelType();
-		List<IWizardPage> list = createPageMap.get(type);
-		IWizardPage lastPage = list.get(list.size() - 1);
-		return (CreateDataModelPage<?>) lastPage;
+		return createPageMap.get(type);
+	}
+
+	protected CreateDataModelPage<?> getFirstCreatePage() {
+		return (CreateDataModelPage<?>) getCreatePages().get(0);
+	}
+
+	protected CreateDataModelPage<?> getLastCreatePage() {
+		List<IWizardPage> list = getCreatePages();
+		IWizardPage page = list.get(list.size() - 1);
+		return (CreateDataModelPage<?>) page;
 	}
 
 	@Override
@@ -241,7 +228,7 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 	}
 
 	private void save() throws CoreException {
-		CreateDataModelPage<?> createPage = getLastPage();
+		CreateDataModelPage<?> createPage = getLastCreatePage();
 		String text = createPage.getDataModelText();
 
 		FilePosition f = modelPage.getDmdlFile();

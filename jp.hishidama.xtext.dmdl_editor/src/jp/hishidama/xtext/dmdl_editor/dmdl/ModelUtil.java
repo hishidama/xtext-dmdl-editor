@@ -18,6 +18,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class ModelUtil {
 
@@ -257,5 +259,24 @@ public class ModelUtil {
 		IPath path = Path.fromPortableString(pathString);
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		return root.getFile(path);
+	}
+
+	public static String getAttributeString(ModelDefinition model) {
+		ICompositeNode node = NodeModelUtils.getNode(model.getAttributes());
+		if (node == null) {
+			return null;
+		}
+		String text = node.getText();
+		StringBuilder sb = new StringBuilder(text.length());
+		String[] ss = text.split("\n");
+		for (String s : ss) {
+			if (!s.trim().isEmpty()) {
+				if (sb.length() != 0) {
+					sb.append("\n");
+				}
+				sb.append(s);
+			}
+		}
+		return sb.toString();
 	}
 }

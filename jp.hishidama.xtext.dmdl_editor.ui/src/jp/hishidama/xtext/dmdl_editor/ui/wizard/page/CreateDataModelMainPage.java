@@ -35,7 +35,7 @@ public abstract class CreateDataModelMainPage<R extends DataModelRow> extends Cr
 					for (EObject object : list) {
 						R row;
 						if (object instanceof Property) {
-							row = newDefCopyRow(model, (Property) object);
+							row = newDefCopyRow(model, (Property) object, true);
 						} else if (object instanceof ModelReference) {
 							ModelReference ref = (ModelReference) object;
 							row = newReferenceRow(ref.getName(), null);
