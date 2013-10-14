@@ -156,6 +156,12 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 	}
 
 	@Override
+	protected boolean doEditDialog(DataModelJoinRow row) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
 	protected String getCopyToolTipText() {
 		return "データモデルのプロパティーを結合モデルの対象にします。\n" + "例えばp1とp2をコピーすると、\n" + "joined model = src -> { p1->p1; p2->p2; };\n"
 				+ "となります。";

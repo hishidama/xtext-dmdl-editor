@@ -43,6 +43,7 @@ import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -189,74 +190,72 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		}
 		{
 			Composite column = new Composite(composite, SWT.NONE);
-			column.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 0, 0));
-			column.setLayout(new GridLayout(1, false));
+			{
+				column.setLayoutData(new GridData(GridData.FILL_BOTH));
+				GridLayout layout = new GridLayout(1, false);
+				layout.marginWidth = 0;
+				layout.marginHeight = 0;
+				column.setLayout(layout);
+			}
 
 			createTableViewer(column);
 
 			Composite field = new Composite(column, SWT.NONE);
 			field.setLayoutData(new GridData(SWT.LEFT, SWT.END, true, false));
-			field.setLayout(new GridLayout(5, true));
-			{
-				Button button = new Button(field, SWT.PUSH);
-				button.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-				button.setText("add");
-				button.addSelectionListener(new SelectionAdapter() {
-					@Override
-					public void widgetSelected(SelectionEvent e) {
-						doAdd();
-					}
-				});
-			}
-			{
-				Button button = new Button(field, SWT.PUSH);
-				button.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-				button.setText("remove");
-				button.addSelectionListener(new SelectionAdapter() {
-					@Override
-					public void widgetSelected(SelectionEvent e) {
-						doRemove();
-					}
-				});
-			}
-			{
-				Button button = new Button(field, SWT.PUSH);
-				button.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-				button.setText("up");
-				button.addSelectionListener(new SelectionAdapter() {
-					@Override
-					public void widgetSelected(SelectionEvent e) {
-						doMove(-1);
-					}
-				});
-			}
-			{
-				Button button = new Button(field, SWT.PUSH);
-				button.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-				button.setText("down");
-				button.addSelectionListener(new SelectionAdapter() {
-					@Override
-					public void widgetSelected(SelectionEvent e) {
-						doMove(+1);
-					}
-				});
-			}
-			{
-				Button button = new Button(field, SWT.PUSH);
-				button.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-				button.setText("preview");
-				button.addSelectionListener(new SelectionAdapter() {
-					@Override
-					public void widgetSelected(SelectionEvent e) {
-						doPreview();
-					}
-				});
-			}
+			GridLayout layout = new GridLayout(6, true);
+			layout.marginWidth = 0;
+			layout.marginHeight = 0;
+			field.setLayout(layout);
+
+			createButton(field, "add", new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					doAdd();
+				}
+			});
+			createButton(field, "edit", new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					doEdit();
+				}
+			});
+			createButton(field, "up", new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					doMove(-1);
+				}
+			});
+			createButton(field, "down", new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					doMove(+1);
+				}
+			});
+			createButton(field, "delete", new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					doRemove();
+				}
+			});
+			createButton(field, "preview", new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					doPreview();
+				}
+			});
 		}
 
 		doSelectionChange(null);
 		validate(false);
 		setControl(composite);
+	}
+
+	private Button createButton(Composite field, String text, SelectionListener listener) {
+		Button button = new Button(field, SWT.PUSH);
+		button.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		button.setText(text);
+		button.addSelectionListener(listener);
+		return button;
 	}
 
 	protected List<CellEditor> editors = new ArrayList<CellEditor>();
@@ -406,13 +405,16 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		}
 	}
 
-	private void doAdd() {
+	void doAdd() {
 		int index = tableViewer.getTable().getSelectionIndex();
 		doAdd(index);
 	}
 
 	protected void doAdd(int index) {
 		R row = newAddRow();
+		if (!doEditDialog(row)) {
+			return;
+		}
 
 		if (index < 0) {
 			defineList.add(row);
@@ -430,6 +432,21 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 
 	protected abstract R newAddRow();
 
+	void doEdit() {
+		int index = tableViewer.getTable().getSelectionIndex();
+		if (index < 0 || index >= defineList.size()) {
+			return;
+		}
+		R row = defineList.get(index);
+		if (!doEditDialog(row)) {
+			return;
+		}
+		tableViewer.refresh();
+		validate(true);
+	}
+
+	protected abstract boolean doEditDialog(R row);
+
 	protected void doRemove() {
 		int[] index = tableViewer.getTable().getSelectionIndices();
 		for (int i = index.length - 1; i >= 0; i--) {
@@ -439,7 +456,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		validate(true);
 	}
 
-	protected void doMove(int z) {
+	void doMove(int z) {
 		Table table = tableViewer.getTable();
 		int[] index = table.getSelectionIndices();
 
@@ -518,7 +535,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		}
 	}
 
-	private boolean enableCopy(ITreeSelection selection) {
+	boolean enableCopy(ITreeSelection selection) {
 		boolean copy = false;
 
 		for (@SuppressWarnings("unchecked")
@@ -542,7 +559,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 
 	protected abstract boolean enableCopy(ModelDefinition model, Property prop);
 
-	private void doCopy() {
+	void doCopy() {
 		ITreeSelection selection = sourceViewer.getSelection();
 		if (selection.isEmpty()) {
 			return;
@@ -575,7 +592,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		return false; // do override
 	}
 
-	private void doDefCopy() {
+	void doDefCopy() {
 		ITreeSelection selection = sourceViewer.getSelection();
 		if (selection.isEmpty()) {
 			return;

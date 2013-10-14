@@ -211,6 +211,12 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 	}
 
 	@Override
+	protected boolean doEditDialog(DataModelJoinKey row) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
 	protected String getCopyToolTipText() {
 		return "データモデルのプロパティーを結合キーにします。\n" + "例えばp1とp2をコピーすると、\n" + "joined model = src -> { ～ } % p1, p2\n" + "となります。";
 	}

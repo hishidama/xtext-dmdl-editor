@@ -13,6 +13,7 @@ import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Table;
 
 class DataModelNormalRow extends DataModelRow {
@@ -143,6 +144,12 @@ public class CreateDataModelNormalPage extends CreateDataModelMainPage<DataModel
 	@Override
 	protected DataModelNormalRow newAddRow() {
 		return new DataModelNormalRow();
+	}
+
+	@Override
+	protected boolean doEditDialog(DataModelNormalRow row) {
+		EditNormalPropertyDialog dialog = new EditNormalPropertyDialog(getShell(), project, row);
+		return dialog.open() == Window.OK;
 	}
 
 	@Override

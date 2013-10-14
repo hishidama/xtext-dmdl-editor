@@ -179,6 +179,12 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 	}
 
 	@Override
+	protected boolean doEditDialog(DataModelSummarizeRow row) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
 	protected String getCopyToolTipText() {
 		return "データモデルのプロパティーを集計対象にします。\n" + "例えばp1とp2をコピーすると、\n"
 				+ "summarized model = src => { any p1->p1; any p2->p2; }\n" + "となります。";
