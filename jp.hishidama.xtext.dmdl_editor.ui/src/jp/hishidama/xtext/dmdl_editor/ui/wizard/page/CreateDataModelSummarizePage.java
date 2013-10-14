@@ -81,42 +81,6 @@ class DataModelSummarizeRow extends DataModelRow {
 	}
 
 	@Override
-	public boolean modify(String property, Object value) {
-		if (property.equals(TP_KEY)) {
-			this.key = (Boolean) value;
-			return false;
-		}
-		if (property.equals(TP_NAME)) {
-			String text = ((String) value).trim();
-			this.name = text;
-			return true;
-		}
-		if (property.equals(TP_DESC)) {
-			String text = ((String) value).trim();
-			this.description = text;
-			return false;
-		}
-		if (property.equals(TP_SUM_TYPE)) {
-			int n = (Integer) value;
-			if (0 <= n && n < SUM_TYPE.length) {
-				this.sumType = SUM_TYPE[n];
-			}
-			return true;
-		}
-		if (property.equals(TP_REF_MODEL)) {
-			String text = ((String) value).trim();
-			this.refModelName = text;
-			return true;
-		}
-		if (property.equals(TP_REF_PROPERTY)) {
-			String text = ((String) value).trim();
-			this.refPropertyName = text;
-			return true;
-		}
-		throw new UnsupportedOperationException(MessageFormat.format("property={0}", property));
-	}
-
-	@Override
 	public String validate() {
 		if (isEmpty(name) && isEmpty(refPropertyName)) {
 			return "プロパティー名は必須です。";
@@ -148,7 +112,6 @@ class DataModelSummarizeRow extends DataModelRow {
 
 	@Override
 	public String getDataType() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

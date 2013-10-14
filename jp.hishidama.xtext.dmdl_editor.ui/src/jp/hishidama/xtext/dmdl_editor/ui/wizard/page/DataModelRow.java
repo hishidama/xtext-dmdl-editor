@@ -66,7 +66,5 @@ public abstract class DataModelRow {
 
 	public abstract Object getValue(String property);
 
-	public abstract boolean modify(String property, Object value);
-
 	public abstract String validate();
 }

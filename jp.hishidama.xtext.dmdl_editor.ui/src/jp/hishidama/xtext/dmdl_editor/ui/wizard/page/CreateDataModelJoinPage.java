@@ -75,33 +75,6 @@ class DataModelJoinRow extends DataModelRow {
 	}
 
 	@Override
-	public boolean modify(String property, Object value) {
-		if (property.equals(TP_NAME)) {
-			String text = ((String) value).trim();
-			this.name = text;
-			return true;
-		}
-		if (property.equals(TP_DESC)) {
-			String text = ((String) value).trim();
-			this.description = text;
-			return false;
-		}
-		if (property.equals(TP_REF_MODEL)) {
-			String text = ((String) value).trim();
-			this.refModelName = text;
-			this.model = null;
-			return true;
-		}
-		if (property.equals(TP_REF_PROPERTY)) {
-			String text = ((String) value).trim();
-			this.refPropertyName = text;
-			this.prop = null;
-			return true;
-		}
-		throw new UnsupportedOperationException(MessageFormat.format("property={0}", property));
-	}
-
-	@Override
 	public String validate() {
 		if (nonEmpty(name)) {
 			IStatus status = ValidationUtil.validateName("プロパティー名", name);

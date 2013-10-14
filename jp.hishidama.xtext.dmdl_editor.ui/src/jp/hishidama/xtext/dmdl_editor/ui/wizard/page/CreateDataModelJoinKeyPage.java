@@ -24,12 +24,10 @@ import org.eclipse.swt.widgets.TableItem;
 
 class DataModelJoinKey extends DataModelRow {
 	private Table table;
-	private Map<String, String[]> comboMap;
 	private Map<String, Map<String, Integer>> indexMap;
 
-	public DataModelJoinKey(Table table, Map<String, String[]> comboMap, Map<String, Map<String, Integer>> indexMap) {
+	public DataModelJoinKey(Table table, Map<String, Map<String, Integer>> indexMap) {
 		this.table = table;
-		this.comboMap = comboMap;
 		this.indexMap = indexMap;
 	}
 
@@ -70,16 +68,6 @@ class DataModelJoinKey extends DataModelRow {
 	}
 
 	@Override
-	public boolean modify(String property, Object value) {
-		String[] combo = comboMap.get(property);
-		int n = (Integer) value;
-		if (0 <= n && n < combo.length) {
-			keys.put(property, combo[n]);
-		}
-		return true;
-	}
-
-	@Override
 	public String validate() {
 		for (TableColumn c : table.getColumns()) {
 			String name = c.getText();
@@ -111,7 +99,6 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 
 	private List<DMDLTreeData> input;
 	private Set<JoinKey> keyBuffer;
-	private Map<String, String[]> comboMap = new HashMap<String, String[]>();
 	private Map<String, Map<String, Integer>> indexMap = new HashMap<String, Map<String, Integer>>();
 
 	public CreateDataModelJoinKeyPage() {
@@ -152,7 +139,6 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 
 				addColumn(modelName, 128, modelName, new ComboBoxCellEditor(table, combo));
 
-				comboMap.put(modelName, combo);
 				Map<String, Integer> index = getComboIndexMap(null, combo);
 				indexMap.put(modelName, index);
 			}
@@ -216,7 +202,7 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 
 	@Override
 	protected DataModelJoinKey newAddRow() {
-		return new DataModelJoinKey(tableViewer.getTable(), comboMap, indexMap);
+		return new DataModelJoinKey(tableViewer.getTable(), indexMap);
 	}
 
 	@Override
@@ -259,7 +245,7 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 
 	@Override
 	protected DataModelJoinKey newCopyRow(ModelDefinition model, Property prop) {
-		return new DataModelJoinKey(tableViewer.getTable(), comboMap, indexMap);
+		return new DataModelJoinKey(tableViewer.getTable(), indexMap);
 	}
 
 	@Override

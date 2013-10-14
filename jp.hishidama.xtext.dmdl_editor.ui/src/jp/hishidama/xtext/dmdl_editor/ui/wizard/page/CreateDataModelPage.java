@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
-import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -275,13 +274,12 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDoubleClick(MouseEvent e) {
-				doAdd(-1);
+				doEdit();
 			}
 		});
 
 		tableViewer.setCellEditors(editors.toArray(new CellEditor[editors.size()]));
 		tableViewer.setColumnProperties(cprops.toArray(new String[cprops.size()]));
-		tableViewer.setCellModifier(new CellModifier());
 
 		int operations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_DEFAULT;
 		Transfer[] transferTypes = { DMDLTreeDataTransfer.getInstance() };
@@ -380,28 +378,6 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		}
 
 		public void dispose() {
-		}
-	}
-
-	private class CellModifier implements ICellModifier {
-		public boolean canModify(Object element, String property) {
-			return true;
-		}
-
-		public Object getValue(Object element, String property) {
-			@SuppressWarnings("unchecked")
-			R row = (R) element;
-			return row.getValue(property);
-		}
-
-		public void modify(Object element, String property, Object value) {
-			TableItem item = (TableItem) element;
-			@SuppressWarnings("unchecked")
-			R row = (R) item.getData();
-			if (row.modify(property, value)) {
-				validate(true);
-			}
-			tableViewer.refresh();
 		}
 	}
 

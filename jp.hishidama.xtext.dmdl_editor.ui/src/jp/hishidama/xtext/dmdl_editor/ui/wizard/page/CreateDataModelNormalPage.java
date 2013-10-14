@@ -61,33 +61,6 @@ class DataModelNormalRow extends DataModelRow {
 	}
 
 	@Override
-	public boolean modify(String property, Object value) {
-		if (property.equals(TP_NAME)) {
-			String text = ((String) value).trim();
-			this.name = text;
-			return true;
-		}
-		if (property.equals(TP_DESC)) {
-			String text = ((String) value).trim();
-			this.description = text;
-			return false;
-		}
-		if (property.equals(TP_DATATYPE)) {
-			int n = (Integer) value;
-			if (0 <= n && n < DATA_TYPE.length) {
-				this.dataType = DATA_TYPE[n];
-			}
-			return true;
-		}
-		if (property.equals(TP_REF_MODEL)) {
-			String text = ((String) value).trim();
-			this.refModelName = text;
-			return true;
-		}
-		throw new UnsupportedOperationException(MessageFormat.format("property={0}", property));
-	}
-
-	@Override
 	public String validate() {
 		if (nonEmpty(name)) {
 			IStatus status = ValidationUtil.validateName("プロパティー名", name);
