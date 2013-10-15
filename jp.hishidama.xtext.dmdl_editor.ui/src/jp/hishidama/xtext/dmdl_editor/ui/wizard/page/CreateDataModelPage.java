@@ -660,7 +660,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		return index;
 	}
 
-	void doPreview() {
+	public void doPreview() {
 		String text = getDataModelText();
 		DataModelPreviewDialog dialog = new DataModelPreviewDialog(getShell(), "DataModel preview");
 		dialog.setText(text);

@@ -32,11 +32,12 @@ public class EditDataModelWizard extends NewDataModelWizard {
 	@Override
 	public void addPages() {
 		super.addPages();
+		CreateDataModelPage<?> createPage = (CreateDataModelPage<?>) getPages()[0];
 
 		modelAttrPage = new ModifyModelAttributePage();
 		modelAttrPage.setAttribute(ModelUtil.getAttributeString(model));
 		addPage(modelAttrPage);
-		propAttrPage = new ModifyPropertyAttributePage();
+		propAttrPage = new ModifyPropertyAttributePage(createPage);
 		addPage(propAttrPage);
 	}
 

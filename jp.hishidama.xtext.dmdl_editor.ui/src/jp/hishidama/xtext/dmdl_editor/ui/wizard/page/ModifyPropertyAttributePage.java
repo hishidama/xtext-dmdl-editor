@@ -27,16 +27,18 @@ import org.eclipse.swt.widgets.TableColumn;
 
 public class ModifyPropertyAttributePage extends WizardPage {
 
+	private final CreateDataModelPage<?> createPage;
 	private ModelDefinition model;
 	private List<DataModelRow> propertyList;
 
 	private TableViewer viewer;
 	private List<Button> selectionButtonList = new ArrayList<Button>();
 
-	public ModifyPropertyAttributePage() {
+	public ModifyPropertyAttributePage(CreateDataModelPage<?> createPage) {
 		super("ModifyPropertyAttributePage");
 		setTitle("プロパティーの属性の指定");
 		setDescription("プロパティーの属性の内容を指定して下さい。");
+		this.createPage = createPage;
 	}
 
 	public void setPropertyList(ModelDefinition model, List<? extends DataModelRow> list) {
@@ -89,7 +91,7 @@ public class ModifyPropertyAttributePage extends WizardPage {
 
 		Composite field = new Composite(composite, SWT.NONE);
 		// field.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		field.setLayout(new GridLayout(2, true));
+		field.setLayout(new GridLayout(3, true));
 		{
 			Button button = new Button(field, SWT.PUSH);
 			button.setText("edit");
@@ -117,6 +119,17 @@ public class ModifyPropertyAttributePage extends WizardPage {
 			});
 			button.setEnabled(false);
 			selectionButtonList.add(button);
+		}
+		{
+			Button button = new Button(field, SWT.PUSH);
+			button.setText("preview");
+			button.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+			button.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					createPage.doPreview();
+				}
+			});
 		}
 	}
 
