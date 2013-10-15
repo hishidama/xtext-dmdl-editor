@@ -170,29 +170,33 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 	@Override
 	protected void doVisible(boolean visible) {
 		if (visible) {
-			Table table = tableViewer.getTable();
-			TableColumn[] cols = table.getColumns();
-			for (TableItem item : table.getItems()) {
-				JoinKey key = new JoinKey(0);
-				for (int i = 0; i < cols.length; i++) {
-					String mname = cols[i].getText();
-					String pname = item.getText(i);
-					key.add(mname, pname);
-				}
-				keyBuffer.remove(key);
-			}
-			int index = table.getItemCount();
-			for (JoinKey key : keyBuffer) {
-				DataModelJoinKey row = newAddRow();
-				for (Entry<String, String> entry : key.map.entrySet()) {
-					String mname = entry.getKey();
-					String pname = entry.getValue();
-					row.set(mname, pname);
-				}
-				index = addToList(index, row);
-			}
-			tableViewer.refresh();
+			rebuildTable();
 		}
+	}
+
+	public void rebuildTable() {
+		Table table = tableViewer.getTable();
+		TableColumn[] cols = table.getColumns();
+		for (TableItem item : table.getItems()) {
+			JoinKey key = new JoinKey(0);
+			for (int i = 0; i < cols.length; i++) {
+				String mname = cols[i].getText();
+				String pname = item.getText(i);
+				key.add(mname, pname);
+			}
+			keyBuffer.remove(key);
+		}
+		int index = table.getItemCount();
+		for (JoinKey key : keyBuffer) {
+			DataModelJoinKey row = newAddRow();
+			for (Entry<String, String> entry : key.map.entrySet()) {
+				String mname = entry.getKey();
+				String pname = entry.getValue();
+				row.set(mname, pname);
+			}
+			index = addToList(index, row);
+		}
+		tableViewer.refresh();
 	}
 
 	@Override
@@ -289,5 +293,9 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 	@Override
 	protected void setGeneratorProperty(DataModelTextGenerator gen, DataModelJoinKey row) {
 		throw new UnsupportedOperationException();
+	}
+
+	public TableItem[] getTableItems() {
+		return tableViewer.getTable().getItems();
 	}
 }

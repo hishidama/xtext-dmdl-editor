@@ -90,10 +90,12 @@ class DataModelJoinRow extends DataModelRow {
 
 public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJoinRow> {
 
+	private final CreateDataModelJoinKeyPage joinKeyPage;
 	private List<JoinKey> keyBuffer = new ArrayList<JoinKey>();
 
-	public CreateDataModelJoinPage() {
-		super("CreateDataModelNormalPage", "結合データモデルの定義", "結合データモデルのプロパティーを定義して下さい。（結合キーは次ページで定義します）");
+	public CreateDataModelJoinPage(CreateDataModelJoinKeyPage joinKeyPage) {
+		super("CreateDataModelJoinPage", "結合データモデルの定義", "結合データモデルのプロパティーを定義して下さい。（結合キーは次ページで定義します）");
+		this.joinKeyPage = joinKeyPage;
 	}
 
 	@Override
@@ -300,10 +302,21 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 
 	@Override
 	protected void setGenerator(DataModelTextGenerator gen, TableItem[] items) {
+		joinKeyPage.setSourceList(getSelectedModelList(), getKeyBuffer());
+		joinKeyPage.rebuildTable();
+		TableItem[] keyItems = joinKeyPage.getTableItems();
+
 		Map<String, List<DataModelJoinRow>> map = getSort(items);
-		for (List<DataModelJoinRow> list : map.values()) {
+		for (Entry<String, List<DataModelJoinRow>> entry : map.entrySet()) {
+			String mname = entry.getKey();
+			List<DataModelJoinRow> list = entry.getValue();
 			for (DataModelJoinRow row : list) {
 				setGeneratorProperty(gen, row);
+			}
+			for (TableItem item : keyItems) {
+				DataModelJoinKey row = (DataModelJoinKey) item.getData();
+				String value = row.get(mname);
+				gen.appendKey(value, null);
 			}
 		}
 	}

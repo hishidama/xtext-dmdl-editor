@@ -110,8 +110,8 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 
 		addPage(DataModelType.NORMAL, new CreateDataModelNormalPage());
 		addPage(DataModelType.SUMMARIZED, new CreateDataModelSummarizePage());
-		joinPage = new CreateDataModelJoinPage();
 		joinKeyPage = new CreateDataModelJoinKeyPage();
+		joinPage = new CreateDataModelJoinPage(joinKeyPage);
 		addPage(DataModelType.JOINED, joinPage);
 		addPage(DataModelType.JOINED, joinKeyPage);
 		addPage(DataModelType.PROJECTIVE, new CreateDataModelProjectivePage());
