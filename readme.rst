@@ -9,7 +9,7 @@ DMDL EditorXは、
 ----------------
 XtextのインストールされたEclipseが必要です。
 `Xtextのダウンロードサイト <http://www.eclipse.org/Xtext/download.html>`_ の ``Full Eclipse`` を使うか、
-既存のEclipseに ``Xtext 2.4.2`` をインストールしてください。
+既存のEclipseに ``Xtext`` （2.4.2以降）をインストールしてください。
 
 DMDL EditorXプラグインのインストールは、Eclipseの ``[新規ソフトウェアのインストール]`` で
 更新サイトとして http://hishidama.github.io/xtext-dmdl-editor/site/ を指定して下さい。
@@ -46,6 +46,8 @@ DMDL EditorXプラグインのインストールは、Eclipseの ``[新規ソフ
     * コンテキストメニューの ``[DMDL EditorX]→[New DataModel]`` でウィザードが開く。あるいはメニューバーの ``[ファイル]→[新規]`` やツールバー。
 * DMDLの属性（@directio.csvとか）の追加/削除が出来る。
     * コンテキストメニューの ``[DMDL EditorX]→[Add/Remove attribute of DataModel]`` でウィザードが開く。あるいはメニューバーの ``[ファイル]→[新規]`` やツールバー。
+* DMDLのデータモデル・プロパティー・属性を変更することが出来る。
+    * DMDLエディター上で変更したいデータモデル上にカーソルを合わせ、ツールバーの ``[既存のデータモデルの編集]`` をクリックすると、変更するウィザードが開く。
 * DMDLからデータモデルクラス（Javaソース）の生成が出来る。
     * コンテキストメニューの ``[DMDL EditorX]→[DMDL compile]`` でコンパイルを行う。
         * Asakusa Framework本体のDMDLコンパイラーを呼び出す為、プロパティーページでAsakusa Frameworkの設定を行っておく必要がある。
