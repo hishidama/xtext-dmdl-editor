@@ -170,8 +170,8 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 		List<INode> list = NodeModelUtils.findNodesForFeature(group, feature);
 		for (INode node : list) {
-			EStructuralFeatureNode snode = createEStructuralFeatureNode(parentNode, group, feature, image,
-					node.getText(), true);
+			String text = NodeModelUtils.getTokenText(node).trim();
+			EStructuralFeatureNode snode = createEStructuralFeatureNode(parentNode, group, feature, image, text, true);
 			TextRegion region = new TextRegion(node.getOffset(), node.getLength());
 			snode.setTextRegion(region);
 		}
