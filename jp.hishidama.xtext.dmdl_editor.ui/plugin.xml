@@ -519,7 +519,7 @@
             </command>
             <command
                   commandId="jp.hishidama.xtext.dmdl_editor.command.editDataModel"
-                  icon="icons/hishidama16.gif"
+                  icon="icons/edit_model.gif"
                   tooltip="既存のデータモデルを編集します。">
             </command>
             <command
