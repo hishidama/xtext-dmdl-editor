@@ -1,11 +1,6 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page;
 
 public abstract class DataModelRow {
-	public static final String TP_NAME = "name";
-	public static final String TP_DESC = "description";
-	public static final String TP_DATATYPE = "dataType";
-	public static final String TP_REF_MODEL = "refModel";
-	public static final String TP_REF_PROPERTY = "refProperty";
 
 	protected String name;
 	protected String description;
@@ -63,8 +58,6 @@ public abstract class DataModelRow {
 	}
 
 	public abstract String getText(int columnIndex);
-
-	public abstract Object getValue(String property);
 
 	public abstract String validate();
 }

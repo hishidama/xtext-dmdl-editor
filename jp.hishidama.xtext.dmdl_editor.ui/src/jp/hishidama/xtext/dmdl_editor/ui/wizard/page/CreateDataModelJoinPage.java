@@ -2,7 +2,6 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page;
 
 import static jp.hishidama.eclipse_plugin.util.StringUtil.isEmpty;
 import static jp.hishidama.eclipse_plugin.util.StringUtil.nonEmpty;
-import static jp.hishidama.eclipse_plugin.util.StringUtil.nonNull;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -60,23 +59,6 @@ class DataModelJoinRow extends DataModelRow {
 	}
 
 	@Override
-	public Object getValue(String property) {
-		if (property.equals(TP_NAME)) {
-			return nonNull(name);
-		}
-		if (property.equals(TP_DESC)) {
-			return nonNull(description);
-		}
-		if (property.equals(TP_REF_MODEL)) {
-			return nonNull(refModelName);
-		}
-		if (property.equals(TP_REF_PROPERTY)) {
-			return nonNull(refPropertyName);
-		}
-		throw new UnsupportedOperationException(MessageFormat.format("property={0}", property));
-	}
-
-	@Override
 	public String validate() {
 		if (nonEmpty(name)) {
 			IStatus status = ValidationUtil.validateName("プロパティー名", name);
@@ -121,10 +103,10 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 
 	@Override
 	protected void defineColumns(Table table) {
-		addColumn("name", 128, DataModelJoinRow.TP_NAME);
-		addColumn("description", 128, DataModelJoinRow.TP_DESC);
-		addColumn("src model", 128, DataModelJoinRow.TP_REF_MODEL);
-		addColumn("src property", 128, DataModelJoinRow.TP_REF_PROPERTY);
+		addColumn("name", 128);
+		addColumn("description", 128);
+		addColumn("src model", 128);
+		addColumn("src property", 128);
 	}
 
 	@Override

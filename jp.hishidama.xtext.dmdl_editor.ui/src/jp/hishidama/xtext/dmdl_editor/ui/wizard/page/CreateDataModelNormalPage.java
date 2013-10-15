@@ -1,9 +1,10 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page;
 
-import java.text.MessageFormat;
-import java.util.Map;
+import static jp.hishidama.eclipse_plugin.util.StringUtil.isEmpty;
+import static jp.hishidama.eclipse_plugin.util.StringUtil.nonEmpty;
 
-import static jp.hishidama.eclipse_plugin.util.StringUtil.*;
+import java.text.MessageFormat;
+
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
@@ -15,8 +16,6 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Table;
 
 class DataModelNormalRow extends DataModelRow {
-	public static final String[] DATA_TYPE = { "INT", "LONG", "FLOAT", "DOUBLE", "TEXT", "DECIMAL", "DATE", "DATETIME",
-			"BOOLEAN", "BYTE", "SHORT" };
 
 	@Override
 	public String getText(int columnIndex) {
@@ -32,30 +31,6 @@ class DataModelNormalRow extends DataModelRow {
 		default:
 			throw new UnsupportedOperationException(MessageFormat.format("index={0}", columnIndex));
 		}
-	}
-
-	private static Map<String, Integer> dataTypeComboMap;
-
-	@Override
-	public Object getValue(String property) {
-		if (property.equals(TP_NAME)) {
-			return nonNull(name);
-		}
-		if (property.equals(TP_DESC)) {
-			return nonNull(description);
-		}
-		if (property.equals(TP_DATATYPE)) {
-			dataTypeComboMap = CreateDataModelPage.getComboIndexMap(dataTypeComboMap, DATA_TYPE);
-			Integer n = dataTypeComboMap.get(dataType);
-			if (n == null) {
-				return -1;
-			}
-			return n;
-		}
-		if (property.equals(TP_REF_MODEL)) {
-			return nonNull(refModelName);
-		}
-		throw new UnsupportedOperationException(MessageFormat.format("property={0}", property));
 	}
 
 	@Override
@@ -105,10 +80,10 @@ public class CreateDataModelNormalPage extends CreateDataModelMainPage<DataModel
 
 	@Override
 	protected void defineColumns(Table table) {
-		addColumn("name", 128, DataModelNormalRow.TP_NAME);
-		addColumn("description", 128, DataModelNormalRow.TP_DESC);
-		addColumn("type", 96, DataModelNormalRow.TP_DATATYPE);
-		addColumn("ref model", 128, DataModelNormalRow.TP_REF_MODEL);
+		addColumn("name", 128);
+		addColumn("description", 128);
+		addColumn("type", 96);
+		addColumn("ref model", 128);
 	}
 
 	@Override

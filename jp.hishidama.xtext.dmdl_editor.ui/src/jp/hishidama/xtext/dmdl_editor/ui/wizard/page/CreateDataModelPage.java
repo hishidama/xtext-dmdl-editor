@@ -2,11 +2,9 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
@@ -261,8 +259,6 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		return button;
 	}
 
-	protected List<String> cprops = new ArrayList<String>();
-
 	private void createTableViewer(Composite column) {
 		tableViewer = new TableViewer(column, SWT.BORDER | SWT.MULTI | SWT.FULL_SELECTION);
 		tableViewer.setContentProvider(new ModelContentProvider());
@@ -285,8 +281,6 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 				doEdit();
 			}
 		});
-
-		tableViewer.setColumnProperties(cprops.toArray(new String[cprops.size()]));
 
 		int operations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_DEFAULT;
 		Transfer[] transferTypes = { DMDLTreeDataTransfer.getInstance() };
@@ -329,24 +323,11 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 
 	protected abstract void defineColumns(Table table);
 
-	protected final void addColumn(String text, int width, String propName) {
+	protected final void addColumn(String text, int width) {
 		Table table = tableViewer.getTable();
 		TableColumn column = new TableColumn(table, SWT.NONE);
 		column.setText(text);
 		column.setWidth(width);
-
-		cprops.add(propName);
-	}
-
-	public static Map<String, Integer> getComboIndexMap(Map<String, Integer> map, String[] list) {
-		if (map == null) {
-			map = new HashMap<String, Integer>();
-			int i = 0;
-			for (String s : list) {
-				map.put(s, i++);
-			}
-		}
-		return map;
 	}
 
 	@Override

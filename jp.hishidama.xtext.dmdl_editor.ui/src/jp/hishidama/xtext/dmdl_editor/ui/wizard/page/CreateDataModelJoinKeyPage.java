@@ -21,14 +21,11 @@ import org.eclipse.swt.widgets.TableItem;
 class DataModelJoinKey extends DataModelRow {
 	private Table table;
 	private Map<String, String[]> comboMap;
-	private Map<String, Map<String, Integer>> indexMap;
 	private Map<String, String> descMap;
 
-	public DataModelJoinKey(Table table, Map<String, String[]> comboMap, Map<String, Map<String, Integer>> indexMap,
-			Map<String, String> descMap) {
+	public DataModelJoinKey(Table table, Map<String, String[]> comboMap, Map<String, String> descMap) {
 		this.table = table;
 		this.comboMap = comboMap;
-		this.indexMap = indexMap;
 		this.descMap = descMap;
 	}
 
@@ -67,17 +64,6 @@ class DataModelJoinKey extends DataModelRow {
 	}
 
 	@Override
-	public Object getValue(String property) {
-		Map<String, Integer> map = indexMap.get(property);
-		String key = keys.get(property);
-		Integer n = map.get(key);
-		if (n == null) {
-			return -1;
-		}
-		return n;
-	}
-
-	@Override
 	public String validate() {
 		for (TableColumn c : table.getColumns()) {
 			String name = c.getText();
@@ -110,7 +96,6 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 	private List<DMDLTreeData> input;
 	private List<JoinKey> keyBuffer;
 	private Map<String, String[]> comboMap = new HashMap<String, String[]>();
-	private Map<String, Map<String, Integer>> indexMap = new HashMap<String, Map<String, Integer>>();
 	private Map<String, String> descMap = new HashMap<String, String>();
 
 	public CreateDataModelJoinKeyPage() {
@@ -131,8 +116,8 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 	@Override
 	protected void defineColumns(Table table) {
 		if (input == null) {
-			addColumn("key1", 256, "0");
-			addColumn("key2", 256, "1");
+			addColumn("key1", 256);
+			addColumn("key2", 256);
 		} else {
 			for (DMDLTreeData data : input) {
 				ModelDefinition model = (ModelDefinition) data.getData();
@@ -151,11 +136,9 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 					combo[i++] = StringUtil.isEmpty(desc) ? name : name + " " + desc;
 				}
 
-				addColumn(modelName, 128, modelName);
+				addColumn(modelName, 128);
 
 				comboMap.put(modelName, combo);
-				Map<String, Integer> index = getComboIndexMap(null, combo);
-				indexMap.put(modelName, index);
 				descMap.put(modelName, model.getDescription());
 			}
 		}
@@ -175,9 +158,7 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 		for (TableColumn c : table.getColumns()) {
 			c.dispose();
 		}
-		cprops.clear();
 		defineColumns(table);
-		tableViewer.setColumnProperties(cprops.toArray(new String[cprops.size()]));
 
 		sourceViewer.setInputList(input);
 		sourceViewer.expandAll();
@@ -216,7 +197,7 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 
 	@Override
 	protected DataModelJoinKey newAddRow() {
-		return new DataModelJoinKey(tableViewer.getTable(), comboMap, indexMap, descMap);
+		return new DataModelJoinKey(tableViewer.getTable(), comboMap, descMap);
 	}
 
 	@Override
@@ -259,7 +240,7 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 
 	@Override
 	protected DataModelJoinKey newCopyRow(ModelDefinition model, Property prop) {
-		return new DataModelJoinKey(tableViewer.getTable(), comboMap, indexMap, descMap);
+		return new DataModelJoinKey(tableViewer.getTable(), comboMap, descMap);
 	}
 
 	@Override

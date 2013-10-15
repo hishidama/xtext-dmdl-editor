@@ -1,9 +1,10 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page;
 
-import java.text.MessageFormat;
-import java.util.Map;
+import static jp.hishidama.eclipse_plugin.util.StringUtil.isEmpty;
+import static jp.hishidama.eclipse_plugin.util.StringUtil.nonEmpty;
 
-import static jp.hishidama.eclipse_plugin.util.StringUtil.*;
+import java.text.MessageFormat;
+
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
@@ -20,9 +21,6 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.xtext.EcoreUtil2;
 
 class DataModelSummarizeRow extends DataModelRow {
-	public static final String TP_KEY = "key";
-	public static final String TP_SUM_TYPE = "sumType";
-	public static final String[] SUM_TYPE = { "any", "sum", "min", "max", "count" };
 
 	public boolean key;
 	public String sumType;
@@ -45,36 +43,6 @@ class DataModelSummarizeRow extends DataModelRow {
 		default:
 			throw new UnsupportedOperationException(MessageFormat.format("index={0}", columnIndex));
 		}
-	}
-
-	private static Map<String, Integer> sumTypeComboMap;
-
-	@Override
-	public Object getValue(String property) {
-		if (property.equals(TP_KEY)) {
-			return key;
-		}
-		if (property.equals(TP_NAME)) {
-			return nonNull(name);
-		}
-		if (property.equals(TP_DESC)) {
-			return nonNull(description);
-		}
-		if (property.equals(TP_SUM_TYPE)) {
-			sumTypeComboMap = CreateDataModelPage.getComboIndexMap(sumTypeComboMap, SUM_TYPE);
-			Integer n = sumTypeComboMap.get(sumType);
-			if (n == null) {
-				return -1;
-			}
-			return n;
-		}
-		if (property.equals(TP_REF_MODEL)) {
-			return nonNull(refModelName);
-		}
-		if (property.equals(TP_REF_PROPERTY)) {
-			return nonNull(refPropertyName);
-		}
-		throw new UnsupportedOperationException(MessageFormat.format("property={0}", property));
 	}
 
 	@Override
@@ -126,12 +94,12 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 
 	@Override
 	protected void defineColumns(Table table) {
-		addColumn("key", 40, DataModelSummarizeRow.TP_KEY);
-		addColumn("name", 128, DataModelSummarizeRow.TP_NAME);
-		addColumn("description", 128, DataModelSummarizeRow.TP_DESC);
-		addColumn("aggregate", 64, DataModelSummarizeRow.TP_SUM_TYPE);
-		addColumn("src model", 128, DataModelSummarizeRow.TP_REF_MODEL);
-		addColumn("src property", 128, DataModelSummarizeRow.TP_REF_PROPERTY);
+		addColumn("key", 40);
+		addColumn("name", 128);
+		addColumn("description", 128);
+		addColumn("aggregate", 64);
+		addColumn("src model", 128);
+		addColumn("src property", 128);
 	}
 
 	@Override
