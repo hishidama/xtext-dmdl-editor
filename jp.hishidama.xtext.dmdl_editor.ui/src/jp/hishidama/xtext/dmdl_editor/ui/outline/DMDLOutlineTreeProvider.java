@@ -198,7 +198,14 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 */
 
 	protected Object _text(ModelReference ref) {
-		return _text(ref.getName());
+		ModelDefinition model = ref.getName();
+		if (model != null && model.getName() == null) {
+			List<INode> nodeList = NodeModelUtils.findNodesForFeature(ref, DmdlPackage.Literals.MODEL_DEFINITION__NAME);
+			for (INode node : nodeList) {
+				return NodeModelUtils.getTokenText(node).trim();
+			}
+		}
+		return _text(model);
 	}
 
 	protected Object _text(Property p) {
