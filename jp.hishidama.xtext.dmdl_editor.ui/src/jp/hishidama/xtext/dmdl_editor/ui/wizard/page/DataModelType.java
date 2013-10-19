@@ -14,6 +14,9 @@ public enum DataModelType {
 	}
 
 	public static DataModelType valueOf(ModelDefinition model) {
+		if (model == null) {
+			return NORMAL;
+		}
 		EObject rhs = model.getRhs();
 		if (rhs instanceof JoinExpression) {
 			return JOINED;
