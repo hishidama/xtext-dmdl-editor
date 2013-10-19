@@ -51,6 +51,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
 public abstract class CreateDataModelPage<R extends DataModelRow> extends WizardPage {
+	protected String[] sourceModels;
 	private DataModelType type;
 	protected IProject project;
 	protected String modelName;
@@ -70,6 +71,10 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		super(pageName);
 		setTitle(pageTitle);
 		setDescription(pageDescription);
+	}
+
+	public void setSourceModels(String[] models) {
+		this.sourceModels = models;
 	}
 
 	protected String getSourceLabelText() {

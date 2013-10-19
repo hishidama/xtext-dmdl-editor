@@ -5,13 +5,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EObject;
-
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData;
+
+import org.eclipse.emf.ecore.EObject;
 
 public abstract class CreateDataModelMainPage<R extends DataModelRow> extends CreateDataModelPage<R> {
 
@@ -21,7 +22,12 @@ public abstract class CreateDataModelMainPage<R extends DataModelRow> extends Cr
 
 	@Override
 	protected void setInput() {
-		sourceViewer.setInputAll(project);
+		if (sourceModels == null) {
+			sourceViewer.setInputAll(project);
+		} else {
+			sourceViewer.setInputModels(project, sourceModels);
+			sourceViewer.expandAll();
+		}
 	}
 
 	@Override
@@ -29,6 +35,9 @@ public abstract class CreateDataModelMainPage<R extends DataModelRow> extends Cr
 		if (visible) {
 			if (defineList.isEmpty()) {
 				ModelDefinition model = sourceViewer.findModel(modelName);
+				if (model == null) {
+					model = ModelUiUtil.findModel(project, modelName);
+				}
 				if (model != null) {
 					List<EObject> list = ModelUtil.getRawProperties(model);
 					int index = 0;

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.DMDLFileUtil;
+import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 
 import org.eclipse.core.resources.IFile;
@@ -55,6 +57,22 @@ public class DataModelTreeViewer extends TreeViewer {
 	public void setInputList(List<DMDLTreeData> list) {
 		setContentProvider(new DMDLTreeContentProvider());
 		setInput(list);
+	}
+
+	public void setInputModels(IProject project, String... modelNames) {
+		List<DMDLTreeData> list = new ArrayList<DMDLTreeData>(modelNames.length);
+		for (String modelName : modelNames) {
+			if (StringUtil.isEmpty(modelName)) {
+				continue;
+			}
+			ModelDefinition model = ModelUiUtil.findModel(project, modelName);
+			if (model == null) {
+				continue;
+			}
+			DMDLTreeData.ModelNode modelNode = new DMDLTreeData.ModelNode(project, null, model);
+			list.add(modelNode);
+		}
+		setInputList(list);
 	}
 
 	@Override

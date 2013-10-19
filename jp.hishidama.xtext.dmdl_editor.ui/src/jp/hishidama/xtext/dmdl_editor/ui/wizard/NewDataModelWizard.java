@@ -46,6 +46,7 @@ import org.eclipse.xtext.parser.IParseResult;
 public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 	protected IProject project;
 	protected DataModelType fixType;
+	private String[] sourceModels;
 	protected String defaultFile = "src/main/dmdl/";
 
 	private SetDataModelNamePage modelPage;
@@ -102,6 +103,10 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 		this.fixType = fixType;
 	}
 
+	public void initSource(String... models) {
+		this.sourceModels = models;
+	}
+
 	@Override
 	public void addPages() {
 		modelPage = new SetDataModelNamePage(project, fixType);
@@ -137,6 +142,7 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 
 		page.setProject(project);
 		page.setDataModelType(type);
+		page.setSourceModels(sourceModels);
 		addPage(page);
 	}
 
