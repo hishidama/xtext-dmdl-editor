@@ -15,6 +15,7 @@ import java.util.Map.Entry;
 
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
@@ -26,7 +27,6 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.impl.ModelDefinitionImpl;
 import jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyDefinitionImpl;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData;
-import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData.ModelNode;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
@@ -34,7 +34,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.xtext.EcoreUtil2;
 
 class DataModelJoinRow extends DataModelRow {
@@ -362,7 +361,7 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 				if (row.model != null) {
 					model = row.model;
 				} else {
-					model = findModel(modelName);
+					model = ModelUiUtil.findModel(project, modelName);
 				}
 				if (nonEmpty(row.name) || nonEmpty(row.refPropertyName)) {
 					Property p = row.prop;
@@ -396,11 +395,8 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 			}
 
 			if (model == null) {
-				model = findModel(modelName);
-				if (model == null) {
-					model = InjectorUtil.getInstance(ModelDefinitionImpl.class);
-					model.setName(modelName);
-				}
+				model = InjectorUtil.getInstance(ModelDefinitionImpl.class);
+				model.setName(modelName);
 			}
 			DMDLTreeData.ModelNode modelNode = new DMDLTreeData.ModelNode(project, null, model);
 			if (children != null) {
@@ -410,26 +406,6 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 			result.add(modelNode);
 		}
 		return result;
-	}
-
-	private Map<String, ModelDefinition> modelMap;
-
-	private ModelDefinition findModel(String modelName) {
-		if (modelMap == null) {
-			modelMap = new HashMap<String, ModelDefinition>();
-			TreeItem[] items = super.sourceViewer.getTree().getItems();
-			for (TreeItem item : items) {
-				for (TreeItem i : item.getItems()) {
-					ModelNode node = (ModelNode) i.getData();
-					if (node != null) {
-						ModelDefinition model = (ModelDefinition) node.getData();
-						String name = model.getName();
-						modelMap.put(name, model);
-					}
-				}
-			}
-		}
-		return modelMap.get(modelName);
 	}
 
 	public List<JoinKey> getKeyBuffer() {
