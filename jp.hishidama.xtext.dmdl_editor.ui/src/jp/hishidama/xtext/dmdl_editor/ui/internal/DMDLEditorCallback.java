@@ -21,12 +21,16 @@ public class DMDLEditorCallback extends AbstractDirtyStateAwareEditorCallback {
 			return;
 		}
 		IProject project = resource.getProject();
-		if (!XtextProjectHelper.hasNature(project) && project.isAccessible() && !project.isHidden()) {
+		if (!hasNature(project) && project.isAccessible() && !project.isHidden()) {
 			addNature(project);
 		}
 	}
 
-	private void addNature(IProject project) {
+	public static boolean hasNature(IProject project) {
+		return XtextProjectHelper.hasNature(project);
+	}
+
+	public static void addNature(IProject project) {
 		try {
 			IProjectDescription description = project.getDescription();
 			String[] natures = description.getNatureIds();
