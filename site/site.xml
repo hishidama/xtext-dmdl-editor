@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/jp.hishidama.xtext.dmdl_editor.feature_0.0.1.201310191550.jar" id="jp.hishidama.xtext.dmdl_editor.feature" version="0.0.1.201310191550">
+   <feature url="features/jp.hishidama.xtext.dmdl_editor.feature_0.0.1.201310232238.jar" id="jp.hishidama.xtext.dmdl_editor.feature" version="0.0.1.201310232238">
       <category name="jp.hishidama.xtext.dmdl_editor"/>
    </feature>
    <category-def name="jp.hishidama.xtext.dmdl_editor" label="DMDL EditorX"/>
