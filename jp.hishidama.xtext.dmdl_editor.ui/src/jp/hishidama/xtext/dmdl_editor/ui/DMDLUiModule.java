@@ -7,6 +7,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.formatting.DMDLWhitespaceInformationPro
 import jp.hishidama.xtext.dmdl_editor.ui.highlighting.DMDLHighlightingConfiguration;
 import jp.hishidama.xtext.dmdl_editor.ui.highlighting.DMDLLexicalTokenToAttributeIdMapper;
 import jp.hishidama.xtext.dmdl_editor.ui.highlighting.DMDLSemanticHighlightingCalculator;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLEditorCallback;
 import jp.hishidama.xtext.dmdl_editor.ui.labeling.DMDLHoverProvider;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -22,6 +23,11 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculato
 public class DMDLUiModule extends jp.hishidama.xtext.dmdl_editor.ui.AbstractDMDLUiModule {
 	public DMDLUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
+	}
+
+	@Override
+	public Class<? extends org.eclipse.xtext.ui.editor.IXtextEditorCallback> bindIXtextEditorCallback() {
+		return DMDLEditorCallback.class;
 	}
 
 	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindTokenToAttributeIdMapper() {

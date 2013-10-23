@@ -14,8 +14,6 @@ XtextのインストールされたEclipseが必要です。
 DMDL EditorXプラグインのインストールは、Eclipseの ``[新規ソフトウェアのインストール]`` で
 更新サイトとして http://hishidama.github.io/xtext-dmdl-editor/site/ を指定して下さい。
 
-起動した後で「Do you want to add the Xtext nature to the project 'プロジェクト名'?」という ``Xtext nature`` へ登録するかどうかを訊ねるダイアログが出ますので、OKを押してください。
-
 
 出来ること
 ----------
@@ -62,4 +60,6 @@ DMDL EditorXプラグインのインストールは、Eclipseの ``[新規ソフ
     * オペレーターファクトリークラスのクラス名・メソッド名を ``Ctrl`` を押しながらクリックして ``[Open Operator]`` を選択すると、定義元のOperatorへジャンプする。
     * Asakusa Framework 0.5以降で使用可能。
 
+※一部の機能（Javaソースからのハイパーリンクによるジャンプや ``Ctrl+Shif+F3`` による検索ダイアログ等）については、一度何らかのdmdlファイルを開いてからでないと使用できません。
+（dmdlファイルを開くことにより、そのプロジェクトにXtextネイチャーを追加します。これにより、Xtextネイチャーが登録されていないと使えない機能が使えるようになります）
 
