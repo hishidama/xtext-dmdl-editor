@@ -94,6 +94,7 @@ public class ModelUiUtil {
 		if (project == null || modelClassName == null) {
 			return null;
 		}
+		modelClassName = StringUtil.getSimpleName(modelClassName);
 		DMDLEObjectSearch search = new DMDLEObjectSearch(project.getName());
 
 		String pattern = DMDLEObjectSearch.getPattern(modelClassName);
