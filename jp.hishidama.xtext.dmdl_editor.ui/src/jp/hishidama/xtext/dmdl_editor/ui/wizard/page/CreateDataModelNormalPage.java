@@ -8,7 +8,6 @@ import java.text.MessageFormat;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
-import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
 import org.eclipse.core.runtime.IStatus;
@@ -106,7 +105,7 @@ public class CreateDataModelNormalPage extends CreateDataModelMainPage<DataModel
 	protected DataModelNormalRow newCopyRow(ModelDefinition model, Property prop) {
 		DataModelNormalRow row = new DataModelNormalRow();
 		row.name = prop.getName();
-		row.description = DMDLStringUtil.decodeDescription(prop.getDescription());
+		row.description = PropertyUtil.getDecodedDescription(prop);
 		row.dataType = PropertyUtil.getResolvedDataTypeText(prop);
 		return row;
 	}

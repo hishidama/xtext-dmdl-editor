@@ -13,6 +13,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.Literal;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.extension.DMDLAttributeWizardDefinition;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
@@ -151,7 +152,7 @@ class SetPropertyAttributePage extends AttributePage {
 		}
 		String name = p.getName();
 		String upperName = p.getName().toUpperCase();
-		String desc = DMDLStringUtil.decodeDescription(p.getDescription());
+		String desc = PropertyUtil.getDecodedDescription(p);
 
 		StringBuilder sb = new StringBuilder(256);
 		for (Attribute a : list.getAttributes()) {

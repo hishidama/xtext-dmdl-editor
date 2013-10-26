@@ -8,9 +8,9 @@ import java.util.List;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Script;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
-import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -167,7 +167,7 @@ public abstract class DMDLTreeData {
 
 		@Override
 		protected String getText2() {
-			return DMDLStringUtil.decodeDescription(model.getDescription());
+			return ModelUtil.getDecodedDescription(model);
 		}
 
 		@Override
@@ -217,7 +217,7 @@ public abstract class DMDLTreeData {
 
 		@Override
 		protected String getText2() {
-			return DMDLStringUtil.decodeDescription(property.getDescription());
+			return PropertyUtil.getDecodedDescription(property);
 		}
 
 		@Override

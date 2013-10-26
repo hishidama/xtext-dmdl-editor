@@ -12,7 +12,6 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
-import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
 import org.eclipse.core.runtime.IStatus;
@@ -134,7 +133,7 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 	protected DataModelSummarizeRow newCopyRow(ModelDefinition model, Property prop) {
 		DataModelSummarizeRow row = new DataModelSummarizeRow();
 		row.name = prop.getName();
-		row.description = DMDLStringUtil.decodeDescription(prop.getDescription());
+		row.description = PropertyUtil.getDecodedDescription(prop);
 		row.sumType = "any";
 		row.refModelName = model.getName();
 		row.refPropertyName = prop.getName();
@@ -161,7 +160,7 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 	protected DataModelSummarizeRow newDefCopyRow(ModelDefinition model, Property prop, boolean copyAttribute) {
 		DataModelSummarizeRow row = new DataModelSummarizeRow();
 		row.name = prop.getName();
-		row.description = DMDLStringUtil.decodeDescription(prop.getDescription());
+		row.description = PropertyUtil.getDecodedDescription(prop);
 		if (copyAttribute) {
 			row.attribute = PropertyUtil.getAttributeString(prop);
 		}

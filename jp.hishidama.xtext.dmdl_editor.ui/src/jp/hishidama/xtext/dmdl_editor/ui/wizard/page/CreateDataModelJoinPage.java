@@ -152,7 +152,7 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 	protected DataModelJoinRow newCopyRow(ModelDefinition model, Property prop) {
 		DataModelJoinRow row = new DataModelJoinRow();
 		row.name = prop.getName();
-		row.description = DMDLStringUtil.decodeDescription(prop.getDescription());
+		row.description = PropertyUtil.getDecodedDescription(prop);
 		row.refModelName = model.getName();
 		row.refPropertyName = prop.getName();
 		row.model = model;
@@ -179,7 +179,7 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 	protected DataModelJoinRow newDefCopyRow(ModelDefinition model, Property prop, boolean copyAttribute) {
 		DataModelJoinRow row = new DataModelJoinRow();
 		row.name = prop.getName();
-		row.description = DMDLStringUtil.decodeDescription(prop.getDescription());
+		row.description = PropertyUtil.getDecodedDescription(prop);
 		if (copyAttribute) {
 			row.attribute = PropertyUtil.getAttributeString(prop);
 		}
@@ -378,8 +378,8 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 						}
 					}
 					String pname = nonEmpty(row.name) ? row.name : row.refPropertyName;
-					String pdesc = nonEmpty(row.description) ? row.description : ((p != null) ? DMDLStringUtil
-							.decodeDescription(p.getDescription()) : null);
+					String pdesc = nonEmpty(row.description) ? row.description : ((p != null) ? PropertyUtil
+							.getDecodedDescription(p) : null);
 					Type ptype = PropertyUtil.getResolvedDataType(p);
 					PropertyDefinition n = InjectorUtil.getInstance(PropertyDefinitionImpl.class);
 					n.setName(pname);

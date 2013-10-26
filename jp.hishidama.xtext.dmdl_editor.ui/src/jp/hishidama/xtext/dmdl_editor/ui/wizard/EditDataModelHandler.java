@@ -1,9 +1,9 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Script;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.DataModelType;
-import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -69,7 +69,7 @@ public class EditDataModelHandler extends AbstractHandler {
 			if (model != null) {
 				EditDataModelWizard wizard = new EditDataModelWizard();
 				DataModelType type = DataModelType.valueOf(model);
-				String desc = DMDLStringUtil.decodeDescription(model.getDescription());
+				String desc = ModelUtil.getDecodedDescription(model);
 				wizard.init(file, model, type, desc);
 				return wizard;
 			}

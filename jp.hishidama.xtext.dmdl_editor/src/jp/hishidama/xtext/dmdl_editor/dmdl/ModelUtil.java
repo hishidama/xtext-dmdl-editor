@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.util.StringUtil;
+import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -22,6 +23,14 @@ import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class ModelUtil {
+
+	public static String getDecodedDescription(ModelDefinition model) {
+		return DMDLStringUtil.decodeDescription(model.getDescription());
+	}
+
+	public static String getDecodedDescriptionText(ModelDefinition model) {
+		return StringUtil.nonNull(getDecodedDescription(model));
+	}
 
 	public static List<Property> getProperties(ModelDefinition model) {
 		List<Property> list = new ArrayList<Property>();
