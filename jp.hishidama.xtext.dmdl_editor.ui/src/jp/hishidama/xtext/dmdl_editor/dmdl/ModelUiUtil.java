@@ -133,4 +133,12 @@ public class ModelUiUtil {
 		}
 		return null;
 	}
+
+	public static List<Property> getProperties(IProject project, String modelName, IRunnableContext container) {
+		ModelDefinition model = findModel(project, modelName, container);
+		if (model != null) {
+			return ModelUtil.getProperties(model);
+		}
+		return null;
+	}
 }
