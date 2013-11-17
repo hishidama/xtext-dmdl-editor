@@ -22,7 +22,7 @@ public abstract class CreateDataModelMainPage<R extends DataModelRow> extends Cr
 
 	@Override
 	protected void setInput() {
-		if (sourceModels == null) {
+		if (sourceModels == null || sourceModels.length == 0) {
 			sourceViewer.setInputAll(project);
 		} else {
 			sourceViewer.setInputModels(project, sourceModels);

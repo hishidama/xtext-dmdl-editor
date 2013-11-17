@@ -107,6 +107,10 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 		this.sourceModels = models;
 	}
 
+	public void initSource(List<String> models) {
+		initSource(models.toArray(new String[models.size()]));
+	}
+
 	@Override
 	public void addPages() {
 		modelPage = new SetDataModelNamePage(project, fixType);
