@@ -599,7 +599,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 						index = addToList(index, row);
 					} else if (object instanceof ModelReference) {
 						ModelReference ref = (ModelReference) object;
-						R row = newReferenceRow(ref.getName(), null);
+						R row = newReferenceModel(model, ref.getName());
 						index = addToList(index, row);
 					}
 				}
@@ -650,6 +650,10 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		}
 		tableViewer.refresh();
 		validate(true);
+	}
+
+	protected R newReferenceModel(ModelDefinition model, ModelDefinition refModel) {
+		return newReferenceRow(refModel, null);
 	}
 
 	protected R newReferenceRow(ModelDefinition model, Property prop) {

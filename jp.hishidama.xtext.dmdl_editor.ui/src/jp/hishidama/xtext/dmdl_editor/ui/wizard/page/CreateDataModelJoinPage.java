@@ -288,6 +288,17 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 	}
 
 	@Override
+	protected DataModelJoinRow newReferenceModel(ModelDefinition model, ModelDefinition refModel) {
+		DataModelJoinRow row = new DataModelJoinRow();
+		row.refModelName = refModel.getName();
+		List<Property> list = ModelUtil.getProperties(refModel);
+		for (Property p : list) {
+			setKey(model, row.refModelName, p.getName());
+		}
+		return row;
+	}
+
+	@Override
 	protected DataModelJoinRow newReferenceRow(ModelDefinition model, Property prop) {
 		DataModelJoinRow row = new DataModelJoinRow();
 		row.refModelName = model.getName();

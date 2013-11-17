@@ -47,7 +47,7 @@ public abstract class CreateDataModelMainPage<R extends DataModelRow> extends Cr
 							row = newDefCopyRow(model, (Property) object, true);
 						} else if (object instanceof ModelReference) {
 							ModelReference ref = (ModelReference) object;
-							row = newReferenceRow(ref.getName(), null);
+							row = newReferenceModel(model, ref.getName());
 						} else {
 							throw new UnsupportedOperationException("object=" + object);
 						}
