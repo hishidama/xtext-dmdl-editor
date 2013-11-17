@@ -1,6 +1,7 @@
 package jp.hishidama.xtext.dmdl_editor.dmdl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -20,6 +21,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class ModelUtil {
@@ -30,6 +32,46 @@ public class ModelUtil {
 
 	public static String getDecodedDescriptionText(ModelDefinition model) {
 		return StringUtil.nonNull(getDecodedDescription(model));
+	}
+
+	public static List<String> getSourceModelName(ModelDefinition model) {
+		if (model == null) {
+			return Collections.emptyList();
+		}
+
+		List<String> list = new ArrayList<String>();
+		EObject rhs = model.getRhs();
+		if (rhs instanceof JoinExpression) {
+			EList<JoinTerm> terms = ((JoinExpression) rhs).getTerms();
+			for (JoinTerm term : terms) {
+				ModelReference ref = term.getReference();
+				list.add(getModelName(ref));
+			}
+		} else if (rhs instanceof SummarizeExpression) {
+			EList<SummarizeTerm> terms = ((SummarizeExpression) rhs).getTerms();
+			for (SummarizeTerm term : terms) {
+				ModelReference ref = term.getReference();
+				list.add(getModelName(ref));
+			}
+		}
+
+		return list;
+	}
+
+	private static String getModelName(ModelReference ref) {
+		if (ref == null) {
+			return null;
+		}
+		ModelDefinition model = ref.getName();
+		if (model != null) {
+			return model.getName();
+		}
+
+		List<INode> nodeList = NodeModelUtils.findNodesForFeature(ref, DmdlPackage.Literals.MODEL_DEFINITION__NAME);
+		for (INode node : nodeList) {
+			return NodeModelUtils.getTokenText(node).trim();
+		}
+		return null;
 	}
 
 	public static List<Property> getProperties(ModelDefinition model) {
