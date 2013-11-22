@@ -5,16 +5,17 @@
       version="0.0.1.qualifier"
       provider-name="hishidama">
 
-   <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
+   <description url="https://github.com/hishidama/xtext-dmdl-editor">
+      Asakusa Framework DMDL Editor (using Xtext) plugin
    </description>
 
-   <copyright url="http://www.example.com/copyright">
-      [Enter Copyright Description here.]
+   <copyright url="http://www.ne.jp/asahi/hishidama/home/notice/index.html">
+      hishidama
    </copyright>
 
    <license url="http://www.example.com/license">
-      [Enter License Description here.]
+      Xtext版DMDL Editor 開発中です。
+たぶんEPL（Eclipse Public License）になると思います。
    </license>
 
    <requires>
