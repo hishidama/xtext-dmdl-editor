@@ -14,7 +14,7 @@ public class WindgateCsvAttributeDefinition extends DMDLAttributeWizardDefinitio
 	}
 
 	@Override
-	public String getAddModelAttribute() {
+	public String getAddModelAttribute(String version) {
 		return "@windgate.csv(\n" //
 				+ "  charset = \"UTF-8\",\n" //
 				+ "  has_header = FALSE,\n" //
@@ -26,17 +26,17 @@ public class WindgateCsvAttributeDefinition extends DMDLAttributeWizardDefinitio
 	}
 
 	@Override
-	public String getAddPropertyAttribute() {
+	public String getAddPropertyAttribute(String version) {
 		return "@windgate.csv.field(name = \"$(name)\")";
 	}
 
 	@Override
-	protected List<String> getRemoveModelAttributeList() {
+	protected List<String> getRemoveModelAttributeList(String version) {
 		return Arrays.asList("@windgate.csv");
 	}
 
 	@Override
-	protected List<String> getRemovePropertyAttributeList() {
+	protected List<String> getRemovePropertyAttributeList(String version) {
 		List<String> r = new ArrayList<String>();
 		r.add("@windgate.csv.field");
 		r.add("@windgate.csv.file_name");

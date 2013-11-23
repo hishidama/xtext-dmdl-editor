@@ -14,22 +14,22 @@ public class DirectioSeqfileAttributeDefinition extends DMDLAttributeWizardDefin
 	}
 
 	@Override
-	public String getAddModelAttribute() {
+	public String getAddModelAttribute(String version) {
 		return "@directio.sequence_file\n";
 	}
 
 	@Override
-	public String getAddPropertyAttribute() {
+	public String getAddPropertyAttribute(String version) {
 		return null;
 	}
 
 	@Override
-	protected List<String> getRemoveModelAttributeList() {
+	protected List<String> getRemoveModelAttributeList(String version) {
 		return Arrays.asList("@directio.sequence_file");
 	}
 
 	@Override
-	protected List<String> getRemovePropertyAttributeList() {
+	protected List<String> getRemovePropertyAttributeList(String version) {
 		return Collections.emptyList();
 	}
 }

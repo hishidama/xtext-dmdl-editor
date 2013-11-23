@@ -14,22 +14,22 @@ public class WindgateTsvAttributeDefinition extends DMDLAttributeWizardDefinitio
 	}
 
 	@Override
-	public String getAddModelAttribute() {
+	public String getAddModelAttribute(String version) {
 		return "@windgate.stream_format(type=\"tsv\")";
 	}
 
 	@Override
-	public String getAddPropertyAttribute() {
+	public String getAddPropertyAttribute(String version) {
 		return "";
 	}
 
 	@Override
-	protected List<String> getRemoveModelAttributeList() {
+	protected List<String> getRemoveModelAttributeList(String version) {
 		return Arrays.asList("@windgate.stream_format");
 	}
 
 	@Override
-	protected List<String> getRemovePropertyAttributeList() {
+	protected List<String> getRemovePropertyAttributeList(String version) {
 		return Arrays.asList("");
 	}
 }

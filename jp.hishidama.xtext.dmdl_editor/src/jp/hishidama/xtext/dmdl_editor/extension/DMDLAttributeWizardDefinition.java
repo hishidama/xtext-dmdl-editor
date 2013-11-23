@@ -22,46 +22,58 @@ public abstract class DMDLAttributeWizardDefinition {
 	/**
 	 * 属性追加時のモデルの属性.
 	 * 
+	 * @param version
+	 *            バージョン
 	 * @return モデルの属性
 	 */
-	public abstract String getAddModelAttribute();
+	public abstract String getAddModelAttribute(String version);
 
 	/**
 	 * 属性追加時のプロパティーの属性.
 	 * 
+	 * @param version
+	 *            バージョン
 	 * @return プロパティーの属性
 	 */
-	public abstract String getAddPropertyAttribute();
+	public abstract String getAddPropertyAttribute(String version);
 
 	/**
 	 * 属性削除時のモデルの属性.
 	 * 
+	 * @param version
+	 *            バージョン
 	 * @return モデルの属性（改行コード区切りで複数指定）
 	 */
-	public String getRemoveModelAttribute() {
-		return StringUtil.toString(getRemoveModelAttributeList());
+	public String getRemoveModelAttribute(String version) {
+		return StringUtil.toString(getRemoveModelAttributeList(version));
 	}
 
 	/**
 	 * 属性削除時のモデルの属性.
 	 * 
+	 * @param version
+	 *            バージョン
 	 * @return モデルの属性
 	 */
-	protected abstract List<String> getRemoveModelAttributeList();
+	protected abstract List<String> getRemoveModelAttributeList(String version);
 
 	/**
 	 * 属性削除時のプロパティーの属性.
 	 * 
+	 * @param version
+	 *            バージョン
 	 * @return プロパティーの属性（改行コード区切りで複数指定）
 	 */
-	public String getRemovePropertyAttribute() {
-		return StringUtil.toString(getRemovePropertyAttributeList());
+	public String getRemovePropertyAttribute(String version) {
+		return StringUtil.toString(getRemovePropertyAttributeList(version));
 	}
 
 	/**
 	 * 属性削除時のプロパティーの属性.
 	 * 
+	 * @param version
+	 *            バージョン
 	 * @return プロパティーの属性
 	 */
-	protected abstract List<String> getRemovePropertyAttributeList();
+	protected abstract List<String> getRemovePropertyAttributeList(String version);
 }

@@ -7,6 +7,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.update.AttributeAppender4Nothing
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.update.AttributeAppender4Replace;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.update.AttributeUpdater;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Group;
@@ -14,8 +15,8 @@ import org.eclipse.swt.widgets.Label;
 
 public class SetAddAttributePage extends SetAttributePage {
 
-	public SetAddAttributePage() {
-		super("SetAddAttributePage");
+	public SetAddAttributePage(IProject project) {
+		super("SetAddAttributePage", project);
 		setTitle("追加する属性の指定");
 		setDescription("追加する属性の内容を指定して下さい。");
 	}
@@ -30,12 +31,12 @@ public class SetAddAttributePage extends SetAttributePage {
 		createVariableTable(group, true, true);
 	}
 
-	protected String getDefaultModelAttribute(DMDLAttributeWizardDefinition def) {
-		return def.getAddModelAttribute();
+	protected String getDefaultModelAttribute(DMDLAttributeWizardDefinition def, String version) {
+		return def.getAddModelAttribute(version);
 	}
 
-	protected String getDefaultPropertyAttribute(DMDLAttributeWizardDefinition def) {
-		return def.getAddPropertyAttribute();
+	protected String getDefaultPropertyAttribute(DMDLAttributeWizardDefinition def, String version) {
+		return def.getAddPropertyAttribute(version);
 	}
 
 	@Override

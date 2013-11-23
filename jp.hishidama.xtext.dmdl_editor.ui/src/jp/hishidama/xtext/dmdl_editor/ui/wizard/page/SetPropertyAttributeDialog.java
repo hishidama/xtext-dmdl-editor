@@ -18,6 +18,7 @@ import jp.hishidama.xtext.dmdl_editor.extension.DMDLAttributeWizardDefinition;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.wizard.Wizard;
@@ -34,14 +35,16 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 public class SetPropertyAttributeDialog extends Wizard {
 
 	private Shell shell;
+	private IProject project;
 	private ModelDefinition model;
 	private List<DataModelRow> propertyList;
 
 	private SetPropertyAttributePage page;
 
-	public SetPropertyAttributeDialog(Shell shell, ModelDefinition model, List<DataModelRow> list) {
+	public SetPropertyAttributeDialog(Shell shell, IProject project, ModelDefinition model, List<DataModelRow> list) {
 		setWindowTitle("属性の一括編集");
 		this.shell = shell;
+		this.project = project;
 		setDialogSettings(DMDLActivator.getInstance().getDialogSettings());
 
 		this.model = model;
@@ -64,7 +67,7 @@ public class SetPropertyAttributeDialog extends Wizard {
 
 	@Override
 	public void addPages() {
-		page = new SetPropertyAttributePage();
+		page = new SetPropertyAttributePage(project);
 		page.setAttribute(model);
 		addPage(page);
 	}
@@ -84,8 +87,8 @@ class SetPropertyAttributePage extends AttributePage {
 
 	private String attribute;
 
-	public SetPropertyAttributePage() {
-		super("SetPropertyAttributePage");
+	public SetPropertyAttributePage(IProject project) {
+		super("SetPropertyAttributePage", project);
 		setTitle("プロパティーの属性の指定");
 		setDescription("一括で設定するプロパティーの属性の内容を指定して下さい。");
 	}
@@ -114,13 +117,13 @@ class SetPropertyAttributePage extends AttributePage {
 	}
 
 	@Override
-	protected String getDefaultModelAttribute(DMDLAttributeWizardDefinition def) {
+	protected String getDefaultModelAttribute(DMDLAttributeWizardDefinition def, String version) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	protected String getDefaultPropertyAttribute(DMDLAttributeWizardDefinition def) {
-		return def.getAddPropertyAttribute();
+	protected String getDefaultPropertyAttribute(DMDLAttributeWizardDefinition def, String version) {
+		return def.getAddPropertyAttribute(version);
 	}
 
 	@Override

@@ -2,12 +2,13 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page;
 
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.update.AttributeUpdater;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.swt.widgets.Composite;
 
 public abstract class SetAttributePage extends AttributePage {
 
-	public SetAttributePage(String pageName) {
-		super(pageName);
+	public SetAttributePage(String pageName, IProject project) {
+		super(pageName, project);
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.extension.DMDLAttributeWizardDefinition;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -13,8 +14,8 @@ public class ModifyModelAttributePage extends AttributePage {
 
 	private String attribute;
 
-	public ModifyModelAttributePage() {
-		super("SetModelAttributePage");
+	public ModifyModelAttributePage(IProject project) {
+		super("ModifyModelAttributePage", project);
 		setTitle("データモデルの属性の指定");
 		setDescription("データモデルの属性の内容を指定して下さい。");
 	}
@@ -43,12 +44,12 @@ public class ModifyModelAttributePage extends AttributePage {
 	}
 
 	@Override
-	protected String getDefaultModelAttribute(DMDLAttributeWizardDefinition def) {
-		return def.getAddModelAttribute();
+	protected String getDefaultModelAttribute(DMDLAttributeWizardDefinition def, String version) {
+		return def.getAddModelAttribute(version);
 	}
 
 	@Override
-	protected String getDefaultPropertyAttribute(DMDLAttributeWizardDefinition def) {
+	protected String getDefaultPropertyAttribute(DMDLAttributeWizardDefinition def, String version) {
 		throw new UnsupportedOperationException();
 	}
 

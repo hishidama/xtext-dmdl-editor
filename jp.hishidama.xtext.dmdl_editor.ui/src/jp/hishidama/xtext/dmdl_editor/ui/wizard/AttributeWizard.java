@@ -49,9 +49,9 @@ public class AttributeWizard extends Wizard implements IWorkbenchWizard {
 		addPage(modelPage);
 		selectPage = new SelectAddRemovePage();
 		addPage(selectPage);
-		setAddAttrPage = new SetAddAttributePage();
+		setAddAttrPage = new SetAddAttributePage(project);
 		addPage(setAddAttrPage);
-		setRemoveAttrPage = new SetRemoveAttributePage();
+		setRemoveAttrPage = new SetRemoveAttributePage(project);
 		addPage(setRemoveAttrPage);
 	}
 

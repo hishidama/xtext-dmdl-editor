@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.extension.AsakusafwConfiguration;
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.BuildPropertiesUtil;
 import jp.hishidama.xtext.dmdl_editor.extension.DMDLAttributeWizardDefinition;
 import jp.hishidama.xtext.dmdl_editor.extension.ExtensionUtil;
 import jp.hishidama.xtext.dmdl_editor.parser.antlr.DMDLParser;
@@ -15,6 +17,7 @@ import jp.hishidama.xtext.dmdl_editor.services.DMDLGrammarAccess;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -46,11 +49,13 @@ public abstract class AttributePage extends WizardPage {
 	protected static final String SETTINGS_MODEL_ATTR = "AttributeWizard.modelAttribute";
 	protected static final String SETTINGS_PROP_ATTR = "AttributeWizard.propertyAttribute";
 
+	private final IProject project;
 	protected Text modelText;
 	protected Text propertyText;
 
-	public AttributePage(String pageName) {
+	public AttributePage(String pageName, IProject project) {
 		super(pageName);
+		this.project = project;
 
 		setPageComplete(false);
 	}
@@ -223,18 +228,29 @@ public abstract class AttributePage extends WizardPage {
 		return map;
 	}
 
+	private String version = null;
+
 	private void setDefaultAttribute(DMDLAttributeWizardDefinition def) {
+		if (version == null) {
+			AsakusafwConfiguration c = BuildPropertiesUtil.getAsakusafwConfiguration(project);
+			if (c != null) {
+				version = c.getVersionMin();
+			}
+			if (version == null) {
+				version = "UNKNOWN";
+			}
+		}
 		if (modelText != null) {
-			modelText.setText(nonNull(getDefaultModelAttribute(def)));
+			modelText.setText(nonNull(getDefaultModelAttribute(def, version)));
 		}
 		if (propertyText != null) {
-			propertyText.setText(nonNull(getDefaultPropertyAttribute(def)));
+			propertyText.setText(nonNull(getDefaultPropertyAttribute(def, version)));
 		}
 	}
 
-	protected abstract String getDefaultModelAttribute(DMDLAttributeWizardDefinition def);
+	protected abstract String getDefaultModelAttribute(DMDLAttributeWizardDefinition def, String version);
 
-	protected abstract String getDefaultPropertyAttribute(DMDLAttributeWizardDefinition def);
+	protected abstract String getDefaultPropertyAttribute(DMDLAttributeWizardDefinition def, String version);
 
 	/*
 	 * validate

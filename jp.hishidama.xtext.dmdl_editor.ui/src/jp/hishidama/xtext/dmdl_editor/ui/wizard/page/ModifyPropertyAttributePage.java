@@ -5,6 +5,7 @@ import java.util.List;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITableLabelProvider;
@@ -28,17 +29,19 @@ import org.eclipse.swt.widgets.TableColumn;
 public class ModifyPropertyAttributePage extends WizardPage {
 
 	private final CreateDataModelPage<?> createPage;
+	private final IProject project;
 	private ModelDefinition model;
 	private List<DataModelRow> propertyList;
 
 	private TableViewer viewer;
 	private List<Button> selectionButtonList = new ArrayList<Button>();
 
-	public ModifyPropertyAttributePage(CreateDataModelPage<?> createPage) {
+	public ModifyPropertyAttributePage(CreateDataModelPage<?> createPage, IProject project) {
 		super("ModifyPropertyAttributePage");
 		setTitle("プロパティーの属性の指定");
 		setDescription("プロパティーの属性の内容を指定して下さい。");
 		this.createPage = createPage;
+		this.project = project;
 	}
 
 	public void setPropertyList(ModelDefinition model, List<? extends DataModelRow> list) {
@@ -198,7 +201,7 @@ public class ModifyPropertyAttributePage extends WizardPage {
 			list.add(propertyList.get(i));
 		}
 
-		SetPropertyAttributeDialog dialog = new SetPropertyAttributeDialog(getShell(), model, list);
+		SetPropertyAttributeDialog dialog = new SetPropertyAttributeDialog(getShell(), project, model, list);
 		if (dialog.open() == Window.OK) {
 			viewer.refresh();
 		}

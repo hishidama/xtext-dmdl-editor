@@ -13,22 +13,22 @@ public class WindgateJdbcAttributeDefinition extends DMDLAttributeWizardDefiniti
 	}
 
 	@Override
-	public String getAddModelAttribute() {
+	public String getAddModelAttribute(String version) {
 		return "@windgate.jdbc.table(name = \"$(modelName.toUpper)\")";
 	}
 
 	@Override
-	public String getAddPropertyAttribute() {
+	public String getAddPropertyAttribute(String version) {
 		return "@windgate.jdbc.column(name = \"$(name.toUpper)\")";
 	}
 
 	@Override
-	protected List<String> getRemoveModelAttributeList() {
+	protected List<String> getRemoveModelAttributeList(String version) {
 		return Arrays.asList("@windgate.jdbc.table");
 	}
 
 	@Override
-	protected List<String> getRemovePropertyAttributeList() {
+	protected List<String> getRemovePropertyAttributeList(String version) {
 		return Arrays.asList("@windgate.jdbc.column");
 	}
 }
