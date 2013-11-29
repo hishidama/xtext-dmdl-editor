@@ -9,6 +9,9 @@ import org.eclipse.core.resources.IProject;
 public class DMDLStringUtil {
 
 	public static String getModelClass(IProject project, String modelName) {
+		if (project == null || modelName == null) {
+			return null;
+		}
 		AsakusafwProperties bp = BuildPropertiesUtil.getBuildProperties(project, false);
 		if (bp == null) {
 			return null;
