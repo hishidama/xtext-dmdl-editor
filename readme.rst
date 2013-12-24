@@ -17,6 +17,7 @@ DMDL EditorXプラグインのインストールは、Eclipseの ``[新規ソフ
 
 出来ること
 ----------
+詳細は `DMDL EditorXの説明サイト <http://www.ne.jp/asahi/hishidama/home/tech/soft/asakusafw/dmdl-editor/index.html>`_ を参照して下さい。
 
 * キーワードに色が付く。
      * 色は設定で変更できる。
