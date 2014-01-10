@@ -18,6 +18,9 @@ public class DirectioTsvAttributeDefinition extends DMDLAttributeWizardDefinitio
 	public String getAddModelAttribute(String version) {
 		List<String> list = new ArrayList<String>();
 		list.add("charset = \"UTF-8\"");
+		if (AsakusafwConfiguration.compareVersion("0.5.3", version) <= 0) {
+			list.add("has_header = FALSE");
+		}
 		if (AsakusafwConfiguration.compareVersion("0.5.2", version) <= 0) {
 			list.add("compression = \"org.apache.hadoop.io.compress.GzipCodec\"");
 		}
