@@ -24,6 +24,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SetDataModelNamePage.FilePo
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SetDataModelNamePage.PositionType;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
@@ -69,6 +70,12 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 			init((IFile) obj);
 			return;
 		}
+		if (obj instanceof IFolder) {
+			IFolder folder = (IFolder) obj;
+			project = folder.getProject();
+			defaultFile = folder.getProjectRelativePath().toPortableString() + "/";
+			return;
+		}
 		if (obj instanceof IResource) {
 			IResource resource = (IResource) obj;
 			project = resource.getProject();
@@ -95,6 +102,8 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 		project = file.getProject();
 		if ("dmdl".equals(file.getFileExtension())) {
 			defaultFile = file.getProjectRelativePath().toPortableString();
+		} else {
+			defaultFile = file.getParent().getProjectRelativePath().toPortableString() + "/";
 		}
 	}
 
