@@ -10,6 +10,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.search.DMDLEObjectSearch;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.operation.IRunnableContext;
@@ -116,10 +117,14 @@ public class ModelUiUtil {
 
 	public static boolean openEditor(IProject project, String modelName) {
 		ModelDefinition model = findModel(project, modelName);
-		if (model == null) {
+		return openEditor(model);
+	}
+
+	public static boolean openEditor(EObject object) {
+		if (object == null) {
 			return false;
 		}
-		URI uri = EcoreUtil.getURI(model);
+		URI uri = EcoreUtil.getURI(object);
 
 		GlobalURIEditorOpener opener = InjectorUtil.getInstance(GlobalURIEditorOpener.class);
 		IEditorPart editor = opener.open(uri, true);

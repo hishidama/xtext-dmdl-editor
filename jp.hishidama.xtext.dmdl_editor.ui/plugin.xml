@@ -419,12 +419,20 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
+            id="jp.hishidama.xtext.dmdl_editor.command.searchDataModel"
+            name="Search DataModel">
+      </command>
+      <command
             id="jp.hishidama.xtext.dmdl_editor.command.editDataModel"
             name="Edit DataModel">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
+      <handler
+            class="jp.hishidama.xtext.dmdl_editor.ui.search.SearchDataModelHandler"
+            commandId="jp.hishidama.xtext.dmdl_editor.command.searchDataModel">
+      </handler>
       <handler
             class="jp.hishidama.xtext.dmdl_editor.ui.wizard.EditDataModelHandler"
             commandId="jp.hishidama.xtext.dmdl_editor.command.editDataModel">
@@ -452,9 +460,9 @@
                   tooltip="Asakusa FrameworkのDMDLコンパイラーを起動してJavaクラスを生成します。">
             </command>
             <command
-                  commandId="org.eclipse.xtext.ui.shared.OpenXtextElementCommand"
+                  commandId="jp.hishidama.xtext.dmdl_editor.command.searchDataModel"
                   icon="icons/find_obj.gif"
-                  tooltip="Xtextの機能を使用してデータモデル・プロパティーを検索します。">
+                  tooltip="データモデル・プロパティーを検索します。">
             </command>
             <separator
                   name="beginNewWizard"
@@ -501,9 +509,9 @@
                   tooltip="Asakusa FrameworkのDMDLコンパイラーを起動してJavaクラスを生成します。">
             </command>
             <command
-                  commandId="org.eclipse.xtext.ui.shared.OpenXtextElementCommand"
+                  commandId="jp.hishidama.xtext.dmdl_editor.command.searchDataModel"
                   icon="icons/find_obj.gif"
-                  tooltip="Xtextの機能を使用してデータモデル・プロパティーを検索します。">
+                  tooltip="データモデル・プロパティーを検索します。">
             </command>
             <separator
                   name="beginNewWizard"
