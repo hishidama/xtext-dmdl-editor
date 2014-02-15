@@ -49,6 +49,12 @@
             class="jp.hishidama.xtext.dmdl_editor.internal.extension.portergen.DirectioSeqfileExporterGenerator">
       </classpath>
       <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.portergen.DirectioTsvImporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.portergen.DirectioTsvExporterGenerator">
+      </classpath>
+      <classpath
             class="jp.hishidama.xtext.dmdl_editor.internal.extension.portergen.WindgateCsvImporterGenerator">
       </classpath>
       <classpath
