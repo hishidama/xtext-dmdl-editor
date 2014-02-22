@@ -597,6 +597,15 @@
             name="Open DMDL"
             targetId="org.eclipse.jdt.ui.javaCode">
       </hyperlinkDetector>
+      <hyperlinkDetector
+            activate="true"
+            class="jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.OpenKeyDmdlHyperlinkDetector"
+            description="Open DMDL"
+            id="jp.hishidama.jdt.xtext.dmdl_editor.open-declaration-key"
+            modifierKeys="M2+F3"
+            name="Open DMDL"
+            targetId="org.eclipse.jdt.ui.javaCode">
+      </hyperlinkDetector>
    </extension>
 
    <extension
