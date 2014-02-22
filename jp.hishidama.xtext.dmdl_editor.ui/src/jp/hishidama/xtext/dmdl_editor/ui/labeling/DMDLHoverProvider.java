@@ -1,12 +1,12 @@
 package jp.hishidama.xtext.dmdl_editor.ui.labeling;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
-import jp.hishidama.xtext.dmdl_editor.dmdl.Type;
 import jp.hishidama.xtext.dmdl_editor.dmdl.util.DmdlSwitch;
 
 import org.eclipse.emf.ecore.EObject;
@@ -38,16 +38,7 @@ public class DMDLHoverProvider extends DefaultEObjectHoverProvider {
 		public String caseModelDefinition(ModelDefinition object) {
 			StringBuilder sb = new StringBuilder(64);
 
-			String desc = object.getDescription();
-			if (desc != null) {
-				sb.append(desc);
-				sb.append("<br>");
-			}
-
-			String name = object.getName();
-			sb.append("<b>");
-			sb.append(name);
-			sb.append("</b>");
+			ModelUtil.appendTooltipModelName(sb, object);
 
 			return sb.toString();
 		}
@@ -56,7 +47,7 @@ public class DMDLHoverProvider extends DefaultEObjectHoverProvider {
 		public String casePropertyDefinition(PropertyDefinition object) {
 			StringBuilder sb = new StringBuilder(64);
 
-			appendPropertyName(sb, object);
+			PropertyUtil.appendTooltipPropertyName(sb, object);
 
 			return sb.toString();
 		}
@@ -65,7 +56,7 @@ public class DMDLHoverProvider extends DefaultEObjectHoverProvider {
 		public String casePropertyMapping(PropertyMapping object) {
 			StringBuilder sb = new StringBuilder(64);
 
-			appendPropertyName(sb, object);
+			PropertyUtil.appendTooltipPropertyName(sb, object);
 
 			Property from = object.getFrom();
 			if (from != null) {
@@ -88,7 +79,7 @@ public class DMDLHoverProvider extends DefaultEObjectHoverProvider {
 		public String casePropertyFolding(PropertyFolding object) {
 			StringBuilder sb = new StringBuilder(64);
 
-			appendPropertyName(sb, object);
+			PropertyUtil.appendTooltipPropertyName(sb, object);
 
 			String aggr = object.getAggregator();
 			if (aggr != null) {
@@ -112,25 +103,6 @@ public class DMDLHoverProvider extends DefaultEObjectHoverProvider {
 			}
 
 			return sb.toString();
-		}
-
-		private void appendPropertyName(StringBuilder sb, Property object) {
-			String desc = object.getDescription();
-			if (desc != null) {
-				sb.append(desc);
-				sb.append("<br>");
-			}
-
-			String name = object.getName();
-			sb.append("<b>");
-			sb.append(name);
-			sb.append("</b>");
-
-			Type type = PropertyUtil.getResolvedDataType(object);
-			if (type != null) {
-				sb.append(" : ");
-				sb.append(type);
-			}
 		}
 	}
 }

@@ -26,6 +26,19 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class ModelUtil {
 
+	public static void appendTooltipModelName(StringBuilder sb, ModelDefinition model) {
+		String desc = model.getDescription();
+		if (desc != null) {
+			sb.append(desc);
+			sb.append("<br>");
+		}
+
+		String name = model.getName();
+		sb.append("<b>");
+		sb.append(name);
+		sb.append("</b>");
+	}
+
 	public static String getDecodedDescription(ModelDefinition model) {
 		return DMDLStringUtil.decodeDescription(model.getDescription());
 	}

@@ -627,4 +627,12 @@
             sequence="M2+F3">
       </key>
    </extension>
+   <extension point="org.eclipse.jdt.ui.javaEditorTextHovers">
+      <hover
+            id="jp.hishidama.jdt.xtext.dmdl_editor.hover.DmdlJdtTextHover"
+            class="jp.hishidama.xtext.dmdl_editor.jdt.hover.DmdlJdtTextHover"
+            label="DMDL EditorX JDT TextHover"
+            activate="true">
+      </hover>
+   </extension>
 </plugin>

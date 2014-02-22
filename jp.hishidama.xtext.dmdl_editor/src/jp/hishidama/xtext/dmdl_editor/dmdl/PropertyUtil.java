@@ -12,6 +12,25 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class PropertyUtil {
 
+	public static void appendTooltipPropertyName(StringBuilder sb, Property property) {
+		String desc = property.getDescription();
+		if (desc != null) {
+			sb.append(desc);
+			sb.append("<br>");
+		}
+
+		String name = property.getName();
+		sb.append("<b>");
+		sb.append(name);
+		sb.append("</b>");
+
+		Type type = getResolvedDataType(property);
+		if (type != null) {
+			sb.append(" : ");
+			sb.append(type);
+		}
+	}
+
 	public static String getDecodedDescription(Property property) {
 		return DMDLStringUtil.decodeDescription(property.getDescription());
 	}
