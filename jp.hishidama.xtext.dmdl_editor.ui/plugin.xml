@@ -644,4 +644,78 @@
             activate="true">
       </hover>
    </extension>
+
+   <!-- F4 / DataModel Hierarchy -->
+   <!-- see https://eclipse.googlesource.com/tmf/org.eclipse.xtext/+/Helios_Maintenance/plugins/org.eclipse.xtext.ui/plugin.xml -->
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            contextId="org.eclipse.xtext.ui.XtextEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="F4"
+            commandId="jp.hishidama.xtext.dmdl_editor.hyperlinking.OpenModelHierarchy">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="jp.hishidama.xtext.dmdl_editor.hyperlinking.OpenModelHierarchy"
+            name="Open DataModel Hierarchy"
+            description="Open DataModel Hierarchy">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution locationURI="popup:#TextEditorContext?after=group.open">
+         <command
+               commandId="jp.hishidama.xtext.dmdl_editor.hyperlinking.OpenModelHierarchy"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="isActiveEditorAnInstanceOfXtextEditor">
+               </reference>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy.OpenModelHierarchyHandler"
+            commandId="jp.hishidama.xtext.dmdl_editor.hyperlinking.OpenModelHierarchy">
+         <activeWhen>
+            <reference
+                  definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.Editor.opened">
+            </reference>
+         </activeWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="jp.hishidama.xtext.dmdl_editor.views.category"
+            name="DMDL EditorX">
+      </category>
+      <view
+            category="jp.hishidama.xtext.dmdl_editor.views.category"
+            class="jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy.ModelHierarchyView"
+            icon="icons/class_hi.gif"
+            id="jp.hishidama.xtext.dmdl_editor.view.ModelHierarchyView"
+            name="DataModel Hierarchy"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="*">
+         <view
+               id="jp.hishidama.xtext.dmdl_editor.view.ModelHierarchyView"
+               relationship="stack"
+               relative="org.eclipse.ui.views.ResourceNavigator"
+               visible="false">
+         </view>
+      </perspectiveExtension>
+   </extension>
 </plugin>

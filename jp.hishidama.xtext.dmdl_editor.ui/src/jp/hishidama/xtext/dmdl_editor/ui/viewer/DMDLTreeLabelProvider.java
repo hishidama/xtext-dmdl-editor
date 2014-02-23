@@ -2,6 +2,7 @@ package jp.hishidama.xtext.dmdl_editor.ui.viewer;
 
 import java.text.MessageFormat;
 
+import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
@@ -31,6 +32,9 @@ public class DMDLTreeLabelProvider extends LabelProvider {
 		if (obj instanceof Property) {
 			return DMDLImages.getPropertyImage();
 		}
+		if (obj instanceof Attribute) {
+			return DMDLImages.getAttributeImage();
+		}
 		return null;
 	}
 
@@ -49,8 +53,7 @@ public class DMDLTreeLabelProvider extends LabelProvider {
 			ModelDefinition model = (ModelDefinition) obj;
 			String name = model.getName();
 			String desc = model.getDescription();
-			String title = (desc != null) ? MessageFormat.format("{0} : {1}",
-					name, desc) : name;
+			String title = (desc != null) ? MessageFormat.format("{0} : {1}", name, desc) : name;
 			return title;
 		}
 		if (obj instanceof Property) {
@@ -73,6 +76,10 @@ public class DMDLTreeLabelProvider extends LabelProvider {
 				}
 			}
 			return sb.toString();
+		}
+		if (obj instanceof Attribute) {
+			Attribute attr = (Attribute) obj;
+			return "@" + attr.getName();
 		}
 		return obj.toString();
 	}

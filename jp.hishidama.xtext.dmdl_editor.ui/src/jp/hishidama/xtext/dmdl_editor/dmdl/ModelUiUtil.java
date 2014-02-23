@@ -1,6 +1,7 @@
 package jp.hishidama.xtext.dmdl_editor.dmdl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.util.StringUtil;
@@ -113,6 +114,62 @@ public class ModelUiUtil {
 			}
 		}
 		return null;
+	}
+
+	public static List<ModelDefinition> getAllModels(IProject project, IRunnableContext container) {
+		if (project == null) {
+			return null;
+		}
+		CollectModelTask task = new CollectModelTask(project);
+		try {
+			container.run(true, true, task);
+			return task.getModels();
+		} catch (InvocationTargetException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			return null;
+		}
+	}
+
+	private static class CollectModelTask implements IRunnableWithProgress {
+		private IProject project;
+		private List<ModelDefinition> list = new ArrayList<ModelDefinition>();
+
+		public CollectModelTask(IProject project) {
+			this.project = project;
+		}
+
+		public void run(final IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+			monitor.beginTask("listing DataModel", IProgressMonitor.UNKNOWN);
+			try {
+				DMDLEObjectSearch search = new DMDLEObjectSearch(project.getName(), monitor);
+				collectModel(list, search);
+			} catch (RuntimeException e) {
+				Throwable cause = e.getCause();
+				if (cause instanceof InterruptedException) {
+					throw (InterruptedException) cause;
+				}
+				throw e;
+			} finally {
+				monitor.done();
+			}
+		}
+
+		public List<ModelDefinition> getModels() {
+			return list;
+		}
+	}
+
+	private static void collectModel(List<ModelDefinition> result, DMDLEObjectSearch search) {
+		Iterable<IEObjectDescription> list = search.findMatches("*", ModelDefinition.class.getSimpleName());
+		for (IEObjectDescription i : list) {
+			ModelDefinition model = (ModelDefinition) i.getEObjectOrProxy();
+			if (model.eIsProxy()) {
+				ResourceSet resourceSet = InjectorUtil.getInstance(ResourceSet.class);
+				model = (ModelDefinition) EcoreUtil.resolve(model, resourceSet);
+			}
+			result.add(model);
+		}
 	}
 
 	public static boolean openEditor(IProject project, String modelName) {

@@ -222,6 +222,39 @@ public class ModelUtil {
 		return false;
 	}
 
+	public static List<ModelDefinition> getProjectiveContainsModel(ModelDefinition model,
+			List<ModelDefinition> projectiveList) {
+		if (model == null || projectiveList == null) {
+			return Collections.emptyList();
+		}
+
+		List<Property> properties = ModelUtil.getProperties(model);
+		Map<String, Type> map = new HashMap<String, Type>(properties.size());
+		for (Property property : properties) {
+			String name = property.getName();
+			Type type = PropertyUtil.getResolvedDataType(property);
+			map.put(name, type);
+		}
+
+		List<ModelDefinition> result = new ArrayList<ModelDefinition>();
+		loop: for (ModelDefinition projectiveModel : projectiveList) {
+			List<Property> projProps = ModelUtil.getProperties(projectiveModel);
+			if (projProps == null || projProps.isEmpty()) {
+				continue;
+			}
+			for (Property property : projProps) {
+				String name = property.getName();
+				Type type = PropertyUtil.getResolvedDataType(property);
+				if (map.get(name) != type) {
+					continue loop;
+				}
+			}
+			result.add(projectiveModel);
+		}
+
+		return result;
+	}
+
 	public static Property findProperty(ModelDefinition model, String name) {
 		List<Property> list = getProperties(model);
 		return findProperty(list, name);
@@ -312,6 +345,23 @@ public class ModelUtil {
 						}
 					}
 				}
+			}
+		}
+		return false;
+	}
+
+	public static boolean containsAttribute(ModelDefinition model, String attributeName) {
+		if (model == null || attributeName == null) {
+			return false;
+		}
+
+		AttributeList list = model.getAttributes();
+		if (list == null) {
+			return false;
+		}
+		for (Attribute attr : list.getAttributes()) {
+			if (attributeName.equals(attr.getName())) {
+				return true;
 			}
 		}
 		return false;

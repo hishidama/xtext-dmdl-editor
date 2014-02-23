@@ -186,7 +186,7 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 
 	protected boolean _isLeaf(ModelReference modelElement) {
-		return false;
+		return true;
 	}
 
 	protected boolean _isLeaf(Grouping modelElement) {
