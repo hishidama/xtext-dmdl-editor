@@ -16,6 +16,15 @@
         </editor>
     </extension>
     <extension
+            point="org.eclipse.ui.contexts">
+        <context
+            description="DMDL EditorX Scope"
+            id="jp.hishidama.xtext.dmdl_editor.DMDLEditorScope"
+            name="Editing DMDL"
+            parentId="org.eclipse.xtext.ui.XtextEditorScope">
+        </context>
+    </extension>
+    <extension
         point="org.eclipse.ui.handlers">
         <handler
             class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
@@ -650,7 +659,7 @@
    <extension
          point="org.eclipse.ui.bindings">
       <key
-            contextId="org.eclipse.xtext.ui.XtextEditorScope"
+            contextId="jp.hishidama.xtext.dmdl_editor.DMDLEditorScope"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="F4"
             commandId="jp.hishidama.xtext.dmdl_editor.hyperlinking.OpenModelHierarchy">
@@ -658,10 +667,15 @@
    </extension>
    <extension
          point="org.eclipse.ui.commands">
+      <category
+            id="jp.hishidama.xtext.dmdl_editor.commands.category"
+            name="DMDL EditorX">
+      </category>
       <command
+            categoryId="jp.hishidama.xtext.dmdl_editor.commands.category"
+            description="Open DataModel Hierarchy"
             id="jp.hishidama.xtext.dmdl_editor.hyperlinking.OpenModelHierarchy"
-            name="Open DataModel Hierarchy"
-            description="Open DataModel Hierarchy">
+            name="Open DataModel Hierarchy">
       </command>
    </extension>
    <extension

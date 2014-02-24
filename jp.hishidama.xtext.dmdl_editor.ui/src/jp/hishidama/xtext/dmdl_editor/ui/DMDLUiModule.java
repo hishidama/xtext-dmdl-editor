@@ -12,10 +12,13 @@ import jp.hishidama.xtext.dmdl_editor.ui.labeling.DMDLHoverProvider;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.formatting.IWhitespaceInformationProvider;
+import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+
+import com.google.inject.name.Names;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -49,5 +52,10 @@ public class DMDLUiModule extends jp.hishidama.xtext.dmdl_editor.ui.AbstractDMDL
 
 	public Class<? extends IEObjectHoverProvider> bindHoverProvider() {
 		return DMDLHoverProvider.class;
+	}
+
+	public void configureKeyBindingScope(com.google.inject.Binder binder) {
+		binder.bind(String.class).annotatedWith(Names.named(XtextEditor.KEY_BINDING_SCOPE))
+				.toInstance("jp.hishidama.xtext.dmdl_editor.DMDLEditorScope");
 	}
 }
