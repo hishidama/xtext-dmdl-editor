@@ -236,8 +236,12 @@ public class ModelUtil {
 			map.put(name, type);
 		}
 
+		String modelName = model.getName();
 		List<ModelDefinition> result = new ArrayList<ModelDefinition>();
 		loop: for (ModelDefinition projectiveModel : projectiveList) {
+			if (modelName.equals(projectiveModel.getName())) {
+				continue;
+			}
 			List<Property> projProps = ModelUtil.getProperties(projectiveModel);
 			if (projProps == null || projProps.isEmpty()) {
 				continue;
