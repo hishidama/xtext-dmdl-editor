@@ -1,6 +1,8 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.update;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -20,6 +22,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SelectDataModelPage.ModelFile;
 
 import org.eclipse.core.resources.IFile;
@@ -28,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.xtext.resource.XtextResource;
@@ -39,7 +43,7 @@ public abstract class AttributeUpdater {
 	public boolean execute(List<ModelFile> list) throws IOException {
 		ResourceSet resourceSet = InjectorUtil.getInstance(ResourceSet.class);
 
-		List<XtextResource> rlist = new ArrayList<XtextResource>();
+		List<FileResource> rlist = new ArrayList<FileResource>();
 		for (ModelFile mf : list) {
 			IFile file = mf.file;
 			ModelDefinition model = mf.model;
@@ -50,7 +54,7 @@ public abstract class AttributeUpdater {
 			}
 			Executor<?> executor = getExecutor();
 			executor.execute(resource, model);
-			rlist.add(resource);
+			rlist.add(new FileResource(resource, mf));
 		}
 		return executeFinish(rlist);
 	}
@@ -156,13 +160,45 @@ public abstract class AttributeUpdater {
 		list.add(region);
 	}
 
-	private boolean executeFinish(List<XtextResource> rlist) throws IOException {
-		for (XtextResource resource : rlist) {
+	private boolean executeFinish(List<FileResource> rlist) throws IOException {
+		Map<Object, Object> options = null;
+
+		String errorMessage = "";
+
+		for (FileResource fr : rlist) {
+			XtextResource resource = fr.resource;
 			if (resource.isModified()) {
-				resource.save(null);
+				try {
+					ByteArrayOutputStream dummy = new ByteArrayOutputStream(4 * 1024);
+					resource.save(dummy, options);
+				} catch (Exception e) {
+					LogUtil.logError(fr.model.toString(), e);
+					errorMessage += MessageFormat.format("{0}の加工に失敗しました。{1}にエラーがある可能性があります。\n", fr.model.getName(),
+							fr.file.getProjectRelativePath());
+					continue;
+				}
+				// 例外が発生しなかったら、本当に保存する
+				resource.save(options);
 			}
 		}
+
+		if (!errorMessage.isEmpty()) {
+			MessageDialog.openError(null, "属性保存時のエラー", errorMessage);
+		}
+
 		return true;
+	}
+
+	private static class FileResource {
+		public XtextResource resource;
+		public ModelDefinition model;
+		public IFile file;
+
+		public FileResource(XtextResource resource, ModelFile mf) {
+			this.resource = resource;
+			this.model = mf.model;
+			this.file = mf.file;
+		}
 	}
 
 	protected void executeFinish(IDocument doc, Region region) {
@@ -172,7 +208,9 @@ public abstract class AttributeUpdater {
 			String text = region.getText();
 			doc.replace(offset, length, text);
 		} catch (BadLocationException e) {
-			e.printStackTrace();
+			LogUtil.errorStatus(
+					MessageFormat.format("{0}#executeFinish() error. region={1}", getClass().getSimpleName(), region),
+					e);
 		}
 	}
 
@@ -201,6 +239,11 @@ public abstract class AttributeUpdater {
 
 		public int compareTo(Region that) {
 			return that.start - this.start; // 降順
+		}
+
+		@Override
+		public String toString() {
+			return String.format("Region(%d,%d,%s)", start, end, text);
 		}
 	}
 }

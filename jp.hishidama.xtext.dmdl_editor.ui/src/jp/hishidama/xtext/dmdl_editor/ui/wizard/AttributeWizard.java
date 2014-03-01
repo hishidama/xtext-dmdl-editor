@@ -1,9 +1,11 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.DMDLFileUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SelectAddRemovePage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SelectDataModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SelectDataModelPage.ModelFile;
@@ -14,6 +16,8 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.update.AttributeUpdater;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
@@ -45,7 +49,7 @@ public class AttributeWizard extends Wizard implements IWorkbenchWizard {
 	@Override
 	public void addPages() {
 		modelPage = new SelectDataModelPage("変更するデータモデルの指定", list);
-		modelPage.setDescription("属性を変更するデータモデルを選択して下さい。");
+		modelPage.setDescription("属性を変更するデータモデルを選択して下さい。\n※注意：データモデルにエラーがあると正しく加工できないことがあります。");
 		addPage(modelPage);
 		selectPage = new SelectAddRemovePage();
 		addPage(selectPage);
@@ -114,7 +118,9 @@ public class AttributeWizard extends Wizard implements IWorkbenchWizard {
 				return false;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			IStatus status = LogUtil.logError(
+					MessageFormat.format("{0}#performFinish() error.", getClass().getSimpleName()), e);
+			ErrorDialog.openError(getShell(), "performFinish error", "エラーが発生しました。", status);
 			return false;
 		}
 
