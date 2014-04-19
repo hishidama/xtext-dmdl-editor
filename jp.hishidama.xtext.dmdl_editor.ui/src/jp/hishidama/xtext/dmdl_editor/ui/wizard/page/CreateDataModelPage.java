@@ -245,6 +245,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 					doPreview();
 				}
 			});
+			createOtherButton(field);
 			refreshSelectionButton();
 		}
 
@@ -253,7 +254,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		setControl(composite);
 	}
 
-	private Button createButton(Composite field, String text, boolean select, SelectionListener listener) {
+	protected final Button createButton(Composite field, String text, boolean select, SelectionListener listener) {
 		Button button = new Button(field, SWT.PUSH);
 		button.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		button.setText(text);
@@ -262,6 +263,10 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 			selectionButtonList.add(button);
 		}
 		return button;
+	}
+
+	protected void createOtherButton(Composite field) {
+		// do override
 	}
 
 	private void createTableViewer(Composite column) {

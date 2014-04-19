@@ -4,6 +4,10 @@ import static jp.hishidama.eclipse_plugin.util.StringUtil.isEmpty;
 import static jp.hishidama.eclipse_plugin.util.StringUtil.nonEmpty;
 
 import java.text.MessageFormat;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
@@ -16,6 +20,12 @@ import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.window.Window;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.xtext.EcoreUtil2;
 
@@ -89,6 +99,76 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 	@Override
 	protected String getSourceLabelText() {
 		return "集計対象データモデルの候補";
+	}
+
+	@Override
+	protected void createOtherButton(final Composite field) {
+		class SumTypeSetter {
+			private String label;
+			private String type;
+			private char c;
+			private boolean key;
+
+			public SumTypeSetter(String label, char c, String type, boolean key) {
+				this.label = label;
+				this.c = c;
+				this.type = type;
+				this.key = key;
+			}
+
+			public Button createButton() {
+				Button button = CreateDataModelSummarizePage.this.createButton(field, label, true,
+						new SelectionAdapter() {
+							@Override
+							public void widgetSelected(SelectionEvent e) {
+								execute();
+							}
+						});
+				button.setToolTipText(MessageFormat.format(
+						"選択されているプロパティーを{0}に変更します。\nデータモデル定義でプロパティーを選択して「{1}」キーを押すことでも変更できます。", label, c));
+				return button;
+			}
+
+			public void execute() {
+				int[] index = tableViewer.getTable().getSelectionIndices();
+				if (index == null || index.length <= 0) {
+					return;
+				}
+
+				for (int i : index) {
+					DataModelSummarizeRow row = defineList.get(i);
+					row.key = key;
+					row.sumType = type;
+				}
+				tableViewer.refresh();
+				validate(true);
+			}
+		}
+
+		List<SumTypeSetter> list = Arrays.asList(//
+				new SumTypeSetter("key", 'k', "any", true), //
+				new SumTypeSetter("any", 'a', "any", false), //
+				new SumTypeSetter("sum", 's', "sum", false), //
+				new SumTypeSetter("min", 'n', "min", false), //
+				new SumTypeSetter("max", 'x', "max", false), //
+				new SumTypeSetter("count", 'c', "count", false));
+
+		final Map<Character, SumTypeSetter> map = new HashMap<Character, SumTypeSetter>(list.size());
+		for (SumTypeSetter setter : list) {
+			setter.createButton();
+			map.put(setter.c, setter);
+		}
+
+		tableViewer.getTable().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				SumTypeSetter setter = map.get(e.character);
+				if (setter != null) {
+					setter.execute();
+					e.doit = false;
+				}
+			}
+		});
 	}
 
 	@Override
