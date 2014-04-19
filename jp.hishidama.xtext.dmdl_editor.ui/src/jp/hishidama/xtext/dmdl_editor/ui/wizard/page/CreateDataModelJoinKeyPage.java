@@ -238,7 +238,27 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 		}
 
 		if (row != null) {
-			addToList(index, row);
+			boolean replace = false;
+
+			DataModelJoinKey now = (0 <= index && index < defineList.size()) ? defineList.get(index) : null;
+			if (now != null) {
+				int size = now.getColumns();
+				for (int i = 0; i < size; i++) {
+					String key = now.getModelName(i);
+					String nowValue = now.get(key);
+					if (nowValue == null) {
+						String newValue = row.get(key);
+						if (newValue != null) {
+							now.set(key, newValue);
+							replace = true;
+						}
+					}
+				}
+			}
+
+			if (!replace) {
+				addToList(index, row);
+			}
 		}
 	}
 
