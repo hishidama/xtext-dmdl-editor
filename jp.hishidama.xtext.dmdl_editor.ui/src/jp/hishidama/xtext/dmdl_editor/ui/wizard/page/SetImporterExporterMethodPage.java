@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import jp.hishidama.xtext.dmdl_editor.extension.DMDLImporterExporterGenerator;
-import jp.hishidama.xtext.dmdl_editor.extension.DMDLImporterExporterGenerator.FieldData;
+import jp.hishidama.xtext.dmdl_editor.ui.extension.DMDLImporterExporterGenerator;
+import jp.hishidama.xtext.dmdl_editor.ui.extension.DMDLImporterExporterGenerator.FieldData;
 
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.wizard.WizardPage;

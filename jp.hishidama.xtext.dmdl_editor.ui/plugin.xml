@@ -732,4 +732,46 @@
          </view>
       </perspectiveExtension>
    </extension>
+
+   <extension-point id="dmdlImporterExporterGenerator" name="DMDL Importer/Exporter generator" schema="schema/dmdlImporterExporterGenerator.exsd"/>
+   <extension
+         point="jp.hishidama.xtext.dmdl_editor.ui.dmdlImporterExporterGenerator">
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.DirectioCsvImporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.DirectioCsvExporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.DirectioSeqfileImporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.DirectioSeqfileExporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.DirectioTsvImporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.DirectioTsvExporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.WindgateCsvImporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.WindgateCsvExporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.WindgateJdbcImporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.WindgateJdbcExporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.WindgateTsvImporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.WindgateTsvExporterGenerator">
+      </classpath>
+   </extension>
+
 </plugin>

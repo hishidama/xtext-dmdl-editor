@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="jp.hishidama.eclipse_plugin.dmdl_editor" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="jp.hishidama.eclipse_plugin.dmdl_editor.ui" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="jp.hishidama.eclipse_plugin.dmdl_editor" id="dmdlImporterExporterGenerator" name="DMDL Importer/Exporter generator"/>
+         <meta.schema plugin="jp.hishidama.eclipse_plugin.dmdl_editor.ui" id="dmdlImporterExporterGenerator" name="DMDL Importer/Exporter generator"/>
       </appinfo>
       <documentation>
          DMDLからImporter/Exporterを生成するクラス
@@ -55,7 +55,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="jp.hishidama.eclipse_plugin.dmdl_editor.extension.DMDLImporterExporterGenerator:"/>
+                  <meta.attribute kind="java" basedOn="jp.hishidama.eclipse_plugin.dmdl_editor.ui.extension.DMDLImporterExporterGenerator:"/>
                </appinfo>
             </annotation>
          </attribute>

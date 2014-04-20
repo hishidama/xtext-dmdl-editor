@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.config.AsakusafwProperties;
-import jp.hishidama.xtext.dmdl_editor.extension.DMDLImporterExporterGenerator;
+import jp.hishidama.xtext.dmdl_editor.ui.extension.DMDLImporterExporterGenerator;
 
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ISelectionChangedListener;

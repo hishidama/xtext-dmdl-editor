@@ -10,10 +10,6 @@ public class ExtensionUtil {
 		return extensionLoader;
 	}
 
-	public static List<DMDLImporterExporterGenerator> getImporterExporterGenerators() {
-		return getExtensionLoader().getImporterExporterGenerators();
-	}
-
 	public static List<DMDLAttributeWizardDefinition> getAttributeWizardDefinitions() {
 		return getExtensionLoader().getAttributeWizardDefinitions();
 	}

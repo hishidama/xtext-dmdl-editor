@@ -1,4 +1,4 @@
-package jp.hishidama.xtext.dmdl_editor.extension;
+package jp.hishidama.xtext.dmdl_editor.ui.extension;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +12,7 @@ import jp.hishidama.eclipse_plugin.java.ClassGenerator;
 import jp.hishidama.eclipse_plugin.util.FileUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
 import org.eclipse.core.resources.IFile;
@@ -213,13 +214,13 @@ public abstract class DMDLImporterExporterGenerator extends ClassGenerator {
 	protected String getValue(String key) {
 		if (key.equals(KEY_MODEL_CLASS_NAME)) {
 			String modelName = model.getName();
-			return DMDLStringUtil.getModelClass(project, modelName);
+			return ModelUiUtil.getModelClassName(project, modelName);
 		}
 		return map.get(key);
 	}
 
-	protected String getGeneratedClassName(String middle, String simpleName) {
-		String pack = properties.getModelgenPackage();
+	protected String getGeneratedClassName(String modelName, String middle, String simpleName) {
+		String pack = ModelUiUtil.getModelPackageName(project, modelName);
 
 		StringBuilder sb = new StringBuilder(64);
 		sb.append(pack);
@@ -242,12 +243,13 @@ public abstract class DMDLImporterExporterGenerator extends ClassGenerator {
 	}
 
 	protected String getExtendsClassName() {
-		String camelName = StringUtil.toCamelCase(model.getName());
-		String fullName = getExtendsClassName(camelName);
+		String modelName = model.getName();
+		String camelName = StringUtil.toCamelCase(modelName);
+		String fullName = getExtendsClassName(modelName, camelName);
 		return getCachedClassName(fullName);
 	}
 
-	protected abstract String getExtendsClassName(String modelCamelName);
+	protected abstract String getExtendsClassName(String modelName, String modelCamelName);
 
 	protected abstract void appendMethods(StringBuilder sb);
 

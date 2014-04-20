@@ -1,28 +1,8 @@
 package jp.hishidama.xtext.dmdl_editor.util;
 
-import static jp.hishidama.eclipse_plugin.util.StringUtil.*;
-import jp.hishidama.eclipse_plugin.asakusafw_wrapper.config.AsakusafwProperties;
-import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.BuildPropertiesUtil;
-
-import org.eclipse.core.resources.IProject;
+import static jp.hishidama.eclipse_plugin.util.StringUtil.toCamelCase;
 
 public class DMDLStringUtil {
-
-	public static String getModelClass(IProject project, String modelName) {
-		if (project == null || modelName == null) {
-			return null;
-		}
-		AsakusafwProperties bp = BuildPropertiesUtil.getBuildProperties(project, false);
-		if (bp == null) {
-			return null;
-		}
-		String pack = bp.getModelgenPackage();
-		if (pack == null) {
-			return null;
-		}
-		String sname = toCamelCase(modelName);
-		return pack + ".dmdl.model." + sname;
-	}
 
 	public static String replace(String s, String modelName, String propName, String propDesc) {
 		StringBuilder sb = new StringBuilder(s.length());

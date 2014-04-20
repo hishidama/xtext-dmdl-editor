@@ -1,4 +1,5 @@
-package jp.hishidama.xtext.dmdl_editor.extension;
+package jp.hishidama.xtext.dmdl_editor.ui.extension;
+
 
 /**
  * WindGateのImporter/Exporterクラスのソースを生成する.

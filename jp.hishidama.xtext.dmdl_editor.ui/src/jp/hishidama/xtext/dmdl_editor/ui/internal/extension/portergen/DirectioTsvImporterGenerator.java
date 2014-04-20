@@ -1,6 +1,6 @@
-package jp.hishidama.xtext.dmdl_editor.internal.extension.portergen;
+package jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen;
 
-import jp.hishidama.xtext.dmdl_editor.extension.DirectioGenerator;
+import jp.hishidama.xtext.dmdl_editor.ui.extension.DirectioGenerator;
 
 public class DirectioTsvImporterGenerator extends DirectioGenerator {
 
@@ -26,9 +26,9 @@ public class DirectioTsvImporterGenerator extends DirectioGenerator {
 	}
 
 	@Override
-	protected String getExtendsClassName(String modelCamelName) {
+	protected String getExtendsClassName(String modelName, String modelCamelName) {
 		String sname = String.format("Abstract%sTsvInputDescription", modelCamelName);
-		return getGeneratedClassName(".dmdl.tsv.", sname);
+		return getGeneratedClassName(modelName, ".tsv.", sname);
 	}
 
 	@Override

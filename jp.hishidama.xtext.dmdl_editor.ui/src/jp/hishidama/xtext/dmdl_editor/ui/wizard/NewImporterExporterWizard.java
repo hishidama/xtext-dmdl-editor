@@ -10,8 +10,8 @@ import jp.hishidama.eclipse_plugin.asakusafw_wrapper.config.AsakusafwProperties;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.BuildPropertiesUtil;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.DMDLFileUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
-import jp.hishidama.xtext.dmdl_editor.extension.DMDLImporterExporterGenerator;
-import jp.hishidama.xtext.dmdl_editor.extension.ExtensionUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.extension.DMDLImporterExporterGenerator;
+import jp.hishidama.xtext.dmdl_editor.ui.extension.ExtensionUiUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SelectDataModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SelectDataModelPage.ModelFile;
@@ -48,7 +48,7 @@ public class NewImporterExporterWizard extends Wizard implements IWorkbenchWizar
 
 	@Override
 	public void addPages() {
-		List<DMDLImporterExporterGenerator> gens = ExtensionUtil.getImporterExporterGenerators();
+		List<DMDLImporterExporterGenerator> gens = ExtensionUiUtil.getImporterExporterGenerators();
 
 		modelPage = new SelectDataModelPage("Importer/Exporterを作成するデータモデルの指定", list);
 		modelPage.setDescription("Importer/Exporterを作成するデータモデルを選択して下さい。");

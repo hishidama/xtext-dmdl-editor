@@ -1,6 +1,6 @@
-package jp.hishidama.xtext.dmdl_editor.internal.extension.portergen;
+package jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen;
 
-import jp.hishidama.xtext.dmdl_editor.extension.WindgateGenerator;
+import jp.hishidama.xtext.dmdl_editor.ui.extension.WindgateGenerator;
 
 public class WindgateJdbcExporterGenerator extends WindgateGenerator {
 
@@ -26,9 +26,9 @@ public class WindgateJdbcExporterGenerator extends WindgateGenerator {
 	}
 
 	@Override
-	protected String getExtendsClassName(String modelCamelName) {
+	protected String getExtendsClassName(String modelName, String modelCamelName) {
 		String sname = String.format("Abstract%sJdbcExporterDescription", modelCamelName);
-		return getGeneratedClassName(".dmdl.jdbc.", sname);
+		return getGeneratedClassName(modelName, ".jdbc.", sname);
 	}
 
 	@Override

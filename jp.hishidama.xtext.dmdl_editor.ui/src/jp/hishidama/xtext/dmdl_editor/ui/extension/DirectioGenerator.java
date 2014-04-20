@@ -1,4 +1,4 @@
-package jp.hishidama.xtext.dmdl_editor.extension;
+package jp.hishidama.xtext.dmdl_editor.ui.extension;
 
 import java.text.MessageFormat;
 

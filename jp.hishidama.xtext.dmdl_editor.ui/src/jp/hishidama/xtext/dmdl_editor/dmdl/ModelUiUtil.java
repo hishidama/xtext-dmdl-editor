@@ -1,9 +1,13 @@
 package jp.hishidama.xtext.dmdl_editor.dmdl;
 
+import static jp.hishidama.eclipse_plugin.util.StringUtil.toCamelCase;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.config.AsakusafwProperties;
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.BuildPropertiesUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.search.DMDLEObjectSearch;
@@ -21,6 +25,70 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.ui.editor.GlobalURIEditorOpener;
 
 public class ModelUiUtil {
+
+	public static String getModelClassName(IProject project, String modelName) {
+		String pack = getModelPackageName(project, modelName);
+		if (pack == null) {
+			return null;
+		}
+
+		String sname = toCamelCase(modelName);
+		return pack + ".model." + sname;
+	}
+
+	public static String getModelPackageName(IProject project, String modelName) {
+		if (project == null || modelName == null) {
+			return null;
+		}
+		AsakusafwProperties bp = BuildPropertiesUtil.getBuildProperties(project, false);
+		if (bp == null) {
+			return null;
+		}
+		String pack = bp.getModelgenPackage();
+		if (pack == null) {
+			return null;
+		}
+		ModelDefinition model = findModel(project, modelName);
+		String name = getNamespace(model);
+		if (name == null) {
+			name = "dmdl";
+		}
+		return pack + "." + name;
+	}
+
+	private static String getNamespace(ModelDefinition model) {
+		if (model == null) {
+			return null;
+		}
+		AttributeList attributeList = model.getAttributes();
+		if (attributeList == null) {
+			return null;
+		}
+		for (Attribute attribute : attributeList.getAttributes()) {
+			if ("namespace".equals(attribute.getName())) {
+				AttributeElementBlock block = attribute.getElementBlock();
+				if (block == null) {
+					return null;
+				}
+				AttributeElementList elementList = block.getElements();
+				if (elementList == null) {
+					return null;
+				}
+				for (AttributeElement element : elementList.getElements()) {
+					if ("value".equals(element.getName())) {
+						EObject object = element.getValue().getValue();
+						if (object instanceof QualifiedNameObject) {
+							QualifiedNameObject value = (QualifiedNameObject) object;
+							return value.getName();
+						}
+						return null;
+					}
+				}
+				return null;
+			}
+		}
+		return null;
+	}
 
 	public static ModelDefinition findModel(IProject project, String modelName, IRunnableContext container) {
 		if (project == null || modelName == null) {

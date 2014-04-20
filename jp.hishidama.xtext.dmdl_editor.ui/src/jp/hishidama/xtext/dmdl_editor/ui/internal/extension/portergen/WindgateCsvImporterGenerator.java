@@ -1,6 +1,6 @@
-package jp.hishidama.xtext.dmdl_editor.internal.extension.portergen;
+package jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen;
 
-import jp.hishidama.xtext.dmdl_editor.extension.WindgateGenerator;
+import jp.hishidama.xtext.dmdl_editor.ui.extension.WindgateGenerator;
 
 public class WindgateCsvImporterGenerator extends WindgateGenerator {
 
@@ -27,9 +27,9 @@ public class WindgateCsvImporterGenerator extends WindgateGenerator {
 	}
 
 	@Override
-	protected String getExtendsClassName(String modelCamelName) {
+	protected String getExtendsClassName(String modelName, String modelCamelName) {
 		String sname = String.format("Abstract%sCsvImporterDescription", modelCamelName);
-		return getGeneratedClassName(".dmdl.csv.", sname);
+		return getGeneratedClassName(modelName, ".csv.", sname);
 	}
 
 	@Override
