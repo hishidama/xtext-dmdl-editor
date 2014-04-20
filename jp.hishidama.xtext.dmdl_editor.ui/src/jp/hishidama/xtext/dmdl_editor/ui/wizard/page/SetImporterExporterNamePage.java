@@ -21,11 +21,14 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.TraverseEvent;
 import org.eclipse.swt.events.TraverseListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
@@ -125,6 +128,41 @@ public class SetImporterExporterNamePage extends WizardPage {
 					}
 				}
 			});
+		}
+
+		{
+			Composite field = new Composite(composite, SWT.NONE);
+			GridData grid = new GridData(GridData.FILL_HORIZONTAL);
+			grid.horizontalSpan = 2;
+			field.setLayoutData(grid);
+			field.setLayout(new GridLayout(2, false));
+
+			{
+				Button button = new Button(field, SWT.PUSH);
+				button.setText("select all");
+				button.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						for (TableItem item : table.getItems()) {
+							item.setChecked(true);
+						}
+						validate(true);
+					}
+				});
+			}
+			{
+				Button button = new Button(field, SWT.PUSH);
+				button.setText("deselect all");
+				button.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						for (TableItem item : table.getItems()) {
+							item.setChecked(false);
+						}
+						validate(true);
+					}
+				});
+			}
 		}
 
 		{
