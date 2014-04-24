@@ -90,7 +90,7 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:jp.hishidama.xtext.dmdl_editor.ui.editor.preferences.DMDLRootPreferencePage"
             id="jp.hishidama.xtext.dmdl_editor.DMDL"
             name="DMDL EditorX">
             <keywordReference id="jp.hishidama.xtext.dmdl_editor.ui.keyword_DMDL"/>
@@ -113,7 +113,7 @@
     <extension
             point="org.eclipse.ui.propertyPages">
         <page
-            class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:jp.hishidama.xtext.dmdl_editor.ui.editor.preferences.DMDLRootPreferencePage"
             id="jp.hishidama.xtext.dmdl_editor.DMDL"
             name="DMDL EditorX">
             <keywordReference id="jp.hishidama.xtext.dmdl_editor.ui.keyword_DMDL"/>

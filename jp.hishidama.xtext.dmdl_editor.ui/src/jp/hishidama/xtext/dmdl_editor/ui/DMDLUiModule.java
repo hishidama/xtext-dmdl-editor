@@ -3,6 +3,7 @@
  */
 package jp.hishidama.xtext.dmdl_editor.ui;
 
+import jp.hishidama.xtext.dmdl_editor.ui.editor.model.DMDLDocumentProvider;
 import jp.hishidama.xtext.dmdl_editor.ui.formatting.DMDLWhitespaceInformationProvider;
 import jp.hishidama.xtext.dmdl_editor.ui.highlighting.DMDLHighlightingConfiguration;
 import jp.hishidama.xtext.dmdl_editor.ui.highlighting.DMDLLexicalTokenToAttributeIdMapper;
@@ -14,6 +15,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.formatting.IWhitespaceInformationProvider;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
+import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
@@ -57,5 +59,9 @@ public class DMDLUiModule extends jp.hishidama.xtext.dmdl_editor.ui.AbstractDMDL
 	public void configureKeyBindingScope(com.google.inject.Binder binder) {
 		binder.bind(String.class).annotatedWith(Names.named(XtextEditor.KEY_BINDING_SCOPE))
 				.toInstance("jp.hishidama.xtext.dmdl_editor.DMDLEditorScope");
+	}
+
+	public Class<? extends XtextDocumentProvider> bindXtextDocumentProvider() {
+		return DMDLDocumentProvider.class;
 	}
 }
