@@ -25,10 +25,10 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchWizard;
 
-public class NewImporterExporterWizard extends Wizard implements IWorkbenchWizard {
+public class NewImporterExporterWizard extends Wizard implements INewWizard {
 
 	private SelectDataModelPage modelPage;
 	private SetImporterExporterNamePage namePage;
