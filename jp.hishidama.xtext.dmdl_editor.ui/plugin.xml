@@ -614,6 +614,16 @@
             フロー演算子クラスを作成します。
          </description>
       </wizard>
+      <wizard
+            category="jp.hishidama.xtext.dmdl_editor.ui.wizard-category"
+            class="jp.hishidama.xtext.dmdl_editor.ui.wizard.NewBatchClassWizard"
+            icon="icons/newclass_wiz.gif"
+            id="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-batch-class"
+            name="New Batch class">
+         <description>
+            バッチクラスを作成します。
+         </description>
+      </wizard>
    </extension>
    <extension
          point="org.eclipse.ui.workbench.texteditor.hyperlinkDetectors">
