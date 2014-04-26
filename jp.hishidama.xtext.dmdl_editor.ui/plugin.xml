@@ -594,6 +594,16 @@
             データモデルからImporter/Exporterクラスを生成します。
          </description>
       </wizard>
+      <wizard
+            category="jp.hishidama.xtext.dmdl_editor.ui.wizard-category"
+            class="jp.hishidama.xtext.dmdl_editor.ui.wizard.NewJobflowClassWizard"
+            icon="icons/newclass_wiz.gif"
+            id="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-jobflow-class"
+            name="New JobFlow class">
+         <description>
+            ジョブフロークラスを作成します。
+         </description>
+      </wizard>
    </extension>
    <extension
          point="org.eclipse.ui.workbench.texteditor.hyperlinkDetectors">
