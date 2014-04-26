@@ -498,7 +498,7 @@
                   style="push">
                <parameter
                      name="newWizardId"
-                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-importer-exporter">
+                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-porter-class">
                </parameter>
             </command>
          </menu>
@@ -552,7 +552,7 @@
                   style="push">
                <parameter
                      name="newWizardId"
-                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-importer-exporter">
+                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-porter-class">
                </parameter>
             </command>
          </toolbar>
@@ -588,7 +588,7 @@
             category="jp.hishidama.xtext.dmdl_editor.ui.wizard-category"
             class="jp.hishidama.xtext.dmdl_editor.ui.wizard.NewImporterExporterWizard"
             icon="icons/newclass_wiz.gif"
-            id="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-importer-exporter"
+            id="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-porter-class"
             name="New Importer/Exporter class">
          <description>
             データモデルからImporter/Exporterクラスを生成します。
