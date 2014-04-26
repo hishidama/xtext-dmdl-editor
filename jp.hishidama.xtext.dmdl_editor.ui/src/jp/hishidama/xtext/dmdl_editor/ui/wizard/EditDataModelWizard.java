@@ -2,11 +2,11 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.CreateDataModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.DataModelType;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.ModifyPropertyAttributePage;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SetDataModelNamePage;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.ModifyModelAttributePage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.CreateDataModelPage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.ModifyModelAttributePage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.ModifyPropertyAttributePage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.SetDataModelNamePage;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.wizard.IWizardPage;

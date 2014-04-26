@@ -6,13 +6,13 @@ import java.util.List;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.DMDLFileUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SelectAddRemovePage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SelectDataModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SelectDataModelPage.ModelFile;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SetAddAttributePage;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SetAttributePage;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SetRemoveAttributePage;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.update.AttributeUpdater;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.attribute.SelectAddRemovePage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.attribute.SetAddAttributePage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.attribute.SetAttributePage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.attribute.SetRemoveAttributePage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.attribute.update.AttributeUpdater;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;

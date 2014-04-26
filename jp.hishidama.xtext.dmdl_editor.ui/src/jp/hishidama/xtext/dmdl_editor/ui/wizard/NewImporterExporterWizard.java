@@ -15,8 +15,8 @@ import jp.hishidama.xtext.dmdl_editor.ui.extension.ExtensionUiUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SelectDataModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SelectDataModelPage.ModelFile;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SetImporterExporterMethodPage;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SetImporterExporterNamePage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.porter.SetImporterExporterMethodPage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.porter.SetImporterExporterNamePage;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
