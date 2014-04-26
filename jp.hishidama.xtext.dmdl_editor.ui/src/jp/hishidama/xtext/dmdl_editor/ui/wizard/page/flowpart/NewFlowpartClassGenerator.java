@@ -1,4 +1,4 @@
-package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.jobflow;
+package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart;
 
 import java.util.List;
 
@@ -13,22 +13,22 @@ import org.eclipse.core.runtime.IPath;
 import jp.hishidama.eclipse_plugin.java.ClassGenerator;
 import jp.hishidama.eclipse_plugin.util.FileUtil;
 
-public class NewJobflowClassGenerator extends ClassGenerator {
+public class NewFlowpartClassGenerator extends ClassGenerator {
 	private IProject project;
 	private IPath srcDir;
 
-	private String jobflowName;
-	private List<JobflowPorterRow> porterList;
+	private List<FlowpartModelRow> modelList;
+	private List<ArgumentRow> argList;
 
-	public NewJobflowClassGenerator(IProject project, IPath dir) {
+	public NewFlowpartClassGenerator(IProject project, IPath dir) {
 		this.project = project;
 		this.srcDir = dir;
 	}
 
-	public void generate(String packageName, String className, String jobflowName, List<JobflowPorterRow> list)
-			throws CoreException {
-		this.jobflowName = jobflowName;
-		this.porterList = list;
+	public void generate(String packageName, String className, List<FlowpartModelRow> modelList,
+			List<ArgumentRow> argList) throws CoreException {
+		this.modelList = modelList;
+		this.argList = argList;
 
 		String contents = super.generate(packageName, className);
 
@@ -68,22 +68,27 @@ public class NewJobflowClassGenerator extends ClassGenerator {
 
 	private void appendAnnotation(StringBuilder sb) {
 		sb.append("@");
-		sb.append(getCachedClassName("com.asakusafw.vocabulary.flow.JobFlow"));
-		sb.append("(name = \"");
-		sb.append(jobflowName);
-		sb.append("\")\n");
+		sb.append(getCachedClassName("com.asakusafw.vocabulary.flow.FlowPart"));
+		sb.append("\n");
 	}
 
 	private void appendFields(StringBuilder sb) {
 		sb.append("\n");
-		for (JobflowPorterRow row : porterList) {
+		for (FlowpartModelRow row : modelList) {
 			sb.append("\tprivate final ");
 			appendVariableDefinition(sb, row);
 			sb.append(";\n");
 		}
+		for (ArgumentRow row : argList) {
+			sb.append("\tprivate ");
+			sb.append(getCachedClassName(row.type));
+			sb.append(" ");
+			sb.append(row.name);
+			sb.append(";\n");
+		}
 	}
 
-	protected void appendVariableDefinition(StringBuilder sb, JobflowPorterRow row) {
+	protected void appendVariableDefinition(StringBuilder sb, FlowpartModelRow row) {
 		if (row.in) {
 			sb.append(getCachedClassName("com.asakusafw.vocabulary.flow.In"));
 		} else {
@@ -99,31 +104,39 @@ public class NewJobflowClassGenerator extends ClassGenerator {
 		sb.append("\n");
 		sb.append("\tpublic ");
 		sb.append(className);
-		sb.append("(\n");
+		sb.append("(");
 
-		int i = 0;
-		for (JobflowPorterRow row : porterList) {
-			sb.append("\t\t@");
-			if (row.in) {
-				sb.append(getCachedClassName("com.asakusafw.vocabulary.flow.Import"));
+		boolean first = true;
+		for (FlowpartModelRow row : modelList) {
+			if (first) {
+				first = false;
 			} else {
-				sb.append(getCachedClassName("com.asakusafw.vocabulary.flow.Export"));
-			}
-			sb.append("(name = \"");
-			sb.append(row.name);
-			sb.append("\", description = ");
-			sb.append(getCachedClassName(row.porterClassName));
-			sb.append(".class) ");
-
-			appendVariableDefinition(sb, row);
-			if (++i < porterList.size()) {
 				sb.append(",");
 			}
-			sb.append("\n");
+			sb.append("\n\t\t");
+			appendVariableDefinition(sb, row);
 		}
-		sb.append("\t) {\n");
+		for (ArgumentRow row : argList) {
+			if (first) {
+				first = false;
+			} else {
+				sb.append(",");
+			}
+			sb.append("\n\t\t");
+			sb.append(getCachedClassName(row.type));
+			sb.append(" ");
+			sb.append(row.name);
+		}
+		sb.append("\n\t) {\n");
 
-		for (JobflowPorterRow row : porterList) {
+		for (FlowpartModelRow row : modelList) {
+			sb.append("\t\tthis.");
+			sb.append(row.name);
+			sb.append(" = ");
+			sb.append(row.name);
+			sb.append(";\n");
+		}
+		for (ArgumentRow row : argList) {
 			sb.append("\t\tthis.");
 			sb.append(row.name);
 			sb.append(" = ");

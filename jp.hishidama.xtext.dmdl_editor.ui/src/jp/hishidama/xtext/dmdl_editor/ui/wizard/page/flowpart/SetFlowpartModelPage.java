@@ -1,4 +1,4 @@
-package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.jobflow;
+package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart;
 
 import java.text.MessageFormat;
 import java.util.HashSet;
@@ -7,9 +7,9 @@ import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.jface.ModifiableTable;
 import jp.hishidama.eclipse_plugin.wizard.page.EditWizardPage;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.NewJobflowClassWizard;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.NewFlowpartClassWizard;
 
-import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -19,17 +19,17 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
-public class SetJobflowPorterPage extends EditWizardPage {
+public class SetFlowpartModelPage extends EditWizardPage {
 
-	private IJavaProject javaProject;
+	private IProject project;
 
-	private JobflowPorterTable table;
+	private FlowpartModelTable table;
 
-	public SetJobflowPorterPage() {
-		super("SetJobflowPorterPage");
+	public SetFlowpartModelPage() {
+		super("SetFlowpartModelPage");
 
-		setTitle("Set Importer/Exporter");
-		setDescription("Set importer/exporter for JobFlow.");
+		setTitle("Set In/Out DataModel");
+		setDescription("Set data model for FlowPart.");
 	}
 
 	@Override
@@ -43,11 +43,10 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		layout.numColumns = nColumns;
 		composite.setLayout(layout);
 
-		createLabel(composite, "Importer/Exporter:");
-		table = new JobflowPorterTable(composite);
-		table.addColumn("in/out", 64 + 8, SWT.NONE);
+		createLabel(composite, "data model:");
+		table = new FlowpartModelTable(composite);
+		table.addColumn("in/out", 64, SWT.NONE);
 		table.addColumn("name", 128, SWT.NONE);
-		table.addColumn("class", 256 + 32, SWT.NONE);
 		table.addColumn("model name", 128, SWT.NONE);
 		table.addColumn("model description", 128, SWT.NONE);
 
@@ -68,24 +67,24 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		this.visible = visible;
 		super.setVisible(visible);
 		if (visible) {
-			this.javaProject = getWizard().getJavaProject();
+			this.project = getWizard().getProject();
 		}
 	}
 
 	@Override
-	public NewJobflowClassWizard getWizard() {
-		return (NewJobflowClassWizard) super.getWizard();
+	public NewFlowpartClassWizard getWizard() {
+		return (NewFlowpartClassWizard) super.getWizard();
 	}
 
 	@Override
 	protected String validate() {
-		List<JobflowPorterRow> list = table.getElementList();
+		List<FlowpartModelRow> list = table.getElementList();
 		if (list.isEmpty()) {
-			return "Importer/Exporterは必須です。";
+			return "In/Outは必須です。";
 		}
 
 		Set<String> set = new HashSet<String>();
-		for (JobflowPorterRow element : list) {
+		for (FlowpartModelRow element : list) {
 			String name = element.name;
 			if (set.contains(name)) {
 				return MessageFormat.format("duplicate name. name={0}", name);
@@ -95,9 +94,9 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		return null;
 	}
 
-	protected class JobflowPorterTable extends ModifiableTable<JobflowPorterRow> {
+	protected class FlowpartModelTable extends ModifiableTable<FlowpartModelRow> {
 
-		public JobflowPorterTable(Composite parent) {
+		public FlowpartModelTable(Composite parent) {
 			super(parent, SWT.BORDER | SWT.MULTI | SWT.FULL_SELECTION);
 		}
 
@@ -105,7 +104,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		protected void createAddButton(Composite field) {
 			{
 				Button button = new Button(field, SWT.PUSH);
-				button.setText("add Importer");
+				button.setText("add In");
 				button.addSelectionListener(new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
@@ -115,7 +114,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 			}
 			{
 				Button button = new Button(field, SWT.PUSH);
-				button.setText("add Exporter");
+				button.setText("add Out");
 				button.addSelectionListener(new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
@@ -126,17 +125,15 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		}
 
 		@Override
-		protected String getText(JobflowPorterRow element, int columnIndex) {
+		protected String getText(FlowpartModelRow element, int columnIndex) {
 			switch (columnIndex) {
 			case 0:
 				return element.getIn();
 			case 1:
 				return element.name;
 			case 2:
-				return element.porterClassName;
-			case 3:
 				return element.modelName;
-			case 4:
+			case 3:
 				return element.modelDescription;
 			default:
 				throw new UnsupportedOperationException("columnIndex=" + columnIndex);
@@ -144,22 +141,22 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		}
 
 		protected void doAdd(boolean in) {
-			JobflowPorterRow element = createElement();
+			FlowpartModelRow element = createElement();
 			element.in = in;
-			EditJobflowPorterDialog dialog = new EditJobflowPorterDialog(getShell(), javaProject, element);
+			EditFlowpartModelDialog dialog = new EditFlowpartModelDialog(getShell(), project, element);
 			if (dialog.open() == Window.OK) {
 				super.doAdd(element);
 			}
 		}
 
 		@Override
-		protected JobflowPorterRow createElement() {
-			return new JobflowPorterRow();
+		protected FlowpartModelRow createElement() {
+			return new FlowpartModelRow();
 		}
 
 		@Override
-		protected void editElement(JobflowPorterRow element) {
-			EditJobflowPorterDialog dialog = new EditJobflowPorterDialog(getShell(), javaProject, element);
+		protected void editElement(FlowpartModelRow element) {
+			EditFlowpartModelDialog dialog = new EditFlowpartModelDialog(getShell(), project, element);
 			dialog.open();
 		}
 
@@ -170,7 +167,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		}
 	}
 
-	public List<JobflowPorterRow> getPorterList() {
+	public List<FlowpartModelRow> getDataModelList() {
 		return table.getElementList();
 	}
 }

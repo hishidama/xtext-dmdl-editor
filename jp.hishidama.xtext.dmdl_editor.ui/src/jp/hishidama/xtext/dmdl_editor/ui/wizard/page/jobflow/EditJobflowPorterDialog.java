@@ -44,9 +44,10 @@ public class EditJobflowPorterDialog extends EditDialog {
 		inText.setEnabled(false);
 		nameText = createTextField(composite, "name");
 		nameText.setText(nonNull(row.name));
-		TextButtonPair pair = createTextButtonField(composite, "class", "...");
+		TextButtonPair pair = createTextButtonField(composite, "class", "select");
 		classText = pair.text;
 		classText.setText(nonNull(row.porterClassName));
+		classText.setEditable(false);
 		pair.button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
