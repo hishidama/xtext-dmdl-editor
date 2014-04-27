@@ -572,38 +572,50 @@
                </parameter>
             </command>
             <command
+                  id="jp.hishidama.xtext.dmdl_editor.ui.toolbar.newClassWizard"
                   commandId="org.eclipse.ui.newWizard"
-                  style="push">
+                  style="pulldown">
                <parameter
                      name="newWizardId"
                      value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-porter-class">
                </parameter>
             </command>
-            <command
-                  commandId="org.eclipse.ui.newWizard"
-                  style="push">
-               <parameter
-                     name="newWizardId"
-                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-jobflow-class">
-               </parameter>
-            </command>
-            <command
-                  commandId="org.eclipse.ui.newWizard"
-                  style="push">
-               <parameter
-                     name="newWizardId"
-                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-flowpart-class">
-               </parameter>
-            </command>
-            <command
-                  commandId="org.eclipse.ui.newWizard"
-                  style="push">
-               <parameter
-                     name="newWizardId"
-                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-batch-class">
-               </parameter>
-            </command>
          </toolbar>
+      </menuContribution>
+      <menuContribution
+            locationURI="menu:jp.hishidama.xtext.dmdl_editor.ui.toolbar.newClassWizard">
+         <command
+               commandId="org.eclipse.ui.newWizard"
+               style="pulldown">
+            <parameter
+                  name="newWizardId"
+                  value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-porter-class">
+            </parameter>
+         </command>
+         <command
+               commandId="org.eclipse.ui.newWizard"
+               style="push">
+            <parameter
+                  name="newWizardId"
+                  value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-jobflow-class">
+            </parameter>
+         </command>
+         <command
+               commandId="org.eclipse.ui.newWizard"
+               style="push">
+            <parameter
+                  name="newWizardId"
+                  value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-flowpart-class">
+            </parameter>
+         </command>
+         <command
+               commandId="org.eclipse.ui.newWizard"
+               style="push">
+            <parameter
+                  name="newWizardId"
+                  value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-batch-class">
+            </parameter>
+         </command>
       </menuContribution>
    </extension>
    <extension
