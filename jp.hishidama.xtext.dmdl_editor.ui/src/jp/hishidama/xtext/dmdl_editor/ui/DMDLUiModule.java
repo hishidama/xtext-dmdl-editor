@@ -8,6 +8,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.formatting.DMDLWhitespaceInformationPro
 import jp.hishidama.xtext.dmdl_editor.ui.highlighting.DMDLHighlightingConfiguration;
 import jp.hishidama.xtext.dmdl_editor.ui.highlighting.DMDLLexicalTokenToAttributeIdMapper;
 import jp.hishidama.xtext.dmdl_editor.ui.highlighting.DMDLSemanticHighlightingCalculator;
+import jp.hishidama.xtext.dmdl_editor.ui.hyperlink.DMDLHyperlinkHelper;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLEditorCallback;
 import jp.hishidama.xtext.dmdl_editor.ui.labeling.DMDLHoverProvider;
 
@@ -15,6 +16,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.formatting.IWhitespaceInformationProvider;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
+import org.eclipse.xtext.ui.editor.hyperlinking.IHyperlinkHelper;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
@@ -54,6 +56,11 @@ public class DMDLUiModule extends jp.hishidama.xtext.dmdl_editor.ui.AbstractDMDL
 
 	public Class<? extends IEObjectHoverProvider> bindHoverProvider() {
 		return DMDLHoverProvider.class;
+	}
+
+	@Override
+	public Class<? extends IHyperlinkHelper> bindIHyperlinkHelper() {
+		return DMDLHyperlinkHelper.class;
 	}
 
 	public void configureKeyBindingScope(com.google.inject.Binder binder) {
