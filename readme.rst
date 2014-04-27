@@ -58,7 +58,12 @@ DMDL EditorXプラグインのインストールは、Eclipseの ``[新規ソフ
 * JavaソースからDMDLへのハイパーリンクによるジャンプが出来る。
     * データモデルクラスのクラス名・メソッド名を ``Ctrl`` を押しながらクリックして ``[Open DMDL]`` を選択すると、定義元のDMDLへジャンプする。
     * または ``Shift+F3`` 。
-* Flow DSLからOperatorへのハイパーリンクによるジャンプが出来る。（DMDLとは直接関係ない機能だが）
+
+DMDLとは直接関係無い機能ですが、以下のようなことも出来ます。
+
+* JobFlow・FlowPart・Batchクラスの雛形を作成することが出来る。
+    * ``[ファイル]→[新規]`` の新規作成ウィザードを開き、DMDL EditorXの「New JobFlow class」「New FlowPart class」「New Batch class」。
+* Flow DSLからOperatorへのハイパーリンクによるジャンプが出来る。
     * オペレーターファクトリークラスのクラス名・メソッド名を ``Ctrl`` を押しながらクリックして ``[Open Operator]`` を選択すると、定義元のOperatorへジャンプする。
     * Asakusa Framework 0.5以降で使用可能。
 
