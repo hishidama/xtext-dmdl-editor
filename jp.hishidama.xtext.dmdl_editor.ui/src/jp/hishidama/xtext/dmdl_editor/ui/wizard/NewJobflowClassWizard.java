@@ -7,9 +7,11 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.jobflow.NewJobflowClassPage
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.jobflow.SetJobflowNamePage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.jobflow.SetJobflowPorterPage;
 
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jface.dialogs.ErrorDialog;
 
 public class NewJobflowClassWizard extends NewClassWizard {
@@ -38,6 +40,11 @@ public class NewJobflowClassWizard extends NewClassWizard {
 
 	public String getTypeName() {
 		return classPage.getTypeName();
+	}
+
+	public IResource getDir() {
+		IPackageFragment fragment = classPage.getPackageFragment();
+		return fragment.getResource();
 	}
 
 	public IJavaProject getJavaProject() {
