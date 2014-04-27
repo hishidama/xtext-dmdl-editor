@@ -1,10 +1,10 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.jobflow;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.eclipse_plugin.dialog.ClassSelectionDialog;
 import jp.hishidama.eclipse_plugin.dialog.ClassSelectionDialog.Filter;
 import jp.hishidama.eclipse_plugin.dialog.ClassSelectionImplementsFilter;
 import jp.hishidama.eclipse_plugin.dialog.EditDialog;
-import jp.hishidama.eclipse_plugin.jdt.util.ReflectionUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
@@ -71,9 +71,9 @@ public class EditJobflowPorterDialog extends EditDialog {
 	protected void selectPorterClass() {
 		Filter filter;
 		if (row.in) {
-			filter = new ClassSelectionImplementsFilter("com.asakusafw.vocabulary.external.ImporterDescription");
+			filter = new ClassSelectionImplementsFilter(PorterUtil.IMPORTER_NAME);
 		} else {
-			filter = new ClassSelectionImplementsFilter("com.asakusafw.vocabulary.external.ExporterDescription");
+			filter = new ClassSelectionImplementsFilter(PorterUtil.EXPORTER_NAME);
 		}
 		ClassSelectionDialog dialog = ClassSelectionDialog.create(getShell(), javaProject, null, filter);
 		dialog.setTitle("Select " + row.getIn());
@@ -85,10 +85,7 @@ public class EditJobflowPorterDialog extends EditDialog {
 		classText.setText(className);
 
 		try {
-			Class<?> clazz = ReflectionUtil.loadClass(javaProject, className);
-			Object object = clazz.newInstance();
-			Class<?> modelType = ReflectionUtil.get(object, "getModelType");
-			String modelClassName = modelType.getName();
+			String modelClassName = PorterUtil.getModelClassName(javaProject, className);
 			this.modelClassName = modelClassName;
 			ModelDefinition model = ModelUiUtil.findModelByClass(javaProject.getProject(), modelClassName);
 			if (model != null) {

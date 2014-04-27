@@ -1,5 +1,7 @@
 package jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
+
 public class WindgateTsvImporterGenerator extends WindgateTsvGenerator {
 
 	@Override
@@ -21,7 +23,7 @@ public class WindgateTsvImporterGenerator extends WindgateTsvGenerator {
 
 	@Override
 	protected String getExtendsClassName(String modelName, String modelCamelName) {
-		return "com.asakusafw.vocabulary.windgate.FsImporterDescription";
+		return PorterUtil.WINDGATE_FS_IMPORTER_NAME;
 	}
 
 	@Override
