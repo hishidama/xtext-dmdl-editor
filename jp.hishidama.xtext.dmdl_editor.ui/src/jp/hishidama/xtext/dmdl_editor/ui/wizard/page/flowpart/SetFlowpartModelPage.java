@@ -6,7 +6,12 @@ import java.util.List;
 import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.jface.ModifiableTable;
+import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.eclipse_plugin.wizard.page.EditWizardPage;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.dialog.DmdlModelMultiSelectionDialog;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.NewFlowpartClassWizard;
 
 import org.eclipse.core.resources.IProject;
@@ -141,11 +146,22 @@ public class SetFlowpartModelPage extends EditWizardPage {
 		}
 
 		protected void doAdd(boolean in) {
-			FlowpartModelRow element = createElement();
-			element.in = in;
-			EditFlowpartModelDialog dialog = new EditFlowpartModelDialog(getShell(), project, element);
-			if (dialog.open() == Window.OK) {
-				super.doAdd(element);
+			DmdlModelMultiSelectionDialog dialog = new DmdlModelMultiSelectionDialog(getShell(), project);
+			if (dialog.open() != Window.OK) {
+				return;
+			}
+
+			List<ModelDefinition> list = dialog.getSelectedDataModelList();
+			for (ModelDefinition model : list) {
+				String modelName = model.getName();
+
+				FlowpartModelRow row = createElement();
+				row.in = in;
+				row.name = StringUtil.toLowerCamelCase(modelName);
+				row.modelClassName = ModelUiUtil.getModelClassName(project, modelName);
+				row.modelName = modelName;
+				row.modelDescription = ModelUtil.getDecodedDescriptionText(model);
+				super.doAdd(row);
 			}
 		}
 
