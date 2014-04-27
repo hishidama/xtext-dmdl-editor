@@ -1,5 +1,6 @@
 package jp.hishidama.xtext.dmdl_editor.jdt.hyperlink;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.eclipse_plugin.jdt.hyperlink.JdtHyperlinkDetector;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
@@ -12,6 +13,7 @@ import org.eclipse.jdt.core.IField;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.hyperlink.IHyperlink;
 
@@ -69,6 +71,24 @@ public class OpenDeclaredDmdlHyperlinkDetector extends JdtHyperlinkDetector {
 	private static ModelDefinition findModel(IType type) {
 		IProject project = type.getJavaProject().getProject();
 		String name = type.getElementName();
-		return ModelUiUtil.findModelByClass(project, name);
+		ModelDefinition model = ModelUiUtil.findModelByClass(project, name);
+		if (model != null) {
+			return model;
+		}
+		try {
+			if (type.isClass()) {
+				if (PorterUtil.isPorter(type)) {
+					String modelClassName = PorterUtil.getModelClassName(type.getJavaProject(),
+							type.getFullyQualifiedName());
+					model = ModelUiUtil.findModelByClass(project, modelClassName);
+					if (model != null) {
+						return model;
+					}
+				}
+			}
+		} catch (JavaModelException e) {
+			// do nothing
+		}
+		return null;
 	}
 }
