@@ -1,9 +1,7 @@
-package jp.hishidama.xtext.dmdl_editor.jdt.hyperlink;
+package jp.hishidama.xtext.dmdl_editor.jdt.assist;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
-import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
-import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -15,44 +13,21 @@ import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.MemberValuePair;
 import org.eclipse.jdt.core.dom.NormalAnnotation;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
-import org.eclipse.jdt.core.dom.StringLiteral;
-import org.eclipse.jface.text.IRegion;
-import org.eclipse.jface.text.Region;
 
-public class PropertyStringFinder extends ASTVisitor {
+public class ModelFinder extends ASTVisitor {
 	private ICompilationUnit unit;
 	private int offset;
 
-	private IRegion region;
-	private Region textRegion;
-	private String text;
 	private SingleVariableDeclaration declaration;
 	private String memberName;
-	private String propertyName;
 
-	public PropertyStringFinder(ICompilationUnit unit, int offset) {
+	public ModelFinder(ICompilationUnit unit, int offset) {
 		this.unit = unit;
 		this.offset = offset;
 	}
 
 	public String getMemberName() {
 		return memberName;
-	}
-
-	public String getPropertyName() {
-		visit();
-		return propertyName;
-	}
-
-	public Property getProperty() {
-		visit();
-		if (propertyName == null) {
-			return null;
-		}
-
-		ModelDefinition model = getModel();
-		Property property = ModelUtil.findProperty(model, propertyName);
-		return property;
 	}
 
 	private ModelDefinition model;
@@ -76,21 +51,6 @@ public class PropertyStringFinder extends ASTVisitor {
 		}
 		this.model = ModelUiUtil.findModelByClass(project, modelClassName);
 		return model;
-	}
-
-	public IRegion getRegion() {
-		visit();
-		return region;
-	}
-
-	public String getText() {
-		visit();
-		return text;
-	}
-
-	public IRegion getTextRegion() {
-		visit();
-		return textRegion;
 	}
 
 	private boolean visited = false;
@@ -117,7 +77,7 @@ public class PropertyStringFinder extends ASTVisitor {
 
 	@Override
 	public void endVisit(SingleVariableDeclaration node) {
-		if (propertyName != null) {
+		if (memberName != null) {
 			if (declaration == null) {
 				this.declaration = node;
 			}
@@ -132,35 +92,11 @@ public class PropertyStringFinder extends ASTVisitor {
 
 	@Override
 	public boolean visit(MemberValuePair node) {
-		this.memberName = node.getName().getIdentifier();
-		return "group".equals(memberName) || "order".equals(memberName);
-	}
-
-	@Override
-	public boolean visit(StringLiteral node) {
-		String value = node.getLiteralValue();
-		this.text = value;
-		this.textRegion = new Region(node.getStartPosition() + 1, node.getLength() - 2);
-
-		int s = 0;
-		for (; s < value.length(); s++) {
-			char c = value.charAt(s);
-			switch (c) {
-			case '+':
-			case '-':
-			case ' ':
-			case '\t':
-				continue;
-			}
-			break;
+		String name = node.getName().getIdentifier();
+		if ("group".equals(name) || "order".equals(name)) {
+			this.memberName = name;
+			return true;
 		}
-
-		int n = value.indexOf(' ', s);
-		if (n < 0) {
-			n = value.length();
-		}
-		this.propertyName = value.substring(s, n);
-		this.region = new Region(node.getStartPosition() + 1 + s, propertyName.length());
 		return false;
 	}
 }

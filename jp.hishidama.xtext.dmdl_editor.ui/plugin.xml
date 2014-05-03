@@ -863,5 +863,41 @@
             class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.WindgateTsvExporterGenerator">
       </classpath>
    </extension>
+   <extension
+         id="jdt.assist.category"
+         name="DMDL EditorX JDT Proposals"
+         point="org.eclipse.jdt.ui.javaCompletionProposalComputer">
+      <proposalCategory
+            icon="icons/hishidama16.gif">
+      </proposalCategory>
+   </extension>
+   <extension
+         id="jdt.assist.keyStringDmdl"
+         name="Key string assist"
+         point="org.eclipse.jdt.ui.javaCompletionProposalComputer">
+      <javaCompletionProposalComputer
+            activate="true"
+            categoryId="jp.hishidama.xtext.dmdl_editor.ui.jdt.assist.category"
+            class="jp.hishidama.xtext.dmdl_editor.jdt.assist.KeyStringDmdlCompletionProposalComputer"
+            needsSortingAfterFiltering="false">
+         <partition
+               type="__java_string">
+         </partition>
+      </javaCompletionProposalComputer>
+   </extension>
+   <extension
+         id="jdt.assist.keyDmdl"
+         name="Key assist"
+         point="org.eclipse.jdt.ui.javaCompletionProposalComputer">
+      <javaCompletionProposalComputer
+            activate="true"
+            categoryId="jp.hishidama.xtext.dmdl_editor.ui.jdt.assist.category"
+            class="jp.hishidama.xtext.dmdl_editor.jdt.assist.KeyDmdlCompletionProposalComputer"
+            needsSortingAfterFiltering="false">
+         <partition
+               type="__dftl_partition_content_type">
+         </partition>
+      </javaCompletionProposalComputer>
+   </extension>
 
 </plugin>
