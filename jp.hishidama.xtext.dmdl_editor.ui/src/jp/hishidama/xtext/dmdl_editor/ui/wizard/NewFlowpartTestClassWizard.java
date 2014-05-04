@@ -7,8 +7,8 @@ import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.BuildPropertiesUtil;
 import jp.hishidama.eclipse_plugin.wizard.NewClassWizard;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.ExcelCopy;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewJobflowTestClassGenerator;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewJobflowTestClassPage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewFlowpartTestClassGenerator;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewFlowpartTestClassPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.SetExcelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.TestExcelRow;
 
@@ -21,18 +21,18 @@ import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.dialogs.ErrorDialog;
 
-public class NewJobflowTestClassWizard extends NewClassWizard {
+public class NewFlowpartTestClassWizard extends NewClassWizard {
 
-	private NewJobflowTestClassPage classPage;
+	private NewFlowpartTestClassPage classPage;
 	private SetExcelPage excelPage;
 
-	public NewJobflowTestClassWizard() {
-		setWindowTitle("New JobFlow Test Class");
+	public NewFlowpartTestClassWizard() {
+		setWindowTitle("New FlowPart Test Class");
 	}
 
 	@Override
 	public void addPages() {
-		classPage = new NewJobflowTestClassPage();
+		classPage = new NewFlowpartTestClassPage();
 		classPage.setWizard(this);
 		classPage.init(getSelection());
 		addPage(classPage);
@@ -67,17 +67,17 @@ public class NewJobflowTestClassWizard extends NewClassWizard {
 	public boolean performFinish() {
 		copyExcelFiles();
 
-		NewJobflowTestClassGenerator gen = new NewJobflowTestClassGenerator(classPage.getJavaProject().getProject(),
+		NewFlowpartTestClassGenerator gen = new NewFlowpartTestClassGenerator(classPage.getJavaProject().getProject(),
 				classPage.getPackageFragmentRoot().getPath());
 		try {
 			gen.generate(classPage.getPackageText(), classPage.getTypeName(), classPage.getSuperClass(),
 					classPage.getClassUnderTestText(), excelPage.getExcelList(), excelPage.getParameterList());
 		} catch (CoreException e) {
-			ErrorDialog.openError(getShell(), "JobFlow Test generate error", "JobFlow Test generate error.",
+			ErrorDialog.openError(getShell(), "FlowPart Test generate error", "FlowPart Test generate error.",
 					e.getStatus());
 		} catch (Exception e) {
 			IStatus status = LogUtil.errorStatus(e.getMessage(), e);
-			ErrorDialog.openError(getShell(), "JobFlow Test generate error", "JobFlow Test generate error.", status);
+			ErrorDialog.openError(getShell(), "FlowPart Test generate error", "FlowPart Test generate error.", status);
 		}
 
 		return true;

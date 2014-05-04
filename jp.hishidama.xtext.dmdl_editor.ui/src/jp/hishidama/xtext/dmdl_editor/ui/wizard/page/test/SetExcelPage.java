@@ -6,28 +6,29 @@ import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowParameter;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
 import jp.hishidama.eclipse_plugin.jface.ModifiableTable;
 import jp.hishidama.eclipse_plugin.wizard.page.EditWizardPage;
+import jp.hishidama.eclipse_plugin.wizard.page.NewTestClassWizardPage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.NewJobflowTestClassWizard;
 
-import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public class SetJobflowExcelPage extends EditWizardPage {
+public class SetExcelPage extends EditWizardPage {
 
-	private IJavaProject javaProject;
+	private NewTestClassWizardPage classPage;
 	private ExcelTable table;
 
 	private IType classUnderTest;
 	private List<FlowParameter> parameterList;
 
-	public SetJobflowExcelPage() {
-		super("SetJobflowExcelPage");
+	public SetExcelPage(NewTestClassWizardPage classPage) {
+		super("SetExcelPage");
+		this.classPage = classPage;
 
 		setTitle("Select Excel File");
 		setDescription("テストデータのExcelファイルのシート名を入力して下さい。\nチェックを付けた行は、雛形Excelファイルをsrc/test/resourcesにコピーします。");
@@ -72,18 +73,16 @@ public class SetJobflowExcelPage extends EditWizardPage {
 		this.visible = visible;
 		super.setVisible(visible);
 		if (visible) {
-			this.javaProject = getWizard().getJavaProject();
 			initializeTable();
 		}
 	}
 
-	@Override
-	public NewJobflowTestClassWizard getWizard() {
-		return (NewJobflowTestClassWizard) super.getWizard();
+	protected IProject getProject() {
+		return classPage.getJavaProject().getProject();
 	}
 
 	private void initializeTable() {
-		IType type = getWizard().getClassUnderTest();
+		IType type = classPage.getClassUnderTest();
 		if (type == null) {
 			return;
 		}
@@ -102,8 +101,11 @@ public class SetJobflowExcelPage extends EditWizardPage {
 			TestExcelRow row = new TestExcelRow();
 			row.in = parameter.isIn();
 			row.name = parameter.getPorterName();
+			if (row.name == null) {
+				row.name = parameter.getName();
+			}
 			row.modelClassName = parameter.getModelClassName();
-			ModelDefinition model = ModelUiUtil.findModelByClass(javaProject.getProject(), row.modelClassName);
+			ModelDefinition model = ModelUiUtil.findModelByClass(getProject(), row.modelClassName);
 			if (model != null) {
 				row.modelName = model.getName();
 				row.modelDescription = ModelUtil.getDecodedDescription(model);
@@ -122,7 +124,6 @@ public class SetJobflowExcelPage extends EditWizardPage {
 
 	@Override
 	protected String validate() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -193,5 +194,9 @@ public class SetJobflowExcelPage extends EditWizardPage {
 			list.get(i).copy = table.getChecked(i);
 		}
 		return list;
+	}
+
+	public List<FlowParameter> getParameterList() {
+		return parameterList;
 	}
 }

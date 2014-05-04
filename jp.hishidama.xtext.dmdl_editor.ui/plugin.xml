@@ -694,6 +694,16 @@
             ジョブフローテストクラスを作成します。
          </description>
       </wizard>
+      <wizard
+            category="jp.hishidama.xtext.dmdl_editor.ui.wizard-category"
+            class="jp.hishidama.xtext.dmdl_editor.ui.wizard.NewFlowpartTestClassWizard"
+            icon="icons/newclass_wiz.gif"
+            id="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-flowpart-test-class"
+            name="New FlowPart Test class">
+         <description>
+            フロー演算子テストクラスを作成します。
+         </description>
+      </wizard>
    </extension>
    <extension
          point="org.eclipse.ui.workbench.texteditor.hyperlinkDetectors">

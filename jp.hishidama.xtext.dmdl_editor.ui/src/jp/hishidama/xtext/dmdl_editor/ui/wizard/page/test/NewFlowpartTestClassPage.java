@@ -11,13 +11,13 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public class NewJobflowTestClassPage extends NewTestClassWizardPage {
+public class NewFlowpartTestClassPage extends NewTestClassWizardPage {
 
-	public NewJobflowTestClassPage() {
-		super("NewJobflowTestClassPage");
+	public NewFlowpartTestClassPage() {
+		super("NewFlowpartTestClassPage");
 
-		setTitle("New JobFlow Test Class");
-		setDescription("Create a new JobFlow Test class.");
+		setTitle("New FlowPart Test Class");
+		setDescription("Create a new FlowPart Test class.");
 	}
 
 	@Override
@@ -66,8 +66,8 @@ public class NewJobflowTestClassPage extends NewTestClassWizardPage {
 		if (!status.matches(IStatus.ERROR)) {
 			IType type = getClassUnderTest();
 			if (type != null) {
-				if (!FlowUtil.isJobFlow(type)) {
-					return new ErrorStatus("{0} is not JobFlow class.", getClassUnderTestText());
+				if (!FlowUtil.isFlowPart(type)) {
+					return new ErrorStatus("{0} is not FlowPart class.", getClassUnderTestText());
 				}
 			}
 		}
