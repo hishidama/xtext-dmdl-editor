@@ -84,6 +84,8 @@ DMDLとは直接関係無い機能ですが、以下のようなことも出来�
 * Operatorクラス内の@MasterJoin等のselectionを扱う機能がある。
     * selectionに書かれたメソッド名を ``Ctrl`` を押しながらクリックすると、定義元の@MasterSelectionメソッドにジャンプする。
     * selection内のメソッド名の入力補完が出来る。
+* JobFlow・FlowPartのテストクラスのExcelファイル名からExcelファイルへのハイパーリンクによるジャンプが出来る。
+    * prepare()・vefify()の文字列内のExcelファイル名部分を ``Ctrl`` を押しながらクリックすると、src/test/resourcesの下にあるExcelファイルにジャンプする。
 
 ※一部の機能（Javaソースからのハイパーリンクによるジャンプや ``Ctrl+Shif+F3`` による検索ダイアログ等）については、プロジェクトにXtextネイチャーが追加されていないと使用できません。
 dmdlファイルを開くことにより、そのプロジェクトにXtextネイチャーが追加されます。
