@@ -33,3 +33,12 @@ Export-Package: jp.hishidama.xtext.dmdl_editor.dmdl,
  jp.hishidama.xtext.dmdl_editor.ui.wizard,
  jp.hishidama.xtext.dmdl_editor.ui.wizard.page
 Bundle-Activator: jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator
+Bundle-ClassPath: lib/commons-codec-1.5.jar,
+ lib/dom4j-1.6.1.jar,
+ lib/poi-3.10-FINAL.jar,
+ lib/poi-ooxml-3.10-FINAL.jar,
+ lib/poi-ooxml-schemas-3.10-FINAL.jar,
+ lib/stax-api-1.0.1.jar,
+ lib/xml-apis-1.0.b2.jar,
+ lib/xmlbeans-2.3.0.jar,
+ .
