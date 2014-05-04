@@ -525,6 +525,26 @@
                      value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-batch-class">
                </parameter>
             </command>
+            <separator
+                  name="beginNewTestWizard"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.eclipse.ui.newWizard"
+                  style="push">
+               <parameter
+                     name="newWizardId"
+                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-jobflow-test-class">
+               </parameter>
+            </command>
+            <command
+                  commandId="org.eclipse.ui.newWizard"
+                  style="push">
+               <parameter
+                     name="newWizardId"
+                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-flowpart-test-class">
+               </parameter>
+            </command>
          </menu>
       </menuContribution>
       <menuContribution
@@ -616,6 +636,26 @@
                   value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-batch-class">
             </parameter>
          </command>
+            <separator
+                  name="beginNewTestWizard"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.eclipse.ui.newWizard"
+                  style="push">
+               <parameter
+                     name="newWizardId"
+                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-jobflow-test-class">
+               </parameter>
+            </command>
+            <command
+                  commandId="org.eclipse.ui.newWizard"
+                  style="push">
+               <parameter
+                     name="newWizardId"
+                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-flowpart-test-class">
+               </parameter>
+            </command>
       </menuContribution>
    </extension>
    <extension

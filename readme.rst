@@ -77,6 +77,7 @@ DMDLとは直接関係無い機能ですが、以下のようなことも出来�
 
 * JobFlow・FlowPart・Batchクラスの雛形を作成することが出来る。
     * ``[ファイル]→[新規]`` の新規作成ウィザードを開き、DMDL EditorXの「New JobFlow class」「New FlowPart class」「New Batch class」。
+* JobFlow・FlowPartのテストクラスの雛形を作成することが出来る。
 * Flow DSLからOperatorへのハイパーリンクによるジャンプが出来る。
     * オペレーターファクトリークラスのクラス名・メソッド名を ``Ctrl`` を押しながらクリックして ``[Open Operator]`` を選択すると、定義元のOperatorへジャンプする。
     * Asakusa Framework 0.5以降で使用可能。
