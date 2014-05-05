@@ -727,7 +727,7 @@
       <wizard
             category="jp.hishidama.xtext.dmdl_editor.ui.wizard-category"
             class="jp.hishidama.xtext.dmdl_editor.ui.wizard.NewJobflowTestClassWizard"
-            icon="icons/newclass_wiz.gif"
+            icon="icons/newtest_wiz.gif"
             id="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-jobflow-test-class"
             name="New JobFlow Test class">
          <description>
@@ -737,7 +737,7 @@
       <wizard
             category="jp.hishidama.xtext.dmdl_editor.ui.wizard-category"
             class="jp.hishidama.xtext.dmdl_editor.ui.wizard.NewFlowpartTestClassWizard"
-            icon="icons/newclass_wiz.gif"
+            icon="icons/newtest_wiz.gif"
             id="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-flowpart-test-class"
             name="New FlowPart Test class">
          <description>
