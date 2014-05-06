@@ -600,6 +600,11 @@
                      value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-porter-class">
                </parameter>
             </command>
+            <command
+                  commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorMethod"
+                  icon="icons/newpublic_co.gif"
+                  tooltip="Operatorクラスに演算子メソッドを追加します。">
+            </command>
          </toolbar>
       </menuContribution>
       <menuContribution
@@ -958,6 +963,54 @@
                type="__dftl_partition_content_type">
          </partition>
       </javaCompletionProposalComputer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="jp.hishidama.xtext.dmdl_editor.jdt.category"
+            id="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorMethod"
+            name="New Operator Method">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.NewOperatorMethodHandler"
+            commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorMethod">
+         <enabledWhen>
+            <with variable="activeEditorId">
+               <equals value="org.eclipse.jdt.ui.CompilationUnitEditor" />
+            </with>
+         </enabledWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.jdt.ui.source.menu?after=additions">
+         <separator
+               name="jp.hishidama.xtext.dmdl_editor.jdt.separator.editorSourceMenu"
+               visible="true">
+         </separator>
+         <command
+               commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorMethod"
+               icon="icons/newpublic_co.gif"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.jdt.ui.CompilationUnitEditor.EditorContext?after=additions">
+         <menu
+               label="DMDL EditorX">
+            <command
+                  commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorMethod"
+                  icon="icons/newpublic_co.gif"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
    </extension>
 
 </plugin>

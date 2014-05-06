@@ -1,0 +1,37 @@
+package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.gen;
+
+import java.util.List;
+
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorInputModelRow;
+
+import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.Annotation;
+import org.eclipse.jdt.core.dom.MethodDeclaration;
+import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
+import org.eclipse.jdt.core.dom.rewrite.ListRewrite;
+
+public class MasterBranchOperatorGenerator extends BranchOperatorGenerator {
+
+	@Override
+	protected Annotation getAnnotation() {
+		return getMasterAnnotaion(OperatorType.MASTER_BRANCH);
+	}
+
+	@Override
+	protected void getParameters(List<SingleVariableDeclaration> plist) {
+		List<OperatorInputModelRow> ilist = getInputModelList();
+		for (OperatorInputModelRow row : ilist) {
+			plist.add(newSimpleParameter(row.modelClassName, row.name, row.keyList, null));
+		}
+	}
+
+	@Override
+	protected ASTNode insertOther(ListRewrite listRewrite, MethodDeclaration method) {
+		ASTNode prev = super.insertOther(listRewrite, method);
+		if (prev == null) {
+			prev = method;
+		}
+		return insertMasterSelectionMethod(listRewrite, prev);
+	}
+}
