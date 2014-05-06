@@ -8,6 +8,8 @@ import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData.FileNode;
+import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData.FileNode.ModelTreeNodePredicate;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -23,6 +25,7 @@ import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 
 public class DataModelTreeViewer extends TreeViewer {
 
+	private ModelTreeNodePredicate predicate;
 	private DataModelFilter viewerFilter;
 
 	public DataModelTreeViewer(Composite parent, int style) {
@@ -40,6 +43,10 @@ public class DataModelTreeViewer extends TreeViewer {
 		}
 	}
 
+	public void setChildrenPredicate(ModelTreeNodePredicate predicate) {
+		this.predicate = predicate;
+	}
+
 	public void setInputAll(IProject project) {
 		setContentProvider(new DMDLTreeContentProvider());
 
@@ -49,7 +56,9 @@ public class DataModelTreeViewer extends TreeViewer {
 		List<IFile> files = DMDLFileUtil.getDmdlFiles(project);
 		List<DMDLTreeData> list = new ArrayList<DMDLTreeData>(files.size());
 		for (IFile file : files) {
-			list.add(new DMDLTreeData.FileNode(file, resourceSet));
+			FileNode node = new DMDLTreeData.FileNode(file, resourceSet);
+			node.setChildrenPredicate(predicate);
+			list.add(node);
 		}
 		setInput(list);
 	}

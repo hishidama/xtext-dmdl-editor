@@ -7,7 +7,9 @@ import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.dialog.EditDialog;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData;
+import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData.FileNode.ModelTreeNodePredicate;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DataModelTreeViewer;
 
 import org.eclipse.core.resources.IProject;
@@ -31,10 +33,29 @@ public abstract class DataModelTreeMultiDialog extends EditDialog {
 	protected List<DMDLTreeData> treeData = new ArrayList<DMDLTreeData>();
 
 	private DataModelTreeViewer tree;
+	private ModelTreeNodePredicate predicate;
 
 	public DataModelTreeMultiDialog(Shell parentShell, IProject project, String windowTitle) {
 		super(parentShell, windowTitle);
 		this.project = project;
+	}
+
+	public void setSummarizeModelOnly() {
+		predicate = new ModelTreeNodePredicate() {
+			// @Override
+			public boolean isAddChildren(ModelDefinition model) {
+				return ModelUtil.getSummarizeExpression(model) != null;
+			}
+		};
+	}
+
+	public void setJoinModelOnly() {
+		predicate = new ModelTreeNodePredicate() {
+			// @Override
+			public boolean isAddChildren(ModelDefinition model) {
+				return ModelUtil.getJoinExpression(model) != null;
+			}
+		};
 	}
 
 	public void setInitialModel(String... name) {
@@ -58,6 +79,7 @@ public abstract class DataModelTreeMultiDialog extends EditDialog {
 		});
 
 		tree = createDataModelTreeField(composite, "data model :");
+		tree.setChildrenPredicate(predicate);
 		tree.setInputAll(project);
 		tree.expandToLevel(getInitialExpandLevel());
 

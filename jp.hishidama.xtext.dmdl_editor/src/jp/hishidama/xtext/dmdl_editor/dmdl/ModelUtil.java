@@ -222,6 +222,28 @@ public class ModelUtil {
 		return false;
 	}
 
+	public static SummarizeExpression getSummarizeExpression(ModelDefinition model) {
+		if (model == null) {
+			return null;
+		}
+		EObject rhs = model.getRhs();
+		if (rhs instanceof SummarizeExpression) {
+			return (SummarizeExpression) rhs;
+		}
+		return null;
+	}
+
+	public static JoinExpression getJoinExpression(ModelDefinition model) {
+		if (model == null) {
+			return null;
+		}
+		EObject rhs = model.getRhs();
+		if (rhs instanceof JoinExpression) {
+			return (JoinExpression) rhs;
+		}
+		return null;
+	}
+
 	public static List<ModelDefinition> getProjectiveContainsModel(ModelDefinition model,
 			List<ModelDefinition> projectiveList) {
 		if (model == null || projectiveList == null) {

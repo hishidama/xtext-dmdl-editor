@@ -2,7 +2,9 @@ package jp.hishidama.xtext.dmdl_editor.ui.dialog;
 
 import jp.hishidama.eclipse_plugin.dialog.EditDialog;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData;
+import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData.FileNode.ModelTreeNodePredicate;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DataModelTreeViewer;
 
 import org.eclipse.core.resources.IProject;
@@ -26,10 +28,29 @@ public abstract class DataModelTreeDialog extends EditDialog {
 	protected DMDLTreeData treeData;
 
 	private DataModelTreeViewer tree;
+	private ModelTreeNodePredicate predicate;
 
 	public DataModelTreeDialog(Shell parentShell, IProject project, String windowTitle) {
 		super(parentShell, windowTitle);
 		this.project = project;
+	}
+
+	public void setSummarizeModelOnly() {
+		predicate = new ModelTreeNodePredicate() {
+			// @Override
+			public boolean isAddChildren(ModelDefinition model) {
+				return ModelUtil.getSummarizeExpression(model) != null;
+			}
+		};
+	}
+
+	public void setJoinModelOnly() {
+		predicate = new ModelTreeNodePredicate() {
+			// @Override
+			public boolean isAddChildren(ModelDefinition model) {
+				return ModelUtil.getJoinExpression(model) != null;
+			}
+		};
 	}
 
 	public void setInitialModel(String name) {
@@ -50,6 +71,7 @@ public abstract class DataModelTreeDialog extends EditDialog {
 		});
 
 		tree = createDataModelTreeField(composite, "data model :");
+		tree.setChildrenPredicate(predicate);
 		tree.setInputAll(project);
 		tree.expandToLevel(getInitialExpandLevel());
 

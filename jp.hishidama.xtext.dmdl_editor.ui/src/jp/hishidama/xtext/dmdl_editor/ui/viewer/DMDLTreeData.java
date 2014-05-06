@@ -99,6 +99,7 @@ public abstract class DMDLTreeData {
 		private IFile file;
 		private ResourceSet resourceSet;
 		private List<DMDLTreeData> children;
+		private ModelTreeNodePredicate predicate;
 
 		public FileNode(IFile file, ResourceSet resourceSet) {
 			super(file.getProject(), null);
@@ -137,12 +138,29 @@ public abstract class DMDLTreeData {
 				for (EObject object : list) {
 					if (object instanceof Script) {
 						for (ModelDefinition model : ((Script) object).getList()) {
-							children.add(new ModelNode(project, this, model));
+							if (isAddChildren(model)) {
+								children.add(new ModelNode(project, this, model));
+							}
 						}
 					}
 				}
 			}
 			return children;
+		}
+
+		public static interface ModelTreeNodePredicate {
+			public boolean isAddChildren(ModelDefinition model);
+		}
+
+		public void setChildrenPredicate(ModelTreeNodePredicate predicate) {
+			this.predicate = predicate;
+		}
+
+		protected boolean isAddChildren(ModelDefinition model) {
+			if (predicate != null) {
+				return predicate.isAddChildren(model);
+			}
+			return true;
 		}
 	}
 
