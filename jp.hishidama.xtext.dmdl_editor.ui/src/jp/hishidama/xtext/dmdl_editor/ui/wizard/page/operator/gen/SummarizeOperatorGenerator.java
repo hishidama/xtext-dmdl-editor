@@ -14,6 +14,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorOutputMode
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.dom.Annotation;
 import org.eclipse.jdt.core.dom.Block;
+import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 
 public class SummarizeOperatorGenerator extends OperatorGenerator {
@@ -24,16 +25,17 @@ public class SummarizeOperatorGenerator extends OperatorGenerator {
 	}
 
 	@Override
-	protected String getReturnTypeName() {
+	protected String getReturnTypeName(Javadoc javadoc) {
 		List<OperatorOutputModelRow> olist = getOutputModelList();
 		for (OperatorOutputModelRow row : olist) {
+			addJavadocReturn(javadoc, row.getLabel());
 			return row.modelClassName;
 		}
 		return "error";
 	}
 
 	@Override
-	protected void getParameters(List<SingleVariableDeclaration> plist) {
+	protected void getParameters(List<SingleVariableDeclaration> plist, Javadoc javadoc) {
 		List<OperatorOutputModelRow> olist = getOutputModelList();
 		for (OperatorOutputModelRow row : olist) {
 			IProject project = getProject();
@@ -47,6 +49,7 @@ public class SummarizeOperatorGenerator extends OperatorGenerator {
 						String modelClassName = ModelUiUtil.getModelClassName(project, rmodel.getName());
 						if (modelClassName != null) {
 							plist.add(newSimpleParameter(modelClassName, "in"));
+							addJavadocParam(javadoc, "in", getLabel(rmodel));
 							return;
 						}
 					}

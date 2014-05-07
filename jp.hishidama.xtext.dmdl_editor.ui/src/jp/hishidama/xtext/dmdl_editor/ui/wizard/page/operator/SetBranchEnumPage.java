@@ -35,6 +35,7 @@ public class SetBranchEnumPage extends EditWizardPage {
 
 	private Button button1;
 	private Group group1;
+	private Text commentText;
 	private Text nameText;
 	private EnumTable table;
 
@@ -74,6 +75,7 @@ public class SetBranchEnumPage extends EditWizardPage {
 			group1 = new Group(composite, SWT.SHADOW_IN);
 			group1.setLayoutData(new GridData(GridData.FILL_BOTH));
 			group1.setLayout(new GridLayout(2, false));
+			commentText = createTextField(group1, 1, "コメント：");
 			nameText = createTextField(group1, 1, "列挙クラス名：");
 
 			createLabel(group1, "列挙定数：");
@@ -117,6 +119,7 @@ public class SetBranchEnumPage extends EditWizardPage {
 		group0.setEnabled(b0);
 		enumCombo.setEnabled(b0);
 		group1.setEnabled(b1);
+		commentText.setEnabled(b1);
 		nameText.setEnabled(b1);
 		table.setEnabled(b1);
 		validate(isVisible());
@@ -233,6 +236,13 @@ public class SetBranchEnumPage extends EditWizardPage {
 		} else {
 			return nameText.getText().trim();
 		}
+	}
+
+	public String getEnumComment() {
+		if (button1.getSelection()) {
+			return commentText.getText().trim();
+		}
+		return null;
 	}
 
 	public List<EnumRow> getEnumList() {

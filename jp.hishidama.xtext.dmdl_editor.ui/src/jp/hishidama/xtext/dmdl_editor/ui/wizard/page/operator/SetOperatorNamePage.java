@@ -31,6 +31,7 @@ public class SetOperatorNamePage extends EditWizardPage {
 	private static final int INSERT_LAST_INDEX = 1;
 	private static final int INSERT_POSITION_FROM_EDITOR = 2;
 
+	private Text commentText;
 	private Text nameText;
 	private Combo posCombo;
 
@@ -54,6 +55,7 @@ public class SetOperatorNamePage extends EditWizardPage {
 		}
 
 		{
+			commentText = createTextField(composite, 1, "コメント：");
 			nameText = createTextField(composite, 1, "メソッド名：");
 		}
 		{
@@ -114,7 +116,7 @@ public class SetOperatorNamePage extends EditWizardPage {
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
 		if (visible) {
-			nameText.setFocus();
+			commentText.setFocus();
 		}
 	}
 
@@ -124,6 +126,10 @@ public class SetOperatorNamePage extends EditWizardPage {
 			return "メソッド名を入力して下さい。";
 		}
 		return null;
+	}
+
+	public String getMethodComment() {
+		return commentText.getText().trim();
 	}
 
 	public String getMethodName() {

@@ -13,6 +13,7 @@ import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.EnumConstantDeclaration;
 import org.eclipse.jdt.core.dom.EnumDeclaration;
 import org.eclipse.jdt.core.dom.IExtendedModifier;
+import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.Modifier;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
@@ -28,21 +29,23 @@ public class BranchOperatorGenerator extends OperatorGenerator {
 	}
 
 	@Override
-	protected Type getReturnType() {
-		return ast.newSimpleType(ast.newSimpleName(getReturnTypeName()));
+	protected Type getReturnType(Javadoc javadoc) {
+		return ast.newSimpleType(ast.newSimpleName(getReturnTypeName(javadoc)));
 	}
 
 	@Override
-	protected String getReturnTypeName() {
+	protected String getReturnTypeName(Javadoc javadoc) {
 		SetBranchEnumPage page = getBranchEnumPage();
+		addJavadocReturn(javadoc, page.getEnumComment());
 		return page.getEnumName();
 	}
 
 	@Override
-	protected void getParameters(List<SingleVariableDeclaration> plist) {
+	protected void getParameters(List<SingleVariableDeclaration> plist, Javadoc javadoc) {
 		List<OperatorInputModelRow> ilist = getInputModelList();
 		for (OperatorInputModelRow row : ilist) {
 			plist.add(newSimpleParameter(row.modelClassName, row.name));
+			addJavadocParam(javadoc, row.name, row.modelDescription);
 		}
 	}
 
@@ -61,6 +64,7 @@ public class BranchOperatorGenerator extends OperatorGenerator {
 		}
 
 		EnumDeclaration enumDecl = ast.newEnumDeclaration();
+		enumDecl.setJavadoc(newJavadoc(page.getEnumComment()));
 		List<IExtendedModifier> mlist = enumDecl.modifiers();
 		mlist.addAll(ast.newModifiers(Modifier.PUBLIC));
 		enumDecl.setName(ast.newSimpleName(page.getEnumName()));

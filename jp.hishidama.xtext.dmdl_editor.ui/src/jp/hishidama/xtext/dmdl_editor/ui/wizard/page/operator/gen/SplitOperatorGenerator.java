@@ -15,6 +15,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.core.dom.Annotation;
 import org.eclipse.jdt.core.dom.Block;
+import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 
 public class SplitOperatorGenerator extends OperatorGenerator {
@@ -25,15 +26,16 @@ public class SplitOperatorGenerator extends OperatorGenerator {
 	}
 
 	@Override
-	protected String getReturnTypeName() {
+	protected String getReturnTypeName(Javadoc javadoc) {
 		return "void";
 	}
 
 	@Override
-	protected void getParameters(List<SingleVariableDeclaration> plist) {
+	protected void getParameters(List<SingleVariableDeclaration> plist, Javadoc javadoc) {
 		List<OperatorInputModelRow> ilist = getInputModelList();
 		for (OperatorInputModelRow row : ilist) {
 			plist.add(newSimpleParameter(row.modelClassName, row.name));
+			addJavadocParam(javadoc, row.name, row.getLabel());
 
 			int i = 0;
 
@@ -47,10 +49,12 @@ public class SplitOperatorGenerator extends OperatorGenerator {
 					if (ref != null) {
 						ModelDefinition rmodel = ref.getName();
 						if (rmodel != null) {
-							String name = rmodel.getName();
-							String className = ModelUiUtil.getModelClassName(project, name);
+							String rname = rmodel.getName();
+							String className = ModelUiUtil.getModelClassName(project, rname);
 							if (className != null) {
-								plist.add(newResultParameter(className, getName(i++)));
+								String name = getName(i++);
+								plist.add(newResultParameter(className, name));
+								addJavadocParam(javadoc, name, getLabel(rmodel));
 							}
 						}
 					}

@@ -5,6 +5,8 @@ import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
 import jp.hishidama.eclipse_plugin.jdt.util.AstRewriteUtility;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorInputModelRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorOutputModelRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorInputModelPage;
@@ -22,6 +24,7 @@ import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.IExtendedModifier;
+import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.core.dom.MarkerAnnotation;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.Modifier;
@@ -74,6 +77,7 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 
 	private IDocument document;
 	protected IType type;
+	private String methodComment;
 	private String methodName;
 	private IMember position;
 	private boolean after;
@@ -82,6 +86,7 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 	public void prepare(IDocument document, IType type, SetOperatorNamePage namePage, List<IWizardPage> pageList) {
 		this.document = document;
 		this.type = type;
+		this.methodComment = namePage.getMethodComment();
 		this.methodName = namePage.getMethodName();
 		this.position = namePage.getPosition();
 		this.after = namePage.getAfter();
@@ -147,9 +152,11 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 
 	@SuppressWarnings("unchecked")
 	private MethodDeclaration generateMethod() {
+		Javadoc javadoc = newJavadoc(methodComment);
+
 		MethodDeclaration method = ast.newMethodDeclaration();
+		method.setJavadoc(javadoc);
 		method.setName(ast.newSimpleName(methodName));
-		method.setReturnType2(getReturnType());
 
 		int modifier = Modifier.PUBLIC;
 		Block body = getBody();
@@ -163,20 +170,22 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		mlist.addAll(ast.newModifiers(modifier));
 
 		List<SingleVariableDeclaration> plist = method.parameters();
-		getParameters(plist);
+		getParameters(plist, javadoc);
+
+		method.setReturnType2(getReturnType(javadoc));
 
 		return method;
 	}
 
-	protected Type getReturnType() {
-		return newType(getReturnTypeName());
+	protected Type getReturnType(Javadoc javadoc) {
+		return newType(getReturnTypeName(javadoc));
 	}
 
 	protected abstract Annotation getAnnotation();
 
-	protected abstract String getReturnTypeName();
+	protected abstract String getReturnTypeName(Javadoc javadoc);
 
-	protected abstract void getParameters(List<SingleVariableDeclaration> plist);
+	protected abstract void getParameters(List<SingleVariableDeclaration> plist, Javadoc javadoc);
 
 	protected abstract Block getBody();
 
@@ -207,7 +216,10 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 			return previousElement;
 		}
 
+		Javadoc javadoc = newJavadoc("有効なマスターを選択する。");
+
 		MethodDeclaration method = newMethodDeclaration(methodName);
+		method.setJavadoc(javadoc);
 
 		List<IExtendedModifier> mlist = method.modifiers();
 		MarkerAnnotation a = newMarkerAnnotation("com.asakusafw.vocabulary.operator.MasterSelection");
@@ -222,6 +234,10 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		List<SingleVariableDeclaration> plist = method.parameters();
 		plist.add(newListParameter(row0.modelClassName, "masters", null, null));
 		plist.add(newSimpleParameter(row1.modelClassName, "tx"));
+		addJavadocParam(javadoc, "masters", row0.getLabel());
+		addJavadocParam(javadoc, "tx", row1.getLabel());
+
+		addJavadocReturn(javadoc, "実際に利用するマスターデータ、利用可能なものがない場合は{@code null}");
 
 		method.setBody(newReturnNullBlock());
 
@@ -261,6 +277,14 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 			}
 		}
 		throw new IllegalStateException();
+	}
+
+	protected final String getLabel(ModelDefinition model) {
+		String description = ModelUtil.getDecodedDescriptionText(model);
+		if (!description.isEmpty()) {
+			return description;
+		}
+		return model.getName();
 	}
 
 	protected final SingleVariableDeclaration newSimpleParameter(String typeName, String name) {

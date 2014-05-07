@@ -12,6 +12,13 @@ public class OperatorInputModelRow {
 	public List<String> keyList;
 	public List<String> orderList;
 
+	public String getLabel() {
+		if (StringUtil.nonEmpty(modelDescription)) {
+			return modelDescription;
+		}
+		return modelName;
+	}
+
 	public String getKeyText() {
 		return StringUtil.mkString(keyList);
 	}
