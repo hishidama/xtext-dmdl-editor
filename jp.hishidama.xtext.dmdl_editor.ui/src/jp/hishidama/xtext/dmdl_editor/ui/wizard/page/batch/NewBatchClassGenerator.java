@@ -105,7 +105,8 @@ public class NewBatchClassGenerator extends ClassGenerator {
 		sb.append("\n");
 		sb.append("\t@Override\n");
 		sb.append("\tpublic void describe() {\n");
-		sb.append("\t\t// TODO run(Job1.class).soon(); run(Job2.class).after(job1);\n");
+		sb.append("\t\t// TODO Work job1 = run(Job1.class).soon();\n");
+		sb.append("\t\t// run(Job2.class).after(job1);\n");
 		sb.append("\t}\n");
 	}
 }
