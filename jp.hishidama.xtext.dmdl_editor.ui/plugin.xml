@@ -965,6 +965,20 @@
       </javaCompletionProposalComputer>
    </extension>
    <extension
+         id="jdt.assist.javadocDmdl"
+         name="Javadoc dataModel assist"
+         point="org.eclipse.jdt.ui.javaCompletionProposalComputer">
+      <javaCompletionProposalComputer
+            activate="true"
+            categoryId="jp.hishidama.xtext.dmdl_editor.ui.jdt.assist.category"
+            class="jp.hishidama.xtext.dmdl_editor.jdt.assist.JavadocDmdlCompletionProposalComputer"
+            needsSortingAfterFiltering="false">
+         <partition
+               type="__java_javadoc">
+         </partition>
+      </javaCompletionProposalComputer>
+   </extension>
+   <extension
          point="org.eclipse.ui.commands">
       <command
             categoryId="jp.hishidama.xtext.dmdl_editor.jdt.category"
