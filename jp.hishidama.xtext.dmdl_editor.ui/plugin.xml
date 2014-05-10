@@ -545,18 +545,6 @@
                      value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-flowpart-test-class">
                </parameter>
             </command>
-            <separator
-                  name="beginModifyClassWizard"
-                  visible="true">
-            </separator>
-            <command
-                  commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyJobflowClass"
-                  style="push">
-            </command>
-            <command
-                  commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyFlowpartClass"
-                  style="push">
-            </command>
          </menu>
       </menuContribution>
       <menuContribution
@@ -679,10 +667,6 @@
          </separator>
          <command
                commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyJobflowClass"
-               style="push">
-         </command>
-         <command
-               commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyFlowpartClass"
                style="push">
          </command>
       </menuContribution>
@@ -1012,12 +996,7 @@
       <command
             categoryId="jp.hishidama.xtext.dmdl_editor.jdt.category"
             id="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyJobflowClass"
-            name="Modify JobFlow Constructor/Field">
-      </command>
-      <command
-            categoryId="jp.hishidama.xtext.dmdl_editor.jdt.category"
-            id="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyFlowpartClass"
-            name="Modify FlowPart Constructor/Field">
+            name="Modify JobFlow/FlowPart Field">
       </command>
    </extension>
    <extension
@@ -1032,17 +1011,8 @@
          </enabledWhen>
       </handler>
       <handler
-            class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.ModifyJobflowClassHandler"
+            class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.ModifyFlowClassHandler"
             commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyJobflowClass">
-         <enabledWhen>
-            <with variable="activeEditorId">
-               <equals value="org.eclipse.jdt.ui.CompilationUnitEditor" />
-            </with>
-         </enabledWhen>
-      </handler>
-      <handler
-            class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.ModifyFlowpartClassHandler"
-            commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyFlowpartClass">
          <enabledWhen>
             <with variable="activeEditorId">
                <equals value="org.eclipse.jdt.ui.CompilationUnitEditor" />
@@ -1068,10 +1038,6 @@
                commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyJobflowClass"
                style="push">
          </command>
-         <command
-               commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyFlowpartClass"
-               style="push">
-         </command>
       </menuContribution>
       <menuContribution
             allPopups="false"
@@ -1085,10 +1051,6 @@
             </command>
             <command
                   commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyJobflowClass"
-                  style="push">
-            </command>
-            <command
-                  commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyFlowpartClass"
                   style="push">
             </command>
          </menu>
