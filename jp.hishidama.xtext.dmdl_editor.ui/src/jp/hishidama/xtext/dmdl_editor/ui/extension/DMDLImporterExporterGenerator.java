@@ -13,6 +13,7 @@ import jp.hishidama.eclipse_plugin.util.FileUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
 import org.eclipse.core.resources.IFile;
@@ -231,6 +232,8 @@ public abstract class DMDLImporterExporterGenerator extends ClassGenerator {
 
 	@Override
 	protected void appendClass(StringBuilder sb) {
+		setClassJavadoc(sb, ModelUtil.getDecodedDescriptionText(model));
+
 		sb.append("public class ");
 		sb.append(className);
 		sb.append(" extends ");
