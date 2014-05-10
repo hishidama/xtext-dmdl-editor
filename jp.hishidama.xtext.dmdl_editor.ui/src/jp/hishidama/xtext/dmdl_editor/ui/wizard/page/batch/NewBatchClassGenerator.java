@@ -56,6 +56,7 @@ public class NewBatchClassGenerator extends ClassGenerator {
 
 	@Override
 	protected void appendClass(StringBuilder sb) {
+		setClassJavadoc(sb, batchComment);
 		appendAnnotation(sb);
 		sb.append("public class ");
 		sb.append(className);
