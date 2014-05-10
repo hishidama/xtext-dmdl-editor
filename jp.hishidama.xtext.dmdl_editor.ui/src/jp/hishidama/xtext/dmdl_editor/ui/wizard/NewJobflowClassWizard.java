@@ -57,7 +57,7 @@ public class NewJobflowClassWizard extends NewClassWizard {
 				.getPackageFragmentRoot().getPath());
 		try {
 			gen.generate(classPage.getPackageText(), classPage.getTypeName(), namePage.getJobflowName(),
-					porterPage.getPorterList());
+					namePage.getJobDescription(), porterPage.getPorterList());
 		} catch (CoreException e) {
 			ErrorDialog.openError(getShell(), "JobFlow generate error", "JobFlow generate error.", e.getStatus());
 		} catch (Exception e) {

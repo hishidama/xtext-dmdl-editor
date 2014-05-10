@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Text;
 public class SetJobflowNamePage extends EditWizardPage {
 
 	private Text nameText;
+	private Text descText;
 
 	public SetJobflowNamePage() {
 		super("SetJobflowNamePage");
@@ -31,6 +32,7 @@ public class SetJobflowNamePage extends EditWizardPage {
 		composite.setLayout(layout);
 
 		nameText = createTextField(composite, nColumns - 1, "JobFlow name:");
+		descText = createTextField(composite, nColumns - 1, "comment:");
 
 		return composite;
 	}
@@ -64,5 +66,9 @@ public class SetJobflowNamePage extends EditWizardPage {
 
 	public String getJobflowName() {
 		return nameText.getText();
+	}
+
+	public String getJobDescription() {
+		return descText.getText();
 	}
 }

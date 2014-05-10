@@ -2,6 +2,9 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.jobflow;
 
 import java.util.List;
 
+import jp.hishidama.eclipse_plugin.java.ClassGenerator;
+import jp.hishidama.eclipse_plugin.util.FileUtil;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -10,14 +13,12 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 
-import jp.hishidama.eclipse_plugin.java.ClassGenerator;
-import jp.hishidama.eclipse_plugin.util.FileUtil;
-
 public class NewJobflowClassGenerator extends ClassGenerator {
 	private IProject project;
 	private IPath srcDir;
 
 	private String jobflowName;
+	private String jobDescription;
 	private List<JobflowPorterRow> porterList;
 
 	public NewJobflowClassGenerator(IProject project, IPath dir) {
@@ -25,9 +26,10 @@ public class NewJobflowClassGenerator extends ClassGenerator {
 		this.srcDir = dir;
 	}
 
-	public void generate(String packageName, String className, String jobflowName, List<JobflowPorterRow> list)
-			throws CoreException {
+	public void generate(String packageName, String className, String jobflowName, String jobDescription,
+			List<JobflowPorterRow> list) throws CoreException {
 		this.jobflowName = jobflowName;
+		this.jobDescription = jobDescription;
 		this.porterList = list;
 
 		String contents = super.generate(packageName, className);
@@ -52,6 +54,8 @@ public class NewJobflowClassGenerator extends ClassGenerator {
 
 	@Override
 	protected void appendClass(StringBuilder sb) {
+		setClassJavadoc(sb, jobDescription);
+
 		appendAnnotation(sb);
 		sb.append("public class ");
 		sb.append(className);
@@ -77,6 +81,7 @@ public class NewJobflowClassGenerator extends ClassGenerator {
 	private void appendFields(StringBuilder sb) {
 		sb.append("\n");
 		for (JobflowPorterRow row : porterList) {
+			setLineJavadoc(sb, 1, row.modelDescription);
 			sb.append("\tprivate final ");
 			appendVariableDefinition(sb, row);
 			sb.append(";\n");
@@ -97,6 +102,16 @@ public class NewJobflowClassGenerator extends ClassGenerator {
 
 	private void appendConstructor(StringBuilder sb) {
 		sb.append("\n");
+
+		sb.append("\t/**\n");
+		sb.append("\t * ");
+		sb.append(jobDescription);
+		sb.append("\n");
+		for (JobflowPorterRow row : porterList) {
+			setParamJavadoc(sb, 1, row.name, row.modelDescription);
+		}
+		sb.append("\t */\n");
+
 		sb.append("\tpublic ");
 		sb.append(className);
 		sb.append("(\n");
