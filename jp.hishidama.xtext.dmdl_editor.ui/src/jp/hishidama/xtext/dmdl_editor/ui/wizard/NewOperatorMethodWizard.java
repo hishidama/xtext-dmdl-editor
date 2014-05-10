@@ -9,6 +9,7 @@ import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.MasterJoinInputModelPage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectMasterSelectionTargetPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorInputModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorOutputModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorTypePage;
@@ -66,6 +67,7 @@ public class NewOperatorMethodWizard extends Wizard {
 		addMasterJoinPages();
 		addMasterBranchPages();
 		addMasterJoinUpdatePages();
+		addMasterSelectionPages();
 		addCoGroupPages();
 		addSplitPages();
 		addSummarizePages();
@@ -161,6 +163,13 @@ public class NewOperatorMethodWizard extends Wizard {
 		addPage(opType, inputPage);
 
 		SetMasterSelectionPage msPage = new SetMasterSelectionPage(type, opType);
+		addPage(opType, msPage);
+	}
+
+	private void addMasterSelectionPages() {
+		OperatorType opType = OperatorType.MASTER_SELECTION;
+
+		SelectMasterSelectionTargetPage msPage = new SelectMasterSelectionTargetPage(type, offset);
 		addPage(opType, msPage);
 	}
 

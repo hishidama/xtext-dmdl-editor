@@ -5,6 +5,7 @@ import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
 import jp.hishidama.eclipse_plugin.jdt.util.AstRewriteUtility;
+import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorInputModelRow;
@@ -25,9 +26,9 @@ import org.eclipse.jdt.core.dom.BodyDeclaration;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.IExtendedModifier;
 import org.eclipse.jdt.core.dom.Javadoc;
-import org.eclipse.jdt.core.dom.MarkerAnnotation;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.Modifier;
+import org.eclipse.jdt.core.dom.Modifier.ModifierKeyword;
 import org.eclipse.jdt.core.dom.NormalAnnotation;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import org.eclipse.jdt.core.dom.Type;
@@ -58,6 +59,8 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 			return new MasterBranchOperatorGenerator();
 		case MASTER_JOIN_UPDATE:
 			return new MasterJoinUpdateOperatorGenerator();
+		case MASTER_SELECTION:
+			return new MasterSelectionOperatorGenerator();
 		case CO_GROUP:
 			return new CoGroupOperatorGenerator();
 		case SPLIT:
@@ -77,8 +80,8 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 
 	private IDocument document;
 	protected IType type;
-	private String methodComment;
-	private String methodName;
+	protected String methodComment;
+	protected String methodName;
 	private IMember position;
 	private boolean after;
 	protected List<IWizardPage> pageList;
@@ -151,7 +154,7 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 	}
 
 	@SuppressWarnings("unchecked")
-	private MethodDeclaration generateMethod() {
+	protected MethodDeclaration generateMethod() {
 		Javadoc javadoc = newJavadoc(methodComment);
 
 		MethodDeclaration method = ast.newMethodDeclaration();
@@ -208,7 +211,6 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	protected ASTNode insertMasterSelectionMethod(ListRewrite listRewrite, ASTNode previousElement) {
 		SetMasterSelectionPage msPage = getMasterSelectionPage();
 		String methodName = msPage.getCreateMethodName();
@@ -216,32 +218,44 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 			return previousElement;
 		}
 
-		Javadoc javadoc = newJavadoc("有効なマスターを選択する。");
+		List<OperatorInputModelRow> ilist = getInputModelList();
+		OperatorInputModelRow row0 = ilist.get(0);
+		OperatorInputModelRow row1 = ilist.get(1);
+
+		MethodDeclaration method = generateMasterSelectionMethod(methodName, null, row0.modelClassName,
+				row0.getLabel(), row1.modelClassName, row1.getLabel());
+		listRewrite.insertAfter(method, previousElement, null);
+
+		return method;
+	}
+
+	@SuppressWarnings("unchecked")
+	protected MethodDeclaration generateMasterSelectionMethod(String methodName, String methodComment,
+			String masterType, String masterLabel, String txType, String txLabel) {
+		String comment = methodComment;
+		if (StringUtil.isEmpty(comment)) {
+			comment = "有効なマスターを選択する。";
+		}
+		Javadoc javadoc = newJavadoc(comment);
 
 		MethodDeclaration method = newMethodDeclaration(methodName);
 		method.setJavadoc(javadoc);
 
 		List<IExtendedModifier> mlist = method.modifiers();
-		MarkerAnnotation a = newMarkerAnnotation("com.asakusafw.vocabulary.operator.MasterSelection");
-		mlist.add(a);
-		mlist.addAll(ast.newModifiers(Modifier.PUBLIC));
+		mlist.add(newMarkerAnnotation(OperatorType.MASTER_SELECTION.getTypeName()));
+		mlist.add(ast.newModifier(ModifierKeyword.PUBLIC_KEYWORD));
 
-		List<OperatorInputModelRow> ilist = getInputModelList();
-		OperatorInputModelRow row0 = ilist.get(0);
-		OperatorInputModelRow row1 = ilist.get(1);
-		method.setReturnType2(newType(row0.modelClassName));
+		method.setReturnType2(newType(masterType));
 
 		List<SingleVariableDeclaration> plist = method.parameters();
-		plist.add(newListParameter(row0.modelClassName, "masters", null, null));
-		plist.add(newSimpleParameter(row1.modelClassName, "tx"));
-		addJavadocParam(javadoc, "masters", row0.getLabel());
-		addJavadocParam(javadoc, "tx", row1.getLabel());
+		plist.add(newListParameter(masterType, "masters", null, null));
+		plist.add(newSimpleParameter(txType, "tx"));
+		addJavadocParam(javadoc, "masters", masterLabel);
+		addJavadocParam(javadoc, "tx", txLabel);
 
 		addJavadocReturn(javadoc, "実際に利用するマスターデータ、利用可能なものがない場合は{@code null}");
 
 		method.setBody(newReturnNullBlock());
-
-		listRewrite.insertAfter(method, previousElement, null);
 
 		return method;
 	}

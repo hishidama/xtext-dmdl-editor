@@ -66,8 +66,13 @@ public class SelectOperatorTypePage extends EditWizardPage {
 
 			new Label(composite, SWT.NONE);
 			createRadio(composite, "マスターつき更新", OperatorType.MASTER_JOIN_UPDATE);
+			new Label(composite, SWT.NONE);
+			createRadio(composite, "マスター選択", OperatorType.MASTER_SELECTION);
+
+			new Label(composite, SWT.NONE);
 			createRadio(composite, "グループ結合", OperatorType.CO_GROUP);
 			createRadio(composite, "分割", OperatorType.SPLIT);
+			new Label(composite, SWT.NONE);
 		}
 		{
 			Label label = new Label(composite, SWT.NONE);

@@ -39,7 +39,7 @@ public class SetOperatorNamePage extends EditWizardPage {
 		super("SetOperatorNamePage");
 
 		setTitle("演算子のメソッド名の指定");
-		setDescription("作成するユーザー演算子のメソッド名を入力して下さい。");
+		setDescription("作成する演算子のメソッド名を入力して下さい。");
 
 		this.type = type;
 		this.offset = offset;

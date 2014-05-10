@@ -40,6 +40,9 @@ public class ModelUtil {
 	}
 
 	public static String getDecodedDescription(ModelDefinition model) {
+		if (model == null) {
+			return null;
+		}
 		return DMDLStringUtil.decodeDescription(model.getDescription());
 	}
 
