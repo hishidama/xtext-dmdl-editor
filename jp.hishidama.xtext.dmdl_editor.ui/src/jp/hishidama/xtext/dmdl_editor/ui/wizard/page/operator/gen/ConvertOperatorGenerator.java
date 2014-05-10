@@ -14,8 +14,9 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorOutputMode
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.Annotation;
 import org.eclipse.jdt.core.dom.Block;
+import org.eclipse.jdt.core.dom.Expression;
 import org.eclipse.jdt.core.dom.Javadoc;
-import org.eclipse.jdt.core.dom.ReturnStatement;
+import org.eclipse.jdt.core.dom.NullLiteral;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import org.eclipse.jdt.core.dom.Statement;
 import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
@@ -54,21 +55,15 @@ public class ConvertOperatorGenerator extends OperatorGenerator {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Block getBody() {
-		ASTRewrite rewriter = getAstRewrite();
-
 		Block block = ast.newBlock();
 		List<Statement> slist = block.statements();
 
 		OperatorOutputModelRow rrow = getReturnRow();
-		String resultClass = getImportRewrite().addImport(rrow.modelClassName);
-		slist.add((Statement) rewriter.createStringPlaceholder(
-				String.format("%s result = new %s();", resultClass, resultClass), ASTNode.EMPTY_STATEMENT));
+		slist.add(newVariableDeclarationStatement(rrow.modelClassName, "result"));
 
 		addStatement(slist, rrow);
 
-		ReturnStatement ret = ast.newReturnStatement();
-		ret.setExpression(ast.newSimpleName("result"));
-		slist.add(ret);
+		slist.add(newReturnStatement(ast.newSimpleName("result")));
 		return block;
 	}
 
@@ -89,12 +84,16 @@ public class ConvertOperatorGenerator extends OperatorGenerator {
 			ASTRewrite rewriter = getAstRewrite();
 			for (Property property : plist) {
 				String name = property.getName();
-				String dst = String.format("set%sOption", StringUtil.toCamelCase(name));
-				String src = set.contains(name) ? String.format("%s.get%sOption()", row.name,
-						StringUtil.toCamelCase(name)) : "/*TODO*/null";
+				String camelName = StringUtil.toCamelCase(name);
 
-				slist.add((Statement) rewriter.createStringPlaceholder(String.format("result.%s(%s);", dst, src),
-						ASTNode.EMPTY_STATEMENT));
+				Expression arg;
+				if (set.contains(name)) {
+					arg = newMethodInvocation(row.name, String.format("get%sOption", camelName));
+				} else {
+					arg = (NullLiteral) rewriter.createStringPlaceholder("/*TODO*/null", ASTNode.NULL_LITERAL);
+				}
+
+				slist.add(newMethodInvocationStatement("result", String.format("set%sOption", camelName), arg));
 			}
 		}
 	}
