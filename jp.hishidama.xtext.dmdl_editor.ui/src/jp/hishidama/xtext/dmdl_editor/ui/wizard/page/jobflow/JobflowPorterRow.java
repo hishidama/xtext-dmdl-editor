@@ -1,6 +1,8 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.jobflow;
 
-public class JobflowPorterRow {
+import jp.hishidama.eclipse_plugin.util.StringUtil;
+
+public class JobflowPorterRow implements Cloneable {
 	public boolean in;
 	public String name = "";
 	public String porterClassName = "";
@@ -10,5 +12,21 @@ public class JobflowPorterRow {
 
 	public String getIn() {
 		return in ? "Importer" : "Exporter";
+	}
+
+	public String getLabel() {
+		if (StringUtil.nonEmpty(modelDescription)) {
+			return modelDescription;
+		}
+		return modelName;
+	}
+
+	@Override
+	protected JobflowPorterRow clone() {
+		try {
+			return (JobflowPorterRow) super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new InternalError();
+		}
 	}
 }

@@ -6,15 +6,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.eclipse_plugin.dialog.ProjectFileSelectionDialog;
+import jp.hishidama.eclipse_plugin.jdt.util.AnnotationUtil;
+import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
 import jp.hishidama.eclipse_plugin.jface.ModifiableTable;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.eclipse_plugin.wizard.page.EditWizardPage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.NewJobflowClassWizard;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.TypeWizard;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -23,6 +26,8 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.ILocalVariable;
+import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
@@ -36,6 +41,8 @@ public class SetJobflowPorterPage extends EditWizardPage {
 
 	private IJavaProject javaProject;
 
+	private List<JobflowPorterRow> initList;
+
 	private JobflowPorterTable table;
 
 	public SetJobflowPorterPage() {
@@ -43,6 +50,10 @@ public class SetJobflowPorterPage extends EditWizardPage {
 
 		setTitle("Set Importer/Exporter");
 		setDescription("Set importer/exporter for JobFlow.");
+	}
+
+	public void init(IType type) {
+		this.initList = initList(type);
 	}
 
 	@Override
@@ -69,9 +80,56 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		// field.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		field.setLayout(new FillLayout(SWT.HORIZONTAL));
 		table.createButtonArea(field);
+		if (initList != null) {
+			for (JobflowPorterRow row : initList) {
+				table.addItem(row.clone());
+			}
+		}
 		table.refresh();
 
 		return composite;
+	}
+
+	private List<JobflowPorterRow> initList(IType type) {
+		List<JobflowPorterRow> list = new ArrayList<JobflowPorterRow>();
+
+		IMethod constructor = TypeUtil.findConsructor(type);
+		if (constructor == null) {
+			return list;
+		}
+		IProject project = type.getJavaProject().getProject();
+		try {
+			for (ILocalVariable param : constructor.getParameters()) {
+				String t = TypeUtil.getVariableTypeName(param);
+				int s = t.indexOf('<');
+				int e = t.lastIndexOf('>');
+				if (s < 0 || e < 0) {
+					continue;
+				}
+
+				JobflowPorterRow row = new JobflowPorterRow();
+				row.in = t.startsWith(FlowUtil.IN_NAME);
+				row.name = param.getElementName();
+				row.modelClassName = t.substring(s + 1, e);
+				ModelDefinition model = ModelUiUtil.findModelByClass(project, row.modelClassName);
+				if (model != null) {
+					row.modelName = model.getName();
+					row.modelDescription = ModelUtil.getDecodedDescriptionText(model);
+				}
+
+				String desc = AnnotationUtil.getAnnotationValue(type, param, FlowUtil.IMPORT_NAME, "description");
+				if (desc == null) {
+					desc = AnnotationUtil.getAnnotationValue(type, param, FlowUtil.EXPORT_NAME, "description");
+				}
+				row.porterClassName = TypeUtil.resolveTypeName(desc, type);
+
+				list.add(row);
+			}
+		} catch (JavaModelException e) {
+			e.printStackTrace();
+		}
+
+		return list;
 	}
 
 	private boolean visible;
@@ -86,8 +144,8 @@ public class SetJobflowPorterPage extends EditWizardPage {
 	}
 
 	@Override
-	public NewJobflowClassWizard getWizard() {
-		return (NewJobflowClassWizard) super.getWizard();
+	public TypeWizard getWizard() {
+		return (TypeWizard) super.getWizard();
 	}
 
 	@Override
@@ -236,5 +294,9 @@ public class SetJobflowPorterPage extends EditWizardPage {
 
 	public List<JobflowPorterRow> getPorterList() {
 		return table.getElementList();
+	}
+
+	public List<JobflowPorterRow> getInitList() {
+		return initList;
 	}
 }

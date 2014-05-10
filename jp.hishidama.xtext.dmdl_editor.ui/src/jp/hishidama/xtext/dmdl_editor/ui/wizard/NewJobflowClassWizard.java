@@ -14,7 +14,7 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jface.dialogs.ErrorDialog;
 
-public class NewJobflowClassWizard extends NewClassWizard {
+public class NewJobflowClassWizard extends NewClassWizard implements TypeWizard {
 
 	private NewJobflowClassPage classPage;
 	private SetJobflowNamePage namePage;
@@ -42,13 +42,13 @@ public class NewJobflowClassWizard extends NewClassWizard {
 		return classPage.getTypeName();
 	}
 
+	public IJavaProject getJavaProject() {
+		return classPage.getJavaProject();
+	}
+
 	public IResource getDir() {
 		IPackageFragment fragment = classPage.getPackageFragment();
 		return fragment.getResource();
-	}
-
-	public IJavaProject getJavaProject() {
-		return classPage.getJavaProject();
 	}
 
 	@Override
