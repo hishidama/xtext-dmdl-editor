@@ -8,12 +8,13 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.SetArgumentPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.SetFlowpartModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.SetFlowpartNamePage;
 
-import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jface.dialogs.ErrorDialog;
 
-public class NewFlowpartClassWizard extends NewClassWizard {
+public class NewFlowpartClassWizard extends NewClassWizard implements TypeWizard {
 
 	private NewFlowpartClassPage classPage;
 	private SetFlowpartNamePage namePage;
@@ -45,14 +46,18 @@ public class NewFlowpartClassWizard extends NewClassWizard {
 		return classPage.getTypeName();
 	}
 
-	public IProject getProject() {
-		return classPage.getJavaProject().getProject();
+	public IJavaProject getJavaProject() {
+		return classPage.getJavaProject();
+	}
+
+	public IResource getDir() {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public boolean performFinish() {
-		NewFlowpartClassGenerator gen = new NewFlowpartClassGenerator(classPage.getJavaProject().getProject(),
-				classPage.getPackageFragmentRoot().getPath());
+		NewFlowpartClassGenerator gen = new NewFlowpartClassGenerator(getJavaProject().getProject(), classPage
+				.getPackageFragmentRoot().getPath());
 		try {
 			gen.generate(classPage.getPackageText(), classPage.getTypeName(), namePage.getComment(),
 					modelPage.getDataModelList(), argPage.getArgumentList());

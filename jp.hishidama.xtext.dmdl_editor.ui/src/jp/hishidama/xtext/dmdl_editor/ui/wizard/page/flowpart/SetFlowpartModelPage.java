@@ -1,10 +1,14 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
+import jp.hishidama.eclipse_plugin.jdt.util.AnnotationUtil;
+import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
 import jp.hishidama.eclipse_plugin.jface.ModifiableTable;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.eclipse_plugin.wizard.page.EditWizardPage;
@@ -12,9 +16,13 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.dialog.DmdlModelMultiSelectionDialog;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.NewFlowpartClassWizard;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.TypeWizard;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.jdt.core.ILocalVariable;
+import org.eclipse.jdt.core.IMethod;
+import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -28,6 +36,8 @@ public class SetFlowpartModelPage extends EditWizardPage {
 
 	private IProject project;
 
+	private List<FlowpartModelRow> initList;
+
 	private FlowpartModelTable table;
 
 	public SetFlowpartModelPage() {
@@ -35,6 +45,10 @@ public class SetFlowpartModelPage extends EditWizardPage {
 
 		setTitle("Set In/Out DataModel");
 		setDescription("Set data model for FlowPart.");
+	}
+
+	public void init(IType type) {
+		this.initList = initList(type);
 	}
 
 	@Override
@@ -60,9 +74,55 @@ public class SetFlowpartModelPage extends EditWizardPage {
 		// field.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		field.setLayout(new FillLayout(SWT.HORIZONTAL));
 		table.createButtonArea(field);
+		if (initList != null) {
+			for (FlowpartModelRow row : initList) {
+				table.addItem(row.clone());
+			}
+		}
 		table.refresh();
 
 		return composite;
+	}
+
+	private List<FlowpartModelRow> initList(IType type) {
+		List<FlowpartModelRow> list = new ArrayList<FlowpartModelRow>();
+
+		IMethod constructor = TypeUtil.findConsructor(type);
+		if (constructor == null) {
+			return list;
+		}
+		IProject project = type.getJavaProject().getProject();
+		try {
+			for (ILocalVariable param : constructor.getParameters()) {
+				String t = TypeUtil.getVariableTypeName(param);
+				int s = t.indexOf('<');
+				int e = t.lastIndexOf('>');
+				if (s < 0 || e < 0) {
+					continue;
+				}
+
+				FlowpartModelRow row = new FlowpartModelRow();
+				row.in = t.startsWith(FlowUtil.IN_NAME);
+				row.name = param.getElementName();
+				row.modelClassName = t.substring(s + 1, e);
+				ModelDefinition model = ModelUiUtil.findModelByClass(project, row.modelClassName);
+				if (model != null) {
+					row.modelName = model.getName();
+					row.modelDescription = ModelUtil.getDecodedDescriptionText(model);
+				}
+
+				String desc = AnnotationUtil.getAnnotationValue(type, param, FlowUtil.IMPORT_NAME, "description");
+				if (desc == null) {
+					desc = AnnotationUtil.getAnnotationValue(type, param, FlowUtil.EXPORT_NAME, "description");
+				}
+
+				list.add(row);
+			}
+		} catch (JavaModelException e) {
+			e.printStackTrace();
+		}
+
+		return list;
 	}
 
 	private boolean visible;
@@ -72,13 +132,13 @@ public class SetFlowpartModelPage extends EditWizardPage {
 		this.visible = visible;
 		super.setVisible(visible);
 		if (visible) {
-			this.project = getWizard().getProject();
+			this.project = getWizard().getJavaProject().getProject();
 		}
 	}
 
 	@Override
-	public NewFlowpartClassWizard getWizard() {
-		return (NewFlowpartClassWizard) super.getWizard();
+	public TypeWizard getWizard() {
+		return (TypeWizard) super.getWizard();
 	}
 
 	@Override
@@ -185,5 +245,9 @@ public class SetFlowpartModelPage extends EditWizardPage {
 
 	public List<FlowpartModelRow> getDataModelList() {
 		return table.getElementList();
+	}
+
+	public List<FlowpartModelRow> getInitList() {
+		return initList;
 	}
 }

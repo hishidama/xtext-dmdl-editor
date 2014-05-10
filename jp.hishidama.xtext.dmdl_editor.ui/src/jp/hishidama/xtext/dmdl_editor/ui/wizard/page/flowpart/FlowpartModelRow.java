@@ -1,6 +1,8 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart;
 
-public class FlowpartModelRow {
+import jp.hishidama.eclipse_plugin.util.StringUtil;
+
+public class FlowpartModelRow implements Cloneable {
 	public boolean in;
 	public String name;
 	public String modelClassName;
@@ -9,5 +11,21 @@ public class FlowpartModelRow {
 
 	public String getIn() {
 		return in ? "in" : "out";
+	}
+
+	public String getLabel() {
+		if (StringUtil.nonEmpty(modelDescription)) {
+			return modelDescription;
+		}
+		return modelName;
+	}
+
+	@Override
+	protected FlowpartModelRow clone() {
+		try {
+			return (FlowpartModelRow) super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new InternalError();
+		}
 	}
 }
