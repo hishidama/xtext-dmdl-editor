@@ -1,7 +1,6 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart;
 
 import jp.hishidama.eclipse_plugin.dialog.EditDialog;
-import jp.hishidama.eclipse_plugin.util.StringUtil;
 
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
@@ -16,6 +15,7 @@ public class EditArgumentDialog extends EditDialog {
 
 	private Text nameText;
 	private Combo typeCombo;
+	private Text descText;
 
 	public EditArgumentDialog(Shell parentShell, ArgumentRow row) {
 		super(parentShell, "引数編集", 3);
@@ -28,6 +28,8 @@ public class EditArgumentDialog extends EditDialog {
 		nameText.setText(nonNull(row.name));
 		typeCombo = createComboField(composite, "type", TYPE_LIST);
 		typeCombo.setText(nonNull(row.type));
+		descText = createTextField(composite, "comment");
+		descText.setText(nonNull(row.comment));
 	}
 
 	@Override
@@ -37,7 +39,10 @@ public class EditArgumentDialog extends EditDialog {
 
 	@Override
 	protected boolean validate() {
-		if (StringUtil.isEmpty(nameText.getText().trim())) {
+		if (nameText.getText().trim().isEmpty()) {
+			return false;
+		}
+		if (typeCombo.getText().isEmpty()) {
 			return false;
 		}
 		return true;
@@ -47,6 +52,7 @@ public class EditArgumentDialog extends EditDialog {
 	protected void okPressed() {
 		row.name = nameText.getText().trim();
 		row.type = typeCombo.getText();
+		row.comment = descText.getText();
 
 		super.okPressed();
 	}

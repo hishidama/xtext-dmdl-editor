@@ -17,6 +17,7 @@ public class NewFlowpartClassGenerator extends ClassGenerator {
 	private IProject project;
 	private IPath srcDir;
 
+	private String description;
 	private List<FlowpartModelRow> modelList;
 	private List<ArgumentRow> argList;
 
@@ -25,8 +26,9 @@ public class NewFlowpartClassGenerator extends ClassGenerator {
 		this.srcDir = dir;
 	}
 
-	public void generate(String packageName, String className, List<FlowpartModelRow> modelList,
+	public void generate(String packageName, String className, String description, List<FlowpartModelRow> modelList,
 			List<ArgumentRow> argList) throws CoreException {
+		this.description = description;
 		this.modelList = modelList;
 		this.argList = argList;
 
@@ -52,6 +54,7 @@ public class NewFlowpartClassGenerator extends ClassGenerator {
 
 	@Override
 	protected void appendClass(StringBuilder sb) {
+		setClassJavadoc(sb, description);
 		appendAnnotation(sb);
 		sb.append("public class ");
 		sb.append(className);
@@ -75,11 +78,13 @@ public class NewFlowpartClassGenerator extends ClassGenerator {
 	private void appendFields(StringBuilder sb) {
 		sb.append("\n");
 		for (FlowpartModelRow row : modelList) {
+			setLineJavadoc(sb, 1, row.modelDescription);
 			sb.append("\tprivate final ");
 			appendVariableDefinition(sb, row);
 			sb.append(";\n");
 		}
 		for (ArgumentRow row : argList) {
+			setLineJavadoc(sb, 1, row.comment);
 			sb.append("\tprivate ");
 			sb.append(getCachedClassName(row.type));
 			sb.append(" ");
@@ -102,6 +107,19 @@ public class NewFlowpartClassGenerator extends ClassGenerator {
 
 	private void appendConstructor(StringBuilder sb) {
 		sb.append("\n");
+
+		sb.append("\t/**\n");
+		sb.append("\t * ");
+		sb.append(description);
+		sb.append("\n");
+		for (FlowpartModelRow row : modelList) {
+			setParamJavadoc(sb, 1, row.name, row.modelDescription);
+		}
+		for (ArgumentRow row : argList) {
+			setParamJavadoc(sb, 1, row.name, row.comment);
+		}
+		sb.append("\t */\n");
+
 		sb.append("\tpublic ");
 		sb.append(className);
 		sb.append("(");

@@ -6,6 +6,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.NewFlowpartClassGe
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.NewFlowpartClassPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.SetArgumentPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.SetFlowpartModelPage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.SetFlowpartNamePage;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -15,6 +16,7 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 public class NewFlowpartClassWizard extends NewClassWizard {
 
 	private NewFlowpartClassPage classPage;
+	private SetFlowpartNamePage namePage;
 	private SetFlowpartModelPage modelPage;
 	private SetArgumentPage argPage;
 
@@ -28,6 +30,9 @@ public class NewFlowpartClassWizard extends NewClassWizard {
 		classPage.setWizard(this);
 		classPage.init(getSelection());
 		addPage(classPage);
+
+		namePage = new SetFlowpartNamePage();
+		addPage(namePage);
 
 		modelPage = new SetFlowpartModelPage();
 		addPage(modelPage);
@@ -49,8 +54,8 @@ public class NewFlowpartClassWizard extends NewClassWizard {
 		NewFlowpartClassGenerator gen = new NewFlowpartClassGenerator(classPage.getJavaProject().getProject(),
 				classPage.getPackageFragmentRoot().getPath());
 		try {
-			gen.generate(classPage.getPackageText(), classPage.getTypeName(), modelPage.getDataModelList(),
-					argPage.getArgumentList());
+			gen.generate(classPage.getPackageText(), classPage.getTypeName(), namePage.getComment(),
+					modelPage.getDataModelList(), argPage.getArgumentList());
 		} catch (CoreException e) {
 			ErrorDialog.openError(getShell(), "FlowPart generate error", "FlowPart generate error.", e.getStatus());
 		} catch (Exception e) {

@@ -40,6 +40,7 @@ public class SetArgumentPage extends EditWizardPage {
 		table = new FlowpartModelTable(composite);
 		table.addColumn("name", 128, SWT.NONE);
 		table.addColumn("type", 128, SWT.NONE);
+		table.addColumn("comment", 256, SWT.NONE);
 
 		createLabel(composite, "");
 		Composite field = new Composite(composite, SWT.NONE);
@@ -77,6 +78,8 @@ public class SetArgumentPage extends EditWizardPage {
 				return element.name;
 			case 1:
 				return element.type;
+			case 2:
+				return element.comment;
 			default:
 				throw new UnsupportedOperationException("columnIndex=" + columnIndex);
 			}
