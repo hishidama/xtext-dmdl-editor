@@ -9,6 +9,7 @@ import java.util.Set;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.config.AsakusafwProperties;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.BuildPropertiesUtil;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.DMDLFileUtil;
+import jp.hishidama.eclipse_plugin.util.JdtUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.extension.DMDLImporterExporterGenerator;
 import jp.hishidama.xtext.dmdl_editor.ui.extension.ExtensionUiUtil;
@@ -21,6 +22,8 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.porter.SetImporterExporterN
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jdt.core.IJavaElement;
+import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -36,14 +39,22 @@ public class NewImporterExporterWizard extends Wizard implements INewWizard {
 
 	private AsakusafwProperties properties = null;
 	private List<IFile> list;
+	private String srcDir;
+	private String packName;
 
 	public NewImporterExporterWizard() {
 		setWindowTitle("Importer/Exporterクラスの作成");
 		setDialogSettings(DMDLActivator.getInstance().getDialogSettings());
 	}
 
+	// @Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		list = DMDLFileUtil.getSelectionDmdlFiles(selection);
+
+		IJavaElement element = JdtUtil.getJavaElement(selection);
+		IPackageFragmentRoot root = JdtUtil.getPackageFragmentRoot(element);
+		this.srcDir = JdtUtil.getDirectory(root);
+		this.packName = JdtUtil.getPackage(element);
 	}
 
 	@Override
@@ -54,6 +65,7 @@ public class NewImporterExporterWizard extends Wizard implements INewWizard {
 		modelPage.setDescription("Importer/Exporterを作成するデータモデルを選択して下さい。");
 		addPage(modelPage);
 		namePage = new SetImporterExporterNamePage();
+		namePage.init(srcDir, packName);
 		namePage.setGenerators(gens);
 		addPage(namePage);
 		for (DMDLImporterExporterGenerator gen : gens) {

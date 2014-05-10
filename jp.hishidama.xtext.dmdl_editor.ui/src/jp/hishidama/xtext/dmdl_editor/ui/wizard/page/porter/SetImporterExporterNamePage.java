@@ -41,6 +41,8 @@ public class SetImporterExporterNamePage extends WizardPage {
 	private static final String SETTINGS_SRC = "SetImporterExporterNamePage.src";
 	private static final String SETTINGS_PACKAGE = "SetImporterExporterNamePage.package";
 
+	private String initSrcDir;
+	private String initPackName;
 	private List<DMDLImporterExporterGenerator> generatorList;
 
 	private Text srcText;
@@ -56,6 +58,11 @@ public class SetImporterExporterNamePage extends WizardPage {
 		super("SetImporterExporterNamePage");
 		setTitle("Importer/Exporterクラス名の指定");
 		setDescription("作成するImporter/Exporterの種類を選択し、生成するクラス名を入力して下さい。");
+	}
+
+	public void init(String srcDir, String packageName) {
+		this.initSrcDir = srcDir;
+		this.initPackName = packageName;
 	}
 
 	public void setGenerators(List<DMDLImporterExporterGenerator> genList) {
@@ -75,7 +82,8 @@ public class SetImporterExporterNamePage extends WizardPage {
 			srcText = new Text(composite, SWT.BORDER);
 			GridData grid = new GridData(GridData.FILL_HORIZONTAL);
 			srcText.setLayoutData(grid);
-			srcText.setText(getSetting(SETTINGS_SRC, "src/main/java"));
+			String text = (initSrcDir != null) ? initSrcDir : getSetting(SETTINGS_SRC, "src/main/java");
+			srcText.setText(text);
 			srcText.addModifyListener(listener);
 		}
 		{
@@ -85,7 +93,8 @@ public class SetImporterExporterNamePage extends WizardPage {
 			packageText = new Text(composite, SWT.BORDER);
 			GridData grid = new GridData(GridData.FILL_HORIZONTAL);
 			packageText.setLayoutData(grid);
-			packageText.setText(getSetting(SETTINGS_PACKAGE, ""));
+			String text = (initPackName != null) ? initPackName : getSetting(SETTINGS_PACKAGE, "");
+			packageText.setText(text);
 			packageText.addModifyListener(listener);
 		}
 
@@ -139,7 +148,7 @@ public class SetImporterExporterNamePage extends WizardPage {
 
 			{
 				Button button = new Button(field, SWT.PUSH);
-				button.setText("select all");
+				button.setText("Select All");
 				button.addSelectionListener(new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
@@ -152,7 +161,7 @@ public class SetImporterExporterNamePage extends WizardPage {
 			}
 			{
 				Button button = new Button(field, SWT.PUSH);
-				button.setText("deselect all");
+				button.setText("Deselect All");
 				button.addSelectionListener(new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
