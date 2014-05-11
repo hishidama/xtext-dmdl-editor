@@ -1014,9 +1014,16 @@
             class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.ModifyFlowClassHandler"
             commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyJobflowClass">
          <enabledWhen>
-            <with variable="activeEditorId">
-               <equals value="org.eclipse.jdt.ui.CompilationUnitEditor" />
-            </with>
+            <and>
+               <with variable="activeEditorId">
+                  <equals value="org.eclipse.jdt.ui.CompilationUnitEditor" />
+               </with>
+               <with variable="activeEditor">
+                  <test
+                        forcePluginActivation="true"
+                        property="jp.hishidama.xtext.dmdl_editor.ui.jdt.isFlowClass" />
+               </with>
+            </and>
          </enabledWhen>
       </handler>
    </extension>
@@ -1055,6 +1062,16 @@
             </command>
          </menu>
       </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.DmdlJdtPropertyTester"
+            id="jp.hishidama.xtext.dmdl_editor.ui.jdtPropertyTester"
+            namespace="jp.hishidama.xtext.dmdl_editor.ui.jdt"
+            properties="isFlowClass"
+            type="org.eclipse.ui.texteditor.ITextEditor">
+      </propertyTester>
    </extension>
 
 </plugin>
