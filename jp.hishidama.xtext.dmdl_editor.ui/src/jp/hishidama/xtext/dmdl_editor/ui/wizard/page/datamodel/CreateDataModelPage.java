@@ -14,9 +14,14 @@ import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeDataTransfer;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DataModelTreeViewer;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.DataModelType;
+import jp.hishidama.xtext.dmdl_editor.validation.ErrorStatus;
+import jp.hishidama.xtext.dmdl_editor.validation.WarningStatus;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -546,41 +551,69 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		dialog.open();
 	}
 
-	protected void validate(boolean setError) {
-		setPageComplete(false);
+	protected final void validate(boolean setError) {
+		IStatus status = doValidate();
+		if (status == null) {
+			status = Status.OK_STATUS;
+		}
+		switch (status.getSeverity()) {
+		case IStatus.ERROR:
+			setPageComplete(false);
+			if (setError) {
+				setErrorMessage(status.getMessage());
+			}
+			return;
+		case IStatus.WARNING:
+			setErrorMessage(null);
+			if (setError) {
+				setMessage(status.getMessage(), IMessageProvider.WARNING);
+			}
+			break;
+		default:
+			setErrorMessage(null);
+			setMessage(null, IMessageProvider.WARNING);
+			break;
+		}
+
+		setPageComplete(true);
+	}
+
+	private IStatus doValidate() {
+		IStatus warning = null;
 
 		List<R> defineList = table.getElementList();
 		if (defineList.isEmpty()) {
 			String message = getDefineEmptyMessage();
 			if (message != null) {
-				if (setError) {
-					setErrorMessage(message);
-				}
-				return;
+				return new ErrorStatus(message);
 			}
 		}
 		int line = 1;
 		for (R row : defineList) {
-			String message = row.validate();
-			if (message != null) {
-				if (setError) {
-					setErrorMessage(MessageFormat.format("{0}（{1}行目）", message, line));
+			IStatus status = row.validate();
+			switch (status.getSeverity()) {
+			case IStatus.ERROR: {
+				String message = MessageFormat.format("{0}（{1}行目 {2}）", status.getMessage(), line, row.name);
+				return new ErrorStatus(message);
+			}
+			case IStatus.WARNING:
+				if (warning == null) {
+					String message = MessageFormat.format("{0}（{1}行目 {2}）", status.getMessage(), line, row.name);
+					warning = new WarningStatus(message);
 				}
-				return;
+				break;
+			default:
+				break;
 			}
 			line++;
 		}
 
 		String message = validateOther();
 		if (message != null) {
-			if (setError) {
-				setErrorMessage(message);
-			}
-			return;
+			return new ErrorStatus(message);
 		}
 
-		setErrorMessage(null);
-		setPageComplete(true);
+		return warning;
 	}
 
 	protected String getDefineEmptyMessage() {

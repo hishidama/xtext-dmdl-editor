@@ -1,5 +1,7 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel;
 
+import org.eclipse.core.runtime.IStatus;
+
 public abstract class DataModelRow {
 
 	protected String name;
@@ -59,5 +61,5 @@ public abstract class DataModelRow {
 
 	public abstract String getText(int columnIndex);
 
-	public abstract String validate();
+	public abstract IStatus validate();
 }

@@ -12,7 +12,10 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.CreateDataModelJoinPage.JoinKey;
+import jp.hishidama.xtext.dmdl_editor.validation.ErrorStatus;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -64,15 +67,15 @@ class DataModelJoinKey extends DataModelRow {
 	}
 
 	@Override
-	public String validate() {
+	public IStatus validate() {
 		for (TableColumn c : table.getColumns()) {
 			String name = c.getText();
 			String key = keys.get(name);
 			if (StringUtil.isEmpty(key)) {
-				return "キーは必須です。";
+				return new ErrorStatus("キーは必須です。");
 			}
 		}
-		return null;
+		return Status.OK_STATUS;
 	}
 
 	@Override

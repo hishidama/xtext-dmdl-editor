@@ -16,9 +16,11 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
+import jp.hishidama.xtext.dmdl_editor.validation.ErrorStatus;
 import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
@@ -54,23 +56,27 @@ class DataModelSummarizeRow extends DataModelRow {
 	}
 
 	@Override
-	public String validate() {
+	public IStatus validate() {
+		IStatus warning = Status.OK_STATUS;
 		if (isEmpty(name) && isEmpty(refPropertyName)) {
-			return "プロパティー名は必須です。";
+			return new ErrorStatus("プロパティー名は必須です。");
 		}
 		if (nonEmpty(name)) {
 			IStatus status = ValidationUtil.validateName("プロパティー名", name);
-			if (!status.isOK()) {
-				return status.getMessage();
+			if (status.getSeverity() == IStatus.ERROR) {
+				return status;
+			}
+			if (status.getSeverity() == IStatus.WARNING) {
+				warning = status;
 			}
 		}
 		if (isEmpty(sumType)) {
-			return "集約関数は必須です。";
+			return new ErrorStatus("集約関数は必須です。");
 		}
 		if (isEmpty(refModelName)) {
-			return "集計元データモデルは必須です。";
+			return new ErrorStatus("集計元データモデルは必須です。");
 		}
-		return null;
+		return warning;
 	}
 
 	@Override

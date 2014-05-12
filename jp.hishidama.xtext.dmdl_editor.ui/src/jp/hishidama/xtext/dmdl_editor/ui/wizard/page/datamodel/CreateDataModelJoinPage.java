@@ -28,9 +28,11 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyDefinitionImpl;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
+import jp.hishidama.xtext.dmdl_editor.validation.ErrorStatus;
 import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.xtext.EcoreUtil2;
@@ -57,17 +59,21 @@ class DataModelJoinRow extends DataModelRow {
 	}
 
 	@Override
-	public String validate() {
+	public IStatus validate() {
+		IStatus warning = Status.OK_STATUS;
 		if (nonEmpty(name)) {
 			IStatus status = ValidationUtil.validateName("プロパティー名", name);
-			if (!status.isOK()) {
-				return status.getMessage();
+			if (status.getSeverity() == IStatus.ERROR) {
+				return status;
+			}
+			if (status.getSeverity() == IStatus.WARNING) {
+				warning = status;
 			}
 		}
 		if (isEmpty(refModelName)) {
-			return "結合元データモデルは必須です。";
+			return new ErrorStatus("結合元データモデルは必須です。");
 		}
-		return null;
+		return warning;
 	}
 
 	@Override
