@@ -114,7 +114,7 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 	}
 
 	@Override
-	protected void defineColumns(Table table) {
+	protected void defineColumns() {
 		if (input == null) {
 			addColumn("key1", 256);
 			addColumn("key2", 256);
@@ -158,7 +158,7 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 		for (TableColumn c : table.getColumns()) {
 			c.dispose();
 		}
-		defineColumns(table);
+		defineColumns();
 
 		sourceViewer.setInputList(input);
 		sourceViewer.expandAll();
@@ -240,6 +240,7 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 		if (row != null) {
 			boolean replace = false;
 
+			List<DataModelJoinKey> defineList = getDefinedPropertyList();
 			DataModelJoinKey now = (0 <= index && index < defineList.size()) ? defineList.get(index) : null;
 			if (now != null) {
 				int size = now.getColumns();
@@ -313,9 +314,5 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 	@Override
 	protected void setGeneratorProperty(DataModelTextGenerator gen, DataModelJoinKey row) {
 		throw new UnsupportedOperationException();
-	}
-
-	public TableItem[] getTableItems() {
-		return tableViewer.getTable().getItems();
 	}
 }

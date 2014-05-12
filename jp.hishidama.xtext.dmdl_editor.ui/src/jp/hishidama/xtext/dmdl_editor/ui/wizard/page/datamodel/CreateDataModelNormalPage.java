@@ -12,7 +12,6 @@ import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.window.Window;
-import org.eclipse.swt.widgets.Table;
 
 class DataModelNormalRow extends DataModelRow {
 
@@ -78,7 +77,7 @@ public class CreateDataModelNormalPage extends CreateDataModelMainPage<DataModel
 	}
 
 	@Override
-	protected void defineColumns(Table table) {
+	protected void defineColumns() {
 		addColumn("name", 128);
 		addColumn("description", 128);
 		addColumn("type", 96);

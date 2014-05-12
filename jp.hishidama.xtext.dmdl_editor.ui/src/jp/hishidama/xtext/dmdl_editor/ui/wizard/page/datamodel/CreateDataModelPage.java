@@ -1,12 +1,10 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
+import jp.hishidama.eclipse_plugin.jface.ModifiableTable;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
@@ -19,16 +17,12 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.DataModelType;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
@@ -36,8 +30,6 @@ import org.eclipse.swt.dnd.DropTarget;
 import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.Transfer;
-import org.eclipse.swt.events.MouseAdapter;
-import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -48,7 +40,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
 public abstract class CreateDataModelPage<R extends DataModelRow> extends WizardPage {
@@ -59,14 +50,12 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 	protected String modelDescription;
 	private String modelAttribute;
 
-	protected List<R> defineList = new ArrayList<R>();
-
 	protected DataModelTreeViewer sourceViewer;
+	private DataModelTable table;
 	protected TableViewer tableViewer;
 	private Button copyButton;
 	private Button defCopyButton;
 	private Button referenceButton;
-	private List<Button> selectionButtonList = new ArrayList<Button>();
 
 	public CreateDataModelPage(String pageName, String pageTitle, String pageDescription) {
 		super(pageName);
@@ -208,38 +197,10 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 			GridLayout layout = new GridLayout(6, true);
 			layout.marginWidth = 0;
 			layout.marginHeight = 0;
+			layout.horizontalSpacing = 0;
 			field.setLayout(layout);
 
-			createButton(field, "add", false, new SelectionAdapter() {
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					doAdd();
-				}
-			});
-			createButton(field, "edit", true, new SelectionAdapter() {
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					doEdit();
-				}
-			});
-			createButton(field, "up", true, new SelectionAdapter() {
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					doMove(-1);
-				}
-			});
-			createButton(field, "down", true, new SelectionAdapter() {
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					doMove(+1);
-				}
-			});
-			createButton(field, "delete", true, new SelectionAdapter() {
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					doRemove();
-				}
-			});
+			table.createButtonArea(field);
 			createButton(field, "preview", false, new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
@@ -247,7 +208,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 				}
 			});
 			createOtherButton(field);
-			refreshSelectionButton();
+			table.refresh();
 		}
 
 		doSelectionChange(null);
@@ -256,13 +217,8 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 	}
 
 	protected final Button createButton(Composite field, String text, boolean select, SelectionListener listener) {
-		Button button = new Button(field, SWT.PUSH);
-		button.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		button.setText(text);
+		Button button = table.createPushButton(field, text, select);
 		button.addSelectionListener(listener);
-		if (select) {
-			selectionButtonList.add(button);
-		}
 		return button;
 	}
 
@@ -271,74 +227,104 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 	}
 
 	private void createTableViewer(Composite column) {
-		tableViewer = new TableViewer(column, SWT.BORDER | SWT.MULTI | SWT.FULL_SELECTION);
-		tableViewer.setContentProvider(new ModelContentProvider());
-		tableViewer.setLabelProvider(new ModelLabelProvider());
-		tableViewer.setInput(defineList);
-		Table table = tableViewer.getTable();
-		table.setLayoutData(new GridData(GridData.FILL_BOTH));
-		table.setHeaderVisible(true);
-		table.setLinesVisible(true);
-		defineColumns(table);
-
-		tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
-			public void selectionChanged(SelectionChangedEvent event) {
-				refreshSelectionButton();
-			}
-		});
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseDoubleClick(MouseEvent e) {
-				doEdit();
-			}
-		});
-
-		int operations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_DEFAULT;
-		Transfer[] transferTypes = { DMDLTreeDataTransfer.getInstance() };
-		tableViewer.addDropSupport(operations, transferTypes, new DropTargetAdapter() {
-			@Override
-			public void dragEnter(DropTargetEvent event) {
-				if (DMDLTreeDataTransfer.getInstance().isSupportedType(event.currentDataType)) {
-					ITreeSelection selection = (ITreeSelection) event.data;
-					if (selection == null) {
-						selection = sourceViewer.getSelection();
-					}
-					if (enableCopy(selection)) {
-						event.detail = DND.DROP_COPY;
-					} else {
-						event.detail = DND.DROP_NONE;
-					}
-				}
-			}
-
-			@Override
-			public void drop(DropTargetEvent event) {
-				if (DMDLTreeDataTransfer.getInstance().isSupportedType(event.currentDataType)) {
-					int index = -1;
-					{
-						DropTarget target = (DropTarget) event.widget;
-						Table table = (Table) target.getControl();
-						Point point = event.display.map(null, table, event.x, event.y);
-						TableItem item = table.getItem(point);
-						if (item != null) {
-							index = table.indexOf(item);
-						}
-					}
-
-					ITreeSelection selection = (ITreeSelection) event.data;
-					doCopy(selection, index);
-				}
-			}
-		});
+		table = new DataModelTable(column);
+		tableViewer = table.getTableViewer();
+		defineColumns();
 	}
 
-	protected abstract void defineColumns(Table table);
+	protected class DataModelTable extends ModifiableTable<R> {
+
+		public DataModelTable(Composite parent) {
+			super(parent, SWT.BORDER | SWT.MULTI | SWT.FULL_SELECTION);
+
+			int operations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_DEFAULT;
+			Transfer[] transferTypes = { DMDLTreeDataTransfer.getInstance() };
+			viewer.addDropSupport(operations, transferTypes, new DropTargetAdapter() {
+				@Override
+				public void dragEnter(DropTargetEvent event) {
+					if (DMDLTreeDataTransfer.getInstance().isSupportedType(event.currentDataType)) {
+						ITreeSelection selection = (ITreeSelection) event.data;
+						if (selection == null) {
+							selection = sourceViewer.getSelection();
+						}
+						if (enableCopy(selection)) {
+							event.detail = DND.DROP_COPY;
+						} else {
+							event.detail = DND.DROP_NONE;
+						}
+					}
+				}
+
+				@Override
+				public void drop(DropTargetEvent event) {
+					if (DMDLTreeDataTransfer.getInstance().isSupportedType(event.currentDataType)) {
+						int index = -1;
+						{
+							DropTarget target = (DropTarget) event.widget;
+							Table table = (Table) target.getControl();
+							Point point = event.display.map(null, table, event.x, event.y);
+							TableItem item = table.getItem(point);
+							if (item != null) {
+								index = table.indexOf(item);
+							}
+						}
+
+						ITreeSelection selection = (ITreeSelection) event.data;
+						doCopy(selection, index);
+					}
+				}
+			});
+		}
+
+		@Override
+		protected Button createPushButton(Composite parent, String text) {
+			Button button = super.createPushButton(parent, text);
+			button.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+			return button;
+		}
+
+		public Button createPushButton(Composite parent, String text, boolean select) {
+			Button button = createPushButton(parent, text);
+			if (select) {
+				selectionButton.add(button);
+			}
+			return button;
+		}
+
+		@Override
+		protected String getText(R element, int columnIndex) {
+			return element.getText(columnIndex);
+		}
+
+		@Override
+		protected void doAdd() {
+			R row = createElement();
+			if (doEditDialog(row)) {
+				super.doAdd(row);
+			}
+		}
+
+		@Override
+		protected R createElement() {
+			return newAddRow();
+		}
+
+		@Override
+		protected void editElement(R element) {
+			doEditDialog(element);
+		}
+
+		@Override
+		public void refresh() {
+			super.refresh();
+			validate(true);
+		}
+	}
+
+	protected abstract void defineColumns();
 
 	protected final void addColumn(String text, int width) {
-		Table table = tableViewer.getTable();
-		TableColumn column = new TableColumn(table, SWT.NONE);
-		column.setText(text);
-		column.setWidth(width);
+		table.addColumn(text, width, SWT.NONE);
 	}
 
 	@Override
@@ -356,132 +342,9 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		// do override
 	}
 
-	private class ModelLabelProvider extends CellLabelProvider {
-		@Override
-		public void update(ViewerCell cell) {
-			@SuppressWarnings("unchecked")
-			R row = (R) cell.getElement();
-			String value = row.getText(cell.getColumnIndex());
-			cell.setText(value);
-		}
-	}
-
-	protected static class ModelContentProvider implements IStructuredContentProvider {
-		public Object[] getElements(Object inputElement) {
-			List<?> list = (List<?>) inputElement;
-			return list.toArray();
-		}
-
-		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		}
-
-		public void dispose() {
-		}
-	}
-
-	void refreshSelectionButton() {
-		boolean enable = !tableViewer.getSelection().isEmpty();
-		for (Button button : selectionButtonList) {
-			button.setEnabled(enable);
-		}
-	}
-
-	void doAdd() {
-		int index = tableViewer.getTable().getSelectionIndex();
-		doAdd(index);
-	}
-
-	protected void doAdd(int index) {
-		R row = newAddRow();
-		if (!doEditDialog(row)) {
-			return;
-		}
-
-		if (index < 0) {
-			defineList.add(row);
-			index = defineList.size() - 1;
-		} else {
-			defineList.add(index, row);
-		}
-		tableViewer.refresh();
-		validate(true);
-
-		Table table = tableViewer.getTable();
-		table.setSelection(index);
-		table.showSelection();
-		refreshSelectionButton();
-	}
-
 	protected abstract R newAddRow();
 
-	void doEdit() {
-		int index = tableViewer.getTable().getSelectionIndex();
-		if (index < 0 || index >= defineList.size()) {
-			return;
-		}
-		R row = defineList.get(index);
-		if (!doEditDialog(row)) {
-			return;
-		}
-		tableViewer.refresh();
-		validate(true);
-	}
-
 	protected abstract boolean doEditDialog(R row);
-
-	protected void doRemove() {
-		int[] index = tableViewer.getTable().getSelectionIndices();
-		for (int i = index.length - 1; i >= 0; i--) {
-			defineList.remove(index[i]);
-		}
-		tableViewer.refresh();
-		validate(true);
-	}
-
-	void doMove(int z) {
-		Table table = tableViewer.getTable();
-		int[] index = table.getSelectionIndices();
-
-		Set<R> set = new HashSet<R>();
-		for (int i : index) {
-			set.add(defineList.get(i));
-		}
-
-		int start;
-		if (z < 0) {
-			start = 0;
-		} else {
-			start = index.length - 1;
-		}
-
-		int[] newIndex = new int[index.length];
-		for (int i = start; 0 <= i && i < index.length; i -= z) {
-			int s = index[i];
-			int t = s + z;
-			if (t < 0 || t >= defineList.size()) {
-				newIndex[i] = s;
-				continue;
-			}
-			if (set.contains(defineList.get(t))) {
-				newIndex[i] = s;
-				continue;
-			}
-			swap(defineList, s, t);
-			newIndex[i] = t;
-		}
-		tableViewer.refresh();
-		validate(true);
-
-		table.setSelection(newIndex);
-		table.showSelection();
-	}
-
-	private void swap(List<R> list, int s, int t) {
-		R sr = list.get(s);
-		R tr = list.get(t);
-		list.set(t, sr);
-		list.set(s, tr);
-	}
 
 	protected void doSelectionChange(ITreeSelection selection) {
 		boolean copy = false;
@@ -546,7 +409,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		if (selection.isEmpty()) {
 			return;
 		}
-		int index = tableViewer.getTable().getSelectionIndex();
+		int index = table.getSelectionIndex();
 		doCopy(selection, index);
 	}
 
@@ -554,7 +417,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		@SuppressWarnings("unchecked")
 		Iterator<DMDLTreeData> iterator = selection.iterator();
 		doCopy(index, iterator);
-		tableViewer.refresh();
+		table.refresh();
 		validate(true);
 	}
 
@@ -579,7 +442,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		if (selection.isEmpty()) {
 			return;
 		}
-		int index = tableViewer.getTable().getSelectionIndex();
+		int index = table.getSelectionIndex();
 		doDefCopy(selection, index);
 	}
 
@@ -587,7 +450,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		@SuppressWarnings("unchecked")
 		Iterator<DMDLTreeData> iterator = selection.iterator();
 		doDefCopy(index, iterator);
-		tableViewer.refresh();
+		table.refresh();
 		validate(true);
 	}
 
@@ -637,7 +500,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		if (selection.isEmpty()) {
 			return;
 		}
-		int index = tableViewer.getTable().getSelectionIndex();
+		int index = table.getSelectionIndex();
 		for (Iterator<?> i = selection.iterator(); i.hasNext();) {
 			R row = null;
 			DMDLTreeData data = (DMDLTreeData) i.next();
@@ -654,7 +517,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 				index = addToList(index, row);
 			}
 		}
-		tableViewer.refresh();
+		table.refresh();
 		validate(true);
 	}
 
@@ -667,6 +530,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 	}
 
 	protected final int addToList(int index, R row) {
+		List<R> defineList = table.getElementList();
 		if (index < 0) {
 			defineList.add(row);
 		} else {
@@ -685,6 +549,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 	protected void validate(boolean setError) {
 		setPageComplete(false);
 
+		List<R> defineList = table.getElementList();
 		if (defineList.isEmpty()) {
 			String message = getDefineEmptyMessage();
 			if (message != null) {
@@ -733,7 +598,6 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		gen.setModelDescription(modelDescription);
 		gen.setModelAttribute(modelAttribute);
 
-		Table table = tableViewer.getTable();
 		TableItem[] items = table.getItems();
 		setGenerator(gen, items);
 
@@ -752,7 +616,11 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 
 	protected abstract void setGeneratorProperty(DataModelTextGenerator gen, R row);
 
-	public List<? extends DataModelRow> getDefinedPropertyList() {
-		return defineList;
+	public List<R> getDefinedPropertyList() {
+		return table.getElementList();
+	}
+
+	public TableItem[] getTableItems() {
+		return table.getItems();
 	}
 }

@@ -26,7 +26,6 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.xtext.EcoreUtil2;
 
 class DataModelSummarizeRow extends DataModelRow {
@@ -135,6 +134,7 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 					return;
 				}
 
+				List<DataModelSummarizeRow> defineList = getDefinedPropertyList();
 				for (int i : index) {
 					DataModelSummarizeRow row = defineList.get(i);
 					row.key = key;
@@ -172,7 +172,7 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 	}
 
 	@Override
-	protected void defineColumns(Table table) {
+	protected void defineColumns() {
 		addColumn("key", 40);
 		addColumn("name", 128);
 		addColumn("description", 128);
@@ -190,6 +190,7 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 	protected boolean doEditDialog(DataModelSummarizeRow row) {
 		String initialModelName = row.getRefModelName();
 		if (StringUtil.isEmpty(initialModelName)) {
+			List<DataModelSummarizeRow> defineList = getDefinedPropertyList();
 			for (int i = defineList.size() - 1; i >= 0; i--) {
 				DataModelSummarizeRow r = defineList.get(i);
 				if (StringUtil.nonEmpty(r.getRefModelName())) {
@@ -280,6 +281,7 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 
 	@Override
 	protected String validateOther() {
+		List<DataModelSummarizeRow> defineList = getDefinedPropertyList();
 		String refModelName = null;
 		for (DataModelSummarizeRow row : defineList) {
 			if (refModelName == null) {

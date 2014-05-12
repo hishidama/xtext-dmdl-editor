@@ -33,6 +33,7 @@ public abstract class CreateDataModelMainPage<R extends DataModelRow> extends Cr
 	@Override
 	protected void doVisible(boolean visible) {
 		if (visible) {
+			List<R> defineList = getDefinedPropertyList();
 			if (defineList.isEmpty()) {
 				ModelDefinition model = sourceViewer.findModel(modelName);
 				if (model == null) {

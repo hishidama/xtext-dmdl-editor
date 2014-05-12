@@ -32,7 +32,6 @@ import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.window.Window;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.xtext.EcoreUtil2;
 
@@ -103,7 +102,7 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 	}
 
 	@Override
-	protected void defineColumns(Table table) {
+	protected void defineColumns() {
 		addColumn("name", 128);
 		addColumn("description", 128);
 		addColumn("src model", 128);
@@ -119,6 +118,7 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 	protected boolean doEditDialog(DataModelJoinRow row) {
 		String initialModelName = row.getRefModelName();
 		if (StringUtil.isEmpty(initialModelName)) {
+			List<DataModelJoinRow> defineList = getDefinedPropertyList();
 			int index = tableViewer.getTable().getSelectionIndex();
 			for (int i = index; i >= 0; i--) {
 				DataModelJoinRow r = defineList.get(i);
