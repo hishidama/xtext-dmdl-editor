@@ -92,6 +92,8 @@ public class EditNormalPropertyDialog extends EditDialog {
 				}
 			});
 		}
+
+		nameText.setFocus();
 	}
 
 	void refreshField(boolean enable1, boolean enable2) {

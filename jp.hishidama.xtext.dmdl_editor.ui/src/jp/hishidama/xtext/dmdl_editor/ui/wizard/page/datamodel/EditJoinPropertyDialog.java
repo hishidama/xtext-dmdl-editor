@@ -52,6 +52,8 @@ public class EditJoinPropertyDialog extends EditDialog {
 				referenceProperty();
 			}
 		});
+
+		nameText.setFocus();
 	}
 
 	void referenceProperty() {

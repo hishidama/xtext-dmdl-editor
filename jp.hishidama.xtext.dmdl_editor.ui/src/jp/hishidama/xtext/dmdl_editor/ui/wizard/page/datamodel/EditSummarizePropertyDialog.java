@@ -65,6 +65,8 @@ public class EditSummarizePropertyDialog extends EditDialog {
 				referenceProperty();
 			}
 		});
+
+		nameText.setFocus();
 	}
 
 	private String getInitialAggregator() {
