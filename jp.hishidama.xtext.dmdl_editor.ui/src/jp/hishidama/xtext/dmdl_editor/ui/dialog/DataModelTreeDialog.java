@@ -10,8 +10,6 @@ import jp.hishidama.xtext.dmdl_editor.ui.viewer.DataModelTreeViewer;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
@@ -63,17 +61,13 @@ public abstract class DataModelTreeDialog extends EditDialog {
 		ptext.setText(project.getName());
 		ptext.setEditable(false);
 
-		final Text filter = createTextField(composite, "filter :");
-		filter.addModifyListener(new ModifyListener() {
-			public void modifyText(ModifyEvent e) {
-				tree.setFilterText(filter.getText().trim());
-			}
-		});
+		Text filter = createTextField(composite, "filter :");
 
 		tree = createDataModelTreeField(composite, "data model :");
 		tree.setChildrenPredicate(predicate);
 		tree.setInputAll(project);
 		tree.expandToLevel(getInitialExpandLevel());
+		tree.addFilterListenerTo(filter);
 
 		Composite field = new Composite(composite, SWT.NONE);
 		{

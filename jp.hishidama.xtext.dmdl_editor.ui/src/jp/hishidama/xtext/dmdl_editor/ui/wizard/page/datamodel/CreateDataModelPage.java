@@ -46,6 +46,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.Text;
 
 public abstract class CreateDataModelPage<R extends DataModelRow> extends WizardPage {
 	protected String[] sourceModels;
@@ -123,8 +124,20 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		}
 
 		{
-			sourceViewer = new DataModelTreeViewer(composite, SWT.BORDER | SWT.MULTI, true);
+			Composite panel = new Composite(composite, SWT.NONE);
+			{
+				panel.setLayoutData(new GridData(GridData.FILL_BOTH));
+
+				GridLayout layout = new GridLayout(2, false);
+				layout.marginWidth = 0;
+				layout.marginHeight = 0;
+				layout.horizontalSpacing = 0;
+				panel.setLayout(layout);
+			}
+
+			sourceViewer = new DataModelTreeViewer(panel, SWT.BORDER | SWT.MULTI, true);
 			GridData grid = new GridData(GridData.FILL_BOTH);
+			grid.horizontalSpan = 2;
 			sourceViewer.getTree().setLayoutData(grid);
 			sourceViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 				public void selectionChanged(SelectionChangedEvent event) {
@@ -141,6 +154,12 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 					}
 				}
 			});
+
+			Label label = new Label(panel, SWT.NONE);
+			label.setText("filter ");
+			Text filter = new Text(panel, SWT.BORDER);
+			filter.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+			sourceViewer.addFilterListenerTo(filter);
 		}
 		{
 			Composite column = new Composite(composite, SWT.NONE);

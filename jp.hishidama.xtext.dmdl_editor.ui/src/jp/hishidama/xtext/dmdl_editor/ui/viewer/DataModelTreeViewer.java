@@ -20,7 +20,10 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 
 public class DataModelTreeViewer extends TreeViewer {
@@ -68,6 +71,12 @@ public class DataModelTreeViewer extends TreeViewer {
 		setInput(list);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DMDLTreeData> getInput() {
+		return (List<DMDLTreeData>) super.getInput();
+	}
+
 	public void setInputModels(IProject project, String... modelNames) {
 		List<DMDLTreeData> list = new ArrayList<DMDLTreeData>(modelNames.length);
 		for (String modelName : modelNames) {
@@ -98,9 +107,16 @@ public class DataModelTreeViewer extends TreeViewer {
 		}
 	}
 
-	public void setFilterText(String filter) {
-		@SuppressWarnings("unchecked")
-		List<DMDLTreeData> input = (List<DMDLTreeData>) getInput();
+	public void addFilterListenerTo(final Text text) {
+		text.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				setFilterText(text.getText().trim());
+			}
+		});
+	}
+
+	private void setFilterText(String filter) {
+		List<DMDLTreeData> input = getInput();
 		for (DMDLTreeData data : input) {
 			data.setFilter(filter);
 		}
@@ -114,8 +130,7 @@ public class DataModelTreeViewer extends TreeViewer {
 	}
 
 	public ModelDefinition findModel(String modelName) {
-		@SuppressWarnings("unchecked")
-		List<DMDLTreeData> list = (List<DMDLTreeData>) getInput();
+		List<DMDLTreeData> list = getInput();
 		return findModel(list, modelName);
 	}
 
