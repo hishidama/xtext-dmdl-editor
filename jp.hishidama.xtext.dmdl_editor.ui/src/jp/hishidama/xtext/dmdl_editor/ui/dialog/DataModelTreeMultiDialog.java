@@ -110,6 +110,8 @@ public abstract class DataModelTreeMultiDialog extends EditDialog {
 				});
 			}
 		}
+
+		filter.setFocus();
 	}
 
 	private DataModelTreeViewer createDataModelTreeField(Composite composite, String label) {
