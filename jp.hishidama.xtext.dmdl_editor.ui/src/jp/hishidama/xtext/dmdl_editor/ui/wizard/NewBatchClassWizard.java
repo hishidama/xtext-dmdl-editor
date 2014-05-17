@@ -4,6 +4,7 @@ import jp.hishidama.eclipse_plugin.wizard.NewClassWizard;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.batch.NewBatchClassGenerator;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.batch.NewBatchClassPage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.batch.SetBatchDescribePage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.batch.SetBatchNamePage;
 
 import org.eclipse.core.runtime.CoreException;
@@ -15,6 +16,7 @@ public class NewBatchClassWizard extends NewClassWizard {
 
 	private NewBatchClassPage classPage;
 	private SetBatchNamePage namePage;
+	private SetBatchDescribePage jobPage;
 
 	public NewBatchClassWizard() {
 		setWindowTitle("New Batch Class");
@@ -29,6 +31,9 @@ public class NewBatchClassWizard extends NewClassWizard {
 
 		namePage = new SetBatchNamePage();
 		addPage(namePage);
+
+		jobPage = new SetBatchDescribePage();
+		addPage(jobPage);
 	}
 
 	public String getTypeName() {
@@ -45,7 +50,7 @@ public class NewBatchClassWizard extends NewClassWizard {
 				.getPackageFragmentRoot().getPath());
 		try {
 			gen.generate(classPage.getPackageText(), classPage.getTypeName(), namePage.getBatchName(),
-					namePage.getComment(), namePage.isStrict(), namePage.getParameterList());
+					namePage.getComment(), namePage.isStrict(), namePage.getParameterList(), jobPage.getJobList());
 		} catch (CoreException e) {
 			ErrorDialog.openError(getShell(), "Batch generate error", "Batch generate error.", e.getStatus());
 		} catch (Exception e) {
