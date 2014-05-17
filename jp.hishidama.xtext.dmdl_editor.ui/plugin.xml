@@ -816,6 +816,16 @@
             activate="true">
       </hover>
    </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.jdt.ui.CompilationUnitEditor.EditorContext?after=OpenEditor">
+         <command
+               commandId="jp.hishidama.jdt.xtext.dmdl_editor.command.openLink">
+         </command>
+      </menuContribution>
+   </extension>
 
    <!-- F4 / DataModel Hierarchy -->
    <!-- see https://eclipse.googlesource.com/tmf/org.eclipse.xtext/+/Helios_Maintenance/plugins/org.eclipse.xtext.ui/plugin.xml -->
