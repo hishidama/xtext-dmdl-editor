@@ -81,7 +81,7 @@ public class EditJobflowPorterDialog extends EditDialog {
 			return;
 		}
 
-		String className = dialog.getSelectedClass();
+		String className = dialog.getSelectedClassName();
 		classText.setText(className);
 
 		try {
