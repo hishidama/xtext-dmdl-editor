@@ -1,5 +1,6 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.gen;
 
+import java.text.MessageFormat;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,11 +16,14 @@ import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.Annotation;
 import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.Expression;
+import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.Javadoc;
+import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.NullLiteral;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import org.eclipse.jdt.core.dom.Statement;
 import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
+import org.eclipse.jdt.core.dom.rewrite.ListRewrite;
 
 public class ConvertOperatorGenerator extends OperatorGenerator {
 
@@ -59,7 +63,9 @@ public class ConvertOperatorGenerator extends OperatorGenerator {
 		List<Statement> slist = block.statements();
 
 		OperatorOutputModelRow rrow = getReturnRow();
-		slist.add(newVariableDeclarationStatement(rrow.modelClassName, "result"));
+		String fieldName = getFieldName();
+		slist.add(newVariableDeclarationStatement(rrow.modelClassName, "result", ast.newSimpleName(fieldName)));
+		slist.add(newMethodInvocationStatement("result", "reset"));
 
 		addStatement(slist, rrow);
 
@@ -96,6 +102,32 @@ public class ConvertOperatorGenerator extends OperatorGenerator {
 				slist.add(newMethodInvocationStatement("result", String.format("set%sOption", camelName), arg));
 			}
 		}
+	}
+
+	@Override
+	protected ASTNode insertOther(ListRewrite listRewrite, MethodDeclaration method) {
+		FieldDeclaration field = createField();
+		listRewrite.insertBefore(field, method, null);
+		return method;
+	}
+
+	private FieldDeclaration createField() {
+		String name = getFieldName();
+		OperatorOutputModelRow row = getReturnRow();
+		String className = row.modelClassName;
+		FieldDeclaration field = newFieldDeclaration(className, name, true);
+
+		String inputClassName = getImportRewrite().addImport(getInputRow().modelClassName);
+		String comment = MessageFormat.format("'{'@link #{0}({1})'}'で利用するデータモデル.", methodName, inputClassName);
+		Javadoc javadoc = newJavadoc(comment);
+		field.setJavadoc(javadoc);
+
+		return field;
+	}
+
+	private String getFieldName() {
+		String name = methodName + "ResultModel";
+		return name;
 	}
 
 	private OperatorInputModelRow getInputRow() {
