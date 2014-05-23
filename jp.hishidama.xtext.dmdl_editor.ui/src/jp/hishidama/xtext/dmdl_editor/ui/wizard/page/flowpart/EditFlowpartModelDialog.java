@@ -1,5 +1,7 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart;
 
+import java.util.List;
+
 import jp.hishidama.eclipse_plugin.dialog.EditDialog;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
@@ -11,6 +13,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -20,7 +23,7 @@ public class EditFlowpartModelDialog extends EditDialog {
 	private IProject project;
 	private FlowpartModelRow row;
 
-	private Text inText;
+	private Button inButton;
 	private Text nameText;
 	private String modelClassName;
 	private Text modelNameText;
@@ -34,9 +37,10 @@ public class EditFlowpartModelDialog extends EditDialog {
 
 	@Override
 	protected void createFields(Composite composite) {
-		inText = createTextField(composite, "in/out");
-		inText.setText(row.getIn());
-		inText.setEnabled(false);
+		List<Button> buttons = createRadioField(composite, "in/out", "in", "out");
+		inButton = buttons.get(0);
+		inButton.setSelection(row.in);
+		buttons.get(1).setSelection(!row.in);
 		nameText = createTextField(composite, "name");
 		nameText.setText(nonNull(row.name));
 		modelClassName = row.modelClassName;
@@ -90,6 +94,7 @@ public class EditFlowpartModelDialog extends EditDialog {
 
 	@Override
 	protected void okPressed() {
+		row.in = inButton.getSelection();
 		row.name = nameText.getText().trim();
 		row.modelClassName = modelClassName;
 		row.modelName = modelNameText.getText();
