@@ -25,6 +25,7 @@ public class EditFlowpartModelDialog extends EditDialog {
 
 	private Button inButton;
 	private Text nameText;
+	private Text commentText;
 	private String modelClassName;
 	private Text modelNameText;
 	private Text modelDescText;
@@ -43,6 +44,8 @@ public class EditFlowpartModelDialog extends EditDialog {
 		buttons.get(1).setSelection(!row.in);
 		nameText = createTextField(composite, "name");
 		nameText.setText(nonNull(row.name));
+		commentText = createTextField(composite, "comment");
+		commentText.setText(nonNull(row.comment));
 		modelClassName = row.modelClassName;
 		TextButtonPair pair = createTextButtonField(composite, "model name", "select");
 		modelNameText = pair.text;
@@ -73,11 +76,15 @@ public class EditFlowpartModelDialog extends EditDialog {
 
 		ModelDefinition model = dialog.getSelectedDataModel();
 		String modelName = nonNull(model.getName());
+		String modelDescription = ModelUtil.getDecodedDescriptionText(model);
 		modelNameText.setText(modelName);
-		modelDescText.setText(ModelUtil.getDecodedDescriptionText(model));
+		modelDescText.setText(modelDescription);
 		this.modelClassName = ModelUiUtil.getModelClassName(project, modelName);
 		if (nameText.getText().trim().isEmpty()) {
 			nameText.setText(StringUtil.toLowerCamelCase(modelName));
+		}
+		if (commentText.getText().isEmpty()) {
+			commentText.setText(modelDescription);
 		}
 	}
 
@@ -96,6 +103,7 @@ public class EditFlowpartModelDialog extends EditDialog {
 	protected void okPressed() {
 		row.in = inButton.getSelection();
 		row.name = nameText.getText().trim();
+		row.comment = commentText.getText();
 		row.modelClassName = modelClassName;
 		row.modelName = modelNameText.getText();
 		row.modelDescription = modelDescText.getText();

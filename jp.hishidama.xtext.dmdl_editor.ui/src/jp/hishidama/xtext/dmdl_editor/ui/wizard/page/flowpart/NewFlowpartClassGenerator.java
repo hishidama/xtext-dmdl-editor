@@ -78,7 +78,7 @@ public class NewFlowpartClassGenerator extends ClassGenerator {
 	private void appendFields(StringBuilder sb) {
 		sb.append("\n");
 		for (FlowpartModelRow row : modelList) {
-			setLineJavadoc(sb, 1, row.modelDescription);
+			setLineJavadoc(sb, 1, row.comment);
 			sb.append("\tprivate final ");
 			appendVariableDefinition(sb, row);
 			sb.append(";\n");
@@ -113,7 +113,7 @@ public class NewFlowpartClassGenerator extends ClassGenerator {
 		sb.append(description);
 		sb.append("\n");
 		for (FlowpartModelRow row : modelList) {
-			setParamJavadoc(sb, 1, row.name, row.modelDescription);
+			setParamJavadoc(sb, 1, row.name, row.comment);
 		}
 		for (ArgumentRow row : argList) {
 			setParamJavadoc(sb, 1, row.name, row.comment);
