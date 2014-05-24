@@ -169,6 +169,7 @@ public class SetFlowpartModelPage extends EditWizardPage {
 
 		public FlowpartModelTable(Composite parent) {
 			super(parent, SWT.BORDER | SWT.MULTI | SWT.FULL_SELECTION);
+			setVisibleDupButton(true);
 		}
 
 		@Override
@@ -243,6 +244,11 @@ public class SetFlowpartModelPage extends EditWizardPage {
 		protected void editElement(FlowpartModelRow element) {
 			EditFlowpartModelDialog dialog = new EditFlowpartModelDialog(getShell(), project, element);
 			dialog.open();
+		}
+
+		@Override
+		protected FlowpartModelRow dupElement(FlowpartModelRow element) {
+			return element.clone();
 		}
 
 		@Override

@@ -179,6 +179,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 
 		public JobflowPorterTable(Composite parent) {
 			super(parent, SWT.BORDER | SWT.MULTI | SWT.FULL_SELECTION);
+			setVisibleDupButton(true);
 		}
 
 		@Override
@@ -295,6 +296,11 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		protected void editElement(JobflowPorterRow element) {
 			EditJobflowPorterDialog dialog = new EditJobflowPorterDialog(getShell(), javaProject, element);
 			dialog.open();
+		}
+
+		@Override
+		protected JobflowPorterRow dupElement(JobflowPorterRow element) {
+			return element.clone();
 		}
 
 		@Override
