@@ -5,6 +5,7 @@ import jp.hishidama.eclipse_plugin.dialog.ClassSelectionDialog;
 import jp.hishidama.eclipse_plugin.dialog.ClassSelectionDialog.Filter;
 import jp.hishidama.eclipse_plugin.dialog.ClassSelectionImplementsFilter;
 import jp.hishidama.eclipse_plugin.dialog.EditDialog;
+import jp.hishidama.eclipse_plugin.jdt.util.JavadocUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
@@ -12,6 +13,8 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -26,6 +29,7 @@ public class EditJobflowPorterDialog extends EditDialog {
 
 	private Text inText;
 	private Text nameText;
+	private Text commentText;
 	private Text classText;
 	private String modelClassName;
 	private Text modelNameText;
@@ -44,6 +48,8 @@ public class EditJobflowPorterDialog extends EditDialog {
 		inText.setEnabled(false);
 		nameText = createTextField(composite, "name");
 		nameText.setText(nonNull(row.name));
+		commentText = createTextField(composite, "comment");
+		commentText.setText(nonNull(row.comment));
 		TextButtonPair pair = createTextButtonField(composite, "class", "select");
 		classText = pair.text;
 		classText.setText(nonNull(row.porterClassName));
@@ -85,15 +91,29 @@ public class EditJobflowPorterDialog extends EditDialog {
 		classText.setText(className);
 
 		try {
+			IType type = javaProject.findType(className);
+			String header = JavadocUtil.getHeader(JavadocUtil.getJavadoc(type));
+			if (header != null) {
+				commentText.setText(header);
+			}
+		} catch (JavaModelException e) {
+			// ignore
+		}
+
+		try {
 			String modelClassName = PorterUtil.getModelClassName(javaProject, className);
 			this.modelClassName = modelClassName;
 			ModelDefinition model = ModelUiUtil.findModelByClass(javaProject.getProject(), modelClassName);
 			if (model != null) {
 				String modelName = nonNull(model.getName());
 				modelNameText.setText(modelName);
-				modelDescText.setText(ModelUtil.getDecodedDescriptionText(model));
+				String modelDescription = ModelUtil.getDecodedDescriptionText(model);
+				modelDescText.setText(modelDescription);
 				if (nameText.getText().trim().isEmpty()) {
 					nameText.setText(StringUtil.toLowerCamelCase(modelName));
+				}
+				if (commentText.getText().isEmpty()) {
+					commentText.setText(modelDescription);
 				}
 			} else {
 				modelNameText.setText(nonNull(modelClassName));
@@ -120,6 +140,7 @@ public class EditJobflowPorterDialog extends EditDialog {
 	@Override
 	protected void okPressed() {
 		row.name = nameText.getText().trim();
+		row.comment = commentText.getText();
 		row.porterClassName = classText.getText().trim();
 		row.modelClassName = modelClassName;
 		row.modelName = modelNameText.getText();

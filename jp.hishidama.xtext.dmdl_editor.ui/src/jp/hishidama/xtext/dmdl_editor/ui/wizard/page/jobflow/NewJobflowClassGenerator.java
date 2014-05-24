@@ -81,7 +81,7 @@ public class NewJobflowClassGenerator extends ClassGenerator {
 	private void appendFields(StringBuilder sb) {
 		sb.append("\n");
 		for (JobflowPorterRow row : porterList) {
-			setLineJavadoc(sb, 1, row.modelDescription);
+			setLineJavadoc(sb, 1, row.comment);
 			sb.append("\tprivate final ");
 			appendVariableDefinition(sb, row);
 			sb.append(";\n");
@@ -108,7 +108,7 @@ public class NewJobflowClassGenerator extends ClassGenerator {
 		sb.append(jobDescription);
 		sb.append("\n");
 		for (JobflowPorterRow row : porterList) {
-			setParamJavadoc(sb, 1, row.name, row.modelDescription);
+			setParamJavadoc(sb, 1, row.name, row.comment);
 		}
 		sb.append("\t */\n");
 

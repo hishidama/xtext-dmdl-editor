@@ -4,12 +4,14 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.eclipse_plugin.dialog.ProjectFileSelectionDialog;
 import jp.hishidama.eclipse_plugin.jdt.util.AnnotationUtil;
+import jp.hishidama.eclipse_plugin.jdt.util.JavadocUtil;
 import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
 import jp.hishidama.eclipse_plugin.jface.ModifiableTable;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
@@ -17,6 +19,7 @@ import jp.hishidama.eclipse_plugin.wizard.page.EditWizardPage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.TypeWizard;
 
 import org.eclipse.core.resources.IFile;
@@ -71,6 +74,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		table = new JobflowPorterTable(composite);
 		table.addColumn("in/out", 64 + 8, SWT.NONE);
 		table.addColumn("name", 128, SWT.NONE);
+		table.addColumn("comment", 128, SWT.NONE);
 		table.addColumn("class", 256 + 32, SWT.NONE);
 		table.addColumn("model name", 128, SWT.NONE);
 		table.addColumn("model description", 128, SWT.NONE);
@@ -99,6 +103,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		}
 		IProject project = type.getJavaProject().getProject();
 		try {
+			Map<String, String> paramJavadoc = JavadocUtil.getParamMap(JavadocUtil.getJavadoc(constructor));
 			for (ILocalVariable param : constructor.getParameters()) {
 				String t = TypeUtil.getVariableTypeName(param);
 				int s = t.indexOf('<');
@@ -110,6 +115,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 				JobflowPorterRow row = new JobflowPorterRow();
 				row.in = t.startsWith(FlowUtil.IN_NAME);
 				row.name = param.getElementName();
+				row.comment = StringUtil.trim(paramJavadoc.get(row.name));
 				row.modelClassName = t.substring(s + 1, e);
 				ModelDefinition model = ModelUiUtil.findModelByClass(project, row.modelClassName);
 				if (model != null) {
@@ -126,7 +132,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 				list.add(row);
 			}
 		} catch (JavaModelException e) {
-			e.printStackTrace();
+			LogUtil.logWarn("", e);
 		}
 
 		return list;
@@ -183,10 +189,12 @@ public class SetJobflowPorterPage extends EditWizardPage {
 			case 1:
 				return element.name;
 			case 2:
-				return element.porterClassName;
+				return element.comment;
 			case 3:
-				return element.modelName;
+				return element.porterClassName;
 			case 4:
+				return element.modelName;
+			case 5:
 				return element.modelDescription;
 			default:
 				throw new UnsupportedOperationException("columnIndex=" + columnIndex);
@@ -258,6 +266,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 					JobflowPorterRow row = createElement();
 					row.in = PorterUtil.IMPORTER_NAME.equals(porter);
 					row.porterClassName = type.getFullyQualifiedName();
+					row.comment = JavadocUtil.getHeader(JavadocUtil.getJavadoc(type));
 					String modelClassName = PorterUtil.getModelClassName(javaProject, row.porterClassName);
 					row.modelClassName = modelClassName;
 					ModelDefinition model = ModelUiUtil.findModelByClass(project, modelClassName);
@@ -266,6 +275,9 @@ public class SetJobflowPorterPage extends EditWizardPage {
 						row.name = StringUtil.toLowerCamelCase(modelName);
 						row.modelName = modelName;
 						row.modelDescription = ModelUtil.getDecodedDescriptionText(model);
+						if (StringUtil.isEmpty(row.comment)) {
+							row.comment = row.modelDescription;
+						}
 					}
 					result.add(row);
 				}
