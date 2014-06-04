@@ -127,7 +127,8 @@ public class NewOperatorMethodWizard extends Wizard {
 
 	private void addMasterJoinPages() {
 		OperatorType opType = OperatorType.MASTER_JOIN;
-		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType);
+		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType,
+				"結合モデル（MasterJoin演算子の出力となるデータモデル）を選択して下さい。");
 		outputPage.setJoinModelOnly();
 		outputPage.addRole("out");
 		addPage(opType, outputPage);
@@ -192,7 +193,8 @@ public class NewOperatorMethodWizard extends Wizard {
 
 	private void addSummarizePages() {
 		OperatorType opType = OperatorType.SUMMARIZE;
-		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType);
+		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType,
+				"集計モデル（Summarize演算子の出力となるデータモデル）を選択して下さい。");
 		outputPage.setSummarizeModelOnly();
 		outputPage.addRole("out");
 		addPage(opType, outputPage);

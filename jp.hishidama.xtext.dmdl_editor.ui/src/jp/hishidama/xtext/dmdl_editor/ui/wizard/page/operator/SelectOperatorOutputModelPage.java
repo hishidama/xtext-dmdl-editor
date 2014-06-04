@@ -31,10 +31,17 @@ public class SelectOperatorOutputModelPage extends EditWizardPage {
 	private ModelTable table;
 
 	public SelectOperatorOutputModelPage(IProject project, OperatorType opType) {
+		this(project, opType, null);
+	}
+
+	public SelectOperatorOutputModelPage(IProject project, OperatorType opType, String description) {
 		super("SelectOperatorOutputModelPage");
 
 		setTitle(MessageFormat.format("{0}の出力モデルの指定", opType.getName()));
-		setDescription("演算子の出力となるデータモデルを選択して下さい。");
+		if (description == null) {
+			description = "演算子の出力となるデータモデルを選択して下さい。";
+		}
+		setDescription(description);
 
 		this.project = project;
 	}
