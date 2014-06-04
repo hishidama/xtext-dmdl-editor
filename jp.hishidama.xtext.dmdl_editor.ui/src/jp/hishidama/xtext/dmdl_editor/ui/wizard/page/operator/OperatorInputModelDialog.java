@@ -223,7 +223,6 @@ public class OperatorInputModelDialog extends EditDialog {
 		@Override
 		protected GridData createGridData() {
 			GridData data = super.createGridData();
-			data.heightHint = 96;
 			data.horizontalSpan = 2;
 			return data;
 		}

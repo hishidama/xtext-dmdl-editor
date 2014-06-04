@@ -151,13 +151,6 @@ public class SetBranchEnumPage extends EditWizardPage {
 		}
 
 		@Override
-		protected GridData createGridData() {
-			GridData data = super.createGridData();
-			data.heightHint = 96;
-			return data;
-		}
-
-		@Override
 		protected String getText(EnumRow element, int columnIndex) {
 			switch (columnIndex) {
 			case 0:
