@@ -30,7 +30,6 @@ public abstract class DataModelTreeDialog extends EditDialog {
 
 	public DataModelTreeDialog(Shell parentShell, IProject project, String windowTitle) {
 		super(parentShell, windowTitle);
-		setShellStyle(getShellStyle() | SWT.RESIZE);
 		this.project = project;
 	}
 

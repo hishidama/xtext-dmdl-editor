@@ -66,8 +66,6 @@ public class OperatorInputModelDialog extends EditDialog {
 		this.hasOrder = hasOrder;
 		this.joinOnly = joinOnly;
 
-		setShellStyle(getShellStyle() | SWT.RESIZE);
-
 		if (row.keyList != null) {
 			oldKeyMap = new HashMap<String, NamePair>();
 			int i = 0;

@@ -168,8 +168,6 @@ public class SetBatchDescribePage extends EditWizardPage {
 		public EditJobDialog(Shell parentShell, JobRow row) {
 			super(parentShell, "ジョブフロー選択", 3);
 			this.row = row;
-
-			setShellStyle(getShellStyle() | SWT.RESIZE);
 		}
 
 		@Override
