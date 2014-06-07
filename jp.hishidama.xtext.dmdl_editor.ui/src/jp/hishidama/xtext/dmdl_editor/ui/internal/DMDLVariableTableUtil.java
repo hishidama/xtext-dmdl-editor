@@ -91,7 +91,7 @@ public class DMDLVariableTableUtil {
 		for (int pos = 0;;) {
 			int n = s.indexOf("$(", pos);
 			if (n >= 0) {
-				sb.append(s.substring(pos, n));
+				sb.append(s, pos, n);
 				pos = n;
 				int m = s.indexOf(")", pos);
 				if (m >= 0) {
@@ -104,7 +104,7 @@ public class DMDLVariableTableUtil {
 					break;
 				}
 			} else {
-				sb.append(s.substring(pos));
+				sb.append(s, pos, s.length());
 				break;
 			}
 		}
