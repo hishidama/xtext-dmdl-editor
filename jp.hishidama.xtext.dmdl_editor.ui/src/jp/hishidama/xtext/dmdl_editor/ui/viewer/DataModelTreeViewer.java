@@ -10,32 +10,58 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData.FileNode;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData.FileNode.ModelTreeNodePredicate;
+import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData.ModelNode;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jface.util.SafeRunnable;
+import org.eclipse.jface.viewers.CheckStateChangedEvent;
+import org.eclipse.jface.viewers.ICheckStateListener;
+import org.eclipse.jface.viewers.ICheckable;
 import org.eclipse.jface.viewers.ITreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeColumn;
+import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.swt.widgets.Widget;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 
-public class DataModelTreeViewer extends TreeViewer {
+public class DataModelTreeViewer extends TreeViewer implements ICheckable {
+	/**
+	 * List of check state listeners (element type:
+	 * <code>ICheckStateListener</code>).
+	 */
+	private ListenerList checkStateListeners = new ListenerList();
+
+	/**
+	 * Last item clicked on, or <code>null</code> if none.
+	 */
+	private TreeItem lastClickedItem = null;
 
 	private ModelTreeNodePredicate predicate;
 	private DataModelFilter viewerFilter;
 
-	public DataModelTreeViewer(Composite parent, int style) {
-		this(parent, style, false);
+	public DataModelTreeViewer(Composite parent, int style, int nameWidth, int attrWidth) {
+		this(parent, style, nameWidth, attrWidth, false);
 	}
 
-	public DataModelTreeViewer(Composite parent, int style, boolean enableDrag) {
+	public DataModelTreeViewer(Composite parent, int style, int nameWidth, int attrWidth, boolean enableDrag) {
 		super(parent, style);
 		setLabelProvider(new DMDLTreeLabelProvider());
 
@@ -44,6 +70,161 @@ public class DataModelTreeViewer extends TreeViewer {
 			Transfer[] transferTypes = { DMDLTreeDataTransfer.getInstance() };
 			addDragSupport(operations, transferTypes, new DMDLTreeDataDragListener(this));
 		}
+
+		Tree tree = getTree();
+		tree.setHeaderVisible(true);
+		{
+			TreeColumn column = new TreeColumn(tree, SWT.NONE);
+			column.setText("name");
+			column.setWidth(nameWidth);
+		}
+		{
+			TreeColumn column = new TreeColumn(tree, SWT.NONE);
+			column.setText("attribute");
+			column.setWidth(attrWidth);
+		}
+
+		if ((style & SWT.CHECK) != 0) {
+			addCheckStateListener(new ICheckStateListener() {
+				public void checkStateChanged(CheckStateChangedEvent event) {
+					refreshChecked(event.getElement());
+				}
+			});
+			tree.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseDown(MouseEvent e) {
+					Point point = new Point(e.x, e.y);
+					Tree tree = (Tree) e.widget;
+					TreeItem item = tree.getItem(point);
+					if (item != null && item.getBounds(0).contains(point)) {
+						item.setChecked(!item.getChecked());
+						refreshChecked(item.getData());
+					}
+				}
+			});
+		}
+	}
+
+	public void setLayoutData(Object layoutData) {
+		getTree().setLayoutData(layoutData);
+	}
+
+	// CheckboxTreeViewer
+
+	public void addCheckStateListener(ICheckStateListener listener) {
+		checkStateListeners.add(listener);
+	}
+
+	public void removeCheckStateListener(ICheckStateListener listener) {
+		checkStateListeners.remove(listener);
+	}
+
+	public boolean getChecked(Object element) {
+		Widget widget = findItem(element);
+		if (widget instanceof TreeItem) {
+			return ((TreeItem) widget).getChecked();
+		}
+		return false;
+	}
+
+	public boolean setChecked(Object element, boolean state) {
+		Assert.isNotNull(element);
+		Widget widget = internalExpand(element, false);
+		if (widget instanceof TreeItem) {
+			((TreeItem) widget).setChecked(state);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	protected void handleDoubleSelect(SelectionEvent event) {
+
+		if (lastClickedItem != null) {
+			TreeItem item = lastClickedItem;
+			Object data = item.getData();
+			if (data != null) {
+				boolean state = item.getChecked();
+				setChecked(data, !state);
+				fireCheckStateChanged(new CheckStateChangedEvent(this, data, !state));
+			}
+			lastClickedItem = null;
+		} else {
+			super.handleDoubleSelect(event);
+		}
+	}
+
+	@Override
+	protected void handleSelect(SelectionEvent event) {
+
+		lastClickedItem = null;
+		if (event.detail == SWT.CHECK) {
+			TreeItem item = (TreeItem) event.item;
+			lastClickedItem = item;
+			super.handleSelect(event);
+
+			Object data = item.getData();
+			if (data != null) {
+				fireCheckStateChanged(new CheckStateChangedEvent(this, data, item.getChecked()));
+			}
+		} else {
+			super.handleSelect(event);
+		}
+	}
+
+	/**
+	 * Notifies any check state listeners that the check state of an element has
+	 * changed. Only listeners registered at the time this method is called are
+	 * notified.
+	 * 
+	 * @param event
+	 *            a check state changed event
+	 * 
+	 * @see ICheckStateListener#checkStateChanged
+	 */
+	protected void fireCheckStateChanged(final CheckStateChangedEvent event) {
+		Object[] array = checkStateListeners.getListeners();
+		for (int i = 0; i < array.length; i++) {
+			final ICheckStateListener l = (ICheckStateListener) array[i];
+			SafeRunnable.run(new SafeRunnable() {
+				public void run() {
+					l.checkStateChanged(event);
+				}
+			});
+		}
+
+	}
+
+	private void refreshChecked(Object obj) {
+		if (obj instanceof DMDLTreeData.FileNode) {
+			TreeItem row = (TreeItem) findItem(obj);
+			boolean c = getChecked(obj);
+			row.setGrayed(false);
+			for (TreeItem item : row.getItems()) {
+				item.setChecked(c);
+			}
+		} else if (obj instanceof DMDLTreeData.ModelNode) {
+			TreeItem row = (TreeItem) findItem(((DMDLTreeData.ModelNode) obj).getParent());
+			int empty = 0, checked = 0;
+			TreeItem[] items = row.getItems();
+			for (TreeItem item : items) {
+				if (item.getChecked()) {
+					checked++;
+				} else {
+					empty++;
+				}
+			}
+			if (empty == items.length) {
+				row.setChecked(false);
+				row.setGrayed(false);
+			} else if (checked == items.length) {
+				row.setChecked(true);
+				row.setGrayed(false);
+			} else {
+				row.setChecked(true);
+				row.setGrayed(true);
+			}
+		}
 	}
 
 	public void setChildrenPredicate(ModelTreeNodePredicate predicate) {
@@ -51,6 +232,10 @@ public class DataModelTreeViewer extends TreeViewer {
 	}
 
 	public void setInputAll(IProject project) {
+		setInputAll(project, 3);
+	}
+
+	public void setInputAll(IProject project, int depth) {
 		setContentProvider(new DMDLTreeContentProvider());
 
 		IResourceSetProvider provider = InjectorUtil.getInstance(IResourceSetProvider.class);
@@ -59,7 +244,7 @@ public class DataModelTreeViewer extends TreeViewer {
 		List<IFile> files = DMDLFileUtil.getDmdlFiles(project);
 		List<DMDLTreeData> list = new ArrayList<DMDLTreeData>(files.size());
 		for (IFile file : files) {
-			FileNode node = new DMDLTreeData.FileNode(file, resourceSet);
+			FileNode node = new DMDLTreeData.FileNode(file, resourceSet, depth);
 			node.setChildrenPredicate(predicate);
 			list.add(node);
 		}
@@ -153,5 +338,20 @@ public class DataModelTreeViewer extends TreeViewer {
 			}
 		}
 		return null;
+	}
+
+	public List<DMDLTreeData.ModelNode> getCheckedModelList() {
+		List<ModelNode> list = new ArrayList<DMDLTreeData.ModelNode>();
+		for (TreeItem row : getTree().getItems()) {
+			for (TreeItem item : row.getItems()) {
+				if (item.getChecked()) {
+					DMDLTreeData data = (DMDLTreeData) item.getData();
+					if (data != null) {
+						list.add((ModelNode) data);
+					}
+				}
+			}
+		}
+		return list;
 	}
 }

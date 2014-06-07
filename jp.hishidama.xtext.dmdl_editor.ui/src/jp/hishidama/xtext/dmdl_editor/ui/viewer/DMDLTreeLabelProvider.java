@@ -4,16 +4,26 @@ import java.text.MessageFormat;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Type;
 import jp.hishidama.xtext.dmdl_editor.ui.labeling.DMDLImages;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
-public class DMDLTreeLabelProvider extends LabelProvider {
+public class DMDLTreeLabelProvider extends LabelProvider implements ITableLabelProvider {
+
+	// @Override
+	public Image getColumnImage(Object element, int columnIndex) {
+		if (columnIndex == 0) {
+			return getImage(element);
+		}
+		return null;
+	}
 
 	@Override
 	public Image getImage(Object element) {
@@ -34,6 +44,31 @@ public class DMDLTreeLabelProvider extends LabelProvider {
 		}
 		if (obj instanceof Attribute) {
 			return DMDLImages.getAttributeImage();
+		}
+		return null;
+	}
+
+	// @Override
+	public String getColumnText(Object element, int columnIndex) {
+		switch (columnIndex) {
+		case 0:
+			return getText(element);
+		case 1:
+			Object obj = element;
+			if (element instanceof DMDLTreeData) {
+				obj = ((DMDLTreeData) element).getData();
+			}
+			if (obj instanceof ModelDefinition) {
+				ModelDefinition model = (ModelDefinition) obj;
+				return ModelUtil.getAttributeString(model);
+			}
+			if (obj instanceof Property) {
+				Property property = (Property) obj;
+				return PropertyUtil.getAttributeString(property);
+			}
+			break;
+		default:
+			break;
 		}
 		return null;
 	}

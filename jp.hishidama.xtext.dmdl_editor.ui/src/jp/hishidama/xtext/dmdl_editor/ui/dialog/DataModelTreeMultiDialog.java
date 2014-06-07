@@ -116,7 +116,7 @@ public abstract class DataModelTreeMultiDialog extends EditDialog {
 	}
 
 	private DataModelTreeViewer createDataModelTree(Composite composite) {
-		DataModelTreeViewer viewer = new DataModelTreeViewer(composite, SWT.BORDER | SWT.MULTI);
+		DataModelTreeViewer viewer = new DataModelTreeViewer(composite, SWT.BORDER | SWT.MULTI, 256 + 96, 128);
 		initializeTree(viewer.getTree());
 
 		return viewer;

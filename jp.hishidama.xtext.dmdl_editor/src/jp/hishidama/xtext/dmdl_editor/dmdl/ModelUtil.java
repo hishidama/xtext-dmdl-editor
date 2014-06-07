@@ -408,6 +408,9 @@ public class ModelUtil {
 	}
 
 	public static String getAttributeString(ModelDefinition model) {
+		if (model == null) {
+			return null;
+		}
 		ICompositeNode node = NodeModelUtils.getNode(model.getAttributes());
 		if (node == null) {
 			return null;

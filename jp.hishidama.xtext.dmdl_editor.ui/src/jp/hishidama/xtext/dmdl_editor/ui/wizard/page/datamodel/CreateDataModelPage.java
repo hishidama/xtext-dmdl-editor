@@ -135,10 +135,10 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 				panel.setLayout(layout);
 			}
 
-			sourceViewer = new DataModelTreeViewer(panel, SWT.BORDER | SWT.MULTI, true);
+			sourceViewer = new DataModelTreeViewer(panel, SWT.BORDER | SWT.MULTI, 256, 64, true);
 			GridData grid = new GridData(GridData.FILL_BOTH);
 			grid.horizontalSpan = 2;
-			sourceViewer.getTree().setLayoutData(grid);
+			sourceViewer.setLayoutData(grid);
 			sourceViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 				public void selectionChanged(SelectionChangedEvent event) {
 					ITreeSelection selection = (ITreeSelection) event.getSelection();

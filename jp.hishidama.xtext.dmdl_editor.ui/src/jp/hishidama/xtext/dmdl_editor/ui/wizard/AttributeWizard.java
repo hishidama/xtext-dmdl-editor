@@ -48,7 +48,7 @@ public class AttributeWizard extends Wizard implements IWorkbenchWizard {
 
 	@Override
 	public void addPages() {
-		modelPage = new SelectDataModelPage("変更するデータモデルの指定", list);
+		modelPage = new SelectDataModelPage("変更するデータモデルの指定", project, list);
 		modelPage.setDescription("属性を変更するデータモデルを選択して下さい。\n※注意：データモデルにエラーがあると正しく加工できないことがあります。");
 		addPage(modelPage);
 		selectPage = new SelectAddRemovePage();

@@ -24,12 +24,14 @@ import org.eclipse.xtext.ui.resource.IStorage2UriMapper;
 public abstract class DMDLTreeData {
 	private DMDLTreeData parent;
 	protected final IProject project;
+	protected final int depth;
 	private Object otherData = null;
 	private boolean filterSelected = true;
 
-	public DMDLTreeData(IProject project, DMDLTreeData parent) {
+	public DMDLTreeData(IProject project, DMDLTreeData parent, int depth) {
 		this.project = project;
 		this.parent = parent;
+		this.depth = depth;
 	}
 
 	public final DMDLTreeData getParent() {
@@ -102,13 +104,17 @@ public abstract class DMDLTreeData {
 		private ModelTreeNodePredicate predicate;
 
 		public FileNode(IFile file, ResourceSet resourceSet) {
-			super(file.getProject(), null);
+			this(file, resourceSet, 3);
+		}
+
+		public FileNode(IFile file, ResourceSet resourceSet, int depth) {
+			super(file.getProject(), null, depth);
 			this.file = file;
 			this.resourceSet = resourceSet;
 		}
 
 		@Override
-		public Object getData() {
+		public IFile getData() {
 			return file;
 		}
 
@@ -124,11 +130,17 @@ public abstract class DMDLTreeData {
 
 		@Override
 		public boolean hasChildren() {
+			if (depth <= 1) {
+				return false;
+			}
 			return true;
 		}
 
 		@Override
 		public List<DMDLTreeData> getChildren() {
+			if (depth <= 1) {
+				return null;
+			}
 			if (children == null) {
 				IStorage2UriMapper mapper = InjectorUtil.getInstance(IStorage2UriMapper.class);
 				URI uri = mapper.getUri(file);
@@ -139,7 +151,7 @@ public abstract class DMDLTreeData {
 					if (object instanceof Script) {
 						for (ModelDefinition model : ((Script) object).getList()) {
 							if (isAddChildren(model)) {
-								children.add(new ModelNode(project, this, model));
+								children.add(new ModelNode(project, this, model, depth - 1));
 							}
 						}
 					}
@@ -169,12 +181,16 @@ public abstract class DMDLTreeData {
 		private List<DMDLTreeData> children;
 
 		public ModelNode(IProject project, DMDLTreeData parent, ModelDefinition model) {
-			super(project, parent);
+			this(project, parent, model, 2);
+		}
+
+		public ModelNode(IProject project, DMDLTreeData parent, ModelDefinition model, int depth) {
+			super(project, parent, depth);
 			this.model = model;
 		}
 
 		@Override
-		public Object getData() {
+		public ModelDefinition getData() {
 			return model;
 		}
 
@@ -190,16 +206,22 @@ public abstract class DMDLTreeData {
 
 		@Override
 		public boolean hasChildren() {
+			if (depth <= 1) {
+				return false;
+			}
 			return true;
 		}
 
 		@Override
 		public List<DMDLTreeData> getChildren() {
+			if (depth <= 1) {
+				return null;
+			}
 			if (children == null) {
 				List<Property> list = ModelUtil.getProperties(model);
 				children = new ArrayList<DMDLTreeData>(list.size());
 				for (Property p : list) {
-					children.add(new PropertyNode(project, this, p));
+					children.add(new PropertyNode(project, this, p, depth - 1));
 				}
 			}
 			return children;
@@ -219,12 +241,16 @@ public abstract class DMDLTreeData {
 		private final Property property;
 
 		public PropertyNode(IProject project, DMDLTreeData parent, Property property) {
-			super(project, parent);
+			this(project, parent, property, 1);
+		}
+
+		public PropertyNode(IProject project, DMDLTreeData parent, Property property, int depth) {
+			super(project, parent, depth);
 			this.property = property;
 		}
 
 		@Override
-		public Object getData() {
+		public Property getData() {
 			return property;
 		}
 

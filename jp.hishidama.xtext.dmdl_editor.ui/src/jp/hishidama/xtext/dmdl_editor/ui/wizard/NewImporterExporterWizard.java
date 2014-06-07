@@ -39,6 +39,7 @@ public class NewImporterExporterWizard extends Wizard implements INewWizard {
 
 	private AsakusafwProperties properties = null;
 	private List<IFile> list;
+	private IProject project;
 	private String srcDir;
 	private String packName;
 
@@ -53,6 +54,7 @@ public class NewImporterExporterWizard extends Wizard implements INewWizard {
 
 		IJavaElement element = JdtUtil.getJavaElement(selection);
 		IPackageFragmentRoot root = JdtUtil.getPackageFragmentRoot(element);
+		this.project = root.getJavaProject().getProject();
 		this.srcDir = JdtUtil.getDirectory(root);
 		this.packName = JdtUtil.getPackage(element);
 	}
@@ -61,7 +63,7 @@ public class NewImporterExporterWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		List<DMDLImporterExporterGenerator> gens = ExtensionUiUtil.getImporterExporterGenerators();
 
-		modelPage = new SelectDataModelPage("Importer/Exporterを作成するデータモデルの指定", list);
+		modelPage = new SelectDataModelPage("Importer/Exporterを作成するデータモデルの指定", project, list);
 		modelPage.setDescription("Importer/Exporterを作成するデータモデルを選択して下さい。");
 		addPage(modelPage);
 		namePage = new SetImporterExporterNamePage();

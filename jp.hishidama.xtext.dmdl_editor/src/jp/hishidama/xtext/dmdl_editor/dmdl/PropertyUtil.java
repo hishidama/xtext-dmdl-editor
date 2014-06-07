@@ -125,12 +125,15 @@ public class PropertyUtil {
 	}
 
 	public static String getAttributeString(Property property) {
-		AttributeList as = property.getAttributes();
-		if (as == null) {
+		if (property == null) {
+			return null;
+		}
+		AttributeList alist = property.getAttributes();
+		if (alist == null) {
 			return null;
 		}
 		StringBuilder sb = new StringBuilder(128);
-		for (Attribute a : as.getAttributes()) {
+		for (Attribute a : alist.getAttributes()) {
 			ICompositeNode node = NodeModelUtils.getNode(a);
 			if (node != null) {
 				if (sb.length() != 0) {
