@@ -16,8 +16,8 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.extension.DMDLAttributeWizardDefinition;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLVariableTableUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.attribute.AttributePage;
-import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.ecore.EObject;
@@ -77,7 +77,8 @@ public class SetPropertyAttributeDialog extends Wizard {
 	public boolean performFinish() {
 		String attribute = page.getPropertyAttribute();
 		for (DataModelRow row : propertyList) {
-			String a = DMDLStringUtil.replace(attribute, model.getName(), row.getName(), row.getDescription());
+			String a = DMDLVariableTableUtil.replaceVariable(attribute, model.getName(), model.getDescription(), row.getName(),
+					row.getDescription());
 			row.setAttribute(a);
 		}
 		return true;

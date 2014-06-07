@@ -2,12 +2,6 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.attribute.update;
 
 import java.io.StringReader;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.parser.IParseResult;
-
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
@@ -15,8 +9,14 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.parser.antlr.DMDLParser;
 import jp.hishidama.xtext.dmdl_editor.services.DMDLGrammarAccess;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLVariableTableUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
-import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.parser.IParseResult;
 
 public abstract class AttributeAppender extends AttributeUpdater {
 
@@ -70,17 +70,9 @@ public abstract class AttributeAppender extends AttributeUpdater {
 		}
 
 		protected final EList<Attribute> parseAttribute(EObject object, String attr) {
-			String modelName = null, propName = null, propDesc = null;
 			ModelDefinition model = EcoreUtil2.getContainerOfType(object, ModelDefinition.class);
-			if (model != null) {
-				modelName = model.getName();
-			}
 			Property property = EcoreUtil2.getContainerOfType(object, Property.class);
-			if (property != null) {
-				propName = property.getName();
-				propDesc = property.getDescription();
-			}
-			String resolved = DMDLStringUtil.replace(attr, modelName, propName, propDesc);
+			String resolved = DMDLVariableTableUtil.replaceVariable(attr, model, property);
 
 			DMDLGrammarAccess grammar = parser.getGrammarAccess();
 			IParseResult result = parser.parse(grammar.getAttributeListRule(), new StringReader(resolved));

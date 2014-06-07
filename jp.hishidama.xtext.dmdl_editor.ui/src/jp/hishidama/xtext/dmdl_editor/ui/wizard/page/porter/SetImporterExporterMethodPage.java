@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 
 import jp.hishidama.xtext.dmdl_editor.ui.extension.DMDLImporterExporterGenerator;
 import jp.hishidama.xtext.dmdl_editor.ui.extension.DMDLImporterExporterGenerator.FieldData;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLVariableTableUtil;
 
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.wizard.WizardPage;
@@ -59,10 +60,16 @@ public class SetImporterExporterMethodPage extends WizardPage {
 	}
 
 	private void rebuild(Composite composite) {
+		{
+			Group group = createGroup(composite, "common", 3);
+			createTextField(group, DMDLImporterExporterGenerator.KEY_PORTER_TITLE, false, "title", "Javadocに使用するタイトル",
+					"Importer/ExporterクラスのJavadocに使用するタイトル");
+		}
+
 		Map<String, List<FieldData>> map = generator.getFields();
 		for (Entry<String, List<FieldData>> entry : map.entrySet()) {
 			String groupName = entry.getKey();
-			Group group = createGroup(composite, groupName);
+			Group group = createGroup(composite, groupName, 3);
 			for (FieldData data : entry.getValue()) {
 				if (data.combo == null) {
 					createTextField(group, data.keyName, data.required, data.displayName, data.description,
@@ -73,15 +80,24 @@ public class SetImporterExporterMethodPage extends WizardPage {
 				}
 			}
 		}
+
+		{
+			Group group = createGroup(composite, "note", 2);
+
+			Label label = new Label(group, SWT.NONE);
+			label.setText("右記の変数を指定することが出来ます。\n行を選択してCtrl+Cを押すと変数名をコピーできます。");
+
+			DMDLVariableTableUtil.createVariableTable(group, true, false);
+		}
 	}
 
-	private Group createGroup(Composite composite, String text) {
+	private Group createGroup(Composite composite, String text, int numColumns) {
 		Group group = new Group(composite, SWT.SHADOW_IN);
 		group.setText(text);
 		GridData groupGrid = new GridData(GridData.FILL_HORIZONTAL);
 		group.setLayoutData(groupGrid);
 
-		group.setLayout(new GridLayout(3, false));
+		group.setLayout(new GridLayout(numColumns, false));
 
 		return group;
 	}
@@ -193,6 +209,9 @@ public class SetImporterExporterMethodPage extends WizardPage {
 		String value = settings.get(getKey1(key));
 		if (value == null) {
 			value = settings.get(getKey2(key));
+		}
+		if (value == null && key.equals(DMDLImporterExporterGenerator.KEY_PORTER_TITLE)) {
+			value = "$(modelDescription)";
 		}
 		return value;
 	}

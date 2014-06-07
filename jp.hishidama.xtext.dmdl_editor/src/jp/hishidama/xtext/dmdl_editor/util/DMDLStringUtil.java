@@ -1,53 +1,6 @@
 package jp.hishidama.xtext.dmdl_editor.util;
 
-import static jp.hishidama.eclipse_plugin.util.StringUtil.toCamelCase;
-
 public class DMDLStringUtil {
-
-	public static String replace(String s, String modelName, String propName, String propDesc) {
-		StringBuilder sb = new StringBuilder(s.length());
-		for (int pos = 0;;) {
-			int n = s.indexOf("$(", pos);
-			if (n >= 0) {
-				sb.append(s.substring(pos, n));
-				pos = n;
-				int m = s.indexOf(")", pos);
-				if (m >= 0) {
-					String key = s.substring(n + 2, m);
-					sb.append(convert(key, modelName, propName, propDesc));
-					pos = m + 1;
-				} else {
-					String key = s.substring(n + 2);
-					sb.append(convert(key, modelName, propName, propDesc));
-					break;
-				}
-			} else {
-				sb.append(s.substring(pos));
-				break;
-			}
-		}
-		return sb.toString();
-	}
-
-	private static String convert(String key, String modelName, String propName, String propDesc) {
-		String s;
-		if ("modelName".equals(key)) {
-			s = modelName;
-		} else if ("modelName.toUpper".equals(key)) {
-			s = (modelName != null) ? modelName.toUpperCase() : null;
-		} else if ("modelName.toCamelCase".equals(key)) {
-			s = toCamelCase(modelName);
-		} else if ("name".equals(key)) {
-			s = propName;
-		} else if ("name.toUpper".equals(key)) {
-			s = (propName != null) ? propName.toUpperCase() : null;
-		} else if ("description".equals(key)) {
-			s = decodeDescription(propDesc);
-		} else {
-			s = "";
-		}
-		return (s != null) ? s : "";
-	}
 
 	public static String escapeQuote(String s) {
 		return s.replaceAll("\"", "\\\"");

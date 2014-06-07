@@ -14,6 +14,7 @@ import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLVariableTableUtil;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
 import org.eclipse.core.resources.IFile;
@@ -33,6 +34,7 @@ public abstract class DMDLImporterExporterGenerator extends ClassGenerator {
 
 	public static final String KEY_DATA_SIZE = "Importer.dataSize";
 	public static final String KEY_MODEL_CLASS_NAME = "modelClassName";
+	public static final String KEY_PORTER_TITLE = "porterTitle";
 
 	public DMDLImporterExporterGenerator() {
 		initializeFields();
@@ -187,7 +189,7 @@ public abstract class DMDLImporterExporterGenerator extends ClassGenerator {
 		this.model = model;
 		this.dir = dir;
 
-		String resolvedName = DMDLStringUtil.replace(name, model.getName(), "", "");
+		String resolvedName = DMDLVariableTableUtil.replaceVariable(name, model, null);
 		String packageName = StringUtil.getPackageName(resolvedName);
 		String simpleName = StringUtil.getSimpleName(resolvedName);
 		String contents = super.generate(packageName, simpleName);
@@ -217,7 +219,8 @@ public abstract class DMDLImporterExporterGenerator extends ClassGenerator {
 			String modelName = model.getName();
 			return ModelUiUtil.getModelClassName(project, modelName);
 		}
-		return map.get(key);
+		String s = map.get(key);
+		return DMDLVariableTableUtil.replaceVariable(s, model, null);
 	}
 
 	protected String getGeneratedClassName(String modelName, String middle, String simpleName) {
@@ -232,7 +235,11 @@ public abstract class DMDLImporterExporterGenerator extends ClassGenerator {
 
 	@Override
 	protected void appendClass(StringBuilder sb) {
-		setClassJavadoc(sb, ModelUtil.getDecodedDescriptionText(model));
+		String title = getValue(KEY_PORTER_TITLE);
+		if (title == null || title.isEmpty()) {
+			title = ModelUtil.getDecodedDescriptionText(model);
+		}
+		setClassJavadoc(sb, title);
 
 		sb.append("public class ");
 		sb.append(className);

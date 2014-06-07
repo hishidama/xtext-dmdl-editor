@@ -14,18 +14,13 @@ import jp.hishidama.xtext.dmdl_editor.extension.DMDLAttributeWizardDefinition;
 import jp.hishidama.xtext.dmdl_editor.extension.ExtensionUtil;
 import jp.hishidama.xtext.dmdl_editor.parser.antlr.DMDLParser;
 import jp.hishidama.xtext.dmdl_editor.services.DMDLGrammarAccess;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLVariableTableUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
-import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.dnd.Clipboard;
-import org.eclipse.swt.dnd.TextTransfer;
-import org.eclipse.swt.dnd.Transfer;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -37,9 +32,6 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.parser.IParseResult;
@@ -118,55 +110,7 @@ public abstract class AttributePage extends WizardPage {
 	protected abstract void createNoteArea(Group group);
 
 	protected void createVariableTable(Group group, boolean hasModel, boolean hasProperty) {
-		Table table = new Table(group, SWT.BORDER | SWT.SINGLE | SWT.FULL_SELECTION);
-		table.setHeaderVisible(false);
-		table.setLinesVisible(true);
-		GridData grid = new GridData(GridData.GRAB_HORIZONTAL);
-		grid.heightHint = 18 * 3;
-		table.setLayoutData(grid);
-		{
-			TableColumn col = new TableColumn(table, SWT.NONE);
-			col.setWidth(128 + 64);
-		}
-		{
-			TableColumn col = new TableColumn(table, SWT.NONE);
-			col.setWidth(128 + 64);
-		}
-
-		if (hasModel) {
-			createItem(table, "モデル名", "$(modelName)");
-			createItem(table, "モデル名（大文字）", "$(modelName.toUpper)");
-		}
-		if (hasProperty) {
-			createItem(table, "プロパティー名", "$(name)");
-			createItem(table, "プロパティー名（大文字）", "$(name.toUpper)");
-			createItem(table, "プロパティー説明", "$(description)");
-		}
-
-		table.addKeyListener(new KeyListener() {
-			public void keyReleased(KeyEvent e) {
-			}
-
-			public void keyPressed(KeyEvent e) {
-				if (e.character == 0x03) { // Ctrl+C
-					Table table = (Table) e.getSource();
-					TableItem[] items = table.getSelection();
-					if (items.length > 0) {
-						TableItem item = items[0];
-						Clipboard clipboard = new Clipboard(e.display);
-						clipboard.setContents(new Object[] { item.getData() },
-								new Transfer[] { TextTransfer.getInstance() });
-					}
-				}
-			}
-		});
-	}
-
-	private void createItem(Table table, String desc, String value) {
-		TableItem item = new TableItem(table, SWT.NONE);
-		item.setText(0, desc);
-		item.setText(1, value);
-		item.setData(value);
+		DMDLVariableTableUtil.createVariableTable(group, hasModel, hasProperty);
 	}
 
 	/*
@@ -269,7 +213,8 @@ public abstract class AttributePage extends WizardPage {
 			parser = InjectorUtil.getInstance(DMDLParser.class);
 		}
 
-		String resolved = DMDLStringUtil.replace(attr, "model_name", "property_name", "\"property description\"");
+		String resolved = DMDLVariableTableUtil.replaceVariable(attr, "model_name", "\"model description\"",
+				"property_name", "\"property description\"");
 		DMDLGrammarAccess grammar = parser.getGrammarAccess();
 		IParseResult result = parser.parse(grammar.getAttributeListRule(), new StringReader(resolved));
 		if (result.hasSyntaxErrors()) {

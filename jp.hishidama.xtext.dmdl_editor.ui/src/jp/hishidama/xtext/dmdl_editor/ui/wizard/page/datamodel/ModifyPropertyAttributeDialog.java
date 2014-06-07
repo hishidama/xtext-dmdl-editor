@@ -6,8 +6,8 @@ import jp.hishidama.eclipse_plugin.dialog.EditDialog;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.parser.antlr.DMDLParser;
 import jp.hishidama.xtext.dmdl_editor.services.DMDLGrammarAccess;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLVariableTableUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
-import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.SWT;
@@ -76,7 +76,8 @@ public class ModifyPropertyAttributeDialog extends EditDialog {
 			parser = InjectorUtil.getInstance(DMDLParser.class);
 		}
 
-		String resolved = DMDLStringUtil.replace(attr, "model_name", "property_name", "\"property description\"");
+		String resolved = DMDLVariableTableUtil.replaceVariable(attr, "model_name", "\"model description\"",
+				"property_name", "\"property description\"");
 		DMDLGrammarAccess grammar = parser.getGrammarAccess();
 		IParseResult result = parser.parse(grammar.getAttributeListRule(), new StringReader(resolved));
 		if (result.hasSyntaxErrors()) {
