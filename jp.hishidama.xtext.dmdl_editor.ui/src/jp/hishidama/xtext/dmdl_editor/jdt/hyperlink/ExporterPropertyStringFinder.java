@@ -1,42 +1,34 @@
 package jp.hishidama.xtext.dmdl_editor.jdt.hyperlink;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.ASTVisitor;
-import org.eclipse.jdt.core.dom.MemberValuePair;
-import org.eclipse.jdt.core.dom.NormalAnnotation;
-import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
+import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.StringLiteral;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.Region;
 
-public class PropertyStringFinder extends ASTVisitor {
-	private ICompilationUnit unit;
+public class ExporterPropertyStringFinder extends ASTVisitor {
+	private IType type;
 	private int offset;
 
 	private IRegion region;
 	private Region textRegion;
 	private String text;
-	private SingleVariableDeclaration declaration;
-	private String memberName;
 	private String propertyName;
 
-	public PropertyStringFinder(ICompilationUnit unit, int offset) {
-		this.unit = unit;
+	public ExporterPropertyStringFinder(IType type, int offset) {
+		this.type = type;
 		this.offset = offset;
-	}
-
-	public String getMemberName() {
-		return memberName;
 	}
 
 	public String getPropertyName() {
@@ -58,23 +50,10 @@ public class PropertyStringFinder extends ASTVisitor {
 	private ModelDefinition model;
 
 	public ModelDefinition getModel() {
-		if (model != null) {
-			return model;
+		if (model == null) {
+			String modelClassName = PorterUtil.getModelClassName(type);
+			model = ModelUiUtil.findModelByClass(type.getJavaProject().getProject(), modelClassName);
 		}
-
-		visit();
-		if (declaration == null) {
-			return null;
-		}
-
-		IProject project = unit.getJavaProject().getProject();
-		String modelClassName = declaration.getType().toString();
-		int n = modelClassName.indexOf('<');
-		int e = modelClassName.lastIndexOf('>');
-		if (n >= 0 && e >= 0) {
-			modelClassName = modelClassName.substring(n + 1, e);
-		}
-		this.model = ModelUiUtil.findModelByClass(project, modelClassName);
 		return model;
 	}
 
@@ -102,7 +81,7 @@ public class PropertyStringFinder extends ASTVisitor {
 		visited = true;
 
 		ASTParser parser = ASTParser.newParser(AST.JLS4);
-		parser.setSource(unit);
+		parser.setSource(type.getCompilationUnit());
 		parser.setSourceRange(offset, 1);
 		ASTNode node = parser.createAST(new NullProgressMonitor());
 		node.accept(this);
@@ -116,24 +95,9 @@ public class PropertyStringFinder extends ASTVisitor {
 	}
 
 	@Override
-	public void endVisit(SingleVariableDeclaration node) {
-		if (propertyName != null) {
-			if (declaration == null) {
-				this.declaration = node;
-			}
-		}
-	}
-
-	@Override
-	public boolean visit(NormalAnnotation node) {
-		String name = node.getTypeName().getFullyQualifiedName();
-		return "Key".equals(name);
-	}
-
-	@Override
-	public boolean visit(MemberValuePair node) {
-		this.memberName = node.getName().getIdentifier();
-		return "group".equals(memberName) || "order".equals(memberName);
+	public boolean visit(MethodDeclaration node) {
+		String methodName = node.getName().getIdentifier();
+		return "getOrder".equals(methodName);
 	}
 
 	@Override

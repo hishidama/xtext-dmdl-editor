@@ -5,13 +5,16 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
-import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.PropertyStringFinder;
+import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.ExporterPropertyStringFinder;
+import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.KeyPropertyStringFinder;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.ui.text.java.ContentAssistInvocationContext;
 import org.eclipse.jdt.ui.text.java.IJavaCompletionProposalComputer;
 import org.eclipse.jdt.ui.text.java.JavaContentAssistInvocationContext;
@@ -34,11 +37,21 @@ public class KeyStringDmdlCompletionProposalComputer implements IJavaCompletionP
 		}
 		JavaContentAssistInvocationContext javaContext = (JavaContentAssistInvocationContext) context;
 
-		ICompilationUnit cu = javaContext.getCompilationUnit();
+		ICompilationUnit unit = javaContext.getCompilationUnit();
 		int offset = context.getInvocationOffset();
-		PropertyStringFinder finder = new PropertyStringFinder(cu, offset);
+		IType type = unit.findPrimaryType();
+		if (PorterUtil.isExporter(type)) {
+			ExporterPropertyStringFinder finder = new ExporterPropertyStringFinder(type, offset);
+			String prefix = getPrefix(finder.getPropertyName(), finder.getRegion(), offset);
+			if (prefix == null) {
+				return Collections.emptyList();
+			}
+			return getPrefixProposal(finder.getRegion(), finder.getModel(), prefix, offset);
+		}
 
-		String prefix = getPrefix(finder, offset);
+		KeyPropertyStringFinder finder = new KeyPropertyStringFinder(unit, offset);
+
+		String prefix = getPrefix(finder.getPropertyName(), finder.getRegion(), offset);
 		if (prefix == null) {
 			if ("order".equals(finder.getMemberName())) {
 				return getOrderProposal(finder.getRegion(), finder.getText(), finder.getTextRegion(), offset);
@@ -46,8 +59,27 @@ public class KeyStringDmdlCompletionProposalComputer implements IJavaCompletionP
 			return Collections.emptyList();
 		}
 
-		IRegion region = finder.getRegion();
-		ModelDefinition model = finder.getModel();
+		return getPrefixProposal(finder.getRegion(), finder.getModel(), prefix, offset);
+	}
+
+	private String getPrefix(String name, IRegion region, int offset) {
+		if (name == null) {
+			return "";
+		}
+		if (region.getOffset() + region.getLength() < offset) {
+			return null;
+		}
+		int len = offset - region.getOffset();
+		if (len <= 0) {
+			return "";
+		}
+		if (len > name.length()) {
+			return name;
+		}
+		return name.substring(0, len);
+	}
+
+	private List<ICompletionProposal> getPrefixProposal(IRegion region, ModelDefinition model, String prefix, int offset) {
 		List<ICompletionProposal> list = new ArrayList<ICompletionProposal>();
 		for (Property property : ModelUtil.getProperties(model)) {
 			String s = property.getName();
@@ -65,25 +97,6 @@ public class KeyStringDmdlCompletionProposalComputer implements IJavaCompletionP
 			}
 		}
 		return list;
-	}
-
-	private String getPrefix(PropertyStringFinder finder, int offset) {
-		String name = finder.getPropertyName();
-		if (name == null) {
-			return "";
-		}
-		IRegion region = finder.getRegion();
-		if (region.getOffset() + region.getLength() < offset) {
-			return null;
-		}
-		int len = offset - region.getOffset();
-		if (len <= 0) {
-			return "";
-		}
-		if (len > name.length()) {
-			return name;
-		}
-		return name.substring(0, len);
 	}
 
 	private List<ICompletionProposal> getOrderProposal(IRegion propertyRegion, String text, IRegion textRegion,

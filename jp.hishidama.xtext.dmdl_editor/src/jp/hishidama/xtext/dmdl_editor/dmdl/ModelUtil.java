@@ -285,6 +285,9 @@ public class ModelUtil {
 	}
 
 	public static Property findProperty(ModelDefinition model, String name) {
+		if (model == null || name == null) {
+			return null;
+		}
 		List<Property> list = getProperties(model);
 		return findProperty(list, name);
 	}
