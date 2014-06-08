@@ -1,10 +1,11 @@
 package jp.hishidama.xtext.dmdl_editor.ui.viewer;
 
-import static jp.hishidama.eclipse_plugin.util.StringUtil.isEmpty;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.dmdl.DataModelType;
+import jp.hishidama.xtext.dmdl_editor.dmdl.DataModelTypeUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
@@ -26,7 +27,6 @@ public abstract class DMDLTreeData {
 	protected final IProject project;
 	protected final int depth;
 	private Object otherData = null;
-	private boolean filterSelected = true;
 
 	public DMDLTreeData(IProject project, DMDLTreeData parent, int depth) {
 		this.project = project;
@@ -52,46 +52,9 @@ public abstract class DMDLTreeData {
 		return otherData;
 	}
 
-	public boolean setFilter(String filter) {
-		filterSelected = isSelect(filter);
-		return filterSelected;
-	}
-
-	public boolean isFilterSelected() {
-		return filterSelected;
-	}
-
-	private boolean isSelect(String filter) {
-		boolean r = isSelect(getText(), filter) || isSelect(getText2(), filter);
-		r |= childSelect(filter);
-		return r;
-	}
-
-	private boolean childSelect(String filter) {
-		List<DMDLTreeData> cs = getChildren();
-		if (cs == null) {
-			return false;
-		}
-		boolean r = false;
-		for (DMDLTreeData c : cs) {
-			r |= c.setFilter(filter);
-		}
-		return r;
-	}
-
 	protected abstract String getText();
 
 	protected abstract String getText2();
-
-	private static boolean isSelect(String s, String filter) {
-		if (s == null) {
-			return false;
-		}
-		if (isEmpty(filter)) {
-			return true;
-		}
-		return s.contains(filter);
-	}
 
 	public abstract boolean hasChildren();
 
@@ -118,14 +81,28 @@ public abstract class DMDLTreeData {
 			return file;
 		}
 
+		private String path;
+
 		@Override
 		protected String getText() {
-			return file.getFullPath().toPortableString();
+			if (path == null) {
+				path = file.getFullPath().toPortableString();
+			}
+			return path;
 		}
 
 		@Override
 		protected String getText2() {
 			return null;
+		}
+
+		public boolean select(Pattern filter) {
+			if (filter != null) {
+				if (!filter.matcher(getText()).matches()) {
+					return false;
+				}
+			}
+			return true;
 		}
 
 		@Override
@@ -194,14 +171,73 @@ public abstract class DMDLTreeData {
 			return model;
 		}
 
+		private String name;
+
 		@Override
 		protected String getText() {
-			return model.getName();
+			if (name == null) {
+				name = model.getName();
+			}
+			return name;
 		}
 
 		@Override
 		protected String getText2() {
 			return ModelUtil.getDecodedDescription(model);
+		}
+
+		public boolean select(Pattern nameFilter, Pattern descFilter, Pattern attrFilter, DataModelType typeFilter) {
+			if (nameFilter != null) {
+				if (!nameFilter.matcher(getText()).matches()) {
+					return false;
+				}
+			}
+			if (descFilter != null) {
+				if (!descFilter.matcher(getDescription()).matches()) {
+					return false;
+				}
+			}
+			if (attrFilter != null) {
+				if (!attrFilter.matcher(getAttribute()).matches()) {
+					return false;
+				}
+			}
+			if (typeFilter != null) {
+				if (getModelType() != typeFilter) {
+					return false;
+				}
+			}
+			return true;
+		}
+
+		private String description;
+
+		private String getDescription() {
+			if (description == null) {
+				description = ModelUtil.getDecodedDescriptionText(model);
+			}
+			return description;
+		}
+
+		private String attribute;
+
+		private String getAttribute() {
+			if (attribute == null) {
+				attribute = ModelUtil.getAttributeString(model);
+				if (attribute == null) {
+					attribute = "";
+				}
+			}
+			return attribute;
+		}
+
+		private DataModelType type;
+
+		private DataModelType getModelType() {
+			if (type == null) {
+				type = DataModelTypeUtil.valueOf(model);
+			}
+			return type;
 		}
 
 		@Override
@@ -254,14 +290,59 @@ public abstract class DMDLTreeData {
 			return property;
 		}
 
+		private String name;
+
 		@Override
 		protected String getText() {
-			return property.getName();
+			if (name == null) {
+				name = property.getName();
+			}
+			return name;
 		}
 
 		@Override
 		protected String getText2() {
 			return PropertyUtil.getDecodedDescription(property);
+		}
+
+		public boolean select(Pattern nameFilter, Pattern descFilter, Pattern attrFilter) {
+			if (nameFilter != null) {
+				if (!nameFilter.matcher(getText()).matches()) {
+					return false;
+				}
+			}
+			if (descFilter != null) {
+				if (!descFilter.matcher(getDescription()).matches()) {
+					return false;
+				}
+			}
+			if (attrFilter != null) {
+				if (!attrFilter.matcher(getAttribute()).matches()) {
+					return false;
+				}
+			}
+			return true;
+		}
+
+		private String description;
+
+		private String getDescription() {
+			if (description == null) {
+				description = PropertyUtil.getDecodedDescriptionText(property);
+			}
+			return description;
+		}
+
+		private String attribute;
+
+		private String getAttribute() {
+			if (attribute == null) {
+				attribute = PropertyUtil.getAttributeString(property);
+				if (attribute == null) {
+					attribute = "";
+				}
+			}
+			return attribute;
 		}
 
 		@Override

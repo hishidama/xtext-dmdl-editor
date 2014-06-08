@@ -1,8 +1,8 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.dmdl.DataModelType;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.DataModelType;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.CreateDataModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.ModifyModelAttributePage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.ModifyPropertyAttributePage;

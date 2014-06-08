@@ -6,13 +6,13 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.dmdl.DataModelType;
 import jp.hishidama.eclipse_plugin.util.FileUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Script;
 import jp.hishidama.xtext.dmdl_editor.parser.antlr.DMDLParser;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.DataModelType;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.CreateDataModelJoinKeyPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.CreateDataModelJoinPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.CreateDataModelNormalPage;
@@ -126,7 +126,7 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 		modelPage.setDmdlFile(defaultFile);
 		addModelPage(modelPage);
 
-		addPage(DataModelType.NORMAL, new CreateDataModelNormalPage());
+		addPage(DataModelType.RECORD, new CreateDataModelNormalPage());
 		addPage(DataModelType.SUMMARIZED, new CreateDataModelSummarizePage());
 		joinKeyPage = new CreateDataModelJoinKeyPage();
 		joinPage = new CreateDataModelJoinPage(joinKeyPage);

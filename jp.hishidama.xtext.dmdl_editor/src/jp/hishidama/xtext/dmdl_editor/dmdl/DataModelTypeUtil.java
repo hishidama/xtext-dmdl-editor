@@ -1,32 +1,35 @@
-package jp.hishidama.xtext.dmdl_editor.ui.wizard.page;
+package jp.hishidama.xtext.dmdl_editor.dmdl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.dmdl.DataModelType;
 import jp.hishidama.xtext.dmdl_editor.dmdl.JoinExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression;
 
-public enum DataModelType {
-	NORMAL, SUMMARIZED, JOINED, PROJECTIVE;
+public class DataModelTypeUtil {
 
-	public String displayName() {
-		return name().toLowerCase();
+	public static DataModelType valueOf(String s) {
+		if (s == null) {
+			return DataModelType.RECORD;
+		}
+		return DataModelType.valueOf(s.toUpperCase());
 	}
 
 	public static DataModelType valueOf(ModelDefinition model) {
 		if (model == null) {
-			return NORMAL;
+			return DataModelType.RECORD;
 		}
 		EObject rhs = model.getRhs();
 		if (rhs instanceof JoinExpression) {
-			return JOINED;
+			return DataModelType.JOINED;
 		} else if (rhs instanceof SummarizeExpression) {
-			return SUMMARIZED;
+			return DataModelType.SUMMARIZED;
 		}
 		if ("projective".equals(model.getType())) {
-			return PROJECTIVE;
+			return DataModelType.PROJECTIVE;
 		} else {
-			return NORMAL;
+			return DataModelType.RECORD;
 		}
 	}
 }

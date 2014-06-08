@@ -3,9 +3,9 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.dmdl.DataModelType;
 import jp.hishidama.eclipse_plugin.util.FileUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.dialog.DmdlFileSelectionDialog;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.DataModelType;
 import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
 import org.eclipse.core.resources.IFile;
@@ -176,7 +176,7 @@ public class SetDataModelNamePage extends WizardPage {
 			Composite table = new Composite(composite, SWT.NONE);
 			table.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 			table.setLayout(new GridLayout(1, true));
-			createField(table, DataModelType.NORMAL).setSelection(true);
+			createField(table, DataModelType.RECORD).setSelection(true);
 			createField(table, DataModelType.SUMMARIZED);
 			createField(table, DataModelType.JOINED);
 			createField(table, DataModelType.PROJECTIVE);
@@ -362,6 +362,6 @@ public class SetDataModelNamePage extends WizardPage {
 				return field.type;
 			}
 		}
-		return DataModelType.NORMAL;
+		return DataModelType.RECORD;
 	}
 }

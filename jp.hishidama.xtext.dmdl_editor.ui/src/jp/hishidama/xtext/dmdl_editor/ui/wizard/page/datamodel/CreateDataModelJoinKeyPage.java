@@ -17,6 +17,7 @@ import jp.hishidama.xtext.dmdl_editor.validation.ErrorStatus;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.window.Window;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
@@ -114,6 +115,11 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 	@Override
 	protected String getTargetLabelText() {
 		return "結合キー定義";
+	}
+
+	@Override
+	protected void createSourceViewerFilterField(Composite panel) {
+		// do nothing
 	}
 
 	@Override

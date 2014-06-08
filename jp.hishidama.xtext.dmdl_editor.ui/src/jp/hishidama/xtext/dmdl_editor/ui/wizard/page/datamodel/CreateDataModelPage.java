@@ -4,6 +4,7 @@ import java.text.MessageFormat;
 import java.util.Iterator;
 import java.util.List;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.dmdl.DataModelType;
 import jp.hishidama.eclipse_plugin.jface.ModifiableTable;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
@@ -13,7 +14,6 @@ import jp.hishidama.xtext.dmdl_editor.ui.dialog.DataModelPreviewDialog;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeDataTransfer;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DataModelTreeViewer;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.DataModelType;
 import jp.hishidama.xtext.dmdl_editor.validation.ErrorStatus;
 import jp.hishidama.xtext.dmdl_editor.validation.WarningStatus;
 
@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -46,7 +47,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.swt.widgets.Text;
 
 public abstract class CreateDataModelPage<R extends DataModelRow> extends WizardPage {
 	protected String[] sourceModels;
@@ -135,7 +135,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 				panel.setLayout(layout);
 			}
 
-			sourceViewer = new DataModelTreeViewer(panel, SWT.BORDER | SWT.MULTI, 256, 64, true);
+			sourceViewer = new DataModelTreeViewer(panel, SWT.BORDER | SWT.MULTI, 256 + 128, 128, true);
 			GridData grid = new GridData(GridData.FILL_BOTH);
 			grid.horizontalSpan = 2;
 			sourceViewer.setLayoutData(grid);
@@ -155,11 +155,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 				}
 			});
 
-			Label label = new Label(panel, SWT.NONE);
-			label.setText("filter ");
-			Text filter = new Text(panel, SWT.BORDER);
-			filter.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-			sourceViewer.addFilterListenerTo(filter);
+			createSourceViewerFilterField(panel);
 		}
 		{
 			Composite column = new Composite(composite, SWT.NONE);
@@ -238,6 +234,10 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 		doSelectionChange(null);
 		validate(false);
 		setControl(composite);
+	}
+
+	protected void createSourceViewerFilterField(Composite panel) {
+		sourceViewer.createFilterField(panel, GridDataFactory.fillDefaults().span(2, 1).grab(true, false).create());
 	}
 
 	protected final Button createButton(Composite field, String text, boolean select, SelectionListener listener) {
