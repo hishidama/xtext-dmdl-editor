@@ -58,9 +58,9 @@ public class DMDLStringUtil {
 			i += Character.charCount(c);
 		}
 		if (wildcard > 0) {
-			return Pattern.compile(sb.toString());
+			return Pattern.compile(sb.toString(), Pattern.DOTALL);
 		}
-		return Pattern.compile(".*" + sb + ".*");
+		return Pattern.compile(".*" + sb + ".*", Pattern.DOTALL);
 	}
 
 	public static Pattern getNamePattern(String filter) {
