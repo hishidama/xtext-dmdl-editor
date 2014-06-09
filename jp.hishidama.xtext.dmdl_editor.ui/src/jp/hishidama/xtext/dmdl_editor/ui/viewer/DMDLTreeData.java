@@ -1,6 +1,7 @@
 package jp.hishidama.xtext.dmdl_editor.ui.viewer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -116,7 +117,7 @@ public abstract class DMDLTreeData {
 		@Override
 		public List<DMDLTreeData> getChildren() {
 			if (depth <= 1) {
-				return null;
+				return Collections.emptyList();
 			}
 			if (children == null) {
 				IStorage2UriMapper mapper = InjectorUtil.getInstance(IStorage2UriMapper.class);
@@ -251,7 +252,7 @@ public abstract class DMDLTreeData {
 		@Override
 		public List<DMDLTreeData> getChildren() {
 			if (depth <= 1) {
-				return null;
+				return Collections.emptyList();
 			}
 			if (children == null) {
 				List<Property> list = ModelUtil.getProperties(model);

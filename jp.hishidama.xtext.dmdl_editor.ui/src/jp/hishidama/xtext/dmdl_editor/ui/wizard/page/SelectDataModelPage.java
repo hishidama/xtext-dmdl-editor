@@ -12,6 +12,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.viewer.DataModelTreeViewer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.wizard.WizardPage;
@@ -50,6 +51,8 @@ public class SelectDataModelPage extends WizardPage {
 			GridData grid = new GridData(GridData.FILL_BOTH);
 			viewer.setLayoutData(grid);
 			rebuild(viewer);
+			viewer.createFilterField(composite, GridDataFactory.fillDefaults().grab(true, false).create());
+			viewer.createExpandButtonField(composite, GridDataFactory.swtDefaults().grab(true, false).create());
 
 			viewer.addCheckStateListener(new ICheckStateListener() {
 				public void checkStateChanged(CheckStateChangedEvent event) {
@@ -75,7 +78,7 @@ public class SelectDataModelPage extends WizardPage {
 
 	private void rebuild(DataModelTreeViewer viewer) {
 		if (files == null) {
-			viewer.setInputAll(project, 2);
+			viewer.setInputAll(project, 3);
 			return;
 		}
 
@@ -83,7 +86,7 @@ public class SelectDataModelPage extends WizardPage {
 
 		List<DMDLTreeData> list = new ArrayList<DMDLTreeData>(files.size());
 		for (IFile file : files) {
-			DMDLTreeData.FileNode fileNode = new DMDLTreeData.FileNode(file, resourceSet, 2);
+			DMDLTreeData.FileNode fileNode = new DMDLTreeData.FileNode(file, resourceSet, 3);
 			list.add(fileNode);
 		}
 		viewer.setInputList(list);
