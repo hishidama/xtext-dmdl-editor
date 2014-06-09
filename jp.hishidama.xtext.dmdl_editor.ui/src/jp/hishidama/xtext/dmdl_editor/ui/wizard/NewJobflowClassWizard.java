@@ -53,6 +53,8 @@ public class NewJobflowClassWizard extends NewClassWizard implements TypeWizard 
 
 	@Override
 	public boolean performFinish() {
+		porterPage.saveDialogSettings();
+
 		NewJobflowClassGenerator gen = new NewJobflowClassGenerator(classPage.getJavaProject().getProject(), classPage
 				.getPackageFragmentRoot().getPath());
 		try {

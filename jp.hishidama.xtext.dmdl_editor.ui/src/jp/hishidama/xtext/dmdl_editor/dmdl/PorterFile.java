@@ -27,10 +27,6 @@ public class PorterFile {
 		}
 	}
 
-	public final IType getType() {
-		return type;
-	}
-
 	private String name;
 
 	public String getName() {
@@ -48,6 +44,13 @@ public class PorterFile {
 			}
 		}
 		return name;
+	}
+
+	public String getClassName() {
+		if (type != null) {
+			return type.getFullyQualifiedName();
+		}
+		return getName();
 	}
 
 	private String path;

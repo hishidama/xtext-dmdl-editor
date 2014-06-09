@@ -2,6 +2,7 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.jobflow;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,8 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PorterFile;
 import jp.hishidama.xtext.dmdl_editor.ui.dialog.PorterSelectionDialog;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLVariableTableUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.TypeWizard;
 
@@ -28,11 +31,17 @@ import org.eclipse.jdt.core.ILocalVariable;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Text;
 
 public class SetJobflowPorterPage extends EditWizardPage {
 
@@ -73,11 +82,21 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		table.addColumn("model name", 128, SWT.NONE);
 		table.addColumn("model description", 128, SWT.NONE);
 
-		createLabel(composite, "");
-		Composite field = new Composite(composite, SWT.NONE);
-		// field.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		field.setLayout(new FillLayout(SWT.HORIZONTAL));
-		table.createButtonArea(field);
+		{
+			createLabel(composite, "");
+			Composite field = new Composite(composite, SWT.NONE);
+			// field.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+			field.setLayout(new FillLayout(SWT.HORIZONTAL));
+			table.createButtonArea(field);
+		}
+		{
+			createLabel(composite, "");
+			Composite field = new Composite(composite, SWT.NONE);
+			field.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+			field.setLayout(new GridLayout(3, false));
+			table.createTextArea(field);
+		}
+
 		if (initList != null) {
 			for (JobflowPorterRow row : initList) {
 				table.addItem(row.clone());
@@ -170,10 +189,66 @@ public class SetJobflowPorterPage extends EditWizardPage {
 	}
 
 	protected class JobflowPorterTable extends ModifiableTable<JobflowPorterRow> {
+		private static final String KEY = "JobflowPorterTable.NAME_RULE";
+
+		private Text nameText;
 
 		public JobflowPorterTable(Composite parent) {
 			super(parent, SWT.BORDER | SWT.MULTI | SWT.FULL_SELECTION);
 			setVisibleDupButton(true);
+		}
+
+		@Override
+		protected void createButtonAfterDup(Composite field) {
+			Button button = createPushButton(field, "rename");
+			button.setToolTipText("選択された行の名前を一括して置換します。");
+			button.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					doRename();
+				}
+			});
+			selectionButton.add(button);
+		}
+
+		public void createTextArea(Composite field) {
+			createLabel(field, "名前の命名ルール :").setToolTipText("追加・改名を実行した際に使われます。");
+			nameText = createText(field, 1, null);
+			IDialogSettings settings = getDialogSettings();
+			String value = settings.get(KEY);
+			if (value == null || value.trim().isEmpty()) {
+				value = "$(className.toLowerCamelCase)";
+			}
+			nameText.setText(value);
+
+			Button button = new Button(field, SWT.PUSH);
+			button.setText("select");
+			button.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					JobflowPortNameRuleDialog dialog = new JobflowPortNameRuleDialog(getShell());
+					if (dialog.open() == Window.OK) {
+						String value = dialog.getSelectedValue();
+						nameText.setText(value);
+					}
+				}
+			});
+		}
+
+		protected final IDialogSettings getDialogSettings() {
+			IDialogSettings rootSettings = DMDLActivator.getInstance().getDialogSettings();
+			String sectionName = "SetJobflowPorterPage";
+			IDialogSettings settings = rootSettings.getSection(sectionName);
+			if (settings == null) {
+				settings = rootSettings.addNewSection(sectionName);
+			}
+
+			return settings;
+		}
+
+		public void saveDialogSettings() {
+			String value = nameText.getText();
+			getDialogSettings().put(KEY, value);
 		}
 
 		@Override
@@ -212,8 +287,10 @@ public class SetJobflowPorterPage extends EditWizardPage {
 
 			List<PorterFile> files = dialog.getSelectedFiles();
 			List<JobflowPorterRow> result = new ArrayList<JobflowPorterRow>(files.size());
+			String nameRule = nameText.getText();
+			int i = 0;
 			for (PorterFile file : files) {
-				doAdd(file, result);
+				doAdd(file, result, nameRule, i++);
 			}
 			for (JobflowPorterRow row : result) {
 				if (row.in) {
@@ -227,21 +304,37 @@ public class SetJobflowPorterPage extends EditWizardPage {
 			}
 		}
 
-		private void doAdd(PorterFile file, List<JobflowPorterRow> result) {
+		private void doAdd(PorterFile file, List<JobflowPorterRow> result, String nameRule, int number) {
 			JobflowPorterRow row = createElement();
 			row.in = file.isImporter();
-			row.porterClassName = file.getName();
+			row.porterClassName = file.getClassName();
 			row.comment = file.getComment();
 			row.modelClassName = file.getModelClassName();
 			row.modelName = file.getModelName();
 			row.modelDescription = file.getModelDescription();
 
-			row.name = StringUtil.toFirstLower(row.porterClassName);
+			row.name = getName(row, nameRule, number);
+
 			if (StringUtil.isEmpty(row.comment)) {
 				row.comment = row.modelDescription;
 			}
 
 			result.add(row);
+		}
+
+		private String getName(JobflowPorterRow row, String nameRule, int number) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("in", Boolean.toString(row.in));
+			map.put("className", StringUtil.getSimpleName(row.porterClassName));
+			map.put("modelName", row.modelName);
+			map.put("modelDescription", row.modelDescription);
+			map.put("number", Integer.toString(number));
+
+			String name = DMDLVariableTableUtil.replaceVariable(nameRule, map);
+			if (StringUtil.nonEmpty(name)) {
+				return name;
+			}
+			return StringUtil.toFirstLower(StringUtil.getSimpleName(row.porterClassName));
 		}
 
 		@Override
@@ -260,6 +353,17 @@ public class SetJobflowPorterPage extends EditWizardPage {
 			return element.clone();
 		}
 
+		protected void doRename() {
+			String nameRule = nameText.getText();
+			List<JobflowPorterRow> list = getElementList();
+			int[] index = table.getSelectionIndices();
+			for (int i = 0; i < index.length; i++) {
+				JobflowPorterRow row = list.get(index[i]);
+				row.name = getName(row, nameRule, i);
+			}
+			refresh();
+		}
+
 		@Override
 		public void refresh() {
 			super.refresh();
@@ -273,5 +377,9 @@ public class SetJobflowPorterPage extends EditWizardPage {
 
 	public List<JobflowPorterRow> getInitList() {
 		return initList;
+	}
+
+	public void saveDialogSettings() {
+		table.saveDialogSettings();
 	}
 }

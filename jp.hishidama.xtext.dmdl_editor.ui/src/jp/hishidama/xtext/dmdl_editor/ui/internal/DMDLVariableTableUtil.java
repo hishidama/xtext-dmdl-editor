@@ -1,7 +1,11 @@
 package jp.hishidama.xtext.dmdl_editor.ui.internal;
 
 import static jp.hishidama.eclipse_plugin.util.StringUtil.toCamelCase;
-import jp.hishidama.eclipse_plugin.util.StringUtil;
+import static jp.hishidama.eclipse_plugin.util.StringUtil.toLowerCamelCase;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
@@ -84,6 +88,15 @@ public class DMDLVariableTableUtil {
 	}
 
 	public static String replaceVariable(String s, String modelName, String modelDesc, String propName, String propDesc) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("modelName", modelName);
+		map.put("modelDescription", DMDLStringUtil.decodeDescription(modelDesc));
+		map.put("name", propName);
+		map.put("description", DMDLStringUtil.decodeDescription(propDesc));
+		return replaceVariable(propDesc, map);
+	}
+
+	public static String replaceVariable(String s, Map<String, String> map) {
 		if (s == null) {
 			return null;
 		}
@@ -96,11 +109,11 @@ public class DMDLVariableTableUtil {
 				int m = s.indexOf(")", pos);
 				if (m >= 0) {
 					String key = s.substring(n + 2, m);
-					sb.append(convert(key, modelName, modelDesc, propName, propDesc));
+					sb.append(convert(key, map));
 					pos = m + 1;
 				} else {
 					String key = s.substring(n + 2);
-					sb.append(convert(key, modelName, modelDesc, propName, propDesc));
+					sb.append(convert(key, map));
 					break;
 				}
 			} else {
@@ -111,36 +124,65 @@ public class DMDLVariableTableUtil {
 		return sb.toString();
 	}
 
-	private static String convert(String key, String modelName, String modelDescription, String propName,
-			String propDesc) {
-		String s;
-		if ("modelName".equals(key)) {
-			s = modelName;
-		} else if ("modelName.toUpper".equals(key)) {
-			s = (modelName != null) ? modelName.toUpperCase() : null;
-		} else if ("modelName.toCamelCase".equals(key)) {
-			s = toCamelCase(modelName);
-		} else if ("name".equals(key)) {
-			s = propName;
-		} else if ("modelDescription".equals(key)) {
-			if (StringUtil.nonEmpty(modelDescription)) {
-				s = DMDLStringUtil.decodeDescription(modelDescription);
-			} else {
-				s = modelName;
-			}
-		} else if ("name.toUpper".equals(key)) {
-			s = (propName != null) ? propName.toUpperCase() : null;
-		} else if ("name.toCamelCase".equals(key)) {
-			s = toCamelCase(propName);
-		} else if ("description".equals(key)) {
-			if (StringUtil.nonEmpty(propDesc)) {
-				s = DMDLStringUtil.decodeDescription(propDesc);
-			} else {
-				s = propName;
-			}
+	private static String convert(String key, Map<String, String> map) {
+		int n = indexOfFirstSeparator(key);
+		String base, other;
+		if (n >= 0) {
+			base = key.substring(0, n).trim();
+			other = key.substring(n + 1).trim();
 		} else {
-			s = "";
+			base = key.trim();
+			other = "";
 		}
-		return (s != null) ? s : "";
+
+		String value = map.get(base);
+		if (value == null) {
+			return "";
+		}
+
+		if (base.equals("in")) {
+			int m = other.indexOf(':');
+			if (m < 0) {
+				return other;
+			}
+			if (Boolean.parseBoolean(value)) {
+				return other.substring(0, m).trim();
+			} else {
+				return other.substring(m + 1).trim();
+			}
+		}
+		if (base.equals("number")) {
+			int number;
+			try {
+				number = Integer.parseInt(other);
+			} catch (Exception e) {
+				number = 0;
+			}
+			number += Integer.parseInt(value);
+			return Integer.toString(number);
+		}
+
+		if (other.equals("toUpper")) {
+			return value.toUpperCase();
+		} else if (other.equals("toCamelCase")) {
+			return toCamelCase(value);
+		} else if (other.equals("toLowerCamelCase")) {
+			return toLowerCamelCase(value);
+		}
+		return value;
+	}
+
+	private static int indexOfFirstSeparator(String s) {
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+			switch (c) {
+			case '.':
+			case '?':
+				return i;
+			default:
+				break;
+			}
+		}
+		return -1;
 	}
 }

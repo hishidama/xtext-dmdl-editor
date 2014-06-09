@@ -46,6 +46,8 @@ public class ModifyJobflowClassWizard extends Wizard implements TypeWizard {
 
 	@Override
 	public boolean performFinish() {
+		porterPage.saveDialogSettings();
+
 		JobflowClassModifier mon = new JobflowClassModifier(document, type, porterPage);
 		try {
 			mon.execute();
