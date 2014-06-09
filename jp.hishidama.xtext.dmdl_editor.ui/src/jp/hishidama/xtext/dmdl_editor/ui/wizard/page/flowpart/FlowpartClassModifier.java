@@ -38,14 +38,14 @@ public class FlowpartClassModifier extends AstRewriteUtility {
 
 	private IDocument document;
 	private IType type;
-	private SetFlowpartModelPage portPage;
+	private SetFlowpartPortPage portPage;
 
 	private List<FlowpartModelRow> srcList;
 	private List<FlowpartModelRow> dstList;
 	private TypeDeclaration astType;
 	private Set<String> srcSet;
 
-	public FlowpartClassModifier(IDocument document, IType type, SetFlowpartModelPage portPage) {
+	public FlowpartClassModifier(IDocument document, IType type, SetFlowpartPortPage portPage) {
 		this.document = document;
 		this.type = type;
 		this.portPage = portPage;

@@ -2,7 +2,7 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard;
 
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.FlowpartClassModifier;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.SetFlowpartModelPage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.SetFlowpartPortPage;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
@@ -18,7 +18,7 @@ public class ModifyFlowpartClassWizard extends Wizard implements TypeWizard {
 	private IDocument document;
 	private IType type;
 
-	private SetFlowpartModelPage portPage;
+	private SetFlowpartPortPage portPage;
 
 	public ModifyFlowpartClassWizard() {
 		setWindowTitle("Modify FlowPart Constructor/Field");
@@ -31,7 +31,7 @@ public class ModifyFlowpartClassWizard extends Wizard implements TypeWizard {
 
 	@Override
 	public void addPages() {
-		portPage = new SetFlowpartModelPage();
+		portPage = new SetFlowpartPortPage();
 		portPage.init(type);
 		addPage(portPage);
 	}

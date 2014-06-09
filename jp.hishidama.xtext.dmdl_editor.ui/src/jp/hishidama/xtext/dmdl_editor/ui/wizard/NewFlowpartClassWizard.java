@@ -5,7 +5,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.NewFlowpartClassGenerator;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.NewFlowpartClassPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.SetArgumentPage;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.SetFlowpartModelPage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.SetFlowpartPortPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.SetFlowpartNamePage;
 
 import org.eclipse.core.resources.IResource;
@@ -18,7 +18,7 @@ public class NewFlowpartClassWizard extends NewClassWizard implements TypeWizard
 
 	private NewFlowpartClassPage classPage;
 	private SetFlowpartNamePage namePage;
-	private SetFlowpartModelPage modelPage;
+	private SetFlowpartPortPage modelPage;
 	private SetArgumentPage argPage;
 
 	public NewFlowpartClassWizard() {
@@ -35,7 +35,7 @@ public class NewFlowpartClassWizard extends NewClassWizard implements TypeWizard
 		namePage = new SetFlowpartNamePage();
 		addPage(namePage);
 
-		modelPage = new SetFlowpartModelPage();
+		modelPage = new SetFlowpartPortPage();
 		addPage(modelPage);
 
 		argPage = new SetArgumentPage();
