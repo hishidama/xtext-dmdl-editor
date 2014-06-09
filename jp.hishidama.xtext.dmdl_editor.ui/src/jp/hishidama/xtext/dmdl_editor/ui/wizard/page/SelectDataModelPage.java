@@ -49,6 +49,7 @@ public class SelectDataModelPage extends WizardPage {
 		{
 			viewer = new DataModelTreeViewer(composite, SWT.BORDER | SWT.CHECK | SWT.FULL_SELECTION, 512, 256);
 			GridData grid = new GridData(GridData.FILL_BOTH);
+			grid.heightHint = 192;
 			viewer.setLayoutData(grid);
 			rebuild(viewer);
 			viewer.createFilterField(composite, GridDataFactory.fillDefaults().grab(true, false).create());

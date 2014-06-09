@@ -137,6 +137,7 @@ public abstract class CreateDataModelPage<R extends DataModelRow> extends Wizard
 
 			sourceViewer = new DataModelTreeViewer(panel, SWT.BORDER | SWT.MULTI, 256 + 128, 128, true);
 			GridData grid = new GridData(GridData.FILL_BOTH);
+			grid.heightHint = 192;
 			grid.horizontalSpan = 2;
 			sourceViewer.setLayoutData(grid);
 			sourceViewer.addSelectionChangedListener(new ISelectionChangedListener() {
