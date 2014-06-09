@@ -199,7 +199,7 @@ public abstract class DMDLTreeData {
 				}
 			}
 			if (attrFilter != null) {
-				if (!attrFilter.matcher(getAttribute()).matches()) {
+				if (!attrFilter.matcher(getAttribute()).find()) {
 					return false;
 				}
 			}
@@ -318,7 +318,7 @@ public abstract class DMDLTreeData {
 				}
 			}
 			if (attrFilter != null) {
-				if (!attrFilter.matcher(getAttribute()).matches()) {
+				if (!attrFilter.matcher(getAttribute()).find()) {
 					return false;
 				}
 			}

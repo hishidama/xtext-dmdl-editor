@@ -8,8 +8,6 @@ import java.util.Map;
 import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
-import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
-import jp.hishidama.eclipse_plugin.dialog.ProjectFileSelectionDialog;
 import jp.hishidama.eclipse_plugin.jdt.util.AnnotationUtil;
 import jp.hishidama.eclipse_plugin.jdt.util.JavadocUtil;
 import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
@@ -19,20 +17,16 @@ import jp.hishidama.eclipse_plugin.wizard.page.EditWizardPage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PorterFile;
+import jp.hishidama.xtext.dmdl_editor.ui.dialog.PorterSelectionDialog;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.TypeWizard;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.ILocalVariable;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
@@ -202,20 +196,24 @@ public class SetJobflowPorterPage extends EditWizardPage {
 			}
 		}
 
+		private PorterSelectionDialog porterSelectionDialog;
+
 		@Override
 		protected void doAdd() {
 			IProject project = javaProject.getProject();
-			ProjectFileSelectionDialog dialog = new ProjectFileSelectionDialog(getShell(), project);
-			dialog.setTitle("Select Importer/Exporter");
-			dialog.setInitialSelection(getWizard().getDir());
-			dialog.addFileterExtension("java");
+			if (porterSelectionDialog == null) {
+				porterSelectionDialog = new PorterSelectionDialog(getShell(), project);
+			}
+			PorterSelectionDialog dialog = porterSelectionDialog;
+			// dialog.setInitialSelection(getWizard().getDir());
 			if (dialog.open() != Window.OK) {
 				return;
 			}
 
-			List<JobflowPorterRow> result = new ArrayList<JobflowPorterRow>();
-			for (String path : dialog.getResult()) {
-				doAdd(project, path, result);
+			List<PorterFile> files = dialog.getSelectedFiles();
+			List<JobflowPorterRow> result = new ArrayList<JobflowPorterRow>(files.size());
+			for (PorterFile file : files) {
+				doAdd(file, result);
 			}
 			for (JobflowPorterRow row : result) {
 				if (row.in) {
@@ -229,62 +227,21 @@ public class SetJobflowPorterPage extends EditWizardPage {
 			}
 		}
 
-		private void doAdd(IProject project, String path, List<JobflowPorterRow> result) {
-			IFile file = project.getFile(path);
-			ICompilationUnit cu = (ICompilationUnit) JavaCore.create(file, javaProject);
-			if (cu != null) {
-				doAdd(project, cu, result);
-			} else {
-				doAdd(project.getFolder(path), result);
-			}
-		}
+		private void doAdd(PorterFile file, List<JobflowPorterRow> result) {
+			JobflowPorterRow row = createElement();
+			row.in = file.isImporter();
+			row.porterClassName = file.getName();
+			row.comment = file.getComment();
+			row.modelClassName = file.getModelClassName();
+			row.modelName = file.getModelName();
+			row.modelDescription = file.getModelDescription();
 
-		private void doAdd(IFolder folder, List<JobflowPorterRow> result) {
-			try {
-				for (IResource r : folder.members()) {
-					if (r instanceof IFile) {
-						ICompilationUnit cu = (ICompilationUnit) JavaCore.create(r, javaProject);
-						if (cu != null) {
-							doAdd(folder.getProject(), cu, result);
-						}
-					} else if (r instanceof IFolder) {
-						doAdd((IFolder) r, result);
-					}
-				}
-			} catch (CoreException e) {
-				// do nothing
+			row.name = StringUtil.toFirstLower(row.porterClassName);
+			if (StringUtil.isEmpty(row.comment)) {
+				row.comment = row.modelDescription;
 			}
-		}
 
-		private void doAdd(IProject project, ICompilationUnit cu, List<JobflowPorterRow> result) {
-			try {
-				for (IType type : cu.getTypes()) {
-					String porter = PorterUtil.getPorterInterfaceName(type);
-					if (porter == null) {
-						continue;
-					}
-
-					JobflowPorterRow row = createElement();
-					row.in = PorterUtil.IMPORTER_NAME.equals(porter);
-					row.porterClassName = type.getFullyQualifiedName();
-					row.comment = JavadocUtil.getHeader(JavadocUtil.getJavadoc(type));
-					String modelClassName = PorterUtil.getModelClassName(javaProject, row.porterClassName);
-					row.modelClassName = modelClassName;
-					ModelDefinition model = ModelUiUtil.findModelByClass(project, modelClassName);
-					if (model != null) {
-						String modelName = model.getName();
-						row.name = StringUtil.toLowerCamelCase(modelName);
-						row.modelName = modelName;
-						row.modelDescription = ModelUtil.getDecodedDescriptionText(model);
-						if (StringUtil.isEmpty(row.comment)) {
-							row.comment = row.modelDescription;
-						}
-					}
-					result.add(row);
-				}
-			} catch (JavaModelException e) {
-				// do nothing
-			}
+			result.add(row);
 		}
 
 		@Override

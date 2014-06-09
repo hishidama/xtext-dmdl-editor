@@ -57,10 +57,8 @@ public class DMDLStringUtil {
 			}
 			i += Character.charCount(c);
 		}
-		if (wildcard > 0) {
-			return Pattern.compile(sb.toString(), Pattern.DOTALL);
-		}
-		return Pattern.compile(".*" + sb + ".*", Pattern.DOTALL);
+		String pattern = (wildcard > 0) ? sb.toString() : ".*" + sb + ".*";
+		return Pattern.compile(pattern, Pattern.DOTALL | Pattern.CASE_INSENSITIVE);
 	}
 
 	public static Pattern getNamePattern(String filter) {
