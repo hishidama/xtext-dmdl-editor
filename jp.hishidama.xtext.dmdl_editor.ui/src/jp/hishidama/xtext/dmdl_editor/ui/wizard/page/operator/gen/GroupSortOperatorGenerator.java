@@ -10,6 +10,7 @@ import org.eclipse.jdt.core.dom.Annotation;
 import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
+import org.eclipse.jdt.core.dom.Statement;
 
 public class GroupSortOperatorGenerator extends OperatorGenerator {
 
@@ -40,6 +41,10 @@ public class GroupSortOperatorGenerator extends OperatorGenerator {
 
 	@Override
 	protected Block getBody() {
-		return newEmptyBlock();
+		Block block = ast.newBlock();
+		@SuppressWarnings("unchecked")
+		List<Statement> slist = block.statements();
+		slist.add(newResultCommentStatement());
+		return block;
 	}
 }

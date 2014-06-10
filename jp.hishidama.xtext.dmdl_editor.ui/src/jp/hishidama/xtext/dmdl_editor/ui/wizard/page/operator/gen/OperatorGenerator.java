@@ -24,6 +24,7 @@ import org.eclipse.jdt.core.dom.Annotation;
 import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
 import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.jdt.core.dom.EmptyStatement;
 import org.eclipse.jdt.core.dom.IExtendedModifier;
 import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
@@ -346,5 +347,14 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		v.setType(newType("com.asakusafw.runtime.core.Result", typeName));
 		v.setName(ast.newSimpleName(name));
 		return v;
+	}
+
+	protected final EmptyStatement newResultCommentStatement() {
+		ASTRewrite rewriter = getAstRewrite();
+		String comment = "// TODO Resultのaddメソッドにデータモデルオブジェクトを渡すことにより、オブジェクトを出力します。\n"
+				+ "// XXX addは複数回呼び出せますが、Resultにaddしたオブジェクトはadd後に内容が変更されている可能性があるので、add後にオブジェクトの一部だけ変えて再度addするような使い方は出来ません。\n"
+				+ "// XXX オブジェクトを使い回したい場合は、値を全てセットし直すか、Resultにaddする専用のオブジェクトを作ってcopyFromメソッドでコピーする等の方法を採る必要があります。";
+		EmptyStatement statement = (EmptyStatement) rewriter.createStringPlaceholder(comment, ASTNode.EMPTY_STATEMENT);
+		return statement;
 	}
 }
