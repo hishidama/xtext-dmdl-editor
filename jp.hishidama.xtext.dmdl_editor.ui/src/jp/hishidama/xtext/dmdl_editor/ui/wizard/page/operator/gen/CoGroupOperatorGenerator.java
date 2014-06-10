@@ -1,5 +1,6 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.gen;
 
+import java.util.Collections;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
@@ -27,7 +28,9 @@ public class CoGroupOperatorGenerator extends OperatorGenerator {
 	protected void getParameters(List<SingleVariableDeclaration> plist, Javadoc javadoc) {
 		List<OperatorInputModelRow> ilist = getInputModelList();
 		for (OperatorInputModelRow row : ilist) {
-			plist.add(newListParameter(row.modelClassName, row.name, row.keyList, row.orderList));
+			List<String> keyList = (row.keyList != null) ? row.keyList : Collections.<String> emptyList();
+			List<String> orderList = (row.orderList != null) ? row.orderList : Collections.<String> emptyList();
+			plist.add(newListParameter(row.modelClassName, row.name, keyList, orderList));
 			addJavadocParam(javadoc, row.name, row.getLabel());
 		}
 
