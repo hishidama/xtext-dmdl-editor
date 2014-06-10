@@ -397,20 +397,16 @@ public class OperatorInputModelDialog extends EditDialog {
 		inputRow.modelDescription = modelDescText.getText();
 		if (hasKey) {
 			inputRow.keyList = new ArrayList<String>();
-			List<KeyRow> list = keyTable.getElementList();
-			for (int i = 0; i < list.size(); i++) {
-				if (keyTable.getChecked(i)) {
-					inputRow.keyList.add(list.get(i).name);
-				}
+			List<KeyRow> list = keyTable.getCheckedElementList();
+			for (KeyRow row : list) {
+				inputRow.keyList.add(row.name);
 			}
 		}
 		if (hasOrder) {
 			inputRow.orderList = new ArrayList<String>();
-			List<KeyRow> list = orderTable.getElementList();
-			for (int i = 0; i < list.size(); i++) {
-				if (orderTable.getChecked(i)) {
-					inputRow.orderList.add(list.get(i).getNameOrder());
-				}
+			List<KeyRow> list = orderTable.getCheckedElementList();
+			for (KeyRow row : list) {
+				inputRow.orderList.add(row.getNameOrder());
 			}
 		}
 

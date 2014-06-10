@@ -7,11 +7,14 @@ import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorInputModelRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorOutputModelRow;
 
+import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.Annotation;
 import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.Javadoc;
+import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import org.eclipse.jdt.core.dom.Statement;
+import org.eclipse.jdt.core.dom.rewrite.ListRewrite;
 
 public class CoGroupOperatorGenerator extends OperatorGenerator {
 
@@ -49,5 +52,11 @@ public class CoGroupOperatorGenerator extends OperatorGenerator {
 		List<Statement> slist = block.statements();
 		slist.add(newResultCommentStatement());
 		return block;
+	}
+
+	@Override
+	protected ASTNode insertOther(ListRewrite listRewrite, MethodDeclaration method) {
+		createDataModelFields(listRewrite, method);
+		return method;
 	}
 }

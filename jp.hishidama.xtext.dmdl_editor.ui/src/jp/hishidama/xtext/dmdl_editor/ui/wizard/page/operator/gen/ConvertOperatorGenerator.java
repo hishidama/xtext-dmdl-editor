@@ -1,6 +1,5 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.gen;
 
-import java.text.MessageFormat;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,14 +8,15 @@ import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.FieldCacheRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorInputModelRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorOutputModelRow;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetCacheFieldPage;
 
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.Annotation;
 import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.Expression;
-import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.NullLiteral;
@@ -63,17 +63,23 @@ public class ConvertOperatorGenerator extends OperatorGenerator {
 		List<Statement> slist = block.statements();
 
 		OperatorOutputModelRow rrow = getReturnRow();
-		String fieldName = getFieldName();
-		slist.add(newVariableDeclarationStatement(rrow.modelClassName, "result", ast.newSimpleName(fieldName)));
-		slist.add(newMethodInvocationStatement("result", "reset"));
+		String fieldName = getFieldName(rrow);
+		String varName = "result";
+		if (fieldName != null) {
+			slist.add(newVariableDeclarationStatement(rrow.modelClassName, varName, newThisFieldAccess(fieldName)));
+			slist.add(newMethodInvocationStatement(varName, "reset"));
+		} else {
+			slist.add(newVariableDeclarationStatement(rrow.modelClassName, varName,
+					newClassInstanceCreation(rrow.modelClassName)));
+		}
 
-		addStatement(slist, rrow);
+		addStatement(varName, slist, rrow);
 
-		slist.add(newReturnStatement(ast.newSimpleName("result")));
+		slist.add(newReturnStatement(ast.newSimpleName(varName)));
 		return block;
 	}
 
-	private void addStatement(List<Statement> slist, OperatorOutputModelRow rrow) {
+	private void addStatement(String varName, List<Statement> slist, OperatorOutputModelRow rrow) {
 		OperatorInputModelRow row = getInputRow();
 		Set<String> set = new HashSet<String>();
 		{
@@ -99,35 +105,25 @@ public class ConvertOperatorGenerator extends OperatorGenerator {
 					arg = (NullLiteral) rewriter.createStringPlaceholder("/*TODO*/null", ASTNode.NULL_LITERAL);
 				}
 
-				slist.add(newMethodInvocationStatement("result", String.format("set%sOption", camelName), arg));
+				slist.add(newMethodInvocationStatement(varName, String.format("set%sOption", camelName), arg));
 			}
 		}
 	}
 
 	@Override
 	protected ASTNode insertOther(ListRewrite listRewrite, MethodDeclaration method) {
-		FieldDeclaration field = createField();
-		listRewrite.insertBefore(field, method, null);
+		createDataModelFields(listRewrite, method);
 		return method;
 	}
 
-	private FieldDeclaration createField() {
-		String name = getFieldName();
-		OperatorOutputModelRow row = getReturnRow();
-		String className = row.modelClassName;
-		FieldDeclaration field = newFieldDeclaration(className, name, true);
-
-		String inputClassName = getImportRewrite().addImport(getInputRow().modelClassName);
-		String comment = MessageFormat.format("'{'@link #{0}({1})'}'で利用するデータモデル.", methodName, inputClassName);
-		Javadoc javadoc = newJavadoc(comment);
-		field.setJavadoc(javadoc);
-
-		return field;
-	}
-
-	private String getFieldName() {
-		String name = methodName + "ResultModel";
-		return name;
+	private String getFieldName(OperatorOutputModelRow rrow) {
+		SetCacheFieldPage fieldPage = getCacheFieldPage();
+		for (FieldCacheRow row : fieldPage.getCheckedFieldList()) {
+			if (rrow.modelClassName.equals(row.modelClassName)) {
+				return row.name;
+			}
+		}
+		return null;
 	}
 
 	private OperatorInputModelRow getInputRow() {

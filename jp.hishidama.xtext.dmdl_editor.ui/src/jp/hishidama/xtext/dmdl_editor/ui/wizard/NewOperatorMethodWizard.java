@@ -14,6 +14,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorInpu
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorOutputModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorTypePage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetBranchEnumPage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetCacheFieldPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetMasterSelectionPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetOperatorNamePage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.gen.OperatorGenerator;
@@ -102,6 +103,9 @@ public class NewOperatorMethodWizard extends Wizard {
 		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType);
 		outputPage.addRole("out");
 		addPage(opType, outputPage);
+
+		SetCacheFieldPage fieldPage = new SetCacheFieldPage(type, opType, null, outputPage, true);
+		addPage(opType, fieldPage);
 	}
 
 	private void addExtractPages() {
@@ -112,6 +116,9 @@ public class NewOperatorMethodWizard extends Wizard {
 
 		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType);
 		addPage(opType, outputPage);
+
+		SetCacheFieldPage fieldPage = new SetCacheFieldPage(type, opType, null, outputPage, false);
+		addPage(opType, fieldPage);
 	}
 
 	private void addMasterCheckPages() {
@@ -181,6 +188,9 @@ public class NewOperatorMethodWizard extends Wizard {
 
 		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType);
 		addPage(opType, outputPage);
+
+		SetCacheFieldPage fieldPage = new SetCacheFieldPage(type, opType, null, outputPage, false);
+		addPage(opType, fieldPage);
 	}
 
 	private void addSplitPages() {
@@ -215,6 +225,9 @@ public class NewOperatorMethodWizard extends Wizard {
 
 		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType);
 		addPage(opType, outputPage);
+
+		SetCacheFieldPage fieldPage = new SetCacheFieldPage(type, opType, null, outputPage, false);
+		addPage(opType, fieldPage);
 	}
 
 	private void addLoggingPages() {

@@ -244,13 +244,8 @@ public class SetBatchDescribePage extends EditWizardPage {
 			row.className = classText.getText();
 
 			row.list.clear();
-			List<JobNamePair> list = table.getElementList();
-			for (int i = 0; i < list.size(); i++) {
-				if (table.getChecked(i)) {
-					JobNamePair pair = list.get(i);
-					row.list.add(pair);
-				}
-			}
+			List<JobNamePair> list = table.getCheckedElementList();
+			row.list.addAll(list);
 
 			super.okPressed();
 		}

@@ -8,10 +8,12 @@ import jp.hishidama.eclipse_plugin.jdt.util.AstRewriteUtility;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.FieldCacheRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorInputModelRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorOutputModelRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorInputModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorOutputModelPage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetCacheFieldPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetMasterSelectionPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetOperatorNamePage;
 
@@ -23,8 +25,10 @@ import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.Annotation;
 import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
+import org.eclipse.jdt.core.dom.ClassInstanceCreation;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.EmptyStatement;
+import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.IExtendedModifier;
 import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
@@ -286,9 +290,20 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 	}
 
 	protected final SetMasterSelectionPage getMasterSelectionPage() {
-		for (IWizardPage page : pageList) {
+		for (int i = pageList.size() - 1; i >= 0; i--) {
+			IWizardPage page = pageList.get(i);
 			if (page instanceof SetMasterSelectionPage) {
 				return (SetMasterSelectionPage) page;
+			}
+		}
+		throw new IllegalStateException();
+	}
+
+	protected final SetCacheFieldPage getCacheFieldPage() {
+		for (int i = pageList.size() - 1; i >= 0; i--) {
+			IWizardPage page = pageList.get(i);
+			if (page instanceof SetCacheFieldPage) {
+				return (SetCacheFieldPage) page;
 			}
 		}
 		throw new IllegalStateException();
@@ -300,6 +315,12 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 			return description;
 		}
 		return model.getName();
+	}
+
+	protected final ClassInstanceCreation newClassInstanceCreation(String typeName) {
+		ClassInstanceCreation c = ast.newClassInstanceCreation();
+		c.setType(newType(typeName));
+		return c;
 	}
 
 	protected final SingleVariableDeclaration newSimpleParameter(String typeName, String name) {
@@ -356,5 +377,38 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 				+ "// XXX オブジェクトを使い回したい場合は、値を全てセットし直すか、Resultにaddする専用のオブジェクトを作ってcopyFromメソッドでコピーする等の方法を採る必要があります。";
 		EmptyStatement statement = (EmptyStatement) rewriter.createStringPlaceholder(comment, ASTNode.EMPTY_STATEMENT);
 		return statement;
+	}
+
+	protected final void createDataModelFields(ListRewrite listRewrite, ASTNode positionNode) {
+		SetCacheFieldPage fieldPage = getCacheFieldPage();
+		int position = fieldPage.getCreatePosition();
+		List<FieldCacheRow> list = fieldPage.getCreateFieldList();
+		for (FieldCacheRow row : list) {
+			FieldDeclaration field = createField(row);
+			switch (position) {
+			case 0:
+				FieldDeclaration last = findLastField(listRewrite);
+				if (last != null) {
+					listRewrite.insertAfter(field, last, null);
+				} else {
+					listRewrite.insertFirst(field, null);
+				}
+				break;
+			default:
+				listRewrite.insertBefore(field, positionNode, null);
+				break;
+			}
+		}
+	}
+
+	protected final FieldDeclaration createField(FieldCacheRow row) {
+		String name = row.name;
+		String className = row.modelClassName;
+		FieldDeclaration field = newFieldDeclaration(className, name, true);
+
+		Javadoc javadoc = newJavadoc(row.getLabel());
+		field.setJavadoc(javadoc);
+
+		return field;
 	}
 }
