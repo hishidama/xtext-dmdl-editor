@@ -152,6 +152,15 @@ public class DMDLVariableTableUtil {
 			}
 		}
 		if (base.equals("number")) {
+			int m = other.indexOf('.');
+			String format;
+			if (m >= 0) {
+				format = other.substring(m + 1);
+				other = other.substring(0, m);
+			} else {
+				format = "%d";
+			}
+
 			int number;
 			try {
 				number = Integer.parseInt(other);
@@ -159,7 +168,11 @@ public class DMDLVariableTableUtil {
 				number = 0;
 			}
 			number += Integer.parseInt(value);
-			return Integer.toString(number);
+			try {
+				return String.format(format, number);
+			} catch (Exception e) {
+				return Integer.toString(number);
+			}
 		}
 
 		if (other.equals("toUpper")) {
