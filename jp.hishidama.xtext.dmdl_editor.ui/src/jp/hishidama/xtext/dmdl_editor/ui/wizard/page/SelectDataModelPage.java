@@ -29,14 +29,20 @@ import org.eclipse.swt.widgets.TreeItem;
 public class SelectDataModelPage extends WizardPage {
 	private IProject project;
 	private List<IFile> files;
+	private boolean multi;
 
 	private DataModelTreeViewer viewer;
 
 	public SelectDataModelPage(String title, IProject project, List<IFile> list) {
+		this(title, project, list, true);
+	}
+
+	public SelectDataModelPage(String title, IProject project, List<IFile> list, boolean multi) {
 		super("SelectDataModelPage");
 		setTitle(title);
 		this.project = project;
 		this.files = list;
+		this.multi = multi;
 
 		setPageComplete(false);
 	}
@@ -99,7 +105,11 @@ public class SelectDataModelPage extends WizardPage {
 
 	private void refreshChecked(Object obj) {
 		List<?> list = getModelList();
-		setPageComplete(!list.isEmpty());
+		if (multi) {
+			setPageComplete(!list.isEmpty());
+		} else {
+			setPageComplete(list.size() == 1);
+		}
 	}
 
 	public List<ModelFile> getModelList() {

@@ -93,7 +93,7 @@ public class DMDLVariableTableUtil {
 		map.put("modelDescription", DMDLStringUtil.decodeDescription(modelDesc));
 		map.put("name", propName);
 		map.put("description", DMDLStringUtil.decodeDescription(propDesc));
-		return replaceVariable(propDesc, map);
+		return replaceVariable(s, map);
 	}
 
 	public static String replaceVariable(String s, Map<String, String> map) {

@@ -601,9 +601,11 @@
                </parameter>
             </command>
             <command
+                  id="jp.hishidama.xtext.dmdl_editor.ui.toolbar.newOperatorWizard"
                   commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorMethod"
                   icon="icons/newpublic_co.gif"
-                  tooltip="Operatorクラスに演算子メソッドを追加します。">
+                  tooltip="Operatorクラスに演算子メソッドを追加します。"
+                  style="pulldown">
             </command>
          </toolbar>
       </menuContribution>
@@ -667,6 +669,21 @@
          </separator>
          <command
                commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyJobflowClass"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="menu:jp.hishidama.xtext.dmdl_editor.ui.toolbar.newOperatorWizard">
+         <command
+               commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorMethod"
+               icon="icons/newpublic_co.gif"
+               tooltip="Operatorクラスに演算子メソッドを追加します。"
+               style="push">
+         </command>
+         <command
+               commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorStatement"
+               icon="icons/newpublic_co.gif"
+               tooltip="プロパティー一覧を用いてステートメントを一括生成します。"
                style="push">
          </command>
       </menuContribution>
@@ -1005,6 +1022,11 @@
       </command>
       <command
             categoryId="jp.hishidama.xtext.dmdl_editor.jdt.category"
+            id="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorStatement"
+            name="New Operator Statement">
+      </command>
+      <command
+            categoryId="jp.hishidama.xtext.dmdl_editor.jdt.category"
             id="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyJobflowClass"
             name="Modify JobFlow/FlowPart Field">
       </command>
@@ -1014,6 +1036,15 @@
       <handler
             class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.NewOperatorMethodHandler"
             commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorMethod">
+         <enabledWhen>
+            <with variable="activeEditorId">
+               <equals value="org.eclipse.jdt.ui.CompilationUnitEditor" />
+            </with>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.NewOperatorStatementHandler"
+            commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorStatement">
          <enabledWhen>
             <with variable="activeEditorId">
                <equals value="org.eclipse.jdt.ui.CompilationUnitEditor" />
@@ -1052,6 +1083,11 @@
                style="push">
          </command>
          <command
+               commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorStatement"
+               icon="icons/newpublic_co.gif"
+               style="push">
+         </command>
+         <command
                commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyJobflowClass"
                style="push">
          </command>
@@ -1063,6 +1099,11 @@
                label="DMDL EditorX">
             <command
                   commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorMethod"
+                  icon="icons/newpublic_co.gif"
+                  style="push">
+            </command>
+            <command
+                  commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorStatement"
                   icon="icons/newpublic_co.gif"
                   style="push">
             </command>

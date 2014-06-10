@@ -171,10 +171,7 @@ public class SetCacheFieldPage extends EditWizardPage {
 			if (firstVisible) {
 				firstVisible = false;
 				if (defaultCheck) {
-					int size = table.getElementList().size();
-					for (int i = 0; i < size; i++) {
-						table.setChecked(i, true);
-					}
+					table.setCheckedAll(true);
 					validate(true);
 				}
 			}
