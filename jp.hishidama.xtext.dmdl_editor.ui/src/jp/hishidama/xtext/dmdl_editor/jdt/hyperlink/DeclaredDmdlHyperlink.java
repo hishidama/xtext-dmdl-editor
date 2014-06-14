@@ -12,14 +12,20 @@ import org.eclipse.xtext.ui.editor.GlobalURIEditorOpener;
 public class DeclaredDmdlHyperlink implements IHyperlink {
 	private URI uri;
 	private IRegion region;
+	private String name;
 
-	public DeclaredDmdlHyperlink(EObject token, IRegion region) {
+	public DeclaredDmdlHyperlink(EObject token, IRegion region, String name) {
 		this.uri = EcoreUtil.getURI(token);
 		this.region = region;
+		this.name = name;
 	}
 
 	public IRegion getHyperlinkRegion() {
 		return region;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public String getTypeLabel() {

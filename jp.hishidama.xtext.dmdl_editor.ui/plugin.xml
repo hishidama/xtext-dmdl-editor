@@ -1084,6 +1084,11 @@
             id="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyJobflowClass"
             name="Modify JobFlow/FlowPart Field">
       </command>
+      <command
+            categoryId="jp.hishidama.xtext.dmdl_editor.jdt.category"
+            id="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.JavaEditorCopyDmdlName"
+            name="Copy DMDL Name">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -1121,9 +1126,26 @@
             </and>
          </enabledWhen>
       </handler>
+      <handler
+            class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.JavaEditorCopyDmdlNameHandler"
+            commandId="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.JavaEditorCopyDmdlName">
+         <enabledWhen>
+            <with variable="activeEditorId">
+               <equals value="org.eclipse.jdt.ui.CompilationUnitEditor" />
+            </with>
+         </enabledWhen>
+      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.jdt.ui.CompilationUnitEditor.EditorContext?after=copyQualifiedName">
+         <command
+               commandId="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.JavaEditorCopyDmdlName"
+               style="push">
+         </command>
+      </menuContribution>
       <menuContribution
             allPopups="true"
             locationURI="popup:org.eclipse.jdt.ui.source.menu?after=additions">

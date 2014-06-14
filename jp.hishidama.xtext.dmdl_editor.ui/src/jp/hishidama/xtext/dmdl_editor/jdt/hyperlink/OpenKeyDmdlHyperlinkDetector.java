@@ -17,14 +17,14 @@ public class OpenKeyDmdlHyperlinkDetector extends CompilationUnitHyperlinkDetect
 			ExporterPropertyStringFinder finder = new ExporterPropertyStringFinder(type, region.getOffset());
 			Property property = finder.getProperty();
 			if (property != null) {
-				return new IHyperlink[] { new DeclaredDmdlHyperlink(property, finder.getRegion()) };
+				return new IHyperlink[] { new DeclaredDmdlHyperlink(property, finder.getRegion(), property.getName()) };
 			}
 		}
 
 		KeyPropertyStringFinder finder = new KeyPropertyStringFinder(unit, region.getOffset());
 		Property property = finder.getProperty();
 		if (property != null) {
-			return new IHyperlink[] { new DeclaredDmdlHyperlink(property, finder.getRegion()) };
+			return new IHyperlink[] { new DeclaredDmdlHyperlink(property, finder.getRegion(), property.getName()) };
 		}
 
 		return null;
