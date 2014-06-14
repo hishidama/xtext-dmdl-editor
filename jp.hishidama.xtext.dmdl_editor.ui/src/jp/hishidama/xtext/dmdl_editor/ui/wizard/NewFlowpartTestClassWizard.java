@@ -65,25 +65,29 @@ public class NewFlowpartTestClassWizard extends NewClassWizard {
 
 	@Override
 	public boolean performFinish() {
-		copyExcelFiles();
-
-		NewFlowpartTestClassGenerator gen = new NewFlowpartTestClassGenerator(classPage.getJavaProject().getProject(),
-				classPage.getPackageFragmentRoot().getPath());
 		try {
+			excelPage.saveDialogSettings();
+
+			copyExcelFiles();
+
+			NewFlowpartTestClassGenerator gen = new NewFlowpartTestClassGenerator(classPage.getJavaProject()
+					.getProject(), classPage.getPackageFragmentRoot().getPath());
 			gen.generate(classPage.getPackageText(), classPage.getTypeName(), classPage.getSuperClass(),
 					classPage.getClassUnderTestText(), excelPage.getExcelList(), excelPage.getParameterList());
 		} catch (CoreException e) {
 			ErrorDialog.openError(getShell(), "FlowPart Test generate error", "FlowPart Test generate error.",
 					e.getStatus());
+			return false;
 		} catch (Exception e) {
 			IStatus status = LogUtil.errorStatus(e.getMessage(), e);
 			ErrorDialog.openError(getShell(), "FlowPart Test generate error", "FlowPart Test generate error.", status);
+			return false;
 		}
 
 		return true;
 	}
 
-	private void copyExcelFiles() {
+	private void copyExcelFiles() throws CoreException {
 		IProject project = getJavaProject().getProject();
 		String dstDir = "src/test/resources/" + classPage.getPackageText().replaceAll("\\.", "/") + "/";
 		AsakusafwProperties bp = BuildPropertiesUtil.getBuildProperties(project, false);
@@ -92,7 +96,7 @@ public class NewFlowpartTestClassWizard extends NewClassWizard {
 			srcDir += "/";
 		}
 
-		ExcelCopy copy = new ExcelCopy(project);
+		ExcelCopy copy = new ExcelCopy(project, getContainer());
 
 		List<TestExcelRow> list = excelPage.getExcelList();
 		for (TestExcelRow row : list) {

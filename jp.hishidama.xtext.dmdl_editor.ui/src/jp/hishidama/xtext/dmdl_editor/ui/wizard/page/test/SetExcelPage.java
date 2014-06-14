@@ -1,27 +1,45 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test;
 
+import java.text.MessageFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowParameter;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
 import jp.hishidama.eclipse_plugin.jface.ModifiableTable;
+import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.eclipse_plugin.wizard.page.EditWizardPage;
 import jp.hishidama.eclipse_plugin.wizard.page.NewTestClassWizardPage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLVariableTableUtil;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.IType;
+import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Text;
 
 public class SetExcelPage extends EditWizardPage {
+	private static final String KEY_EXCEL_NAME = "SetExcelPage.EXCEL_NAME";
+	private static final String KEY_DATA_NAME = "SetExcelPage.DATA_SHEET_NAME";
+	private static final String KEY_RULE_NAME = "SetExcelPage.RULE_SHEET_NAME";
 
 	private NewTestClassWizardPage classPage;
 	private ExcelTable table;
+	private Text excelNameText;
+	private Text dataSheetText;
+	private Text ruleSheetText;
 
 	private IType classUnderTest;
 	private List<FlowParameter> parameterList;
@@ -54,14 +72,21 @@ public class SetExcelPage extends EditWizardPage {
 		table.addColumn("excel file", 128, SWT.NONE);
 		table.addColumn("data sheet name", 128, SWT.NONE);
 		table.addColumn("rule sheet name", 128, SWT.NONE);
-
-		createLabel(composite, "");
-		Composite field = new Composite(composite, SWT.NONE);
-		// field.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		field.setLayout(new FillLayout(SWT.HORIZONTAL));
-		table.createCheckButtonArea(field);
-		table.createButtonArea(field);
-
+		{
+			createLabel(composite, "");
+			Composite field = new Composite(composite, SWT.NONE);
+			// field.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+			field.setLayout(new FillLayout(SWT.HORIZONTAL));
+			table.createCheckButtonArea(field);
+			table.createButtonArea(field);
+		}
+		{
+			createLabel(composite, "");
+			Composite field = new Composite(composite, SWT.NONE);
+			field.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+			field.setLayout(new GridLayout(6, false));
+			table.createReplaceButtonArea(field);
+		}
 		table.refresh();
 		return composite;
 	}
@@ -124,6 +149,42 @@ public class SetExcelPage extends EditWizardPage {
 
 	@Override
 	protected String validate() {
+		List<TestExcelRow> list = table.getElementList();
+		Map<String, String> map = new HashMap<String, String>(list.size() * 2);
+		for (TestExcelRow row : list) {
+			if (row.in) {
+				String message = validateDuplicate(map, row, row.sheetName, "in");
+				if (message != null) {
+					return message;
+				}
+			} else {
+				{
+					String message = validateDuplicate(map, row, row.sheetName, "data");
+					if (message != null) {
+						return message;
+					}
+				}
+				{
+					String message = validateDuplicate(map, row, row.ruleName, "rule");
+					if (message != null) {
+						return message;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	private static String validateDuplicate(Map<String, String> map, TestExcelRow row, String sheetName, String role) {
+		String excelName = row.excelDstFileName.trim();
+		sheetName = sheetName.trim();
+		String key = String.format("%s#%s", excelName, sheetName);
+		String value = String.format("%s#%s", row.modelName, role);
+		String exists = map.get(key);
+		if (exists != null && !exists.equals(value)) {
+			return MessageFormat.format("duplicate sheet. excelName={0}, sheetName={1}", excelName, sheetName);
+		}
+		map.put(key, value);
 		return null;
 	}
 
@@ -170,6 +231,95 @@ public class SetExcelPage extends EditWizardPage {
 			// no create
 		}
 
+		public void createReplaceButtonArea(Composite field) {
+			{
+				excelNameText = new Text(field, SWT.SINGLE | SWT.BORDER);
+				GridDataFactory.fillDefaults().grab(true, false).applyTo(excelNameText);
+				excelNameText.setText(getDefaultText(KEY_EXCEL_NAME, "$(className).xls"));
+				Button button = createPushButton(field, "replace excel name");
+				button.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						new Replacer(excelNameText.getText()) {
+							@Override
+							protected void setRow(TestExcelRow row, String value) {
+								row.excelDstFileName = value;
+							}
+						}.replace();
+					}
+				});
+				selectionButton.add(button);
+			}
+			{
+				dataSheetText = new Text(field, SWT.SINGLE | SWT.BORDER);
+				GridDataFactory.fillDefaults().grab(true, false).applyTo(dataSheetText);
+				dataSheetText.setText(getDefaultText(KEY_DATA_NAME, "$(name)"));
+				Button button = createPushButton(field, "replace data sheet name");
+				button.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						new Replacer(dataSheetText.getText()) {
+							@Override
+							protected void setRow(TestExcelRow row, String value) {
+								row.sheetName = value;
+							}
+						}.replace();
+					}
+				});
+				selectionButton.add(button);
+			}
+			{
+				ruleSheetText = new Text(field, SWT.SINGLE | SWT.BORDER);
+				GridDataFactory.fillDefaults().grab(true, false).applyTo(ruleSheetText);
+				ruleSheetText.setText(getDefaultText(KEY_RULE_NAME, "$(name)_rule"));
+				Button button = createPushButton(field, "replace rule sheet name");
+				button.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						new Replacer(ruleSheetText.getText()) {
+							@Override
+							protected void setRow(TestExcelRow row, String value) {
+								if (!row.in) {
+									row.ruleName = value;
+								}
+							}
+						}.replace();
+					}
+				});
+				selectionButton.add(button);
+			}
+		}
+
+		private abstract class Replacer {
+			private String pattern;
+
+			public Replacer(String pattern) {
+				this.pattern = pattern;
+			}
+
+			public void replace() {
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("className", StringUtil.getSimpleName(classPage.getClassUnderTestText()));
+				map.put("testClassName", StringUtil.getSimpleName(classPage.getTypeName()));
+
+				List<TestExcelRow> list = getElementList();
+				int[] index = table.getSelectionIndices();
+				for (int i = 0; i < index.length; i++) {
+					TestExcelRow row = list.get(index[i]);
+					map.put("in", Boolean.toString(row.in));
+					map.put("name", row.name);
+					map.put("modelName", row.modelName);
+					map.put("modelDescription", row.modelDescription);
+					map.put("number", Integer.toString(i));
+					String s = DMDLVariableTableUtil.replaceVariable(pattern, map);
+					setRow(row, s);
+				}
+				refresh();
+			}
+
+			protected abstract void setRow(TestExcelRow row, String value);
+		}
+
 		@Override
 		protected TestExcelRow createElement() {
 			return new TestExcelRow();
@@ -186,6 +336,22 @@ public class SetExcelPage extends EditWizardPage {
 			super.refresh();
 			validate(visible);
 		}
+	}
+
+	protected String getDefaultText(String key, String defaultText) {
+		IDialogSettings settings = getDialogSettings();
+		String value = settings.get(key);
+		if (value != null) {
+			return value;
+		}
+		return defaultText;
+	}
+
+	public void saveDialogSettings() {
+		IDialogSettings settings = getDialogSettings();
+		settings.put(KEY_EXCEL_NAME, excelNameText.getText());
+		settings.put(KEY_DATA_NAME, dataSheetText.getText());
+		settings.put(KEY_RULE_NAME, ruleSheetText.getText());
 	}
 
 	public List<TestExcelRow> getExcelList() {
