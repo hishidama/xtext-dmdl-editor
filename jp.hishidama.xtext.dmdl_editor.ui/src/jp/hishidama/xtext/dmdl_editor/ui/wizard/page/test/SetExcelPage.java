@@ -16,6 +16,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLVariableTableUtil;
 
+import org.apache.poi.ss.util.WorkbookUtil;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.dialogs.IDialogSettings;
@@ -153,23 +154,55 @@ public class SetExcelPage extends EditWizardPage {
 		Map<String, String> map = new HashMap<String, String>(list.size() * 2);
 		for (TestExcelRow row : list) {
 			if (row.in) {
-				String message = validateDuplicate(map, row, row.sheetName, "in");
-				if (message != null) {
-					return message;
+				String sheetName = row.sheetName;
+				if (StringUtil.nonEmpty(sheetName)) {
+					String message = validateSheetName(sheetName);
+					if (message != null) {
+						return message;
+					}
+					message = validateDuplicate(map, row, row.sheetName, "in");
+					if (message != null) {
+						return message;
+					}
 				}
 			} else {
 				{
-					String message = validateDuplicate(map, row, row.sheetName, "data");
-					if (message != null) {
-						return message;
+					String sheetName = row.sheetName;
+					if (StringUtil.nonEmpty(sheetName)) {
+						String message = validateSheetName(sheetName);
+						if (message != null) {
+							return message;
+						}
+						message = validateDuplicate(map, row, sheetName, "data");
+						if (message != null) {
+							return message;
+						}
 					}
 				}
 				{
-					String message = validateDuplicate(map, row, row.ruleName, "rule");
-					if (message != null) {
-						return message;
+					String sheetName = row.ruleName;
+					if (StringUtil.nonEmpty(sheetName)) {
+						String message = validateSheetName(sheetName);
+						if (message != null) {
+							return message;
+						}
+						message = validateDuplicate(map, row, sheetName, "rule");
+						if (message != null) {
+							return message;
+						}
 					}
 				}
+			}
+		}
+		return null;
+	}
+
+	private static String validateSheetName(String sheetName) {
+		if (!sheetName.isEmpty()) {
+			try {
+				WorkbookUtil.validateSheetName(sheetName);
+			} catch (IllegalArgumentException e) {
+				return MessageFormat.format("invalid sheet name. name={0}", sheetName);
 			}
 		}
 		return null;
