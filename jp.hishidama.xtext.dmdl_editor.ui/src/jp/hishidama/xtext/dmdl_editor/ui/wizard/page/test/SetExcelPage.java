@@ -145,6 +145,11 @@ public class SetExcelPage extends EditWizardPage {
 			}
 			table.addItem(row);
 		}
+
+		excelNameReplacer.replace(getDefaultExcelName(), true);
+		sheetNameReplacer.replace(getDefaultDataSheetName(), true);
+		ruleNameReplacer.replace(getDefaultRuleSheetName(), true);
+
 		table.refresh();
 	}
 
@@ -268,17 +273,13 @@ public class SetExcelPage extends EditWizardPage {
 			{
 				excelNameText = new Text(field, SWT.SINGLE | SWT.BORDER);
 				GridDataFactory.fillDefaults().grab(true, false).applyTo(excelNameText);
-				excelNameText.setText(getDefaultText(KEY_EXCEL_NAME, "$(className).xls"));
+				excelNameText.setText(getDefaultExcelName());
 				Button button = createPushButton(field, "replace excel name");
 				button.addSelectionListener(new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
-						new Replacer(excelNameText.getText()) {
-							@Override
-							protected void setRow(TestExcelRow row, String value) {
-								row.excelDstFileName = value;
-							}
-						}.replace();
+						excelNameReplacer.replace(excelNameText.getText(), false);
+						refresh();
 					}
 				});
 				selectionButton.add(button);
@@ -286,17 +287,13 @@ public class SetExcelPage extends EditWizardPage {
 			{
 				dataSheetText = new Text(field, SWT.SINGLE | SWT.BORDER);
 				GridDataFactory.fillDefaults().grab(true, false).applyTo(dataSheetText);
-				dataSheetText.setText(getDefaultText(KEY_DATA_NAME, "$(name)"));
+				dataSheetText.setText(getDefaultDataSheetName());
 				Button button = createPushButton(field, "replace data sheet name");
 				button.addSelectionListener(new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
-						new Replacer(dataSheetText.getText()) {
-							@Override
-							protected void setRow(TestExcelRow row, String value) {
-								row.sheetName = value;
-							}
-						}.replace();
+						sheetNameReplacer.replace(dataSheetText.getText(), false);
+						refresh();
 					}
 				});
 				selectionButton.add(button);
@@ -304,53 +301,17 @@ public class SetExcelPage extends EditWizardPage {
 			{
 				ruleSheetText = new Text(field, SWT.SINGLE | SWT.BORDER);
 				GridDataFactory.fillDefaults().grab(true, false).applyTo(ruleSheetText);
-				ruleSheetText.setText(getDefaultText(KEY_RULE_NAME, "$(name)_rule"));
+				ruleSheetText.setText(getDefaultRuleSheetName());
 				Button button = createPushButton(field, "replace rule sheet name");
 				button.addSelectionListener(new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
-						new Replacer(ruleSheetText.getText()) {
-							@Override
-							protected void setRow(TestExcelRow row, String value) {
-								if (!row.in) {
-									row.ruleName = value;
-								}
-							}
-						}.replace();
+						ruleNameReplacer.replace(ruleSheetText.getText(), false);
+						refresh();
 					}
 				});
 				selectionButton.add(button);
 			}
-		}
-
-		private abstract class Replacer {
-			private String pattern;
-
-			public Replacer(String pattern) {
-				this.pattern = pattern;
-			}
-
-			public void replace() {
-				Map<String, String> map = new HashMap<String, String>();
-				map.put("className", StringUtil.getSimpleName(classPage.getClassUnderTestText()));
-				map.put("testClassName", StringUtil.getSimpleName(classPage.getTypeName()));
-
-				List<TestExcelRow> list = getElementList();
-				int[] index = table.getSelectionIndices();
-				for (int i = 0; i < index.length; i++) {
-					TestExcelRow row = list.get(index[i]);
-					map.put("in", Boolean.toString(row.in));
-					map.put("name", row.name);
-					map.put("modelName", row.modelName);
-					map.put("modelDescription", row.modelDescription);
-					map.put("number", Integer.toString(i));
-					String s = DMDLVariableTableUtil.replaceVariable(pattern, map);
-					setRow(row, s);
-				}
-				refresh();
-			}
-
-			protected abstract void setRow(TestExcelRow row, String value);
 		}
 
 		@Override
@@ -369,6 +330,74 @@ public class SetExcelPage extends EditWizardPage {
 			super.refresh();
 			validate(visible);
 		}
+	}
+
+	private abstract class Replacer {
+
+		public void replace(String pattern, boolean all) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("className", StringUtil.getSimpleName(classPage.getClassUnderTestText()));
+			map.put("testClassName", StringUtil.getSimpleName(classPage.getTypeName()));
+
+			List<TestExcelRow> list = table.getElementList();
+			if (all) {
+				int i = 0;
+				for (TestExcelRow row : list) {
+					replaceRow(row, pattern, map, i++);
+				}
+			} else {
+				int[] index = table.getSelectionIndices();
+				for (int i = 0; i < index.length; i++) {
+					TestExcelRow row = list.get(index[i]);
+					replaceRow(row, pattern, map, i);
+				}
+			}
+		}
+
+		private void replaceRow(TestExcelRow row, String pattern, Map<String, String> map, int i) {
+			map.put("in", Boolean.toString(row.in));
+			map.put("name", row.name);
+			map.put("modelName", row.modelName);
+			map.put("modelDescription", row.modelDescription);
+			map.put("number", Integer.toString(i));
+			String s = DMDLVariableTableUtil.replaceVariable(pattern, map);
+			setRow(row, s);
+		}
+
+		protected abstract void setRow(TestExcelRow row, String value);
+	}
+
+	private Replacer excelNameReplacer = new Replacer() {
+		@Override
+		protected void setRow(TestExcelRow row, String value) {
+			row.excelDstFileName = value;
+		}
+	};
+	private Replacer sheetNameReplacer = new Replacer() {
+		@Override
+		protected void setRow(TestExcelRow row, String value) {
+			row.sheetName = value;
+		}
+	};
+	private Replacer ruleNameReplacer = new Replacer() {
+		@Override
+		protected void setRow(TestExcelRow row, String value) {
+			if (!row.in) {
+				row.ruleName = value;
+			}
+		}
+	};
+
+	protected String getDefaultExcelName() {
+		return getDefaultText(KEY_EXCEL_NAME, "$(testClassName).xls");
+	}
+
+	protected String getDefaultDataSheetName() {
+		return getDefaultText(KEY_DATA_NAME, "$(name)");
+	}
+
+	protected String getDefaultRuleSheetName() {
+		return getDefaultText(KEY_RULE_NAME, "$(name)_rule");
 	}
 
 	protected String getDefaultText(String key, String defaultText) {
