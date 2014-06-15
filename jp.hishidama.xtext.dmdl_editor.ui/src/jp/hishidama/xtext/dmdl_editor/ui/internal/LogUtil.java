@@ -1,5 +1,9 @@
 package jp.hishidama.xtext.dmdl_editor.ui.internal;
 
+import java.text.MessageFormat;
+
+import jp.hishidama.eclipse_plugin.util.StringUtil;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 
@@ -41,5 +45,15 @@ public class LogUtil {
 
 	public static void log(IStatus status) {
 		DMDLActivator.getInstance().getLog().log(status);
+	}
+
+	public static String getMessage(Throwable t) {
+		for (; t != null; t = t.getCause()) {
+			String message = t.getMessage();
+			if (StringUtil.nonEmpty(message)) {
+				return MessageFormat.format("{0}: {1}", t.getClass().getName(), message);
+			}
+		}
+		return null;
 	}
 }
