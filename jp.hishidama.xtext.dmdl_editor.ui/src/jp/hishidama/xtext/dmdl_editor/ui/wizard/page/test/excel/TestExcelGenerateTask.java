@@ -54,6 +54,10 @@ public class TestExcelGenerateTask implements IRunnableWithProgress {
 		excel.add(dstSheetName, srcModelName, srcSheetName);
 	}
 
+	public boolean nonEmpty() {
+		return !map.isEmpty();
+	}
+
 	protected static class AsakusaExcel {
 		public String dstExcelName;
 		public IFile dstFile;

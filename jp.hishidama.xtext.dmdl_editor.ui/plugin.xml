@@ -588,15 +588,7 @@
                   style="push">
                <parameter
                      name="newWizardId"
-                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-jobflow-test-class">
-               </parameter>
-            </command>
-            <command
-                  commandId="org.eclipse.ui.newWizard"
-                  style="push">
-               <parameter
-                     name="newWizardId"
-                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-flowpart-test-class">
+                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-flow-test-class">
                </parameter>
             </command>
          </menu>
@@ -706,15 +698,7 @@
                style="push">
             <parameter
                   name="newWizardId"
-                  value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-jobflow-test-class">
-            </parameter>
-         </command>
-         <command
-               commandId="org.eclipse.ui.newWizard"
-               style="push">
-            <parameter
-                  name="newWizardId"
-                  value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-flowpart-test-class">
+                  value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-flow-test-class">
             </parameter>
          </command>
          <separator
@@ -810,22 +794,12 @@
       </wizard>
       <wizard
             category="jp.hishidama.xtext.dmdl_editor.ui.wizard-category"
-            class="jp.hishidama.xtext.dmdl_editor.ui.wizard.NewJobflowTestClassWizard"
+            class="jp.hishidama.xtext.dmdl_editor.ui.wizard.NewFlowTestClassWizard"
             icon="icons/newtest_wiz.gif"
-            id="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-jobflow-test-class"
-            name="New JobFlow Test class">
+            id="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-flow-test-class"
+            name="New JobFlow/FlowPart Test class">
          <description>
-            ジョブフローテストクラスを作成します。
-         </description>
-      </wizard>
-      <wizard
-            category="jp.hishidama.xtext.dmdl_editor.ui.wizard-category"
-            class="jp.hishidama.xtext.dmdl_editor.ui.wizard.NewFlowpartTestClassWizard"
-            icon="icons/newtest_wiz.gif"
-            id="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-flowpart-test-class"
-            name="New FlowPart Test class">
-         <description>
-            フロー演算子テストクラスを作成します。
+            ジョブフロー・フロー演算子のテストクラスを作成します。
          </description>
       </wizard>
    </extension>

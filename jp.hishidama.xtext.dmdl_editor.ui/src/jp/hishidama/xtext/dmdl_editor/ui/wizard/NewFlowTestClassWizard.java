@@ -5,8 +5,13 @@ import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.config.AsakusafwProperties;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.BuildPropertiesUtil;
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
 import jp.hishidama.eclipse_plugin.wizard.NewClassWizard;
+import jp.hishidama.eclipse_plugin.wizard.page.NewTestClassWizardPage;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewFlowTestClassGenerator;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewFlowpartTestClassGenerator;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewFlowpartTestClassPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewJobflowTestClassGenerator;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewJobflowTestClassPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.SetExcelPage;
@@ -21,19 +26,42 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ui.IWorkbench;
 
-public class NewJobflowTestClassWizard extends NewClassWizard {
+public class NewFlowTestClassWizard extends NewClassWizard {
 
-	private NewJobflowTestClassPage classPage;
+	private boolean isJobflow;
+
+	private NewTestClassWizardPage classPage;
 	private SetExcelPage excelPage;
 
-	public NewJobflowTestClassWizard() {
-		setWindowTitle("New JobFlow Test Class");
+	public NewFlowTestClassWizard() {
+	}
+
+	@Override
+	public void init(IWorkbench workbench, IStructuredSelection selection) {
+		super.init(workbench, selection);
+
+		NewTestClassWizardPage page = new NewTestClassWizardPage("dummy");
+		page.init(selection);
+		IType type = page.getClassUnderTest();
+		isJobflow = FlowUtil.isJobFlow(type);
+
+		if (isJobflow) {
+			setWindowTitle("New JobFlow Test Class");
+		} else {
+			setWindowTitle("New FlowPart Test Class");
+		}
 	}
 
 	@Override
 	public void addPages() {
-		classPage = new NewJobflowTestClassPage();
+		if (isJobflow) {
+			classPage = new NewJobflowTestClassPage();
+		} else {
+			classPage = new NewFlowpartTestClassPage();
+		}
 		classPage.setWizard(this);
 		classPage.init(getSelection());
 		addPage(classPage);
@@ -69,28 +97,36 @@ public class NewJobflowTestClassWizard extends NewClassWizard {
 		try {
 			excelPage.saveDialogSettings();
 
-			copyExcelFiles();
+			generateExcelFiles();
 
-			NewJobflowTestClassGenerator gen = new NewJobflowTestClassGenerator(
-					classPage.getJavaProject().getProject(), classPage.getPackageFragmentRoot().getPath());
+			NewFlowTestClassGenerator gen = createGenerator();
 			gen.generate(classPage.getPackageText(), classPage.getTypeName(), classPage.getSuperClass(),
 					classPage.getClassUnderTestText(), excelPage.getExcelList(), excelPage.getParameterList());
 		} catch (InterruptedException e) {
 			return false;
 		} catch (CoreException e) {
-			ErrorDialog.openError(getShell(), "JobFlow Test generate error", "JobFlow Test generate error.",
-					e.getStatus());
+			ErrorDialog.openError(getShell(), "Flow Test generate error", "Flow Test generate error.", e.getStatus());
 			return false;
 		} catch (Exception e) {
 			IStatus status = LogUtil.errorStatus(LogUtil.getMessage(e), e);
-			ErrorDialog.openError(getShell(), "JobFlow Test generate error", "JobFlow Test generate error.", status);
+			ErrorDialog.openError(getShell(), "Flow Test generate error", "Flow Test generate error.", status);
 			return false;
 		}
 
 		return true;
 	}
 
-	private void copyExcelFiles() throws CoreException, InvocationTargetException, InterruptedException {
+	private NewFlowTestClassGenerator createGenerator() {
+		if (isJobflow) {
+			return new NewJobflowTestClassGenerator(classPage.getJavaProject().getProject(), classPage
+					.getPackageFragmentRoot().getPath());
+		} else {
+			return new NewFlowpartTestClassGenerator(classPage.getJavaProject().getProject(), classPage
+					.getPackageFragmentRoot().getPath());
+		}
+	}
+
+	private void generateExcelFiles() throws CoreException, InvocationTargetException, InterruptedException {
 		IProject project = getJavaProject().getProject();
 		String dstDir = "src/test/resources/" + classPage.getPackageText().replaceAll("\\.", "/") + "/";
 		AsakusafwProperties bp = BuildPropertiesUtil.getBuildProperties(project, false);
@@ -114,6 +150,8 @@ public class NewJobflowTestClassWizard extends NewClassWizard {
 			}
 		}
 
-		getContainer().run(false, true, task);
+		if (task.nonEmpty()) {
+			getContainer().run(false, true, task);
+		}
 	}
 }
