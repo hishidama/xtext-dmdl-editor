@@ -11,7 +11,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewJobflowTestClassGen
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewJobflowTestClassPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.SetExcelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.TestExcelRow;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.excel.TestExcelCopyTask;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.excel.TestExcelGenerateTask;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -99,22 +99,21 @@ public class NewJobflowTestClassWizard extends NewClassWizard {
 			srcDir += "/";
 		}
 
-		TestExcelCopyTask copy = new TestExcelCopyTask(project);
+		TestExcelGenerateTask task = new TestExcelGenerateTask(project);
 
 		List<TestExcelRow> list = excelPage.getExcelList();
 		for (TestExcelRow row : list) {
 			if (row.copy) {
 				String excelName = dstDir + row.excelDstFileName;
-				String srcExcelName = srcDir + row.modelName + ".xls";
 				if (row.in) {
-					copy.add(excelName, row.sheetName, srcExcelName, "input");
+					task.add(excelName, row.sheetName, row.modelName, "input");
 				} else {
-					copy.add(excelName, row.sheetName, srcExcelName, "output");
-					copy.add(excelName, row.ruleName, srcExcelName, "rule");
+					task.add(excelName, row.sheetName, row.modelName, "output");
+					task.add(excelName, row.ruleName, row.modelName, "rule");
 				}
 			}
 		}
 
-		getContainer().run(false, true, copy);
+		getContainer().run(false, true, task);
 	}
 }
