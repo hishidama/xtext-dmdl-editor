@@ -46,6 +46,8 @@ public class ModifyFlowpartClassWizard extends Wizard implements TypeWizard {
 
 	@Override
 	public boolean performFinish() {
+		portPage.saveDialogSettings();
+
 		FlowpartClassModifier mon = new FlowpartClassModifier(document, type, portPage);
 		try {
 			mon.execute();

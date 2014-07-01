@@ -18,7 +18,7 @@ public class NewFlowpartClassWizard extends NewClassWizard implements TypeWizard
 
 	private NewFlowpartClassPage classPage;
 	private SetFlowpartNamePage namePage;
-	private SetFlowpartPortPage modelPage;
+	private SetFlowpartPortPage portPage;
 	private SetArgumentPage argPage;
 
 	public NewFlowpartClassWizard() {
@@ -35,8 +35,8 @@ public class NewFlowpartClassWizard extends NewClassWizard implements TypeWizard
 		namePage = new SetFlowpartNamePage();
 		addPage(namePage);
 
-		modelPage = new SetFlowpartPortPage();
-		addPage(modelPage);
+		portPage = new SetFlowpartPortPage();
+		addPage(portPage);
 
 		argPage = new SetArgumentPage();
 		addPage(argPage);
@@ -56,11 +56,13 @@ public class NewFlowpartClassWizard extends NewClassWizard implements TypeWizard
 
 	@Override
 	public boolean performFinish() {
+		portPage.saveDialogSettings();
+
 		NewFlowpartClassGenerator gen = new NewFlowpartClassGenerator(getJavaProject().getProject(), classPage
 				.getPackageFragmentRoot().getPath());
 		try {
 			gen.generate(classPage.getPackageText(), classPage.getTypeName(), namePage.getComment(),
-					modelPage.getDataModelList(), argPage.getArgumentList());
+					portPage.getDataModelList(), argPage.getArgumentList());
 		} catch (CoreException e) {
 			ErrorDialog.openError(getShell(), "FlowPart generate error", "FlowPart generate error.", e.getStatus());
 		} catch (Exception e) {

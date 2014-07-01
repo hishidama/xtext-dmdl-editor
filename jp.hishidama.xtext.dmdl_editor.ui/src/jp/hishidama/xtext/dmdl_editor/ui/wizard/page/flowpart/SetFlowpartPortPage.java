@@ -366,4 +366,8 @@ public class SetFlowpartPortPage extends EditWizardPage {
 	public List<FlowpartModelRow> getInitList() {
 		return initList;
 	}
+
+	public void saveDialogSettings() {
+		table.saveDialogSettings();
+	}
 }
