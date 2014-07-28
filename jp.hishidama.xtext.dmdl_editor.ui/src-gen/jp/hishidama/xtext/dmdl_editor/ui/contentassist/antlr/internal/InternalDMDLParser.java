@@ -2346,11 +2346,11 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
                 {
                 int LA3_2 = input.LA(2);
 
-                if ( (LA3_2==RULE_NAME_TOKEN||(LA3_2>=15 && LA3_2<=17)) ) {
-                    alt3=2;
-                }
-                else if ( (LA3_2==32) ) {
+                if ( (LA3_2==32) ) {
                     alt3=1;
+                }
+                else if ( (LA3_2==RULE_NAME_TOKEN||(LA3_2>=15 && LA3_2<=17)) ) {
+                    alt3=2;
                 }
                 else {
                     NoViableAltException nvae =
@@ -2364,11 +2364,11 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
                 {
                 int LA3_3 = input.LA(2);
 
-                if ( (LA3_3==RULE_NAME_TOKEN||(LA3_3>=15 && LA3_3<=17)) ) {
-                    alt3=3;
-                }
-                else if ( (LA3_3==32) ) {
+                if ( (LA3_3==32) ) {
                     alt3=1;
+                }
+                else if ( (LA3_3==RULE_NAME_TOKEN||(LA3_3>=15 && LA3_3<=17)) ) {
+                    alt3=3;
                 }
                 else {
                     NoViableAltException nvae =
@@ -5236,84 +5236,31 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RecordTerm__Group_0__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1822:1: rule__RecordTerm__Group_0__1__Impl : ( ( ( rule__RecordTerm__PropertiesAssignment_0_1 ) ) ( ( rule__RecordTerm__PropertiesAssignment_0_1 )* ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1822:1: rule__RecordTerm__Group_0__1__Impl : ( () ) ;
     public final void rule__RecordTerm__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1826:1: ( ( ( ( rule__RecordTerm__PropertiesAssignment_0_1 ) ) ( ( rule__RecordTerm__PropertiesAssignment_0_1 )* ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1827:1: ( ( ( rule__RecordTerm__PropertiesAssignment_0_1 ) ) ( ( rule__RecordTerm__PropertiesAssignment_0_1 )* ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1826:1: ( ( () ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1827:1: ( () )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1827:1: ( ( ( rule__RecordTerm__PropertiesAssignment_0_1 ) ) ( ( rule__RecordTerm__PropertiesAssignment_0_1 )* ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1828:1: ( ( rule__RecordTerm__PropertiesAssignment_0_1 ) ) ( ( rule__RecordTerm__PropertiesAssignment_0_1 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1827:1: ( () )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1828:1: ()
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1828:1: ( ( rule__RecordTerm__PropertiesAssignment_0_1 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1829:1: ( rule__RecordTerm__PropertiesAssignment_0_1 )
+             before(grammarAccess.getRecordTermAccess().getRecordTermAction_0_1()); 
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1829:1: ()
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1831:1: 
             {
-             before(grammarAccess.getRecordTermAccess().getPropertiesAssignment_0_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1830:1: ( rule__RecordTerm__PropertiesAssignment_0_1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1830:2: rule__RecordTerm__PropertiesAssignment_0_1
-            {
-            pushFollow(FOLLOW_rule__RecordTerm__PropertiesAssignment_0_1_in_rule__RecordTerm__Group_0__1__Impl3836);
-            rule__RecordTerm__PropertiesAssignment_0_1();
-
-            state._fsp--;
-
-
             }
 
-             after(grammarAccess.getRecordTermAccess().getPropertiesAssignment_0_1()); 
-
-            }
-
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1833:1: ( ( rule__RecordTerm__PropertiesAssignment_0_1 )* )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1834:1: ( rule__RecordTerm__PropertiesAssignment_0_1 )*
-            {
-             before(grammarAccess.getRecordTermAccess().getPropertiesAssignment_0_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1835:1: ( rule__RecordTerm__PropertiesAssignment_0_1 )*
-            loop15:
-            do {
-                int alt15=2;
-                int LA15_0 = input.LA(1);
-
-                if ( ((LA15_0>=RULE_STRING && LA15_0<=RULE_NAME_TOKEN)||(LA15_0>=15 && LA15_0<=17)||LA15_0==37) ) {
-                    alt15=1;
-                }
-
-
-                switch (alt15) {
-            	case 1 :
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1835:2: rule__RecordTerm__PropertiesAssignment_0_1
-            	    {
-            	    pushFollow(FOLLOW_rule__RecordTerm__PropertiesAssignment_0_1_in_rule__RecordTerm__Group_0__1__Impl3848);
-            	    rule__RecordTerm__PropertiesAssignment_0_1();
-
-            	    state._fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop15;
-                }
-            } while (true);
-
-             after(grammarAccess.getRecordTermAccess().getPropertiesAssignment_0_1()); 
+             after(grammarAccess.getRecordTermAccess().getRecordTermAction_0_1()); 
 
             }
 
 
             }
 
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
         }
         finally {
 
@@ -5326,17 +5273,22 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RecordTerm__Group_0__2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1846:1: rule__RecordTerm__Group_0__2 : rule__RecordTerm__Group_0__2__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1841:1: rule__RecordTerm__Group_0__2 : rule__RecordTerm__Group_0__2__Impl rule__RecordTerm__Group_0__3 ;
     public final void rule__RecordTerm__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1850:1: ( rule__RecordTerm__Group_0__2__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1851:2: rule__RecordTerm__Group_0__2__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1845:1: ( rule__RecordTerm__Group_0__2__Impl rule__RecordTerm__Group_0__3 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1846:2: rule__RecordTerm__Group_0__2__Impl rule__RecordTerm__Group_0__3
             {
-            pushFollow(FOLLOW_rule__RecordTerm__Group_0__2__Impl_in_rule__RecordTerm__Group_0__23881);
+            pushFollow(FOLLOW_rule__RecordTerm__Group_0__2__Impl_in_rule__RecordTerm__Group_0__23865);
             rule__RecordTerm__Group_0__2__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__RecordTerm__Group_0__3_in_rule__RecordTerm__Group_0__23868);
+            rule__RecordTerm__Group_0__3();
 
             state._fsp--;
 
@@ -5359,21 +5311,49 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RecordTerm__Group_0__2__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1857:1: rule__RecordTerm__Group_0__2__Impl : ( '}' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1853:1: rule__RecordTerm__Group_0__2__Impl : ( ( rule__RecordTerm__PropertiesAssignment_0_2 )* ) ;
     public final void rule__RecordTerm__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1861:1: ( ( '}' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1862:1: ( '}' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1857:1: ( ( ( rule__RecordTerm__PropertiesAssignment_0_2 )* ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1858:1: ( ( rule__RecordTerm__PropertiesAssignment_0_2 )* )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1862:1: ( '}' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1863:1: '}'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1858:1: ( ( rule__RecordTerm__PropertiesAssignment_0_2 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1859:1: ( rule__RecordTerm__PropertiesAssignment_0_2 )*
             {
-             before(grammarAccess.getRecordTermAccess().getRightCurlyBracketKeyword_0_2()); 
-            match(input,35,FOLLOW_35_in_rule__RecordTerm__Group_0__2__Impl3909); 
-             after(grammarAccess.getRecordTermAccess().getRightCurlyBracketKeyword_0_2()); 
+             before(grammarAccess.getRecordTermAccess().getPropertiesAssignment_0_2()); 
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1860:1: ( rule__RecordTerm__PropertiesAssignment_0_2 )*
+            loop15:
+            do {
+                int alt15=2;
+                int LA15_0 = input.LA(1);
+
+                if ( ((LA15_0>=RULE_STRING && LA15_0<=RULE_NAME_TOKEN)||(LA15_0>=15 && LA15_0<=17)||LA15_0==37) ) {
+                    alt15=1;
+                }
+
+
+                switch (alt15) {
+            	case 1 :
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1860:2: rule__RecordTerm__PropertiesAssignment_0_2
+            	    {
+            	    pushFollow(FOLLOW_rule__RecordTerm__PropertiesAssignment_0_2_in_rule__RecordTerm__Group_0__2__Impl3895);
+            	    rule__RecordTerm__PropertiesAssignment_0_2();
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop15;
+                }
+            } while (true);
+
+             after(grammarAccess.getRecordTermAccess().getPropertiesAssignment_0_2()); 
 
             }
 
@@ -5395,22 +5375,92 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__RecordTerm__Group_0__2__Impl"
 
 
+    // $ANTLR start "rule__RecordTerm__Group_0__3"
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1870:1: rule__RecordTerm__Group_0__3 : rule__RecordTerm__Group_0__3__Impl ;
+    public final void rule__RecordTerm__Group_0__3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1874:1: ( rule__RecordTerm__Group_0__3__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1875:2: rule__RecordTerm__Group_0__3__Impl
+            {
+            pushFollow(FOLLOW_rule__RecordTerm__Group_0__3__Impl_in_rule__RecordTerm__Group_0__33926);
+            rule__RecordTerm__Group_0__3__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RecordTerm__Group_0__3"
+
+
+    // $ANTLR start "rule__RecordTerm__Group_0__3__Impl"
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1881:1: rule__RecordTerm__Group_0__3__Impl : ( '}' ) ;
+    public final void rule__RecordTerm__Group_0__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1885:1: ( ( '}' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1886:1: ( '}' )
+            {
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1886:1: ( '}' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1887:1: '}'
+            {
+             before(grammarAccess.getRecordTermAccess().getRightCurlyBracketKeyword_0_3()); 
+            match(input,35,FOLLOW_35_in_rule__RecordTerm__Group_0__3__Impl3954); 
+             after(grammarAccess.getRecordTermAccess().getRightCurlyBracketKeyword_0_3()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__RecordTerm__Group_0__3__Impl"
+
+
     // $ANTLR start "rule__PropertyDefinition__Group__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1882:1: rule__PropertyDefinition__Group__0 : rule__PropertyDefinition__Group__0__Impl rule__PropertyDefinition__Group__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1908:1: rule__PropertyDefinition__Group__0 : rule__PropertyDefinition__Group__0__Impl rule__PropertyDefinition__Group__1 ;
     public final void rule__PropertyDefinition__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1886:1: ( rule__PropertyDefinition__Group__0__Impl rule__PropertyDefinition__Group__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1887:2: rule__PropertyDefinition__Group__0__Impl rule__PropertyDefinition__Group__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1912:1: ( rule__PropertyDefinition__Group__0__Impl rule__PropertyDefinition__Group__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1913:2: rule__PropertyDefinition__Group__0__Impl rule__PropertyDefinition__Group__1
             {
-            pushFollow(FOLLOW_rule__PropertyDefinition__Group__0__Impl_in_rule__PropertyDefinition__Group__03946);
+            pushFollow(FOLLOW_rule__PropertyDefinition__Group__0__Impl_in_rule__PropertyDefinition__Group__03993);
             rule__PropertyDefinition__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PropertyDefinition__Group__1_in_rule__PropertyDefinition__Group__03949);
+            pushFollow(FOLLOW_rule__PropertyDefinition__Group__1_in_rule__PropertyDefinition__Group__03996);
             rule__PropertyDefinition__Group__1();
 
             state._fsp--;
@@ -5434,20 +5484,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyDefinition__Group__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1894:1: rule__PropertyDefinition__Group__0__Impl : ( ( rule__PropertyDefinition__DescriptionAssignment_0 )? ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1920:1: rule__PropertyDefinition__Group__0__Impl : ( ( rule__PropertyDefinition__DescriptionAssignment_0 )? ) ;
     public final void rule__PropertyDefinition__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1898:1: ( ( ( rule__PropertyDefinition__DescriptionAssignment_0 )? ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1899:1: ( ( rule__PropertyDefinition__DescriptionAssignment_0 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1924:1: ( ( ( rule__PropertyDefinition__DescriptionAssignment_0 )? ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1925:1: ( ( rule__PropertyDefinition__DescriptionAssignment_0 )? )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1899:1: ( ( rule__PropertyDefinition__DescriptionAssignment_0 )? )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1900:1: ( rule__PropertyDefinition__DescriptionAssignment_0 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1925:1: ( ( rule__PropertyDefinition__DescriptionAssignment_0 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1926:1: ( rule__PropertyDefinition__DescriptionAssignment_0 )?
             {
              before(grammarAccess.getPropertyDefinitionAccess().getDescriptionAssignment_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1901:1: ( rule__PropertyDefinition__DescriptionAssignment_0 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1927:1: ( rule__PropertyDefinition__DescriptionAssignment_0 )?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -5456,9 +5506,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt16) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1901:2: rule__PropertyDefinition__DescriptionAssignment_0
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1927:2: rule__PropertyDefinition__DescriptionAssignment_0
                     {
-                    pushFollow(FOLLOW_rule__PropertyDefinition__DescriptionAssignment_0_in_rule__PropertyDefinition__Group__0__Impl3976);
+                    pushFollow(FOLLOW_rule__PropertyDefinition__DescriptionAssignment_0_in_rule__PropertyDefinition__Group__0__Impl4023);
                     rule__PropertyDefinition__DescriptionAssignment_0();
 
                     state._fsp--;
@@ -5492,21 +5542,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyDefinition__Group__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1911:1: rule__PropertyDefinition__Group__1 : rule__PropertyDefinition__Group__1__Impl rule__PropertyDefinition__Group__2 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1937:1: rule__PropertyDefinition__Group__1 : rule__PropertyDefinition__Group__1__Impl rule__PropertyDefinition__Group__2 ;
     public final void rule__PropertyDefinition__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1915:1: ( rule__PropertyDefinition__Group__1__Impl rule__PropertyDefinition__Group__2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1916:2: rule__PropertyDefinition__Group__1__Impl rule__PropertyDefinition__Group__2
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1941:1: ( rule__PropertyDefinition__Group__1__Impl rule__PropertyDefinition__Group__2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1942:2: rule__PropertyDefinition__Group__1__Impl rule__PropertyDefinition__Group__2
             {
-            pushFollow(FOLLOW_rule__PropertyDefinition__Group__1__Impl_in_rule__PropertyDefinition__Group__14007);
+            pushFollow(FOLLOW_rule__PropertyDefinition__Group__1__Impl_in_rule__PropertyDefinition__Group__14054);
             rule__PropertyDefinition__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PropertyDefinition__Group__2_in_rule__PropertyDefinition__Group__14010);
+            pushFollow(FOLLOW_rule__PropertyDefinition__Group__2_in_rule__PropertyDefinition__Group__14057);
             rule__PropertyDefinition__Group__2();
 
             state._fsp--;
@@ -5530,20 +5580,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyDefinition__Group__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1923:1: rule__PropertyDefinition__Group__1__Impl : ( ( rule__PropertyDefinition__AttributesAssignment_1 )? ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1949:1: rule__PropertyDefinition__Group__1__Impl : ( ( rule__PropertyDefinition__AttributesAssignment_1 )? ) ;
     public final void rule__PropertyDefinition__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1927:1: ( ( ( rule__PropertyDefinition__AttributesAssignment_1 )? ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1928:1: ( ( rule__PropertyDefinition__AttributesAssignment_1 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1953:1: ( ( ( rule__PropertyDefinition__AttributesAssignment_1 )? ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1954:1: ( ( rule__PropertyDefinition__AttributesAssignment_1 )? )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1928:1: ( ( rule__PropertyDefinition__AttributesAssignment_1 )? )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1929:1: ( rule__PropertyDefinition__AttributesAssignment_1 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1954:1: ( ( rule__PropertyDefinition__AttributesAssignment_1 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1955:1: ( rule__PropertyDefinition__AttributesAssignment_1 )?
             {
              before(grammarAccess.getPropertyDefinitionAccess().getAttributesAssignment_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1930:1: ( rule__PropertyDefinition__AttributesAssignment_1 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1956:1: ( rule__PropertyDefinition__AttributesAssignment_1 )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -5552,9 +5602,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt17) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1930:2: rule__PropertyDefinition__AttributesAssignment_1
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1956:2: rule__PropertyDefinition__AttributesAssignment_1
                     {
-                    pushFollow(FOLLOW_rule__PropertyDefinition__AttributesAssignment_1_in_rule__PropertyDefinition__Group__1__Impl4037);
+                    pushFollow(FOLLOW_rule__PropertyDefinition__AttributesAssignment_1_in_rule__PropertyDefinition__Group__1__Impl4084);
                     rule__PropertyDefinition__AttributesAssignment_1();
 
                     state._fsp--;
@@ -5588,21 +5638,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyDefinition__Group__2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1940:1: rule__PropertyDefinition__Group__2 : rule__PropertyDefinition__Group__2__Impl rule__PropertyDefinition__Group__3 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1966:1: rule__PropertyDefinition__Group__2 : rule__PropertyDefinition__Group__2__Impl rule__PropertyDefinition__Group__3 ;
     public final void rule__PropertyDefinition__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1944:1: ( rule__PropertyDefinition__Group__2__Impl rule__PropertyDefinition__Group__3 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1945:2: rule__PropertyDefinition__Group__2__Impl rule__PropertyDefinition__Group__3
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1970:1: ( rule__PropertyDefinition__Group__2__Impl rule__PropertyDefinition__Group__3 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1971:2: rule__PropertyDefinition__Group__2__Impl rule__PropertyDefinition__Group__3
             {
-            pushFollow(FOLLOW_rule__PropertyDefinition__Group__2__Impl_in_rule__PropertyDefinition__Group__24068);
+            pushFollow(FOLLOW_rule__PropertyDefinition__Group__2__Impl_in_rule__PropertyDefinition__Group__24115);
             rule__PropertyDefinition__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PropertyDefinition__Group__3_in_rule__PropertyDefinition__Group__24071);
+            pushFollow(FOLLOW_rule__PropertyDefinition__Group__3_in_rule__PropertyDefinition__Group__24118);
             rule__PropertyDefinition__Group__3();
 
             state._fsp--;
@@ -5626,23 +5676,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyDefinition__Group__2__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1952:1: rule__PropertyDefinition__Group__2__Impl : ( ( rule__PropertyDefinition__NameAssignment_2 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1978:1: rule__PropertyDefinition__Group__2__Impl : ( ( rule__PropertyDefinition__NameAssignment_2 ) ) ;
     public final void rule__PropertyDefinition__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1956:1: ( ( ( rule__PropertyDefinition__NameAssignment_2 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1957:1: ( ( rule__PropertyDefinition__NameAssignment_2 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1982:1: ( ( ( rule__PropertyDefinition__NameAssignment_2 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1983:1: ( ( rule__PropertyDefinition__NameAssignment_2 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1957:1: ( ( rule__PropertyDefinition__NameAssignment_2 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1958:1: ( rule__PropertyDefinition__NameAssignment_2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1983:1: ( ( rule__PropertyDefinition__NameAssignment_2 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1984:1: ( rule__PropertyDefinition__NameAssignment_2 )
             {
              before(grammarAccess.getPropertyDefinitionAccess().getNameAssignment_2()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1959:1: ( rule__PropertyDefinition__NameAssignment_2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1959:2: rule__PropertyDefinition__NameAssignment_2
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1985:1: ( rule__PropertyDefinition__NameAssignment_2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1985:2: rule__PropertyDefinition__NameAssignment_2
             {
-            pushFollow(FOLLOW_rule__PropertyDefinition__NameAssignment_2_in_rule__PropertyDefinition__Group__2__Impl4098);
+            pushFollow(FOLLOW_rule__PropertyDefinition__NameAssignment_2_in_rule__PropertyDefinition__Group__2__Impl4145);
             rule__PropertyDefinition__NameAssignment_2();
 
             state._fsp--;
@@ -5673,21 +5723,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyDefinition__Group__3"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1969:1: rule__PropertyDefinition__Group__3 : rule__PropertyDefinition__Group__3__Impl rule__PropertyDefinition__Group__4 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1995:1: rule__PropertyDefinition__Group__3 : rule__PropertyDefinition__Group__3__Impl rule__PropertyDefinition__Group__4 ;
     public final void rule__PropertyDefinition__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1973:1: ( rule__PropertyDefinition__Group__3__Impl rule__PropertyDefinition__Group__4 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1974:2: rule__PropertyDefinition__Group__3__Impl rule__PropertyDefinition__Group__4
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1999:1: ( rule__PropertyDefinition__Group__3__Impl rule__PropertyDefinition__Group__4 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2000:2: rule__PropertyDefinition__Group__3__Impl rule__PropertyDefinition__Group__4
             {
-            pushFollow(FOLLOW_rule__PropertyDefinition__Group__3__Impl_in_rule__PropertyDefinition__Group__34128);
+            pushFollow(FOLLOW_rule__PropertyDefinition__Group__3__Impl_in_rule__PropertyDefinition__Group__34175);
             rule__PropertyDefinition__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PropertyDefinition__Group__4_in_rule__PropertyDefinition__Group__34131);
+            pushFollow(FOLLOW_rule__PropertyDefinition__Group__4_in_rule__PropertyDefinition__Group__34178);
             rule__PropertyDefinition__Group__4();
 
             state._fsp--;
@@ -5711,20 +5761,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyDefinition__Group__3__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1981:1: rule__PropertyDefinition__Group__3__Impl : ( ':' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2007:1: rule__PropertyDefinition__Group__3__Impl : ( ':' ) ;
     public final void rule__PropertyDefinition__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1985:1: ( ( ':' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1986:1: ( ':' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2011:1: ( ( ':' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2012:1: ( ':' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1986:1: ( ':' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:1987:1: ':'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2012:1: ( ':' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2013:1: ':'
             {
              before(grammarAccess.getPropertyDefinitionAccess().getColonKeyword_3()); 
-            match(input,36,FOLLOW_36_in_rule__PropertyDefinition__Group__3__Impl4159); 
+            match(input,36,FOLLOW_36_in_rule__PropertyDefinition__Group__3__Impl4206); 
              after(grammarAccess.getPropertyDefinitionAccess().getColonKeyword_3()); 
 
             }
@@ -5748,21 +5798,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyDefinition__Group__4"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2000:1: rule__PropertyDefinition__Group__4 : rule__PropertyDefinition__Group__4__Impl rule__PropertyDefinition__Group__5 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2026:1: rule__PropertyDefinition__Group__4 : rule__PropertyDefinition__Group__4__Impl rule__PropertyDefinition__Group__5 ;
     public final void rule__PropertyDefinition__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2004:1: ( rule__PropertyDefinition__Group__4__Impl rule__PropertyDefinition__Group__5 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2005:2: rule__PropertyDefinition__Group__4__Impl rule__PropertyDefinition__Group__5
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2030:1: ( rule__PropertyDefinition__Group__4__Impl rule__PropertyDefinition__Group__5 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2031:2: rule__PropertyDefinition__Group__4__Impl rule__PropertyDefinition__Group__5
             {
-            pushFollow(FOLLOW_rule__PropertyDefinition__Group__4__Impl_in_rule__PropertyDefinition__Group__44190);
+            pushFollow(FOLLOW_rule__PropertyDefinition__Group__4__Impl_in_rule__PropertyDefinition__Group__44237);
             rule__PropertyDefinition__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PropertyDefinition__Group__5_in_rule__PropertyDefinition__Group__44193);
+            pushFollow(FOLLOW_rule__PropertyDefinition__Group__5_in_rule__PropertyDefinition__Group__44240);
             rule__PropertyDefinition__Group__5();
 
             state._fsp--;
@@ -5786,23 +5836,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyDefinition__Group__4__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2012:1: rule__PropertyDefinition__Group__4__Impl : ( ( rule__PropertyDefinition__TypeAssignment_4 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2038:1: rule__PropertyDefinition__Group__4__Impl : ( ( rule__PropertyDefinition__TypeAssignment_4 ) ) ;
     public final void rule__PropertyDefinition__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2016:1: ( ( ( rule__PropertyDefinition__TypeAssignment_4 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2017:1: ( ( rule__PropertyDefinition__TypeAssignment_4 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2042:1: ( ( ( rule__PropertyDefinition__TypeAssignment_4 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2043:1: ( ( rule__PropertyDefinition__TypeAssignment_4 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2017:1: ( ( rule__PropertyDefinition__TypeAssignment_4 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2018:1: ( rule__PropertyDefinition__TypeAssignment_4 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2043:1: ( ( rule__PropertyDefinition__TypeAssignment_4 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2044:1: ( rule__PropertyDefinition__TypeAssignment_4 )
             {
              before(grammarAccess.getPropertyDefinitionAccess().getTypeAssignment_4()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2019:1: ( rule__PropertyDefinition__TypeAssignment_4 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2019:2: rule__PropertyDefinition__TypeAssignment_4
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2045:1: ( rule__PropertyDefinition__TypeAssignment_4 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2045:2: rule__PropertyDefinition__TypeAssignment_4
             {
-            pushFollow(FOLLOW_rule__PropertyDefinition__TypeAssignment_4_in_rule__PropertyDefinition__Group__4__Impl4220);
+            pushFollow(FOLLOW_rule__PropertyDefinition__TypeAssignment_4_in_rule__PropertyDefinition__Group__4__Impl4267);
             rule__PropertyDefinition__TypeAssignment_4();
 
             state._fsp--;
@@ -5833,16 +5883,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyDefinition__Group__5"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2029:1: rule__PropertyDefinition__Group__5 : rule__PropertyDefinition__Group__5__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2055:1: rule__PropertyDefinition__Group__5 : rule__PropertyDefinition__Group__5__Impl ;
     public final void rule__PropertyDefinition__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2033:1: ( rule__PropertyDefinition__Group__5__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2034:2: rule__PropertyDefinition__Group__5__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2059:1: ( rule__PropertyDefinition__Group__5__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2060:2: rule__PropertyDefinition__Group__5__Impl
             {
-            pushFollow(FOLLOW_rule__PropertyDefinition__Group__5__Impl_in_rule__PropertyDefinition__Group__54250);
+            pushFollow(FOLLOW_rule__PropertyDefinition__Group__5__Impl_in_rule__PropertyDefinition__Group__54297);
             rule__PropertyDefinition__Group__5__Impl();
 
             state._fsp--;
@@ -5866,20 +5916,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyDefinition__Group__5__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2040:1: rule__PropertyDefinition__Group__5__Impl : ( ';' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2066:1: rule__PropertyDefinition__Group__5__Impl : ( ';' ) ;
     public final void rule__PropertyDefinition__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2044:1: ( ( ';' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2045:1: ( ';' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2070:1: ( ( ';' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2071:1: ( ';' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2045:1: ( ';' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2046:1: ';'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2071:1: ( ';' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2072:1: ';'
             {
              before(grammarAccess.getPropertyDefinitionAccess().getSemicolonKeyword_5()); 
-            match(input,31,FOLLOW_31_in_rule__PropertyDefinition__Group__5__Impl4278); 
+            match(input,31,FOLLOW_31_in_rule__PropertyDefinition__Group__5__Impl4325); 
              after(grammarAccess.getPropertyDefinitionAccess().getSemicolonKeyword_5()); 
 
             }
@@ -5903,21 +5953,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinExpression__Group__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2071:1: rule__JoinExpression__Group__0 : rule__JoinExpression__Group__0__Impl rule__JoinExpression__Group__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2097:1: rule__JoinExpression__Group__0 : rule__JoinExpression__Group__0__Impl rule__JoinExpression__Group__1 ;
     public final void rule__JoinExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2075:1: ( rule__JoinExpression__Group__0__Impl rule__JoinExpression__Group__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2076:2: rule__JoinExpression__Group__0__Impl rule__JoinExpression__Group__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2101:1: ( rule__JoinExpression__Group__0__Impl rule__JoinExpression__Group__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2102:2: rule__JoinExpression__Group__0__Impl rule__JoinExpression__Group__1
             {
-            pushFollow(FOLLOW_rule__JoinExpression__Group__0__Impl_in_rule__JoinExpression__Group__04321);
+            pushFollow(FOLLOW_rule__JoinExpression__Group__0__Impl_in_rule__JoinExpression__Group__04368);
             rule__JoinExpression__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__JoinExpression__Group__1_in_rule__JoinExpression__Group__04324);
+            pushFollow(FOLLOW_rule__JoinExpression__Group__1_in_rule__JoinExpression__Group__04371);
             rule__JoinExpression__Group__1();
 
             state._fsp--;
@@ -5941,23 +5991,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinExpression__Group__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2083:1: rule__JoinExpression__Group__0__Impl : ( ( rule__JoinExpression__TermsAssignment_0 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2109:1: rule__JoinExpression__Group__0__Impl : ( ( rule__JoinExpression__TermsAssignment_0 ) ) ;
     public final void rule__JoinExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2087:1: ( ( ( rule__JoinExpression__TermsAssignment_0 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2088:1: ( ( rule__JoinExpression__TermsAssignment_0 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2113:1: ( ( ( rule__JoinExpression__TermsAssignment_0 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2114:1: ( ( rule__JoinExpression__TermsAssignment_0 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2088:1: ( ( rule__JoinExpression__TermsAssignment_0 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2089:1: ( rule__JoinExpression__TermsAssignment_0 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2114:1: ( ( rule__JoinExpression__TermsAssignment_0 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2115:1: ( rule__JoinExpression__TermsAssignment_0 )
             {
              before(grammarAccess.getJoinExpressionAccess().getTermsAssignment_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2090:1: ( rule__JoinExpression__TermsAssignment_0 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2090:2: rule__JoinExpression__TermsAssignment_0
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2116:1: ( rule__JoinExpression__TermsAssignment_0 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2116:2: rule__JoinExpression__TermsAssignment_0
             {
-            pushFollow(FOLLOW_rule__JoinExpression__TermsAssignment_0_in_rule__JoinExpression__Group__0__Impl4351);
+            pushFollow(FOLLOW_rule__JoinExpression__TermsAssignment_0_in_rule__JoinExpression__Group__0__Impl4398);
             rule__JoinExpression__TermsAssignment_0();
 
             state._fsp--;
@@ -5988,16 +6038,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinExpression__Group__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2100:1: rule__JoinExpression__Group__1 : rule__JoinExpression__Group__1__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2126:1: rule__JoinExpression__Group__1 : rule__JoinExpression__Group__1__Impl ;
     public final void rule__JoinExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2104:1: ( rule__JoinExpression__Group__1__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2105:2: rule__JoinExpression__Group__1__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2130:1: ( rule__JoinExpression__Group__1__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2131:2: rule__JoinExpression__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__JoinExpression__Group__1__Impl_in_rule__JoinExpression__Group__14381);
+            pushFollow(FOLLOW_rule__JoinExpression__Group__1__Impl_in_rule__JoinExpression__Group__14428);
             rule__JoinExpression__Group__1__Impl();
 
             state._fsp--;
@@ -6021,20 +6071,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinExpression__Group__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2111:1: rule__JoinExpression__Group__1__Impl : ( ( rule__JoinExpression__Group_1__0 )* ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2137:1: rule__JoinExpression__Group__1__Impl : ( ( rule__JoinExpression__Group_1__0 )* ) ;
     public final void rule__JoinExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2115:1: ( ( ( rule__JoinExpression__Group_1__0 )* ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2116:1: ( ( rule__JoinExpression__Group_1__0 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2141:1: ( ( ( rule__JoinExpression__Group_1__0 )* ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2142:1: ( ( rule__JoinExpression__Group_1__0 )* )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2116:1: ( ( rule__JoinExpression__Group_1__0 )* )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2117:1: ( rule__JoinExpression__Group_1__0 )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2142:1: ( ( rule__JoinExpression__Group_1__0 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2143:1: ( rule__JoinExpression__Group_1__0 )*
             {
              before(grammarAccess.getJoinExpressionAccess().getGroup_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2118:1: ( rule__JoinExpression__Group_1__0 )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2144:1: ( rule__JoinExpression__Group_1__0 )*
             loop18:
             do {
                 int alt18=2;
@@ -6047,9 +6097,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
                 switch (alt18) {
             	case 1 :
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2118:2: rule__JoinExpression__Group_1__0
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2144:2: rule__JoinExpression__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__JoinExpression__Group_1__0_in_rule__JoinExpression__Group__1__Impl4408);
+            	    pushFollow(FOLLOW_rule__JoinExpression__Group_1__0_in_rule__JoinExpression__Group__1__Impl4455);
             	    rule__JoinExpression__Group_1__0();
 
             	    state._fsp--;
@@ -6086,21 +6136,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinExpression__Group_1__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2132:1: rule__JoinExpression__Group_1__0 : rule__JoinExpression__Group_1__0__Impl rule__JoinExpression__Group_1__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2158:1: rule__JoinExpression__Group_1__0 : rule__JoinExpression__Group_1__0__Impl rule__JoinExpression__Group_1__1 ;
     public final void rule__JoinExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2136:1: ( rule__JoinExpression__Group_1__0__Impl rule__JoinExpression__Group_1__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2137:2: rule__JoinExpression__Group_1__0__Impl rule__JoinExpression__Group_1__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2162:1: ( rule__JoinExpression__Group_1__0__Impl rule__JoinExpression__Group_1__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2163:2: rule__JoinExpression__Group_1__0__Impl rule__JoinExpression__Group_1__1
             {
-            pushFollow(FOLLOW_rule__JoinExpression__Group_1__0__Impl_in_rule__JoinExpression__Group_1__04443);
+            pushFollow(FOLLOW_rule__JoinExpression__Group_1__0__Impl_in_rule__JoinExpression__Group_1__04490);
             rule__JoinExpression__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__JoinExpression__Group_1__1_in_rule__JoinExpression__Group_1__04446);
+            pushFollow(FOLLOW_rule__JoinExpression__Group_1__1_in_rule__JoinExpression__Group_1__04493);
             rule__JoinExpression__Group_1__1();
 
             state._fsp--;
@@ -6124,20 +6174,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinExpression__Group_1__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2144:1: rule__JoinExpression__Group_1__0__Impl : ( '+' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2170:1: rule__JoinExpression__Group_1__0__Impl : ( '+' ) ;
     public final void rule__JoinExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2148:1: ( ( '+' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2149:1: ( '+' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2174:1: ( ( '+' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2175:1: ( '+' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2149:1: ( '+' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2150:1: '+'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2175:1: ( '+' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2176:1: '+'
             {
              before(grammarAccess.getJoinExpressionAccess().getPlusSignKeyword_1_0()); 
-            match(input,33,FOLLOW_33_in_rule__JoinExpression__Group_1__0__Impl4474); 
+            match(input,33,FOLLOW_33_in_rule__JoinExpression__Group_1__0__Impl4521); 
              after(grammarAccess.getJoinExpressionAccess().getPlusSignKeyword_1_0()); 
 
             }
@@ -6161,16 +6211,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinExpression__Group_1__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2163:1: rule__JoinExpression__Group_1__1 : rule__JoinExpression__Group_1__1__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2189:1: rule__JoinExpression__Group_1__1 : rule__JoinExpression__Group_1__1__Impl ;
     public final void rule__JoinExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2167:1: ( rule__JoinExpression__Group_1__1__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2168:2: rule__JoinExpression__Group_1__1__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2193:1: ( rule__JoinExpression__Group_1__1__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2194:2: rule__JoinExpression__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__JoinExpression__Group_1__1__Impl_in_rule__JoinExpression__Group_1__14505);
+            pushFollow(FOLLOW_rule__JoinExpression__Group_1__1__Impl_in_rule__JoinExpression__Group_1__14552);
             rule__JoinExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -6194,23 +6244,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinExpression__Group_1__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2174:1: rule__JoinExpression__Group_1__1__Impl : ( ( rule__JoinExpression__TermsAssignment_1_1 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2200:1: rule__JoinExpression__Group_1__1__Impl : ( ( rule__JoinExpression__TermsAssignment_1_1 ) ) ;
     public final void rule__JoinExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2178:1: ( ( ( rule__JoinExpression__TermsAssignment_1_1 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2179:1: ( ( rule__JoinExpression__TermsAssignment_1_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2204:1: ( ( ( rule__JoinExpression__TermsAssignment_1_1 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2205:1: ( ( rule__JoinExpression__TermsAssignment_1_1 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2179:1: ( ( rule__JoinExpression__TermsAssignment_1_1 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2180:1: ( rule__JoinExpression__TermsAssignment_1_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2205:1: ( ( rule__JoinExpression__TermsAssignment_1_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2206:1: ( rule__JoinExpression__TermsAssignment_1_1 )
             {
              before(grammarAccess.getJoinExpressionAccess().getTermsAssignment_1_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2181:1: ( rule__JoinExpression__TermsAssignment_1_1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2181:2: rule__JoinExpression__TermsAssignment_1_1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2207:1: ( rule__JoinExpression__TermsAssignment_1_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2207:2: rule__JoinExpression__TermsAssignment_1_1
             {
-            pushFollow(FOLLOW_rule__JoinExpression__TermsAssignment_1_1_in_rule__JoinExpression__Group_1__1__Impl4532);
+            pushFollow(FOLLOW_rule__JoinExpression__TermsAssignment_1_1_in_rule__JoinExpression__Group_1__1__Impl4579);
             rule__JoinExpression__TermsAssignment_1_1();
 
             state._fsp--;
@@ -6241,21 +6291,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinTerm__Group__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2195:1: rule__JoinTerm__Group__0 : rule__JoinTerm__Group__0__Impl rule__JoinTerm__Group__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2221:1: rule__JoinTerm__Group__0 : rule__JoinTerm__Group__0__Impl rule__JoinTerm__Group__1 ;
     public final void rule__JoinTerm__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2199:1: ( rule__JoinTerm__Group__0__Impl rule__JoinTerm__Group__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2200:2: rule__JoinTerm__Group__0__Impl rule__JoinTerm__Group__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2225:1: ( rule__JoinTerm__Group__0__Impl rule__JoinTerm__Group__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2226:2: rule__JoinTerm__Group__0__Impl rule__JoinTerm__Group__1
             {
-            pushFollow(FOLLOW_rule__JoinTerm__Group__0__Impl_in_rule__JoinTerm__Group__04566);
+            pushFollow(FOLLOW_rule__JoinTerm__Group__0__Impl_in_rule__JoinTerm__Group__04613);
             rule__JoinTerm__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__JoinTerm__Group__1_in_rule__JoinTerm__Group__04569);
+            pushFollow(FOLLOW_rule__JoinTerm__Group__1_in_rule__JoinTerm__Group__04616);
             rule__JoinTerm__Group__1();
 
             state._fsp--;
@@ -6279,23 +6329,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinTerm__Group__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2207:1: rule__JoinTerm__Group__0__Impl : ( ( rule__JoinTerm__ReferenceAssignment_0 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2233:1: rule__JoinTerm__Group__0__Impl : ( ( rule__JoinTerm__ReferenceAssignment_0 ) ) ;
     public final void rule__JoinTerm__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2211:1: ( ( ( rule__JoinTerm__ReferenceAssignment_0 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2212:1: ( ( rule__JoinTerm__ReferenceAssignment_0 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2237:1: ( ( ( rule__JoinTerm__ReferenceAssignment_0 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2238:1: ( ( rule__JoinTerm__ReferenceAssignment_0 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2212:1: ( ( rule__JoinTerm__ReferenceAssignment_0 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2213:1: ( rule__JoinTerm__ReferenceAssignment_0 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2238:1: ( ( rule__JoinTerm__ReferenceAssignment_0 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2239:1: ( rule__JoinTerm__ReferenceAssignment_0 )
             {
              before(grammarAccess.getJoinTermAccess().getReferenceAssignment_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2214:1: ( rule__JoinTerm__ReferenceAssignment_0 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2214:2: rule__JoinTerm__ReferenceAssignment_0
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2240:1: ( rule__JoinTerm__ReferenceAssignment_0 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2240:2: rule__JoinTerm__ReferenceAssignment_0
             {
-            pushFollow(FOLLOW_rule__JoinTerm__ReferenceAssignment_0_in_rule__JoinTerm__Group__0__Impl4596);
+            pushFollow(FOLLOW_rule__JoinTerm__ReferenceAssignment_0_in_rule__JoinTerm__Group__0__Impl4643);
             rule__JoinTerm__ReferenceAssignment_0();
 
             state._fsp--;
@@ -6326,21 +6376,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinTerm__Group__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2224:1: rule__JoinTerm__Group__1 : rule__JoinTerm__Group__1__Impl rule__JoinTerm__Group__2 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2250:1: rule__JoinTerm__Group__1 : rule__JoinTerm__Group__1__Impl rule__JoinTerm__Group__2 ;
     public final void rule__JoinTerm__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2228:1: ( rule__JoinTerm__Group__1__Impl rule__JoinTerm__Group__2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2229:2: rule__JoinTerm__Group__1__Impl rule__JoinTerm__Group__2
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2254:1: ( rule__JoinTerm__Group__1__Impl rule__JoinTerm__Group__2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2255:2: rule__JoinTerm__Group__1__Impl rule__JoinTerm__Group__2
             {
-            pushFollow(FOLLOW_rule__JoinTerm__Group__1__Impl_in_rule__JoinTerm__Group__14626);
+            pushFollow(FOLLOW_rule__JoinTerm__Group__1__Impl_in_rule__JoinTerm__Group__14673);
             rule__JoinTerm__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__JoinTerm__Group__2_in_rule__JoinTerm__Group__14629);
+            pushFollow(FOLLOW_rule__JoinTerm__Group__2_in_rule__JoinTerm__Group__14676);
             rule__JoinTerm__Group__2();
 
             state._fsp--;
@@ -6364,20 +6414,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinTerm__Group__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2236:1: rule__JoinTerm__Group__1__Impl : ( ( rule__JoinTerm__MappingAssignment_1 )? ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2262:1: rule__JoinTerm__Group__1__Impl : ( ( rule__JoinTerm__MappingAssignment_1 )? ) ;
     public final void rule__JoinTerm__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2240:1: ( ( ( rule__JoinTerm__MappingAssignment_1 )? ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2241:1: ( ( rule__JoinTerm__MappingAssignment_1 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2266:1: ( ( ( rule__JoinTerm__MappingAssignment_1 )? ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2267:1: ( ( rule__JoinTerm__MappingAssignment_1 )? )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2241:1: ( ( rule__JoinTerm__MappingAssignment_1 )? )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2242:1: ( rule__JoinTerm__MappingAssignment_1 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2267:1: ( ( rule__JoinTerm__MappingAssignment_1 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2268:1: ( rule__JoinTerm__MappingAssignment_1 )?
             {
              before(grammarAccess.getJoinTermAccess().getMappingAssignment_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2243:1: ( rule__JoinTerm__MappingAssignment_1 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2269:1: ( rule__JoinTerm__MappingAssignment_1 )?
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -6386,9 +6436,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt19) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2243:2: rule__JoinTerm__MappingAssignment_1
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2269:2: rule__JoinTerm__MappingAssignment_1
                     {
-                    pushFollow(FOLLOW_rule__JoinTerm__MappingAssignment_1_in_rule__JoinTerm__Group__1__Impl4656);
+                    pushFollow(FOLLOW_rule__JoinTerm__MappingAssignment_1_in_rule__JoinTerm__Group__1__Impl4703);
                     rule__JoinTerm__MappingAssignment_1();
 
                     state._fsp--;
@@ -6422,16 +6472,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinTerm__Group__2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2253:1: rule__JoinTerm__Group__2 : rule__JoinTerm__Group__2__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2279:1: rule__JoinTerm__Group__2 : rule__JoinTerm__Group__2__Impl ;
     public final void rule__JoinTerm__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2257:1: ( rule__JoinTerm__Group__2__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2258:2: rule__JoinTerm__Group__2__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2283:1: ( rule__JoinTerm__Group__2__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2284:2: rule__JoinTerm__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__JoinTerm__Group__2__Impl_in_rule__JoinTerm__Group__24687);
+            pushFollow(FOLLOW_rule__JoinTerm__Group__2__Impl_in_rule__JoinTerm__Group__24734);
             rule__JoinTerm__Group__2__Impl();
 
             state._fsp--;
@@ -6455,20 +6505,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinTerm__Group__2__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2264:1: rule__JoinTerm__Group__2__Impl : ( ( rule__JoinTerm__GroupingAssignment_2 )? ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2290:1: rule__JoinTerm__Group__2__Impl : ( ( rule__JoinTerm__GroupingAssignment_2 )? ) ;
     public final void rule__JoinTerm__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2268:1: ( ( ( rule__JoinTerm__GroupingAssignment_2 )? ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2269:1: ( ( rule__JoinTerm__GroupingAssignment_2 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2294:1: ( ( ( rule__JoinTerm__GroupingAssignment_2 )? ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2295:1: ( ( rule__JoinTerm__GroupingAssignment_2 )? )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2269:1: ( ( rule__JoinTerm__GroupingAssignment_2 )? )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2270:1: ( rule__JoinTerm__GroupingAssignment_2 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2295:1: ( ( rule__JoinTerm__GroupingAssignment_2 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2296:1: ( rule__JoinTerm__GroupingAssignment_2 )?
             {
              before(grammarAccess.getJoinTermAccess().getGroupingAssignment_2()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2271:1: ( rule__JoinTerm__GroupingAssignment_2 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2297:1: ( rule__JoinTerm__GroupingAssignment_2 )?
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -6477,9 +6527,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt20) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2271:2: rule__JoinTerm__GroupingAssignment_2
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2297:2: rule__JoinTerm__GroupingAssignment_2
                     {
-                    pushFollow(FOLLOW_rule__JoinTerm__GroupingAssignment_2_in_rule__JoinTerm__Group__2__Impl4714);
+                    pushFollow(FOLLOW_rule__JoinTerm__GroupingAssignment_2_in_rule__JoinTerm__Group__2__Impl4761);
                     rule__JoinTerm__GroupingAssignment_2();
 
                     state._fsp--;
@@ -6513,21 +6563,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeExpression__Group__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2287:1: rule__SummarizeExpression__Group__0 : rule__SummarizeExpression__Group__0__Impl rule__SummarizeExpression__Group__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2313:1: rule__SummarizeExpression__Group__0 : rule__SummarizeExpression__Group__0__Impl rule__SummarizeExpression__Group__1 ;
     public final void rule__SummarizeExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2291:1: ( rule__SummarizeExpression__Group__0__Impl rule__SummarizeExpression__Group__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2292:2: rule__SummarizeExpression__Group__0__Impl rule__SummarizeExpression__Group__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2317:1: ( rule__SummarizeExpression__Group__0__Impl rule__SummarizeExpression__Group__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2318:2: rule__SummarizeExpression__Group__0__Impl rule__SummarizeExpression__Group__1
             {
-            pushFollow(FOLLOW_rule__SummarizeExpression__Group__0__Impl_in_rule__SummarizeExpression__Group__04751);
+            pushFollow(FOLLOW_rule__SummarizeExpression__Group__0__Impl_in_rule__SummarizeExpression__Group__04798);
             rule__SummarizeExpression__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__SummarizeExpression__Group__1_in_rule__SummarizeExpression__Group__04754);
+            pushFollow(FOLLOW_rule__SummarizeExpression__Group__1_in_rule__SummarizeExpression__Group__04801);
             rule__SummarizeExpression__Group__1();
 
             state._fsp--;
@@ -6551,23 +6601,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeExpression__Group__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2299:1: rule__SummarizeExpression__Group__0__Impl : ( ( rule__SummarizeExpression__TermsAssignment_0 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2325:1: rule__SummarizeExpression__Group__0__Impl : ( ( rule__SummarizeExpression__TermsAssignment_0 ) ) ;
     public final void rule__SummarizeExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2303:1: ( ( ( rule__SummarizeExpression__TermsAssignment_0 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2304:1: ( ( rule__SummarizeExpression__TermsAssignment_0 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2329:1: ( ( ( rule__SummarizeExpression__TermsAssignment_0 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2330:1: ( ( rule__SummarizeExpression__TermsAssignment_0 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2304:1: ( ( rule__SummarizeExpression__TermsAssignment_0 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2305:1: ( rule__SummarizeExpression__TermsAssignment_0 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2330:1: ( ( rule__SummarizeExpression__TermsAssignment_0 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2331:1: ( rule__SummarizeExpression__TermsAssignment_0 )
             {
              before(grammarAccess.getSummarizeExpressionAccess().getTermsAssignment_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2306:1: ( rule__SummarizeExpression__TermsAssignment_0 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2306:2: rule__SummarizeExpression__TermsAssignment_0
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2332:1: ( rule__SummarizeExpression__TermsAssignment_0 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2332:2: rule__SummarizeExpression__TermsAssignment_0
             {
-            pushFollow(FOLLOW_rule__SummarizeExpression__TermsAssignment_0_in_rule__SummarizeExpression__Group__0__Impl4781);
+            pushFollow(FOLLOW_rule__SummarizeExpression__TermsAssignment_0_in_rule__SummarizeExpression__Group__0__Impl4828);
             rule__SummarizeExpression__TermsAssignment_0();
 
             state._fsp--;
@@ -6598,16 +6648,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeExpression__Group__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2316:1: rule__SummarizeExpression__Group__1 : rule__SummarizeExpression__Group__1__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2342:1: rule__SummarizeExpression__Group__1 : rule__SummarizeExpression__Group__1__Impl ;
     public final void rule__SummarizeExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2320:1: ( rule__SummarizeExpression__Group__1__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2321:2: rule__SummarizeExpression__Group__1__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2346:1: ( rule__SummarizeExpression__Group__1__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2347:2: rule__SummarizeExpression__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__SummarizeExpression__Group__1__Impl_in_rule__SummarizeExpression__Group__14811);
+            pushFollow(FOLLOW_rule__SummarizeExpression__Group__1__Impl_in_rule__SummarizeExpression__Group__14858);
             rule__SummarizeExpression__Group__1__Impl();
 
             state._fsp--;
@@ -6631,20 +6681,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeExpression__Group__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2327:1: rule__SummarizeExpression__Group__1__Impl : ( ( rule__SummarizeExpression__Group_1__0 )* ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2353:1: rule__SummarizeExpression__Group__1__Impl : ( ( rule__SummarizeExpression__Group_1__0 )* ) ;
     public final void rule__SummarizeExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2331:1: ( ( ( rule__SummarizeExpression__Group_1__0 )* ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2332:1: ( ( rule__SummarizeExpression__Group_1__0 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2357:1: ( ( ( rule__SummarizeExpression__Group_1__0 )* ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2358:1: ( ( rule__SummarizeExpression__Group_1__0 )* )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2332:1: ( ( rule__SummarizeExpression__Group_1__0 )* )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2333:1: ( rule__SummarizeExpression__Group_1__0 )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2358:1: ( ( rule__SummarizeExpression__Group_1__0 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2359:1: ( rule__SummarizeExpression__Group_1__0 )*
             {
              before(grammarAccess.getSummarizeExpressionAccess().getGroup_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2334:1: ( rule__SummarizeExpression__Group_1__0 )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2360:1: ( rule__SummarizeExpression__Group_1__0 )*
             loop21:
             do {
                 int alt21=2;
@@ -6657,9 +6707,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
                 switch (alt21) {
             	case 1 :
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2334:2: rule__SummarizeExpression__Group_1__0
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2360:2: rule__SummarizeExpression__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__SummarizeExpression__Group_1__0_in_rule__SummarizeExpression__Group__1__Impl4838);
+            	    pushFollow(FOLLOW_rule__SummarizeExpression__Group_1__0_in_rule__SummarizeExpression__Group__1__Impl4885);
             	    rule__SummarizeExpression__Group_1__0();
 
             	    state._fsp--;
@@ -6696,21 +6746,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeExpression__Group_1__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2348:1: rule__SummarizeExpression__Group_1__0 : rule__SummarizeExpression__Group_1__0__Impl rule__SummarizeExpression__Group_1__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2374:1: rule__SummarizeExpression__Group_1__0 : rule__SummarizeExpression__Group_1__0__Impl rule__SummarizeExpression__Group_1__1 ;
     public final void rule__SummarizeExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2352:1: ( rule__SummarizeExpression__Group_1__0__Impl rule__SummarizeExpression__Group_1__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2353:2: rule__SummarizeExpression__Group_1__0__Impl rule__SummarizeExpression__Group_1__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2378:1: ( rule__SummarizeExpression__Group_1__0__Impl rule__SummarizeExpression__Group_1__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2379:2: rule__SummarizeExpression__Group_1__0__Impl rule__SummarizeExpression__Group_1__1
             {
-            pushFollow(FOLLOW_rule__SummarizeExpression__Group_1__0__Impl_in_rule__SummarizeExpression__Group_1__04873);
+            pushFollow(FOLLOW_rule__SummarizeExpression__Group_1__0__Impl_in_rule__SummarizeExpression__Group_1__04920);
             rule__SummarizeExpression__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__SummarizeExpression__Group_1__1_in_rule__SummarizeExpression__Group_1__04876);
+            pushFollow(FOLLOW_rule__SummarizeExpression__Group_1__1_in_rule__SummarizeExpression__Group_1__04923);
             rule__SummarizeExpression__Group_1__1();
 
             state._fsp--;
@@ -6734,20 +6784,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeExpression__Group_1__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2360:1: rule__SummarizeExpression__Group_1__0__Impl : ( '+' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2386:1: rule__SummarizeExpression__Group_1__0__Impl : ( '+' ) ;
     public final void rule__SummarizeExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2364:1: ( ( '+' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2365:1: ( '+' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2390:1: ( ( '+' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2391:1: ( '+' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2365:1: ( '+' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2366:1: '+'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2391:1: ( '+' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2392:1: '+'
             {
              before(grammarAccess.getSummarizeExpressionAccess().getPlusSignKeyword_1_0()); 
-            match(input,33,FOLLOW_33_in_rule__SummarizeExpression__Group_1__0__Impl4904); 
+            match(input,33,FOLLOW_33_in_rule__SummarizeExpression__Group_1__0__Impl4951); 
              after(grammarAccess.getSummarizeExpressionAccess().getPlusSignKeyword_1_0()); 
 
             }
@@ -6771,16 +6821,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeExpression__Group_1__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2379:1: rule__SummarizeExpression__Group_1__1 : rule__SummarizeExpression__Group_1__1__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2405:1: rule__SummarizeExpression__Group_1__1 : rule__SummarizeExpression__Group_1__1__Impl ;
     public final void rule__SummarizeExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2383:1: ( rule__SummarizeExpression__Group_1__1__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2384:2: rule__SummarizeExpression__Group_1__1__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2409:1: ( rule__SummarizeExpression__Group_1__1__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2410:2: rule__SummarizeExpression__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__SummarizeExpression__Group_1__1__Impl_in_rule__SummarizeExpression__Group_1__14935);
+            pushFollow(FOLLOW_rule__SummarizeExpression__Group_1__1__Impl_in_rule__SummarizeExpression__Group_1__14982);
             rule__SummarizeExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -6804,23 +6854,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeExpression__Group_1__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2390:1: rule__SummarizeExpression__Group_1__1__Impl : ( ( rule__SummarizeExpression__TermsAssignment_1_1 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2416:1: rule__SummarizeExpression__Group_1__1__Impl : ( ( rule__SummarizeExpression__TermsAssignment_1_1 ) ) ;
     public final void rule__SummarizeExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2394:1: ( ( ( rule__SummarizeExpression__TermsAssignment_1_1 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2395:1: ( ( rule__SummarizeExpression__TermsAssignment_1_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2420:1: ( ( ( rule__SummarizeExpression__TermsAssignment_1_1 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2421:1: ( ( rule__SummarizeExpression__TermsAssignment_1_1 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2395:1: ( ( rule__SummarizeExpression__TermsAssignment_1_1 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2396:1: ( rule__SummarizeExpression__TermsAssignment_1_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2421:1: ( ( rule__SummarizeExpression__TermsAssignment_1_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2422:1: ( rule__SummarizeExpression__TermsAssignment_1_1 )
             {
              before(grammarAccess.getSummarizeExpressionAccess().getTermsAssignment_1_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2397:1: ( rule__SummarizeExpression__TermsAssignment_1_1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2397:2: rule__SummarizeExpression__TermsAssignment_1_1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2423:1: ( rule__SummarizeExpression__TermsAssignment_1_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2423:2: rule__SummarizeExpression__TermsAssignment_1_1
             {
-            pushFollow(FOLLOW_rule__SummarizeExpression__TermsAssignment_1_1_in_rule__SummarizeExpression__Group_1__1__Impl4962);
+            pushFollow(FOLLOW_rule__SummarizeExpression__TermsAssignment_1_1_in_rule__SummarizeExpression__Group_1__1__Impl5009);
             rule__SummarizeExpression__TermsAssignment_1_1();
 
             state._fsp--;
@@ -6851,21 +6901,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeTerm__Group__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2411:1: rule__SummarizeTerm__Group__0 : rule__SummarizeTerm__Group__0__Impl rule__SummarizeTerm__Group__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2437:1: rule__SummarizeTerm__Group__0 : rule__SummarizeTerm__Group__0__Impl rule__SummarizeTerm__Group__1 ;
     public final void rule__SummarizeTerm__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2415:1: ( rule__SummarizeTerm__Group__0__Impl rule__SummarizeTerm__Group__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2416:2: rule__SummarizeTerm__Group__0__Impl rule__SummarizeTerm__Group__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2441:1: ( rule__SummarizeTerm__Group__0__Impl rule__SummarizeTerm__Group__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2442:2: rule__SummarizeTerm__Group__0__Impl rule__SummarizeTerm__Group__1
             {
-            pushFollow(FOLLOW_rule__SummarizeTerm__Group__0__Impl_in_rule__SummarizeTerm__Group__04996);
+            pushFollow(FOLLOW_rule__SummarizeTerm__Group__0__Impl_in_rule__SummarizeTerm__Group__05043);
             rule__SummarizeTerm__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__SummarizeTerm__Group__1_in_rule__SummarizeTerm__Group__04999);
+            pushFollow(FOLLOW_rule__SummarizeTerm__Group__1_in_rule__SummarizeTerm__Group__05046);
             rule__SummarizeTerm__Group__1();
 
             state._fsp--;
@@ -6889,23 +6939,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeTerm__Group__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2423:1: rule__SummarizeTerm__Group__0__Impl : ( ( rule__SummarizeTerm__ReferenceAssignment_0 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2449:1: rule__SummarizeTerm__Group__0__Impl : ( ( rule__SummarizeTerm__ReferenceAssignment_0 ) ) ;
     public final void rule__SummarizeTerm__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2427:1: ( ( ( rule__SummarizeTerm__ReferenceAssignment_0 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2428:1: ( ( rule__SummarizeTerm__ReferenceAssignment_0 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2453:1: ( ( ( rule__SummarizeTerm__ReferenceAssignment_0 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2454:1: ( ( rule__SummarizeTerm__ReferenceAssignment_0 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2428:1: ( ( rule__SummarizeTerm__ReferenceAssignment_0 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2429:1: ( rule__SummarizeTerm__ReferenceAssignment_0 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2454:1: ( ( rule__SummarizeTerm__ReferenceAssignment_0 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2455:1: ( rule__SummarizeTerm__ReferenceAssignment_0 )
             {
              before(grammarAccess.getSummarizeTermAccess().getReferenceAssignment_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2430:1: ( rule__SummarizeTerm__ReferenceAssignment_0 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2430:2: rule__SummarizeTerm__ReferenceAssignment_0
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2456:1: ( rule__SummarizeTerm__ReferenceAssignment_0 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2456:2: rule__SummarizeTerm__ReferenceAssignment_0
             {
-            pushFollow(FOLLOW_rule__SummarizeTerm__ReferenceAssignment_0_in_rule__SummarizeTerm__Group__0__Impl5026);
+            pushFollow(FOLLOW_rule__SummarizeTerm__ReferenceAssignment_0_in_rule__SummarizeTerm__Group__0__Impl5073);
             rule__SummarizeTerm__ReferenceAssignment_0();
 
             state._fsp--;
@@ -6936,21 +6986,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeTerm__Group__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2440:1: rule__SummarizeTerm__Group__1 : rule__SummarizeTerm__Group__1__Impl rule__SummarizeTerm__Group__2 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2466:1: rule__SummarizeTerm__Group__1 : rule__SummarizeTerm__Group__1__Impl rule__SummarizeTerm__Group__2 ;
     public final void rule__SummarizeTerm__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2444:1: ( rule__SummarizeTerm__Group__1__Impl rule__SummarizeTerm__Group__2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2445:2: rule__SummarizeTerm__Group__1__Impl rule__SummarizeTerm__Group__2
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2470:1: ( rule__SummarizeTerm__Group__1__Impl rule__SummarizeTerm__Group__2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2471:2: rule__SummarizeTerm__Group__1__Impl rule__SummarizeTerm__Group__2
             {
-            pushFollow(FOLLOW_rule__SummarizeTerm__Group__1__Impl_in_rule__SummarizeTerm__Group__15056);
+            pushFollow(FOLLOW_rule__SummarizeTerm__Group__1__Impl_in_rule__SummarizeTerm__Group__15103);
             rule__SummarizeTerm__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__SummarizeTerm__Group__2_in_rule__SummarizeTerm__Group__15059);
+            pushFollow(FOLLOW_rule__SummarizeTerm__Group__2_in_rule__SummarizeTerm__Group__15106);
             rule__SummarizeTerm__Group__2();
 
             state._fsp--;
@@ -6974,23 +7024,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeTerm__Group__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2452:1: rule__SummarizeTerm__Group__1__Impl : ( ( rule__SummarizeTerm__FoldingAssignment_1 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2478:1: rule__SummarizeTerm__Group__1__Impl : ( ( rule__SummarizeTerm__FoldingAssignment_1 ) ) ;
     public final void rule__SummarizeTerm__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2456:1: ( ( ( rule__SummarizeTerm__FoldingAssignment_1 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2457:1: ( ( rule__SummarizeTerm__FoldingAssignment_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2482:1: ( ( ( rule__SummarizeTerm__FoldingAssignment_1 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2483:1: ( ( rule__SummarizeTerm__FoldingAssignment_1 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2457:1: ( ( rule__SummarizeTerm__FoldingAssignment_1 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2458:1: ( rule__SummarizeTerm__FoldingAssignment_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2483:1: ( ( rule__SummarizeTerm__FoldingAssignment_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2484:1: ( rule__SummarizeTerm__FoldingAssignment_1 )
             {
              before(grammarAccess.getSummarizeTermAccess().getFoldingAssignment_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2459:1: ( rule__SummarizeTerm__FoldingAssignment_1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2459:2: rule__SummarizeTerm__FoldingAssignment_1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2485:1: ( rule__SummarizeTerm__FoldingAssignment_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2485:2: rule__SummarizeTerm__FoldingAssignment_1
             {
-            pushFollow(FOLLOW_rule__SummarizeTerm__FoldingAssignment_1_in_rule__SummarizeTerm__Group__1__Impl5086);
+            pushFollow(FOLLOW_rule__SummarizeTerm__FoldingAssignment_1_in_rule__SummarizeTerm__Group__1__Impl5133);
             rule__SummarizeTerm__FoldingAssignment_1();
 
             state._fsp--;
@@ -7021,16 +7071,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeTerm__Group__2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2469:1: rule__SummarizeTerm__Group__2 : rule__SummarizeTerm__Group__2__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2495:1: rule__SummarizeTerm__Group__2 : rule__SummarizeTerm__Group__2__Impl ;
     public final void rule__SummarizeTerm__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2473:1: ( rule__SummarizeTerm__Group__2__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2474:2: rule__SummarizeTerm__Group__2__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2499:1: ( rule__SummarizeTerm__Group__2__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2500:2: rule__SummarizeTerm__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__SummarizeTerm__Group__2__Impl_in_rule__SummarizeTerm__Group__25116);
+            pushFollow(FOLLOW_rule__SummarizeTerm__Group__2__Impl_in_rule__SummarizeTerm__Group__25163);
             rule__SummarizeTerm__Group__2__Impl();
 
             state._fsp--;
@@ -7054,20 +7104,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeTerm__Group__2__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2480:1: rule__SummarizeTerm__Group__2__Impl : ( ( rule__SummarizeTerm__GroupingAssignment_2 )? ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2506:1: rule__SummarizeTerm__Group__2__Impl : ( ( rule__SummarizeTerm__GroupingAssignment_2 )? ) ;
     public final void rule__SummarizeTerm__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2484:1: ( ( ( rule__SummarizeTerm__GroupingAssignment_2 )? ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2485:1: ( ( rule__SummarizeTerm__GroupingAssignment_2 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2510:1: ( ( ( rule__SummarizeTerm__GroupingAssignment_2 )? ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2511:1: ( ( rule__SummarizeTerm__GroupingAssignment_2 )? )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2485:1: ( ( rule__SummarizeTerm__GroupingAssignment_2 )? )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2486:1: ( rule__SummarizeTerm__GroupingAssignment_2 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2511:1: ( ( rule__SummarizeTerm__GroupingAssignment_2 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2512:1: ( rule__SummarizeTerm__GroupingAssignment_2 )?
             {
              before(grammarAccess.getSummarizeTermAccess().getGroupingAssignment_2()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2487:1: ( rule__SummarizeTerm__GroupingAssignment_2 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2513:1: ( rule__SummarizeTerm__GroupingAssignment_2 )?
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -7076,9 +7126,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt22) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2487:2: rule__SummarizeTerm__GroupingAssignment_2
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2513:2: rule__SummarizeTerm__GroupingAssignment_2
                     {
-                    pushFollow(FOLLOW_rule__SummarizeTerm__GroupingAssignment_2_in_rule__SummarizeTerm__Group__2__Impl5143);
+                    pushFollow(FOLLOW_rule__SummarizeTerm__GroupingAssignment_2_in_rule__SummarizeTerm__Group__2__Impl5190);
                     rule__SummarizeTerm__GroupingAssignment_2();
 
                     state._fsp--;
@@ -7112,21 +7162,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__Group__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2503:1: rule__Attribute__Group__0 : rule__Attribute__Group__0__Impl rule__Attribute__Group__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2529:1: rule__Attribute__Group__0 : rule__Attribute__Group__0__Impl rule__Attribute__Group__1 ;
     public final void rule__Attribute__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2507:1: ( rule__Attribute__Group__0__Impl rule__Attribute__Group__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2508:2: rule__Attribute__Group__0__Impl rule__Attribute__Group__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2533:1: ( rule__Attribute__Group__0__Impl rule__Attribute__Group__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2534:2: rule__Attribute__Group__0__Impl rule__Attribute__Group__1
             {
-            pushFollow(FOLLOW_rule__Attribute__Group__0__Impl_in_rule__Attribute__Group__05180);
+            pushFollow(FOLLOW_rule__Attribute__Group__0__Impl_in_rule__Attribute__Group__05227);
             rule__Attribute__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Attribute__Group__1_in_rule__Attribute__Group__05183);
+            pushFollow(FOLLOW_rule__Attribute__Group__1_in_rule__Attribute__Group__05230);
             rule__Attribute__Group__1();
 
             state._fsp--;
@@ -7150,20 +7200,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__Group__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2515:1: rule__Attribute__Group__0__Impl : ( '@' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2541:1: rule__Attribute__Group__0__Impl : ( '@' ) ;
     public final void rule__Attribute__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2519:1: ( ( '@' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2520:1: ( '@' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2545:1: ( ( '@' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2546:1: ( '@' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2520:1: ( '@' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2521:1: '@'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2546:1: ( '@' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2547:1: '@'
             {
              before(grammarAccess.getAttributeAccess().getCommercialAtKeyword_0()); 
-            match(input,37,FOLLOW_37_in_rule__Attribute__Group__0__Impl5211); 
+            match(input,37,FOLLOW_37_in_rule__Attribute__Group__0__Impl5258); 
              after(grammarAccess.getAttributeAccess().getCommercialAtKeyword_0()); 
 
             }
@@ -7187,21 +7237,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__Group__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2534:1: rule__Attribute__Group__1 : rule__Attribute__Group__1__Impl rule__Attribute__Group__2 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2560:1: rule__Attribute__Group__1 : rule__Attribute__Group__1__Impl rule__Attribute__Group__2 ;
     public final void rule__Attribute__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2538:1: ( rule__Attribute__Group__1__Impl rule__Attribute__Group__2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2539:2: rule__Attribute__Group__1__Impl rule__Attribute__Group__2
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2564:1: ( rule__Attribute__Group__1__Impl rule__Attribute__Group__2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2565:2: rule__Attribute__Group__1__Impl rule__Attribute__Group__2
             {
-            pushFollow(FOLLOW_rule__Attribute__Group__1__Impl_in_rule__Attribute__Group__15242);
+            pushFollow(FOLLOW_rule__Attribute__Group__1__Impl_in_rule__Attribute__Group__15289);
             rule__Attribute__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Attribute__Group__2_in_rule__Attribute__Group__15245);
+            pushFollow(FOLLOW_rule__Attribute__Group__2_in_rule__Attribute__Group__15292);
             rule__Attribute__Group__2();
 
             state._fsp--;
@@ -7225,23 +7275,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__Group__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2546:1: rule__Attribute__Group__1__Impl : ( ( rule__Attribute__NameAssignment_1 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2572:1: rule__Attribute__Group__1__Impl : ( ( rule__Attribute__NameAssignment_1 ) ) ;
     public final void rule__Attribute__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2550:1: ( ( ( rule__Attribute__NameAssignment_1 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2551:1: ( ( rule__Attribute__NameAssignment_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2576:1: ( ( ( rule__Attribute__NameAssignment_1 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2577:1: ( ( rule__Attribute__NameAssignment_1 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2551:1: ( ( rule__Attribute__NameAssignment_1 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2552:1: ( rule__Attribute__NameAssignment_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2577:1: ( ( rule__Attribute__NameAssignment_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2578:1: ( rule__Attribute__NameAssignment_1 )
             {
              before(grammarAccess.getAttributeAccess().getNameAssignment_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2553:1: ( rule__Attribute__NameAssignment_1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2553:2: rule__Attribute__NameAssignment_1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2579:1: ( rule__Attribute__NameAssignment_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2579:2: rule__Attribute__NameAssignment_1
             {
-            pushFollow(FOLLOW_rule__Attribute__NameAssignment_1_in_rule__Attribute__Group__1__Impl5272);
+            pushFollow(FOLLOW_rule__Attribute__NameAssignment_1_in_rule__Attribute__Group__1__Impl5319);
             rule__Attribute__NameAssignment_1();
 
             state._fsp--;
@@ -7272,16 +7322,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__Group__2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2563:1: rule__Attribute__Group__2 : rule__Attribute__Group__2__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2589:1: rule__Attribute__Group__2 : rule__Attribute__Group__2__Impl ;
     public final void rule__Attribute__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2567:1: ( rule__Attribute__Group__2__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2568:2: rule__Attribute__Group__2__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2593:1: ( rule__Attribute__Group__2__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2594:2: rule__Attribute__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__Attribute__Group__2__Impl_in_rule__Attribute__Group__25302);
+            pushFollow(FOLLOW_rule__Attribute__Group__2__Impl_in_rule__Attribute__Group__25349);
             rule__Attribute__Group__2__Impl();
 
             state._fsp--;
@@ -7305,20 +7355,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__Group__2__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2574:1: rule__Attribute__Group__2__Impl : ( ( rule__Attribute__ElementBlockAssignment_2 )? ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2600:1: rule__Attribute__Group__2__Impl : ( ( rule__Attribute__ElementBlockAssignment_2 )? ) ;
     public final void rule__Attribute__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2578:1: ( ( ( rule__Attribute__ElementBlockAssignment_2 )? ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2579:1: ( ( rule__Attribute__ElementBlockAssignment_2 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2604:1: ( ( ( rule__Attribute__ElementBlockAssignment_2 )? ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2605:1: ( ( rule__Attribute__ElementBlockAssignment_2 )? )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2579:1: ( ( rule__Attribute__ElementBlockAssignment_2 )? )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2580:1: ( rule__Attribute__ElementBlockAssignment_2 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2605:1: ( ( rule__Attribute__ElementBlockAssignment_2 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2606:1: ( rule__Attribute__ElementBlockAssignment_2 )?
             {
              before(grammarAccess.getAttributeAccess().getElementBlockAssignment_2()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2581:1: ( rule__Attribute__ElementBlockAssignment_2 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2607:1: ( rule__Attribute__ElementBlockAssignment_2 )?
             int alt23=2;
             int LA23_0 = input.LA(1);
 
@@ -7327,9 +7377,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt23) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2581:2: rule__Attribute__ElementBlockAssignment_2
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2607:2: rule__Attribute__ElementBlockAssignment_2
                     {
-                    pushFollow(FOLLOW_rule__Attribute__ElementBlockAssignment_2_in_rule__Attribute__Group__2__Impl5329);
+                    pushFollow(FOLLOW_rule__Attribute__ElementBlockAssignment_2_in_rule__Attribute__Group__2__Impl5376);
                     rule__Attribute__ElementBlockAssignment_2();
 
                     state._fsp--;
@@ -7363,21 +7413,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementBlock__Group__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2597:1: rule__AttributeElementBlock__Group__0 : rule__AttributeElementBlock__Group__0__Impl rule__AttributeElementBlock__Group__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2623:1: rule__AttributeElementBlock__Group__0 : rule__AttributeElementBlock__Group__0__Impl rule__AttributeElementBlock__Group__1 ;
     public final void rule__AttributeElementBlock__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2601:1: ( rule__AttributeElementBlock__Group__0__Impl rule__AttributeElementBlock__Group__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2602:2: rule__AttributeElementBlock__Group__0__Impl rule__AttributeElementBlock__Group__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2627:1: ( rule__AttributeElementBlock__Group__0__Impl rule__AttributeElementBlock__Group__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2628:2: rule__AttributeElementBlock__Group__0__Impl rule__AttributeElementBlock__Group__1
             {
-            pushFollow(FOLLOW_rule__AttributeElementBlock__Group__0__Impl_in_rule__AttributeElementBlock__Group__05366);
+            pushFollow(FOLLOW_rule__AttributeElementBlock__Group__0__Impl_in_rule__AttributeElementBlock__Group__05413);
             rule__AttributeElementBlock__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttributeElementBlock__Group__1_in_rule__AttributeElementBlock__Group__05369);
+            pushFollow(FOLLOW_rule__AttributeElementBlock__Group__1_in_rule__AttributeElementBlock__Group__05416);
             rule__AttributeElementBlock__Group__1();
 
             state._fsp--;
@@ -7401,21 +7451,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementBlock__Group__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2609:1: rule__AttributeElementBlock__Group__0__Impl : ( () ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2635:1: rule__AttributeElementBlock__Group__0__Impl : ( () ) ;
     public final void rule__AttributeElementBlock__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2613:1: ( ( () ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2614:1: ( () )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2639:1: ( ( () ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2640:1: ( () )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2614:1: ( () )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2615:1: ()
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2640:1: ( () )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2641:1: ()
             {
              before(grammarAccess.getAttributeElementBlockAccess().getAttributeElementBlockAction_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2616:1: ()
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2618:1: 
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2642:1: ()
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2644:1: 
             {
             }
 
@@ -7438,21 +7488,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementBlock__Group__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2628:1: rule__AttributeElementBlock__Group__1 : rule__AttributeElementBlock__Group__1__Impl rule__AttributeElementBlock__Group__2 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2654:1: rule__AttributeElementBlock__Group__1 : rule__AttributeElementBlock__Group__1__Impl rule__AttributeElementBlock__Group__2 ;
     public final void rule__AttributeElementBlock__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2632:1: ( rule__AttributeElementBlock__Group__1__Impl rule__AttributeElementBlock__Group__2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2633:2: rule__AttributeElementBlock__Group__1__Impl rule__AttributeElementBlock__Group__2
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2658:1: ( rule__AttributeElementBlock__Group__1__Impl rule__AttributeElementBlock__Group__2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2659:2: rule__AttributeElementBlock__Group__1__Impl rule__AttributeElementBlock__Group__2
             {
-            pushFollow(FOLLOW_rule__AttributeElementBlock__Group__1__Impl_in_rule__AttributeElementBlock__Group__15427);
+            pushFollow(FOLLOW_rule__AttributeElementBlock__Group__1__Impl_in_rule__AttributeElementBlock__Group__15474);
             rule__AttributeElementBlock__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttributeElementBlock__Group__2_in_rule__AttributeElementBlock__Group__15430);
+            pushFollow(FOLLOW_rule__AttributeElementBlock__Group__2_in_rule__AttributeElementBlock__Group__15477);
             rule__AttributeElementBlock__Group__2();
 
             state._fsp--;
@@ -7476,20 +7526,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementBlock__Group__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2640:1: rule__AttributeElementBlock__Group__1__Impl : ( '(' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2666:1: rule__AttributeElementBlock__Group__1__Impl : ( '(' ) ;
     public final void rule__AttributeElementBlock__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2644:1: ( ( '(' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2645:1: ( '(' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2670:1: ( ( '(' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2671:1: ( '(' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2645:1: ( '(' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2646:1: '('
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2671:1: ( '(' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2672:1: '('
             {
              before(grammarAccess.getAttributeElementBlockAccess().getLeftParenthesisKeyword_1()); 
-            match(input,38,FOLLOW_38_in_rule__AttributeElementBlock__Group__1__Impl5458); 
+            match(input,38,FOLLOW_38_in_rule__AttributeElementBlock__Group__1__Impl5505); 
              after(grammarAccess.getAttributeElementBlockAccess().getLeftParenthesisKeyword_1()); 
 
             }
@@ -7513,21 +7563,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementBlock__Group__2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2659:1: rule__AttributeElementBlock__Group__2 : rule__AttributeElementBlock__Group__2__Impl rule__AttributeElementBlock__Group__3 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2685:1: rule__AttributeElementBlock__Group__2 : rule__AttributeElementBlock__Group__2__Impl rule__AttributeElementBlock__Group__3 ;
     public final void rule__AttributeElementBlock__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2663:1: ( rule__AttributeElementBlock__Group__2__Impl rule__AttributeElementBlock__Group__3 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2664:2: rule__AttributeElementBlock__Group__2__Impl rule__AttributeElementBlock__Group__3
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2689:1: ( rule__AttributeElementBlock__Group__2__Impl rule__AttributeElementBlock__Group__3 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2690:2: rule__AttributeElementBlock__Group__2__Impl rule__AttributeElementBlock__Group__3
             {
-            pushFollow(FOLLOW_rule__AttributeElementBlock__Group__2__Impl_in_rule__AttributeElementBlock__Group__25489);
+            pushFollow(FOLLOW_rule__AttributeElementBlock__Group__2__Impl_in_rule__AttributeElementBlock__Group__25536);
             rule__AttributeElementBlock__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttributeElementBlock__Group__3_in_rule__AttributeElementBlock__Group__25492);
+            pushFollow(FOLLOW_rule__AttributeElementBlock__Group__3_in_rule__AttributeElementBlock__Group__25539);
             rule__AttributeElementBlock__Group__3();
 
             state._fsp--;
@@ -7551,20 +7601,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementBlock__Group__2__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2671:1: rule__AttributeElementBlock__Group__2__Impl : ( ( rule__AttributeElementBlock__Group_2__0 )? ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2697:1: rule__AttributeElementBlock__Group__2__Impl : ( ( rule__AttributeElementBlock__Group_2__0 )? ) ;
     public final void rule__AttributeElementBlock__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2675:1: ( ( ( rule__AttributeElementBlock__Group_2__0 )? ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2676:1: ( ( rule__AttributeElementBlock__Group_2__0 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2701:1: ( ( ( rule__AttributeElementBlock__Group_2__0 )? ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2702:1: ( ( rule__AttributeElementBlock__Group_2__0 )? )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2676:1: ( ( rule__AttributeElementBlock__Group_2__0 )? )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2677:1: ( rule__AttributeElementBlock__Group_2__0 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2702:1: ( ( rule__AttributeElementBlock__Group_2__0 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2703:1: ( rule__AttributeElementBlock__Group_2__0 )?
             {
              before(grammarAccess.getAttributeElementBlockAccess().getGroup_2()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2678:1: ( rule__AttributeElementBlock__Group_2__0 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2704:1: ( rule__AttributeElementBlock__Group_2__0 )?
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -7573,9 +7623,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt24) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2678:2: rule__AttributeElementBlock__Group_2__0
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2704:2: rule__AttributeElementBlock__Group_2__0
                     {
-                    pushFollow(FOLLOW_rule__AttributeElementBlock__Group_2__0_in_rule__AttributeElementBlock__Group__2__Impl5519);
+                    pushFollow(FOLLOW_rule__AttributeElementBlock__Group_2__0_in_rule__AttributeElementBlock__Group__2__Impl5566);
                     rule__AttributeElementBlock__Group_2__0();
 
                     state._fsp--;
@@ -7609,16 +7659,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementBlock__Group__3"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2688:1: rule__AttributeElementBlock__Group__3 : rule__AttributeElementBlock__Group__3__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2714:1: rule__AttributeElementBlock__Group__3 : rule__AttributeElementBlock__Group__3__Impl ;
     public final void rule__AttributeElementBlock__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2692:1: ( rule__AttributeElementBlock__Group__3__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2693:2: rule__AttributeElementBlock__Group__3__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2718:1: ( rule__AttributeElementBlock__Group__3__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2719:2: rule__AttributeElementBlock__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__AttributeElementBlock__Group__3__Impl_in_rule__AttributeElementBlock__Group__35550);
+            pushFollow(FOLLOW_rule__AttributeElementBlock__Group__3__Impl_in_rule__AttributeElementBlock__Group__35597);
             rule__AttributeElementBlock__Group__3__Impl();
 
             state._fsp--;
@@ -7642,20 +7692,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementBlock__Group__3__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2699:1: rule__AttributeElementBlock__Group__3__Impl : ( ')' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2725:1: rule__AttributeElementBlock__Group__3__Impl : ( ')' ) ;
     public final void rule__AttributeElementBlock__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2703:1: ( ( ')' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2704:1: ( ')' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2729:1: ( ( ')' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2730:1: ( ')' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2704:1: ( ')' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2705:1: ')'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2730:1: ( ')' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2731:1: ')'
             {
              before(grammarAccess.getAttributeElementBlockAccess().getRightParenthesisKeyword_3()); 
-            match(input,39,FOLLOW_39_in_rule__AttributeElementBlock__Group__3__Impl5578); 
+            match(input,39,FOLLOW_39_in_rule__AttributeElementBlock__Group__3__Impl5625); 
              after(grammarAccess.getAttributeElementBlockAccess().getRightParenthesisKeyword_3()); 
 
             }
@@ -7679,21 +7729,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementBlock__Group_2__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2726:1: rule__AttributeElementBlock__Group_2__0 : rule__AttributeElementBlock__Group_2__0__Impl rule__AttributeElementBlock__Group_2__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2752:1: rule__AttributeElementBlock__Group_2__0 : rule__AttributeElementBlock__Group_2__0__Impl rule__AttributeElementBlock__Group_2__1 ;
     public final void rule__AttributeElementBlock__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2730:1: ( rule__AttributeElementBlock__Group_2__0__Impl rule__AttributeElementBlock__Group_2__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2731:2: rule__AttributeElementBlock__Group_2__0__Impl rule__AttributeElementBlock__Group_2__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2756:1: ( rule__AttributeElementBlock__Group_2__0__Impl rule__AttributeElementBlock__Group_2__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2757:2: rule__AttributeElementBlock__Group_2__0__Impl rule__AttributeElementBlock__Group_2__1
             {
-            pushFollow(FOLLOW_rule__AttributeElementBlock__Group_2__0__Impl_in_rule__AttributeElementBlock__Group_2__05617);
+            pushFollow(FOLLOW_rule__AttributeElementBlock__Group_2__0__Impl_in_rule__AttributeElementBlock__Group_2__05664);
             rule__AttributeElementBlock__Group_2__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttributeElementBlock__Group_2__1_in_rule__AttributeElementBlock__Group_2__05620);
+            pushFollow(FOLLOW_rule__AttributeElementBlock__Group_2__1_in_rule__AttributeElementBlock__Group_2__05667);
             rule__AttributeElementBlock__Group_2__1();
 
             state._fsp--;
@@ -7717,23 +7767,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementBlock__Group_2__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2738:1: rule__AttributeElementBlock__Group_2__0__Impl : ( ( rule__AttributeElementBlock__ElementsAssignment_2_0 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2764:1: rule__AttributeElementBlock__Group_2__0__Impl : ( ( rule__AttributeElementBlock__ElementsAssignment_2_0 ) ) ;
     public final void rule__AttributeElementBlock__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2742:1: ( ( ( rule__AttributeElementBlock__ElementsAssignment_2_0 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2743:1: ( ( rule__AttributeElementBlock__ElementsAssignment_2_0 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2768:1: ( ( ( rule__AttributeElementBlock__ElementsAssignment_2_0 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2769:1: ( ( rule__AttributeElementBlock__ElementsAssignment_2_0 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2743:1: ( ( rule__AttributeElementBlock__ElementsAssignment_2_0 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2744:1: ( rule__AttributeElementBlock__ElementsAssignment_2_0 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2769:1: ( ( rule__AttributeElementBlock__ElementsAssignment_2_0 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2770:1: ( rule__AttributeElementBlock__ElementsAssignment_2_0 )
             {
              before(grammarAccess.getAttributeElementBlockAccess().getElementsAssignment_2_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2745:1: ( rule__AttributeElementBlock__ElementsAssignment_2_0 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2745:2: rule__AttributeElementBlock__ElementsAssignment_2_0
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2771:1: ( rule__AttributeElementBlock__ElementsAssignment_2_0 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2771:2: rule__AttributeElementBlock__ElementsAssignment_2_0
             {
-            pushFollow(FOLLOW_rule__AttributeElementBlock__ElementsAssignment_2_0_in_rule__AttributeElementBlock__Group_2__0__Impl5647);
+            pushFollow(FOLLOW_rule__AttributeElementBlock__ElementsAssignment_2_0_in_rule__AttributeElementBlock__Group_2__0__Impl5694);
             rule__AttributeElementBlock__ElementsAssignment_2_0();
 
             state._fsp--;
@@ -7764,16 +7814,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementBlock__Group_2__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2755:1: rule__AttributeElementBlock__Group_2__1 : rule__AttributeElementBlock__Group_2__1__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2781:1: rule__AttributeElementBlock__Group_2__1 : rule__AttributeElementBlock__Group_2__1__Impl ;
     public final void rule__AttributeElementBlock__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2759:1: ( rule__AttributeElementBlock__Group_2__1__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2760:2: rule__AttributeElementBlock__Group_2__1__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2785:1: ( rule__AttributeElementBlock__Group_2__1__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2786:2: rule__AttributeElementBlock__Group_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__AttributeElementBlock__Group_2__1__Impl_in_rule__AttributeElementBlock__Group_2__15677);
+            pushFollow(FOLLOW_rule__AttributeElementBlock__Group_2__1__Impl_in_rule__AttributeElementBlock__Group_2__15724);
             rule__AttributeElementBlock__Group_2__1__Impl();
 
             state._fsp--;
@@ -7797,20 +7847,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementBlock__Group_2__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2766:1: rule__AttributeElementBlock__Group_2__1__Impl : ( ( ',' )? ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2792:1: rule__AttributeElementBlock__Group_2__1__Impl : ( ( ',' )? ) ;
     public final void rule__AttributeElementBlock__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2770:1: ( ( ( ',' )? ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2771:1: ( ( ',' )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2796:1: ( ( ( ',' )? ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2797:1: ( ( ',' )? )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2771:1: ( ( ',' )? )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2772:1: ( ',' )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2797:1: ( ( ',' )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2798:1: ( ',' )?
             {
              before(grammarAccess.getAttributeElementBlockAccess().getCommaKeyword_2_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2773:1: ( ',' )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2799:1: ( ',' )?
             int alt25=2;
             int LA25_0 = input.LA(1);
 
@@ -7819,9 +7869,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt25) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2774:2: ','
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2800:2: ','
                     {
-                    match(input,40,FOLLOW_40_in_rule__AttributeElementBlock__Group_2__1__Impl5706); 
+                    match(input,40,FOLLOW_40_in_rule__AttributeElementBlock__Group_2__1__Impl5753); 
 
                     }
                     break;
@@ -7851,21 +7901,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementList__Group__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2789:1: rule__AttributeElementList__Group__0 : rule__AttributeElementList__Group__0__Impl rule__AttributeElementList__Group__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2815:1: rule__AttributeElementList__Group__0 : rule__AttributeElementList__Group__0__Impl rule__AttributeElementList__Group__1 ;
     public final void rule__AttributeElementList__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2793:1: ( rule__AttributeElementList__Group__0__Impl rule__AttributeElementList__Group__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2794:2: rule__AttributeElementList__Group__0__Impl rule__AttributeElementList__Group__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2819:1: ( rule__AttributeElementList__Group__0__Impl rule__AttributeElementList__Group__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2820:2: rule__AttributeElementList__Group__0__Impl rule__AttributeElementList__Group__1
             {
-            pushFollow(FOLLOW_rule__AttributeElementList__Group__0__Impl_in_rule__AttributeElementList__Group__05743);
+            pushFollow(FOLLOW_rule__AttributeElementList__Group__0__Impl_in_rule__AttributeElementList__Group__05790);
             rule__AttributeElementList__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttributeElementList__Group__1_in_rule__AttributeElementList__Group__05746);
+            pushFollow(FOLLOW_rule__AttributeElementList__Group__1_in_rule__AttributeElementList__Group__05793);
             rule__AttributeElementList__Group__1();
 
             state._fsp--;
@@ -7889,23 +7939,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementList__Group__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2801:1: rule__AttributeElementList__Group__0__Impl : ( ( rule__AttributeElementList__ElementsAssignment_0 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2827:1: rule__AttributeElementList__Group__0__Impl : ( ( rule__AttributeElementList__ElementsAssignment_0 ) ) ;
     public final void rule__AttributeElementList__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2805:1: ( ( ( rule__AttributeElementList__ElementsAssignment_0 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2806:1: ( ( rule__AttributeElementList__ElementsAssignment_0 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2831:1: ( ( ( rule__AttributeElementList__ElementsAssignment_0 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2832:1: ( ( rule__AttributeElementList__ElementsAssignment_0 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2806:1: ( ( rule__AttributeElementList__ElementsAssignment_0 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2807:1: ( rule__AttributeElementList__ElementsAssignment_0 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2832:1: ( ( rule__AttributeElementList__ElementsAssignment_0 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2833:1: ( rule__AttributeElementList__ElementsAssignment_0 )
             {
              before(grammarAccess.getAttributeElementListAccess().getElementsAssignment_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2808:1: ( rule__AttributeElementList__ElementsAssignment_0 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2808:2: rule__AttributeElementList__ElementsAssignment_0
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2834:1: ( rule__AttributeElementList__ElementsAssignment_0 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2834:2: rule__AttributeElementList__ElementsAssignment_0
             {
-            pushFollow(FOLLOW_rule__AttributeElementList__ElementsAssignment_0_in_rule__AttributeElementList__Group__0__Impl5773);
+            pushFollow(FOLLOW_rule__AttributeElementList__ElementsAssignment_0_in_rule__AttributeElementList__Group__0__Impl5820);
             rule__AttributeElementList__ElementsAssignment_0();
 
             state._fsp--;
@@ -7936,16 +7986,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementList__Group__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2818:1: rule__AttributeElementList__Group__1 : rule__AttributeElementList__Group__1__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2844:1: rule__AttributeElementList__Group__1 : rule__AttributeElementList__Group__1__Impl ;
     public final void rule__AttributeElementList__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2822:1: ( rule__AttributeElementList__Group__1__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2823:2: rule__AttributeElementList__Group__1__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2848:1: ( rule__AttributeElementList__Group__1__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2849:2: rule__AttributeElementList__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__AttributeElementList__Group__1__Impl_in_rule__AttributeElementList__Group__15803);
+            pushFollow(FOLLOW_rule__AttributeElementList__Group__1__Impl_in_rule__AttributeElementList__Group__15850);
             rule__AttributeElementList__Group__1__Impl();
 
             state._fsp--;
@@ -7969,20 +8019,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementList__Group__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2829:1: rule__AttributeElementList__Group__1__Impl : ( ( rule__AttributeElementList__Group_1__0 )* ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2855:1: rule__AttributeElementList__Group__1__Impl : ( ( rule__AttributeElementList__Group_1__0 )* ) ;
     public final void rule__AttributeElementList__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2833:1: ( ( ( rule__AttributeElementList__Group_1__0 )* ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2834:1: ( ( rule__AttributeElementList__Group_1__0 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2859:1: ( ( ( rule__AttributeElementList__Group_1__0 )* ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2860:1: ( ( rule__AttributeElementList__Group_1__0 )* )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2834:1: ( ( rule__AttributeElementList__Group_1__0 )* )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2835:1: ( rule__AttributeElementList__Group_1__0 )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2860:1: ( ( rule__AttributeElementList__Group_1__0 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2861:1: ( rule__AttributeElementList__Group_1__0 )*
             {
              before(grammarAccess.getAttributeElementListAccess().getGroup_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2836:1: ( rule__AttributeElementList__Group_1__0 )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2862:1: ( rule__AttributeElementList__Group_1__0 )*
             loop26:
             do {
                 int alt26=2;
@@ -8001,9 +8051,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
                 switch (alt26) {
             	case 1 :
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2836:2: rule__AttributeElementList__Group_1__0
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2862:2: rule__AttributeElementList__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__AttributeElementList__Group_1__0_in_rule__AttributeElementList__Group__1__Impl5830);
+            	    pushFollow(FOLLOW_rule__AttributeElementList__Group_1__0_in_rule__AttributeElementList__Group__1__Impl5877);
             	    rule__AttributeElementList__Group_1__0();
 
             	    state._fsp--;
@@ -8040,21 +8090,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementList__Group_1__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2850:1: rule__AttributeElementList__Group_1__0 : rule__AttributeElementList__Group_1__0__Impl rule__AttributeElementList__Group_1__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2876:1: rule__AttributeElementList__Group_1__0 : rule__AttributeElementList__Group_1__0__Impl rule__AttributeElementList__Group_1__1 ;
     public final void rule__AttributeElementList__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2854:1: ( rule__AttributeElementList__Group_1__0__Impl rule__AttributeElementList__Group_1__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2855:2: rule__AttributeElementList__Group_1__0__Impl rule__AttributeElementList__Group_1__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2880:1: ( rule__AttributeElementList__Group_1__0__Impl rule__AttributeElementList__Group_1__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2881:2: rule__AttributeElementList__Group_1__0__Impl rule__AttributeElementList__Group_1__1
             {
-            pushFollow(FOLLOW_rule__AttributeElementList__Group_1__0__Impl_in_rule__AttributeElementList__Group_1__05865);
+            pushFollow(FOLLOW_rule__AttributeElementList__Group_1__0__Impl_in_rule__AttributeElementList__Group_1__05912);
             rule__AttributeElementList__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttributeElementList__Group_1__1_in_rule__AttributeElementList__Group_1__05868);
+            pushFollow(FOLLOW_rule__AttributeElementList__Group_1__1_in_rule__AttributeElementList__Group_1__05915);
             rule__AttributeElementList__Group_1__1();
 
             state._fsp--;
@@ -8078,20 +8128,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementList__Group_1__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2862:1: rule__AttributeElementList__Group_1__0__Impl : ( ',' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2888:1: rule__AttributeElementList__Group_1__0__Impl : ( ',' ) ;
     public final void rule__AttributeElementList__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2866:1: ( ( ',' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2867:1: ( ',' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2892:1: ( ( ',' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2893:1: ( ',' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2867:1: ( ',' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2868:1: ','
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2893:1: ( ',' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2894:1: ','
             {
              before(grammarAccess.getAttributeElementListAccess().getCommaKeyword_1_0()); 
-            match(input,40,FOLLOW_40_in_rule__AttributeElementList__Group_1__0__Impl5896); 
+            match(input,40,FOLLOW_40_in_rule__AttributeElementList__Group_1__0__Impl5943); 
              after(grammarAccess.getAttributeElementListAccess().getCommaKeyword_1_0()); 
 
             }
@@ -8115,16 +8165,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementList__Group_1__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2881:1: rule__AttributeElementList__Group_1__1 : rule__AttributeElementList__Group_1__1__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2907:1: rule__AttributeElementList__Group_1__1 : rule__AttributeElementList__Group_1__1__Impl ;
     public final void rule__AttributeElementList__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2885:1: ( rule__AttributeElementList__Group_1__1__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2886:2: rule__AttributeElementList__Group_1__1__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2911:1: ( rule__AttributeElementList__Group_1__1__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2912:2: rule__AttributeElementList__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__AttributeElementList__Group_1__1__Impl_in_rule__AttributeElementList__Group_1__15927);
+            pushFollow(FOLLOW_rule__AttributeElementList__Group_1__1__Impl_in_rule__AttributeElementList__Group_1__15974);
             rule__AttributeElementList__Group_1__1__Impl();
 
             state._fsp--;
@@ -8148,23 +8198,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementList__Group_1__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2892:1: rule__AttributeElementList__Group_1__1__Impl : ( ( rule__AttributeElementList__ElementsAssignment_1_1 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2918:1: rule__AttributeElementList__Group_1__1__Impl : ( ( rule__AttributeElementList__ElementsAssignment_1_1 ) ) ;
     public final void rule__AttributeElementList__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2896:1: ( ( ( rule__AttributeElementList__ElementsAssignment_1_1 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2897:1: ( ( rule__AttributeElementList__ElementsAssignment_1_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2922:1: ( ( ( rule__AttributeElementList__ElementsAssignment_1_1 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2923:1: ( ( rule__AttributeElementList__ElementsAssignment_1_1 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2897:1: ( ( rule__AttributeElementList__ElementsAssignment_1_1 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2898:1: ( rule__AttributeElementList__ElementsAssignment_1_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2923:1: ( ( rule__AttributeElementList__ElementsAssignment_1_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2924:1: ( rule__AttributeElementList__ElementsAssignment_1_1 )
             {
              before(grammarAccess.getAttributeElementListAccess().getElementsAssignment_1_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2899:1: ( rule__AttributeElementList__ElementsAssignment_1_1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2899:2: rule__AttributeElementList__ElementsAssignment_1_1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2925:1: ( rule__AttributeElementList__ElementsAssignment_1_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2925:2: rule__AttributeElementList__ElementsAssignment_1_1
             {
-            pushFollow(FOLLOW_rule__AttributeElementList__ElementsAssignment_1_1_in_rule__AttributeElementList__Group_1__1__Impl5954);
+            pushFollow(FOLLOW_rule__AttributeElementList__ElementsAssignment_1_1_in_rule__AttributeElementList__Group_1__1__Impl6001);
             rule__AttributeElementList__ElementsAssignment_1_1();
 
             state._fsp--;
@@ -8195,21 +8245,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElement__Group__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2913:1: rule__AttributeElement__Group__0 : rule__AttributeElement__Group__0__Impl rule__AttributeElement__Group__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2939:1: rule__AttributeElement__Group__0 : rule__AttributeElement__Group__0__Impl rule__AttributeElement__Group__1 ;
     public final void rule__AttributeElement__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2917:1: ( rule__AttributeElement__Group__0__Impl rule__AttributeElement__Group__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2918:2: rule__AttributeElement__Group__0__Impl rule__AttributeElement__Group__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2943:1: ( rule__AttributeElement__Group__0__Impl rule__AttributeElement__Group__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2944:2: rule__AttributeElement__Group__0__Impl rule__AttributeElement__Group__1
             {
-            pushFollow(FOLLOW_rule__AttributeElement__Group__0__Impl_in_rule__AttributeElement__Group__05988);
+            pushFollow(FOLLOW_rule__AttributeElement__Group__0__Impl_in_rule__AttributeElement__Group__06035);
             rule__AttributeElement__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttributeElement__Group__1_in_rule__AttributeElement__Group__05991);
+            pushFollow(FOLLOW_rule__AttributeElement__Group__1_in_rule__AttributeElement__Group__06038);
             rule__AttributeElement__Group__1();
 
             state._fsp--;
@@ -8233,23 +8283,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElement__Group__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2925:1: rule__AttributeElement__Group__0__Impl : ( ( rule__AttributeElement__NameAssignment_0 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2951:1: rule__AttributeElement__Group__0__Impl : ( ( rule__AttributeElement__NameAssignment_0 ) ) ;
     public final void rule__AttributeElement__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2929:1: ( ( ( rule__AttributeElement__NameAssignment_0 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2930:1: ( ( rule__AttributeElement__NameAssignment_0 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2955:1: ( ( ( rule__AttributeElement__NameAssignment_0 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2956:1: ( ( rule__AttributeElement__NameAssignment_0 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2930:1: ( ( rule__AttributeElement__NameAssignment_0 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2931:1: ( rule__AttributeElement__NameAssignment_0 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2956:1: ( ( rule__AttributeElement__NameAssignment_0 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2957:1: ( rule__AttributeElement__NameAssignment_0 )
             {
              before(grammarAccess.getAttributeElementAccess().getNameAssignment_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2932:1: ( rule__AttributeElement__NameAssignment_0 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2932:2: rule__AttributeElement__NameAssignment_0
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2958:1: ( rule__AttributeElement__NameAssignment_0 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2958:2: rule__AttributeElement__NameAssignment_0
             {
-            pushFollow(FOLLOW_rule__AttributeElement__NameAssignment_0_in_rule__AttributeElement__Group__0__Impl6018);
+            pushFollow(FOLLOW_rule__AttributeElement__NameAssignment_0_in_rule__AttributeElement__Group__0__Impl6065);
             rule__AttributeElement__NameAssignment_0();
 
             state._fsp--;
@@ -8280,21 +8330,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElement__Group__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2942:1: rule__AttributeElement__Group__1 : rule__AttributeElement__Group__1__Impl rule__AttributeElement__Group__2 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2968:1: rule__AttributeElement__Group__1 : rule__AttributeElement__Group__1__Impl rule__AttributeElement__Group__2 ;
     public final void rule__AttributeElement__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2946:1: ( rule__AttributeElement__Group__1__Impl rule__AttributeElement__Group__2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2947:2: rule__AttributeElement__Group__1__Impl rule__AttributeElement__Group__2
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2972:1: ( rule__AttributeElement__Group__1__Impl rule__AttributeElement__Group__2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2973:2: rule__AttributeElement__Group__1__Impl rule__AttributeElement__Group__2
             {
-            pushFollow(FOLLOW_rule__AttributeElement__Group__1__Impl_in_rule__AttributeElement__Group__16048);
+            pushFollow(FOLLOW_rule__AttributeElement__Group__1__Impl_in_rule__AttributeElement__Group__16095);
             rule__AttributeElement__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttributeElement__Group__2_in_rule__AttributeElement__Group__16051);
+            pushFollow(FOLLOW_rule__AttributeElement__Group__2_in_rule__AttributeElement__Group__16098);
             rule__AttributeElement__Group__2();
 
             state._fsp--;
@@ -8318,20 +8368,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElement__Group__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2954:1: rule__AttributeElement__Group__1__Impl : ( '=' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2980:1: rule__AttributeElement__Group__1__Impl : ( '=' ) ;
     public final void rule__AttributeElement__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2958:1: ( ( '=' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2959:1: ( '=' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2984:1: ( ( '=' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2985:1: ( '=' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2959:1: ( '=' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2960:1: '='
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2985:1: ( '=' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2986:1: '='
             {
              before(grammarAccess.getAttributeElementAccess().getEqualsSignKeyword_1()); 
-            match(input,32,FOLLOW_32_in_rule__AttributeElement__Group__1__Impl6079); 
+            match(input,32,FOLLOW_32_in_rule__AttributeElement__Group__1__Impl6126); 
              after(grammarAccess.getAttributeElementAccess().getEqualsSignKeyword_1()); 
 
             }
@@ -8355,16 +8405,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElement__Group__2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2973:1: rule__AttributeElement__Group__2 : rule__AttributeElement__Group__2__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2999:1: rule__AttributeElement__Group__2 : rule__AttributeElement__Group__2__Impl ;
     public final void rule__AttributeElement__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2977:1: ( rule__AttributeElement__Group__2__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2978:2: rule__AttributeElement__Group__2__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3003:1: ( rule__AttributeElement__Group__2__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3004:2: rule__AttributeElement__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__AttributeElement__Group__2__Impl_in_rule__AttributeElement__Group__26110);
+            pushFollow(FOLLOW_rule__AttributeElement__Group__2__Impl_in_rule__AttributeElement__Group__26157);
             rule__AttributeElement__Group__2__Impl();
 
             state._fsp--;
@@ -8388,23 +8438,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElement__Group__2__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2984:1: rule__AttributeElement__Group__2__Impl : ( ( rule__AttributeElement__ValueAssignment_2 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3010:1: rule__AttributeElement__Group__2__Impl : ( ( rule__AttributeElement__ValueAssignment_2 ) ) ;
     public final void rule__AttributeElement__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2988:1: ( ( ( rule__AttributeElement__ValueAssignment_2 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2989:1: ( ( rule__AttributeElement__ValueAssignment_2 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3014:1: ( ( ( rule__AttributeElement__ValueAssignment_2 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3015:1: ( ( rule__AttributeElement__ValueAssignment_2 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2989:1: ( ( rule__AttributeElement__ValueAssignment_2 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2990:1: ( rule__AttributeElement__ValueAssignment_2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3015:1: ( ( rule__AttributeElement__ValueAssignment_2 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3016:1: ( rule__AttributeElement__ValueAssignment_2 )
             {
              before(grammarAccess.getAttributeElementAccess().getValueAssignment_2()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2991:1: ( rule__AttributeElement__ValueAssignment_2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:2991:2: rule__AttributeElement__ValueAssignment_2
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3017:1: ( rule__AttributeElement__ValueAssignment_2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3017:2: rule__AttributeElement__ValueAssignment_2
             {
-            pushFollow(FOLLOW_rule__AttributeElement__ValueAssignment_2_in_rule__AttributeElement__Group__2__Impl6137);
+            pushFollow(FOLLOW_rule__AttributeElement__ValueAssignment_2_in_rule__AttributeElement__Group__2__Impl6184);
             rule__AttributeElement__ValueAssignment_2();
 
             state._fsp--;
@@ -8435,21 +8485,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValueArray__Group__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3007:1: rule__AttributeValueArray__Group__0 : rule__AttributeValueArray__Group__0__Impl rule__AttributeValueArray__Group__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3033:1: rule__AttributeValueArray__Group__0 : rule__AttributeValueArray__Group__0__Impl rule__AttributeValueArray__Group__1 ;
     public final void rule__AttributeValueArray__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3011:1: ( rule__AttributeValueArray__Group__0__Impl rule__AttributeValueArray__Group__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3012:2: rule__AttributeValueArray__Group__0__Impl rule__AttributeValueArray__Group__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3037:1: ( rule__AttributeValueArray__Group__0__Impl rule__AttributeValueArray__Group__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3038:2: rule__AttributeValueArray__Group__0__Impl rule__AttributeValueArray__Group__1
             {
-            pushFollow(FOLLOW_rule__AttributeValueArray__Group__0__Impl_in_rule__AttributeValueArray__Group__06173);
+            pushFollow(FOLLOW_rule__AttributeValueArray__Group__0__Impl_in_rule__AttributeValueArray__Group__06220);
             rule__AttributeValueArray__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttributeValueArray__Group__1_in_rule__AttributeValueArray__Group__06176);
+            pushFollow(FOLLOW_rule__AttributeValueArray__Group__1_in_rule__AttributeValueArray__Group__06223);
             rule__AttributeValueArray__Group__1();
 
             state._fsp--;
@@ -8473,20 +8523,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValueArray__Group__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3019:1: rule__AttributeValueArray__Group__0__Impl : ( '{' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3045:1: rule__AttributeValueArray__Group__0__Impl : ( '{' ) ;
     public final void rule__AttributeValueArray__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3023:1: ( ( '{' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3024:1: ( '{' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3049:1: ( ( '{' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3050:1: ( '{' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3024:1: ( '{' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3025:1: '{'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3050:1: ( '{' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3051:1: '{'
             {
              before(grammarAccess.getAttributeValueArrayAccess().getLeftCurlyBracketKeyword_0()); 
-            match(input,34,FOLLOW_34_in_rule__AttributeValueArray__Group__0__Impl6204); 
+            match(input,34,FOLLOW_34_in_rule__AttributeValueArray__Group__0__Impl6251); 
              after(grammarAccess.getAttributeValueArrayAccess().getLeftCurlyBracketKeyword_0()); 
 
             }
@@ -8510,21 +8560,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValueArray__Group__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3038:1: rule__AttributeValueArray__Group__1 : rule__AttributeValueArray__Group__1__Impl rule__AttributeValueArray__Group__2 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3064:1: rule__AttributeValueArray__Group__1 : rule__AttributeValueArray__Group__1__Impl rule__AttributeValueArray__Group__2 ;
     public final void rule__AttributeValueArray__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3042:1: ( rule__AttributeValueArray__Group__1__Impl rule__AttributeValueArray__Group__2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3043:2: rule__AttributeValueArray__Group__1__Impl rule__AttributeValueArray__Group__2
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3068:1: ( rule__AttributeValueArray__Group__1__Impl rule__AttributeValueArray__Group__2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3069:2: rule__AttributeValueArray__Group__1__Impl rule__AttributeValueArray__Group__2
             {
-            pushFollow(FOLLOW_rule__AttributeValueArray__Group__1__Impl_in_rule__AttributeValueArray__Group__16235);
+            pushFollow(FOLLOW_rule__AttributeValueArray__Group__1__Impl_in_rule__AttributeValueArray__Group__16282);
             rule__AttributeValueArray__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttributeValueArray__Group__2_in_rule__AttributeValueArray__Group__16238);
+            pushFollow(FOLLOW_rule__AttributeValueArray__Group__2_in_rule__AttributeValueArray__Group__16285);
             rule__AttributeValueArray__Group__2();
 
             state._fsp--;
@@ -8548,23 +8598,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValueArray__Group__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3050:1: rule__AttributeValueArray__Group__1__Impl : ( ( rule__AttributeValueArray__ElementsAssignment_1 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3076:1: rule__AttributeValueArray__Group__1__Impl : ( ( rule__AttributeValueArray__ElementsAssignment_1 ) ) ;
     public final void rule__AttributeValueArray__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3054:1: ( ( ( rule__AttributeValueArray__ElementsAssignment_1 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3055:1: ( ( rule__AttributeValueArray__ElementsAssignment_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3080:1: ( ( ( rule__AttributeValueArray__ElementsAssignment_1 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3081:1: ( ( rule__AttributeValueArray__ElementsAssignment_1 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3055:1: ( ( rule__AttributeValueArray__ElementsAssignment_1 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3056:1: ( rule__AttributeValueArray__ElementsAssignment_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3081:1: ( ( rule__AttributeValueArray__ElementsAssignment_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3082:1: ( rule__AttributeValueArray__ElementsAssignment_1 )
             {
              before(grammarAccess.getAttributeValueArrayAccess().getElementsAssignment_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3057:1: ( rule__AttributeValueArray__ElementsAssignment_1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3057:2: rule__AttributeValueArray__ElementsAssignment_1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3083:1: ( rule__AttributeValueArray__ElementsAssignment_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3083:2: rule__AttributeValueArray__ElementsAssignment_1
             {
-            pushFollow(FOLLOW_rule__AttributeValueArray__ElementsAssignment_1_in_rule__AttributeValueArray__Group__1__Impl6265);
+            pushFollow(FOLLOW_rule__AttributeValueArray__ElementsAssignment_1_in_rule__AttributeValueArray__Group__1__Impl6312);
             rule__AttributeValueArray__ElementsAssignment_1();
 
             state._fsp--;
@@ -8595,21 +8645,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValueArray__Group__2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3067:1: rule__AttributeValueArray__Group__2 : rule__AttributeValueArray__Group__2__Impl rule__AttributeValueArray__Group__3 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3093:1: rule__AttributeValueArray__Group__2 : rule__AttributeValueArray__Group__2__Impl rule__AttributeValueArray__Group__3 ;
     public final void rule__AttributeValueArray__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3071:1: ( rule__AttributeValueArray__Group__2__Impl rule__AttributeValueArray__Group__3 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3072:2: rule__AttributeValueArray__Group__2__Impl rule__AttributeValueArray__Group__3
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3097:1: ( rule__AttributeValueArray__Group__2__Impl rule__AttributeValueArray__Group__3 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3098:2: rule__AttributeValueArray__Group__2__Impl rule__AttributeValueArray__Group__3
             {
-            pushFollow(FOLLOW_rule__AttributeValueArray__Group__2__Impl_in_rule__AttributeValueArray__Group__26295);
+            pushFollow(FOLLOW_rule__AttributeValueArray__Group__2__Impl_in_rule__AttributeValueArray__Group__26342);
             rule__AttributeValueArray__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttributeValueArray__Group__3_in_rule__AttributeValueArray__Group__26298);
+            pushFollow(FOLLOW_rule__AttributeValueArray__Group__3_in_rule__AttributeValueArray__Group__26345);
             rule__AttributeValueArray__Group__3();
 
             state._fsp--;
@@ -8633,20 +8683,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValueArray__Group__2__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3079:1: rule__AttributeValueArray__Group__2__Impl : ( ( rule__AttributeValueArray__Group_2__0 )* ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3105:1: rule__AttributeValueArray__Group__2__Impl : ( ( rule__AttributeValueArray__Group_2__0 )* ) ;
     public final void rule__AttributeValueArray__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3083:1: ( ( ( rule__AttributeValueArray__Group_2__0 )* ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3084:1: ( ( rule__AttributeValueArray__Group_2__0 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3109:1: ( ( ( rule__AttributeValueArray__Group_2__0 )* ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3110:1: ( ( rule__AttributeValueArray__Group_2__0 )* )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3084:1: ( ( rule__AttributeValueArray__Group_2__0 )* )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3085:1: ( rule__AttributeValueArray__Group_2__0 )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3110:1: ( ( rule__AttributeValueArray__Group_2__0 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3111:1: ( rule__AttributeValueArray__Group_2__0 )*
             {
              before(grammarAccess.getAttributeValueArrayAccess().getGroup_2()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3086:1: ( rule__AttributeValueArray__Group_2__0 )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3112:1: ( rule__AttributeValueArray__Group_2__0 )*
             loop27:
             do {
                 int alt27=2;
@@ -8665,9 +8715,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
                 switch (alt27) {
             	case 1 :
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3086:2: rule__AttributeValueArray__Group_2__0
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3112:2: rule__AttributeValueArray__Group_2__0
             	    {
-            	    pushFollow(FOLLOW_rule__AttributeValueArray__Group_2__0_in_rule__AttributeValueArray__Group__2__Impl6325);
+            	    pushFollow(FOLLOW_rule__AttributeValueArray__Group_2__0_in_rule__AttributeValueArray__Group__2__Impl6372);
             	    rule__AttributeValueArray__Group_2__0();
 
             	    state._fsp--;
@@ -8704,21 +8754,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValueArray__Group__3"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3096:1: rule__AttributeValueArray__Group__3 : rule__AttributeValueArray__Group__3__Impl rule__AttributeValueArray__Group__4 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3122:1: rule__AttributeValueArray__Group__3 : rule__AttributeValueArray__Group__3__Impl rule__AttributeValueArray__Group__4 ;
     public final void rule__AttributeValueArray__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3100:1: ( rule__AttributeValueArray__Group__3__Impl rule__AttributeValueArray__Group__4 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3101:2: rule__AttributeValueArray__Group__3__Impl rule__AttributeValueArray__Group__4
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3126:1: ( rule__AttributeValueArray__Group__3__Impl rule__AttributeValueArray__Group__4 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3127:2: rule__AttributeValueArray__Group__3__Impl rule__AttributeValueArray__Group__4
             {
-            pushFollow(FOLLOW_rule__AttributeValueArray__Group__3__Impl_in_rule__AttributeValueArray__Group__36356);
+            pushFollow(FOLLOW_rule__AttributeValueArray__Group__3__Impl_in_rule__AttributeValueArray__Group__36403);
             rule__AttributeValueArray__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttributeValueArray__Group__4_in_rule__AttributeValueArray__Group__36359);
+            pushFollow(FOLLOW_rule__AttributeValueArray__Group__4_in_rule__AttributeValueArray__Group__36406);
             rule__AttributeValueArray__Group__4();
 
             state._fsp--;
@@ -8742,20 +8792,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValueArray__Group__3__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3108:1: rule__AttributeValueArray__Group__3__Impl : ( ( ',' )? ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3134:1: rule__AttributeValueArray__Group__3__Impl : ( ( ',' )? ) ;
     public final void rule__AttributeValueArray__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3112:1: ( ( ( ',' )? ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3113:1: ( ( ',' )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3138:1: ( ( ( ',' )? ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3139:1: ( ( ',' )? )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3113:1: ( ( ',' )? )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3114:1: ( ',' )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3139:1: ( ( ',' )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3140:1: ( ',' )?
             {
              before(grammarAccess.getAttributeValueArrayAccess().getCommaKeyword_3()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3115:1: ( ',' )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3141:1: ( ',' )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -8764,9 +8814,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt28) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3116:2: ','
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3142:2: ','
                     {
-                    match(input,40,FOLLOW_40_in_rule__AttributeValueArray__Group__3__Impl6388); 
+                    match(input,40,FOLLOW_40_in_rule__AttributeValueArray__Group__3__Impl6435); 
 
                     }
                     break;
@@ -8796,16 +8846,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValueArray__Group__4"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3127:1: rule__AttributeValueArray__Group__4 : rule__AttributeValueArray__Group__4__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3153:1: rule__AttributeValueArray__Group__4 : rule__AttributeValueArray__Group__4__Impl ;
     public final void rule__AttributeValueArray__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3131:1: ( rule__AttributeValueArray__Group__4__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3132:2: rule__AttributeValueArray__Group__4__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3157:1: ( rule__AttributeValueArray__Group__4__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3158:2: rule__AttributeValueArray__Group__4__Impl
             {
-            pushFollow(FOLLOW_rule__AttributeValueArray__Group__4__Impl_in_rule__AttributeValueArray__Group__46421);
+            pushFollow(FOLLOW_rule__AttributeValueArray__Group__4__Impl_in_rule__AttributeValueArray__Group__46468);
             rule__AttributeValueArray__Group__4__Impl();
 
             state._fsp--;
@@ -8829,20 +8879,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValueArray__Group__4__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3138:1: rule__AttributeValueArray__Group__4__Impl : ( '}' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3164:1: rule__AttributeValueArray__Group__4__Impl : ( '}' ) ;
     public final void rule__AttributeValueArray__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3142:1: ( ( '}' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3143:1: ( '}' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3168:1: ( ( '}' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3169:1: ( '}' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3143:1: ( '}' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3144:1: '}'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3169:1: ( '}' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3170:1: '}'
             {
              before(grammarAccess.getAttributeValueArrayAccess().getRightCurlyBracketKeyword_4()); 
-            match(input,35,FOLLOW_35_in_rule__AttributeValueArray__Group__4__Impl6449); 
+            match(input,35,FOLLOW_35_in_rule__AttributeValueArray__Group__4__Impl6496); 
              after(grammarAccess.getAttributeValueArrayAccess().getRightCurlyBracketKeyword_4()); 
 
             }
@@ -8866,21 +8916,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValueArray__Group_2__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3167:1: rule__AttributeValueArray__Group_2__0 : rule__AttributeValueArray__Group_2__0__Impl rule__AttributeValueArray__Group_2__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3193:1: rule__AttributeValueArray__Group_2__0 : rule__AttributeValueArray__Group_2__0__Impl rule__AttributeValueArray__Group_2__1 ;
     public final void rule__AttributeValueArray__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3171:1: ( rule__AttributeValueArray__Group_2__0__Impl rule__AttributeValueArray__Group_2__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3172:2: rule__AttributeValueArray__Group_2__0__Impl rule__AttributeValueArray__Group_2__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3197:1: ( rule__AttributeValueArray__Group_2__0__Impl rule__AttributeValueArray__Group_2__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3198:2: rule__AttributeValueArray__Group_2__0__Impl rule__AttributeValueArray__Group_2__1
             {
-            pushFollow(FOLLOW_rule__AttributeValueArray__Group_2__0__Impl_in_rule__AttributeValueArray__Group_2__06490);
+            pushFollow(FOLLOW_rule__AttributeValueArray__Group_2__0__Impl_in_rule__AttributeValueArray__Group_2__06537);
             rule__AttributeValueArray__Group_2__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AttributeValueArray__Group_2__1_in_rule__AttributeValueArray__Group_2__06493);
+            pushFollow(FOLLOW_rule__AttributeValueArray__Group_2__1_in_rule__AttributeValueArray__Group_2__06540);
             rule__AttributeValueArray__Group_2__1();
 
             state._fsp--;
@@ -8904,20 +8954,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValueArray__Group_2__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3179:1: rule__AttributeValueArray__Group_2__0__Impl : ( ',' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3205:1: rule__AttributeValueArray__Group_2__0__Impl : ( ',' ) ;
     public final void rule__AttributeValueArray__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3183:1: ( ( ',' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3184:1: ( ',' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3209:1: ( ( ',' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3210:1: ( ',' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3184:1: ( ',' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3185:1: ','
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3210:1: ( ',' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3211:1: ','
             {
              before(grammarAccess.getAttributeValueArrayAccess().getCommaKeyword_2_0()); 
-            match(input,40,FOLLOW_40_in_rule__AttributeValueArray__Group_2__0__Impl6521); 
+            match(input,40,FOLLOW_40_in_rule__AttributeValueArray__Group_2__0__Impl6568); 
              after(grammarAccess.getAttributeValueArrayAccess().getCommaKeyword_2_0()); 
 
             }
@@ -8941,16 +8991,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValueArray__Group_2__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3198:1: rule__AttributeValueArray__Group_2__1 : rule__AttributeValueArray__Group_2__1__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3224:1: rule__AttributeValueArray__Group_2__1 : rule__AttributeValueArray__Group_2__1__Impl ;
     public final void rule__AttributeValueArray__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3202:1: ( rule__AttributeValueArray__Group_2__1__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3203:2: rule__AttributeValueArray__Group_2__1__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3228:1: ( rule__AttributeValueArray__Group_2__1__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3229:2: rule__AttributeValueArray__Group_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__AttributeValueArray__Group_2__1__Impl_in_rule__AttributeValueArray__Group_2__16552);
+            pushFollow(FOLLOW_rule__AttributeValueArray__Group_2__1__Impl_in_rule__AttributeValueArray__Group_2__16599);
             rule__AttributeValueArray__Group_2__1__Impl();
 
             state._fsp--;
@@ -8974,23 +9024,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValueArray__Group_2__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3209:1: rule__AttributeValueArray__Group_2__1__Impl : ( ( rule__AttributeValueArray__ElementsAssignment_2_1 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3235:1: rule__AttributeValueArray__Group_2__1__Impl : ( ( rule__AttributeValueArray__ElementsAssignment_2_1 ) ) ;
     public final void rule__AttributeValueArray__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3213:1: ( ( ( rule__AttributeValueArray__ElementsAssignment_2_1 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3214:1: ( ( rule__AttributeValueArray__ElementsAssignment_2_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3239:1: ( ( ( rule__AttributeValueArray__ElementsAssignment_2_1 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3240:1: ( ( rule__AttributeValueArray__ElementsAssignment_2_1 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3214:1: ( ( rule__AttributeValueArray__ElementsAssignment_2_1 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3215:1: ( rule__AttributeValueArray__ElementsAssignment_2_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3240:1: ( ( rule__AttributeValueArray__ElementsAssignment_2_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3241:1: ( rule__AttributeValueArray__ElementsAssignment_2_1 )
             {
              before(grammarAccess.getAttributeValueArrayAccess().getElementsAssignment_2_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3216:1: ( rule__AttributeValueArray__ElementsAssignment_2_1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3216:2: rule__AttributeValueArray__ElementsAssignment_2_1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3242:1: ( rule__AttributeValueArray__ElementsAssignment_2_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3242:2: rule__AttributeValueArray__ElementsAssignment_2_1
             {
-            pushFollow(FOLLOW_rule__AttributeValueArray__ElementsAssignment_2_1_in_rule__AttributeValueArray__Group_2__1__Impl6579);
+            pushFollow(FOLLOW_rule__AttributeValueArray__ElementsAssignment_2_1_in_rule__AttributeValueArray__Group_2__1__Impl6626);
             rule__AttributeValueArray__ElementsAssignment_2_1();
 
             state._fsp--;
@@ -9021,21 +9071,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Grouping__Group__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3230:1: rule__Grouping__Group__0 : rule__Grouping__Group__0__Impl rule__Grouping__Group__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3256:1: rule__Grouping__Group__0 : rule__Grouping__Group__0__Impl rule__Grouping__Group__1 ;
     public final void rule__Grouping__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3234:1: ( rule__Grouping__Group__0__Impl rule__Grouping__Group__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3235:2: rule__Grouping__Group__0__Impl rule__Grouping__Group__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3260:1: ( rule__Grouping__Group__0__Impl rule__Grouping__Group__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3261:2: rule__Grouping__Group__0__Impl rule__Grouping__Group__1
             {
-            pushFollow(FOLLOW_rule__Grouping__Group__0__Impl_in_rule__Grouping__Group__06613);
+            pushFollow(FOLLOW_rule__Grouping__Group__0__Impl_in_rule__Grouping__Group__06660);
             rule__Grouping__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Grouping__Group__1_in_rule__Grouping__Group__06616);
+            pushFollow(FOLLOW_rule__Grouping__Group__1_in_rule__Grouping__Group__06663);
             rule__Grouping__Group__1();
 
             state._fsp--;
@@ -9059,20 +9109,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Grouping__Group__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3242:1: rule__Grouping__Group__0__Impl : ( '%' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3268:1: rule__Grouping__Group__0__Impl : ( '%' ) ;
     public final void rule__Grouping__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3246:1: ( ( '%' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3247:1: ( '%' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3272:1: ( ( '%' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3273:1: ( '%' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3247:1: ( '%' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3248:1: '%'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3273:1: ( '%' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3274:1: '%'
             {
              before(grammarAccess.getGroupingAccess().getPercentSignKeyword_0()); 
-            match(input,41,FOLLOW_41_in_rule__Grouping__Group__0__Impl6644); 
+            match(input,41,FOLLOW_41_in_rule__Grouping__Group__0__Impl6691); 
              after(grammarAccess.getGroupingAccess().getPercentSignKeyword_0()); 
 
             }
@@ -9096,21 +9146,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Grouping__Group__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3261:1: rule__Grouping__Group__1 : rule__Grouping__Group__1__Impl rule__Grouping__Group__2 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3287:1: rule__Grouping__Group__1 : rule__Grouping__Group__1__Impl rule__Grouping__Group__2 ;
     public final void rule__Grouping__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3265:1: ( rule__Grouping__Group__1__Impl rule__Grouping__Group__2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3266:2: rule__Grouping__Group__1__Impl rule__Grouping__Group__2
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3291:1: ( rule__Grouping__Group__1__Impl rule__Grouping__Group__2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3292:2: rule__Grouping__Group__1__Impl rule__Grouping__Group__2
             {
-            pushFollow(FOLLOW_rule__Grouping__Group__1__Impl_in_rule__Grouping__Group__16675);
+            pushFollow(FOLLOW_rule__Grouping__Group__1__Impl_in_rule__Grouping__Group__16722);
             rule__Grouping__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Grouping__Group__2_in_rule__Grouping__Group__16678);
+            pushFollow(FOLLOW_rule__Grouping__Group__2_in_rule__Grouping__Group__16725);
             rule__Grouping__Group__2();
 
             state._fsp--;
@@ -9134,23 +9184,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Grouping__Group__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3273:1: rule__Grouping__Group__1__Impl : ( ( rule__Grouping__NameAssignment_1 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3299:1: rule__Grouping__Group__1__Impl : ( ( rule__Grouping__NameAssignment_1 ) ) ;
     public final void rule__Grouping__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3277:1: ( ( ( rule__Grouping__NameAssignment_1 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3278:1: ( ( rule__Grouping__NameAssignment_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3303:1: ( ( ( rule__Grouping__NameAssignment_1 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3304:1: ( ( rule__Grouping__NameAssignment_1 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3278:1: ( ( rule__Grouping__NameAssignment_1 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3279:1: ( rule__Grouping__NameAssignment_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3304:1: ( ( rule__Grouping__NameAssignment_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3305:1: ( rule__Grouping__NameAssignment_1 )
             {
              before(grammarAccess.getGroupingAccess().getNameAssignment_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3280:1: ( rule__Grouping__NameAssignment_1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3280:2: rule__Grouping__NameAssignment_1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3306:1: ( rule__Grouping__NameAssignment_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3306:2: rule__Grouping__NameAssignment_1
             {
-            pushFollow(FOLLOW_rule__Grouping__NameAssignment_1_in_rule__Grouping__Group__1__Impl6705);
+            pushFollow(FOLLOW_rule__Grouping__NameAssignment_1_in_rule__Grouping__Group__1__Impl6752);
             rule__Grouping__NameAssignment_1();
 
             state._fsp--;
@@ -9181,16 +9231,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Grouping__Group__2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3290:1: rule__Grouping__Group__2 : rule__Grouping__Group__2__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3316:1: rule__Grouping__Group__2 : rule__Grouping__Group__2__Impl ;
     public final void rule__Grouping__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3294:1: ( rule__Grouping__Group__2__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3295:2: rule__Grouping__Group__2__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3320:1: ( rule__Grouping__Group__2__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3321:2: rule__Grouping__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__Grouping__Group__2__Impl_in_rule__Grouping__Group__26735);
+            pushFollow(FOLLOW_rule__Grouping__Group__2__Impl_in_rule__Grouping__Group__26782);
             rule__Grouping__Group__2__Impl();
 
             state._fsp--;
@@ -9214,20 +9264,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Grouping__Group__2__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3301:1: rule__Grouping__Group__2__Impl : ( ( rule__Grouping__Group_2__0 )* ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3327:1: rule__Grouping__Group__2__Impl : ( ( rule__Grouping__Group_2__0 )* ) ;
     public final void rule__Grouping__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3305:1: ( ( ( rule__Grouping__Group_2__0 )* ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3306:1: ( ( rule__Grouping__Group_2__0 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3331:1: ( ( ( rule__Grouping__Group_2__0 )* ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3332:1: ( ( rule__Grouping__Group_2__0 )* )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3306:1: ( ( rule__Grouping__Group_2__0 )* )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3307:1: ( rule__Grouping__Group_2__0 )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3332:1: ( ( rule__Grouping__Group_2__0 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3333:1: ( rule__Grouping__Group_2__0 )*
             {
              before(grammarAccess.getGroupingAccess().getGroup_2()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3308:1: ( rule__Grouping__Group_2__0 )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3334:1: ( rule__Grouping__Group_2__0 )*
             loop29:
             do {
                 int alt29=2;
@@ -9240,9 +9290,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
                 switch (alt29) {
             	case 1 :
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3308:2: rule__Grouping__Group_2__0
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3334:2: rule__Grouping__Group_2__0
             	    {
-            	    pushFollow(FOLLOW_rule__Grouping__Group_2__0_in_rule__Grouping__Group__2__Impl6762);
+            	    pushFollow(FOLLOW_rule__Grouping__Group_2__0_in_rule__Grouping__Group__2__Impl6809);
             	    rule__Grouping__Group_2__0();
 
             	    state._fsp--;
@@ -9279,21 +9329,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Grouping__Group_2__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3324:1: rule__Grouping__Group_2__0 : rule__Grouping__Group_2__0__Impl rule__Grouping__Group_2__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3350:1: rule__Grouping__Group_2__0 : rule__Grouping__Group_2__0__Impl rule__Grouping__Group_2__1 ;
     public final void rule__Grouping__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3328:1: ( rule__Grouping__Group_2__0__Impl rule__Grouping__Group_2__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3329:2: rule__Grouping__Group_2__0__Impl rule__Grouping__Group_2__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3354:1: ( rule__Grouping__Group_2__0__Impl rule__Grouping__Group_2__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3355:2: rule__Grouping__Group_2__0__Impl rule__Grouping__Group_2__1
             {
-            pushFollow(FOLLOW_rule__Grouping__Group_2__0__Impl_in_rule__Grouping__Group_2__06799);
+            pushFollow(FOLLOW_rule__Grouping__Group_2__0__Impl_in_rule__Grouping__Group_2__06846);
             rule__Grouping__Group_2__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Grouping__Group_2__1_in_rule__Grouping__Group_2__06802);
+            pushFollow(FOLLOW_rule__Grouping__Group_2__1_in_rule__Grouping__Group_2__06849);
             rule__Grouping__Group_2__1();
 
             state._fsp--;
@@ -9317,20 +9367,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Grouping__Group_2__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3336:1: rule__Grouping__Group_2__0__Impl : ( ',' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3362:1: rule__Grouping__Group_2__0__Impl : ( ',' ) ;
     public final void rule__Grouping__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3340:1: ( ( ',' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3341:1: ( ',' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3366:1: ( ( ',' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3367:1: ( ',' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3341:1: ( ',' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3342:1: ','
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3367:1: ( ',' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3368:1: ','
             {
              before(grammarAccess.getGroupingAccess().getCommaKeyword_2_0()); 
-            match(input,40,FOLLOW_40_in_rule__Grouping__Group_2__0__Impl6830); 
+            match(input,40,FOLLOW_40_in_rule__Grouping__Group_2__0__Impl6877); 
              after(grammarAccess.getGroupingAccess().getCommaKeyword_2_0()); 
 
             }
@@ -9354,16 +9404,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Grouping__Group_2__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3355:1: rule__Grouping__Group_2__1 : rule__Grouping__Group_2__1__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3381:1: rule__Grouping__Group_2__1 : rule__Grouping__Group_2__1__Impl ;
     public final void rule__Grouping__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3359:1: ( rule__Grouping__Group_2__1__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3360:2: rule__Grouping__Group_2__1__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3385:1: ( rule__Grouping__Group_2__1__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3386:2: rule__Grouping__Group_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__Grouping__Group_2__1__Impl_in_rule__Grouping__Group_2__16861);
+            pushFollow(FOLLOW_rule__Grouping__Group_2__1__Impl_in_rule__Grouping__Group_2__16908);
             rule__Grouping__Group_2__1__Impl();
 
             state._fsp--;
@@ -9387,23 +9437,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Grouping__Group_2__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3366:1: rule__Grouping__Group_2__1__Impl : ( ( rule__Grouping__NameAssignment_2_1 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3392:1: rule__Grouping__Group_2__1__Impl : ( ( rule__Grouping__NameAssignment_2_1 ) ) ;
     public final void rule__Grouping__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3370:1: ( ( ( rule__Grouping__NameAssignment_2_1 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3371:1: ( ( rule__Grouping__NameAssignment_2_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3396:1: ( ( ( rule__Grouping__NameAssignment_2_1 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3397:1: ( ( rule__Grouping__NameAssignment_2_1 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3371:1: ( ( rule__Grouping__NameAssignment_2_1 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3372:1: ( rule__Grouping__NameAssignment_2_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3397:1: ( ( rule__Grouping__NameAssignment_2_1 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3398:1: ( rule__Grouping__NameAssignment_2_1 )
             {
              before(grammarAccess.getGroupingAccess().getNameAssignment_2_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3373:1: ( rule__Grouping__NameAssignment_2_1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3373:2: rule__Grouping__NameAssignment_2_1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3399:1: ( rule__Grouping__NameAssignment_2_1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3399:2: rule__Grouping__NameAssignment_2_1
             {
-            pushFollow(FOLLOW_rule__Grouping__NameAssignment_2_1_in_rule__Grouping__Group_2__1__Impl6888);
+            pushFollow(FOLLOW_rule__Grouping__NameAssignment_2_1_in_rule__Grouping__Group_2__1__Impl6935);
             rule__Grouping__NameAssignment_2_1();
 
             state._fsp--;
@@ -9434,21 +9484,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelMapping__Group__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3387:1: rule__ModelMapping__Group__0 : rule__ModelMapping__Group__0__Impl rule__ModelMapping__Group__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3413:1: rule__ModelMapping__Group__0 : rule__ModelMapping__Group__0__Impl rule__ModelMapping__Group__1 ;
     public final void rule__ModelMapping__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3391:1: ( rule__ModelMapping__Group__0__Impl rule__ModelMapping__Group__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3392:2: rule__ModelMapping__Group__0__Impl rule__ModelMapping__Group__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3417:1: ( rule__ModelMapping__Group__0__Impl rule__ModelMapping__Group__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3418:2: rule__ModelMapping__Group__0__Impl rule__ModelMapping__Group__1
             {
-            pushFollow(FOLLOW_rule__ModelMapping__Group__0__Impl_in_rule__ModelMapping__Group__06922);
+            pushFollow(FOLLOW_rule__ModelMapping__Group__0__Impl_in_rule__ModelMapping__Group__06969);
             rule__ModelMapping__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ModelMapping__Group__1_in_rule__ModelMapping__Group__06925);
+            pushFollow(FOLLOW_rule__ModelMapping__Group__1_in_rule__ModelMapping__Group__06972);
             rule__ModelMapping__Group__1();
 
             state._fsp--;
@@ -9472,20 +9522,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelMapping__Group__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3399:1: rule__ModelMapping__Group__0__Impl : ( '->' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3425:1: rule__ModelMapping__Group__0__Impl : ( '->' ) ;
     public final void rule__ModelMapping__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3403:1: ( ( '->' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3404:1: ( '->' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3429:1: ( ( '->' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3430:1: ( '->' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3404:1: ( '->' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3405:1: '->'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3430:1: ( '->' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3431:1: '->'
             {
              before(grammarAccess.getModelMappingAccess().getHyphenMinusGreaterThanSignKeyword_0()); 
-            match(input,13,FOLLOW_13_in_rule__ModelMapping__Group__0__Impl6953); 
+            match(input,13,FOLLOW_13_in_rule__ModelMapping__Group__0__Impl7000); 
              after(grammarAccess.getModelMappingAccess().getHyphenMinusGreaterThanSignKeyword_0()); 
 
             }
@@ -9509,21 +9559,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelMapping__Group__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3418:1: rule__ModelMapping__Group__1 : rule__ModelMapping__Group__1__Impl rule__ModelMapping__Group__2 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3444:1: rule__ModelMapping__Group__1 : rule__ModelMapping__Group__1__Impl rule__ModelMapping__Group__2 ;
     public final void rule__ModelMapping__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3422:1: ( rule__ModelMapping__Group__1__Impl rule__ModelMapping__Group__2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3423:2: rule__ModelMapping__Group__1__Impl rule__ModelMapping__Group__2
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3448:1: ( rule__ModelMapping__Group__1__Impl rule__ModelMapping__Group__2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3449:2: rule__ModelMapping__Group__1__Impl rule__ModelMapping__Group__2
             {
-            pushFollow(FOLLOW_rule__ModelMapping__Group__1__Impl_in_rule__ModelMapping__Group__16984);
+            pushFollow(FOLLOW_rule__ModelMapping__Group__1__Impl_in_rule__ModelMapping__Group__17031);
             rule__ModelMapping__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ModelMapping__Group__2_in_rule__ModelMapping__Group__16987);
+            pushFollow(FOLLOW_rule__ModelMapping__Group__2_in_rule__ModelMapping__Group__17034);
             rule__ModelMapping__Group__2();
 
             state._fsp--;
@@ -9547,20 +9597,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelMapping__Group__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3430:1: rule__ModelMapping__Group__1__Impl : ( '{' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3456:1: rule__ModelMapping__Group__1__Impl : ( '{' ) ;
     public final void rule__ModelMapping__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3434:1: ( ( '{' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3435:1: ( '{' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3460:1: ( ( '{' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3461:1: ( '{' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3435:1: ( '{' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3436:1: '{'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3461:1: ( '{' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3462:1: '{'
             {
              before(grammarAccess.getModelMappingAccess().getLeftCurlyBracketKeyword_1()); 
-            match(input,34,FOLLOW_34_in_rule__ModelMapping__Group__1__Impl7015); 
+            match(input,34,FOLLOW_34_in_rule__ModelMapping__Group__1__Impl7062); 
              after(grammarAccess.getModelMappingAccess().getLeftCurlyBracketKeyword_1()); 
 
             }
@@ -9584,21 +9634,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelMapping__Group__2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3449:1: rule__ModelMapping__Group__2 : rule__ModelMapping__Group__2__Impl rule__ModelMapping__Group__3 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3475:1: rule__ModelMapping__Group__2 : rule__ModelMapping__Group__2__Impl rule__ModelMapping__Group__3 ;
     public final void rule__ModelMapping__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3453:1: ( rule__ModelMapping__Group__2__Impl rule__ModelMapping__Group__3 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3454:2: rule__ModelMapping__Group__2__Impl rule__ModelMapping__Group__3
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3479:1: ( rule__ModelMapping__Group__2__Impl rule__ModelMapping__Group__3 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3480:2: rule__ModelMapping__Group__2__Impl rule__ModelMapping__Group__3
             {
-            pushFollow(FOLLOW_rule__ModelMapping__Group__2__Impl_in_rule__ModelMapping__Group__27046);
+            pushFollow(FOLLOW_rule__ModelMapping__Group__2__Impl_in_rule__ModelMapping__Group__27093);
             rule__ModelMapping__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ModelMapping__Group__3_in_rule__ModelMapping__Group__27049);
+            pushFollow(FOLLOW_rule__ModelMapping__Group__3_in_rule__ModelMapping__Group__27096);
             rule__ModelMapping__Group__3();
 
             state._fsp--;
@@ -9622,84 +9672,31 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelMapping__Group__2__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3461:1: rule__ModelMapping__Group__2__Impl : ( ( ( rule__ModelMapping__MappingsAssignment_2 ) ) ( ( rule__ModelMapping__MappingsAssignment_2 )* ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3487:1: rule__ModelMapping__Group__2__Impl : ( () ) ;
     public final void rule__ModelMapping__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3465:1: ( ( ( ( rule__ModelMapping__MappingsAssignment_2 ) ) ( ( rule__ModelMapping__MappingsAssignment_2 )* ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3466:1: ( ( ( rule__ModelMapping__MappingsAssignment_2 ) ) ( ( rule__ModelMapping__MappingsAssignment_2 )* ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3491:1: ( ( () ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3492:1: ( () )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3466:1: ( ( ( rule__ModelMapping__MappingsAssignment_2 ) ) ( ( rule__ModelMapping__MappingsAssignment_2 )* ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3467:1: ( ( rule__ModelMapping__MappingsAssignment_2 ) ) ( ( rule__ModelMapping__MappingsAssignment_2 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3492:1: ( () )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3493:1: ()
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3467:1: ( ( rule__ModelMapping__MappingsAssignment_2 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3468:1: ( rule__ModelMapping__MappingsAssignment_2 )
+             before(grammarAccess.getModelMappingAccess().getModelMappingAction_2()); 
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3494:1: ()
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3496:1: 
             {
-             before(grammarAccess.getModelMappingAccess().getMappingsAssignment_2()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3469:1: ( rule__ModelMapping__MappingsAssignment_2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3469:2: rule__ModelMapping__MappingsAssignment_2
-            {
-            pushFollow(FOLLOW_rule__ModelMapping__MappingsAssignment_2_in_rule__ModelMapping__Group__2__Impl7078);
-            rule__ModelMapping__MappingsAssignment_2();
-
-            state._fsp--;
-
-
             }
 
-             after(grammarAccess.getModelMappingAccess().getMappingsAssignment_2()); 
-
-            }
-
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3472:1: ( ( rule__ModelMapping__MappingsAssignment_2 )* )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3473:1: ( rule__ModelMapping__MappingsAssignment_2 )*
-            {
-             before(grammarAccess.getModelMappingAccess().getMappingsAssignment_2()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3474:1: ( rule__ModelMapping__MappingsAssignment_2 )*
-            loop30:
-            do {
-                int alt30=2;
-                int LA30_0 = input.LA(1);
-
-                if ( ((LA30_0>=RULE_STRING && LA30_0<=RULE_NAME_TOKEN)||(LA30_0>=15 && LA30_0<=17)||LA30_0==37) ) {
-                    alt30=1;
-                }
-
-
-                switch (alt30) {
-            	case 1 :
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3474:2: rule__ModelMapping__MappingsAssignment_2
-            	    {
-            	    pushFollow(FOLLOW_rule__ModelMapping__MappingsAssignment_2_in_rule__ModelMapping__Group__2__Impl7090);
-            	    rule__ModelMapping__MappingsAssignment_2();
-
-            	    state._fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop30;
-                }
-            } while (true);
-
-             after(grammarAccess.getModelMappingAccess().getMappingsAssignment_2()); 
+             after(grammarAccess.getModelMappingAccess().getModelMappingAction_2()); 
 
             }
 
 
             }
 
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
         }
         finally {
 
@@ -9712,17 +9709,22 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelMapping__Group__3"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3485:1: rule__ModelMapping__Group__3 : rule__ModelMapping__Group__3__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3506:1: rule__ModelMapping__Group__3 : rule__ModelMapping__Group__3__Impl rule__ModelMapping__Group__4 ;
     public final void rule__ModelMapping__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3489:1: ( rule__ModelMapping__Group__3__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3490:2: rule__ModelMapping__Group__3__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3510:1: ( rule__ModelMapping__Group__3__Impl rule__ModelMapping__Group__4 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3511:2: rule__ModelMapping__Group__3__Impl rule__ModelMapping__Group__4
             {
-            pushFollow(FOLLOW_rule__ModelMapping__Group__3__Impl_in_rule__ModelMapping__Group__37123);
+            pushFollow(FOLLOW_rule__ModelMapping__Group__3__Impl_in_rule__ModelMapping__Group__37154);
             rule__ModelMapping__Group__3__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__ModelMapping__Group__4_in_rule__ModelMapping__Group__37157);
+            rule__ModelMapping__Group__4();
 
             state._fsp--;
 
@@ -9745,21 +9747,49 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelMapping__Group__3__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3496:1: rule__ModelMapping__Group__3__Impl : ( '}' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3518:1: rule__ModelMapping__Group__3__Impl : ( ( rule__ModelMapping__MappingsAssignment_3 )* ) ;
     public final void rule__ModelMapping__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3500:1: ( ( '}' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3501:1: ( '}' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3522:1: ( ( ( rule__ModelMapping__MappingsAssignment_3 )* ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3523:1: ( ( rule__ModelMapping__MappingsAssignment_3 )* )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3501:1: ( '}' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3502:1: '}'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3523:1: ( ( rule__ModelMapping__MappingsAssignment_3 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3524:1: ( rule__ModelMapping__MappingsAssignment_3 )*
             {
-             before(grammarAccess.getModelMappingAccess().getRightCurlyBracketKeyword_3()); 
-            match(input,35,FOLLOW_35_in_rule__ModelMapping__Group__3__Impl7151); 
-             after(grammarAccess.getModelMappingAccess().getRightCurlyBracketKeyword_3()); 
+             before(grammarAccess.getModelMappingAccess().getMappingsAssignment_3()); 
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3525:1: ( rule__ModelMapping__MappingsAssignment_3 )*
+            loop30:
+            do {
+                int alt30=2;
+                int LA30_0 = input.LA(1);
+
+                if ( ((LA30_0>=RULE_STRING && LA30_0<=RULE_NAME_TOKEN)||(LA30_0>=15 && LA30_0<=17)||LA30_0==37) ) {
+                    alt30=1;
+                }
+
+
+                switch (alt30) {
+            	case 1 :
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3525:2: rule__ModelMapping__MappingsAssignment_3
+            	    {
+            	    pushFollow(FOLLOW_rule__ModelMapping__MappingsAssignment_3_in_rule__ModelMapping__Group__3__Impl7184);
+            	    rule__ModelMapping__MappingsAssignment_3();
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop30;
+                }
+            } while (true);
+
+             after(grammarAccess.getModelMappingAccess().getMappingsAssignment_3()); 
 
             }
 
@@ -9781,22 +9811,92 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ModelMapping__Group__3__Impl"
 
 
+    // $ANTLR start "rule__ModelMapping__Group__4"
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3535:1: rule__ModelMapping__Group__4 : rule__ModelMapping__Group__4__Impl ;
+    public final void rule__ModelMapping__Group__4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3539:1: ( rule__ModelMapping__Group__4__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3540:2: rule__ModelMapping__Group__4__Impl
+            {
+            pushFollow(FOLLOW_rule__ModelMapping__Group__4__Impl_in_rule__ModelMapping__Group__47215);
+            rule__ModelMapping__Group__4__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ModelMapping__Group__4"
+
+
+    // $ANTLR start "rule__ModelMapping__Group__4__Impl"
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3546:1: rule__ModelMapping__Group__4__Impl : ( '}' ) ;
+    public final void rule__ModelMapping__Group__4__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3550:1: ( ( '}' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3551:1: ( '}' )
+            {
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3551:1: ( '}' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3552:1: '}'
+            {
+             before(grammarAccess.getModelMappingAccess().getRightCurlyBracketKeyword_4()); 
+            match(input,35,FOLLOW_35_in_rule__ModelMapping__Group__4__Impl7243); 
+             after(grammarAccess.getModelMappingAccess().getRightCurlyBracketKeyword_4()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ModelMapping__Group__4__Impl"
+
+
     // $ANTLR start "rule__PropertyMapping__Group__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3523:1: rule__PropertyMapping__Group__0 : rule__PropertyMapping__Group__0__Impl rule__PropertyMapping__Group__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3575:1: rule__PropertyMapping__Group__0 : rule__PropertyMapping__Group__0__Impl rule__PropertyMapping__Group__1 ;
     public final void rule__PropertyMapping__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3527:1: ( rule__PropertyMapping__Group__0__Impl rule__PropertyMapping__Group__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3528:2: rule__PropertyMapping__Group__0__Impl rule__PropertyMapping__Group__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3579:1: ( rule__PropertyMapping__Group__0__Impl rule__PropertyMapping__Group__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3580:2: rule__PropertyMapping__Group__0__Impl rule__PropertyMapping__Group__1
             {
-            pushFollow(FOLLOW_rule__PropertyMapping__Group__0__Impl_in_rule__PropertyMapping__Group__07190);
+            pushFollow(FOLLOW_rule__PropertyMapping__Group__0__Impl_in_rule__PropertyMapping__Group__07284);
             rule__PropertyMapping__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PropertyMapping__Group__1_in_rule__PropertyMapping__Group__07193);
+            pushFollow(FOLLOW_rule__PropertyMapping__Group__1_in_rule__PropertyMapping__Group__07287);
             rule__PropertyMapping__Group__1();
 
             state._fsp--;
@@ -9820,20 +9920,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyMapping__Group__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3535:1: rule__PropertyMapping__Group__0__Impl : ( ( rule__PropertyMapping__DescriptionAssignment_0 )? ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3587:1: rule__PropertyMapping__Group__0__Impl : ( ( rule__PropertyMapping__DescriptionAssignment_0 )? ) ;
     public final void rule__PropertyMapping__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3539:1: ( ( ( rule__PropertyMapping__DescriptionAssignment_0 )? ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3540:1: ( ( rule__PropertyMapping__DescriptionAssignment_0 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3591:1: ( ( ( rule__PropertyMapping__DescriptionAssignment_0 )? ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3592:1: ( ( rule__PropertyMapping__DescriptionAssignment_0 )? )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3540:1: ( ( rule__PropertyMapping__DescriptionAssignment_0 )? )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3541:1: ( rule__PropertyMapping__DescriptionAssignment_0 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3592:1: ( ( rule__PropertyMapping__DescriptionAssignment_0 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3593:1: ( rule__PropertyMapping__DescriptionAssignment_0 )?
             {
              before(grammarAccess.getPropertyMappingAccess().getDescriptionAssignment_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3542:1: ( rule__PropertyMapping__DescriptionAssignment_0 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3594:1: ( rule__PropertyMapping__DescriptionAssignment_0 )?
             int alt31=2;
             int LA31_0 = input.LA(1);
 
@@ -9842,9 +9942,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt31) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3542:2: rule__PropertyMapping__DescriptionAssignment_0
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3594:2: rule__PropertyMapping__DescriptionAssignment_0
                     {
-                    pushFollow(FOLLOW_rule__PropertyMapping__DescriptionAssignment_0_in_rule__PropertyMapping__Group__0__Impl7220);
+                    pushFollow(FOLLOW_rule__PropertyMapping__DescriptionAssignment_0_in_rule__PropertyMapping__Group__0__Impl7314);
                     rule__PropertyMapping__DescriptionAssignment_0();
 
                     state._fsp--;
@@ -9878,21 +9978,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyMapping__Group__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3552:1: rule__PropertyMapping__Group__1 : rule__PropertyMapping__Group__1__Impl rule__PropertyMapping__Group__2 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3604:1: rule__PropertyMapping__Group__1 : rule__PropertyMapping__Group__1__Impl rule__PropertyMapping__Group__2 ;
     public final void rule__PropertyMapping__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3556:1: ( rule__PropertyMapping__Group__1__Impl rule__PropertyMapping__Group__2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3557:2: rule__PropertyMapping__Group__1__Impl rule__PropertyMapping__Group__2
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3608:1: ( rule__PropertyMapping__Group__1__Impl rule__PropertyMapping__Group__2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3609:2: rule__PropertyMapping__Group__1__Impl rule__PropertyMapping__Group__2
             {
-            pushFollow(FOLLOW_rule__PropertyMapping__Group__1__Impl_in_rule__PropertyMapping__Group__17251);
+            pushFollow(FOLLOW_rule__PropertyMapping__Group__1__Impl_in_rule__PropertyMapping__Group__17345);
             rule__PropertyMapping__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PropertyMapping__Group__2_in_rule__PropertyMapping__Group__17254);
+            pushFollow(FOLLOW_rule__PropertyMapping__Group__2_in_rule__PropertyMapping__Group__17348);
             rule__PropertyMapping__Group__2();
 
             state._fsp--;
@@ -9916,20 +10016,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyMapping__Group__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3564:1: rule__PropertyMapping__Group__1__Impl : ( ( rule__PropertyMapping__AttributesAssignment_1 )? ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3616:1: rule__PropertyMapping__Group__1__Impl : ( ( rule__PropertyMapping__AttributesAssignment_1 )? ) ;
     public final void rule__PropertyMapping__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3568:1: ( ( ( rule__PropertyMapping__AttributesAssignment_1 )? ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3569:1: ( ( rule__PropertyMapping__AttributesAssignment_1 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3620:1: ( ( ( rule__PropertyMapping__AttributesAssignment_1 )? ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3621:1: ( ( rule__PropertyMapping__AttributesAssignment_1 )? )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3569:1: ( ( rule__PropertyMapping__AttributesAssignment_1 )? )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3570:1: ( rule__PropertyMapping__AttributesAssignment_1 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3621:1: ( ( rule__PropertyMapping__AttributesAssignment_1 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3622:1: ( rule__PropertyMapping__AttributesAssignment_1 )?
             {
              before(grammarAccess.getPropertyMappingAccess().getAttributesAssignment_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3571:1: ( rule__PropertyMapping__AttributesAssignment_1 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3623:1: ( rule__PropertyMapping__AttributesAssignment_1 )?
             int alt32=2;
             int LA32_0 = input.LA(1);
 
@@ -9938,9 +10038,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt32) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3571:2: rule__PropertyMapping__AttributesAssignment_1
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3623:2: rule__PropertyMapping__AttributesAssignment_1
                     {
-                    pushFollow(FOLLOW_rule__PropertyMapping__AttributesAssignment_1_in_rule__PropertyMapping__Group__1__Impl7281);
+                    pushFollow(FOLLOW_rule__PropertyMapping__AttributesAssignment_1_in_rule__PropertyMapping__Group__1__Impl7375);
                     rule__PropertyMapping__AttributesAssignment_1();
 
                     state._fsp--;
@@ -9974,21 +10074,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyMapping__Group__2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3581:1: rule__PropertyMapping__Group__2 : rule__PropertyMapping__Group__2__Impl rule__PropertyMapping__Group__3 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3633:1: rule__PropertyMapping__Group__2 : rule__PropertyMapping__Group__2__Impl rule__PropertyMapping__Group__3 ;
     public final void rule__PropertyMapping__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3585:1: ( rule__PropertyMapping__Group__2__Impl rule__PropertyMapping__Group__3 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3586:2: rule__PropertyMapping__Group__2__Impl rule__PropertyMapping__Group__3
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3637:1: ( rule__PropertyMapping__Group__2__Impl rule__PropertyMapping__Group__3 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3638:2: rule__PropertyMapping__Group__2__Impl rule__PropertyMapping__Group__3
             {
-            pushFollow(FOLLOW_rule__PropertyMapping__Group__2__Impl_in_rule__PropertyMapping__Group__27312);
+            pushFollow(FOLLOW_rule__PropertyMapping__Group__2__Impl_in_rule__PropertyMapping__Group__27406);
             rule__PropertyMapping__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PropertyMapping__Group__3_in_rule__PropertyMapping__Group__27315);
+            pushFollow(FOLLOW_rule__PropertyMapping__Group__3_in_rule__PropertyMapping__Group__27409);
             rule__PropertyMapping__Group__3();
 
             state._fsp--;
@@ -10012,23 +10112,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyMapping__Group__2__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3593:1: rule__PropertyMapping__Group__2__Impl : ( ( rule__PropertyMapping__FromAssignment_2 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3645:1: rule__PropertyMapping__Group__2__Impl : ( ( rule__PropertyMapping__FromAssignment_2 ) ) ;
     public final void rule__PropertyMapping__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3597:1: ( ( ( rule__PropertyMapping__FromAssignment_2 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3598:1: ( ( rule__PropertyMapping__FromAssignment_2 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3649:1: ( ( ( rule__PropertyMapping__FromAssignment_2 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3650:1: ( ( rule__PropertyMapping__FromAssignment_2 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3598:1: ( ( rule__PropertyMapping__FromAssignment_2 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3599:1: ( rule__PropertyMapping__FromAssignment_2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3650:1: ( ( rule__PropertyMapping__FromAssignment_2 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3651:1: ( rule__PropertyMapping__FromAssignment_2 )
             {
              before(grammarAccess.getPropertyMappingAccess().getFromAssignment_2()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3600:1: ( rule__PropertyMapping__FromAssignment_2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3600:2: rule__PropertyMapping__FromAssignment_2
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3652:1: ( rule__PropertyMapping__FromAssignment_2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3652:2: rule__PropertyMapping__FromAssignment_2
             {
-            pushFollow(FOLLOW_rule__PropertyMapping__FromAssignment_2_in_rule__PropertyMapping__Group__2__Impl7342);
+            pushFollow(FOLLOW_rule__PropertyMapping__FromAssignment_2_in_rule__PropertyMapping__Group__2__Impl7436);
             rule__PropertyMapping__FromAssignment_2();
 
             state._fsp--;
@@ -10059,21 +10159,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyMapping__Group__3"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3610:1: rule__PropertyMapping__Group__3 : rule__PropertyMapping__Group__3__Impl rule__PropertyMapping__Group__4 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3662:1: rule__PropertyMapping__Group__3 : rule__PropertyMapping__Group__3__Impl rule__PropertyMapping__Group__4 ;
     public final void rule__PropertyMapping__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3614:1: ( rule__PropertyMapping__Group__3__Impl rule__PropertyMapping__Group__4 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3615:2: rule__PropertyMapping__Group__3__Impl rule__PropertyMapping__Group__4
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3666:1: ( rule__PropertyMapping__Group__3__Impl rule__PropertyMapping__Group__4 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3667:2: rule__PropertyMapping__Group__3__Impl rule__PropertyMapping__Group__4
             {
-            pushFollow(FOLLOW_rule__PropertyMapping__Group__3__Impl_in_rule__PropertyMapping__Group__37372);
+            pushFollow(FOLLOW_rule__PropertyMapping__Group__3__Impl_in_rule__PropertyMapping__Group__37466);
             rule__PropertyMapping__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PropertyMapping__Group__4_in_rule__PropertyMapping__Group__37375);
+            pushFollow(FOLLOW_rule__PropertyMapping__Group__4_in_rule__PropertyMapping__Group__37469);
             rule__PropertyMapping__Group__4();
 
             state._fsp--;
@@ -10097,20 +10197,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyMapping__Group__3__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3622:1: rule__PropertyMapping__Group__3__Impl : ( '->' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3674:1: rule__PropertyMapping__Group__3__Impl : ( '->' ) ;
     public final void rule__PropertyMapping__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3626:1: ( ( '->' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3627:1: ( '->' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3678:1: ( ( '->' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3679:1: ( '->' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3627:1: ( '->' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3628:1: '->'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3679:1: ( '->' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3680:1: '->'
             {
              before(grammarAccess.getPropertyMappingAccess().getHyphenMinusGreaterThanSignKeyword_3()); 
-            match(input,13,FOLLOW_13_in_rule__PropertyMapping__Group__3__Impl7403); 
+            match(input,13,FOLLOW_13_in_rule__PropertyMapping__Group__3__Impl7497); 
              after(grammarAccess.getPropertyMappingAccess().getHyphenMinusGreaterThanSignKeyword_3()); 
 
             }
@@ -10134,21 +10234,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyMapping__Group__4"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3641:1: rule__PropertyMapping__Group__4 : rule__PropertyMapping__Group__4__Impl rule__PropertyMapping__Group__5 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3693:1: rule__PropertyMapping__Group__4 : rule__PropertyMapping__Group__4__Impl rule__PropertyMapping__Group__5 ;
     public final void rule__PropertyMapping__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3645:1: ( rule__PropertyMapping__Group__4__Impl rule__PropertyMapping__Group__5 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3646:2: rule__PropertyMapping__Group__4__Impl rule__PropertyMapping__Group__5
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3697:1: ( rule__PropertyMapping__Group__4__Impl rule__PropertyMapping__Group__5 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3698:2: rule__PropertyMapping__Group__4__Impl rule__PropertyMapping__Group__5
             {
-            pushFollow(FOLLOW_rule__PropertyMapping__Group__4__Impl_in_rule__PropertyMapping__Group__47434);
+            pushFollow(FOLLOW_rule__PropertyMapping__Group__4__Impl_in_rule__PropertyMapping__Group__47528);
             rule__PropertyMapping__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PropertyMapping__Group__5_in_rule__PropertyMapping__Group__47437);
+            pushFollow(FOLLOW_rule__PropertyMapping__Group__5_in_rule__PropertyMapping__Group__47531);
             rule__PropertyMapping__Group__5();
 
             state._fsp--;
@@ -10172,23 +10272,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyMapping__Group__4__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3653:1: rule__PropertyMapping__Group__4__Impl : ( ( rule__PropertyMapping__NameAssignment_4 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3705:1: rule__PropertyMapping__Group__4__Impl : ( ( rule__PropertyMapping__NameAssignment_4 ) ) ;
     public final void rule__PropertyMapping__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3657:1: ( ( ( rule__PropertyMapping__NameAssignment_4 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3658:1: ( ( rule__PropertyMapping__NameAssignment_4 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3709:1: ( ( ( rule__PropertyMapping__NameAssignment_4 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3710:1: ( ( rule__PropertyMapping__NameAssignment_4 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3658:1: ( ( rule__PropertyMapping__NameAssignment_4 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3659:1: ( rule__PropertyMapping__NameAssignment_4 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3710:1: ( ( rule__PropertyMapping__NameAssignment_4 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3711:1: ( rule__PropertyMapping__NameAssignment_4 )
             {
              before(grammarAccess.getPropertyMappingAccess().getNameAssignment_4()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3660:1: ( rule__PropertyMapping__NameAssignment_4 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3660:2: rule__PropertyMapping__NameAssignment_4
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3712:1: ( rule__PropertyMapping__NameAssignment_4 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3712:2: rule__PropertyMapping__NameAssignment_4
             {
-            pushFollow(FOLLOW_rule__PropertyMapping__NameAssignment_4_in_rule__PropertyMapping__Group__4__Impl7464);
+            pushFollow(FOLLOW_rule__PropertyMapping__NameAssignment_4_in_rule__PropertyMapping__Group__4__Impl7558);
             rule__PropertyMapping__NameAssignment_4();
 
             state._fsp--;
@@ -10219,16 +10319,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyMapping__Group__5"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3670:1: rule__PropertyMapping__Group__5 : rule__PropertyMapping__Group__5__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3722:1: rule__PropertyMapping__Group__5 : rule__PropertyMapping__Group__5__Impl ;
     public final void rule__PropertyMapping__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3674:1: ( rule__PropertyMapping__Group__5__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3675:2: rule__PropertyMapping__Group__5__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3726:1: ( rule__PropertyMapping__Group__5__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3727:2: rule__PropertyMapping__Group__5__Impl
             {
-            pushFollow(FOLLOW_rule__PropertyMapping__Group__5__Impl_in_rule__PropertyMapping__Group__57494);
+            pushFollow(FOLLOW_rule__PropertyMapping__Group__5__Impl_in_rule__PropertyMapping__Group__57588);
             rule__PropertyMapping__Group__5__Impl();
 
             state._fsp--;
@@ -10252,20 +10352,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyMapping__Group__5__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3681:1: rule__PropertyMapping__Group__5__Impl : ( ';' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3733:1: rule__PropertyMapping__Group__5__Impl : ( ';' ) ;
     public final void rule__PropertyMapping__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3685:1: ( ( ';' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3686:1: ( ';' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3737:1: ( ( ';' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3738:1: ( ';' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3686:1: ( ';' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3687:1: ';'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3738:1: ( ';' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3739:1: ';'
             {
              before(grammarAccess.getPropertyMappingAccess().getSemicolonKeyword_5()); 
-            match(input,31,FOLLOW_31_in_rule__PropertyMapping__Group__5__Impl7522); 
+            match(input,31,FOLLOW_31_in_rule__PropertyMapping__Group__5__Impl7616); 
              after(grammarAccess.getPropertyMappingAccess().getSemicolonKeyword_5()); 
 
             }
@@ -10289,21 +10389,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelFolding__Group__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3712:1: rule__ModelFolding__Group__0 : rule__ModelFolding__Group__0__Impl rule__ModelFolding__Group__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3764:1: rule__ModelFolding__Group__0 : rule__ModelFolding__Group__0__Impl rule__ModelFolding__Group__1 ;
     public final void rule__ModelFolding__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3716:1: ( rule__ModelFolding__Group__0__Impl rule__ModelFolding__Group__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3717:2: rule__ModelFolding__Group__0__Impl rule__ModelFolding__Group__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3768:1: ( rule__ModelFolding__Group__0__Impl rule__ModelFolding__Group__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3769:2: rule__ModelFolding__Group__0__Impl rule__ModelFolding__Group__1
             {
-            pushFollow(FOLLOW_rule__ModelFolding__Group__0__Impl_in_rule__ModelFolding__Group__07565);
+            pushFollow(FOLLOW_rule__ModelFolding__Group__0__Impl_in_rule__ModelFolding__Group__07659);
             rule__ModelFolding__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ModelFolding__Group__1_in_rule__ModelFolding__Group__07568);
+            pushFollow(FOLLOW_rule__ModelFolding__Group__1_in_rule__ModelFolding__Group__07662);
             rule__ModelFolding__Group__1();
 
             state._fsp--;
@@ -10327,20 +10427,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelFolding__Group__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3724:1: rule__ModelFolding__Group__0__Impl : ( '=>' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3776:1: rule__ModelFolding__Group__0__Impl : ( '=>' ) ;
     public final void rule__ModelFolding__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3728:1: ( ( '=>' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3729:1: ( '=>' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3780:1: ( ( '=>' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3781:1: ( '=>' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3729:1: ( '=>' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3730:1: '=>'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3781:1: ( '=>' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3782:1: '=>'
             {
              before(grammarAccess.getModelFoldingAccess().getEqualsSignGreaterThanSignKeyword_0()); 
-            match(input,14,FOLLOW_14_in_rule__ModelFolding__Group__0__Impl7596); 
+            match(input,14,FOLLOW_14_in_rule__ModelFolding__Group__0__Impl7690); 
              after(grammarAccess.getModelFoldingAccess().getEqualsSignGreaterThanSignKeyword_0()); 
 
             }
@@ -10364,21 +10464,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelFolding__Group__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3743:1: rule__ModelFolding__Group__1 : rule__ModelFolding__Group__1__Impl rule__ModelFolding__Group__2 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3795:1: rule__ModelFolding__Group__1 : rule__ModelFolding__Group__1__Impl rule__ModelFolding__Group__2 ;
     public final void rule__ModelFolding__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3747:1: ( rule__ModelFolding__Group__1__Impl rule__ModelFolding__Group__2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3748:2: rule__ModelFolding__Group__1__Impl rule__ModelFolding__Group__2
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3799:1: ( rule__ModelFolding__Group__1__Impl rule__ModelFolding__Group__2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3800:2: rule__ModelFolding__Group__1__Impl rule__ModelFolding__Group__2
             {
-            pushFollow(FOLLOW_rule__ModelFolding__Group__1__Impl_in_rule__ModelFolding__Group__17627);
+            pushFollow(FOLLOW_rule__ModelFolding__Group__1__Impl_in_rule__ModelFolding__Group__17721);
             rule__ModelFolding__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ModelFolding__Group__2_in_rule__ModelFolding__Group__17630);
+            pushFollow(FOLLOW_rule__ModelFolding__Group__2_in_rule__ModelFolding__Group__17724);
             rule__ModelFolding__Group__2();
 
             state._fsp--;
@@ -10402,20 +10502,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelFolding__Group__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3755:1: rule__ModelFolding__Group__1__Impl : ( '{' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3807:1: rule__ModelFolding__Group__1__Impl : ( '{' ) ;
     public final void rule__ModelFolding__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3759:1: ( ( '{' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3760:1: ( '{' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3811:1: ( ( '{' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3812:1: ( '{' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3760:1: ( '{' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3761:1: '{'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3812:1: ( '{' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3813:1: '{'
             {
              before(grammarAccess.getModelFoldingAccess().getLeftCurlyBracketKeyword_1()); 
-            match(input,34,FOLLOW_34_in_rule__ModelFolding__Group__1__Impl7658); 
+            match(input,34,FOLLOW_34_in_rule__ModelFolding__Group__1__Impl7752); 
              after(grammarAccess.getModelFoldingAccess().getLeftCurlyBracketKeyword_1()); 
 
             }
@@ -10439,21 +10539,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelFolding__Group__2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3774:1: rule__ModelFolding__Group__2 : rule__ModelFolding__Group__2__Impl rule__ModelFolding__Group__3 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3826:1: rule__ModelFolding__Group__2 : rule__ModelFolding__Group__2__Impl rule__ModelFolding__Group__3 ;
     public final void rule__ModelFolding__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3778:1: ( rule__ModelFolding__Group__2__Impl rule__ModelFolding__Group__3 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3779:2: rule__ModelFolding__Group__2__Impl rule__ModelFolding__Group__3
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3830:1: ( rule__ModelFolding__Group__2__Impl rule__ModelFolding__Group__3 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3831:2: rule__ModelFolding__Group__2__Impl rule__ModelFolding__Group__3
             {
-            pushFollow(FOLLOW_rule__ModelFolding__Group__2__Impl_in_rule__ModelFolding__Group__27689);
+            pushFollow(FOLLOW_rule__ModelFolding__Group__2__Impl_in_rule__ModelFolding__Group__27783);
             rule__ModelFolding__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__ModelFolding__Group__3_in_rule__ModelFolding__Group__27692);
+            pushFollow(FOLLOW_rule__ModelFolding__Group__3_in_rule__ModelFolding__Group__27786);
             rule__ModelFolding__Group__3();
 
             state._fsp--;
@@ -10477,84 +10577,31 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelFolding__Group__2__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3786:1: rule__ModelFolding__Group__2__Impl : ( ( ( rule__ModelFolding__FoldingsAssignment_2 ) ) ( ( rule__ModelFolding__FoldingsAssignment_2 )* ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3838:1: rule__ModelFolding__Group__2__Impl : ( () ) ;
     public final void rule__ModelFolding__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3790:1: ( ( ( ( rule__ModelFolding__FoldingsAssignment_2 ) ) ( ( rule__ModelFolding__FoldingsAssignment_2 )* ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3791:1: ( ( ( rule__ModelFolding__FoldingsAssignment_2 ) ) ( ( rule__ModelFolding__FoldingsAssignment_2 )* ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3842:1: ( ( () ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3843:1: ( () )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3791:1: ( ( ( rule__ModelFolding__FoldingsAssignment_2 ) ) ( ( rule__ModelFolding__FoldingsAssignment_2 )* ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3792:1: ( ( rule__ModelFolding__FoldingsAssignment_2 ) ) ( ( rule__ModelFolding__FoldingsAssignment_2 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3843:1: ( () )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3844:1: ()
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3792:1: ( ( rule__ModelFolding__FoldingsAssignment_2 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3793:1: ( rule__ModelFolding__FoldingsAssignment_2 )
+             before(grammarAccess.getModelFoldingAccess().getModelFoldingAction_2()); 
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3845:1: ()
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3847:1: 
             {
-             before(grammarAccess.getModelFoldingAccess().getFoldingsAssignment_2()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3794:1: ( rule__ModelFolding__FoldingsAssignment_2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3794:2: rule__ModelFolding__FoldingsAssignment_2
-            {
-            pushFollow(FOLLOW_rule__ModelFolding__FoldingsAssignment_2_in_rule__ModelFolding__Group__2__Impl7721);
-            rule__ModelFolding__FoldingsAssignment_2();
-
-            state._fsp--;
-
-
             }
 
-             after(grammarAccess.getModelFoldingAccess().getFoldingsAssignment_2()); 
-
-            }
-
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3797:1: ( ( rule__ModelFolding__FoldingsAssignment_2 )* )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3798:1: ( rule__ModelFolding__FoldingsAssignment_2 )*
-            {
-             before(grammarAccess.getModelFoldingAccess().getFoldingsAssignment_2()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3799:1: ( rule__ModelFolding__FoldingsAssignment_2 )*
-            loop33:
-            do {
-                int alt33=2;
-                int LA33_0 = input.LA(1);
-
-                if ( ((LA33_0>=RULE_STRING && LA33_0<=RULE_NAME_TOKEN)||(LA33_0>=15 && LA33_0<=17)||LA33_0==37) ) {
-                    alt33=1;
-                }
-
-
-                switch (alt33) {
-            	case 1 :
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3799:2: rule__ModelFolding__FoldingsAssignment_2
-            	    {
-            	    pushFollow(FOLLOW_rule__ModelFolding__FoldingsAssignment_2_in_rule__ModelFolding__Group__2__Impl7733);
-            	    rule__ModelFolding__FoldingsAssignment_2();
-
-            	    state._fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop33;
-                }
-            } while (true);
-
-             after(grammarAccess.getModelFoldingAccess().getFoldingsAssignment_2()); 
+             after(grammarAccess.getModelFoldingAccess().getModelFoldingAction_2()); 
 
             }
 
 
             }
 
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
         }
         finally {
 
@@ -10567,17 +10614,22 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelFolding__Group__3"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3810:1: rule__ModelFolding__Group__3 : rule__ModelFolding__Group__3__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3857:1: rule__ModelFolding__Group__3 : rule__ModelFolding__Group__3__Impl rule__ModelFolding__Group__4 ;
     public final void rule__ModelFolding__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3814:1: ( rule__ModelFolding__Group__3__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3815:2: rule__ModelFolding__Group__3__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3861:1: ( rule__ModelFolding__Group__3__Impl rule__ModelFolding__Group__4 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3862:2: rule__ModelFolding__Group__3__Impl rule__ModelFolding__Group__4
             {
-            pushFollow(FOLLOW_rule__ModelFolding__Group__3__Impl_in_rule__ModelFolding__Group__37766);
+            pushFollow(FOLLOW_rule__ModelFolding__Group__3__Impl_in_rule__ModelFolding__Group__37844);
             rule__ModelFolding__Group__3__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__ModelFolding__Group__4_in_rule__ModelFolding__Group__37847);
+            rule__ModelFolding__Group__4();
 
             state._fsp--;
 
@@ -10600,21 +10652,49 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelFolding__Group__3__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3821:1: rule__ModelFolding__Group__3__Impl : ( '}' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3869:1: rule__ModelFolding__Group__3__Impl : ( ( rule__ModelFolding__FoldingsAssignment_3 )* ) ;
     public final void rule__ModelFolding__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3825:1: ( ( '}' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3826:1: ( '}' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3873:1: ( ( ( rule__ModelFolding__FoldingsAssignment_3 )* ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3874:1: ( ( rule__ModelFolding__FoldingsAssignment_3 )* )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3826:1: ( '}' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3827:1: '}'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3874:1: ( ( rule__ModelFolding__FoldingsAssignment_3 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3875:1: ( rule__ModelFolding__FoldingsAssignment_3 )*
             {
-             before(grammarAccess.getModelFoldingAccess().getRightCurlyBracketKeyword_3()); 
-            match(input,35,FOLLOW_35_in_rule__ModelFolding__Group__3__Impl7794); 
-             after(grammarAccess.getModelFoldingAccess().getRightCurlyBracketKeyword_3()); 
+             before(grammarAccess.getModelFoldingAccess().getFoldingsAssignment_3()); 
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3876:1: ( rule__ModelFolding__FoldingsAssignment_3 )*
+            loop33:
+            do {
+                int alt33=2;
+                int LA33_0 = input.LA(1);
+
+                if ( ((LA33_0>=RULE_STRING && LA33_0<=RULE_NAME_TOKEN)||(LA33_0>=15 && LA33_0<=17)||LA33_0==37) ) {
+                    alt33=1;
+                }
+
+
+                switch (alt33) {
+            	case 1 :
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3876:2: rule__ModelFolding__FoldingsAssignment_3
+            	    {
+            	    pushFollow(FOLLOW_rule__ModelFolding__FoldingsAssignment_3_in_rule__ModelFolding__Group__3__Impl7874);
+            	    rule__ModelFolding__FoldingsAssignment_3();
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop33;
+                }
+            } while (true);
+
+             after(grammarAccess.getModelFoldingAccess().getFoldingsAssignment_3()); 
 
             }
 
@@ -10636,22 +10716,92 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ModelFolding__Group__3__Impl"
 
 
+    // $ANTLR start "rule__ModelFolding__Group__4"
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3886:1: rule__ModelFolding__Group__4 : rule__ModelFolding__Group__4__Impl ;
+    public final void rule__ModelFolding__Group__4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3890:1: ( rule__ModelFolding__Group__4__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3891:2: rule__ModelFolding__Group__4__Impl
+            {
+            pushFollow(FOLLOW_rule__ModelFolding__Group__4__Impl_in_rule__ModelFolding__Group__47905);
+            rule__ModelFolding__Group__4__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ModelFolding__Group__4"
+
+
+    // $ANTLR start "rule__ModelFolding__Group__4__Impl"
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3897:1: rule__ModelFolding__Group__4__Impl : ( '}' ) ;
+    public final void rule__ModelFolding__Group__4__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3901:1: ( ( '}' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3902:1: ( '}' )
+            {
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3902:1: ( '}' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3903:1: '}'
+            {
+             before(grammarAccess.getModelFoldingAccess().getRightCurlyBracketKeyword_4()); 
+            match(input,35,FOLLOW_35_in_rule__ModelFolding__Group__4__Impl7933); 
+             after(grammarAccess.getModelFoldingAccess().getRightCurlyBracketKeyword_4()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ModelFolding__Group__4__Impl"
+
+
     // $ANTLR start "rule__PropertyFolding__Group__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3848:1: rule__PropertyFolding__Group__0 : rule__PropertyFolding__Group__0__Impl rule__PropertyFolding__Group__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3926:1: rule__PropertyFolding__Group__0 : rule__PropertyFolding__Group__0__Impl rule__PropertyFolding__Group__1 ;
     public final void rule__PropertyFolding__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3852:1: ( rule__PropertyFolding__Group__0__Impl rule__PropertyFolding__Group__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3853:2: rule__PropertyFolding__Group__0__Impl rule__PropertyFolding__Group__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3930:1: ( rule__PropertyFolding__Group__0__Impl rule__PropertyFolding__Group__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3931:2: rule__PropertyFolding__Group__0__Impl rule__PropertyFolding__Group__1
             {
-            pushFollow(FOLLOW_rule__PropertyFolding__Group__0__Impl_in_rule__PropertyFolding__Group__07833);
+            pushFollow(FOLLOW_rule__PropertyFolding__Group__0__Impl_in_rule__PropertyFolding__Group__07974);
             rule__PropertyFolding__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PropertyFolding__Group__1_in_rule__PropertyFolding__Group__07836);
+            pushFollow(FOLLOW_rule__PropertyFolding__Group__1_in_rule__PropertyFolding__Group__07977);
             rule__PropertyFolding__Group__1();
 
             state._fsp--;
@@ -10675,20 +10825,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__Group__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3860:1: rule__PropertyFolding__Group__0__Impl : ( ( rule__PropertyFolding__DescriptionAssignment_0 )? ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3938:1: rule__PropertyFolding__Group__0__Impl : ( ( rule__PropertyFolding__DescriptionAssignment_0 )? ) ;
     public final void rule__PropertyFolding__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3864:1: ( ( ( rule__PropertyFolding__DescriptionAssignment_0 )? ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3865:1: ( ( rule__PropertyFolding__DescriptionAssignment_0 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3942:1: ( ( ( rule__PropertyFolding__DescriptionAssignment_0 )? ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3943:1: ( ( rule__PropertyFolding__DescriptionAssignment_0 )? )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3865:1: ( ( rule__PropertyFolding__DescriptionAssignment_0 )? )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3866:1: ( rule__PropertyFolding__DescriptionAssignment_0 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3943:1: ( ( rule__PropertyFolding__DescriptionAssignment_0 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3944:1: ( rule__PropertyFolding__DescriptionAssignment_0 )?
             {
              before(grammarAccess.getPropertyFoldingAccess().getDescriptionAssignment_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3867:1: ( rule__PropertyFolding__DescriptionAssignment_0 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3945:1: ( rule__PropertyFolding__DescriptionAssignment_0 )?
             int alt34=2;
             int LA34_0 = input.LA(1);
 
@@ -10697,9 +10847,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt34) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3867:2: rule__PropertyFolding__DescriptionAssignment_0
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3945:2: rule__PropertyFolding__DescriptionAssignment_0
                     {
-                    pushFollow(FOLLOW_rule__PropertyFolding__DescriptionAssignment_0_in_rule__PropertyFolding__Group__0__Impl7863);
+                    pushFollow(FOLLOW_rule__PropertyFolding__DescriptionAssignment_0_in_rule__PropertyFolding__Group__0__Impl8004);
                     rule__PropertyFolding__DescriptionAssignment_0();
 
                     state._fsp--;
@@ -10733,21 +10883,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__Group__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3877:1: rule__PropertyFolding__Group__1 : rule__PropertyFolding__Group__1__Impl rule__PropertyFolding__Group__2 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3955:1: rule__PropertyFolding__Group__1 : rule__PropertyFolding__Group__1__Impl rule__PropertyFolding__Group__2 ;
     public final void rule__PropertyFolding__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3881:1: ( rule__PropertyFolding__Group__1__Impl rule__PropertyFolding__Group__2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3882:2: rule__PropertyFolding__Group__1__Impl rule__PropertyFolding__Group__2
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3959:1: ( rule__PropertyFolding__Group__1__Impl rule__PropertyFolding__Group__2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3960:2: rule__PropertyFolding__Group__1__Impl rule__PropertyFolding__Group__2
             {
-            pushFollow(FOLLOW_rule__PropertyFolding__Group__1__Impl_in_rule__PropertyFolding__Group__17894);
+            pushFollow(FOLLOW_rule__PropertyFolding__Group__1__Impl_in_rule__PropertyFolding__Group__18035);
             rule__PropertyFolding__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PropertyFolding__Group__2_in_rule__PropertyFolding__Group__17897);
+            pushFollow(FOLLOW_rule__PropertyFolding__Group__2_in_rule__PropertyFolding__Group__18038);
             rule__PropertyFolding__Group__2();
 
             state._fsp--;
@@ -10771,20 +10921,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__Group__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3889:1: rule__PropertyFolding__Group__1__Impl : ( ( rule__PropertyFolding__AttributesAssignment_1 )? ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3967:1: rule__PropertyFolding__Group__1__Impl : ( ( rule__PropertyFolding__AttributesAssignment_1 )? ) ;
     public final void rule__PropertyFolding__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3893:1: ( ( ( rule__PropertyFolding__AttributesAssignment_1 )? ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3894:1: ( ( rule__PropertyFolding__AttributesAssignment_1 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3971:1: ( ( ( rule__PropertyFolding__AttributesAssignment_1 )? ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3972:1: ( ( rule__PropertyFolding__AttributesAssignment_1 )? )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3894:1: ( ( rule__PropertyFolding__AttributesAssignment_1 )? )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3895:1: ( rule__PropertyFolding__AttributesAssignment_1 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3972:1: ( ( rule__PropertyFolding__AttributesAssignment_1 )? )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3973:1: ( rule__PropertyFolding__AttributesAssignment_1 )?
             {
              before(grammarAccess.getPropertyFoldingAccess().getAttributesAssignment_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3896:1: ( rule__PropertyFolding__AttributesAssignment_1 )?
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3974:1: ( rule__PropertyFolding__AttributesAssignment_1 )?
             int alt35=2;
             int LA35_0 = input.LA(1);
 
@@ -10793,9 +10943,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt35) {
                 case 1 :
-                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3896:2: rule__PropertyFolding__AttributesAssignment_1
+                    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3974:2: rule__PropertyFolding__AttributesAssignment_1
                     {
-                    pushFollow(FOLLOW_rule__PropertyFolding__AttributesAssignment_1_in_rule__PropertyFolding__Group__1__Impl7924);
+                    pushFollow(FOLLOW_rule__PropertyFolding__AttributesAssignment_1_in_rule__PropertyFolding__Group__1__Impl8065);
                     rule__PropertyFolding__AttributesAssignment_1();
 
                     state._fsp--;
@@ -10829,21 +10979,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__Group__2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3906:1: rule__PropertyFolding__Group__2 : rule__PropertyFolding__Group__2__Impl rule__PropertyFolding__Group__3 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3984:1: rule__PropertyFolding__Group__2 : rule__PropertyFolding__Group__2__Impl rule__PropertyFolding__Group__3 ;
     public final void rule__PropertyFolding__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3910:1: ( rule__PropertyFolding__Group__2__Impl rule__PropertyFolding__Group__3 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3911:2: rule__PropertyFolding__Group__2__Impl rule__PropertyFolding__Group__3
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3988:1: ( rule__PropertyFolding__Group__2__Impl rule__PropertyFolding__Group__3 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3989:2: rule__PropertyFolding__Group__2__Impl rule__PropertyFolding__Group__3
             {
-            pushFollow(FOLLOW_rule__PropertyFolding__Group__2__Impl_in_rule__PropertyFolding__Group__27955);
+            pushFollow(FOLLOW_rule__PropertyFolding__Group__2__Impl_in_rule__PropertyFolding__Group__28096);
             rule__PropertyFolding__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PropertyFolding__Group__3_in_rule__PropertyFolding__Group__27958);
+            pushFollow(FOLLOW_rule__PropertyFolding__Group__3_in_rule__PropertyFolding__Group__28099);
             rule__PropertyFolding__Group__3();
 
             state._fsp--;
@@ -10867,23 +11017,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__Group__2__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3918:1: rule__PropertyFolding__Group__2__Impl : ( ( rule__PropertyFolding__AggregatorAssignment_2 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3996:1: rule__PropertyFolding__Group__2__Impl : ( ( rule__PropertyFolding__AggregatorAssignment_2 ) ) ;
     public final void rule__PropertyFolding__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3922:1: ( ( ( rule__PropertyFolding__AggregatorAssignment_2 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3923:1: ( ( rule__PropertyFolding__AggregatorAssignment_2 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4000:1: ( ( ( rule__PropertyFolding__AggregatorAssignment_2 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4001:1: ( ( rule__PropertyFolding__AggregatorAssignment_2 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3923:1: ( ( rule__PropertyFolding__AggregatorAssignment_2 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3924:1: ( rule__PropertyFolding__AggregatorAssignment_2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4001:1: ( ( rule__PropertyFolding__AggregatorAssignment_2 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4002:1: ( rule__PropertyFolding__AggregatorAssignment_2 )
             {
              before(grammarAccess.getPropertyFoldingAccess().getAggregatorAssignment_2()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3925:1: ( rule__PropertyFolding__AggregatorAssignment_2 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3925:2: rule__PropertyFolding__AggregatorAssignment_2
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4003:1: ( rule__PropertyFolding__AggregatorAssignment_2 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4003:2: rule__PropertyFolding__AggregatorAssignment_2
             {
-            pushFollow(FOLLOW_rule__PropertyFolding__AggregatorAssignment_2_in_rule__PropertyFolding__Group__2__Impl7985);
+            pushFollow(FOLLOW_rule__PropertyFolding__AggregatorAssignment_2_in_rule__PropertyFolding__Group__2__Impl8126);
             rule__PropertyFolding__AggregatorAssignment_2();
 
             state._fsp--;
@@ -10914,21 +11064,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__Group__3"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3935:1: rule__PropertyFolding__Group__3 : rule__PropertyFolding__Group__3__Impl rule__PropertyFolding__Group__4 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4013:1: rule__PropertyFolding__Group__3 : rule__PropertyFolding__Group__3__Impl rule__PropertyFolding__Group__4 ;
     public final void rule__PropertyFolding__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3939:1: ( rule__PropertyFolding__Group__3__Impl rule__PropertyFolding__Group__4 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3940:2: rule__PropertyFolding__Group__3__Impl rule__PropertyFolding__Group__4
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4017:1: ( rule__PropertyFolding__Group__3__Impl rule__PropertyFolding__Group__4 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4018:2: rule__PropertyFolding__Group__3__Impl rule__PropertyFolding__Group__4
             {
-            pushFollow(FOLLOW_rule__PropertyFolding__Group__3__Impl_in_rule__PropertyFolding__Group__38015);
+            pushFollow(FOLLOW_rule__PropertyFolding__Group__3__Impl_in_rule__PropertyFolding__Group__38156);
             rule__PropertyFolding__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PropertyFolding__Group__4_in_rule__PropertyFolding__Group__38018);
+            pushFollow(FOLLOW_rule__PropertyFolding__Group__4_in_rule__PropertyFolding__Group__38159);
             rule__PropertyFolding__Group__4();
 
             state._fsp--;
@@ -10952,23 +11102,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__Group__3__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3947:1: rule__PropertyFolding__Group__3__Impl : ( ( rule__PropertyFolding__FromAssignment_3 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4025:1: rule__PropertyFolding__Group__3__Impl : ( ( rule__PropertyFolding__FromAssignment_3 ) ) ;
     public final void rule__PropertyFolding__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3951:1: ( ( ( rule__PropertyFolding__FromAssignment_3 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3952:1: ( ( rule__PropertyFolding__FromAssignment_3 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4029:1: ( ( ( rule__PropertyFolding__FromAssignment_3 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4030:1: ( ( rule__PropertyFolding__FromAssignment_3 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3952:1: ( ( rule__PropertyFolding__FromAssignment_3 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3953:1: ( rule__PropertyFolding__FromAssignment_3 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4030:1: ( ( rule__PropertyFolding__FromAssignment_3 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4031:1: ( rule__PropertyFolding__FromAssignment_3 )
             {
              before(grammarAccess.getPropertyFoldingAccess().getFromAssignment_3()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3954:1: ( rule__PropertyFolding__FromAssignment_3 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3954:2: rule__PropertyFolding__FromAssignment_3
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4032:1: ( rule__PropertyFolding__FromAssignment_3 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4032:2: rule__PropertyFolding__FromAssignment_3
             {
-            pushFollow(FOLLOW_rule__PropertyFolding__FromAssignment_3_in_rule__PropertyFolding__Group__3__Impl8045);
+            pushFollow(FOLLOW_rule__PropertyFolding__FromAssignment_3_in_rule__PropertyFolding__Group__3__Impl8186);
             rule__PropertyFolding__FromAssignment_3();
 
             state._fsp--;
@@ -10999,21 +11149,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__Group__4"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3964:1: rule__PropertyFolding__Group__4 : rule__PropertyFolding__Group__4__Impl rule__PropertyFolding__Group__5 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4042:1: rule__PropertyFolding__Group__4 : rule__PropertyFolding__Group__4__Impl rule__PropertyFolding__Group__5 ;
     public final void rule__PropertyFolding__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3968:1: ( rule__PropertyFolding__Group__4__Impl rule__PropertyFolding__Group__5 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3969:2: rule__PropertyFolding__Group__4__Impl rule__PropertyFolding__Group__5
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4046:1: ( rule__PropertyFolding__Group__4__Impl rule__PropertyFolding__Group__5 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4047:2: rule__PropertyFolding__Group__4__Impl rule__PropertyFolding__Group__5
             {
-            pushFollow(FOLLOW_rule__PropertyFolding__Group__4__Impl_in_rule__PropertyFolding__Group__48075);
+            pushFollow(FOLLOW_rule__PropertyFolding__Group__4__Impl_in_rule__PropertyFolding__Group__48216);
             rule__PropertyFolding__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PropertyFolding__Group__5_in_rule__PropertyFolding__Group__48078);
+            pushFollow(FOLLOW_rule__PropertyFolding__Group__5_in_rule__PropertyFolding__Group__48219);
             rule__PropertyFolding__Group__5();
 
             state._fsp--;
@@ -11037,23 +11187,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__Group__4__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3976:1: rule__PropertyFolding__Group__4__Impl : ( ( rule__PropertyFolding__Alternatives_4 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4054:1: rule__PropertyFolding__Group__4__Impl : ( ( rule__PropertyFolding__Alternatives_4 ) ) ;
     public final void rule__PropertyFolding__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3980:1: ( ( ( rule__PropertyFolding__Alternatives_4 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3981:1: ( ( rule__PropertyFolding__Alternatives_4 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4058:1: ( ( ( rule__PropertyFolding__Alternatives_4 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4059:1: ( ( rule__PropertyFolding__Alternatives_4 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3981:1: ( ( rule__PropertyFolding__Alternatives_4 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3982:1: ( rule__PropertyFolding__Alternatives_4 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4059:1: ( ( rule__PropertyFolding__Alternatives_4 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4060:1: ( rule__PropertyFolding__Alternatives_4 )
             {
              before(grammarAccess.getPropertyFoldingAccess().getAlternatives_4()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3983:1: ( rule__PropertyFolding__Alternatives_4 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3983:2: rule__PropertyFolding__Alternatives_4
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4061:1: ( rule__PropertyFolding__Alternatives_4 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4061:2: rule__PropertyFolding__Alternatives_4
             {
-            pushFollow(FOLLOW_rule__PropertyFolding__Alternatives_4_in_rule__PropertyFolding__Group__4__Impl8105);
+            pushFollow(FOLLOW_rule__PropertyFolding__Alternatives_4_in_rule__PropertyFolding__Group__4__Impl8246);
             rule__PropertyFolding__Alternatives_4();
 
             state._fsp--;
@@ -11084,21 +11234,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__Group__5"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3993:1: rule__PropertyFolding__Group__5 : rule__PropertyFolding__Group__5__Impl rule__PropertyFolding__Group__6 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4071:1: rule__PropertyFolding__Group__5 : rule__PropertyFolding__Group__5__Impl rule__PropertyFolding__Group__6 ;
     public final void rule__PropertyFolding__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3997:1: ( rule__PropertyFolding__Group__5__Impl rule__PropertyFolding__Group__6 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:3998:2: rule__PropertyFolding__Group__5__Impl rule__PropertyFolding__Group__6
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4075:1: ( rule__PropertyFolding__Group__5__Impl rule__PropertyFolding__Group__6 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4076:2: rule__PropertyFolding__Group__5__Impl rule__PropertyFolding__Group__6
             {
-            pushFollow(FOLLOW_rule__PropertyFolding__Group__5__Impl_in_rule__PropertyFolding__Group__58135);
+            pushFollow(FOLLOW_rule__PropertyFolding__Group__5__Impl_in_rule__PropertyFolding__Group__58276);
             rule__PropertyFolding__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PropertyFolding__Group__6_in_rule__PropertyFolding__Group__58138);
+            pushFollow(FOLLOW_rule__PropertyFolding__Group__6_in_rule__PropertyFolding__Group__58279);
             rule__PropertyFolding__Group__6();
 
             state._fsp--;
@@ -11122,23 +11272,23 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__Group__5__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4005:1: rule__PropertyFolding__Group__5__Impl : ( ( rule__PropertyFolding__NameAssignment_5 ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4083:1: rule__PropertyFolding__Group__5__Impl : ( ( rule__PropertyFolding__NameAssignment_5 ) ) ;
     public final void rule__PropertyFolding__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4009:1: ( ( ( rule__PropertyFolding__NameAssignment_5 ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4010:1: ( ( rule__PropertyFolding__NameAssignment_5 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4087:1: ( ( ( rule__PropertyFolding__NameAssignment_5 ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4088:1: ( ( rule__PropertyFolding__NameAssignment_5 ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4010:1: ( ( rule__PropertyFolding__NameAssignment_5 ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4011:1: ( rule__PropertyFolding__NameAssignment_5 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4088:1: ( ( rule__PropertyFolding__NameAssignment_5 ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4089:1: ( rule__PropertyFolding__NameAssignment_5 )
             {
              before(grammarAccess.getPropertyFoldingAccess().getNameAssignment_5()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4012:1: ( rule__PropertyFolding__NameAssignment_5 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4012:2: rule__PropertyFolding__NameAssignment_5
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4090:1: ( rule__PropertyFolding__NameAssignment_5 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4090:2: rule__PropertyFolding__NameAssignment_5
             {
-            pushFollow(FOLLOW_rule__PropertyFolding__NameAssignment_5_in_rule__PropertyFolding__Group__5__Impl8165);
+            pushFollow(FOLLOW_rule__PropertyFolding__NameAssignment_5_in_rule__PropertyFolding__Group__5__Impl8306);
             rule__PropertyFolding__NameAssignment_5();
 
             state._fsp--;
@@ -11169,16 +11319,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__Group__6"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4022:1: rule__PropertyFolding__Group__6 : rule__PropertyFolding__Group__6__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4100:1: rule__PropertyFolding__Group__6 : rule__PropertyFolding__Group__6__Impl ;
     public final void rule__PropertyFolding__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4026:1: ( rule__PropertyFolding__Group__6__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4027:2: rule__PropertyFolding__Group__6__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4104:1: ( rule__PropertyFolding__Group__6__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4105:2: rule__PropertyFolding__Group__6__Impl
             {
-            pushFollow(FOLLOW_rule__PropertyFolding__Group__6__Impl_in_rule__PropertyFolding__Group__68195);
+            pushFollow(FOLLOW_rule__PropertyFolding__Group__6__Impl_in_rule__PropertyFolding__Group__68336);
             rule__PropertyFolding__Group__6__Impl();
 
             state._fsp--;
@@ -11202,20 +11352,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__Group__6__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4033:1: rule__PropertyFolding__Group__6__Impl : ( ';' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4111:1: rule__PropertyFolding__Group__6__Impl : ( ';' ) ;
     public final void rule__PropertyFolding__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4037:1: ( ( ';' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4038:1: ( ';' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4115:1: ( ( ';' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4116:1: ( ';' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4038:1: ( ';' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4039:1: ';'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4116:1: ( ';' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4117:1: ';'
             {
              before(grammarAccess.getPropertyFoldingAccess().getSemicolonKeyword_6()); 
-            match(input,31,FOLLOW_31_in_rule__PropertyFolding__Group__6__Impl8223); 
+            match(input,31,FOLLOW_31_in_rule__PropertyFolding__Group__6__Impl8364); 
              after(grammarAccess.getPropertyFoldingAccess().getSemicolonKeyword_6()); 
 
             }
@@ -11239,21 +11389,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4066:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4144:1: rule__QualifiedName__Group__0 : rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 ;
     public final void rule__QualifiedName__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4070:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4071:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4148:1: ( rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4149:2: rule__QualifiedName__Group__0__Impl rule__QualifiedName__Group__1
             {
-            pushFollow(FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__08268);
+            pushFollow(FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__08409);
             rule__QualifiedName__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__08271);
+            pushFollow(FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__08412);
             rule__QualifiedName__Group__1();
 
             state._fsp--;
@@ -11277,20 +11427,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4078:1: rule__QualifiedName__Group__0__Impl : ( ruleName ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4156:1: rule__QualifiedName__Group__0__Impl : ( ruleName ) ;
     public final void rule__QualifiedName__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4082:1: ( ( ruleName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4083:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4160:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4161:1: ( ruleName )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4083:1: ( ruleName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4084:1: ruleName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4161:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4162:1: ruleName
             {
              before(grammarAccess.getQualifiedNameAccess().getNameParserRuleCall_0()); 
-            pushFollow(FOLLOW_ruleName_in_rule__QualifiedName__Group__0__Impl8298);
+            pushFollow(FOLLOW_ruleName_in_rule__QualifiedName__Group__0__Impl8439);
             ruleName();
 
             state._fsp--;
@@ -11318,16 +11468,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4095:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4173:1: rule__QualifiedName__Group__1 : rule__QualifiedName__Group__1__Impl ;
     public final void rule__QualifiedName__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4099:1: ( rule__QualifiedName__Group__1__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4100:2: rule__QualifiedName__Group__1__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4177:1: ( rule__QualifiedName__Group__1__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4178:2: rule__QualifiedName__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__18327);
+            pushFollow(FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__18468);
             rule__QualifiedName__Group__1__Impl();
 
             state._fsp--;
@@ -11351,20 +11501,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4106:1: rule__QualifiedName__Group__1__Impl : ( ( rule__QualifiedName__Group_1__0 )* ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4184:1: rule__QualifiedName__Group__1__Impl : ( ( rule__QualifiedName__Group_1__0 )* ) ;
     public final void rule__QualifiedName__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4110:1: ( ( ( rule__QualifiedName__Group_1__0 )* ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4111:1: ( ( rule__QualifiedName__Group_1__0 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4188:1: ( ( ( rule__QualifiedName__Group_1__0 )* ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4189:1: ( ( rule__QualifiedName__Group_1__0 )* )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4111:1: ( ( rule__QualifiedName__Group_1__0 )* )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4112:1: ( rule__QualifiedName__Group_1__0 )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4189:1: ( ( rule__QualifiedName__Group_1__0 )* )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4190:1: ( rule__QualifiedName__Group_1__0 )*
             {
              before(grammarAccess.getQualifiedNameAccess().getGroup_1()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4113:1: ( rule__QualifiedName__Group_1__0 )*
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4191:1: ( rule__QualifiedName__Group_1__0 )*
             loop36:
             do {
                 int alt36=2;
@@ -11377,9 +11527,9 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
                 switch (alt36) {
             	case 1 :
-            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4113:2: rule__QualifiedName__Group_1__0
+            	    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4191:2: rule__QualifiedName__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__QualifiedName__Group_1__0_in_rule__QualifiedName__Group__1__Impl8354);
+            	    pushFollow(FOLLOW_rule__QualifiedName__Group_1__0_in_rule__QualifiedName__Group__1__Impl8495);
             	    rule__QualifiedName__Group_1__0();
 
             	    state._fsp--;
@@ -11416,21 +11566,21 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4127:1: rule__QualifiedName__Group_1__0 : rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4205:1: rule__QualifiedName__Group_1__0 : rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 ;
     public final void rule__QualifiedName__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4131:1: ( rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4132:2: rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4209:1: ( rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1 )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4210:2: rule__QualifiedName__Group_1__0__Impl rule__QualifiedName__Group_1__1
             {
-            pushFollow(FOLLOW_rule__QualifiedName__Group_1__0__Impl_in_rule__QualifiedName__Group_1__08389);
+            pushFollow(FOLLOW_rule__QualifiedName__Group_1__0__Impl_in_rule__QualifiedName__Group_1__08530);
             rule__QualifiedName__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__QualifiedName__Group_1__1_in_rule__QualifiedName__Group_1__08392);
+            pushFollow(FOLLOW_rule__QualifiedName__Group_1__1_in_rule__QualifiedName__Group_1__08533);
             rule__QualifiedName__Group_1__1();
 
             state._fsp--;
@@ -11454,20 +11604,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__0__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4139:1: rule__QualifiedName__Group_1__0__Impl : ( '.' ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4217:1: rule__QualifiedName__Group_1__0__Impl : ( '.' ) ;
     public final void rule__QualifiedName__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4143:1: ( ( '.' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4144:1: ( '.' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4221:1: ( ( '.' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4222:1: ( '.' )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4144:1: ( '.' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4145:1: '.'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4222:1: ( '.' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4223:1: '.'
             {
              before(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
-            match(input,42,FOLLOW_42_in_rule__QualifiedName__Group_1__0__Impl8420); 
+            match(input,42,FOLLOW_42_in_rule__QualifiedName__Group_1__0__Impl8561); 
              after(grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
 
             }
@@ -11491,16 +11641,16 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4158:1: rule__QualifiedName__Group_1__1 : rule__QualifiedName__Group_1__1__Impl ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4236:1: rule__QualifiedName__Group_1__1 : rule__QualifiedName__Group_1__1__Impl ;
     public final void rule__QualifiedName__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4162:1: ( rule__QualifiedName__Group_1__1__Impl )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4163:2: rule__QualifiedName__Group_1__1__Impl
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4240:1: ( rule__QualifiedName__Group_1__1__Impl )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4241:2: rule__QualifiedName__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__QualifiedName__Group_1__1__Impl_in_rule__QualifiedName__Group_1__18451);
+            pushFollow(FOLLOW_rule__QualifiedName__Group_1__1__Impl_in_rule__QualifiedName__Group_1__18592);
             rule__QualifiedName__Group_1__1__Impl();
 
             state._fsp--;
@@ -11524,20 +11674,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedName__Group_1__1__Impl"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4169:1: rule__QualifiedName__Group_1__1__Impl : ( ruleName ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4247:1: rule__QualifiedName__Group_1__1__Impl : ( ruleName ) ;
     public final void rule__QualifiedName__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4173:1: ( ( ruleName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4174:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4251:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4252:1: ( ruleName )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4174:1: ( ruleName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4175:1: ruleName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4252:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4253:1: ruleName
             {
              before(grammarAccess.getQualifiedNameAccess().getNameParserRuleCall_1_1()); 
-            pushFollow(FOLLOW_ruleName_in_rule__QualifiedName__Group_1__1__Impl8478);
+            pushFollow(FOLLOW_ruleName_in_rule__QualifiedName__Group_1__1__Impl8619);
             ruleName();
 
             state._fsp--;
@@ -11565,20 +11715,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Script__ListAssignment"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4191:1: rule__Script__ListAssignment : ( ruleModelDefinition ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4269:1: rule__Script__ListAssignment : ( ruleModelDefinition ) ;
     public final void rule__Script__ListAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4195:1: ( ( ruleModelDefinition ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4196:1: ( ruleModelDefinition )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4273:1: ( ( ruleModelDefinition ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4274:1: ( ruleModelDefinition )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4196:1: ( ruleModelDefinition )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4197:1: ruleModelDefinition
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4274:1: ( ruleModelDefinition )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4275:1: ruleModelDefinition
             {
              before(grammarAccess.getScriptAccess().getListModelDefinitionParserRuleCall_0()); 
-            pushFollow(FOLLOW_ruleModelDefinition_in_rule__Script__ListAssignment8516);
+            pushFollow(FOLLOW_ruleModelDefinition_in_rule__Script__ListAssignment8657);
             ruleModelDefinition();
 
             state._fsp--;
@@ -11606,20 +11756,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelDefinition__DescriptionAssignment_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4206:1: rule__ModelDefinition__DescriptionAssignment_0 : ( ruleDescription ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4284:1: rule__ModelDefinition__DescriptionAssignment_0 : ( ruleDescription ) ;
     public final void rule__ModelDefinition__DescriptionAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4210:1: ( ( ruleDescription ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4211:1: ( ruleDescription )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4288:1: ( ( ruleDescription ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4289:1: ( ruleDescription )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4211:1: ( ruleDescription )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4212:1: ruleDescription
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4289:1: ( ruleDescription )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4290:1: ruleDescription
             {
              before(grammarAccess.getModelDefinitionAccess().getDescriptionDescriptionParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleDescription_in_rule__ModelDefinition__DescriptionAssignment_08547);
+            pushFollow(FOLLOW_ruleDescription_in_rule__ModelDefinition__DescriptionAssignment_08688);
             ruleDescription();
 
             state._fsp--;
@@ -11647,20 +11797,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelDefinition__AttributesAssignment_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4221:1: rule__ModelDefinition__AttributesAssignment_1 : ( ruleAttributeList ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4299:1: rule__ModelDefinition__AttributesAssignment_1 : ( ruleAttributeList ) ;
     public final void rule__ModelDefinition__AttributesAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4225:1: ( ( ruleAttributeList ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4226:1: ( ruleAttributeList )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4303:1: ( ( ruleAttributeList ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4304:1: ( ruleAttributeList )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4226:1: ( ruleAttributeList )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4227:1: ruleAttributeList
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4304:1: ( ruleAttributeList )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4305:1: ruleAttributeList
             {
              before(grammarAccess.getModelDefinitionAccess().getAttributesAttributeListParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleAttributeList_in_rule__ModelDefinition__AttributesAssignment_18578);
+            pushFollow(FOLLOW_ruleAttributeList_in_rule__ModelDefinition__AttributesAssignment_18719);
             ruleAttributeList();
 
             state._fsp--;
@@ -11688,24 +11838,24 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelDefinition__TypeAssignment_2_0_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4236:1: rule__ModelDefinition__TypeAssignment_2_0_0 : ( ( 'projective' ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4314:1: rule__ModelDefinition__TypeAssignment_2_0_0 : ( ( 'projective' ) ) ;
     public final void rule__ModelDefinition__TypeAssignment_2_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4240:1: ( ( ( 'projective' ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4241:1: ( ( 'projective' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4318:1: ( ( ( 'projective' ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4319:1: ( ( 'projective' ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4241:1: ( ( 'projective' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4242:1: ( 'projective' )
-            {
-             before(grammarAccess.getModelDefinitionAccess().getTypeProjectiveKeyword_2_0_0_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4243:1: ( 'projective' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4244:1: 'projective'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4319:1: ( ( 'projective' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4320:1: ( 'projective' )
             {
              before(grammarAccess.getModelDefinitionAccess().getTypeProjectiveKeyword_2_0_0_0()); 
-            match(input,15,FOLLOW_15_in_rule__ModelDefinition__TypeAssignment_2_0_08614); 
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4321:1: ( 'projective' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4322:1: 'projective'
+            {
+             before(grammarAccess.getModelDefinitionAccess().getTypeProjectiveKeyword_2_0_0_0()); 
+            match(input,15,FOLLOW_15_in_rule__ModelDefinition__TypeAssignment_2_0_08755); 
              after(grammarAccess.getModelDefinitionAccess().getTypeProjectiveKeyword_2_0_0_0()); 
 
             }
@@ -11733,20 +11883,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelDefinition__NameAssignment_2_0_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4259:1: rule__ModelDefinition__NameAssignment_2_0_1 : ( ruleName ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4337:1: rule__ModelDefinition__NameAssignment_2_0_1 : ( ruleName ) ;
     public final void rule__ModelDefinition__NameAssignment_2_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4263:1: ( ( ruleName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4264:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4341:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4342:1: ( ruleName )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4264:1: ( ruleName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4265:1: ruleName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4342:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4343:1: ruleName
             {
              before(grammarAccess.getModelDefinitionAccess().getNameNameParserRuleCall_2_0_1_0()); 
-            pushFollow(FOLLOW_ruleName_in_rule__ModelDefinition__NameAssignment_2_0_18653);
+            pushFollow(FOLLOW_ruleName_in_rule__ModelDefinition__NameAssignment_2_0_18794);
             ruleName();
 
             state._fsp--;
@@ -11774,20 +11924,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelDefinition__RhsAssignment_2_0_3"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4274:1: rule__ModelDefinition__RhsAssignment_2_0_3 : ( ruleRecordExpression ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4352:1: rule__ModelDefinition__RhsAssignment_2_0_3 : ( ruleRecordExpression ) ;
     public final void rule__ModelDefinition__RhsAssignment_2_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4278:1: ( ( ruleRecordExpression ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4279:1: ( ruleRecordExpression )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4356:1: ( ( ruleRecordExpression ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4357:1: ( ruleRecordExpression )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4279:1: ( ruleRecordExpression )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4280:1: ruleRecordExpression
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4357:1: ( ruleRecordExpression )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4358:1: ruleRecordExpression
             {
              before(grammarAccess.getModelDefinitionAccess().getRhsRecordExpressionParserRuleCall_2_0_3_0()); 
-            pushFollow(FOLLOW_ruleRecordExpression_in_rule__ModelDefinition__RhsAssignment_2_0_38684);
+            pushFollow(FOLLOW_ruleRecordExpression_in_rule__ModelDefinition__RhsAssignment_2_0_38825);
             ruleRecordExpression();
 
             state._fsp--;
@@ -11815,24 +11965,24 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelDefinition__TypeAssignment_2_1_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4289:1: rule__ModelDefinition__TypeAssignment_2_1_0 : ( ( 'joined' ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4367:1: rule__ModelDefinition__TypeAssignment_2_1_0 : ( ( 'joined' ) ) ;
     public final void rule__ModelDefinition__TypeAssignment_2_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4293:1: ( ( ( 'joined' ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4294:1: ( ( 'joined' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4371:1: ( ( ( 'joined' ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4372:1: ( ( 'joined' ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4294:1: ( ( 'joined' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4295:1: ( 'joined' )
-            {
-             before(grammarAccess.getModelDefinitionAccess().getTypeJoinedKeyword_2_1_0_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4296:1: ( 'joined' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4297:1: 'joined'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4372:1: ( ( 'joined' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4373:1: ( 'joined' )
             {
              before(grammarAccess.getModelDefinitionAccess().getTypeJoinedKeyword_2_1_0_0()); 
-            match(input,16,FOLLOW_16_in_rule__ModelDefinition__TypeAssignment_2_1_08720); 
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4374:1: ( 'joined' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4375:1: 'joined'
+            {
+             before(grammarAccess.getModelDefinitionAccess().getTypeJoinedKeyword_2_1_0_0()); 
+            match(input,16,FOLLOW_16_in_rule__ModelDefinition__TypeAssignment_2_1_08861); 
              after(grammarAccess.getModelDefinitionAccess().getTypeJoinedKeyword_2_1_0_0()); 
 
             }
@@ -11860,20 +12010,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelDefinition__NameAssignment_2_1_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4312:1: rule__ModelDefinition__NameAssignment_2_1_1 : ( ruleName ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4390:1: rule__ModelDefinition__NameAssignment_2_1_1 : ( ruleName ) ;
     public final void rule__ModelDefinition__NameAssignment_2_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4316:1: ( ( ruleName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4317:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4394:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4395:1: ( ruleName )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4317:1: ( ruleName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4318:1: ruleName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4395:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4396:1: ruleName
             {
              before(grammarAccess.getModelDefinitionAccess().getNameNameParserRuleCall_2_1_1_0()); 
-            pushFollow(FOLLOW_ruleName_in_rule__ModelDefinition__NameAssignment_2_1_18759);
+            pushFollow(FOLLOW_ruleName_in_rule__ModelDefinition__NameAssignment_2_1_18900);
             ruleName();
 
             state._fsp--;
@@ -11901,20 +12051,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelDefinition__RhsAssignment_2_1_3"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4327:1: rule__ModelDefinition__RhsAssignment_2_1_3 : ( ruleJoinExpression ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4405:1: rule__ModelDefinition__RhsAssignment_2_1_3 : ( ruleJoinExpression ) ;
     public final void rule__ModelDefinition__RhsAssignment_2_1_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4331:1: ( ( ruleJoinExpression ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4332:1: ( ruleJoinExpression )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4409:1: ( ( ruleJoinExpression ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4410:1: ( ruleJoinExpression )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4332:1: ( ruleJoinExpression )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4333:1: ruleJoinExpression
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4410:1: ( ruleJoinExpression )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4411:1: ruleJoinExpression
             {
              before(grammarAccess.getModelDefinitionAccess().getRhsJoinExpressionParserRuleCall_2_1_3_0()); 
-            pushFollow(FOLLOW_ruleJoinExpression_in_rule__ModelDefinition__RhsAssignment_2_1_38790);
+            pushFollow(FOLLOW_ruleJoinExpression_in_rule__ModelDefinition__RhsAssignment_2_1_38931);
             ruleJoinExpression();
 
             state._fsp--;
@@ -11942,24 +12092,24 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelDefinition__TypeAssignment_2_2_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4342:1: rule__ModelDefinition__TypeAssignment_2_2_0 : ( ( 'summarized' ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4420:1: rule__ModelDefinition__TypeAssignment_2_2_0 : ( ( 'summarized' ) ) ;
     public final void rule__ModelDefinition__TypeAssignment_2_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4346:1: ( ( ( 'summarized' ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4347:1: ( ( 'summarized' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4424:1: ( ( ( 'summarized' ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4425:1: ( ( 'summarized' ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4347:1: ( ( 'summarized' ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4348:1: ( 'summarized' )
-            {
-             before(grammarAccess.getModelDefinitionAccess().getTypeSummarizedKeyword_2_2_0_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4349:1: ( 'summarized' )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4350:1: 'summarized'
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4425:1: ( ( 'summarized' ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4426:1: ( 'summarized' )
             {
              before(grammarAccess.getModelDefinitionAccess().getTypeSummarizedKeyword_2_2_0_0()); 
-            match(input,17,FOLLOW_17_in_rule__ModelDefinition__TypeAssignment_2_2_08826); 
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4427:1: ( 'summarized' )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4428:1: 'summarized'
+            {
+             before(grammarAccess.getModelDefinitionAccess().getTypeSummarizedKeyword_2_2_0_0()); 
+            match(input,17,FOLLOW_17_in_rule__ModelDefinition__TypeAssignment_2_2_08967); 
              after(grammarAccess.getModelDefinitionAccess().getTypeSummarizedKeyword_2_2_0_0()); 
 
             }
@@ -11987,20 +12137,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelDefinition__NameAssignment_2_2_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4365:1: rule__ModelDefinition__NameAssignment_2_2_1 : ( ruleName ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4443:1: rule__ModelDefinition__NameAssignment_2_2_1 : ( ruleName ) ;
     public final void rule__ModelDefinition__NameAssignment_2_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4369:1: ( ( ruleName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4370:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4447:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4448:1: ( ruleName )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4370:1: ( ruleName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4371:1: ruleName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4448:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4449:1: ruleName
             {
              before(grammarAccess.getModelDefinitionAccess().getNameNameParserRuleCall_2_2_1_0()); 
-            pushFollow(FOLLOW_ruleName_in_rule__ModelDefinition__NameAssignment_2_2_18865);
+            pushFollow(FOLLOW_ruleName_in_rule__ModelDefinition__NameAssignment_2_2_19006);
             ruleName();
 
             state._fsp--;
@@ -12028,20 +12178,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelDefinition__RhsAssignment_2_2_3"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4380:1: rule__ModelDefinition__RhsAssignment_2_2_3 : ( ruleSummarizeExpression ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4458:1: rule__ModelDefinition__RhsAssignment_2_2_3 : ( ruleSummarizeExpression ) ;
     public final void rule__ModelDefinition__RhsAssignment_2_2_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4384:1: ( ( ruleSummarizeExpression ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4385:1: ( ruleSummarizeExpression )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4462:1: ( ( ruleSummarizeExpression ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4463:1: ( ruleSummarizeExpression )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4385:1: ( ruleSummarizeExpression )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4386:1: ruleSummarizeExpression
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4463:1: ( ruleSummarizeExpression )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4464:1: ruleSummarizeExpression
             {
              before(grammarAccess.getModelDefinitionAccess().getRhsSummarizeExpressionParserRuleCall_2_2_3_0()); 
-            pushFollow(FOLLOW_ruleSummarizeExpression_in_rule__ModelDefinition__RhsAssignment_2_2_38896);
+            pushFollow(FOLLOW_ruleSummarizeExpression_in_rule__ModelDefinition__RhsAssignment_2_2_39037);
             ruleSummarizeExpression();
 
             state._fsp--;
@@ -12069,20 +12219,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RecordExpression__TermsAssignment_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4395:1: rule__RecordExpression__TermsAssignment_0 : ( ruleRecordTerm ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4473:1: rule__RecordExpression__TermsAssignment_0 : ( ruleRecordTerm ) ;
     public final void rule__RecordExpression__TermsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4399:1: ( ( ruleRecordTerm ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4400:1: ( ruleRecordTerm )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4477:1: ( ( ruleRecordTerm ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4478:1: ( ruleRecordTerm )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4400:1: ( ruleRecordTerm )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4401:1: ruleRecordTerm
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4478:1: ( ruleRecordTerm )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4479:1: ruleRecordTerm
             {
              before(grammarAccess.getRecordExpressionAccess().getTermsRecordTermParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleRecordTerm_in_rule__RecordExpression__TermsAssignment_08927);
+            pushFollow(FOLLOW_ruleRecordTerm_in_rule__RecordExpression__TermsAssignment_09068);
             ruleRecordTerm();
 
             state._fsp--;
@@ -12110,20 +12260,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RecordExpression__TermsAssignment_1_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4410:1: rule__RecordExpression__TermsAssignment_1_1 : ( ruleRecordTerm ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4488:1: rule__RecordExpression__TermsAssignment_1_1 : ( ruleRecordTerm ) ;
     public final void rule__RecordExpression__TermsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4414:1: ( ( ruleRecordTerm ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4415:1: ( ruleRecordTerm )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4492:1: ( ( ruleRecordTerm ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4493:1: ( ruleRecordTerm )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4415:1: ( ruleRecordTerm )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4416:1: ruleRecordTerm
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4493:1: ( ruleRecordTerm )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4494:1: ruleRecordTerm
             {
              before(grammarAccess.getRecordExpressionAccess().getTermsRecordTermParserRuleCall_1_1_0()); 
-            pushFollow(FOLLOW_ruleRecordTerm_in_rule__RecordExpression__TermsAssignment_1_18958);
+            pushFollow(FOLLOW_ruleRecordTerm_in_rule__RecordExpression__TermsAssignment_1_19099);
             ruleRecordTerm();
 
             state._fsp--;
@@ -12150,26 +12300,26 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__RecordExpression__TermsAssignment_1_1"
 
 
-    // $ANTLR start "rule__RecordTerm__PropertiesAssignment_0_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4425:1: rule__RecordTerm__PropertiesAssignment_0_1 : ( rulePropertyDefinition ) ;
-    public final void rule__RecordTerm__PropertiesAssignment_0_1() throws RecognitionException {
+    // $ANTLR start "rule__RecordTerm__PropertiesAssignment_0_2"
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4503:1: rule__RecordTerm__PropertiesAssignment_0_2 : ( rulePropertyDefinition ) ;
+    public final void rule__RecordTerm__PropertiesAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4429:1: ( ( rulePropertyDefinition ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4430:1: ( rulePropertyDefinition )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4507:1: ( ( rulePropertyDefinition ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4508:1: ( rulePropertyDefinition )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4430:1: ( rulePropertyDefinition )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4431:1: rulePropertyDefinition
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4508:1: ( rulePropertyDefinition )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4509:1: rulePropertyDefinition
             {
-             before(grammarAccess.getRecordTermAccess().getPropertiesPropertyDefinitionParserRuleCall_0_1_0()); 
-            pushFollow(FOLLOW_rulePropertyDefinition_in_rule__RecordTerm__PropertiesAssignment_0_18989);
+             before(grammarAccess.getRecordTermAccess().getPropertiesPropertyDefinitionParserRuleCall_0_2_0()); 
+            pushFollow(FOLLOW_rulePropertyDefinition_in_rule__RecordTerm__PropertiesAssignment_0_29130);
             rulePropertyDefinition();
 
             state._fsp--;
 
-             after(grammarAccess.getRecordTermAccess().getPropertiesPropertyDefinitionParserRuleCall_0_1_0()); 
+             after(grammarAccess.getRecordTermAccess().getPropertiesPropertyDefinitionParserRuleCall_0_2_0()); 
 
             }
 
@@ -12188,24 +12338,24 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordTerm__PropertiesAssignment_0_1"
+    // $ANTLR end "rule__RecordTerm__PropertiesAssignment_0_2"
 
 
     // $ANTLR start "rule__RecordTerm__ReferenceAssignment_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4440:1: rule__RecordTerm__ReferenceAssignment_1 : ( ruleModelReference ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4518:1: rule__RecordTerm__ReferenceAssignment_1 : ( ruleModelReference ) ;
     public final void rule__RecordTerm__ReferenceAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4444:1: ( ( ruleModelReference ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4445:1: ( ruleModelReference )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4522:1: ( ( ruleModelReference ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4523:1: ( ruleModelReference )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4445:1: ( ruleModelReference )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4446:1: ruleModelReference
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4523:1: ( ruleModelReference )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4524:1: ruleModelReference
             {
              before(grammarAccess.getRecordTermAccess().getReferenceModelReferenceParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleModelReference_in_rule__RecordTerm__ReferenceAssignment_19020);
+            pushFollow(FOLLOW_ruleModelReference_in_rule__RecordTerm__ReferenceAssignment_19161);
             ruleModelReference();
 
             state._fsp--;
@@ -12233,24 +12383,24 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModelReference__NameAssignment"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4455:1: rule__ModelReference__NameAssignment : ( ( ruleName ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4533:1: rule__ModelReference__NameAssignment : ( ( ruleName ) ) ;
     public final void rule__ModelReference__NameAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4459:1: ( ( ( ruleName ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4460:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4537:1: ( ( ( ruleName ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4538:1: ( ( ruleName ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4460:1: ( ( ruleName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4461:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4538:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4539:1: ( ruleName )
             {
              before(grammarAccess.getModelReferenceAccess().getNameModelDefinitionCrossReference_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4462:1: ( ruleName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4463:1: ruleName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4540:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4541:1: ruleName
             {
              before(grammarAccess.getModelReferenceAccess().getNameModelDefinitionNameParserRuleCall_0_1()); 
-            pushFollow(FOLLOW_ruleName_in_rule__ModelReference__NameAssignment9055);
+            pushFollow(FOLLOW_ruleName_in_rule__ModelReference__NameAssignment9196);
             ruleName();
 
             state._fsp--;
@@ -12282,20 +12432,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyDefinition__DescriptionAssignment_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4474:1: rule__PropertyDefinition__DescriptionAssignment_0 : ( ruleDescription ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4552:1: rule__PropertyDefinition__DescriptionAssignment_0 : ( ruleDescription ) ;
     public final void rule__PropertyDefinition__DescriptionAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4478:1: ( ( ruleDescription ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4479:1: ( ruleDescription )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4556:1: ( ( ruleDescription ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4557:1: ( ruleDescription )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4479:1: ( ruleDescription )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4480:1: ruleDescription
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4557:1: ( ruleDescription )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4558:1: ruleDescription
             {
              before(grammarAccess.getPropertyDefinitionAccess().getDescriptionDescriptionParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleDescription_in_rule__PropertyDefinition__DescriptionAssignment_09090);
+            pushFollow(FOLLOW_ruleDescription_in_rule__PropertyDefinition__DescriptionAssignment_09231);
             ruleDescription();
 
             state._fsp--;
@@ -12323,20 +12473,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyDefinition__AttributesAssignment_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4489:1: rule__PropertyDefinition__AttributesAssignment_1 : ( ruleAttributeList ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4567:1: rule__PropertyDefinition__AttributesAssignment_1 : ( ruleAttributeList ) ;
     public final void rule__PropertyDefinition__AttributesAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4493:1: ( ( ruleAttributeList ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4494:1: ( ruleAttributeList )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4571:1: ( ( ruleAttributeList ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4572:1: ( ruleAttributeList )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4494:1: ( ruleAttributeList )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4495:1: ruleAttributeList
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4572:1: ( ruleAttributeList )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4573:1: ruleAttributeList
             {
              before(grammarAccess.getPropertyDefinitionAccess().getAttributesAttributeListParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleAttributeList_in_rule__PropertyDefinition__AttributesAssignment_19121);
+            pushFollow(FOLLOW_ruleAttributeList_in_rule__PropertyDefinition__AttributesAssignment_19262);
             ruleAttributeList();
 
             state._fsp--;
@@ -12364,20 +12514,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyDefinition__NameAssignment_2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4504:1: rule__PropertyDefinition__NameAssignment_2 : ( ruleName ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4582:1: rule__PropertyDefinition__NameAssignment_2 : ( ruleName ) ;
     public final void rule__PropertyDefinition__NameAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4508:1: ( ( ruleName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4509:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4586:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4587:1: ( ruleName )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4509:1: ( ruleName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4510:1: ruleName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4587:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4588:1: ruleName
             {
              before(grammarAccess.getPropertyDefinitionAccess().getNameNameParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleName_in_rule__PropertyDefinition__NameAssignment_29152);
+            pushFollow(FOLLOW_ruleName_in_rule__PropertyDefinition__NameAssignment_29293);
             ruleName();
 
             state._fsp--;
@@ -12405,20 +12555,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyDefinition__TypeAssignment_4"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4519:1: rule__PropertyDefinition__TypeAssignment_4 : ( ruleType ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4597:1: rule__PropertyDefinition__TypeAssignment_4 : ( ruleType ) ;
     public final void rule__PropertyDefinition__TypeAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4523:1: ( ( ruleType ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4524:1: ( ruleType )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4601:1: ( ( ruleType ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4602:1: ( ruleType )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4524:1: ( ruleType )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4525:1: ruleType
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4602:1: ( ruleType )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4603:1: ruleType
             {
              before(grammarAccess.getPropertyDefinitionAccess().getTypeTypeEnumRuleCall_4_0()); 
-            pushFollow(FOLLOW_ruleType_in_rule__PropertyDefinition__TypeAssignment_49183);
+            pushFollow(FOLLOW_ruleType_in_rule__PropertyDefinition__TypeAssignment_49324);
             ruleType();
 
             state._fsp--;
@@ -12446,20 +12596,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinExpression__TermsAssignment_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4534:1: rule__JoinExpression__TermsAssignment_0 : ( ruleJoinTerm ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4612:1: rule__JoinExpression__TermsAssignment_0 : ( ruleJoinTerm ) ;
     public final void rule__JoinExpression__TermsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4538:1: ( ( ruleJoinTerm ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4539:1: ( ruleJoinTerm )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4616:1: ( ( ruleJoinTerm ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4617:1: ( ruleJoinTerm )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4539:1: ( ruleJoinTerm )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4540:1: ruleJoinTerm
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4617:1: ( ruleJoinTerm )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4618:1: ruleJoinTerm
             {
              before(grammarAccess.getJoinExpressionAccess().getTermsJoinTermParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleJoinTerm_in_rule__JoinExpression__TermsAssignment_09214);
+            pushFollow(FOLLOW_ruleJoinTerm_in_rule__JoinExpression__TermsAssignment_09355);
             ruleJoinTerm();
 
             state._fsp--;
@@ -12487,20 +12637,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinExpression__TermsAssignment_1_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4549:1: rule__JoinExpression__TermsAssignment_1_1 : ( ruleJoinTerm ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4627:1: rule__JoinExpression__TermsAssignment_1_1 : ( ruleJoinTerm ) ;
     public final void rule__JoinExpression__TermsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4553:1: ( ( ruleJoinTerm ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4554:1: ( ruleJoinTerm )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4631:1: ( ( ruleJoinTerm ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4632:1: ( ruleJoinTerm )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4554:1: ( ruleJoinTerm )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4555:1: ruleJoinTerm
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4632:1: ( ruleJoinTerm )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4633:1: ruleJoinTerm
             {
              before(grammarAccess.getJoinExpressionAccess().getTermsJoinTermParserRuleCall_1_1_0()); 
-            pushFollow(FOLLOW_ruleJoinTerm_in_rule__JoinExpression__TermsAssignment_1_19245);
+            pushFollow(FOLLOW_ruleJoinTerm_in_rule__JoinExpression__TermsAssignment_1_19386);
             ruleJoinTerm();
 
             state._fsp--;
@@ -12528,20 +12678,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinTerm__ReferenceAssignment_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4564:1: rule__JoinTerm__ReferenceAssignment_0 : ( ruleModelReference ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4642:1: rule__JoinTerm__ReferenceAssignment_0 : ( ruleModelReference ) ;
     public final void rule__JoinTerm__ReferenceAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4568:1: ( ( ruleModelReference ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4569:1: ( ruleModelReference )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4646:1: ( ( ruleModelReference ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4647:1: ( ruleModelReference )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4569:1: ( ruleModelReference )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4570:1: ruleModelReference
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4647:1: ( ruleModelReference )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4648:1: ruleModelReference
             {
              before(grammarAccess.getJoinTermAccess().getReferenceModelReferenceParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleModelReference_in_rule__JoinTerm__ReferenceAssignment_09276);
+            pushFollow(FOLLOW_ruleModelReference_in_rule__JoinTerm__ReferenceAssignment_09417);
             ruleModelReference();
 
             state._fsp--;
@@ -12569,20 +12719,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinTerm__MappingAssignment_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4579:1: rule__JoinTerm__MappingAssignment_1 : ( ruleModelMapping ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4657:1: rule__JoinTerm__MappingAssignment_1 : ( ruleModelMapping ) ;
     public final void rule__JoinTerm__MappingAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4583:1: ( ( ruleModelMapping ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4584:1: ( ruleModelMapping )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4661:1: ( ( ruleModelMapping ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4662:1: ( ruleModelMapping )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4584:1: ( ruleModelMapping )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4585:1: ruleModelMapping
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4662:1: ( ruleModelMapping )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4663:1: ruleModelMapping
             {
              before(grammarAccess.getJoinTermAccess().getMappingModelMappingParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleModelMapping_in_rule__JoinTerm__MappingAssignment_19307);
+            pushFollow(FOLLOW_ruleModelMapping_in_rule__JoinTerm__MappingAssignment_19448);
             ruleModelMapping();
 
             state._fsp--;
@@ -12610,20 +12760,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__JoinTerm__GroupingAssignment_2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4594:1: rule__JoinTerm__GroupingAssignment_2 : ( ruleGrouping ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4672:1: rule__JoinTerm__GroupingAssignment_2 : ( ruleGrouping ) ;
     public final void rule__JoinTerm__GroupingAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4598:1: ( ( ruleGrouping ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4599:1: ( ruleGrouping )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4676:1: ( ( ruleGrouping ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4677:1: ( ruleGrouping )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4599:1: ( ruleGrouping )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4600:1: ruleGrouping
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4677:1: ( ruleGrouping )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4678:1: ruleGrouping
             {
              before(grammarAccess.getJoinTermAccess().getGroupingGroupingParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleGrouping_in_rule__JoinTerm__GroupingAssignment_29338);
+            pushFollow(FOLLOW_ruleGrouping_in_rule__JoinTerm__GroupingAssignment_29479);
             ruleGrouping();
 
             state._fsp--;
@@ -12651,20 +12801,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeExpression__TermsAssignment_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4609:1: rule__SummarizeExpression__TermsAssignment_0 : ( ruleSummarizeTerm ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4687:1: rule__SummarizeExpression__TermsAssignment_0 : ( ruleSummarizeTerm ) ;
     public final void rule__SummarizeExpression__TermsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4613:1: ( ( ruleSummarizeTerm ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4614:1: ( ruleSummarizeTerm )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4691:1: ( ( ruleSummarizeTerm ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4692:1: ( ruleSummarizeTerm )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4614:1: ( ruleSummarizeTerm )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4615:1: ruleSummarizeTerm
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4692:1: ( ruleSummarizeTerm )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4693:1: ruleSummarizeTerm
             {
              before(grammarAccess.getSummarizeExpressionAccess().getTermsSummarizeTermParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleSummarizeTerm_in_rule__SummarizeExpression__TermsAssignment_09369);
+            pushFollow(FOLLOW_ruleSummarizeTerm_in_rule__SummarizeExpression__TermsAssignment_09510);
             ruleSummarizeTerm();
 
             state._fsp--;
@@ -12692,20 +12842,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeExpression__TermsAssignment_1_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4624:1: rule__SummarizeExpression__TermsAssignment_1_1 : ( ruleSummarizeTerm ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4702:1: rule__SummarizeExpression__TermsAssignment_1_1 : ( ruleSummarizeTerm ) ;
     public final void rule__SummarizeExpression__TermsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4628:1: ( ( ruleSummarizeTerm ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4629:1: ( ruleSummarizeTerm )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4706:1: ( ( ruleSummarizeTerm ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4707:1: ( ruleSummarizeTerm )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4629:1: ( ruleSummarizeTerm )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4630:1: ruleSummarizeTerm
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4707:1: ( ruleSummarizeTerm )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4708:1: ruleSummarizeTerm
             {
              before(grammarAccess.getSummarizeExpressionAccess().getTermsSummarizeTermParserRuleCall_1_1_0()); 
-            pushFollow(FOLLOW_ruleSummarizeTerm_in_rule__SummarizeExpression__TermsAssignment_1_19400);
+            pushFollow(FOLLOW_ruleSummarizeTerm_in_rule__SummarizeExpression__TermsAssignment_1_19541);
             ruleSummarizeTerm();
 
             state._fsp--;
@@ -12733,20 +12883,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeTerm__ReferenceAssignment_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4639:1: rule__SummarizeTerm__ReferenceAssignment_0 : ( ruleModelReference ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4717:1: rule__SummarizeTerm__ReferenceAssignment_0 : ( ruleModelReference ) ;
     public final void rule__SummarizeTerm__ReferenceAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4643:1: ( ( ruleModelReference ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4644:1: ( ruleModelReference )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4721:1: ( ( ruleModelReference ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4722:1: ( ruleModelReference )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4644:1: ( ruleModelReference )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4645:1: ruleModelReference
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4722:1: ( ruleModelReference )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4723:1: ruleModelReference
             {
              before(grammarAccess.getSummarizeTermAccess().getReferenceModelReferenceParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleModelReference_in_rule__SummarizeTerm__ReferenceAssignment_09431);
+            pushFollow(FOLLOW_ruleModelReference_in_rule__SummarizeTerm__ReferenceAssignment_09572);
             ruleModelReference();
 
             state._fsp--;
@@ -12774,20 +12924,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeTerm__FoldingAssignment_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4654:1: rule__SummarizeTerm__FoldingAssignment_1 : ( ruleModelFolding ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4732:1: rule__SummarizeTerm__FoldingAssignment_1 : ( ruleModelFolding ) ;
     public final void rule__SummarizeTerm__FoldingAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4658:1: ( ( ruleModelFolding ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4659:1: ( ruleModelFolding )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4736:1: ( ( ruleModelFolding ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4737:1: ( ruleModelFolding )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4659:1: ( ruleModelFolding )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4660:1: ruleModelFolding
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4737:1: ( ruleModelFolding )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4738:1: ruleModelFolding
             {
              before(grammarAccess.getSummarizeTermAccess().getFoldingModelFoldingParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleModelFolding_in_rule__SummarizeTerm__FoldingAssignment_19462);
+            pushFollow(FOLLOW_ruleModelFolding_in_rule__SummarizeTerm__FoldingAssignment_19603);
             ruleModelFolding();
 
             state._fsp--;
@@ -12815,20 +12965,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SummarizeTerm__GroupingAssignment_2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4669:1: rule__SummarizeTerm__GroupingAssignment_2 : ( ruleGrouping ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4747:1: rule__SummarizeTerm__GroupingAssignment_2 : ( ruleGrouping ) ;
     public final void rule__SummarizeTerm__GroupingAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4673:1: ( ( ruleGrouping ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4674:1: ( ruleGrouping )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4751:1: ( ( ruleGrouping ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4752:1: ( ruleGrouping )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4674:1: ( ruleGrouping )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4675:1: ruleGrouping
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4752:1: ( ruleGrouping )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4753:1: ruleGrouping
             {
              before(grammarAccess.getSummarizeTermAccess().getGroupingGroupingParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleGrouping_in_rule__SummarizeTerm__GroupingAssignment_29493);
+            pushFollow(FOLLOW_ruleGrouping_in_rule__SummarizeTerm__GroupingAssignment_29634);
             ruleGrouping();
 
             state._fsp--;
@@ -12856,20 +13006,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeList__AttributesAssignment"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4684:1: rule__AttributeList__AttributesAssignment : ( ruleAttribute ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4762:1: rule__AttributeList__AttributesAssignment : ( ruleAttribute ) ;
     public final void rule__AttributeList__AttributesAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4688:1: ( ( ruleAttribute ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4689:1: ( ruleAttribute )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4766:1: ( ( ruleAttribute ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4767:1: ( ruleAttribute )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4689:1: ( ruleAttribute )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4690:1: ruleAttribute
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4767:1: ( ruleAttribute )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4768:1: ruleAttribute
             {
              before(grammarAccess.getAttributeListAccess().getAttributesAttributeParserRuleCall_0()); 
-            pushFollow(FOLLOW_ruleAttribute_in_rule__AttributeList__AttributesAssignment9524);
+            pushFollow(FOLLOW_ruleAttribute_in_rule__AttributeList__AttributesAssignment9665);
             ruleAttribute();
 
             state._fsp--;
@@ -12897,20 +13047,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__NameAssignment_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4699:1: rule__Attribute__NameAssignment_1 : ( ruleQualifiedName ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4777:1: rule__Attribute__NameAssignment_1 : ( ruleQualifiedName ) ;
     public final void rule__Attribute__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4703:1: ( ( ruleQualifiedName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4704:1: ( ruleQualifiedName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4781:1: ( ( ruleQualifiedName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4782:1: ( ruleQualifiedName )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4704:1: ( ruleQualifiedName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4705:1: ruleQualifiedName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4782:1: ( ruleQualifiedName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4783:1: ruleQualifiedName
             {
              before(grammarAccess.getAttributeAccess().getNameQualifiedNameParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Attribute__NameAssignment_19555);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__Attribute__NameAssignment_19696);
             ruleQualifiedName();
 
             state._fsp--;
@@ -12938,20 +13088,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Attribute__ElementBlockAssignment_2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4714:1: rule__Attribute__ElementBlockAssignment_2 : ( ruleAttributeElementBlock ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4792:1: rule__Attribute__ElementBlockAssignment_2 : ( ruleAttributeElementBlock ) ;
     public final void rule__Attribute__ElementBlockAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4718:1: ( ( ruleAttributeElementBlock ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4719:1: ( ruleAttributeElementBlock )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4796:1: ( ( ruleAttributeElementBlock ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4797:1: ( ruleAttributeElementBlock )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4719:1: ( ruleAttributeElementBlock )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4720:1: ruleAttributeElementBlock
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4797:1: ( ruleAttributeElementBlock )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4798:1: ruleAttributeElementBlock
             {
              before(grammarAccess.getAttributeAccess().getElementBlockAttributeElementBlockParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleAttributeElementBlock_in_rule__Attribute__ElementBlockAssignment_29586);
+            pushFollow(FOLLOW_ruleAttributeElementBlock_in_rule__Attribute__ElementBlockAssignment_29727);
             ruleAttributeElementBlock();
 
             state._fsp--;
@@ -12979,20 +13129,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementBlock__ElementsAssignment_2_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4729:1: rule__AttributeElementBlock__ElementsAssignment_2_0 : ( ruleAttributeElementList ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4807:1: rule__AttributeElementBlock__ElementsAssignment_2_0 : ( ruleAttributeElementList ) ;
     public final void rule__AttributeElementBlock__ElementsAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4733:1: ( ( ruleAttributeElementList ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4734:1: ( ruleAttributeElementList )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4811:1: ( ( ruleAttributeElementList ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4812:1: ( ruleAttributeElementList )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4734:1: ( ruleAttributeElementList )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4735:1: ruleAttributeElementList
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4812:1: ( ruleAttributeElementList )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4813:1: ruleAttributeElementList
             {
              before(grammarAccess.getAttributeElementBlockAccess().getElementsAttributeElementListParserRuleCall_2_0_0()); 
-            pushFollow(FOLLOW_ruleAttributeElementList_in_rule__AttributeElementBlock__ElementsAssignment_2_09617);
+            pushFollow(FOLLOW_ruleAttributeElementList_in_rule__AttributeElementBlock__ElementsAssignment_2_09758);
             ruleAttributeElementList();
 
             state._fsp--;
@@ -13020,20 +13170,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementList__ElementsAssignment_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4744:1: rule__AttributeElementList__ElementsAssignment_0 : ( ruleAttributeElement ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4822:1: rule__AttributeElementList__ElementsAssignment_0 : ( ruleAttributeElement ) ;
     public final void rule__AttributeElementList__ElementsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4748:1: ( ( ruleAttributeElement ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4749:1: ( ruleAttributeElement )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4826:1: ( ( ruleAttributeElement ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4827:1: ( ruleAttributeElement )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4749:1: ( ruleAttributeElement )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4750:1: ruleAttributeElement
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4827:1: ( ruleAttributeElement )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4828:1: ruleAttributeElement
             {
              before(grammarAccess.getAttributeElementListAccess().getElementsAttributeElementParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleAttributeElement_in_rule__AttributeElementList__ElementsAssignment_09648);
+            pushFollow(FOLLOW_ruleAttributeElement_in_rule__AttributeElementList__ElementsAssignment_09789);
             ruleAttributeElement();
 
             state._fsp--;
@@ -13061,20 +13211,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElementList__ElementsAssignment_1_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4759:1: rule__AttributeElementList__ElementsAssignment_1_1 : ( ruleAttributeElement ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4837:1: rule__AttributeElementList__ElementsAssignment_1_1 : ( ruleAttributeElement ) ;
     public final void rule__AttributeElementList__ElementsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4763:1: ( ( ruleAttributeElement ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4764:1: ( ruleAttributeElement )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4841:1: ( ( ruleAttributeElement ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4842:1: ( ruleAttributeElement )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4764:1: ( ruleAttributeElement )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4765:1: ruleAttributeElement
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4842:1: ( ruleAttributeElement )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4843:1: ruleAttributeElement
             {
              before(grammarAccess.getAttributeElementListAccess().getElementsAttributeElementParserRuleCall_1_1_0()); 
-            pushFollow(FOLLOW_ruleAttributeElement_in_rule__AttributeElementList__ElementsAssignment_1_19679);
+            pushFollow(FOLLOW_ruleAttributeElement_in_rule__AttributeElementList__ElementsAssignment_1_19820);
             ruleAttributeElement();
 
             state._fsp--;
@@ -13102,20 +13252,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElement__NameAssignment_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4774:1: rule__AttributeElement__NameAssignment_0 : ( ruleName ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4852:1: rule__AttributeElement__NameAssignment_0 : ( ruleName ) ;
     public final void rule__AttributeElement__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4778:1: ( ( ruleName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4779:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4856:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4857:1: ( ruleName )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4779:1: ( ruleName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4780:1: ruleName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4857:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4858:1: ruleName
             {
              before(grammarAccess.getAttributeElementAccess().getNameNameParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleName_in_rule__AttributeElement__NameAssignment_09710);
+            pushFollow(FOLLOW_ruleName_in_rule__AttributeElement__NameAssignment_09851);
             ruleName();
 
             state._fsp--;
@@ -13143,20 +13293,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeElement__ValueAssignment_2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4789:1: rule__AttributeElement__ValueAssignment_2 : ( ruleAttributeValue ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4867:1: rule__AttributeElement__ValueAssignment_2 : ( ruleAttributeValue ) ;
     public final void rule__AttributeElement__ValueAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4793:1: ( ( ruleAttributeValue ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4794:1: ( ruleAttributeValue )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4871:1: ( ( ruleAttributeValue ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4872:1: ( ruleAttributeValue )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4794:1: ( ruleAttributeValue )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4795:1: ruleAttributeValue
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4872:1: ( ruleAttributeValue )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4873:1: ruleAttributeValue
             {
              before(grammarAccess.getAttributeElementAccess().getValueAttributeValueParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleAttributeValue_in_rule__AttributeElement__ValueAssignment_29741);
+            pushFollow(FOLLOW_ruleAttributeValue_in_rule__AttributeElement__ValueAssignment_29882);
             ruleAttributeValue();
 
             state._fsp--;
@@ -13184,20 +13334,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValue__ValueAssignment_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4804:1: rule__AttributeValue__ValueAssignment_0 : ( ruleAttributeValueArray ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4882:1: rule__AttributeValue__ValueAssignment_0 : ( ruleAttributeValueArray ) ;
     public final void rule__AttributeValue__ValueAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4808:1: ( ( ruleAttributeValueArray ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4809:1: ( ruleAttributeValueArray )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4886:1: ( ( ruleAttributeValueArray ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4887:1: ( ruleAttributeValueArray )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4809:1: ( ruleAttributeValueArray )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4810:1: ruleAttributeValueArray
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4887:1: ( ruleAttributeValueArray )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4888:1: ruleAttributeValueArray
             {
              before(grammarAccess.getAttributeValueAccess().getValueAttributeValueArrayParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleAttributeValueArray_in_rule__AttributeValue__ValueAssignment_09772);
+            pushFollow(FOLLOW_ruleAttributeValueArray_in_rule__AttributeValue__ValueAssignment_09913);
             ruleAttributeValueArray();
 
             state._fsp--;
@@ -13225,20 +13375,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValue__ValueAssignment_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4819:1: rule__AttributeValue__ValueAssignment_1 : ( ruleQualifiedNameObject ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4897:1: rule__AttributeValue__ValueAssignment_1 : ( ruleQualifiedNameObject ) ;
     public final void rule__AttributeValue__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4823:1: ( ( ruleQualifiedNameObject ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4824:1: ( ruleQualifiedNameObject )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4901:1: ( ( ruleQualifiedNameObject ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4902:1: ( ruleQualifiedNameObject )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4824:1: ( ruleQualifiedNameObject )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4825:1: ruleQualifiedNameObject
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4902:1: ( ruleQualifiedNameObject )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4903:1: ruleQualifiedNameObject
             {
              before(grammarAccess.getAttributeValueAccess().getValueQualifiedNameObjectParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleQualifiedNameObject_in_rule__AttributeValue__ValueAssignment_19803);
+            pushFollow(FOLLOW_ruleQualifiedNameObject_in_rule__AttributeValue__ValueAssignment_19944);
             ruleQualifiedNameObject();
 
             state._fsp--;
@@ -13266,20 +13416,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValue__ValueAssignment_2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4834:1: rule__AttributeValue__ValueAssignment_2 : ( ruleLiteral ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4912:1: rule__AttributeValue__ValueAssignment_2 : ( ruleLiteral ) ;
     public final void rule__AttributeValue__ValueAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4838:1: ( ( ruleLiteral ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4839:1: ( ruleLiteral )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4916:1: ( ( ruleLiteral ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4917:1: ( ruleLiteral )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4839:1: ( ruleLiteral )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4840:1: ruleLiteral
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4917:1: ( ruleLiteral )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4918:1: ruleLiteral
             {
              before(grammarAccess.getAttributeValueAccess().getValueLiteralParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleLiteral_in_rule__AttributeValue__ValueAssignment_29834);
+            pushFollow(FOLLOW_ruleLiteral_in_rule__AttributeValue__ValueAssignment_29975);
             ruleLiteral();
 
             state._fsp--;
@@ -13307,20 +13457,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValueArray__ElementsAssignment_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4849:1: rule__AttributeValueArray__ElementsAssignment_1 : ( ruleAttributeValue ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4927:1: rule__AttributeValueArray__ElementsAssignment_1 : ( ruleAttributeValue ) ;
     public final void rule__AttributeValueArray__ElementsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4853:1: ( ( ruleAttributeValue ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4854:1: ( ruleAttributeValue )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4931:1: ( ( ruleAttributeValue ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4932:1: ( ruleAttributeValue )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4854:1: ( ruleAttributeValue )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4855:1: ruleAttributeValue
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4932:1: ( ruleAttributeValue )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4933:1: ruleAttributeValue
             {
              before(grammarAccess.getAttributeValueArrayAccess().getElementsAttributeValueParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleAttributeValue_in_rule__AttributeValueArray__ElementsAssignment_19865);
+            pushFollow(FOLLOW_ruleAttributeValue_in_rule__AttributeValueArray__ElementsAssignment_110006);
             ruleAttributeValue();
 
             state._fsp--;
@@ -13348,20 +13498,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AttributeValueArray__ElementsAssignment_2_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4864:1: rule__AttributeValueArray__ElementsAssignment_2_1 : ( ruleAttributeValue ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4942:1: rule__AttributeValueArray__ElementsAssignment_2_1 : ( ruleAttributeValue ) ;
     public final void rule__AttributeValueArray__ElementsAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4868:1: ( ( ruleAttributeValue ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4869:1: ( ruleAttributeValue )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4946:1: ( ( ruleAttributeValue ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4947:1: ( ruleAttributeValue )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4869:1: ( ruleAttributeValue )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4870:1: ruleAttributeValue
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4947:1: ( ruleAttributeValue )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4948:1: ruleAttributeValue
             {
              before(grammarAccess.getAttributeValueArrayAccess().getElementsAttributeValueParserRuleCall_2_1_0()); 
-            pushFollow(FOLLOW_ruleAttributeValue_in_rule__AttributeValueArray__ElementsAssignment_2_19896);
+            pushFollow(FOLLOW_ruleAttributeValue_in_rule__AttributeValueArray__ElementsAssignment_2_110037);
             ruleAttributeValue();
 
             state._fsp--;
@@ -13389,24 +13539,24 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Grouping__NameAssignment_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4879:1: rule__Grouping__NameAssignment_1 : ( ( ruleName ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4957:1: rule__Grouping__NameAssignment_1 : ( ( ruleName ) ) ;
     public final void rule__Grouping__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4883:1: ( ( ( ruleName ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4884:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4961:1: ( ( ( ruleName ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4962:1: ( ( ruleName ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4884:1: ( ( ruleName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4885:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4962:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4963:1: ( ruleName )
             {
              before(grammarAccess.getGroupingAccess().getNamePropertyCrossReference_1_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4886:1: ( ruleName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4887:1: ruleName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4964:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4965:1: ruleName
             {
              before(grammarAccess.getGroupingAccess().getNamePropertyNameParserRuleCall_1_0_1()); 
-            pushFollow(FOLLOW_ruleName_in_rule__Grouping__NameAssignment_19931);
+            pushFollow(FOLLOW_ruleName_in_rule__Grouping__NameAssignment_110072);
             ruleName();
 
             state._fsp--;
@@ -13438,24 +13588,24 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Grouping__NameAssignment_2_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4898:1: rule__Grouping__NameAssignment_2_1 : ( ( ruleName ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4976:1: rule__Grouping__NameAssignment_2_1 : ( ( ruleName ) ) ;
     public final void rule__Grouping__NameAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4902:1: ( ( ( ruleName ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4903:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4980:1: ( ( ( ruleName ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4981:1: ( ( ruleName ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4903:1: ( ( ruleName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4904:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4981:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4982:1: ( ruleName )
             {
              before(grammarAccess.getGroupingAccess().getNamePropertyCrossReference_2_1_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4905:1: ( ruleName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4906:1: ruleName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4983:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4984:1: ruleName
             {
              before(grammarAccess.getGroupingAccess().getNamePropertyNameParserRuleCall_2_1_0_1()); 
-            pushFollow(FOLLOW_ruleName_in_rule__Grouping__NameAssignment_2_19970);
+            pushFollow(FOLLOW_ruleName_in_rule__Grouping__NameAssignment_2_110111);
             ruleName();
 
             state._fsp--;
@@ -13486,26 +13636,26 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Grouping__NameAssignment_2_1"
 
 
-    // $ANTLR start "rule__ModelMapping__MappingsAssignment_2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4917:1: rule__ModelMapping__MappingsAssignment_2 : ( rulePropertyMapping ) ;
-    public final void rule__ModelMapping__MappingsAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__ModelMapping__MappingsAssignment_3"
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4995:1: rule__ModelMapping__MappingsAssignment_3 : ( rulePropertyMapping ) ;
+    public final void rule__ModelMapping__MappingsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4921:1: ( ( rulePropertyMapping ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4922:1: ( rulePropertyMapping )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4999:1: ( ( rulePropertyMapping ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5000:1: ( rulePropertyMapping )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4922:1: ( rulePropertyMapping )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4923:1: rulePropertyMapping
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5000:1: ( rulePropertyMapping )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5001:1: rulePropertyMapping
             {
-             before(grammarAccess.getModelMappingAccess().getMappingsPropertyMappingParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_rulePropertyMapping_in_rule__ModelMapping__MappingsAssignment_210005);
+             before(grammarAccess.getModelMappingAccess().getMappingsPropertyMappingParserRuleCall_3_0()); 
+            pushFollow(FOLLOW_rulePropertyMapping_in_rule__ModelMapping__MappingsAssignment_310146);
             rulePropertyMapping();
 
             state._fsp--;
 
-             after(grammarAccess.getModelMappingAccess().getMappingsPropertyMappingParserRuleCall_2_0()); 
+             after(grammarAccess.getModelMappingAccess().getMappingsPropertyMappingParserRuleCall_3_0()); 
 
             }
 
@@ -13524,24 +13674,24 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ModelMapping__MappingsAssignment_2"
+    // $ANTLR end "rule__ModelMapping__MappingsAssignment_3"
 
 
     // $ANTLR start "rule__PropertyMapping__DescriptionAssignment_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4932:1: rule__PropertyMapping__DescriptionAssignment_0 : ( ruleDescription ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5010:1: rule__PropertyMapping__DescriptionAssignment_0 : ( ruleDescription ) ;
     public final void rule__PropertyMapping__DescriptionAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4936:1: ( ( ruleDescription ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4937:1: ( ruleDescription )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5014:1: ( ( ruleDescription ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5015:1: ( ruleDescription )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4937:1: ( ruleDescription )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4938:1: ruleDescription
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5015:1: ( ruleDescription )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5016:1: ruleDescription
             {
              before(grammarAccess.getPropertyMappingAccess().getDescriptionDescriptionParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleDescription_in_rule__PropertyMapping__DescriptionAssignment_010036);
+            pushFollow(FOLLOW_ruleDescription_in_rule__PropertyMapping__DescriptionAssignment_010177);
             ruleDescription();
 
             state._fsp--;
@@ -13569,20 +13719,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyMapping__AttributesAssignment_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4947:1: rule__PropertyMapping__AttributesAssignment_1 : ( ruleAttributeList ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5025:1: rule__PropertyMapping__AttributesAssignment_1 : ( ruleAttributeList ) ;
     public final void rule__PropertyMapping__AttributesAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4951:1: ( ( ruleAttributeList ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4952:1: ( ruleAttributeList )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5029:1: ( ( ruleAttributeList ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5030:1: ( ruleAttributeList )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4952:1: ( ruleAttributeList )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4953:1: ruleAttributeList
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5030:1: ( ruleAttributeList )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5031:1: ruleAttributeList
             {
              before(grammarAccess.getPropertyMappingAccess().getAttributesAttributeListParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleAttributeList_in_rule__PropertyMapping__AttributesAssignment_110067);
+            pushFollow(FOLLOW_ruleAttributeList_in_rule__PropertyMapping__AttributesAssignment_110208);
             ruleAttributeList();
 
             state._fsp--;
@@ -13610,24 +13760,24 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyMapping__FromAssignment_2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4962:1: rule__PropertyMapping__FromAssignment_2 : ( ( ruleName ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5040:1: rule__PropertyMapping__FromAssignment_2 : ( ( ruleName ) ) ;
     public final void rule__PropertyMapping__FromAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4966:1: ( ( ( ruleName ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4967:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5044:1: ( ( ( ruleName ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5045:1: ( ( ruleName ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4967:1: ( ( ruleName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4968:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5045:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5046:1: ( ruleName )
             {
              before(grammarAccess.getPropertyMappingAccess().getFromPropertyCrossReference_2_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4969:1: ( ruleName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4970:1: ruleName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5047:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5048:1: ruleName
             {
              before(grammarAccess.getPropertyMappingAccess().getFromPropertyNameParserRuleCall_2_0_1()); 
-            pushFollow(FOLLOW_ruleName_in_rule__PropertyMapping__FromAssignment_210102);
+            pushFollow(FOLLOW_ruleName_in_rule__PropertyMapping__FromAssignment_210243);
             ruleName();
 
             state._fsp--;
@@ -13659,20 +13809,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyMapping__NameAssignment_4"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4981:1: rule__PropertyMapping__NameAssignment_4 : ( ruleName ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5059:1: rule__PropertyMapping__NameAssignment_4 : ( ruleName ) ;
     public final void rule__PropertyMapping__NameAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4985:1: ( ( ruleName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4986:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5063:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5064:1: ( ruleName )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4986:1: ( ruleName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4987:1: ruleName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5064:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5065:1: ruleName
             {
              before(grammarAccess.getPropertyMappingAccess().getNameNameParserRuleCall_4_0()); 
-            pushFollow(FOLLOW_ruleName_in_rule__PropertyMapping__NameAssignment_410137);
+            pushFollow(FOLLOW_ruleName_in_rule__PropertyMapping__NameAssignment_410278);
             ruleName();
 
             state._fsp--;
@@ -13699,26 +13849,26 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__PropertyMapping__NameAssignment_4"
 
 
-    // $ANTLR start "rule__ModelFolding__FoldingsAssignment_2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:4996:1: rule__ModelFolding__FoldingsAssignment_2 : ( rulePropertyFolding ) ;
-    public final void rule__ModelFolding__FoldingsAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__ModelFolding__FoldingsAssignment_3"
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5074:1: rule__ModelFolding__FoldingsAssignment_3 : ( rulePropertyFolding ) ;
+    public final void rule__ModelFolding__FoldingsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5000:1: ( ( rulePropertyFolding ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5001:1: ( rulePropertyFolding )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5078:1: ( ( rulePropertyFolding ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5079:1: ( rulePropertyFolding )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5001:1: ( rulePropertyFolding )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5002:1: rulePropertyFolding
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5079:1: ( rulePropertyFolding )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5080:1: rulePropertyFolding
             {
-             before(grammarAccess.getModelFoldingAccess().getFoldingsPropertyFoldingParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_rulePropertyFolding_in_rule__ModelFolding__FoldingsAssignment_210168);
+             before(grammarAccess.getModelFoldingAccess().getFoldingsPropertyFoldingParserRuleCall_3_0()); 
+            pushFollow(FOLLOW_rulePropertyFolding_in_rule__ModelFolding__FoldingsAssignment_310309);
             rulePropertyFolding();
 
             state._fsp--;
 
-             after(grammarAccess.getModelFoldingAccess().getFoldingsPropertyFoldingParserRuleCall_2_0()); 
+             after(grammarAccess.getModelFoldingAccess().getFoldingsPropertyFoldingParserRuleCall_3_0()); 
 
             }
 
@@ -13737,24 +13887,24 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ModelFolding__FoldingsAssignment_2"
+    // $ANTLR end "rule__ModelFolding__FoldingsAssignment_3"
 
 
     // $ANTLR start "rule__PropertyFolding__DescriptionAssignment_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5011:1: rule__PropertyFolding__DescriptionAssignment_0 : ( ruleDescription ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5089:1: rule__PropertyFolding__DescriptionAssignment_0 : ( ruleDescription ) ;
     public final void rule__PropertyFolding__DescriptionAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5015:1: ( ( ruleDescription ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5016:1: ( ruleDescription )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5093:1: ( ( ruleDescription ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5094:1: ( ruleDescription )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5016:1: ( ruleDescription )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5017:1: ruleDescription
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5094:1: ( ruleDescription )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5095:1: ruleDescription
             {
              before(grammarAccess.getPropertyFoldingAccess().getDescriptionDescriptionParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleDescription_in_rule__PropertyFolding__DescriptionAssignment_010199);
+            pushFollow(FOLLOW_ruleDescription_in_rule__PropertyFolding__DescriptionAssignment_010340);
             ruleDescription();
 
             state._fsp--;
@@ -13782,20 +13932,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__AttributesAssignment_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5026:1: rule__PropertyFolding__AttributesAssignment_1 : ( ruleAttributeList ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5104:1: rule__PropertyFolding__AttributesAssignment_1 : ( ruleAttributeList ) ;
     public final void rule__PropertyFolding__AttributesAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5030:1: ( ( ruleAttributeList ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5031:1: ( ruleAttributeList )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5108:1: ( ( ruleAttributeList ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5109:1: ( ruleAttributeList )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5031:1: ( ruleAttributeList )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5032:1: ruleAttributeList
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5109:1: ( ruleAttributeList )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5110:1: ruleAttributeList
             {
              before(grammarAccess.getPropertyFoldingAccess().getAttributesAttributeListParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleAttributeList_in_rule__PropertyFolding__AttributesAssignment_110230);
+            pushFollow(FOLLOW_ruleAttributeList_in_rule__PropertyFolding__AttributesAssignment_110371);
             ruleAttributeList();
 
             state._fsp--;
@@ -13823,20 +13973,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__AggregatorAssignment_2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5041:1: rule__PropertyFolding__AggregatorAssignment_2 : ( ruleQualifiedName ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5119:1: rule__PropertyFolding__AggregatorAssignment_2 : ( ruleQualifiedName ) ;
     public final void rule__PropertyFolding__AggregatorAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5045:1: ( ( ruleQualifiedName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5046:1: ( ruleQualifiedName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5123:1: ( ( ruleQualifiedName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5124:1: ( ruleQualifiedName )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5046:1: ( ruleQualifiedName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5047:1: ruleQualifiedName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5124:1: ( ruleQualifiedName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5125:1: ruleQualifiedName
             {
              before(grammarAccess.getPropertyFoldingAccess().getAggregatorQualifiedNameParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__PropertyFolding__AggregatorAssignment_210261);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__PropertyFolding__AggregatorAssignment_210402);
             ruleQualifiedName();
 
             state._fsp--;
@@ -13864,24 +14014,24 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__FromAssignment_3"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5056:1: rule__PropertyFolding__FromAssignment_3 : ( ( ruleName ) ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5134:1: rule__PropertyFolding__FromAssignment_3 : ( ( ruleName ) ) ;
     public final void rule__PropertyFolding__FromAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5060:1: ( ( ( ruleName ) ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5061:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5138:1: ( ( ( ruleName ) ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5139:1: ( ( ruleName ) )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5061:1: ( ( ruleName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5062:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5139:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5140:1: ( ruleName )
             {
              before(grammarAccess.getPropertyFoldingAccess().getFromPropertyCrossReference_3_0()); 
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5063:1: ( ruleName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5064:1: ruleName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5141:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5142:1: ruleName
             {
              before(grammarAccess.getPropertyFoldingAccess().getFromPropertyNameParserRuleCall_3_0_1()); 
-            pushFollow(FOLLOW_ruleName_in_rule__PropertyFolding__FromAssignment_310296);
+            pushFollow(FOLLOW_ruleName_in_rule__PropertyFolding__FromAssignment_310437);
             ruleName();
 
             state._fsp--;
@@ -13913,20 +14063,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PropertyFolding__NameAssignment_5"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5075:1: rule__PropertyFolding__NameAssignment_5 : ( ruleName ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5153:1: rule__PropertyFolding__NameAssignment_5 : ( ruleName ) ;
     public final void rule__PropertyFolding__NameAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5079:1: ( ( ruleName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5080:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5157:1: ( ( ruleName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5158:1: ( ruleName )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5080:1: ( ruleName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5081:1: ruleName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5158:1: ( ruleName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5159:1: ruleName
             {
              before(grammarAccess.getPropertyFoldingAccess().getNameNameParserRuleCall_5_0()); 
-            pushFollow(FOLLOW_ruleName_in_rule__PropertyFolding__NameAssignment_510331);
+            pushFollow(FOLLOW_ruleName_in_rule__PropertyFolding__NameAssignment_510472);
             ruleName();
 
             state._fsp--;
@@ -13954,20 +14104,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__QualifiedNameObject__NameAssignment"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5090:1: rule__QualifiedNameObject__NameAssignment : ( ruleQualifiedName ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5168:1: rule__QualifiedNameObject__NameAssignment : ( ruleQualifiedName ) ;
     public final void rule__QualifiedNameObject__NameAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5094:1: ( ( ruleQualifiedName ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5095:1: ( ruleQualifiedName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5172:1: ( ( ruleQualifiedName ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5173:1: ( ruleQualifiedName )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5095:1: ( ruleQualifiedName )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5096:1: ruleQualifiedName
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5173:1: ( ruleQualifiedName )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5174:1: ruleQualifiedName
             {
              before(grammarAccess.getQualifiedNameObjectAccess().getNameQualifiedNameParserRuleCall_0()); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__QualifiedNameObject__NameAssignment10362);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__QualifiedNameObject__NameAssignment10503);
             ruleQualifiedName();
 
             state._fsp--;
@@ -13995,20 +14145,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Literal__StringValueAssignment_0"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5105:1: rule__Literal__StringValueAssignment_0 : ( RULE_STRING ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5183:1: rule__Literal__StringValueAssignment_0 : ( RULE_STRING ) ;
     public final void rule__Literal__StringValueAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5109:1: ( ( RULE_STRING ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5110:1: ( RULE_STRING )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5187:1: ( ( RULE_STRING ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5188:1: ( RULE_STRING )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5110:1: ( RULE_STRING )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5111:1: RULE_STRING
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5188:1: ( RULE_STRING )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5189:1: RULE_STRING
             {
              before(grammarAccess.getLiteralAccess().getStringValueSTRINGTerminalRuleCall_0_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Literal__StringValueAssignment_010393); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Literal__StringValueAssignment_010534); 
              after(grammarAccess.getLiteralAccess().getStringValueSTRINGTerminalRuleCall_0_0()); 
 
             }
@@ -14032,20 +14182,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Literal__IntValueAssignment_1"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5120:1: rule__Literal__IntValueAssignment_1 : ( RULE_INT ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5198:1: rule__Literal__IntValueAssignment_1 : ( RULE_INT ) ;
     public final void rule__Literal__IntValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5124:1: ( ( RULE_INT ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5125:1: ( RULE_INT )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5202:1: ( ( RULE_INT ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5203:1: ( RULE_INT )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5125:1: ( RULE_INT )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5126:1: RULE_INT
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5203:1: ( RULE_INT )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5204:1: RULE_INT
             {
              before(grammarAccess.getLiteralAccess().getIntValueINTTerminalRuleCall_1_0()); 
-            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__Literal__IntValueAssignment_110424); 
+            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__Literal__IntValueAssignment_110565); 
              after(grammarAccess.getLiteralAccess().getIntValueINTTerminalRuleCall_1_0()); 
 
             }
@@ -14069,20 +14219,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Literal__DecimalValueAssignment_2"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5135:1: rule__Literal__DecimalValueAssignment_2 : ( RULE_DECIMAL ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5213:1: rule__Literal__DecimalValueAssignment_2 : ( RULE_DECIMAL ) ;
     public final void rule__Literal__DecimalValueAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5139:1: ( ( RULE_DECIMAL ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5140:1: ( RULE_DECIMAL )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5217:1: ( ( RULE_DECIMAL ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5218:1: ( RULE_DECIMAL )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5140:1: ( RULE_DECIMAL )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5141:1: RULE_DECIMAL
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5218:1: ( RULE_DECIMAL )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5219:1: RULE_DECIMAL
             {
              before(grammarAccess.getLiteralAccess().getDecimalValueDECIMALTerminalRuleCall_2_0()); 
-            match(input,RULE_DECIMAL,FOLLOW_RULE_DECIMAL_in_rule__Literal__DecimalValueAssignment_210455); 
+            match(input,RULE_DECIMAL,FOLLOW_RULE_DECIMAL_in_rule__Literal__DecimalValueAssignment_210596); 
              after(grammarAccess.getLiteralAccess().getDecimalValueDECIMALTerminalRuleCall_2_0()); 
 
             }
@@ -14106,20 +14256,20 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Literal__BooleanValueAssignment_3"
-    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5150:1: rule__Literal__BooleanValueAssignment_3 : ( ruleBOOLEAN ) ;
+    // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5228:1: rule__Literal__BooleanValueAssignment_3 : ( ruleBOOLEAN ) ;
     public final void rule__Literal__BooleanValueAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5154:1: ( ( ruleBOOLEAN ) )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5155:1: ( ruleBOOLEAN )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5232:1: ( ( ruleBOOLEAN ) )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5233:1: ( ruleBOOLEAN )
             {
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5155:1: ( ruleBOOLEAN )
-            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5156:1: ruleBOOLEAN
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5233:1: ( ruleBOOLEAN )
+            // ../jp.hishidama.xtext.dmdl_editor.ui/src-gen/jp/hishidama/xtext/dmdl_editor/ui/contentassist/antlr/internal/InternalDMDL.g:5234:1: ruleBOOLEAN
             {
              before(grammarAccess.getLiteralAccess().getBooleanValueBOOLEANEnumRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleBOOLEAN_in_rule__Literal__BooleanValueAssignment_310486);
+            pushFollow(FOLLOW_ruleBOOLEAN_in_rule__Literal__BooleanValueAssignment_310627);
             ruleBOOLEAN();
 
             state._fsp--;
@@ -14319,273 +14469,276 @@ public class InternalDMDLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_33_in_rule__RecordExpression__Group_1__0__Impl3650 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RecordExpression__Group_1__1__Impl_in_rule__RecordExpression__Group_1__13681 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RecordExpression__TermsAssignment_1_1_in_rule__RecordExpression__Group_1__1__Impl3708 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RecordTerm__Group_0__0__Impl_in_rule__RecordTerm__Group_0__03742 = new BitSet(new long[]{0x0000002000038030L});
+    public static final BitSet FOLLOW_rule__RecordTerm__Group_0__0__Impl_in_rule__RecordTerm__Group_0__03742 = new BitSet(new long[]{0x0000002800038030L});
     public static final BitSet FOLLOW_rule__RecordTerm__Group_0__1_in_rule__RecordTerm__Group_0__03745 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_34_in_rule__RecordTerm__Group_0__0__Impl3773 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RecordTerm__Group_0__1__Impl_in_rule__RecordTerm__Group_0__13804 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_rule__RecordTerm__Group_0__1__Impl_in_rule__RecordTerm__Group_0__13804 = new BitSet(new long[]{0x0000002800038030L});
     public static final BitSet FOLLOW_rule__RecordTerm__Group_0__2_in_rule__RecordTerm__Group_0__13807 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RecordTerm__PropertiesAssignment_0_1_in_rule__RecordTerm__Group_0__1__Impl3836 = new BitSet(new long[]{0x0000002000038032L});
-    public static final BitSet FOLLOW_rule__RecordTerm__PropertiesAssignment_0_1_in_rule__RecordTerm__Group_0__1__Impl3848 = new BitSet(new long[]{0x0000002000038032L});
-    public static final BitSet FOLLOW_rule__RecordTerm__Group_0__2__Impl_in_rule__RecordTerm__Group_0__23881 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_rule__RecordTerm__Group_0__2__Impl3909 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__0__Impl_in_rule__PropertyDefinition__Group__03946 = new BitSet(new long[]{0x0000002000038030L});
-    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__1_in_rule__PropertyDefinition__Group__03949 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyDefinition__DescriptionAssignment_0_in_rule__PropertyDefinition__Group__0__Impl3976 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__1__Impl_in_rule__PropertyDefinition__Group__14007 = new BitSet(new long[]{0x0000002000038030L});
-    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__2_in_rule__PropertyDefinition__Group__14010 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyDefinition__AttributesAssignment_1_in_rule__PropertyDefinition__Group__1__Impl4037 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__2__Impl_in_rule__PropertyDefinition__Group__24068 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__3_in_rule__PropertyDefinition__Group__24071 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyDefinition__NameAssignment_2_in_rule__PropertyDefinition__Group__2__Impl4098 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__3__Impl_in_rule__PropertyDefinition__Group__34128 = new BitSet(new long[]{0x000000001FFC0000L});
-    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__4_in_rule__PropertyDefinition__Group__34131 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_rule__PropertyDefinition__Group__3__Impl4159 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__4__Impl_in_rule__PropertyDefinition__Group__44190 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__5_in_rule__PropertyDefinition__Group__44193 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyDefinition__TypeAssignment_4_in_rule__PropertyDefinition__Group__4__Impl4220 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__5__Impl_in_rule__PropertyDefinition__Group__54250 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_rule__PropertyDefinition__Group__5__Impl4278 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__JoinExpression__Group__0__Impl_in_rule__JoinExpression__Group__04321 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_rule__JoinExpression__Group__1_in_rule__JoinExpression__Group__04324 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__JoinExpression__TermsAssignment_0_in_rule__JoinExpression__Group__0__Impl4351 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__JoinExpression__Group__1__Impl_in_rule__JoinExpression__Group__14381 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__JoinExpression__Group_1__0_in_rule__JoinExpression__Group__1__Impl4408 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_rule__JoinExpression__Group_1__0__Impl_in_rule__JoinExpression__Group_1__04443 = new BitSet(new long[]{0x0000000400038020L});
-    public static final BitSet FOLLOW_rule__JoinExpression__Group_1__1_in_rule__JoinExpression__Group_1__04446 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_rule__JoinExpression__Group_1__0__Impl4474 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__JoinExpression__Group_1__1__Impl_in_rule__JoinExpression__Group_1__14505 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__JoinExpression__TermsAssignment_1_1_in_rule__JoinExpression__Group_1__1__Impl4532 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__JoinTerm__Group__0__Impl_in_rule__JoinTerm__Group__04566 = new BitSet(new long[]{0x0000020000002000L});
-    public static final BitSet FOLLOW_rule__JoinTerm__Group__1_in_rule__JoinTerm__Group__04569 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__JoinTerm__ReferenceAssignment_0_in_rule__JoinTerm__Group__0__Impl4596 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__JoinTerm__Group__1__Impl_in_rule__JoinTerm__Group__14626 = new BitSet(new long[]{0x0000020000002000L});
-    public static final BitSet FOLLOW_rule__JoinTerm__Group__2_in_rule__JoinTerm__Group__14629 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__JoinTerm__MappingAssignment_1_in_rule__JoinTerm__Group__1__Impl4656 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__JoinTerm__Group__2__Impl_in_rule__JoinTerm__Group__24687 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__JoinTerm__GroupingAssignment_2_in_rule__JoinTerm__Group__2__Impl4714 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SummarizeExpression__Group__0__Impl_in_rule__SummarizeExpression__Group__04751 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_rule__SummarizeExpression__Group__1_in_rule__SummarizeExpression__Group__04754 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SummarizeExpression__TermsAssignment_0_in_rule__SummarizeExpression__Group__0__Impl4781 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SummarizeExpression__Group__1__Impl_in_rule__SummarizeExpression__Group__14811 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SummarizeExpression__Group_1__0_in_rule__SummarizeExpression__Group__1__Impl4838 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_rule__SummarizeExpression__Group_1__0__Impl_in_rule__SummarizeExpression__Group_1__04873 = new BitSet(new long[]{0x0000000400038020L});
-    public static final BitSet FOLLOW_rule__SummarizeExpression__Group_1__1_in_rule__SummarizeExpression__Group_1__04876 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_rule__SummarizeExpression__Group_1__0__Impl4904 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SummarizeExpression__Group_1__1__Impl_in_rule__SummarizeExpression__Group_1__14935 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SummarizeExpression__TermsAssignment_1_1_in_rule__SummarizeExpression__Group_1__1__Impl4962 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SummarizeTerm__Group__0__Impl_in_rule__SummarizeTerm__Group__04996 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_rule__SummarizeTerm__Group__1_in_rule__SummarizeTerm__Group__04999 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SummarizeTerm__ReferenceAssignment_0_in_rule__SummarizeTerm__Group__0__Impl5026 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SummarizeTerm__Group__1__Impl_in_rule__SummarizeTerm__Group__15056 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_rule__SummarizeTerm__Group__2_in_rule__SummarizeTerm__Group__15059 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SummarizeTerm__FoldingAssignment_1_in_rule__SummarizeTerm__Group__1__Impl5086 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SummarizeTerm__Group__2__Impl_in_rule__SummarizeTerm__Group__25116 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SummarizeTerm__GroupingAssignment_2_in_rule__SummarizeTerm__Group__2__Impl5143 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Attribute__Group__0__Impl_in_rule__Attribute__Group__05180 = new BitSet(new long[]{0x0000000000038020L});
-    public static final BitSet FOLLOW_rule__Attribute__Group__1_in_rule__Attribute__Group__05183 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_rule__Attribute__Group__0__Impl5211 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Attribute__Group__1__Impl_in_rule__Attribute__Group__15242 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_rule__Attribute__Group__2_in_rule__Attribute__Group__15245 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Attribute__NameAssignment_1_in_rule__Attribute__Group__1__Impl5272 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Attribute__Group__2__Impl_in_rule__Attribute__Group__25302 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Attribute__ElementBlockAssignment_2_in_rule__Attribute__Group__2__Impl5329 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group__0__Impl_in_rule__AttributeElementBlock__Group__05366 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group__1_in_rule__AttributeElementBlock__Group__05369 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group__1__Impl_in_rule__AttributeElementBlock__Group__15427 = new BitSet(new long[]{0x0000008000038020L});
-    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group__2_in_rule__AttributeElementBlock__Group__15430 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_rule__AttributeElementBlock__Group__1__Impl5458 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group__2__Impl_in_rule__AttributeElementBlock__Group__25489 = new BitSet(new long[]{0x0000008000038020L});
-    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group__3_in_rule__AttributeElementBlock__Group__25492 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group_2__0_in_rule__AttributeElementBlock__Group__2__Impl5519 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group__3__Impl_in_rule__AttributeElementBlock__Group__35550 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_rule__AttributeElementBlock__Group__3__Impl5578 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group_2__0__Impl_in_rule__AttributeElementBlock__Group_2__05617 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group_2__1_in_rule__AttributeElementBlock__Group_2__05620 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElementBlock__ElementsAssignment_2_0_in_rule__AttributeElementBlock__Group_2__0__Impl5647 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group_2__1__Impl_in_rule__AttributeElementBlock__Group_2__15677 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_rule__AttributeElementBlock__Group_2__1__Impl5706 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElementList__Group__0__Impl_in_rule__AttributeElementList__Group__05743 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_rule__AttributeElementList__Group__1_in_rule__AttributeElementList__Group__05746 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElementList__ElementsAssignment_0_in_rule__AttributeElementList__Group__0__Impl5773 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElementList__Group__1__Impl_in_rule__AttributeElementList__Group__15803 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElementList__Group_1__0_in_rule__AttributeElementList__Group__1__Impl5830 = new BitSet(new long[]{0x0000010000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElementList__Group_1__0__Impl_in_rule__AttributeElementList__Group_1__05865 = new BitSet(new long[]{0x0000000000038020L});
-    public static final BitSet FOLLOW_rule__AttributeElementList__Group_1__1_in_rule__AttributeElementList__Group_1__05868 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_rule__AttributeElementList__Group_1__0__Impl5896 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElementList__Group_1__1__Impl_in_rule__AttributeElementList__Group_1__15927 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElementList__ElementsAssignment_1_1_in_rule__AttributeElementList__Group_1__1__Impl5954 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElement__Group__0__Impl_in_rule__AttributeElement__Group__05988 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_rule__AttributeElement__Group__1_in_rule__AttributeElement__Group__05991 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElement__NameAssignment_0_in_rule__AttributeElement__Group__0__Impl6018 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElement__Group__1__Impl_in_rule__AttributeElement__Group__16048 = new BitSet(new long[]{0x00000004600380F0L});
-    public static final BitSet FOLLOW_rule__AttributeElement__Group__2_in_rule__AttributeElement__Group__16051 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_rule__AttributeElement__Group__1__Impl6079 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElement__Group__2__Impl_in_rule__AttributeElement__Group__26110 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeElement__ValueAssignment_2_in_rule__AttributeElement__Group__2__Impl6137 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__0__Impl_in_rule__AttributeValueArray__Group__06173 = new BitSet(new long[]{0x00000004600380F0L});
-    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__1_in_rule__AttributeValueArray__Group__06176 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_rule__AttributeValueArray__Group__0__Impl6204 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__1__Impl_in_rule__AttributeValueArray__Group__16235 = new BitSet(new long[]{0x0000010800000000L});
-    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__2_in_rule__AttributeValueArray__Group__16238 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeValueArray__ElementsAssignment_1_in_rule__AttributeValueArray__Group__1__Impl6265 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__2__Impl_in_rule__AttributeValueArray__Group__26295 = new BitSet(new long[]{0x0000010800000000L});
-    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__3_in_rule__AttributeValueArray__Group__26298 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeValueArray__Group_2__0_in_rule__AttributeValueArray__Group__2__Impl6325 = new BitSet(new long[]{0x0000010000000002L});
-    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__3__Impl_in_rule__AttributeValueArray__Group__36356 = new BitSet(new long[]{0x0000010800000000L});
-    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__4_in_rule__AttributeValueArray__Group__36359 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_rule__AttributeValueArray__Group__3__Impl6388 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__4__Impl_in_rule__AttributeValueArray__Group__46421 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_rule__AttributeValueArray__Group__4__Impl6449 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeValueArray__Group_2__0__Impl_in_rule__AttributeValueArray__Group_2__06490 = new BitSet(new long[]{0x00000004600380F0L});
-    public static final BitSet FOLLOW_rule__AttributeValueArray__Group_2__1_in_rule__AttributeValueArray__Group_2__06493 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_rule__AttributeValueArray__Group_2__0__Impl6521 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeValueArray__Group_2__1__Impl_in_rule__AttributeValueArray__Group_2__16552 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AttributeValueArray__ElementsAssignment_2_1_in_rule__AttributeValueArray__Group_2__1__Impl6579 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Grouping__Group__0__Impl_in_rule__Grouping__Group__06613 = new BitSet(new long[]{0x0000000000038020L});
-    public static final BitSet FOLLOW_rule__Grouping__Group__1_in_rule__Grouping__Group__06616 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_rule__Grouping__Group__0__Impl6644 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Grouping__Group__1__Impl_in_rule__Grouping__Group__16675 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_rule__Grouping__Group__2_in_rule__Grouping__Group__16678 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Grouping__NameAssignment_1_in_rule__Grouping__Group__1__Impl6705 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Grouping__Group__2__Impl_in_rule__Grouping__Group__26735 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Grouping__Group_2__0_in_rule__Grouping__Group__2__Impl6762 = new BitSet(new long[]{0x0000010000000002L});
-    public static final BitSet FOLLOW_rule__Grouping__Group_2__0__Impl_in_rule__Grouping__Group_2__06799 = new BitSet(new long[]{0x0000000000038020L});
-    public static final BitSet FOLLOW_rule__Grouping__Group_2__1_in_rule__Grouping__Group_2__06802 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_rule__Grouping__Group_2__0__Impl6830 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Grouping__Group_2__1__Impl_in_rule__Grouping__Group_2__16861 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Grouping__NameAssignment_2_1_in_rule__Grouping__Group_2__1__Impl6888 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModelMapping__Group__0__Impl_in_rule__ModelMapping__Group__06922 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_rule__ModelMapping__Group__1_in_rule__ModelMapping__Group__06925 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__ModelMapping__Group__0__Impl6953 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModelMapping__Group__1__Impl_in_rule__ModelMapping__Group__16984 = new BitSet(new long[]{0x0000002000038030L});
-    public static final BitSet FOLLOW_rule__ModelMapping__Group__2_in_rule__ModelMapping__Group__16987 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_rule__ModelMapping__Group__1__Impl7015 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModelMapping__Group__2__Impl_in_rule__ModelMapping__Group__27046 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_rule__ModelMapping__Group__3_in_rule__ModelMapping__Group__27049 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModelMapping__MappingsAssignment_2_in_rule__ModelMapping__Group__2__Impl7078 = new BitSet(new long[]{0x0000002000038032L});
-    public static final BitSet FOLLOW_rule__ModelMapping__MappingsAssignment_2_in_rule__ModelMapping__Group__2__Impl7090 = new BitSet(new long[]{0x0000002000038032L});
-    public static final BitSet FOLLOW_rule__ModelMapping__Group__3__Impl_in_rule__ModelMapping__Group__37123 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_rule__ModelMapping__Group__3__Impl7151 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyMapping__Group__0__Impl_in_rule__PropertyMapping__Group__07190 = new BitSet(new long[]{0x0000002000038030L});
-    public static final BitSet FOLLOW_rule__PropertyMapping__Group__1_in_rule__PropertyMapping__Group__07193 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyMapping__DescriptionAssignment_0_in_rule__PropertyMapping__Group__0__Impl7220 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyMapping__Group__1__Impl_in_rule__PropertyMapping__Group__17251 = new BitSet(new long[]{0x0000002000038030L});
-    public static final BitSet FOLLOW_rule__PropertyMapping__Group__2_in_rule__PropertyMapping__Group__17254 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyMapping__AttributesAssignment_1_in_rule__PropertyMapping__Group__1__Impl7281 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyMapping__Group__2__Impl_in_rule__PropertyMapping__Group__27312 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_rule__PropertyMapping__Group__3_in_rule__PropertyMapping__Group__27315 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyMapping__FromAssignment_2_in_rule__PropertyMapping__Group__2__Impl7342 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyMapping__Group__3__Impl_in_rule__PropertyMapping__Group__37372 = new BitSet(new long[]{0x0000000000038020L});
-    public static final BitSet FOLLOW_rule__PropertyMapping__Group__4_in_rule__PropertyMapping__Group__37375 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__PropertyMapping__Group__3__Impl7403 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyMapping__Group__4__Impl_in_rule__PropertyMapping__Group__47434 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_rule__PropertyMapping__Group__5_in_rule__PropertyMapping__Group__47437 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyMapping__NameAssignment_4_in_rule__PropertyMapping__Group__4__Impl7464 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyMapping__Group__5__Impl_in_rule__PropertyMapping__Group__57494 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_rule__PropertyMapping__Group__5__Impl7522 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModelFolding__Group__0__Impl_in_rule__ModelFolding__Group__07565 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_rule__ModelFolding__Group__1_in_rule__ModelFolding__Group__07568 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_rule__ModelFolding__Group__0__Impl7596 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModelFolding__Group__1__Impl_in_rule__ModelFolding__Group__17627 = new BitSet(new long[]{0x0000002000038030L});
-    public static final BitSet FOLLOW_rule__ModelFolding__Group__2_in_rule__ModelFolding__Group__17630 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_rule__ModelFolding__Group__1__Impl7658 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModelFolding__Group__2__Impl_in_rule__ModelFolding__Group__27689 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_rule__ModelFolding__Group__3_in_rule__ModelFolding__Group__27692 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModelFolding__FoldingsAssignment_2_in_rule__ModelFolding__Group__2__Impl7721 = new BitSet(new long[]{0x0000002000038032L});
-    public static final BitSet FOLLOW_rule__ModelFolding__FoldingsAssignment_2_in_rule__ModelFolding__Group__2__Impl7733 = new BitSet(new long[]{0x0000002000038032L});
-    public static final BitSet FOLLOW_rule__ModelFolding__Group__3__Impl_in_rule__ModelFolding__Group__37766 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_rule__ModelFolding__Group__3__Impl7794 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__Group__0__Impl_in_rule__PropertyFolding__Group__07833 = new BitSet(new long[]{0x0000002000038030L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__Group__1_in_rule__PropertyFolding__Group__07836 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__DescriptionAssignment_0_in_rule__PropertyFolding__Group__0__Impl7863 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__Group__1__Impl_in_rule__PropertyFolding__Group__17894 = new BitSet(new long[]{0x0000002000038030L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__Group__2_in_rule__PropertyFolding__Group__17897 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__AttributesAssignment_1_in_rule__PropertyFolding__Group__1__Impl7924 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__Group__2__Impl_in_rule__PropertyFolding__Group__27955 = new BitSet(new long[]{0x0000000000038020L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__Group__3_in_rule__PropertyFolding__Group__27958 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__AggregatorAssignment_2_in_rule__PropertyFolding__Group__2__Impl7985 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__Group__3__Impl_in_rule__PropertyFolding__Group__38015 = new BitSet(new long[]{0x0000000000006000L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__Group__4_in_rule__PropertyFolding__Group__38018 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__FromAssignment_3_in_rule__PropertyFolding__Group__3__Impl8045 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__Group__4__Impl_in_rule__PropertyFolding__Group__48075 = new BitSet(new long[]{0x0000000000038020L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__Group__5_in_rule__PropertyFolding__Group__48078 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__Alternatives_4_in_rule__PropertyFolding__Group__4__Impl8105 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__Group__5__Impl_in_rule__PropertyFolding__Group__58135 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__Group__6_in_rule__PropertyFolding__Group__58138 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__NameAssignment_5_in_rule__PropertyFolding__Group__5__Impl8165 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyFolding__Group__6__Impl_in_rule__PropertyFolding__Group__68195 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_rule__PropertyFolding__Group__6__Impl8223 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__08268 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__08271 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleName_in_rule__QualifiedName__Group__0__Impl8298 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__18327 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__0_in_rule__QualifiedName__Group__1__Impl8354 = new BitSet(new long[]{0x0000040000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__0__Impl_in_rule__QualifiedName__Group_1__08389 = new BitSet(new long[]{0x0000000000038020L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__1_in_rule__QualifiedName__Group_1__08392 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_rule__QualifiedName__Group_1__0__Impl8420 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__1__Impl_in_rule__QualifiedName__Group_1__18451 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleName_in_rule__QualifiedName__Group_1__1__Impl8478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleModelDefinition_in_rule__Script__ListAssignment8516 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDescription_in_rule__ModelDefinition__DescriptionAssignment_08547 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttributeList_in_rule__ModelDefinition__AttributesAssignment_18578 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_rule__ModelDefinition__TypeAssignment_2_0_08614 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleName_in_rule__ModelDefinition__NameAssignment_2_0_18653 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRecordExpression_in_rule__ModelDefinition__RhsAssignment_2_0_38684 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_rule__ModelDefinition__TypeAssignment_2_1_08720 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleName_in_rule__ModelDefinition__NameAssignment_2_1_18759 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJoinExpression_in_rule__ModelDefinition__RhsAssignment_2_1_38790 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_rule__ModelDefinition__TypeAssignment_2_2_08826 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleName_in_rule__ModelDefinition__NameAssignment_2_2_18865 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSummarizeExpression_in_rule__ModelDefinition__RhsAssignment_2_2_38896 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRecordTerm_in_rule__RecordExpression__TermsAssignment_08927 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRecordTerm_in_rule__RecordExpression__TermsAssignment_1_18958 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyDefinition_in_rule__RecordTerm__PropertiesAssignment_0_18989 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleModelReference_in_rule__RecordTerm__ReferenceAssignment_19020 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleName_in_rule__ModelReference__NameAssignment9055 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDescription_in_rule__PropertyDefinition__DescriptionAssignment_09090 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttributeList_in_rule__PropertyDefinition__AttributesAssignment_19121 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleName_in_rule__PropertyDefinition__NameAssignment_29152 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleType_in_rule__PropertyDefinition__TypeAssignment_49183 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJoinTerm_in_rule__JoinExpression__TermsAssignment_09214 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJoinTerm_in_rule__JoinExpression__TermsAssignment_1_19245 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleModelReference_in_rule__JoinTerm__ReferenceAssignment_09276 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleModelMapping_in_rule__JoinTerm__MappingAssignment_19307 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleGrouping_in_rule__JoinTerm__GroupingAssignment_29338 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSummarizeTerm_in_rule__SummarizeExpression__TermsAssignment_09369 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSummarizeTerm_in_rule__SummarizeExpression__TermsAssignment_1_19400 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleModelReference_in_rule__SummarizeTerm__ReferenceAssignment_09431 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleModelFolding_in_rule__SummarizeTerm__FoldingAssignment_19462 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleGrouping_in_rule__SummarizeTerm__GroupingAssignment_29493 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttribute_in_rule__AttributeList__AttributesAssignment9524 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Attribute__NameAssignment_19555 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttributeElementBlock_in_rule__Attribute__ElementBlockAssignment_29586 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttributeElementList_in_rule__AttributeElementBlock__ElementsAssignment_2_09617 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttributeElement_in_rule__AttributeElementList__ElementsAssignment_09648 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttributeElement_in_rule__AttributeElementList__ElementsAssignment_1_19679 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleName_in_rule__AttributeElement__NameAssignment_09710 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttributeValue_in_rule__AttributeElement__ValueAssignment_29741 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttributeValueArray_in_rule__AttributeValue__ValueAssignment_09772 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedNameObject_in_rule__AttributeValue__ValueAssignment_19803 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLiteral_in_rule__AttributeValue__ValueAssignment_29834 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttributeValue_in_rule__AttributeValueArray__ElementsAssignment_19865 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttributeValue_in_rule__AttributeValueArray__ElementsAssignment_2_19896 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleName_in_rule__Grouping__NameAssignment_19931 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleName_in_rule__Grouping__NameAssignment_2_19970 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyMapping_in_rule__ModelMapping__MappingsAssignment_210005 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDescription_in_rule__PropertyMapping__DescriptionAssignment_010036 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttributeList_in_rule__PropertyMapping__AttributesAssignment_110067 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleName_in_rule__PropertyMapping__FromAssignment_210102 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleName_in_rule__PropertyMapping__NameAssignment_410137 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyFolding_in_rule__ModelFolding__FoldingsAssignment_210168 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDescription_in_rule__PropertyFolding__DescriptionAssignment_010199 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAttributeList_in_rule__PropertyFolding__AttributesAssignment_110230 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__PropertyFolding__AggregatorAssignment_210261 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleName_in_rule__PropertyFolding__FromAssignment_310296 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleName_in_rule__PropertyFolding__NameAssignment_510331 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__QualifiedNameObject__NameAssignment10362 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Literal__StringValueAssignment_010393 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_rule__Literal__IntValueAssignment_110424 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DECIMAL_in_rule__Literal__DecimalValueAssignment_210455 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBOOLEAN_in_rule__Literal__BooleanValueAssignment_310486 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RecordTerm__Group_0__2__Impl_in_rule__RecordTerm__Group_0__23865 = new BitSet(new long[]{0x0000002800038030L});
+    public static final BitSet FOLLOW_rule__RecordTerm__Group_0__3_in_rule__RecordTerm__Group_0__23868 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RecordTerm__PropertiesAssignment_0_2_in_rule__RecordTerm__Group_0__2__Impl3895 = new BitSet(new long[]{0x0000002000038032L});
+    public static final BitSet FOLLOW_rule__RecordTerm__Group_0__3__Impl_in_rule__RecordTerm__Group_0__33926 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_rule__RecordTerm__Group_0__3__Impl3954 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__0__Impl_in_rule__PropertyDefinition__Group__03993 = new BitSet(new long[]{0x0000002000038030L});
+    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__1_in_rule__PropertyDefinition__Group__03996 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyDefinition__DescriptionAssignment_0_in_rule__PropertyDefinition__Group__0__Impl4023 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__1__Impl_in_rule__PropertyDefinition__Group__14054 = new BitSet(new long[]{0x0000002000038030L});
+    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__2_in_rule__PropertyDefinition__Group__14057 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyDefinition__AttributesAssignment_1_in_rule__PropertyDefinition__Group__1__Impl4084 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__2__Impl_in_rule__PropertyDefinition__Group__24115 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__3_in_rule__PropertyDefinition__Group__24118 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyDefinition__NameAssignment_2_in_rule__PropertyDefinition__Group__2__Impl4145 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__3__Impl_in_rule__PropertyDefinition__Group__34175 = new BitSet(new long[]{0x000000001FFC0000L});
+    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__4_in_rule__PropertyDefinition__Group__34178 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_rule__PropertyDefinition__Group__3__Impl4206 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__4__Impl_in_rule__PropertyDefinition__Group__44237 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__5_in_rule__PropertyDefinition__Group__44240 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyDefinition__TypeAssignment_4_in_rule__PropertyDefinition__Group__4__Impl4267 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyDefinition__Group__5__Impl_in_rule__PropertyDefinition__Group__54297 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_rule__PropertyDefinition__Group__5__Impl4325 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__JoinExpression__Group__0__Impl_in_rule__JoinExpression__Group__04368 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_rule__JoinExpression__Group__1_in_rule__JoinExpression__Group__04371 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__JoinExpression__TermsAssignment_0_in_rule__JoinExpression__Group__0__Impl4398 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__JoinExpression__Group__1__Impl_in_rule__JoinExpression__Group__14428 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__JoinExpression__Group_1__0_in_rule__JoinExpression__Group__1__Impl4455 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_rule__JoinExpression__Group_1__0__Impl_in_rule__JoinExpression__Group_1__04490 = new BitSet(new long[]{0x0000000400038020L});
+    public static final BitSet FOLLOW_rule__JoinExpression__Group_1__1_in_rule__JoinExpression__Group_1__04493 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_rule__JoinExpression__Group_1__0__Impl4521 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__JoinExpression__Group_1__1__Impl_in_rule__JoinExpression__Group_1__14552 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__JoinExpression__TermsAssignment_1_1_in_rule__JoinExpression__Group_1__1__Impl4579 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__JoinTerm__Group__0__Impl_in_rule__JoinTerm__Group__04613 = new BitSet(new long[]{0x0000020000002000L});
+    public static final BitSet FOLLOW_rule__JoinTerm__Group__1_in_rule__JoinTerm__Group__04616 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__JoinTerm__ReferenceAssignment_0_in_rule__JoinTerm__Group__0__Impl4643 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__JoinTerm__Group__1__Impl_in_rule__JoinTerm__Group__14673 = new BitSet(new long[]{0x0000020000002000L});
+    public static final BitSet FOLLOW_rule__JoinTerm__Group__2_in_rule__JoinTerm__Group__14676 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__JoinTerm__MappingAssignment_1_in_rule__JoinTerm__Group__1__Impl4703 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__JoinTerm__Group__2__Impl_in_rule__JoinTerm__Group__24734 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__JoinTerm__GroupingAssignment_2_in_rule__JoinTerm__Group__2__Impl4761 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SummarizeExpression__Group__0__Impl_in_rule__SummarizeExpression__Group__04798 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_rule__SummarizeExpression__Group__1_in_rule__SummarizeExpression__Group__04801 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SummarizeExpression__TermsAssignment_0_in_rule__SummarizeExpression__Group__0__Impl4828 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SummarizeExpression__Group__1__Impl_in_rule__SummarizeExpression__Group__14858 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SummarizeExpression__Group_1__0_in_rule__SummarizeExpression__Group__1__Impl4885 = new BitSet(new long[]{0x0000000200000002L});
+    public static final BitSet FOLLOW_rule__SummarizeExpression__Group_1__0__Impl_in_rule__SummarizeExpression__Group_1__04920 = new BitSet(new long[]{0x0000000400038020L});
+    public static final BitSet FOLLOW_rule__SummarizeExpression__Group_1__1_in_rule__SummarizeExpression__Group_1__04923 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_rule__SummarizeExpression__Group_1__0__Impl4951 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SummarizeExpression__Group_1__1__Impl_in_rule__SummarizeExpression__Group_1__14982 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SummarizeExpression__TermsAssignment_1_1_in_rule__SummarizeExpression__Group_1__1__Impl5009 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SummarizeTerm__Group__0__Impl_in_rule__SummarizeTerm__Group__05043 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_rule__SummarizeTerm__Group__1_in_rule__SummarizeTerm__Group__05046 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SummarizeTerm__ReferenceAssignment_0_in_rule__SummarizeTerm__Group__0__Impl5073 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SummarizeTerm__Group__1__Impl_in_rule__SummarizeTerm__Group__15103 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_rule__SummarizeTerm__Group__2_in_rule__SummarizeTerm__Group__15106 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SummarizeTerm__FoldingAssignment_1_in_rule__SummarizeTerm__Group__1__Impl5133 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SummarizeTerm__Group__2__Impl_in_rule__SummarizeTerm__Group__25163 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SummarizeTerm__GroupingAssignment_2_in_rule__SummarizeTerm__Group__2__Impl5190 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Attribute__Group__0__Impl_in_rule__Attribute__Group__05227 = new BitSet(new long[]{0x0000000000038020L});
+    public static final BitSet FOLLOW_rule__Attribute__Group__1_in_rule__Attribute__Group__05230 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_rule__Attribute__Group__0__Impl5258 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Attribute__Group__1__Impl_in_rule__Attribute__Group__15289 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_rule__Attribute__Group__2_in_rule__Attribute__Group__15292 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Attribute__NameAssignment_1_in_rule__Attribute__Group__1__Impl5319 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Attribute__Group__2__Impl_in_rule__Attribute__Group__25349 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Attribute__ElementBlockAssignment_2_in_rule__Attribute__Group__2__Impl5376 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group__0__Impl_in_rule__AttributeElementBlock__Group__05413 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group__1_in_rule__AttributeElementBlock__Group__05416 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group__1__Impl_in_rule__AttributeElementBlock__Group__15474 = new BitSet(new long[]{0x0000008000038020L});
+    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group__2_in_rule__AttributeElementBlock__Group__15477 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_rule__AttributeElementBlock__Group__1__Impl5505 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group__2__Impl_in_rule__AttributeElementBlock__Group__25536 = new BitSet(new long[]{0x0000008000038020L});
+    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group__3_in_rule__AttributeElementBlock__Group__25539 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group_2__0_in_rule__AttributeElementBlock__Group__2__Impl5566 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group__3__Impl_in_rule__AttributeElementBlock__Group__35597 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_rule__AttributeElementBlock__Group__3__Impl5625 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group_2__0__Impl_in_rule__AttributeElementBlock__Group_2__05664 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group_2__1_in_rule__AttributeElementBlock__Group_2__05667 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElementBlock__ElementsAssignment_2_0_in_rule__AttributeElementBlock__Group_2__0__Impl5694 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElementBlock__Group_2__1__Impl_in_rule__AttributeElementBlock__Group_2__15724 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_rule__AttributeElementBlock__Group_2__1__Impl5753 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElementList__Group__0__Impl_in_rule__AttributeElementList__Group__05790 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_rule__AttributeElementList__Group__1_in_rule__AttributeElementList__Group__05793 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElementList__ElementsAssignment_0_in_rule__AttributeElementList__Group__0__Impl5820 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElementList__Group__1__Impl_in_rule__AttributeElementList__Group__15850 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElementList__Group_1__0_in_rule__AttributeElementList__Group__1__Impl5877 = new BitSet(new long[]{0x0000010000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElementList__Group_1__0__Impl_in_rule__AttributeElementList__Group_1__05912 = new BitSet(new long[]{0x0000000000038020L});
+    public static final BitSet FOLLOW_rule__AttributeElementList__Group_1__1_in_rule__AttributeElementList__Group_1__05915 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_rule__AttributeElementList__Group_1__0__Impl5943 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElementList__Group_1__1__Impl_in_rule__AttributeElementList__Group_1__15974 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElementList__ElementsAssignment_1_1_in_rule__AttributeElementList__Group_1__1__Impl6001 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElement__Group__0__Impl_in_rule__AttributeElement__Group__06035 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_rule__AttributeElement__Group__1_in_rule__AttributeElement__Group__06038 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElement__NameAssignment_0_in_rule__AttributeElement__Group__0__Impl6065 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElement__Group__1__Impl_in_rule__AttributeElement__Group__16095 = new BitSet(new long[]{0x00000004600380F0L});
+    public static final BitSet FOLLOW_rule__AttributeElement__Group__2_in_rule__AttributeElement__Group__16098 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_rule__AttributeElement__Group__1__Impl6126 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElement__Group__2__Impl_in_rule__AttributeElement__Group__26157 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeElement__ValueAssignment_2_in_rule__AttributeElement__Group__2__Impl6184 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__0__Impl_in_rule__AttributeValueArray__Group__06220 = new BitSet(new long[]{0x00000004600380F0L});
+    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__1_in_rule__AttributeValueArray__Group__06223 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_rule__AttributeValueArray__Group__0__Impl6251 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__1__Impl_in_rule__AttributeValueArray__Group__16282 = new BitSet(new long[]{0x0000010800000000L});
+    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__2_in_rule__AttributeValueArray__Group__16285 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeValueArray__ElementsAssignment_1_in_rule__AttributeValueArray__Group__1__Impl6312 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__2__Impl_in_rule__AttributeValueArray__Group__26342 = new BitSet(new long[]{0x0000010800000000L});
+    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__3_in_rule__AttributeValueArray__Group__26345 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeValueArray__Group_2__0_in_rule__AttributeValueArray__Group__2__Impl6372 = new BitSet(new long[]{0x0000010000000002L});
+    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__3__Impl_in_rule__AttributeValueArray__Group__36403 = new BitSet(new long[]{0x0000010800000000L});
+    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__4_in_rule__AttributeValueArray__Group__36406 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_rule__AttributeValueArray__Group__3__Impl6435 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeValueArray__Group__4__Impl_in_rule__AttributeValueArray__Group__46468 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_rule__AttributeValueArray__Group__4__Impl6496 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeValueArray__Group_2__0__Impl_in_rule__AttributeValueArray__Group_2__06537 = new BitSet(new long[]{0x00000004600380F0L});
+    public static final BitSet FOLLOW_rule__AttributeValueArray__Group_2__1_in_rule__AttributeValueArray__Group_2__06540 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_rule__AttributeValueArray__Group_2__0__Impl6568 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeValueArray__Group_2__1__Impl_in_rule__AttributeValueArray__Group_2__16599 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AttributeValueArray__ElementsAssignment_2_1_in_rule__AttributeValueArray__Group_2__1__Impl6626 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Grouping__Group__0__Impl_in_rule__Grouping__Group__06660 = new BitSet(new long[]{0x0000000000038020L});
+    public static final BitSet FOLLOW_rule__Grouping__Group__1_in_rule__Grouping__Group__06663 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_rule__Grouping__Group__0__Impl6691 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Grouping__Group__1__Impl_in_rule__Grouping__Group__16722 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_rule__Grouping__Group__2_in_rule__Grouping__Group__16725 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Grouping__NameAssignment_1_in_rule__Grouping__Group__1__Impl6752 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Grouping__Group__2__Impl_in_rule__Grouping__Group__26782 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Grouping__Group_2__0_in_rule__Grouping__Group__2__Impl6809 = new BitSet(new long[]{0x0000010000000002L});
+    public static final BitSet FOLLOW_rule__Grouping__Group_2__0__Impl_in_rule__Grouping__Group_2__06846 = new BitSet(new long[]{0x0000000000038020L});
+    public static final BitSet FOLLOW_rule__Grouping__Group_2__1_in_rule__Grouping__Group_2__06849 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_rule__Grouping__Group_2__0__Impl6877 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Grouping__Group_2__1__Impl_in_rule__Grouping__Group_2__16908 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Grouping__NameAssignment_2_1_in_rule__Grouping__Group_2__1__Impl6935 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModelMapping__Group__0__Impl_in_rule__ModelMapping__Group__06969 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_rule__ModelMapping__Group__1_in_rule__ModelMapping__Group__06972 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__ModelMapping__Group__0__Impl7000 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModelMapping__Group__1__Impl_in_rule__ModelMapping__Group__17031 = new BitSet(new long[]{0x0000002800038030L});
+    public static final BitSet FOLLOW_rule__ModelMapping__Group__2_in_rule__ModelMapping__Group__17034 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_rule__ModelMapping__Group__1__Impl7062 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModelMapping__Group__2__Impl_in_rule__ModelMapping__Group__27093 = new BitSet(new long[]{0x0000002800038030L});
+    public static final BitSet FOLLOW_rule__ModelMapping__Group__3_in_rule__ModelMapping__Group__27096 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModelMapping__Group__3__Impl_in_rule__ModelMapping__Group__37154 = new BitSet(new long[]{0x0000002800038030L});
+    public static final BitSet FOLLOW_rule__ModelMapping__Group__4_in_rule__ModelMapping__Group__37157 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModelMapping__MappingsAssignment_3_in_rule__ModelMapping__Group__3__Impl7184 = new BitSet(new long[]{0x0000002000038032L});
+    public static final BitSet FOLLOW_rule__ModelMapping__Group__4__Impl_in_rule__ModelMapping__Group__47215 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_rule__ModelMapping__Group__4__Impl7243 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyMapping__Group__0__Impl_in_rule__PropertyMapping__Group__07284 = new BitSet(new long[]{0x0000002000038030L});
+    public static final BitSet FOLLOW_rule__PropertyMapping__Group__1_in_rule__PropertyMapping__Group__07287 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyMapping__DescriptionAssignment_0_in_rule__PropertyMapping__Group__0__Impl7314 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyMapping__Group__1__Impl_in_rule__PropertyMapping__Group__17345 = new BitSet(new long[]{0x0000002000038030L});
+    public static final BitSet FOLLOW_rule__PropertyMapping__Group__2_in_rule__PropertyMapping__Group__17348 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyMapping__AttributesAssignment_1_in_rule__PropertyMapping__Group__1__Impl7375 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyMapping__Group__2__Impl_in_rule__PropertyMapping__Group__27406 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_rule__PropertyMapping__Group__3_in_rule__PropertyMapping__Group__27409 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyMapping__FromAssignment_2_in_rule__PropertyMapping__Group__2__Impl7436 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyMapping__Group__3__Impl_in_rule__PropertyMapping__Group__37466 = new BitSet(new long[]{0x0000000000038020L});
+    public static final BitSet FOLLOW_rule__PropertyMapping__Group__4_in_rule__PropertyMapping__Group__37469 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__PropertyMapping__Group__3__Impl7497 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyMapping__Group__4__Impl_in_rule__PropertyMapping__Group__47528 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_rule__PropertyMapping__Group__5_in_rule__PropertyMapping__Group__47531 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyMapping__NameAssignment_4_in_rule__PropertyMapping__Group__4__Impl7558 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyMapping__Group__5__Impl_in_rule__PropertyMapping__Group__57588 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_rule__PropertyMapping__Group__5__Impl7616 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModelFolding__Group__0__Impl_in_rule__ModelFolding__Group__07659 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_rule__ModelFolding__Group__1_in_rule__ModelFolding__Group__07662 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__ModelFolding__Group__0__Impl7690 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModelFolding__Group__1__Impl_in_rule__ModelFolding__Group__17721 = new BitSet(new long[]{0x0000002800038030L});
+    public static final BitSet FOLLOW_rule__ModelFolding__Group__2_in_rule__ModelFolding__Group__17724 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_rule__ModelFolding__Group__1__Impl7752 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModelFolding__Group__2__Impl_in_rule__ModelFolding__Group__27783 = new BitSet(new long[]{0x0000002800038030L});
+    public static final BitSet FOLLOW_rule__ModelFolding__Group__3_in_rule__ModelFolding__Group__27786 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModelFolding__Group__3__Impl_in_rule__ModelFolding__Group__37844 = new BitSet(new long[]{0x0000002800038030L});
+    public static final BitSet FOLLOW_rule__ModelFolding__Group__4_in_rule__ModelFolding__Group__37847 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModelFolding__FoldingsAssignment_3_in_rule__ModelFolding__Group__3__Impl7874 = new BitSet(new long[]{0x0000002000038032L});
+    public static final BitSet FOLLOW_rule__ModelFolding__Group__4__Impl_in_rule__ModelFolding__Group__47905 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_rule__ModelFolding__Group__4__Impl7933 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__Group__0__Impl_in_rule__PropertyFolding__Group__07974 = new BitSet(new long[]{0x0000002000038030L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__Group__1_in_rule__PropertyFolding__Group__07977 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__DescriptionAssignment_0_in_rule__PropertyFolding__Group__0__Impl8004 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__Group__1__Impl_in_rule__PropertyFolding__Group__18035 = new BitSet(new long[]{0x0000002000038030L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__Group__2_in_rule__PropertyFolding__Group__18038 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__AttributesAssignment_1_in_rule__PropertyFolding__Group__1__Impl8065 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__Group__2__Impl_in_rule__PropertyFolding__Group__28096 = new BitSet(new long[]{0x0000000000038020L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__Group__3_in_rule__PropertyFolding__Group__28099 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__AggregatorAssignment_2_in_rule__PropertyFolding__Group__2__Impl8126 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__Group__3__Impl_in_rule__PropertyFolding__Group__38156 = new BitSet(new long[]{0x0000000000006000L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__Group__4_in_rule__PropertyFolding__Group__38159 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__FromAssignment_3_in_rule__PropertyFolding__Group__3__Impl8186 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__Group__4__Impl_in_rule__PropertyFolding__Group__48216 = new BitSet(new long[]{0x0000000000038020L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__Group__5_in_rule__PropertyFolding__Group__48219 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__Alternatives_4_in_rule__PropertyFolding__Group__4__Impl8246 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__Group__5__Impl_in_rule__PropertyFolding__Group__58276 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__Group__6_in_rule__PropertyFolding__Group__58279 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__NameAssignment_5_in_rule__PropertyFolding__Group__5__Impl8306 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyFolding__Group__6__Impl_in_rule__PropertyFolding__Group__68336 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_rule__PropertyFolding__Group__6__Impl8364 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__08409 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__08412 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleName_in_rule__QualifiedName__Group__0__Impl8439 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__18468 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__0_in_rule__QualifiedName__Group__1__Impl8495 = new BitSet(new long[]{0x0000040000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__0__Impl_in_rule__QualifiedName__Group_1__08530 = new BitSet(new long[]{0x0000000000038020L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__1_in_rule__QualifiedName__Group_1__08533 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_rule__QualifiedName__Group_1__0__Impl8561 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group_1__1__Impl_in_rule__QualifiedName__Group_1__18592 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleName_in_rule__QualifiedName__Group_1__1__Impl8619 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleModelDefinition_in_rule__Script__ListAssignment8657 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDescription_in_rule__ModelDefinition__DescriptionAssignment_08688 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttributeList_in_rule__ModelDefinition__AttributesAssignment_18719 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_rule__ModelDefinition__TypeAssignment_2_0_08755 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleName_in_rule__ModelDefinition__NameAssignment_2_0_18794 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRecordExpression_in_rule__ModelDefinition__RhsAssignment_2_0_38825 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_rule__ModelDefinition__TypeAssignment_2_1_08861 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleName_in_rule__ModelDefinition__NameAssignment_2_1_18900 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJoinExpression_in_rule__ModelDefinition__RhsAssignment_2_1_38931 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_rule__ModelDefinition__TypeAssignment_2_2_08967 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleName_in_rule__ModelDefinition__NameAssignment_2_2_19006 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSummarizeExpression_in_rule__ModelDefinition__RhsAssignment_2_2_39037 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRecordTerm_in_rule__RecordExpression__TermsAssignment_09068 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRecordTerm_in_rule__RecordExpression__TermsAssignment_1_19099 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertyDefinition_in_rule__RecordTerm__PropertiesAssignment_0_29130 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleModelReference_in_rule__RecordTerm__ReferenceAssignment_19161 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleName_in_rule__ModelReference__NameAssignment9196 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDescription_in_rule__PropertyDefinition__DescriptionAssignment_09231 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttributeList_in_rule__PropertyDefinition__AttributesAssignment_19262 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleName_in_rule__PropertyDefinition__NameAssignment_29293 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleType_in_rule__PropertyDefinition__TypeAssignment_49324 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJoinTerm_in_rule__JoinExpression__TermsAssignment_09355 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJoinTerm_in_rule__JoinExpression__TermsAssignment_1_19386 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleModelReference_in_rule__JoinTerm__ReferenceAssignment_09417 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleModelMapping_in_rule__JoinTerm__MappingAssignment_19448 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleGrouping_in_rule__JoinTerm__GroupingAssignment_29479 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSummarizeTerm_in_rule__SummarizeExpression__TermsAssignment_09510 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSummarizeTerm_in_rule__SummarizeExpression__TermsAssignment_1_19541 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleModelReference_in_rule__SummarizeTerm__ReferenceAssignment_09572 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleModelFolding_in_rule__SummarizeTerm__FoldingAssignment_19603 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleGrouping_in_rule__SummarizeTerm__GroupingAssignment_29634 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttribute_in_rule__AttributeList__AttributesAssignment9665 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__Attribute__NameAssignment_19696 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttributeElementBlock_in_rule__Attribute__ElementBlockAssignment_29727 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttributeElementList_in_rule__AttributeElementBlock__ElementsAssignment_2_09758 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttributeElement_in_rule__AttributeElementList__ElementsAssignment_09789 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttributeElement_in_rule__AttributeElementList__ElementsAssignment_1_19820 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleName_in_rule__AttributeElement__NameAssignment_09851 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttributeValue_in_rule__AttributeElement__ValueAssignment_29882 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttributeValueArray_in_rule__AttributeValue__ValueAssignment_09913 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedNameObject_in_rule__AttributeValue__ValueAssignment_19944 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLiteral_in_rule__AttributeValue__ValueAssignment_29975 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttributeValue_in_rule__AttributeValueArray__ElementsAssignment_110006 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttributeValue_in_rule__AttributeValueArray__ElementsAssignment_2_110037 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleName_in_rule__Grouping__NameAssignment_110072 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleName_in_rule__Grouping__NameAssignment_2_110111 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertyMapping_in_rule__ModelMapping__MappingsAssignment_310146 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDescription_in_rule__PropertyMapping__DescriptionAssignment_010177 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttributeList_in_rule__PropertyMapping__AttributesAssignment_110208 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleName_in_rule__PropertyMapping__FromAssignment_210243 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleName_in_rule__PropertyMapping__NameAssignment_410278 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertyFolding_in_rule__ModelFolding__FoldingsAssignment_310309 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDescription_in_rule__PropertyFolding__DescriptionAssignment_010340 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAttributeList_in_rule__PropertyFolding__AttributesAssignment_110371 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__PropertyFolding__AggregatorAssignment_210402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleName_in_rule__PropertyFolding__FromAssignment_310437 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleName_in_rule__PropertyFolding__NameAssignment_510472 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__QualifiedNameObject__NameAssignment10503 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Literal__StringValueAssignment_010534 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_rule__Literal__IntValueAssignment_110565 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DECIMAL_in_rule__Literal__DecimalValueAssignment_210596 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBOOLEAN_in_rule__Literal__BooleanValueAssignment_310627 = new BitSet(new long[]{0x0000000000000002L});
 
 }

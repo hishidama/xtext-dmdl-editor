@@ -7,9 +7,6 @@ import java.util.Collections;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.shared.SharedStateModule;
 import org.eclipse.xtext.util.Modules2;
@@ -22,43 +19,35 @@ import com.google.inject.Module;
 
 /**
  * This class was generated. Customizations should only happen in a newly
- * introduced subclass.
+ * introduced subclass. 
  */
 public class DMDLActivator extends AbstractUIPlugin {
-
+	
 	public static final String JP_HISHIDAMA_XTEXT_DMDL_EDITOR_DMDL = "jp.hishidama.xtext.dmdl_editor.DMDL";
-
+	
 	private static final Logger logger = Logger.getLogger(DMDLActivator.class);
-
+	
 	private static DMDLActivator INSTANCE;
-
-	private Map<String, Injector> injectors = Collections.synchronizedMap(Maps
-			.<String, Injector> newHashMapWithExpectedSize(1));
-
+	
+	private Map<String, Injector> injectors = Collections.synchronizedMap(Maps.<String, Injector> newHashMapWithExpectedSize(1));
+	
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		INSTANCE = this;
-
-		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		for (IProject project : workspace.getRoot().getProjects()) {
-			if (!DMDLEditorCallback.hasNature(project) && project.getFolder("src/main/dmdl").exists()) {
-				DMDLEditorCallback.addNature(project);
-			}
-		}
 	}
-
+	
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		injectors.clear();
 		INSTANCE = null;
 		super.stop(context);
 	}
-
+	
 	public static DMDLActivator getInstance() {
 		return INSTANCE;
 	}
-
+	
 	public Injector getInjector(String language) {
 		synchronized (injectors) {
 			Injector injector = injectors.get(language);
@@ -68,7 +57,7 @@ public class DMDLActivator extends AbstractUIPlugin {
 			return injector;
 		}
 	}
-
+	
 	protected Injector createInjector(String language) {
 		try {
 			Module runtimeModule = getRuntimeModule(language);
@@ -87,20 +76,20 @@ public class DMDLActivator extends AbstractUIPlugin {
 		if (JP_HISHIDAMA_XTEXT_DMDL_EDITOR_DMDL.equals(grammar)) {
 			return new jp.hishidama.xtext.dmdl_editor.DMDLRuntimeModule();
 		}
-
+		
 		throw new IllegalArgumentException(grammar);
 	}
-
+	
 	protected Module getUiModule(String grammar) {
 		if (JP_HISHIDAMA_XTEXT_DMDL_EDITOR_DMDL.equals(grammar)) {
 			return new jp.hishidama.xtext.dmdl_editor.ui.DMDLUiModule(this);
 		}
-
+		
 		throw new IllegalArgumentException(grammar);
 	}
-
+	
 	protected Module getSharedStateModule() {
 		return new SharedStateModule();
 	}
-
+	
 }

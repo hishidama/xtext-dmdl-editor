@@ -23,9 +23,7 @@ RecordExpression:
 	terms+=RecordTerm ('+' terms+=RecordTerm)*;
 
 RecordTerm:
-	'{'
-	(properties+=PropertyDefinition)+
-	'}'
+	'{' {RecordTerm} (properties+=PropertyDefinition)* '}'
 	| reference=ModelReference;
 
 ModelReference:
@@ -82,7 +80,7 @@ Grouping:
 	'%' name+=[Property|Name] (',' name+=[Property|Name])*;
 
 ModelMapping:
-	'->' '{' (mappings+=PropertyMapping)+ '}';
+	'->' '{' {ModelMapping} (mappings+=PropertyMapping)* '}';
 
 PropertyMapping:
 	(description=Description)?
@@ -91,7 +89,7 @@ PropertyMapping:
 	';';
 
 ModelFolding:
-	'=>' '{' (foldings+=PropertyFolding)+ '}';
+	'=>' '{' {ModelFolding} (foldings+=PropertyFolding)* '}';
 
 PropertyFolding:
 	(description=Description)?

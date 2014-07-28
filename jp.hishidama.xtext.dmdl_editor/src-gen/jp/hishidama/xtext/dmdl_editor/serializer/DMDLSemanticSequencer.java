@@ -327,7 +327,7 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     foldings+=PropertyFolding+
+	 *     (foldings+=PropertyFolding*)
 	 */
 	protected void sequence_ModelFolding(EObject context, ModelFolding semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -336,7 +336,7 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     mappings+=PropertyMapping+
+	 *     (mappings+=PropertyMapping*)
 	 */
 	protected void sequence_ModelMapping(EObject context, ModelMapping semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -413,7 +413,7 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (properties+=PropertyDefinition+ | reference=ModelReference)
+	 *     (properties+=PropertyDefinition*)
 	 */
 	protected void sequence_RecordTerm(EObject context, RecordTerm semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

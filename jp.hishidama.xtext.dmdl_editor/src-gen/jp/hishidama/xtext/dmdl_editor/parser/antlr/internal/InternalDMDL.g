@@ -411,26 +411,32 @@ ruleRecordTerm returns [EObject current=null]
     	newLeafNode(otherlv_0, grammarAccess.getRecordTermAccess().getLeftCurlyBracketKeyword_0_0());
     }
 (
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getRecordTermAccess().getRecordTermAction_0_1(),
+            $current);
+    }
+)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRecordTermAccess().getPropertiesPropertyDefinitionParserRuleCall_0_1_0()); 
+	        newCompositeNode(grammarAccess.getRecordTermAccess().getPropertiesPropertyDefinitionParserRuleCall_0_2_0()); 
 	    }
-		lv_properties_1_0=rulePropertyDefinition		{
+		lv_properties_2_0=rulePropertyDefinition		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRecordTermRule());
 	        }
        		add(
        			$current, 
        			"properties",
-        		lv_properties_1_0, 
+        		lv_properties_2_0, 
         		"PropertyDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)+	otherlv_2='}' 
+)*	otherlv_3='}' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getRecordTermAccess().getRightCurlyBracketKeyword_0_2());
+    	newLeafNode(otherlv_3, grammarAccess.getRecordTermAccess().getRightCurlyBracketKeyword_0_3());
     }
 )
     |(
@@ -438,14 +444,14 @@ ruleRecordTerm returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getRecordTermAccess().getReferenceModelReferenceParserRuleCall_1_0()); 
 	    }
-		lv_reference_3_0=ruleModelReference		{
+		lv_reference_4_0=ruleModelReference		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRecordTermRule());
 	        }
        		set(
        			$current, 
        			"reference",
-        		lv_reference_3_0, 
+        		lv_reference_4_0, 
         		"ModelReference");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1406,26 +1412,32 @@ ruleModelMapping returns [EObject current=null]
     	newLeafNode(otherlv_1, grammarAccess.getModelMappingAccess().getLeftCurlyBracketKeyword_1());
     }
 (
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getModelMappingAccess().getModelMappingAction_2(),
+            $current);
+    }
+)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getModelMappingAccess().getMappingsPropertyMappingParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getModelMappingAccess().getMappingsPropertyMappingParserRuleCall_3_0()); 
 	    }
-		lv_mappings_2_0=rulePropertyMapping		{
+		lv_mappings_3_0=rulePropertyMapping		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getModelMappingRule());
 	        }
        		add(
        			$current, 
        			"mappings",
-        		lv_mappings_2_0, 
+        		lv_mappings_3_0, 
         		"PropertyMapping");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)+	otherlv_3='}' 
+)*	otherlv_4='}' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getModelMappingAccess().getRightCurlyBracketKeyword_3());
+    	newLeafNode(otherlv_4, grammarAccess.getModelMappingAccess().getRightCurlyBracketKeyword_4());
     }
 )
 ;
@@ -1555,26 +1567,32 @@ ruleModelFolding returns [EObject current=null]
     	newLeafNode(otherlv_1, grammarAccess.getModelFoldingAccess().getLeftCurlyBracketKeyword_1());
     }
 (
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getModelFoldingAccess().getModelFoldingAction_2(),
+            $current);
+    }
+)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getModelFoldingAccess().getFoldingsPropertyFoldingParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getModelFoldingAccess().getFoldingsPropertyFoldingParserRuleCall_3_0()); 
 	    }
-		lv_foldings_2_0=rulePropertyFolding		{
+		lv_foldings_3_0=rulePropertyFolding		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getModelFoldingRule());
 	        }
        		add(
        			$current, 
        			"foldings",
-        		lv_foldings_2_0, 
+        		lv_foldings_3_0, 
         		"PropertyFolding");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)+	otherlv_3='}' 
+)*	otherlv_4='}' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getModelFoldingAccess().getRightCurlyBracketKeyword_3());
+    	newLeafNode(otherlv_4, grammarAccess.getModelFoldingAccess().getRightCurlyBracketKeyword_4());
     }
 )
 ;
