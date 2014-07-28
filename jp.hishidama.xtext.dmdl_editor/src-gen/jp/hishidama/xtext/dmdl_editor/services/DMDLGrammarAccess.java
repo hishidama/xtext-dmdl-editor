@@ -1263,6 +1263,8 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	private QualifiedNameElements pQualifiedName;
 	private NameElements pName;
 	private TerminalRule tNAME_TOKEN;
+	private TerminalRule tDIGIT_CHAR;
+	private TerminalRule tSYMBOL_CHAR;
 	private TypeElements unknownRuleType;
 	private LiteralElements pLiteral;
 	private TerminalRule tSTRING;
@@ -1274,6 +1276,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	private TerminalRule tML_COMMENT;
 	private TerminalRule tSL_COMMENT;
 	private TerminalRule tWS;
+	private TerminalRule tBLANK_CHAR;
 	
 	private final Grammar grammar;
 
@@ -1578,9 +1581,21 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal NAME_TOKEN:
-	//	"a".."z" ("a".."z" | "0".."9")* ("_" ("a".."z" | "0".."9")+)*;
+	//	!(DIGIT_CHAR | SYMBOL_CHAR | BLANK_CHAR) !(SYMBOL_CHAR | BLANK_CHAR)*;
 	public TerminalRule getNAME_TOKENRule() {
 		return (tNAME_TOKEN != null) ? tNAME_TOKEN : (tNAME_TOKEN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NAME_TOKEN"));
+	} 
+
+	//terminal fragment DIGIT_CHAR:
+	//	"0".."9";
+	public TerminalRule getDIGIT_CHARRule() {
+		return (tDIGIT_CHAR != null) ? tDIGIT_CHAR : (tDIGIT_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DIGIT_CHAR"));
+	} 
+
+	//terminal fragment SYMBOL_CHAR:
+	//	"=" | "{" | "}" | "%" | ":" | "<" | ">" | "@" | "." | "(" | ")" | "\"" | "\'" | "," | "-" | "+" | "*" | "/" | ";";
+	public TerminalRule getSYMBOL_CHARRule() {
+		return (tSYMBOL_CHAR != null) ? tSYMBOL_CHAR : (tSYMBOL_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SYMBOL_CHAR"));
 	} 
 
 	/// * Basic Types * / enum Type:
@@ -1657,8 +1672,14 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal WS:
-	//	(" " | "\t" | "\r" | "\n")+;
+	//	BLANK_CHAR+;
 	public TerminalRule getWSRule() {
 		return (tWS != null) ? tWS : (tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS"));
+	} 
+
+	//terminal fragment BLANK_CHAR:
+	//	" " | "\t" | "\r" | "\n";
+	public TerminalRule getBLANK_CHARRule() {
+		return (tBLANK_CHAR != null) ? tBLANK_CHAR : (tBLANK_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "BLANK_CHAR"));
 	} 
 }

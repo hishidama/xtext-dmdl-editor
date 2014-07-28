@@ -111,7 +111,19 @@ Name:
 	NAME_TOKEN | 'projective' | 'joined' | 'summarized';
 
 terminal NAME_TOKEN:
-	('a'..'z') ('a'..'z' | '0'..'9')* ('_' ('a'..'z' | '0'..'9')+)*;
+	(!(DIGIT_CHAR | SYMBOL_CHAR | BLANK_CHAR)) (!(SYMBOL_CHAR | BLANK_CHAR))*;
+
+terminal fragment DIGIT_CHAR:
+	'0'..'9';
+
+terminal fragment SYMBOL_CHAR:
+	'=' | '{' | '}' | '%' |
+	':' |
+	'<' | '>' |
+	'@' | '.' | '(' | ')' |
+	'"' | "'" | ',' |
+	'-' | '+' | '*' | '/' |
+	';';
 
 /* Basic Types */
 enum Type:
@@ -153,4 +165,7 @@ terminal SL_COMMENT:
 	('//' | '--') !('\n' | '\r')* ('\r'? '\n')?;
 
 terminal WS:
-	(' ' | '\t' | '\r' | '\n')+;
+	BLANK_CHAR+;
+
+terminal fragment BLANK_CHAR:
+	' ' | '\t' | '\r' | '\n';

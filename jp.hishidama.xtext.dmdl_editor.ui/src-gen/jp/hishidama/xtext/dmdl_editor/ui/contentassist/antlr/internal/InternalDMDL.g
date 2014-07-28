@@ -5241,7 +5241,11 @@ finally {
 }
 
 
-RULE_NAME_TOKEN : 'a'..'z' ('a'..'z'|'0'..'9')* ('_' ('a'..'z'|'0'..'9')+)*;
+RULE_NAME_TOKEN : ~((RULE_DIGIT_CHAR|RULE_SYMBOL_CHAR|RULE_BLANK_CHAR)) ~((RULE_SYMBOL_CHAR|RULE_BLANK_CHAR))*;
+
+fragment RULE_DIGIT_CHAR : '0'..'9';
+
+fragment RULE_SYMBOL_CHAR : ('='|'{'|'}'|'%'|':'|'<'|'>'|'@'|'.'|'('|')'|'"'|'\''|','|'-'|'+'|'*'|'/'|';');
 
 RULE_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\\')|'\\u' RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR RULE_HEX_CHAR|RULE_OCTAL_ESCAPE|~(('\\'|'"')))* '"';
 
@@ -5257,6 +5261,8 @@ RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
 RULE_SL_COMMENT : ('//'|'--') ~(('\n'|'\r'))* ('\r'? '\n')?;
 
-RULE_WS : (' '|'\t'|'\r'|'\n')+;
+RULE_WS : RULE_BLANK_CHAR+;
+
+fragment RULE_BLANK_CHAR : (' '|'\t'|'\r'|'\n');
 
 
