@@ -3,6 +3,7 @@
  */
 package jp.hishidama.xtext.dmdl_editor.ui;
 
+import jp.hishidama.xtext.dmdl_editor.ui.builder.DMDLBuilderParticipant;
 import jp.hishidama.xtext.dmdl_editor.ui.editor.model.DMDLDocumentProvider;
 import jp.hishidama.xtext.dmdl_editor.ui.formatting.DMDLWhitespaceInformationProvider;
 import jp.hishidama.xtext.dmdl_editor.ui.highlighting.DMDLHighlightingConfiguration;
@@ -70,5 +71,10 @@ public class DMDLUiModule extends jp.hishidama.xtext.dmdl_editor.ui.AbstractDMDL
 
 	public Class<? extends XtextDocumentProvider> bindXtextDocumentProvider() {
 		return DMDLDocumentProvider.class;
+	}
+
+	@Override
+	public Class<? extends org.eclipse.xtext.builder.IXtextBuilderParticipant> bindIXtextBuilderParticipant() {
+		return DMDLBuilderParticipant.class;
 	}
 }

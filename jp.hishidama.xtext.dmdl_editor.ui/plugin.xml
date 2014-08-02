@@ -331,13 +331,13 @@
 	    <persistent value="true"/>
 	</extension>
 
-<!--
    <extension
          point="org.eclipse.xtext.builder.participant">
       <participant
             class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant">
       </participant>
    </extension>
+<!--
    <extension
             point="org.eclipse.ui.preferencePages">
         <page
