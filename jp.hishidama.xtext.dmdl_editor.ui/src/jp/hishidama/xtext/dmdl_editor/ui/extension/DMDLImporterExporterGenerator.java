@@ -75,9 +75,10 @@ public abstract class DMDLImporterExporterGenerator extends ClassGenerator {
 	/**
 	 * 設定項目初期化.
 	 * 
-	 * @see #addTextField(String, String, boolean, String, String, String)
-	 * @see #addComboField(String, String, boolean, String, String, String,
-	 *      String...)
+	 * @see #addTextField(String, String, String, boolean, String, String,
+	 *      String)
+	 * @see #addComboField(String, String, String, boolean, String, String,
+	 *      String, String...)
 	 */
 	protected abstract void initializeFields();
 
@@ -86,11 +87,12 @@ public abstract class DMDLImporterExporterGenerator extends ClassGenerator {
 	 * ImporterのdataSize項目の追加.
 	 */
 	protected final void addFieldImporterDataSize() {
-		addComboField(GROUP_IMPORTER, KEY_DATA_SIZE, true, "getDataSize()", "データサイズ", "入力の推定データサイズ", "UNKNOWN", "TINY",
-				"SMALL", "LARGE");
+		addComboField(null, GROUP_IMPORTER, KEY_DATA_SIZE, true, "getDataSize()", "データサイズ", "入力の推定データサイズ", "UNKNOWN",
+				"TINY", "SMALL", "LARGE");
 	}
 
 	public static class FieldData {
+		public String version;
 		public String groupName;
 		public String keyName;
 		public boolean required;
@@ -109,6 +111,8 @@ public abstract class DMDLImporterExporterGenerator extends ClassGenerator {
 	/**
 	 * Text項目追加.
 	 * 
+	 * @param version
+	 *            使用可能バージョン
 	 * @param groupName
 	 *            グループ名
 	 * @param keyName
@@ -122,9 +126,10 @@ public abstract class DMDLImporterExporterGenerator extends ClassGenerator {
 	 * @param toolTip
 	 *            ツールチップテキスト
 	 */
-	protected final void addTextField(String groupName, String keyName, boolean required, String displayName,
-			String description, String toolTip) {
+	protected final void addTextField(String version, String groupName, String keyName, boolean required,
+			String displayName, String description, String toolTip) {
 		FieldData data = new FieldData();
+		data.version = (version != null) ? version : "0.1";
 		data.groupName = groupName;
 		data.keyName = keyName;
 		data.required = required;
@@ -137,6 +142,8 @@ public abstract class DMDLImporterExporterGenerator extends ClassGenerator {
 	/**
 	 * ComboBox項目追加.
 	 * 
+	 * @param version
+	 *            使用可能バージョン
 	 * @param groupName
 	 *            グループ名
 	 * @param keyName
@@ -152,9 +159,10 @@ public abstract class DMDLImporterExporterGenerator extends ClassGenerator {
 	 * @param value
 	 *            コンボボックスの選択肢
 	 */
-	protected final void addComboField(String groupName, String keyName, boolean required, String displayName,
-			String description, String toolTip, String... value) {
+	protected final void addComboField(String version, String groupName, String keyName, boolean required,
+			String displayName, String description, String toolTip, String... value) {
 		FieldData data = new FieldData();
+		data.version = (version != null) ? version : "0.1";
 		data.groupName = groupName;
 		data.keyName = keyName;
 		data.required = required;
@@ -212,6 +220,10 @@ public abstract class DMDLImporterExporterGenerator extends ClassGenerator {
 	@Override
 	protected void initialize() {
 		properties = BuildPropertiesUtil.getBuildProperties(project, true);
+	}
+
+	protected boolean containsValue(String key) {
+		return map.containsKey(key);
 	}
 
 	protected String getValue(String key) {

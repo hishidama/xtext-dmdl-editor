@@ -24,7 +24,7 @@ public abstract class WindgateGenerator extends DMDLImporterExporterGenerator {
 	 * WindGate項目の追加.
 	 */
 	protected final void addFieldWindgate() {
-		addTextField(GROUP_WINDGATE, KEY_PROFILE_NAME, true, "getProfileName()", "プロファイル", "プロファイル\n"
+		addTextField(null, GROUP_WINDGATE, KEY_PROFILE_NAME, true, "getProfileName()", "プロファイル", "プロファイル\n"
 				+ "「example」と入力すると\nreturn \"example\";\nになります。\n"
 				+ "この例の場合、$ASAKUSA_HOME/windgate/profile/example.properties が使われることになります。");
 	}
@@ -40,17 +40,17 @@ public abstract class WindgateGenerator extends DMDLImporterExporterGenerator {
 	 * WindGateのpath項目の追加.
 	 */
 	protected final void addFieldWindgatePath(String groupName) {
-		addTextField(groupName, KEY_PATH, true, "getPath()", "ファイルのパス",
-				"プロファイル内で指定されているresource.local.basePath からの相対パス\n" + "「data.csv」と入力すると\nreturn \"data.csv\";\nになります。");
+		addTextField(null, groupName, KEY_PATH, true, "getPath()",
+				"ファイルのパス", "プロファイル内で指定されているresource.local.basePath からの相対パス\n" + "「data.csv」と入力すると\nreturn \"data.csv\";\nになります。");
 	}
 
 	/**
 	 * WindGate JDBC項目の追加.
 	 */
 	protected final void addFieldWindgateJdbc() {
-		addTextField(GROUP_WINDGATE_JDBC, KEY_TABLE_NAME, false, "getTableName()", "テーブル名", "テーブル名\n"
+		addTextField(null, GROUP_WINDGATE_JDBC, KEY_TABLE_NAME, false, "getTableName()", "テーブル名", "テーブル名\n"
 				+ "「TABLE1」と入力すると\nreturn \"TABLE1\";\n未入力だとgetTableName()は生成（オーバーライド）されず、DMDLで指定されたテーブル名が使われます。");
-		addTextField(GROUP_WINDGATE_JDBC, KEY_COLUMN_NAMES, false, "getColumnNames()", "カラム名", "絞り込むカラム名（カンマ区切り）\n"
+		addTextField(null, GROUP_WINDGATE_JDBC, KEY_COLUMN_NAMES, false, "getColumnNames()", "カラム名", "絞り込むカラム名（カンマ区切り）\n"
 				+ "「COL1, COL2」と入力すると\nreturn Arrays.asList(\"COL1\", \"COL2\");\n"
 				+ "未入力だと\nreturn super.getColumnNames();\nとなります。");
 	}
@@ -59,8 +59,8 @@ public abstract class WindgateGenerator extends DMDLImporterExporterGenerator {
 	 * WindGate JDBC Importer項目の追加.
 	 */
 	protected final void addFieldWindgateJdbcImporter() {
-		addTextField(GROUP_WINDGATE_JDBC_IMPORTER, KEY_CONDITION, false, "getCondition()", "WHERE条件",
-				"インポーターが利用する抽出条件（SQLの条件式）\n" + "「COL1 = 123」と入力すると\nreturn \"COL1 = 123\";\nになります。");
+		addTextField(null, GROUP_WINDGATE_JDBC_IMPORTER, KEY_CONDITION, false, "getCondition()",
+				"WHERE条件", "インポーターが利用する抽出条件（SQLの条件式）\n" + "「COL1 = 123」と入力すると\nreturn \"COL1 = 123\";\nになります。");
 	}
 
 	// メソッド生成用

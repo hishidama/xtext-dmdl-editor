@@ -22,6 +22,7 @@ public class DirectioTsvImporterGenerator extends DirectioGenerator {
 	@Override
 	public void initializeFields() {
 		addFieldDirectioCsv();
+		addFieldDirectioImporterOptional();
 		addFieldImporterDataSize();
 	}
 
@@ -35,6 +36,7 @@ public class DirectioTsvImporterGenerator extends DirectioGenerator {
 	protected void appendMethods(StringBuilder sb) {
 		appendMethodBasePath(sb);
 		appendMethodResourcePattern(sb);
+		appendMethodOptional(sb);
 		appendMethodDataSize(sb);
 	}
 }

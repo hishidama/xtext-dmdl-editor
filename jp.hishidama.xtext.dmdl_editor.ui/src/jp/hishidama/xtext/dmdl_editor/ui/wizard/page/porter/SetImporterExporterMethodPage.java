@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.extension.AsakusafwConfiguration;
 import jp.hishidama.xtext.dmdl_editor.ui.extension.DMDLImporterExporterGenerator;
 import jp.hishidama.xtext.dmdl_editor.ui.extension.DMDLImporterExporterGenerator.FieldData;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLVariableTableUtil;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -27,7 +29,9 @@ import org.eclipse.swt.widgets.Widget;
 
 public class SetImporterExporterMethodPage extends WizardPage {
 
+	private final IProject project;
 	private final DMDLImporterExporterGenerator generator;
+
 	private final Map<String, Field> fieldMap = new LinkedHashMap<String, Field>();
 
 	private ModifyListener listener = new ModifyListener() {
@@ -36,10 +40,11 @@ public class SetImporterExporterMethodPage extends WizardPage {
 		}
 	};
 
-	public SetImporterExporterMethodPage(DMDLImporterExporterGenerator gen) {
+	public SetImporterExporterMethodPage(IProject project, DMDLImporterExporterGenerator gen) {
 		super("SetImporterExporterMethodPage." + gen.getDisplayName());
 		setTitle("メソッドの内容の指定");
 		setDescription(MessageFormat.format("{0}クラスの各メソッドの内容を入力して下さい。", gen.getDisplayName()));
+		this.project = project;
 		this.generator = gen;
 	}
 
@@ -60,6 +65,8 @@ public class SetImporterExporterMethodPage extends WizardPage {
 	}
 
 	private void rebuild(Composite composite) {
+		String asakusaFwVersion = AsakusafwConfiguration.getAsakusaFwVersion(project);
+
 		{
 			Group group = createGroup(composite, "common", 3);
 			createTextField(group, DMDLImporterExporterGenerator.KEY_PORTER_TITLE, false, "title", "Javadocに使用するタイトル",
@@ -68,15 +75,20 @@ public class SetImporterExporterMethodPage extends WizardPage {
 
 		Map<String, List<FieldData>> map = generator.getFields();
 		for (Entry<String, List<FieldData>> entry : map.entrySet()) {
-			String groupName = entry.getKey();
-			Group group = createGroup(composite, groupName, 3);
+			Group group = null;
 			for (FieldData data : entry.getValue()) {
-				if (data.combo == null) {
-					createTextField(group, data.keyName, data.required, data.displayName, data.description,
-							data.toolTip);
-				} else {
-					createComboField(group, data.keyName, data.required, data.displayName, data.description,
-							data.toolTip, data.combo);
+				if (AsakusafwConfiguration.compareVersion(asakusaFwVersion, data.version) >= 0) {
+					if (group == null) {
+						String groupName = entry.getKey();
+						group = createGroup(composite, groupName, 3);
+					}
+					if (data.combo == null) {
+						createTextField(group, data.keyName, data.required, data.displayName, data.description,
+								data.toolTip);
+					} else {
+						createComboField(group, data.keyName, data.required, data.displayName, data.description,
+								data.toolTip, data.combo);
+					}
 				}
 			}
 		}

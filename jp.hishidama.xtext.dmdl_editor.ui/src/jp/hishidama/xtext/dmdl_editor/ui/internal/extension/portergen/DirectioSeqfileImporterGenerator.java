@@ -22,6 +22,7 @@ public class DirectioSeqfileImporterGenerator extends DirectioGenerator {
 	@Override
 	public void initializeFields() {
 		addFieldDirectioSeqfile();
+		addFieldDirectioImporterOptional();
 		addFieldImporterDataSize();
 	}
 
@@ -35,6 +36,7 @@ public class DirectioSeqfileImporterGenerator extends DirectioGenerator {
 	protected void appendMethods(StringBuilder sb) {
 		appendMethodBasePath(sb);
 		appendMethodResourcePattern(sb);
+		appendMethodOptional(sb);
 		appendMethodDataSize(sb);
 	}
 }

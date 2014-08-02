@@ -9,10 +9,12 @@ import java.text.MessageFormat;
  */
 public abstract class DirectioGenerator extends DMDLImporterExporterGenerator {
 	public static final String GROUP_DIRECTIO = "@directio";
+	public static final String GROUP_DIRECTIO_IMPORTER = "@directio Importer";
 	public static final String GROUP_DIRECTIO_EXPORTER = "@directio Exporter";
 
 	public static final String KEY_BASE_PATH = "directio.basePath";
 	public static final String KEY_RESOURCE_PATTERN = "directio.resourcePattern";
+	public static final String KEY_OPTIONAL = "directio.optional";
 	public static final String KEY_ORDER = "directio.order";
 	public static final String KEY_DELETE_PATTERN = "directio.deletePattern";
 
@@ -34,21 +36,29 @@ public abstract class DirectioGenerator extends DMDLImporterExporterGenerator {
 	}
 
 	protected final void addFieldDirectio(String ext) {
-		addTextField(GROUP_DIRECTIO, KEY_BASE_PATH, true, "getBasePath()", "ベースパス", "論理パス\n"
+		addTextField(null, GROUP_DIRECTIO, KEY_BASE_PATH, true, "getBasePath()", "ベースパス", "論理パス\n"
 				+ "「example」と入力すると\nreturn \"example\";\nになります。");
 		String tip = MessageFormat.format("ファイル名のパターン\n" + "「data.{0}」と入力すると\nreturn \"data.{0}\";\nになります。", ext);
-		addTextField(GROUP_DIRECTIO, KEY_RESOURCE_PATTERN, true, "getResourcePattern()", "リソースパターン", tip);
+		addTextField(null, GROUP_DIRECTIO, KEY_RESOURCE_PATTERN, true, "getResourcePattern()", "リソースパターン", tip);
 	}
 
 	/**
-	 * DiorectIO CSV Exporter項目の追加.
+	 * DicrectIO ImporterのisOptional項目の追加.
+	 */
+	protected final void addFieldDirectioImporterOptional() {
+		addComboField("0.6.1", GROUP_DIRECTIO_IMPORTER, KEY_OPTIONAL, false, "isOptional()", "入力ファイルがオプションかどうか",
+				"falseにすると、入力ファイルが存在しない場合は例外が発生します。\n" + "trueにすると、入力ファイルが存在しない場合は空ファイル扱いになります。", "false", "true");
+	}
+
+	/**
+	 * DirectIO CSV Exporter項目の追加.
 	 */
 	protected final void addFieldDirectioCsvExporter() {
 		addFieldDirectioExporter("csv");
 	}
 
 	/**
-	 * DiorectIO SequenceFile Exporter項目の追加.
+	 * DirectIO SequenceFile Exporter項目の追加.
 	 * 
 	 * @since 2013.08.03
 	 */
@@ -57,11 +67,11 @@ public abstract class DirectioGenerator extends DMDLImporterExporterGenerator {
 	}
 
 	protected final void addFieldDirectioExporter(String ext) {
-		addTextField(GROUP_DIRECTIO_EXPORTER, KEY_ORDER, false, "getOrder()", "ソート順", "出力ファイルのソート用カラム名（カンマ区切り）\n"
+		addTextField(null, GROUP_DIRECTIO_EXPORTER, KEY_ORDER, false, "getOrder()", "ソート順", "出力ファイルのソート用カラム名（カンマ区切り）\n"
 				+ "「+id1, -id2」と入力すると\nreturn Arrays.asList(\"+id1\", \"-id2\");\nになります。");
 		String tip = MessageFormat.format("出力を行う前に削除するファイル名パターン（カンマ区切り）\n"
 				+ "「data*.{0}, test*.{0}」と入力すると\nreturn Arrays.asList(\"data*.{0}\", \"test*.{0}\");\nになります。", ext);
-		addTextField(GROUP_DIRECTIO_EXPORTER, KEY_DELETE_PATTERN, false, "getDeletePatterns()", "削除パターン", tip);
+		addTextField(null, GROUP_DIRECTIO_EXPORTER, KEY_DELETE_PATTERN, false, "getDeletePatterns()", "削除パターン", tip);
 	}
 
 	// メソッド生成用
@@ -83,6 +93,18 @@ public abstract class DirectioGenerator extends DMDLImporterExporterGenerator {
 	 */
 	protected final void appendMethodResourcePattern(StringBuilder sb) {
 		appendMethod(sb, "getResourcePattern", getValue(KEY_RESOURCE_PATTERN));
+	}
+
+	/**
+	 * isOptional()メソッド生成.
+	 * 
+	 * @param sb
+	 *            生成先
+	 */
+	protected final void appendMethodOptional(StringBuilder sb) {
+		if (containsValue(KEY_OPTIONAL)) {
+			appendMethod(sb, "boolean", "isOptional", getValue(KEY_OPTIONAL), "");
+		}
 	}
 
 	/**

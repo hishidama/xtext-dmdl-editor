@@ -71,7 +71,7 @@ public class NewImporterExporterWizard extends Wizard implements INewWizard {
 		namePage.setGenerators(gens);
 		addPage(namePage);
 		for (DMDLImporterExporterGenerator gen : gens) {
-			SetImporterExporterMethodPage methodPage = new SetImporterExporterMethodPage(gen);
+			SetImporterExporterMethodPage methodPage = new SetImporterExporterMethodPage(project, gen);
 			methodPageList.add(methodPage);
 			addPage(methodPage);
 		}
