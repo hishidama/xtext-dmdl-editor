@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
+import jp.hishidama.eclipse_plugin.jdt.util.JavadocUtil;
 import jp.hishidama.eclipse_plugin.jface.ModifiableTable;
 import jp.hishidama.eclipse_plugin.wizard.page.EditWizardPage;
 
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -234,8 +236,15 @@ public class SetBranchEnumPage extends EditWizardPage {
 	public String getEnumComment() {
 		if (button1.getSelection()) {
 			return commentText.getText().trim();
+		} else {
+			IType enumType = type.getType(getEnumName());
+			Javadoc javadoc = JavadocUtil.getJavadoc(enumType);
+			String comment = JavadocUtil.getHeader(javadoc);
+			if (comment != null) {
+				return comment;
+			}
 		}
-		return null;
+		return "";
 	}
 
 	public List<EnumRow> getEnumList() {
