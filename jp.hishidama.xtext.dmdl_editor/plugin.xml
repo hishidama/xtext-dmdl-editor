@@ -18,6 +18,12 @@
             class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioCsvAttributeDefinition">
       </classpath>
       <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioHiveOrcAttributeDefinition">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioHiveParquetAttributeDefinition">
+      </classpath>
+      <classpath
             class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioSeqfileAttributeDefinition">
       </classpath>
       <classpath
