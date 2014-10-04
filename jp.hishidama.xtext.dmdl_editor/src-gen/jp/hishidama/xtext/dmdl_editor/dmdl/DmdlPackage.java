@@ -974,22 +974,13 @@ public interface DmdlPackage extends EPackage
   int LITERAL__DECIMAL_VALUE = 2;
 
   /**
-   * The feature id for the '<em><b>Boolean Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LITERAL__BOOLEAN_VALUE = 3;
-
-  /**
    * The number of structural features of the '<em>Literal</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LITERAL_FEATURE_COUNT = 4;
+  int LITERAL_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Type <em>Type</em>}' enum.
@@ -1000,16 +991,6 @@ public interface DmdlPackage extends EPackage
    * @generated
    */
   int TYPE = 25;
-
-  /**
-   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.BOOLEAN <em>BOOLEAN</em>}' enum.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.BOOLEAN
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getBOOLEAN()
-   * @generated
-   */
-  int BOOLEAN = 26;
 
 
   /**
@@ -1714,17 +1695,6 @@ public interface DmdlPackage extends EPackage
   EAttribute getLiteral_DecimalValue();
 
   /**
-   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Literal#getBooleanValue <em>Boolean Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Boolean Value</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Literal#getBooleanValue()
-   * @see #getLiteral()
-   * @generated
-   */
-  EAttribute getLiteral_BooleanValue();
-
-  /**
    * Returns the meta object for enum '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Type <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1733,16 +1703,6 @@ public interface DmdlPackage extends EPackage
    * @generated
    */
   EEnum getType();
-
-  /**
-   * Returns the meta object for enum '{@link jp.hishidama.xtext.dmdl_editor.dmdl.BOOLEAN <em>BOOLEAN</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>BOOLEAN</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.BOOLEAN
-   * @generated
-   */
-  EEnum getBOOLEAN();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -2346,14 +2306,6 @@ public interface DmdlPackage extends EPackage
     EAttribute LITERAL__DECIMAL_VALUE = eINSTANCE.getLiteral_DecimalValue();
 
     /**
-     * The meta object literal for the '<em><b>Boolean Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LITERAL__BOOLEAN_VALUE = eINSTANCE.getLiteral_BooleanValue();
-
-    /**
      * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Type <em>Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2362,16 +2314,6 @@ public interface DmdlPackage extends EPackage
      * @generated
      */
     EEnum TYPE = eINSTANCE.getType();
-
-    /**
-     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.BOOLEAN <em>BOOLEAN</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see jp.hishidama.xtext.dmdl_editor.dmdl.BOOLEAN
-     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getBOOLEAN()
-     * @generated
-     */
-    EEnum BOOLEAN = eINSTANCE.getBOOLEAN();
 
   }
 

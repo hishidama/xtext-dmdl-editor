@@ -20,10 +20,6 @@
       <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/DATE"/>
       <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/DATETIME"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="DMDL.ecore#//BOOLEAN">
-      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//BOOLEAN/TRUE"/>
-      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//BOOLEAN/FALSE"/>
-    </genEnums>
     <genClasses ecoreClass="DMDL.ecore#//Script">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//Script/list"/>
     </genClasses>
@@ -114,7 +110,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//Literal/stringValue"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//Literal/intValue"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//Literal/decimalValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//Literal/booleanValue"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

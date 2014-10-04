@@ -130,7 +130,7 @@ enum Type:
 	INT | LONG | BYTE | SHORT | DECIMAL | FLOAT | DOUBLE | TEXT | BOOLEAN | DATE | DATETIME;
 
 Literal:
-	stringValue=STRING | intValue=INT | decimalValue=DECIMAL | booleanValue=BOOLEAN;
+	stringValue=STRING | intValue=INT | decimalValue=DECIMAL;
 
 terminal STRING:
 	'"'
@@ -154,9 +154,6 @@ terminal DECIMAL returns ecore::EBigDecimal:
 	'.' ('0'..'9')+
 	| "0." ('0'..'9')*
 	| ('1'..'9') ('0'..'9')* '.' ('0'..'9')*;
-
-enum BOOLEAN:
-	TRUE | FALSE;
 
 terminal ML_COMMENT:
 	'/*'->'*/';

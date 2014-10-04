@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.Literal#getStringValue <em>String Value</em>}</li>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.Literal#getIntValue <em>Int Value</em>}</li>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.Literal#getDecimalValue <em>Decimal Value</em>}</li>
- *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.Literal#getBooleanValue <em>Boolean Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -104,34 +103,5 @@ public interface Literal extends EObject
    * @generated
    */
   void setDecimalValue(BigDecimal value);
-
-  /**
-   * Returns the value of the '<em><b>Boolean Value</b></em>' attribute.
-   * The literals are from the enumeration {@link jp.hishidama.xtext.dmdl_editor.dmdl.BOOLEAN}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Boolean Value</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Boolean Value</em>' attribute.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.BOOLEAN
-   * @see #setBooleanValue(BOOLEAN)
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage#getLiteral_BooleanValue()
-   * @model
-   * @generated
-   */
-  BOOLEAN getBooleanValue();
-
-  /**
-   * Sets the value of the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Literal#getBooleanValue <em>Boolean Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Boolean Value</em>' attribute.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.BOOLEAN
-   * @see #getBooleanValue()
-   * @generated
-   */
-  void setBooleanValue(BOOLEAN value);
 
 } // Literal

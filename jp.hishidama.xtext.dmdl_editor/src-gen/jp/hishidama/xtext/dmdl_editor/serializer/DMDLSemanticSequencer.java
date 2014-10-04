@@ -301,7 +301,7 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (stringValue=STRING | intValue=INT | decimalValue=DECIMAL | booleanValue=BOOLEAN)
+	 *     (stringValue=STRING | intValue=INT | decimalValue=DECIMAL)
 	 */
 	protected void sequence_Literal(EObject context, Literal semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -130,10 +130,5 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="intValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="decimalValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="booleanValue" eType="#//BOOLEAN"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="BOOLEAN">
-    <eLiterals name="TRUE" literal="TRUE"/>
-    <eLiterals name="FALSE" value="1" literal="FALSE"/>
   </eClassifiers>
 </ecore:EPackage>

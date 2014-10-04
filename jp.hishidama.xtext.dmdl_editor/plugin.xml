@@ -3,6 +3,7 @@
 
 <plugin>
    <extension-point id="dmdlAttributeWizardDefinition" name="DMDL AttributeWizard definition" schema="schema/dmdlAttributeWizardDefinition.exsd"/>
+   <extension-point id="dmdlAttributeCompletion" name="DMDL Attribute completion" schema="schema/dmdlAttributeCompletion.exsd"/>
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
@@ -40,4 +41,37 @@
       </classpath>
    </extension>
 
+   <extension
+         point="jp.hishidama.xtext.dmdl_editor.dmdlAttributeCompletion">
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.NamespaceAttributeCompletion">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.AutoProjectionAttributeCompletion">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioCsvAttributeDefinition">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioHiveOrcAttributeDefinition">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioHiveParquetAttributeDefinition">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioSeqfileAttributeDefinition">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioTsvAttributeDefinition">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.WindgateCsvAttributeDefinition">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.WindgateJdbcAttributeDefinition">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.WindgateTsvAttributeDefinition">
+      </classpath>
+   </extension>
 </plugin>

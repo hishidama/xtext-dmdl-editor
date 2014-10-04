@@ -45,7 +45,6 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNameAccess().getAlternatives(), "rule__Name__Alternatives");
 					put(grammarAccess.getLiteralAccess().getAlternatives(), "rule__Literal__Alternatives");
 					put(grammarAccess.getTypeAccess().getAlternatives(), "rule__Type__Alternatives");
-					put(grammarAccess.getBOOLEANAccess().getAlternatives(), "rule__BOOLEAN__Alternatives");
 					put(grammarAccess.getModelDefinitionAccess().getGroup(), "rule__ModelDefinition__Group__0");
 					put(grammarAccess.getModelDefinitionAccess().getGroup_2_0(), "rule__ModelDefinition__Group_2_0__0");
 					put(grammarAccess.getModelDefinitionAccess().getGroup_2_1(), "rule__ModelDefinition__Group_2_1__0");
@@ -137,7 +136,6 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLiteralAccess().getStringValueAssignment_0(), "rule__Literal__StringValueAssignment_0");
 					put(grammarAccess.getLiteralAccess().getIntValueAssignment_1(), "rule__Literal__IntValueAssignment_1");
 					put(grammarAccess.getLiteralAccess().getDecimalValueAssignment_2(), "rule__Literal__DecimalValueAssignment_2");
-					put(grammarAccess.getLiteralAccess().getBooleanValueAssignment_3(), "rule__Literal__BooleanValueAssignment_3");
 				}
 			};
 		}

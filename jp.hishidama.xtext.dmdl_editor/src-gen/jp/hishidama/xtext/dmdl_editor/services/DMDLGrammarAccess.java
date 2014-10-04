@@ -1071,14 +1071,12 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIntValueINTTerminalRuleCall_1_0 = (RuleCall)cIntValueAssignment_1.eContents().get(0);
 		private final Assignment cDecimalValueAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
 		private final RuleCall cDecimalValueDECIMALTerminalRuleCall_2_0 = (RuleCall)cDecimalValueAssignment_2.eContents().get(0);
-		private final Assignment cBooleanValueAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
-		private final RuleCall cBooleanValueBOOLEANEnumRuleCall_3_0 = (RuleCall)cBooleanValueAssignment_3.eContents().get(0);
 		
 		//Literal:
-		//	stringValue=STRING | intValue=INT | decimalValue=DECIMAL | booleanValue=BOOLEAN;
+		//	stringValue=STRING | intValue=INT | decimalValue=DECIMAL;
 		public ParserRule getRule() { return rule; }
 
-		//stringValue=STRING | intValue=INT | decimalValue=DECIMAL | booleanValue=BOOLEAN
+		//stringValue=STRING | intValue=INT | decimalValue=DECIMAL
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//stringValue=STRING
@@ -1098,12 +1096,6 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 
 		//DECIMAL
 		public RuleCall getDecimalValueDECIMALTerminalRuleCall_2_0() { return cDecimalValueDECIMALTerminalRuleCall_2_0; }
-
-		//booleanValue=BOOLEAN
-		public Assignment getBooleanValueAssignment_3() { return cBooleanValueAssignment_3; }
-
-		//BOOLEAN
-		public RuleCall getBooleanValueBOOLEANEnumRuleCall_3_0() { return cBooleanValueBOOLEANEnumRuleCall_3_0; }
 	}
 	
 	
@@ -1206,34 +1198,6 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		//"DATETIME"
 		public Keyword getDATETIMEDATETIMEKeyword_10_0() { return cDATETIMEDATETIMEKeyword_10_0; }
 	}
-
-	public class BOOLEANElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "BOOLEAN");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cTRUEEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cTRUETRUEKeyword_0_0 = (Keyword)cTRUEEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cFALSEEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cFALSEFALSEKeyword_1_0 = (Keyword)cFALSEEnumLiteralDeclaration_1.eContents().get(0);
-		
-		//enum BOOLEAN:
-		//	TRUE | FALSE;
-		public EnumRule getRule() { return rule; }
-
-		//TRUE | FALSE
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//TRUE
-		public EnumLiteralDeclaration getTRUEEnumLiteralDeclaration_0() { return cTRUEEnumLiteralDeclaration_0; }
-
-		//"TRUE"
-		public Keyword getTRUETRUEKeyword_0_0() { return cTRUETRUEKeyword_0_0; }
-
-		//FALSE
-		public EnumLiteralDeclaration getFALSEEnumLiteralDeclaration_1() { return cFALSEEnumLiteralDeclaration_1; }
-
-		//"FALSE"
-		public Keyword getFALSEFALSEKeyword_1_0() { return cFALSEFALSEKeyword_1_0; }
-	}
 	
 	private ScriptElements pScript;
 	private ModelDefinitionElements pModelDefinition;
@@ -1272,7 +1236,6 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	private TerminalRule tOCTAL_ESCAPE;
 	private TerminalRule tINT;
 	private TerminalRule tDECIMAL;
-	private BOOLEANElements unknownRuleBOOLEAN;
 	private TerminalRule tML_COMMENT;
 	private TerminalRule tSL_COMMENT;
 	private TerminalRule tWS;
@@ -1609,7 +1572,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Literal:
-	//	stringValue=STRING | intValue=INT | decimalValue=DECIMAL | booleanValue=BOOLEAN;
+	//	stringValue=STRING | intValue=INT | decimalValue=DECIMAL;
 	public LiteralElements getLiteralAccess() {
 		return (pLiteral != null) ? pLiteral : (pLiteral = new LiteralElements());
 	}
@@ -1648,16 +1611,6 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	public TerminalRule getDECIMALRule() {
 		return (tDECIMAL != null) ? tDECIMAL : (tDECIMAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DECIMAL"));
 	} 
-
-	//enum BOOLEAN:
-	//	TRUE | FALSE;
-	public BOOLEANElements getBOOLEANAccess() {
-		return (unknownRuleBOOLEAN != null) ? unknownRuleBOOLEAN : (unknownRuleBOOLEAN = new BOOLEANElements());
-	}
-	
-	public EnumRule getBOOLEANRule() {
-		return getBOOLEANAccess().getRule();
-	}
 
 	//terminal ML_COMMENT:
 	//	"/ *"->"* /";

@@ -4,7 +4,6 @@ package jp.hishidama.xtext.dmdl_editor.dmdl.impl;
 
 import java.math.BigDecimal;
 
-import jp.hishidama.xtext.dmdl_editor.dmdl.BOOLEAN;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Literal;
 
@@ -25,7 +24,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.LiteralImpl#getStringValue <em>String Value</em>}</li>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.LiteralImpl#getIntValue <em>Int Value</em>}</li>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.LiteralImpl#getDecimalValue <em>Decimal Value</em>}</li>
- *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.LiteralImpl#getBooleanValue <em>Boolean Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -92,26 +90,6 @@ public class LiteralImpl extends MinimalEObjectImpl.Container implements Literal
    * @ordered
    */
   protected BigDecimal decimalValue = DECIMAL_VALUE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getBooleanValue() <em>Boolean Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getBooleanValue()
-   * @generated
-   * @ordered
-   */
-  protected static final BOOLEAN BOOLEAN_VALUE_EDEFAULT = BOOLEAN.TRUE;
-
-  /**
-   * The cached value of the '{@link #getBooleanValue() <em>Boolean Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getBooleanValue()
-   * @generated
-   * @ordered
-   */
-  protected BOOLEAN booleanValue = BOOLEAN_VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -208,29 +186,6 @@ public class LiteralImpl extends MinimalEObjectImpl.Container implements Literal
    * <!-- end-user-doc -->
    * @generated
    */
-  public BOOLEAN getBooleanValue()
-  {
-    return booleanValue;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setBooleanValue(BOOLEAN newBooleanValue)
-  {
-    BOOLEAN oldBooleanValue = booleanValue;
-    booleanValue = newBooleanValue == null ? BOOLEAN_VALUE_EDEFAULT : newBooleanValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DmdlPackage.LITERAL__BOOLEAN_VALUE, oldBooleanValue, booleanValue));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -242,8 +197,6 @@ public class LiteralImpl extends MinimalEObjectImpl.Container implements Literal
         return getIntValue();
       case DmdlPackage.LITERAL__DECIMAL_VALUE:
         return getDecimalValue();
-      case DmdlPackage.LITERAL__BOOLEAN_VALUE:
-        return getBooleanValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -266,9 +219,6 @@ public class LiteralImpl extends MinimalEObjectImpl.Container implements Literal
         return;
       case DmdlPackage.LITERAL__DECIMAL_VALUE:
         setDecimalValue((BigDecimal)newValue);
-        return;
-      case DmdlPackage.LITERAL__BOOLEAN_VALUE:
-        setBooleanValue((BOOLEAN)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -293,9 +243,6 @@ public class LiteralImpl extends MinimalEObjectImpl.Container implements Literal
       case DmdlPackage.LITERAL__DECIMAL_VALUE:
         setDecimalValue(DECIMAL_VALUE_EDEFAULT);
         return;
-      case DmdlPackage.LITERAL__BOOLEAN_VALUE:
-        setBooleanValue(BOOLEAN_VALUE_EDEFAULT);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -316,8 +263,6 @@ public class LiteralImpl extends MinimalEObjectImpl.Container implements Literal
         return intValue != INT_VALUE_EDEFAULT;
       case DmdlPackage.LITERAL__DECIMAL_VALUE:
         return DECIMAL_VALUE_EDEFAULT == null ? decimalValue != null : !DECIMAL_VALUE_EDEFAULT.equals(decimalValue);
-      case DmdlPackage.LITERAL__BOOLEAN_VALUE:
-        return booleanValue != BOOLEAN_VALUE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -339,8 +284,6 @@ public class LiteralImpl extends MinimalEObjectImpl.Container implements Literal
     result.append(intValue);
     result.append(", decimalValue: ");
     result.append(decimalValue);
-    result.append(", booleanValue: ");
-    result.append(booleanValue);
     result.append(')');
     return result.toString();
   }

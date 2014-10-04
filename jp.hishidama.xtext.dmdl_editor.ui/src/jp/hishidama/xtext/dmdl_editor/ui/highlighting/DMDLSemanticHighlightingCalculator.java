@@ -4,10 +4,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
+import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValue;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
+import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedNameObject;
 import jp.hishidama.xtext.dmdl_editor.dmdl.util.DmdlSwitch;
 
 import org.eclipse.emf.ecore.EObject;
@@ -44,6 +46,19 @@ public class DMDLSemanticHighlightingCalculator implements ISemanticHighlighting
 		public Void caseAttribute(Attribute object) {
 			addPosition(object, DmdlPackage.Literals.ATTRIBUTE__NAME, DMDLHighlightingConfiguration.ATTRIBUTE_ID);
 
+			return null;
+		}
+
+		@Override
+		public Void caseAttributeValue(AttributeValue object) {
+			EObject value = object.getValue();
+			if (value instanceof QualifiedNameObject) {
+				String name = ((QualifiedNameObject) value).getName();
+				if ("TRUE".equals(name) || "FALSE".equals(name)) {
+					addPosition(object, DmdlPackage.Literals.ATTRIBUTE_VALUE__VALUE,
+							DMDLHighlightingConfiguration.BOOLEAN_ID);
+				}
+			}
 			return null;
 		}
 

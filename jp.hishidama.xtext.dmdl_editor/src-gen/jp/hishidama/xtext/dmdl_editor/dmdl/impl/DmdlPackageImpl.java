@@ -230,13 +230,6 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
   private EEnum typeEEnum = null;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EEnum booleanEEnum = null;
-
-  /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
    * package URI value.
@@ -964,29 +957,9 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getLiteral_BooleanValue()
-  {
-    return (EAttribute)literalEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EEnum getType()
   {
     return typeEEnum;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EEnum getBOOLEAN()
-  {
-    return booleanEEnum;
   }
 
   /**
@@ -1109,11 +1082,9 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     createEAttribute(literalEClass, LITERAL__STRING_VALUE);
     createEAttribute(literalEClass, LITERAL__INT_VALUE);
     createEAttribute(literalEClass, LITERAL__DECIMAL_VALUE);
-    createEAttribute(literalEClass, LITERAL__BOOLEAN_VALUE);
 
     // Create enums
     typeEEnum = createEEnum(TYPE);
-    booleanEEnum = createEEnum(BOOLEAN);
   }
 
   /**
@@ -1240,7 +1211,6 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     initEAttribute(getLiteral_StringValue(), ecorePackage.getEString(), "stringValue", null, 0, 1, Literal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getLiteral_IntValue(), ecorePackage.getEInt(), "intValue", null, 0, 1, Literal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getLiteral_DecimalValue(), ecorePackage.getEBigDecimal(), "decimalValue", null, 0, 1, Literal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getLiteral_BooleanValue(), this.getBOOLEAN(), "booleanValue", null, 0, 1, Literal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(typeEEnum, Type.class, "Type");
@@ -1255,10 +1225,6 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     addEEnumLiteral(typeEEnum, Type.BOOLEAN);
     addEEnumLiteral(typeEEnum, Type.DATE);
     addEEnumLiteral(typeEEnum, Type.DATETIME);
-
-    initEEnum(booleanEEnum, jp.hishidama.xtext.dmdl_editor.dmdl.BOOLEAN.class, "BOOLEAN");
-    addEEnumLiteral(booleanEEnum, jp.hishidama.xtext.dmdl_editor.dmdl.BOOLEAN.TRUE);
-    addEEnumLiteral(booleanEEnum, jp.hishidama.xtext.dmdl_editor.dmdl.BOOLEAN.FALSE);
 
     // Create resource
     createResource(eNS_URI);

@@ -13,4 +13,8 @@ public class ExtensionUtil {
 	public static List<DMDLAttributeWizardDefinition> getAttributeWizardDefinitions() {
 		return getExtensionLoader().getAttributeWizardDefinitions();
 	}
+
+	public static List<DMDLAttributeCompletion> getAttributeCompletions() {
+		return getExtensionLoader().getAttributeCompletions();
+	}
 }

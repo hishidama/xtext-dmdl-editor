@@ -107,8 +107,6 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
     {
       case DmdlPackage.TYPE:
         return createTypeFromString(eDataType, initialValue);
-      case DmdlPackage.BOOLEAN:
-        return createBOOLEANFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -126,8 +124,6 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
     {
       case DmdlPackage.TYPE:
         return convertTypeToString(eDataType, instanceValue);
-      case DmdlPackage.BOOLEAN:
-        return convertBOOLEANToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -426,28 +422,6 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
    * @generated
    */
   public String convertTypeToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public BOOLEAN createBOOLEANFromString(EDataType eDataType, String initialValue)
-  {
-    BOOLEAN result = BOOLEAN.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertBOOLEANToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

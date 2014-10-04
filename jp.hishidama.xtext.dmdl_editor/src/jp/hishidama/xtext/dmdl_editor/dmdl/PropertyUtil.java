@@ -124,6 +124,16 @@ public class PropertyUtil {
 		return null;
 	}
 
+	public static Property getProperty(EObject object) {
+		while (object != null) {
+			if (object instanceof Property) {
+				return (Property) object;
+			}
+			object = object.eContainer();
+		}
+		return null;
+	}
+
 	public static String getAttributeString(Property property) {
 		if (property == null) {
 			return null;

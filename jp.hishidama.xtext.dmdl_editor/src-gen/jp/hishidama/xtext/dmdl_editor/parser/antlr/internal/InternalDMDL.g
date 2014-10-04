@@ -1931,25 +1931,6 @@ ruleLiteral returns [EObject current=null]
 	    }
 
 )
-)
-    |(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getLiteralAccess().getBooleanValueBOOLEANEnumRuleCall_3_0()); 
-	    }
-		lv_booleanValue_3_0=ruleBOOLEAN		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getLiteralRule());
-	        }
-       		set(
-       			$current, 
-       			"booleanValue",
-        		lv_booleanValue_3_0, 
-        		"BOOLEAN");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
 ))
 ;
 
@@ -2025,25 +2006,6 @@ ruleType returns [Enumerator current=null]
 	{
         $current = grammarAccess.getTypeAccess().getDATETIMEEnumLiteralDeclaration_10().getEnumLiteral().getInstance();
         newLeafNode(enumLiteral_10, grammarAccess.getTypeAccess().getDATETIMEEnumLiteralDeclaration_10()); 
-    }
-));
-
-
-
-// Rule BOOLEAN
-ruleBOOLEAN returns [Enumerator current=null] 
-    @init { enterRule(); }
-    @after { leaveRule(); }:
-((	enumLiteral_0='TRUE' 
-	{
-        $current = grammarAccess.getBOOLEANAccess().getTRUEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_0, grammarAccess.getBOOLEANAccess().getTRUEEnumLiteralDeclaration_0()); 
-    }
-)
-    |(	enumLiteral_1='FALSE' 
-	{
-        $current = grammarAccess.getBOOLEANAccess().getFALSEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_1, grammarAccess.getBOOLEANAccess().getFALSEEnumLiteralDeclaration_1()); 
     }
 ));
 

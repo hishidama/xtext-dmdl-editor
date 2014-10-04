@@ -21,9 +21,6 @@ public class DMDLLexicalTokenToAttributeIdMapper extends AbstractAntlrTokenToAtt
 			return DMDLHighlightingConfiguration.PUNCTUATION_ID;
 		}
 
-		if ("'TRUE'".equals(tokenName) || "'FALSE'".equals(tokenName)) {
-			return DMDLHighlightingConfiguration.BOOLEAN_ID;
-		}
 		if (isKeyword(tokenName)) {
 			return DMDLHighlightingConfiguration.DATATYPE_ID;
 		}

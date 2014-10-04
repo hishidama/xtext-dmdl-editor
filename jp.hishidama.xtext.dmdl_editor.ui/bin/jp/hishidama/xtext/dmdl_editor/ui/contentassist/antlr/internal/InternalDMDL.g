@@ -841,25 +841,6 @@ finally {
 
 
 
-// Rule BOOLEAN
-ruleBOOLEAN
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getBOOLEANAccess().getAlternatives()); }
-(rule__BOOLEAN__Alternatives)
-{ after(grammarAccess.getBOOLEANAccess().getAlternatives()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
 rule__ModelDefinition__Alternatives_2
     @init {
 		int stackSize = keepStackSize();
@@ -1028,12 +1009,6 @@ rule__Literal__Alternatives
 { after(grammarAccess.getLiteralAccess().getDecimalValueAssignment_2()); }
 )
 
-    |(
-{ before(grammarAccess.getLiteralAccess().getBooleanValueAssignment_3()); }
-(rule__Literal__BooleanValueAssignment_3)
-{ after(grammarAccess.getLiteralAccess().getBooleanValueAssignment_3()); }
-)
-
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -1119,30 +1094,6 @@ rule__Type__Alternatives
 (	'DATETIME' 
 )
 { after(grammarAccess.getTypeAccess().getDATETIMEEnumLiteralDeclaration_10()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__BOOLEAN__Alternatives
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getBOOLEANAccess().getTRUEEnumLiteralDeclaration_0()); }
-(	'TRUE' 
-)
-{ after(grammarAccess.getBOOLEANAccess().getTRUEEnumLiteralDeclaration_0()); }
-)
-
-    |(
-{ before(grammarAccess.getBOOLEANAccess().getFALSEEnumLiteralDeclaration_1()); }
-(	'FALSE' 
-)
-{ after(grammarAccess.getBOOLEANAccess().getFALSEEnumLiteralDeclaration_1()); }
 )
 
 ;
@@ -5218,21 +5169,6 @@ rule__Literal__DecimalValueAssignment_2
 (
 { before(grammarAccess.getLiteralAccess().getDecimalValueDECIMALTerminalRuleCall_2_0()); }
 	RULE_DECIMAL{ after(grammarAccess.getLiteralAccess().getDecimalValueDECIMALTerminalRuleCall_2_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Literal__BooleanValueAssignment_3
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getLiteralAccess().getBooleanValueBOOLEANEnumRuleCall_3_0()); }
-	ruleBOOLEAN{ after(grammarAccess.getLiteralAccess().getBooleanValueBOOLEANEnumRuleCall_3_0()); }
 )
 
 ;
