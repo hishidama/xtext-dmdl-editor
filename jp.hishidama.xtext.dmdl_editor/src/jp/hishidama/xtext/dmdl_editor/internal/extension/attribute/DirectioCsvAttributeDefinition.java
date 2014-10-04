@@ -2,6 +2,7 @@ package jp.hishidama.xtext.dmdl_editor.internal.extension.attribute;
 
 import java.util.List;
 
+import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElement;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.extension.DMDLAttributeCompletion;
@@ -18,16 +19,18 @@ public class DirectioCsvAttributeDefinition extends DMDLAttributeWizardDefinitio
 
 	private DMDLAttribute getModelAttribute() {
 		if (attribute == null) {
-			attribute = new DMDLAttribute("directio.csv");
-			attribute.addq("charset", "UTF-8").completionq("UTF-8", "MS932");
-			attribute.add("allow_linefeed", "FALSE").completion("TRUE", "FALSE");
-			attribute.add("has_header", "FALSE").completion("TRUE", "FALSE");
-			attribute.addq("true", "true").completionq("true");
-			attribute.addq("false", "false").completionq("false");
-			attribute.addq("date", "yyyy-MM-dd").completionq("yyyy-MM-dd");
-			attribute.addq("datetime", "yyyy-MM-dd HH:mm:ss").completionq("yyyy-MM-dd HH:mm:ss");
-			attribute.addq("compression", "org.apache.hadoop.io.compress.GzipCodec", "0.5.2").completionq(
-					"org.apache.hadoop.io.compress.GzipCodec");
+			attribute = new DMDLAttribute("directio.csv", "Direct I/O CSVファイル");
+			attribute.addq("charset", "ファイルの文字エンコーディング", "UTF-8").completionq("UTF-8", "MS932");
+			attribute.add("allow_linefeed", "値の中に改行を入れられるかどうか", "FALSE").completion("TRUE", "FALSE");
+			attribute.add("has_header", "ヘッダー行を使うかどうか", "FALSE").completion("TRUE", "FALSE");
+			attribute.addq("true", "TRUE値の表現形式", "true").completionq("true");
+			attribute.addq("false", "FALSE値の表現形式", "false").completionq("false");
+			attribute.addq("date", "DATE型の表現形式", "yyyy-MM-dd").completionq("yyyy-MM-dd");
+			attribute.addq("datetime", "DATETIME型の表現形式", "yyyy-MM-dd HH:mm:ss").completionq("yyyy-MM-dd HH:mm:ss");
+			attribute
+					.addq("compression", "ファイルの圧縮形式", "gzip")
+					.completionq("gzip", "org.apache.hadoop.io.compress.DefaultCodec",
+							"org.apache.hadoop.io.compress.GzipCodec").version("0.5.2");
 		}
 		return attribute;
 	}
@@ -38,13 +41,13 @@ public class DirectioCsvAttributeDefinition extends DMDLAttributeWizardDefinitio
 		if (propertyAttribute == null) {
 			propertyAttribute = new DMDLAttributeList();
 			{
-				DMDLAttribute a = propertyAttribute.create("directio.csv.field", true);
-				a.addq("name", "$(name)");
+				DMDLAttribute a = propertyAttribute.create("directio.csv.field", "CSV フィールド名", true);
+				a.addq("name", "フィールド名", "$(name)");
 			}
-			propertyAttribute.create("directio.csv.ignore", false);
-			propertyAttribute.create("directio.csv.file_name", false).dataType("TEXT");
-			propertyAttribute.create("directio.csv.line_number", false).dataType("INT", "LONG");
-			propertyAttribute.create("directio.csv.record_number", false).dataType("INT", "LONG");
+			propertyAttribute.create("directio.csv.ignore", "無視するフィールド", false);
+			propertyAttribute.create("directio.csv.file_name", "ファイル名", false).dataType("TEXT");
+			propertyAttribute.create("directio.csv.line_number", "テキスト行番号（1起算）", false).dataType("INT", "LONG");
+			propertyAttribute.create("directio.csv.record_number", "レコード番号（1起算）", false).dataType("INT", "LONG");
 		}
 		return propertyAttribute;
 	}
@@ -101,5 +104,23 @@ public class DirectioCsvAttributeDefinition extends DMDLAttributeWizardDefinitio
 			return DMDLAttribute.getPropertyNameValueList(element);
 		}
 		return getPropertyAttributes().getElementValueList(attributeName, elementName, version);
+	}
+
+	// @Override
+	public String getAttributeTooltip(Attribute attribute, String name) {
+		String s = getModelAttribute().getAttributeTooltip(attribute, name);
+		if (s != null) {
+			return s;
+		}
+		return getPropertyAttributes().getAttributeTooltip(attribute, name);
+	}
+
+	// @Override
+	public String getElementTooltip(String attributeName, AttributeElement element, String elementName) {
+		String s = getModelAttribute().getElementTooltip(attributeName, element, elementName);
+		if (s != null) {
+			return s;
+		}
+		return getPropertyAttributes().getElementTooltip(attributeName, element, elementName);
 	}
 }

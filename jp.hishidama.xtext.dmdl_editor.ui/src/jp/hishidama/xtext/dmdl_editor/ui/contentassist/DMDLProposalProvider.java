@@ -7,10 +7,10 @@ import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.extension.AsakusafwConfiguration;
 import jp.hishidama.eclipse_plugin.util.ProjectUtil;
-import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElement;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
+import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
@@ -147,7 +147,7 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 
 	private void completeModelAttributeElement(Attribute attribute, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
-		String attributeName = StringUtil.removeBlank(attribute.getName());
+		String attributeName = AttributeUtil.getAttributeName(attribute);
 		if (attributeName == null) {
 			return;
 		}
@@ -169,7 +169,7 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 
 	private void completeModelAttributeValue(Attribute attribute, AttributeElement element,
 			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		String attributeName = StringUtil.removeBlank(attribute.getName());
+		String attributeName = AttributeUtil.getAttributeName(attribute);
 		if (attributeName == null) {
 			return;
 		}
@@ -207,7 +207,7 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 
 	private void completePropertyAttributeElement(Property property, Attribute attribute, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
-		String attributeName = StringUtil.removeBlank(attribute.getName());
+		String attributeName = AttributeUtil.getAttributeName(attribute);
 		if (attributeName == null) {
 			return;
 		}
@@ -228,7 +228,7 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 
 	private void completePropertyAttributeValue(Property property, Attribute attribute, AttributeElement element,
 			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		String attributeName = StringUtil.removeBlank(attribute.getName());
+		String attributeName = AttributeUtil.getAttributeName(attribute);
 		if (attributeName == null) {
 			return;
 		}

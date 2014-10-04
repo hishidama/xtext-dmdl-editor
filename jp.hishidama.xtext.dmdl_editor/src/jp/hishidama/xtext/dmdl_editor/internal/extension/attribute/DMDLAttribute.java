@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.extension.AsakusafwConfiguration;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElement;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
@@ -14,6 +15,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 public class DMDLAttribute {
 
 	private String name;
+	private String tooltip;
 	private boolean append;
 
 	private List<String> dataTypeList;
@@ -21,34 +23,43 @@ public class DMDLAttribute {
 	public static class DmdlAttributeElement {
 		private String version;
 		private String name;
+		private String tooltip;
 		private String value;
 		private List<String> completionList;
 
-		public void completionq(String... completions) {
+		public DmdlAttributeElement version(String version) {
+			this.version = version;
+			return this;
+		}
+
+		public DmdlAttributeElement completionq(String... completions) {
 			String[] c = new String[completions.length];
 			int i = 0;
 			for (String s : completions) {
 				c[i++] = String.format("\"%s\"", s);
 			}
-			completion(c);
+			return completion(c);
 		}
 
-		public void completion(String... completions) {
+		public DmdlAttributeElement completion(String... completions) {
 			if (completionList == null) {
 				completionList = new ArrayList<String>();
 			}
 			completionList.addAll(Arrays.asList(completions));
+
+			return this;
 		}
 	}
 
 	private List<DmdlAttributeElement> elementList = new ArrayList<DmdlAttributeElement>();
 
-	public DMDLAttribute(String name) {
-		this(name, true);
+	public DMDLAttribute(String name, String tooltip) {
+		this(name, tooltip, true);
 	}
 
-	public DMDLAttribute(String name, boolean append) {
+	public DMDLAttribute(String name, String tooltip, boolean append) {
 		this.name = name;
+		this.tooltip = tooltip;
 		this.append = append;
 	}
 
@@ -60,22 +71,14 @@ public class DMDLAttribute {
 		return append;
 	}
 
-	public DmdlAttributeElement add(String name, String value) {
-		return add(name, value, null);
+	public DmdlAttributeElement addq(String name, String tooltip, String value) {
+		return add(name, tooltip, String.format("\"%s\"", value));
 	}
 
-	public DmdlAttributeElement addq(String name, String value) {
-		return addq(name, value, null);
-	}
-
-	public DmdlAttributeElement addq(String name, String value, String version) {
-		return add(name, String.format("\"%s\"", value), version);
-	}
-
-	public DmdlAttributeElement add(String name, String value, String version) {
+	public DmdlAttributeElement add(String name, String tooltip, String value) {
 		DmdlAttributeElement element = new DmdlAttributeElement();
-		element.version = version;
 		element.name = name;
+		element.tooltip = tooltip;
 		element.value = value;
 
 		elementList.add(element);
@@ -109,6 +112,10 @@ public class DMDLAttribute {
 		StringBuilder sb = new StringBuilder(256);
 		sb.append("@");
 		sb.append(getName());
+		if (list.isEmpty()) {
+			return sb.toString();
+		}
+
 		sb.append("(");
 
 		if (list.size() <= 1) {
@@ -185,6 +192,24 @@ public class DMDLAttribute {
 				list.add(String.format("\"%s\"", desc));
 			}
 			return list;
+		}
+		return null;
+	}
+
+	public String getAttributeTooltip(Attribute attribute, String attributeName) {
+		if (name.equals(attributeName)) {
+			return tooltip;
+		}
+		return null;
+	}
+
+	public String getElementTooltip(String attributeName, AttributeElement element, String elementName) {
+		if (name.equals(attributeName)) {
+			for (DmdlAttributeElement elem : elementList) {
+				if (elem.name.equals(elementName)) {
+					return elem.tooltip;
+				}
+			}
 		}
 		return null;
 	}

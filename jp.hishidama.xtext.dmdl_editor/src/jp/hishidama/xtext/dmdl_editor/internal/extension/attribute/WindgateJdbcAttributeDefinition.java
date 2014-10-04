@@ -2,6 +2,7 @@ package jp.hishidama.xtext.dmdl_editor.internal.extension.attribute;
 
 import java.util.List;
 
+import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElement;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.extension.DMDLAttributeCompletion;
@@ -18,8 +19,8 @@ public class WindgateJdbcAttributeDefinition extends DMDLAttributeWizardDefiniti
 
 	private DMDLAttribute getModelAttribute() {
 		if (attribute == null) {
-			attribute = new DMDLAttribute("windgate.jdbc.table");
-			attribute.addq("name", "$(modelName.toUpper)");
+			attribute = new DMDLAttribute("windgate.jdbc.table", "WindGate RDBテーブル");
+			attribute.addq("name", "テーブル名", "$(modelName.toUpper)");
 		}
 		return attribute;
 	}
@@ -30,8 +31,8 @@ public class WindgateJdbcAttributeDefinition extends DMDLAttributeWizardDefiniti
 		if (propertyAttribute == null) {
 			propertyAttribute = new DMDLAttributeList();
 			{
-				DMDLAttribute a = propertyAttribute.create("windgate.jdbc.column", true);
-				a.addq("name", "$(name.toUpper)");
+				DMDLAttribute a = propertyAttribute.create("windgate.jdbc.column", "カラム名", true);
+				a.addq("name", "カラム名", "$(name.toUpper)");
 			}
 		}
 		return propertyAttribute;
@@ -92,5 +93,23 @@ public class WindgateJdbcAttributeDefinition extends DMDLAttributeWizardDefiniti
 			return DMDLAttribute.getPropertyNameValueList(element);
 		}
 		return getPropertyAttributes().getElementValueList(attributeName, elementName, version);
+	}
+
+	// @Override
+	public String getAttributeTooltip(Attribute attribute, String name) {
+		String s = getModelAttribute().getAttributeTooltip(attribute, name);
+		if (s != null) {
+			return s;
+		}
+		return getPropertyAttributes().getAttributeTooltip(attribute, name);
+	}
+
+	// @Override
+	public String getElementTooltip(String attributeName, AttributeElement element, String elementName) {
+		String s = getModelAttribute().getElementTooltip(attributeName, element, elementName);
+		if (s != null) {
+			return s;
+		}
+		return getPropertyAttributes().getElementTooltip(attributeName, element, elementName);
 	}
 }

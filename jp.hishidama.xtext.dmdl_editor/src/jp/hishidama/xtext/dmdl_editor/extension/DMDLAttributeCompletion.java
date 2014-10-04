@@ -2,6 +2,7 @@ package jp.hishidama.xtext.dmdl_editor.extension;
 
 import java.util.List;
 
+import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElement;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 
@@ -77,4 +78,29 @@ public interface DMDLAttributeCompletion {
 	 */
 	public List<String> getCompletionPropertyAttributeElementValueList(String attributeName, AttributeElement element,
 			String elementName, String version);
+
+	/**
+	 * 属性ツールチップ.
+	 * 
+	 * @param attribute
+	 *            属性
+	 * @param attributeName
+	 *            属性名
+	 * @return ツールチップ
+	 */
+	public String getAttributeTooltip(Attribute attribute, String attributeName);
+
+	/**
+	 * 要素ツールチップ.
+	 * 
+	 * @param attributeName
+	 *            属性名
+	 * @param element
+	 *            要素
+	 * @param elementName
+	 *            要素名
+	 * 
+	 * @return
+	 */
+	public String getElementTooltip(String attributeName, AttributeElement element, String elementName);
 }

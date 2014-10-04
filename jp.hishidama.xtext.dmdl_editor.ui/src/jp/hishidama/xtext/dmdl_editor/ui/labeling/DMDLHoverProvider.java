@@ -1,5 +1,10 @@
 package jp.hishidama.xtext.dmdl_editor.ui.labeling;
 
+import java.util.List;
+
+import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
+import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElement;
+import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
@@ -8,6 +13,8 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.util.DmdlSwitch;
+import jp.hishidama.xtext.dmdl_editor.extension.DMDLAttributeCompletion;
+import jp.hishidama.xtext.dmdl_editor.extension.ExtensionUtil;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.ui.editor.hover.html.DefaultEObjectHoverProvider;
@@ -103,6 +110,36 @@ public class DMDLHoverProvider extends DefaultEObjectHoverProvider {
 			}
 
 			return sb.toString();
+		}
+
+		@Override
+		public String caseAttribute(Attribute attribute) {
+			String name = AttributeUtil.getAttributeName(attribute);
+
+			List<DMDLAttributeCompletion> list = ExtensionUtil.getAttributeCompletions();
+			for (DMDLAttributeCompletion completion : list) {
+				String s = completion.getAttributeTooltip(attribute, name);
+				if (s != null) {
+					return s;
+				}
+			}
+			return null;
+		}
+
+		@Override
+		public String caseAttributeElement(AttributeElement element) {
+			Attribute attribute = AttributeUtil.getAttribute(element);
+			String attributeName = AttributeUtil.getAttributeName(attribute);
+			String elementName = element.getName();
+
+			List<DMDLAttributeCompletion> list = ExtensionUtil.getAttributeCompletions();
+			for (DMDLAttributeCompletion completion : list) {
+				String s = completion.getElementTooltip(attributeName, element, elementName);
+				if (s != null) {
+					return s;
+				}
+			}
+			return null;
 		}
 	}
 }

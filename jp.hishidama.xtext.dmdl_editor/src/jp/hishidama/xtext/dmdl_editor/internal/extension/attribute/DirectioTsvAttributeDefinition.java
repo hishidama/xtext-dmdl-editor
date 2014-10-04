@@ -2,6 +2,7 @@ package jp.hishidama.xtext.dmdl_editor.internal.extension.attribute;
 
 import java.util.List;
 
+import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElement;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.extension.DMDLAttributeCompletion;
@@ -18,11 +19,13 @@ public class DirectioTsvAttributeDefinition extends DMDLAttributeWizardDefinitio
 
 	private DMDLAttribute getModelAttribute() {
 		if (attribute == null) {
-			attribute = new DMDLAttribute("directio.tsv");
-			attribute.addq("charset", "UTF-8").completionq("UTF-8", "MS932");
-			attribute.add("has_header", "FALSE", "0.5.3").completion("TRUE", "FALSE");
-			attribute.addq("compression", "org.apache.hadoop.io.compress.GzipCodec", "0.5.2").completionq(
-					"org.apache.hadoop.io.compress.GzipCodec");
+			attribute = new DMDLAttribute("directio.tsv", "Direct I/O TSVファイル");
+			attribute.addq("charset", "ファイルの文字エンコーディング", "UTF-8").completionq("UTF-8", "MS932");
+			attribute.add("has_header", "ヘッダー行を使うかどうか", "FALSE").completion("TRUE", "FALSE").version("0.5.3");
+			attribute
+					.addq("compression", "ファイルの圧縮形式", "gzip")
+					.completionq("gzip", "org.apache.hadoop.io.compress.DefaultCodec",
+							"org.apache.hadoop.io.compress.GzipCodec").version("0.5.2");
 		}
 		return attribute;
 	}
@@ -33,11 +36,11 @@ public class DirectioTsvAttributeDefinition extends DMDLAttributeWizardDefinitio
 		if (propertyAttribute == null) {
 			propertyAttribute = new DMDLAttributeList();
 			{
-				DMDLAttribute a = propertyAttribute.create("directio.tsv.field", true);
-				a.addq("name", "$(name)");
+				DMDLAttribute a = propertyAttribute.create("directio.tsv.field", "TSV フィールド名", true);
+				a.addq("name", "フィールド名", "$(name)");
 			}
-			propertyAttribute.create("directio.tsv.ignore", false);
-			propertyAttribute.create("directio.tsv.file_name", false).dataType("TEXT");
+			propertyAttribute.create("directio.tsv.ignore", "無視するフィールド", false);
+			propertyAttribute.create("directio.tsv.file_name", "ファイル名", false).dataType("TEXT");
 		}
 		return propertyAttribute;
 	}
@@ -94,5 +97,23 @@ public class DirectioTsvAttributeDefinition extends DMDLAttributeWizardDefinitio
 			return DMDLAttribute.getPropertyNameValueList(element);
 		}
 		return getPropertyAttributes().getElementValueList(attributeName, elementName, version);
+	}
+
+	// @Override
+	public String getAttributeTooltip(Attribute attribute, String name) {
+		String s = getModelAttribute().getAttributeTooltip(attribute, name);
+		if (s != null) {
+			return s;
+		}
+		return getPropertyAttributes().getAttributeTooltip(attribute, name);
+	}
+
+	// @Override
+	public String getElementTooltip(String attributeName, AttributeElement element, String elementName) {
+		String s = getModelAttribute().getElementTooltip(attributeName, element, elementName);
+		if (s != null) {
+			return s;
+		}
+		return getPropertyAttributes().getElementTooltip(attributeName, element, elementName);
 	}
 }

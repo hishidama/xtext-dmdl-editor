@@ -104,4 +104,20 @@ public class NamespaceAttributeCompletion implements DMDLAttributeCompletion {
 			String elementName, String version) {
 		return null;
 	}
+
+	// @Override
+	public String getAttributeTooltip(Attribute attribute, String name) {
+		if ("namespace".equals(name)) {
+			return "生成するパッケージ名";
+		}
+		return null;
+	}
+
+	// @Override
+	public String getElementTooltip(String attributeName, AttributeElement element, String elementName) {
+		if ("namespace".equals(attributeName) && "value".equals(elementName)) {
+			return "生成するパッケージ名";
+		}
+		return null;
+	}
 }

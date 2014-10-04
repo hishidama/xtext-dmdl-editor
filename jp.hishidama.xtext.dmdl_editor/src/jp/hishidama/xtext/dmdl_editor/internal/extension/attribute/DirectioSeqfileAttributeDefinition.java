@@ -1,9 +1,8 @@
 package jp.hishidama.xtext.dmdl_editor.internal.extension.attribute;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
+import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElement;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.extension.DMDLAttributeCompletion;
@@ -17,54 +16,90 @@ public class DirectioSeqfileAttributeDefinition extends DMDLAttributeWizardDefin
 		return "directio.sequence_file";
 	}
 
+	private DMDLAttribute attribute;
+
+	private DMDLAttribute getModelAttribute() {
+		if (attribute == null) {
+			attribute = new DMDLAttribute("directio.sequence_file", "Direct I/O Hadoop SequenceFile");
+		}
+		return attribute;
+	}
+
+	private DMDLAttributeList propertyAttribute;
+
+	private DMDLAttributeList getPropertyAttributes() {
+		if (propertyAttribute == null) {
+			propertyAttribute = new DMDLAttributeList();
+		}
+		return propertyAttribute;
+	}
+
 	@Override
 	public String getAddModelAttribute(String version) {
-		return "@directio.sequence_file\n";
+		return getModelAttribute().getAddAttribute(version);
 	}
 
 	@Override
 	public String getAddPropertyAttribute(String version) {
-		return null;
+		return getPropertyAttributes().getAddAttribute(version);
 	}
 
 	@Override
 	protected List<String> getRemoveModelAttributeList(String version) {
-		return Arrays.asList("@directio.sequence_file");
+		return getModelAttribute().getRemoveAttribute();
 	}
 
 	@Override
 	protected List<String> getRemovePropertyAttributeList(String version) {
-		return Collections.emptyList();
+		return getPropertyAttributes().getRemoveAttribute();
 	}
 
 	// @Override
 	public String getCompletionModelAttributeName() {
-		return "directio.sequence_file";
+		return getModelAttribute().getName();
 	}
 
 	// @Override
 	public List<String> getCompletionModelAttributeElementNameList(String version) {
-		return null;
+		return getModelAttribute().getElementNameList(version);
 	}
 
 	// @Override
 	public List<String> getCompletionModelAttributeValueList(AttributeElement element, String name, String version) {
-		return null;
+		return getModelAttribute().getElementValueList(name, version);
 	}
 
 	// @Override
 	public List<String> getCompletionPropertyAttributeName(Property property) {
-		return null;
+		return getPropertyAttributes().getAttributeNameList(property);
 	}
 
 	// @Override
 	public List<String> getCompletionPropertyAttributeElementNameList(Property property, String name, String version) {
-		return null;
+		return getPropertyAttributes().getElementNameList(name, version);
 	}
 
 	// @Override
 	public List<String> getCompletionPropertyAttributeElementValueList(String attributeName, AttributeElement element,
 			String elementName, String version) {
-		return null;
+		return getPropertyAttributes().getElementValueList(attributeName, elementName, version);
+	}
+
+	// @Override
+	public String getAttributeTooltip(Attribute attribute, String name) {
+		String s = getModelAttribute().getAttributeTooltip(attribute, name);
+		if (s != null) {
+			return s;
+		}
+		return getPropertyAttributes().getAttributeTooltip(attribute, name);
+	}
+
+	// @Override
+	public String getElementTooltip(String attributeName, AttributeElement element, String elementName) {
+		String s = getModelAttribute().getElementTooltip(attributeName, element, elementName);
+		if (s != null) {
+			return s;
+		}
+		return getPropertyAttributes().getElementTooltip(attributeName, element, elementName);
 	}
 }
