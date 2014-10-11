@@ -136,16 +136,18 @@ public class NewFlowTestClassWizard extends NewClassWizard {
 		}
 
 		TestExcelGenerateTask task = new TestExcelGenerateTask(project);
+		// TODO indexSheetName
+		task.set(classPage.getClassUnderTestText(), "index");
 
 		List<TestExcelRow> list = excelPage.getExcelList();
 		for (TestExcelRow row : list) {
 			if (row.copy) {
 				String excelName = dstDir + row.excelDstFileName;
 				if (row.in) {
-					task.add(excelName, row.sheetName, row.modelName, "input");
+					task.add(excelName, row.sheetName, "", row.modelName, row.modelDescription, "input");
 				} else {
-					task.add(excelName, row.sheetName, row.modelName, "output");
-					task.add(excelName, row.ruleName, row.modelName, "rule");
+					task.add(excelName, row.sheetName, "", row.modelName, row.modelDescription, "output");
+					task.add(excelName, row.ruleName, "", row.modelName, row.modelDescription, "rule");
 				}
 			}
 		}

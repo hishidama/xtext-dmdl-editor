@@ -27,6 +27,9 @@ public class TestExcelGenerateTask implements IRunnableWithProgress {
 
 	private IProject project;
 
+	private String flowClassName;
+	private String indexSheetName;
+
 	private Set<String> set = new HashSet<String>();
 	private Map<String, AsakusaExcel> map = new LinkedHashMap<String, AsakusaExcel>();
 
@@ -34,7 +37,13 @@ public class TestExcelGenerateTask implements IRunnableWithProgress {
 		this.project = project;
 	}
 
-	public void add(String dstExcelName, String dstSheetName, String srcModelName, String srcSheetName) {
+	public void set(String flowClassName, String indexSheetName) {
+		this.flowClassName = flowClassName;
+		this.indexSheetName = indexSheetName;
+	}
+
+	public void add(String dstExcelName, String dstSheetName, String dstSheetDescription, String srcModelName,
+			String srcModelDescription, String srcSheetName) {
 		if (StringUtil.isEmpty(dstExcelName) || StringUtil.isEmpty(dstSheetName)) {
 			return;
 		}
@@ -51,7 +60,7 @@ public class TestExcelGenerateTask implements IRunnableWithProgress {
 			excel.dstExcelName = dstExcelName;
 			map.put(dstExcelName, excel);
 		}
-		excel.add(dstSheetName, srcModelName, srcSheetName);
+		excel.add(dstSheetName, dstSheetDescription, srcModelName, srcModelDescription, srcSheetName);
 	}
 
 	public boolean nonEmpty() {
@@ -63,14 +72,17 @@ public class TestExcelGenerateTask implements IRunnableWithProgress {
 		public IFile dstFile;
 		public List<SheetName> list = new ArrayList<SheetName>();
 
-		public void add(String sheetName, String srcModelName, String srcSheetName) {
+		public void add(String sheetName, String sheetDescription, String srcModelName, String srcModelDescription,
+				String srcSheetName) {
 			SheetName name = findName(sheetName);
 			if (name == null) {
 				name = new SheetName();
 				name.dstSheetName = sheetName;
 				list.add(name);
 			}
+			name.dstSheetDescription = sheetDescription;
 			name.srcModelName = srcModelName;
+			name.srcModelDescription = srcModelDescription;
 			name.srcSheetName = srcSheetName;
 		}
 
@@ -86,7 +98,9 @@ public class TestExcelGenerateTask implements IRunnableWithProgress {
 
 	protected static class SheetName {
 		public String dstSheetName;
+		public String dstSheetDescription;
 		public String srcModelName;
+		public String srcModelDescription;
 		public String srcSheetName;
 	}
 
@@ -98,7 +112,8 @@ public class TestExcelGenerateTask implements IRunnableWithProgress {
 			List<SheetInfo> names = getSheetNameList(monitor);
 			monitor.worked(10);
 
-			TestSheetUtil.generateTestSheet(project, version, names, new SubProgressMonitor(monitor, 90));
+			TestSheetUtil.generateTestSheet(project, version, flowClassName, indexSheetName, names,
+					new SubProgressMonitor(monitor, 90));
 
 			for (AsakusaExcel excel : map.values()) {
 				excel.dstFile.refreshLocal(IResource.DEPTH_ONE, new SubProgressMonitor(monitor, 1));
@@ -136,9 +151,11 @@ public class TestExcelGenerateTask implements IRunnableWithProgress {
 			for (SheetName sheet : excel.list) {
 				SheetInfo info = new SheetInfo();
 				info.srcModelName = sheet.srcModelName;
+				info.srcModelDescription = sheet.srcModelDescription;
 				info.srcSheetName = sheet.srcSheetName;
 				info.dstBookName = dstBookPath;
 				info.dstSheetName = sheet.dstSheetName;
+				info.dstSheetDescription = sheet.dstSheetDescription;
 				list.add(info);
 			}
 		}
