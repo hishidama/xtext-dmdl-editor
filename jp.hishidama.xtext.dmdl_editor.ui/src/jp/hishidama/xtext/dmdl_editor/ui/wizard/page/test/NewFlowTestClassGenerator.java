@@ -10,6 +10,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.extension.AsakusafwConfiguration;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowParameter;
 import jp.hishidama.eclipse_plugin.java.ClassGenerator;
 import jp.hishidama.eclipse_plugin.util.FileUtil;
@@ -65,7 +66,8 @@ public abstract class NewFlowTestClassGenerator extends ClassGenerator {
 			sb.append(getCachedClassName(superClassName));
 		}
 		sb.append(" {\n");
-		appenddescribe(sb);
+		appendSegmentSeparator(sb);
+		appendDescribe(sb);
 		sb.append("}\n");
 	}
 
@@ -77,7 +79,25 @@ public abstract class NewFlowTestClassGenerator extends ClassGenerator {
 		sb.append(" */\n");
 	}
 
-	private void appenddescribe(StringBuilder sb) {
+	private void appendSegmentSeparator(StringBuilder sb) {
+		String version = getAsakusafwVersion();
+		if (AsakusafwConfiguration.compareVersion(version, "0.7.0") >= 0) {
+			sb.append("\n");
+			sb.append("\tstatic {\n");
+			sb.append("\t\t");
+			sb.append(getCachedClassName("java.lang.System"));
+			sb.append(".setProperty(");
+			sb.append(getCachedClassName("com.asakusafw.testdriver.core.PropertyName"));
+			sb.append(".KEY_SEGMENT_SEPARATOR, \"_\");\n");
+			sb.append("\t}\n");
+		}
+	}
+
+	protected final String getAsakusafwVersion() {
+		return AsakusafwConfiguration.getAsakusaFwVersion(project);
+	}
+
+	private void appendDescribe(StringBuilder sb) {
 		sb.append("\n");
 		sb.append("\t@");
 		sb.append(getCachedClassName("org.junit.Test"));
