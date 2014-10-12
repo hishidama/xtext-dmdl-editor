@@ -14,8 +14,9 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewFlowpartTestClassGe
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewFlowpartTestClassPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewJobflowTestClassGenerator;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewJobflowTestClassPage;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.SetExcelPage;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.TestExcelRow;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.SelectExcelSheetPage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.SetExcelNamePage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.TestSheetRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.excel.TestExcelGenerateTask;
 
 import org.eclipse.core.resources.IProject;
@@ -34,7 +35,8 @@ public class NewFlowTestClassWizard extends NewClassWizard {
 	private boolean isJobflow;
 
 	private NewTestClassWizardPage classPage;
-	private SetExcelPage excelPage;
+	private SetExcelNamePage namePage;
+	private SelectExcelSheetPage sheetPage;
 
 	public NewFlowTestClassWizard() {
 	}
@@ -66,13 +68,16 @@ public class NewFlowTestClassWizard extends NewClassWizard {
 		classPage.init(getSelection());
 		addPage(classPage);
 
-		excelPage = new SetExcelPage(classPage);
-		addPage(excelPage);
+		namePage = new SetExcelNamePage(classPage);
+		addPage(namePage);
+
+		sheetPage = new SelectExcelSheetPage(namePage);
+		addPage(sheetPage);
 	}
 
 	@Override
 	public boolean canFinish() {
-		return excelPage.isPageComplete();
+		return sheetPage.isPageComplete();
 	}
 
 	public String getTypeName() {
@@ -95,15 +100,30 @@ public class NewFlowTestClassWizard extends NewClassWizard {
 	@Override
 	public boolean performFinish() {
 		try {
-			excelPage.saveDialogSettings();
+			namePage.saveDialogSettings();
+			sheetPage.saveDialogSettings();
+		} catch (Exception e) {
+			LogUtil.logWarn(LogUtil.getMessage(e));
+		}
 
+		try {
 			generateExcelFiles();
-
-			NewFlowTestClassGenerator gen = createGenerator();
-			gen.generate(classPage.getPackageText(), classPage.getTypeName(), classPage.getSuperClass(),
-					classPage.getClassUnderTestText(), excelPage.getExcelList(), excelPage.getParameterList());
 		} catch (InterruptedException e) {
 			return false;
+		} catch (CoreException e) {
+			ErrorDialog.openError(getShell(), "Flow Test generate error", "Excel file generate error.", e.getStatus());
+			return false;
+		} catch (Exception e) {
+			IStatus status = LogUtil.errorStatus(LogUtil.getMessage(e), e);
+			LogUtil.log(status);
+			ErrorDialog.openError(getShell(), "Flow Test generate error", "Excel file generate error.", status);
+			return false;
+		}
+
+		try {
+			NewFlowTestClassGenerator gen = createGenerator();
+			gen.generate(classPage.getPackageText(), classPage.getTypeName(), classPage.getSuperClass(),
+					classPage.getClassUnderTestText(), namePage.getExcelList(), namePage.getParameterList());
 		} catch (CoreException e) {
 			ErrorDialog.openError(getShell(), "Flow Test generate error", "Flow Test generate error.", e.getStatus());
 			return false;
@@ -136,20 +156,12 @@ public class NewFlowTestClassWizard extends NewClassWizard {
 		}
 
 		TestExcelGenerateTask task = new TestExcelGenerateTask(project);
-		// TODO indexSheetName
-		task.set(classPage.getClassUnderTestText(), "index");
+		task.set(classPage.getClassUnderTestText(), sheetPage.getIndexSheetName());
 
-		List<TestExcelRow> list = excelPage.getExcelList();
-		for (TestExcelRow row : list) {
-			if (row.copy) {
-				String excelName = dstDir + row.excelDstFileName;
-				if (row.in) {
-					task.add(excelName, row.sheetName, "", row.modelName, row.modelDescription, "input");
-				} else {
-					task.add(excelName, row.sheetName, "", row.modelName, row.modelDescription, "output");
-					task.add(excelName, row.ruleName, "", row.modelName, row.modelDescription, "rule");
-				}
-			}
+		List<TestSheetRow> list = sheetPage.getSheetList();
+		for (TestSheetRow row : list) {
+			String excelName = dstDir + row.excelDstFileName;
+			task.add(excelName, row.sheetName, "", row.modelName, row.modelDescription, row.sheetType);
 		}
 
 		if (task.nonEmpty()) {

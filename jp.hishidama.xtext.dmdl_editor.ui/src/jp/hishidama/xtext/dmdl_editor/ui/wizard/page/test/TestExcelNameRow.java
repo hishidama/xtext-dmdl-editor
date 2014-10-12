@@ -1,7 +1,6 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test;
 
-public class TestExcelRow {
-	public boolean copy;
+public class TestExcelNameRow {
 	public boolean in;
 	public String name;
 	public String modelClassName;

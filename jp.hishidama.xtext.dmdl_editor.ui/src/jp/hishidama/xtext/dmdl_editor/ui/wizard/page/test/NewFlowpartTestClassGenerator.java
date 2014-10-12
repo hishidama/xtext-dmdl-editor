@@ -23,7 +23,7 @@ public class NewFlowpartTestClassGenerator extends NewFlowTestClassGenerator {
 	}
 
 	@Override
-	protected void appendDataBasePrefix(StringBuilder sb, TestExcelRow row) {
+	protected void appendDataBasePrefix(StringBuilder sb, TestExcelNameRow row) {
 		if (row.in) {
 			sb.append(getCachedClassName(FlowUtil.IN_NAME));
 		} else {

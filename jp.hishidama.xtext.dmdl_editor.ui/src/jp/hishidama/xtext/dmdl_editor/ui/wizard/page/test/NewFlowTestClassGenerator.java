@@ -21,7 +21,7 @@ public abstract class NewFlowTestClassGenerator extends ClassGenerator {
 
 	private String superClassName;
 	protected String classUnderTestName;
-	private List<TestExcelRow> portList;
+	private List<TestExcelNameRow> portList;
 	private List<FlowParameter> paramList;
 
 	public NewFlowTestClassGenerator(IProject project, IPath dir) {
@@ -30,7 +30,7 @@ public abstract class NewFlowTestClassGenerator extends ClassGenerator {
 	}
 
 	public void generate(String packageName, String className, String superClassName, String classUnderTestName,
-			List<TestExcelRow> portList, List<FlowParameter> paramList) throws CoreException {
+			List<TestExcelNameRow> portList, List<FlowParameter> paramList) throws CoreException {
 		this.superClassName = superClassName;
 		this.classUnderTestName = classUnderTestName;
 		this.portList = portList;
@@ -126,7 +126,7 @@ public abstract class NewFlowTestClassGenerator extends ClassGenerator {
 	protected abstract String getTesterClassName();
 
 	private void appendPort(StringBuilder sb) {
-		for (TestExcelRow row : portList) {
+		for (TestExcelNameRow row : portList) {
 			if (row.in) {
 				appendDataBase(sb, row, "input");
 				appendDataPrepare(sb, row);
@@ -137,7 +137,7 @@ public abstract class NewFlowTestClassGenerator extends ClassGenerator {
 		}
 	}
 
-	private void appendDataBase(StringBuilder sb, TestExcelRow row, String methodName) {
+	private void appendDataBase(StringBuilder sb, TestExcelNameRow row, String methodName) {
 		sb.append("\t\t");
 		appendDataBasePrefix(sb, row);
 		sb.append("tester.");
@@ -149,11 +149,11 @@ public abstract class NewFlowTestClassGenerator extends ClassGenerator {
 		sb.append(".class)");
 	}
 
-	protected void appendDataBasePrefix(StringBuilder sb, TestExcelRow row) {
+	protected void appendDataBasePrefix(StringBuilder sb, TestExcelNameRow row) {
 		// do override
 	}
 
-	private void appendDataPrepare(StringBuilder sb, TestExcelRow row) {
+	private void appendDataPrepare(StringBuilder sb, TestExcelNameRow row) {
 		sb.append(".prepare(\"");
 		sb.append(row.excelDstFileName);
 		sb.append("#");
@@ -161,7 +161,7 @@ public abstract class NewFlowTestClassGenerator extends ClassGenerator {
 		sb.append("\");\n");
 	}
 
-	private void appendDataVerify(StringBuilder sb, TestExcelRow row) {
+	private void appendDataVerify(StringBuilder sb, TestExcelNameRow row) {
 		sb.append(".verify(\"");
 		sb.append(row.excelDstFileName);
 		sb.append("#");

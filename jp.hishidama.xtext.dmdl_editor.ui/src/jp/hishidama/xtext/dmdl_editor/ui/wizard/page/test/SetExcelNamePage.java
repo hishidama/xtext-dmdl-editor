@@ -31,10 +31,10 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
-public class SetExcelPage extends EditWizardPage {
-	private static final String KEY_EXCEL_NAME = "SetExcelPage.EXCEL_NAME";
-	private static final String KEY_DATA_NAME = "SetExcelPage.DATA_SHEET_NAME";
-	private static final String KEY_RULE_NAME = "SetExcelPage.RULE_SHEET_NAME";
+public class SetExcelNamePage extends EditWizardPage {
+	private static final String KEY_EXCEL_NAME = "SetExcelNamePage.EXCEL_NAME";
+	private static final String KEY_DATA_NAME = "SetExcelNamePage.DATA_SHEET_NAME";
+	private static final String KEY_RULE_NAME = "SetExcelNamePage.RULE_SHEET_NAME";
 
 	private NewTestClassWizardPage classPage;
 	private ExcelTable table;
@@ -45,12 +45,12 @@ public class SetExcelPage extends EditWizardPage {
 	private IType classUnderTest;
 	private List<FlowParameter> parameterList;
 
-	public SetExcelPage(NewTestClassWizardPage classPage) {
-		super("SetExcelPage");
+	public SetExcelNamePage(NewTestClassWizardPage classPage) {
+		super("SetExcelNamePage");
 		this.classPage = classPage;
 
-		setTitle("Select Excel File");
-		setDescription("テストデータのExcelファイルのシート名を入力して下さい。\nチェックを付けた行は、雛形Excelファイルをsrc/test/resourcesにコピーします。");
+		setTitle("Set Excel Sheet Name");
+		setDescription("フローのテストクラスに記述するテストデータのExcelファイルのシート名を入力して下さい。");
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class SetExcelPage extends EditWizardPage {
 
 		createLabel(composite, "Excel file:");
 		table = new ExcelTable(composite);
-		table.addColumn("in/out", 48 + 16, SWT.NONE);
+		table.addColumn("in/out", 48, SWT.NONE);
 		table.addColumn("name", 128, SWT.NONE);
 		table.addColumn("model name", 128, SWT.NONE);
 		table.addColumn("model description", 128, SWT.NONE);
@@ -78,7 +78,6 @@ public class SetExcelPage extends EditWizardPage {
 			Composite field = new Composite(composite, SWT.NONE);
 			// field.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 			field.setLayout(new FillLayout(SWT.HORIZONTAL));
-			table.createCheckButtonArea(field);
 			table.createButtonArea(field);
 		}
 		{
@@ -124,7 +123,7 @@ public class SetExcelPage extends EditWizardPage {
 				continue;
 			}
 
-			TestExcelRow row = new TestExcelRow();
+			TestExcelNameRow row = new TestExcelNameRow();
 			row.in = parameter.isIn();
 			row.name = parameter.getPorterName();
 			if (row.name == null) {
@@ -155,9 +154,9 @@ public class SetExcelPage extends EditWizardPage {
 
 	@Override
 	protected String validate() {
-		List<TestExcelRow> list = table.getElementList();
+		List<TestExcelNameRow> list = table.getElementList();
 		Map<String, String> map = new HashMap<String, String>(list.size() * 2);
-		for (TestExcelRow row : list) {
+		for (TestExcelNameRow row : list) {
 			if (row.in) {
 				String sheetName = row.sheetName;
 				if (StringUtil.nonEmpty(sheetName)) {
@@ -207,13 +206,13 @@ public class SetExcelPage extends EditWizardPage {
 			try {
 				WorkbookUtil.validateSheetName(sheetName);
 			} catch (IllegalArgumentException e) {
-				return MessageFormat.format("invalid sheet name. name={0}", sheetName);
+				return MessageFormat.format("invalid sheet name. name={0}, reason={1}", sheetName, e.getMessage());
 			}
 		}
 		return null;
 	}
 
-	private static String validateDuplicate(Map<String, String> map, TestExcelRow row, String sheetName, String role) {
+	private static String validateDuplicate(Map<String, String> map, TestExcelNameRow row, String sheetName, String role) {
 		String excelName = row.excelDstFileName.trim();
 		sheetName = sheetName.trim();
 		String key = String.format("%s#%s", excelName, sheetName);
@@ -226,19 +225,14 @@ public class SetExcelPage extends EditWizardPage {
 		return null;
 	}
 
-	@Override
-	public boolean isPageComplete() {
-		return isCurrentPage() && super.isPageComplete();
-	}
-
-	protected class ExcelTable extends ModifiableTable<TestExcelRow> {
+	protected class ExcelTable extends ModifiableTable<TestExcelNameRow> {
 
 		public ExcelTable(Composite parent) {
-			super(parent, SWT.BORDER | SWT.MULTI | SWT.FULL_SELECTION | SWT.CHECK);
+			super(parent, SWT.BORDER | SWT.MULTI | SWT.FULL_SELECTION);
 		}
 
 		@Override
-		protected String getText(TestExcelRow element, int columnIndex) {
+		protected String getText(TestExcelNameRow element, int columnIndex) {
 			switch (columnIndex) {
 			case 0:
 				return element.getIn();
@@ -315,12 +309,12 @@ public class SetExcelPage extends EditWizardPage {
 		}
 
 		@Override
-		protected TestExcelRow createElement() {
-			return new TestExcelRow();
+		protected TestExcelNameRow createElement() {
+			return new TestExcelNameRow();
 		}
 
 		@Override
-		protected void editElement(TestExcelRow element) {
+		protected void editElement(TestExcelNameRow element) {
 			EditTestExcelDialog dialog = new EditTestExcelDialog(getShell(), element);
 			dialog.open();
 		}
@@ -339,22 +333,22 @@ public class SetExcelPage extends EditWizardPage {
 			map.put("className", StringUtil.getSimpleName(classPage.getClassUnderTestText()));
 			map.put("testClassName", StringUtil.getSimpleName(classPage.getTypeName()));
 
-			List<TestExcelRow> list = table.getElementList();
+			List<TestExcelNameRow> list = table.getElementList();
 			if (all) {
 				int i = 0;
-				for (TestExcelRow row : list) {
+				for (TestExcelNameRow row : list) {
 					replaceRow(row, pattern, map, i++);
 				}
 			} else {
 				int[] index = table.getSelectionIndices();
 				for (int i = 0; i < index.length; i++) {
-					TestExcelRow row = list.get(index[i]);
+					TestExcelNameRow row = list.get(index[i]);
 					replaceRow(row, pattern, map, i);
 				}
 			}
 		}
 
-		private void replaceRow(TestExcelRow row, String pattern, Map<String, String> map, int i) {
+		private void replaceRow(TestExcelNameRow row, String pattern, Map<String, String> map, int i) {
 			map.put("in", Boolean.toString(row.in));
 			map.put("name", row.name);
 			map.put("modelName", row.modelName);
@@ -364,24 +358,24 @@ public class SetExcelPage extends EditWizardPage {
 			setRow(row, s);
 		}
 
-		protected abstract void setRow(TestExcelRow row, String value);
+		protected abstract void setRow(TestExcelNameRow row, String value);
 	}
 
 	private Replacer excelNameReplacer = new Replacer() {
 		@Override
-		protected void setRow(TestExcelRow row, String value) {
+		protected void setRow(TestExcelNameRow row, String value) {
 			row.excelDstFileName = value;
 		}
 	};
 	private Replacer sheetNameReplacer = new Replacer() {
 		@Override
-		protected void setRow(TestExcelRow row, String value) {
+		protected void setRow(TestExcelNameRow row, String value) {
 			row.sheetName = value;
 		}
 	};
 	private Replacer ruleNameReplacer = new Replacer() {
 		@Override
-		protected void setRow(TestExcelRow row, String value) {
+		protected void setRow(TestExcelNameRow row, String value) {
 			if (!row.in) {
 				row.ruleName = value;
 			}
@@ -416,11 +410,8 @@ public class SetExcelPage extends EditWizardPage {
 		settings.put(KEY_RULE_NAME, ruleSheetText.getText());
 	}
 
-	public List<TestExcelRow> getExcelList() {
-		List<TestExcelRow> list = table.getElementList();
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i).copy = table.getChecked(i);
-		}
+	public List<TestExcelNameRow> getExcelList() {
+		List<TestExcelNameRow> list = table.getElementList();
 		return list;
 	}
 

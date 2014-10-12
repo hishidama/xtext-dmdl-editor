@@ -9,7 +9,7 @@ import org.eclipse.swt.widgets.Text;
 
 public class EditTestExcelDialog extends EditDialog {
 
-	private TestExcelRow row;
+	private TestExcelNameRow row;
 
 	private Text inText;
 	private Text nameText;
@@ -19,7 +19,7 @@ public class EditTestExcelDialog extends EditDialog {
 	private Text sheetText;
 	private Text ruleText;
 
-	public EditTestExcelDialog(Shell parentShell, TestExcelRow row) {
+	public EditTestExcelDialog(Shell parentShell, TestExcelNameRow row) {
 		super(parentShell, "テスト用Excelファイル編集", 3);
 		this.row = row;
 	}
