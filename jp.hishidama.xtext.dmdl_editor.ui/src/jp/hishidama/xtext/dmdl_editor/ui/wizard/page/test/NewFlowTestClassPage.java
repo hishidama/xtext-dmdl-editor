@@ -7,17 +7,20 @@ import jp.hishidama.xtext.dmdl_editor.validation.ErrorStatus;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public class NewFlowpartTestClassPage extends NewTestClassWizardPage {
+public class NewFlowTestClassPage extends NewTestClassWizardPage {
 
-	public NewFlowpartTestClassPage() {
-		super("NewFlowpartTestClassPage");
+	private boolean isJobFlow;
 
-		setTitle("New FlowPart Test Class");
-		setDescription("Create a new FlowPart Test class.");
+	public NewFlowTestClassPage() {
+		super("NewFlowTestClassPage");
+
+		setTitle("New JobFlow/FlowPart Test Class");
+		setDescription("Create a new JobFlow/FlowPart Test class.");
 	}
 
 	@Override
@@ -63,14 +66,24 @@ public class NewFlowpartTestClassPage extends NewTestClassWizardPage {
 	@Override
 	protected IStatus classUnderTestChanged() {
 		IStatus status = super.classUnderTestChanged();
-		if (!status.matches(IStatus.ERROR)) {
-			IType type = getClassUnderTest();
-			if (type != null) {
-				if (!FlowUtil.isFlowPart(type)) {
-					return new ErrorStatus("{0} is not FlowPart class.", getClassUnderTestText());
-				}
+
+		IType type = getClassUnderTest();
+		if (type != null) {
+			boolean jobFlow = FlowUtil.isJobFlow(type);
+			boolean flowPart = FlowUtil.isFlowPart(type);
+			if (!jobFlow && !flowPart) {
+				((Wizard) getWizard()).setWindowTitle("New JobFlow/FlowPart Test Class");
+				return new ErrorStatus("{0} is not JobFlow or FlowPart class.", getClassUnderTestText());
 			}
+
+			this.isJobFlow = jobFlow;
+			((Wizard) getWizard()).setWindowTitle(jobFlow ? "New JobFlow Test Class" : "New FlowPart Test Class");
 		}
+
 		return status;
+	}
+
+	public boolean isJobFlow() {
+		return isJobFlow;
 	}
 }

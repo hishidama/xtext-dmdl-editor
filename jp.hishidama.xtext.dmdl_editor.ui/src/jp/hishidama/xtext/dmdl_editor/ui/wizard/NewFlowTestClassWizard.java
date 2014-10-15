@@ -5,15 +5,12 @@ import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.config.AsakusafwProperties;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.BuildPropertiesUtil;
-import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
 import jp.hishidama.eclipse_plugin.wizard.NewClassWizard;
-import jp.hishidama.eclipse_plugin.wizard.page.NewTestClassWizardPage;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewFlowTestClassGenerator;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewFlowTestClassPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewFlowpartTestClassGenerator;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewFlowpartTestClassPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewJobflowTestClassGenerator;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.NewJobflowTestClassPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.SelectExcelSheetPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.SetExcelNamePage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test.TestSheetRow;
@@ -32,9 +29,7 @@ import org.eclipse.ui.IWorkbench;
 
 public class NewFlowTestClassWizard extends NewClassWizard {
 
-	private boolean isJobflow;
-
-	private NewTestClassWizardPage classPage;
+	private NewFlowTestClassPage classPage;
 	private SetExcelNamePage namePage;
 	private SelectExcelSheetPage sheetPage;
 
@@ -45,25 +40,12 @@ public class NewFlowTestClassWizard extends NewClassWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		super.init(workbench, selection);
 
-		NewTestClassWizardPage page = new NewTestClassWizardPage("dummy");
-		page.init(selection);
-		IType type = page.getClassUnderTest();
-		isJobflow = FlowUtil.isJobFlow(type);
-
-		if (isJobflow) {
-			setWindowTitle("New JobFlow Test Class");
-		} else {
-			setWindowTitle("New FlowPart Test Class");
-		}
+		setWindowTitle("New JobFlow/FlowPart Test Class");
 	}
 
 	@Override
 	public void addPages() {
-		if (isJobflow) {
-			classPage = new NewJobflowTestClassPage();
-		} else {
-			classPage = new NewFlowpartTestClassPage();
-		}
+		classPage = new NewFlowTestClassPage();
 		classPage.setWizard(this);
 		classPage.init(getSelection());
 		addPage(classPage);
@@ -137,7 +119,7 @@ public class NewFlowTestClassWizard extends NewClassWizard {
 	}
 
 	private NewFlowTestClassGenerator createGenerator() {
-		if (isJobflow) {
+		if (classPage.isJobFlow()) {
 			return new NewJobflowTestClassGenerator(classPage.getJavaProject().getProject(), classPage
 					.getPackageFragmentRoot().getPath());
 		} else {
