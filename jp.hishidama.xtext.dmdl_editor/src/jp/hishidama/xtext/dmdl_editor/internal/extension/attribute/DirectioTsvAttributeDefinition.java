@@ -21,6 +21,7 @@ public class DirectioTsvAttributeDefinition extends DMDLAttributeWizardDefinitio
 		if (attribute == null) {
 			attribute = new DMDLAttribute("directio.tsv", "Direct I/O TSVファイル");
 			attribute.addq("charset", "ファイルの文字エンコーディング", "UTF-8").completionq("UTF-8", "MS932");
+			attribute.add("allow_linefeed", "値の中に改行を入れられるかどうか", "FALSE").completion("TRUE", "FALSE").version("0.7.0");
 			attribute.add("has_header", "ヘッダー行を使うかどうか", "FALSE").completion("TRUE", "FALSE").version("0.5.3");
 			attribute
 					.addq("compression", "ファイルの圧縮形式", "gzip")
