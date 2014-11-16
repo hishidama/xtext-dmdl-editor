@@ -1,6 +1,7 @@
 package jp.hishidama.xtext.dmdl_editor.ui.viewer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -65,6 +66,8 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 	 */
 	private TreeItem lastClickedItem = null;
 
+	private boolean joinModelOnly;
+	private boolean summarizeModelOnly;
 	private ModelTreeNodePredicate predicate;
 
 	public DataModelTreeViewer(Composite parent, int style, int nameWidth, int attrWidth) {
@@ -164,12 +167,43 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 		createLabel(field, label);
 
 		final Combo combo = new Combo(field, SWT.DROP_DOWN | SWT.READ_ONLY);
-		combo.add("");
-		for (DataModelType type : DataModelType.values()) {
-			combo.add(type.displayName());
+		List<DataModelType> types = getDataModelTypes();
+		for (DataModelType type : types) {
+			if (type == null) {
+				combo.add("");
+			} else {
+				combo.add(type.displayName());
+			}
+		}
+		if (types.size() == 1) {
+			combo.select(0);
 		}
 
 		return combo;
+	}
+
+	public void setJoinModelOnly() {
+		this.joinModelOnly = true;
+	}
+
+	public void setSummarizeModelOnly() {
+		this.summarizeModelOnly = true;
+	}
+
+	protected List<DataModelType> getDataModelTypes() {
+		if (joinModelOnly) {
+			return Arrays.asList(DataModelType.JOINED);
+		}
+		if (summarizeModelOnly) {
+			return Arrays.asList(DataModelType.SUMMARIZED);
+		}
+
+		List<DataModelType> list = new ArrayList<DataModelType>();
+		list.add(null);
+		for (DataModelType type : DataModelType.values()) {
+			list.add(type);
+		}
+		return list;
 	}
 
 	public void createExpandButtonField(Composite composite, Object layoutData) {

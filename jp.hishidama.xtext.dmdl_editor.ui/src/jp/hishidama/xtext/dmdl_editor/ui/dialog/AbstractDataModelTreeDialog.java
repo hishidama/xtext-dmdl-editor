@@ -17,6 +17,9 @@ import org.eclipse.swt.widgets.TreeItem;
 public abstract class AbstractDataModelTreeDialog extends EditDialog {
 	protected final IProject project;
 
+	private boolean joinModelOnly;
+	private boolean summarizeModelOnly;
+
 	protected DataModelTreeViewer tree;
 	private ModelTreeNodePredicate predicate;
 
@@ -26,6 +29,7 @@ public abstract class AbstractDataModelTreeDialog extends EditDialog {
 	}
 
 	public void setSummarizeModelOnly() {
+		this.summarizeModelOnly = true;
 		predicate = new ModelTreeNodePredicate() {
 			// @Override
 			public boolean isAddChildren(ModelDefinition model) {
@@ -35,6 +39,7 @@ public abstract class AbstractDataModelTreeDialog extends EditDialog {
 	}
 
 	public void setJoinModelOnly() {
+		this.joinModelOnly = true;
 		predicate = new ModelTreeNodePredicate() {
 			// @Override
 			public boolean isAddChildren(ModelDefinition model) {
@@ -66,6 +71,11 @@ public abstract class AbstractDataModelTreeDialog extends EditDialog {
 
 	private DataModelTreeViewer createDataModelTree(Composite composite) {
 		DataModelTreeViewer viewer = new DataModelTreeViewer(composite, getDataModelTreeStyle(), 256 + 96, 128);
+		if (joinModelOnly) {
+			viewer.setJoinModelOnly();
+		} else if (summarizeModelOnly) {
+			viewer.setSummarizeModelOnly();
+		}
 		initializeTree(viewer.getTree());
 
 		return viewer;
