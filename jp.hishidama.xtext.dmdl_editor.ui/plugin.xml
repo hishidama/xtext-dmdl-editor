@@ -1063,6 +1063,11 @@
             id="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.JavaEditorCopyDmdlName"
             name="Copy DMDL Name">
       </command>
+      <command
+            categoryId="jp.hishidama.xtext.dmdl_editor.jdt.category"
+            id="jp.hishidama.xtext.dmdl_editor.jdt.command.operatorMethodSearch"
+            name="References in Flow">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -1109,6 +1114,15 @@
             </with>
          </enabledWhen>
       </handler>
+      <handler
+            class="jp.hishidama.xtext.dmdl_editor.jdt.search.OperatorMethodSearchHandler"
+            commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.operatorMethodSearch">
+         <enabledWhen>
+            <with variable="activeEditorId">
+               <equals value="org.eclipse.jdt.ui.CompilationUnitEditor" />
+            </with>
+         </enabledWhen>
+      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -1117,6 +1131,14 @@
             locationURI="popup:org.eclipse.jdt.ui.CompilationUnitEditor.EditorContext?after=copyQualifiedName">
          <command
                commandId="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.JavaEditorCopyDmdlName"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.jdt.ui.CompilationUnitEditor.EditorContext?after=group.find">
+         <command
+               commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.operatorMethodSearch"
                style="push">
          </command>
       </menuContribution>

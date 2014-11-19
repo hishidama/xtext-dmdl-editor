@@ -86,6 +86,8 @@ DMDLとは直接関係無い機能ですが、以下のようなことも出来�
 * Flow DSLからOperatorへのハイパーリンクによるジャンプが出来る。
     * オペレーターファクトリークラスのクラス名・メソッド名を ``Ctrl`` を押しながらクリックして ``[Open Operator]`` を選択すると、定義元のOperatorへジャンプする。
     * Asakusa Framework 0.5以降で使用可能。
+* Operatorクラスの演算子メソッドを使っているFlow DSLを検索できる。
+    * Javaエディター上の演算子メソッドで右クリックしてコンテキストメニューを出し、 ``[References in Flow]`` を選択すると、Searchビューに検索結果が表示される。
 * Operatorクラスの演算子メソッドの雛形を作成することが出来る。
     * Javaエディター上で右クリックしてコンテキストメニューを出し、 ``[Source]→[New Operator Method]`` を選択すると、演算子作成ウィザードが起動する。
 * Operatorクラス内の@MasterJoin等のselectionを扱う機能がある。
