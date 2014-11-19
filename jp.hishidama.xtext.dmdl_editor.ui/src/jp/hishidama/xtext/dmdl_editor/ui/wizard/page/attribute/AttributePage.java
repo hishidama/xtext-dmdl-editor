@@ -178,7 +178,7 @@ public abstract class AttributePage extends WizardPage {
 		if (version == null) {
 			AsakusafwConfiguration c = BuildPropertiesUtil.getAsakusafwConfiguration(project);
 			if (c != null) {
-				version = c.getVersionMin();
+				version = c.getCurrentVersion(project);
 			}
 			if (version == null) {
 				version = "UNKNOWN";
