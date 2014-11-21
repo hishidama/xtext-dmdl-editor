@@ -26,6 +26,16 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class ModelUtil {
 
+	public static ModelDefinition getModel(EObject object) {
+		while (object != null) {
+			if (object instanceof ModelDefinition) {
+				return (ModelDefinition) object;
+			}
+			object = object.eContainer();
+		}
+		return null;
+	}
+
 	public static void appendTooltipModelName(StringBuilder sb, ModelDefinition model) {
 		String desc = model.getDescription();
 		if (desc != null) {

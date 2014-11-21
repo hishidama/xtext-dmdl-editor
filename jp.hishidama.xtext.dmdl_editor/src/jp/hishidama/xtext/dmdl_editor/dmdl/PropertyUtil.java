@@ -154,4 +154,40 @@ public class PropertyUtil {
 		}
 		return sb.toString();
 	}
+
+	public static class NamePosition {
+		public int offset;
+		public int length;
+	}
+
+	public static NamePosition nameIndexOf(String text, String name) {
+		int start = 0;
+		for (; start < text.length(); start++) {
+			char c = text.charAt(start);
+			if (isPropertyNameChar(c)) {
+				break;
+			}
+		}
+		int end = start;
+		for (; end < text.length(); end++) {
+			char c = text.charAt(end);
+			if (!isPropertyNameChar(c)) {
+				break;
+			}
+		}
+
+		String s = text.substring(start, end);
+		if (s.equals(name) || s.equals(StringUtil.toLowerCamelCase(name))) {
+			NamePosition pos = new NamePosition();
+			pos.offset = start;
+			pos.length = end - start;
+			return pos;
+		}
+
+		return null;
+	}
+
+	private static boolean isPropertyNameChar(char c) {
+		return Character.isJavaIdentifierPart(c);
+	}
 }

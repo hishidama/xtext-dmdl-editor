@@ -277,6 +277,12 @@
                     </reference>
                 </visibleWhen>
             </command>
+            <command commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava">
+                <visibleWhen checkEnabled="false">
+                    <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.Editor.opened">
+                    </reference>
+                </visibleWhen>
+            </command>
         </menuContribution>
     </extension>
     <extension point="org.eclipse.ui.handlers">
@@ -486,6 +492,10 @@
             name="Search DataModel">
       </command>
       <command
+            id="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+            name="References in Java">
+      </command>
+      <command
             id="jp.hishidama.xtext.dmdl_editor.command.editDataModel"
             name="Edit DataModel">
       </command>
@@ -495,6 +505,15 @@
       <handler
             class="jp.hishidama.xtext.dmdl_editor.ui.search.SearchDataModelHandler"
             commandId="jp.hishidama.xtext.dmdl_editor.command.searchDataModel">
+      </handler>
+      <handler
+            class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaHandler"
+            commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava">
+         <enabledWhen>
+            <reference
+                  definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.Editor.opened">
+            </reference>
+         </enabledWhen>
       </handler>
       <handler
             class="jp.hishidama.xtext.dmdl_editor.ui.wizard.EditDataModelHandler"
@@ -1197,4 +1216,13 @@
       </propertyTester>
    </extension>
 
+   <extension
+         point="org.eclipse.search.searchResultViewPages">
+      <viewPage
+            id="jp.hishidama.xtext.dmdl_editor.ui.MySearchResultPage"
+            searchResultClass="jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchResult"
+            helpContextId="org.eclipse.jdt.ui.java_search_result"
+            class="jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchResultPage">
+      </viewPage>
+   </extension>
 </plugin>
