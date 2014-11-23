@@ -3,6 +3,7 @@ package jp.hishidama.xtext.dmdl_editor.ui.dialog;
 import jp.hishidama.eclipse_plugin.dialog.EditDialog;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData.FileNode.ModelTreeNodePredicate;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DataModelTreeViewer;
@@ -103,6 +104,22 @@ public abstract class AbstractDataModelTreeDialog extends EditDialog {
 						if (expandProperty()) {
 							tree.expandToLevel(data, 1);
 						}
+
+						for (TreeItem child : item.getItems()) {
+							data = (DMDLTreeData) child.getData();
+							if (data == null) {
+								continue;
+							}
+							obj = data.getData();
+							if (obj instanceof Property) {
+								Property property = (Property) obj;
+								if (isSelectedProperty(data, property)) {
+									tree.getTree().setSelection(child);
+									break;
+								}
+							}
+						}
+
 						break all;
 					}
 				}
@@ -114,6 +131,10 @@ public abstract class AbstractDataModelTreeDialog extends EditDialog {
 	protected abstract boolean isSelectedModel(DMDLTreeData data, ModelDefinition model);
 
 	protected boolean expandProperty() {
+		return false;
+	}
+
+	protected boolean isSelectedProperty(DMDLTreeData data, Property property) {
 		return false;
 	}
 }
