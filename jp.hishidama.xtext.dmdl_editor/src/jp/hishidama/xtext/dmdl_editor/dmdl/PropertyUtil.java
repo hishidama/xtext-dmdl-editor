@@ -56,7 +56,7 @@ public class PropertyUtil {
 			return null;
 		}
 
-		ModelDefinition model = getModelDefinition(property);
+		ModelDefinition model = ModelUtil.getModel(property);
 		if (model == null) {
 			return null;
 		}
@@ -107,19 +107,9 @@ public class PropertyUtil {
 	}
 
 	public static String getModelName(EObject object) {
-		ModelDefinition model = getModelDefinition(object);
+		ModelDefinition model = ModelUtil.getModel(object);
 		if (model != null) {
 			return model.getName();
-		}
-		return null;
-	}
-
-	public static ModelDefinition getModelDefinition(EObject object) {
-		while (object != null) {
-			if (object instanceof ModelDefinition) {
-				return (ModelDefinition) object;
-			}
-			object = object.eContainer();
 		}
 		return null;
 	}
@@ -156,11 +146,32 @@ public class PropertyUtil {
 	}
 
 	public static class NamePosition {
-		public int offset;
-		public int length;
+		private int start;
+		private int end;
+
+		public NamePosition(int start, int end) {
+			this.start = start;
+			this.end = end;
+		}
+
+		public int getOffset() {
+			return start;
+		}
+
+		public int getLength() {
+			return end - start;
+		}
+
+		public int getEnd() {
+			return end;
+		}
+
+		public String getName(String text) {
+			return text.substring(start, end);
+		}
 	}
 
-	public static NamePosition nameIndexOf(String text, String name) {
+	public static NamePosition findName(String text) {
 		int start = 0;
 		for (; start < text.length(); start++) {
 			char c = text.charAt(start);
@@ -176,11 +187,22 @@ public class PropertyUtil {
 			}
 		}
 
-		String s = text.substring(start, end);
+		if (start != end) {
+			NamePosition pos = new NamePosition(start, end);
+			return pos;
+		}
+
+		return null;
+	}
+
+	public static NamePosition nameIndexOf(String text, String name) {
+		NamePosition pos = findName(text);
+		if (pos == null) {
+			return null;
+		}
+
+		String s = pos.getName(text);
 		if (s.equals(name) || s.equals(StringUtil.toLowerCamelCase(name))) {
-			NamePosition pos = new NamePosition();
-			pos.offset = start;
-			pos.length = end - start;
 			return pos;
 		}
 
@@ -189,5 +211,19 @@ public class PropertyUtil {
 
 	private static boolean isPropertyNameChar(char c) {
 		return Character.isJavaIdentifierPart(c);
+	}
+
+	public static String cutMethodName(String name) {
+		if (name.startsWith("set")) {
+			name = name.substring(3);
+		} else if (name.startsWith("get")) {
+			name = name.substring(3);
+		}
+		if (name.endsWith("Option")) {
+			name = name.substring(0, name.length() - 6);
+		} else if (name.endsWith("AsString")) {
+			name = name.substring(0, name.length() - 8);
+		}
+		return StringUtil.toFirstLower(name);
 	}
 }

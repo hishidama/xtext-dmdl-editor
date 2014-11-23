@@ -3,7 +3,7 @@ package jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy;
 import jp.hishidama.eclipse_plugin.util.ProjectUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
-import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -39,12 +39,12 @@ public class OpenModelHierarchyHandler extends AbstractHandler {
 			IRegion region = new Region(selection.getOffset(), selection.getLength());
 			ISourceViewer sourceViewer = xtextEditor.getInternalSourceViewer();
 			EObject object = getEObject(sourceViewer, region);
-			ModelDefinition model = null;
+			ModelDefinition model;
 			if (object instanceof ModelReference) {
 				ModelReference ref = (ModelReference) object;
 				model = ref.getName();
 			} else {
-				model = PropertyUtil.getModelDefinition(object);
+				model = ModelUtil.getModel(object);
 			}
 			if (model != null) {
 				ModelHierarchyView view = openView(xtextEditor);

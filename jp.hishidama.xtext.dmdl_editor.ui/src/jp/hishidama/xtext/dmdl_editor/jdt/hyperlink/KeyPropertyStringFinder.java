@@ -4,6 +4,8 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil.NamePosition;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -16,6 +18,7 @@ import org.eclipse.jdt.core.dom.MemberValuePair;
 import org.eclipse.jdt.core.dom.NormalAnnotation;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import org.eclipse.jdt.core.dom.StringLiteral;
+import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.Region;
 
@@ -26,7 +29,7 @@ public class KeyPropertyStringFinder extends ASTVisitor {
 	private IRegion region;
 	private Region textRegion;
 	private String text;
-	private SingleVariableDeclaration declaration;
+	private String declarationType;
 	private String memberName;
 	private String propertyName;
 
@@ -63,12 +66,12 @@ public class KeyPropertyStringFinder extends ASTVisitor {
 		}
 
 		visit();
-		if (declaration == null) {
+		if (declarationType == null) {
 			return null;
 		}
 
 		IProject project = unit.getJavaProject().getProject();
-		String modelClassName = declaration.getType().toString();
+		String modelClassName = declarationType;
 		int n = modelClassName.indexOf('<');
 		int e = modelClassName.lastIndexOf('>');
 		if (n >= 0 && e >= 0) {
@@ -110,6 +113,10 @@ public class KeyPropertyStringFinder extends ASTVisitor {
 
 	@Override
 	public boolean preVisit2(ASTNode node) {
+		return include(node);
+	}
+
+	protected boolean include(ASTNode node) {
 		int offset = node.getStartPosition();
 		int length = node.getLength();
 		return offset <= this.offset && this.offset <= offset + length;
@@ -118,49 +125,59 @@ public class KeyPropertyStringFinder extends ASTVisitor {
 	@Override
 	public void endVisit(SingleVariableDeclaration node) {
 		if (propertyName != null) {
-			if (declaration == null) {
-				this.declaration = node;
+			if (declarationType == null) {
+				this.declarationType = node.getType().toString();
 			}
 		}
 	}
 
 	@Override
-	public boolean visit(NormalAnnotation node) {
-		String name = node.getTypeName().getFullyQualifiedName();
-		return "Key".equals(name);
+	public void endVisit(TypeDeclaration node) {
+		if (propertyName != null) {
+			if (declarationType == null) {
+				this.declarationType = node.getName().getIdentifier();
+			}
+		}
 	}
 
 	@Override
 	public boolean visit(MemberValuePair node) {
+		ASTNode parent = node.getParent();
+		if (!(parent instanceof NormalAnnotation)) {
+			return true;
+		}
+		NormalAnnotation annotation = (NormalAnnotation) parent;
+		if (!"Key".equals(annotation.getTypeName().getFullyQualifiedName())) {
+			return true;
+		}
+
 		this.memberName = node.getName().getIdentifier();
-		return "group".equals(memberName) || "order".equals(memberName);
-	}
+		if (!("group".equals(memberName) || "order".equals(memberName))) {
+			return true;
+		}
 
-	@Override
-	public boolean visit(StringLiteral node) {
-		String value = node.getLiteralValue();
-		this.text = value;
-		this.textRegion = new Region(node.getStartPosition() + 1, node.getLength() - 2);
-
-		int s = 0;
-		for (; s < value.length(); s++) {
-			char c = value.charAt(s);
-			switch (c) {
-			case '+':
-			case '-':
-			case ' ':
-			case '\t':
-				continue;
+		node.getValue().accept(new ASTVisitor() {
+			@Override
+			public boolean preVisit2(ASTNode node) {
+				return include(node);
 			}
-			break;
-		}
 
-		int n = value.indexOf(' ', s);
-		if (n < 0) {
-			n = value.length();
-		}
-		this.propertyName = value.substring(s, n);
-		this.region = new Region(node.getStartPosition() + 1 + s, propertyName.length());
+			@Override
+			public boolean visit(StringLiteral node) {
+				String value = node.getLiteralValue();
+				NamePosition pos = PropertyUtil.findName(value);
+				if (pos == null) {
+					return false;
+				}
+
+				text = value;
+				textRegion = new Region(node.getStartPosition() + 1, node.getLength() - 2);
+				propertyName = pos.getName(value);
+				region = new Region(node.getStartPosition() + 1 + pos.getOffset(), pos.getLength());
+				return false;
+			}
+		});
+
 		return false;
 	}
 }

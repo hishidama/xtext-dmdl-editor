@@ -9,11 +9,11 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil.NamePosition;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.IImportDeclaration;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IMember;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
-import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTParser;
@@ -44,9 +44,12 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 	@Override
 	public void acceptSearchMatch(SearchMatch match) throws CoreException {
 		IJavaElement element = (IJavaElement) match.getElement();
-		// TODO ディレクトリー判定
+		if (element instanceof IImportDeclaration) {
+			return;
+		}
 
-		if (!sameProject(element)) {
+		if (data.getPropertyName() == null) {
+			result.addMatch(element, match.getOffset(), match.getLength());
 			return;
 		}
 
@@ -56,37 +59,19 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 		}
 	}
 
-	private boolean sameProject(IJavaElement element) {
-		String targetName = data.getProject().getName();
-		if (targetName.equals(element.getJavaProject().getElementName())) {
-			return true;
-		}
-		try {
-			String[] names = element.getJavaProject().getRequiredProjectNames();
-			for (String name : names) {
-				if (targetName.equals(name)) {
-					return true;
-				}
-			}
-		} catch (JavaModelException e) {
-			// do nothing
-		}
-		return false;
-	}
-
 	private void accept(ICompilationUnit unit, SearchMatch match) {
 		ASTParser parser = ASTParser.newParser(AST.JLS4);
 		parser.setSource(unit);
 		ASTNode node = parser.createAST(new NullProgressMonitor());
-		MethodVisitor visitor = new MethodVisitor(match);
+		AcceptVisitor visitor = new AcceptVisitor(match);
 		node.accept(visitor);
 	}
 
-	private class MethodVisitor extends ASTVisitor {
+	private class AcceptVisitor extends ASTVisitor {
 
 		private final SearchMatch match;
 
-		public MethodVisitor(SearchMatch match) {
+		public AcceptVisitor(SearchMatch match) {
 			this.match = match;
 		}
 
@@ -138,8 +123,8 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 									String literal = ((StringLiteral) a).getLiteralValue();
 									NamePosition pos = PropertyUtil.nameIndexOf(literal, data.getPropertyName());
 									if (pos != null) {
-										result.addMatch(match.getElement(), a.getStartPosition() + 1 + pos.offset,
-												pos.length);
+										result.addMatch(match.getElement(), a.getStartPosition() + 1 + pos.getOffset(),
+												pos.getLength());
 									}
 								}
 							}
@@ -147,8 +132,8 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 							String literal = ((StringLiteral) value).getLiteralValue();
 							NamePosition pos = PropertyUtil.nameIndexOf(literal, data.getPropertyName());
 							if (pos != null) {
-								result.addMatch(match.getElement(), value.getStartPosition() + 1 + pos.offset,
-										pos.length);
+								result.addMatch(match.getElement(), value.getStartPosition() + 1 + pos.getOffset(),
+										pos.getLength());
 							}
 						}
 					}
@@ -174,18 +159,18 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 				return true;
 			}
 
-			ASTVisitor visitor = new ASTVisitor() {
+			node.getBody().accept(new ASTVisitor() {
 				@Override
 				public boolean visit(StringLiteral node) {
 					String literal = node.getLiteralValue();
 					NamePosition pos = PropertyUtil.nameIndexOf(literal, data.getPropertyName());
 					if (pos != null) {
-						result.addMatch(match.getElement(), node.getStartPosition() + 1 + pos.offset, pos.length);
+						result.addMatch(match.getElement(), node.getStartPosition() + 1 + pos.getOffset(),
+								pos.getLength());
 					}
 					return true;
 				}
-			};
-			node.getBody().accept(visitor);
+			});
 
 			return true;
 		}

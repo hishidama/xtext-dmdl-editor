@@ -41,12 +41,14 @@ public class FindDataModelInJavaSearchQuery implements ISearchQuery {
 	}
 
 	public String getLabel() {
+		if (data.getPropertyName() == null) {
+			return data.getModelName();
+		}
 		return MessageFormat.format("{0}.{1}", data.getModelName(), data.getPropertyName());
 	}
 
 	public String getResultLabel(int matchCount) {
-		return MessageFormat.format("''{0}.{1}'' - {2} found in {3}", data.getModelName(), data.getPropertyName(),
-				matchCount, data.getScopeDescription());
+		return MessageFormat.format("''{0}'' - {1} found in {2}", getLabel(), matchCount, data.getScopeDescription());
 	}
 
 	public boolean canRerun() {

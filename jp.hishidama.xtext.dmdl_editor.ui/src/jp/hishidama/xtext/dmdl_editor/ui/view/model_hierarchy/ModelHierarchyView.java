@@ -18,7 +18,6 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
-import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression;
@@ -219,7 +218,7 @@ public class ModelHierarchyView extends ViewPart {
 		}
 
 		private Object[] getAutoProjection(Attribute parentElement) {
-			ModelDefinition model = PropertyUtil.getModelDefinition(parentElement);
+			ModelDefinition model = ModelUtil.getModel(parentElement);
 			ModelInfo mi = modelMap.get(model.getName());
 			if (mi == null) {
 				return null;

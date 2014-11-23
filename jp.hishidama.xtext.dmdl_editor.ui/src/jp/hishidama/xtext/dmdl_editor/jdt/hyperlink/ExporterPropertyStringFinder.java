@@ -5,6 +5,8 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil.NamePosition;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.core.IType;
@@ -103,28 +105,15 @@ public class ExporterPropertyStringFinder extends ASTVisitor {
 	@Override
 	public boolean visit(StringLiteral node) {
 		String value = node.getLiteralValue();
+		NamePosition pos = PropertyUtil.findName(value);
+		if (pos == null) {
+			return false;
+		}
+
 		this.text = value;
 		this.textRegion = new Region(node.getStartPosition() + 1, node.getLength() - 2);
-
-		int s = 0;
-		for (; s < value.length(); s++) {
-			char c = value.charAt(s);
-			switch (c) {
-			case '+':
-			case '-':
-			case ' ':
-			case '\t':
-				continue;
-			}
-			break;
-		}
-
-		int n = value.indexOf(' ', s);
-		if (n < 0) {
-			n = value.length();
-		}
-		this.propertyName = value.substring(s, n);
-		this.region = new Region(node.getStartPosition() + 1 + s, propertyName.length());
+		this.propertyName = pos.getName(value);
+		this.region = new Region(node.getStartPosition() + 1 + pos.getOffset(), pos.getLength());
 		return false;
 	}
 }

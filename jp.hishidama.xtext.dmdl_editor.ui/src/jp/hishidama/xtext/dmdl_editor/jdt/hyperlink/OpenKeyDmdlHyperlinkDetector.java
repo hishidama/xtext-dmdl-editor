@@ -7,9 +7,21 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IRegion;
+import org.eclipse.jface.text.Region;
 import org.eclipse.jface.text.hyperlink.IHyperlink;
+import org.eclipse.ui.texteditor.ITextEditor;
 
 public class OpenKeyDmdlHyperlinkDetector extends CompilationUnitHyperlinkDetector {
+
+	public IHyperlink[] detectHyperlinks(ITextEditor editor, int offset) {
+		ICompilationUnit unit = getCompilationUnit(editor);
+		if (unit == null) {
+			return null;
+		}
+
+		IRegion region = new Region(offset, 0);
+		return detectHyperlinks(unit, region);
+	}
 
 	protected IHyperlink[] detectHyperlinks(ICompilationUnit unit, IRegion region) {
 		IType type = unit.findPrimaryType();

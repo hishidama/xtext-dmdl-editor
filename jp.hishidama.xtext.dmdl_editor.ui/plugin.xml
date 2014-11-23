@@ -277,12 +277,50 @@
                     </reference>
                 </visibleWhen>
             </command>
-            <command commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava">
-                <visibleWhen checkEnabled="false">
-                    <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.Editor.opened">
-                    </reference>
-                </visibleWhen>
-            </command>
+            <menu
+                  id="jp.hishidama.xtext.dmdl_editor.menu.references"
+                  label="References in Java">
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                     label="Search in src/main">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                        value="main">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                     label="Search in src">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                        value="src">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                     label="Search All">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                        value="all">
+                  </parameter>
+               </command>
+               <separator
+                     name="separator"
+                     visible="true">
+               </separator>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                     label="Open Search Dialog">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                        value="open">
+                  </parameter>
+               </command>
+               <visibleWhen checkEnabled="false">
+                  <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.Editor.opened">
+                  </reference>
+               </visibleWhen>
+            </menu>
         </menuContribution>
     </extension>
     <extension point="org.eclipse.ui.handlers">
@@ -493,7 +531,11 @@
       </command>
       <command
             id="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
-            name="References in Java">
+            name="DataModel References">
+         <commandParameter
+               id="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+               name="action">
+         </commandParameter>
       </command>
       <command
             id="jp.hishidama.xtext.dmdl_editor.command.editDataModel"
@@ -509,11 +551,6 @@
       <handler
             class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaHandler"
             commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava">
-         <enabledWhen>
-            <reference
-                  definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.Editor.opened">
-            </reference>
-         </enabledWhen>
       </handler>
       <handler
             class="jp.hishidama.xtext.dmdl_editor.ui.wizard.EditDataModelHandler"
@@ -1085,7 +1122,7 @@
       <command
             categoryId="jp.hishidama.xtext.dmdl_editor.jdt.category"
             id="jp.hishidama.xtext.dmdl_editor.jdt.command.operatorMethodSearch"
-            name="References in Flow">
+            name="Operator References">
       </command>
    </extension>
    <extension
@@ -1160,6 +1197,46 @@
                commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.operatorMethodSearch"
                style="push">
          </command>
+         <menu
+               id="jp.hishidama.xtext.dmdl_editor.jdt.menu.references"
+               label="DataModel References">
+            <command
+                  commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                  label="Search in src/main">
+               <parameter
+                     name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                     value="main">
+               </parameter>
+            </command>
+            <command
+                  commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                  label="Search in src">
+               <parameter
+                     name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                     value="src">
+               </parameter>
+            </command>
+            <command
+                  commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                  label="Search All">
+               <parameter
+                     name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                     value="all">
+               </parameter>
+            </command>
+            <separator
+                  name="separator"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                  label="Open Search Dialog">
+               <parameter
+                     name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                     value="open">
+               </parameter>
+            </command>
+         </menu>
       </menuContribution>
       <menuContribution
             allPopups="true"
@@ -1216,10 +1293,20 @@
       </propertyTester>
    </extension>
 
+   <extension point="org.eclipse.search.searchPages">
+      <page id="jp.hishidama.xtext.dmdl_editor.ui.FindDataModelInJavaPage"
+            label="DataModel Search"
+            sizeHint="460,160"
+            extensions="java:90, jav:90"
+            showScopeSection="true"
+            canSearchEnclosingProjects="true"
+            class="jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaPage">
+      </page>
+   </extension>
    <extension
          point="org.eclipse.search.searchResultViewPages">
       <viewPage
-            id="jp.hishidama.xtext.dmdl_editor.ui.MySearchResultPage"
+            id="jp.hishidama.xtext.dmdl_editor.ui.FindDataModelInJavaSearchResultPage"
             searchResultClass="jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchResult"
             helpContextId="org.eclipse.jdt.ui.java_search_result"
             class="jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchResultPage">

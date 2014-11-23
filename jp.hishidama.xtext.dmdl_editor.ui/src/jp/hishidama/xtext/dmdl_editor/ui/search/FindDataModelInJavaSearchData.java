@@ -2,7 +2,9 @@ package jp.hishidama.xtext.dmdl_editor.ui.search;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.OperatorUtil;
 import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
@@ -11,11 +13,19 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.search.IJavaSearchConstants;
 import org.eclipse.jdt.core.search.IJavaSearchScope;
 import org.eclipse.jdt.core.search.SearchPattern;
@@ -26,77 +36,205 @@ import org.eclipse.ui.IWorkingSet;
 
 @SuppressWarnings("restriction")
 public class FindDataModelInJavaSearchData {
-	private IProject project;
-	private String modelName;
-	private String propertyName;
+
+	public static enum LimitTo {
+		METHOD, KEY, EXPORTER
+	}
+
+	public static enum SearchIn {
+		MAIN, TEST, GENERATE
+	}
+
+	private final IProject dmdlProject;
+	private final String modelName;
+	private final String propertyName;
+
+	private boolean limitKey = true;
+	private boolean limitExporter = true;
+	private List<String> methodPattern = null;
+	private Set<SearchIn> searchIn = null;
 
 	private IJavaSearchScope scope;
 	private String scopeDescription;
-	private List<String> methodPattern;
 
 	public FindDataModelInJavaSearchData(IProject project, String modelName, String propertyName) {
-		this.project = project;
+		this.dmdlProject = project;
 		this.modelName = modelName;
 		this.propertyName = propertyName;
 	}
 
 	// @see org.eclipse.jdt.internal.ui.search.JavaSearchPage#performNewSearch()
-	public void initializeScope(ISearchPageContainer container) {
-		int includeMask = JavaSearchScopeFactory.PROJECTS | JavaSearchScopeFactory.SOURCES;
-		JavaSearchScopeFactory factory = JavaSearchScopeFactory.getInstance();
+	public void initializeScope(ISearchPageContainer container, Set<SearchIn> searchIn) {
+		initializeSearchIn(searchIn);
 
 		switch (container.getSelectedScope()) {
 		case ISearchPageContainer.WORKSPACE_SCOPE:
-			scopeDescription = factory.getWorkspaceScopeDescription(includeMask);
-			scope = factory.createWorkspaceScope(includeMask);
+			initializeScopeWorkspace();
 			break;
 		case ISearchPageContainer.SELECTION_SCOPE:
-			IJavaElement[] javaElements = new IJavaElement[0];
-			if (container.getActiveEditorInput() != null) {
-				IFile file = (IFile) container.getActiveEditorInput().getAdapter(IFile.class);
-				if (file != null && file.exists()) {
-					IJavaElement javaElement = JavaCore.create(file);
-					if (javaElement != null)
-						javaElements = new IJavaElement[] { javaElement };
-				}
-			} else
-				javaElements = factory.getJavaElements(container.getSelection());
-			scope = factory.createJavaSearchScope(javaElements, includeMask);
-			scopeDescription = factory.getSelectionScopeDescription(javaElements, includeMask);
+			initializeScopeSelection(container);
 			break;
-		case ISearchPageContainer.SELECTED_PROJECTS_SCOPE: {
-			String[] projectNames = container.getSelectedProjectNames();
-			scope = factory.createJavaProjectSearchScope(projectNames, includeMask);
-			scopeDescription = factory.getProjectScopeDescription(projectNames, includeMask);
+		case ISearchPageContainer.SELECTED_PROJECTS_SCOPE:
+			initializeScopeProjects(container);
 			break;
-		}
-		case ISearchPageContainer.WORKING_SET_SCOPE: {
-			IWorkingSet[] workingSets = container.getSelectedWorkingSets();
-			// should not happen - just to be sure
-			if (workingSets == null || workingSets.length < 1) {
-				return;
-			}
-			scopeDescription = factory.getWorkingSetScopeDescription(workingSets, includeMask);
-			scope = factory.createJavaSearchScope(workingSets, includeMask);
-			SearchUtil.updateLRUWorkingSets(workingSets);
+		case ISearchPageContainer.WORKING_SET_SCOPE:
+			initializeScopeWorkingSet(container);
 			break;
-		}
 		}
 	}
 
-	public void initializeWorkspaceScope() {
-		int includeMask = JavaSearchScopeFactory.PROJECTS | JavaSearchScopeFactory.SOURCES;
+	public void initializeScopeWorkspace(Set<SearchIn> searchIn) {
+		initializeSearchIn(searchIn);
+		initializeScopeWorkspace();
+	}
+
+	private static final int INCLUDE_MASK = JavaSearchScopeFactory.PROJECTS | JavaSearchScopeFactory.SOURCES;
+
+	private void initializeScopeWorkspace() {
+		Set<IJavaElement> set = new HashSet<IJavaElement>();
+
+		try {
+			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+			IJavaProject[] projects = JavaCore.create(root).getJavaProjects();
+			for (IJavaProject project : projects) {
+				if (isCollectScope(project.getProject())) {
+					collectScope(set, project);
+				}
+			}
+		} catch (JavaModelException e) {
+			// do nothing
+		}
+
 		JavaSearchScopeFactory factory = JavaSearchScopeFactory.getInstance();
-		scopeDescription = factory.getWorkspaceScopeDescription(includeMask);
-		scope = factory.createWorkspaceScope(includeMask);
+		initializeScope(factory, set);
+		scopeDescription = factory.getWorkspaceScopeDescription(INCLUDE_MASK);
+	}
+
+	private void initializeScopeSelection(ISearchPageContainer container) {
+		JavaSearchScopeFactory factory = JavaSearchScopeFactory.getInstance();
+
+		IJavaElement[] javaElements = new IJavaElement[0];
+		if (container.getActiveEditorInput() != null) {
+			IFile file = (IFile) container.getActiveEditorInput().getAdapter(IFile.class);
+			if (file != null && file.exists()) {
+				IJavaElement javaElement = JavaCore.create(file);
+				if (javaElement != null)
+					javaElements = new IJavaElement[] { javaElement };
+			}
+		} else {
+			javaElements = factory.getJavaElements(container.getSelection());
+		}
+
+		Set<IJavaElement> set = new HashSet<IJavaElement>();
+		for (IJavaElement element : javaElements) {
+			collectScope(set, element);
+		}
+
+		initializeScope(factory, set);
+		scopeDescription = factory.getSelectionScopeDescription(javaElements, INCLUDE_MASK);
+	}
+
+	private void initializeScopeProjects(ISearchPageContainer container) {
+		Set<IJavaElement> set = new HashSet<IJavaElement>();
+
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		String[] projectNames = container.getSelectedProjectNames();
+		for (String name : projectNames) {
+			IProject project = root.getProject(name);
+			if (isCollectScope(project)) {
+				collectScope(set, JavaCore.create(project));
+			}
+		}
+
+		JavaSearchScopeFactory factory = JavaSearchScopeFactory.getInstance();
+		initializeScope(factory, set);
+		scopeDescription = factory.getProjectScopeDescription(projectNames, INCLUDE_MASK);
+	}
+
+	private void initializeScopeWorkingSet(ISearchPageContainer container) {
+		IWorkingSet[] workingSets = container.getSelectedWorkingSets();
+		if (workingSets == null || workingSets.length <= 0) {
+			return;
+		}
+
+		Set<IJavaElement> set = new HashSet<IJavaElement>();
+		for (IWorkingSet workingSet : workingSets) {
+			IAdaptable[] elements = workingSet.getElements();
+			for (IAdaptable a : elements) {
+				IJavaElement element = (IJavaElement) a.getAdapter(IJavaElement.class);
+				if (element != null) {
+					collectScope(set, element);
+				}
+			}
+		}
+
+		JavaSearchScopeFactory factory = JavaSearchScopeFactory.getInstance();
+		initializeScope(factory, set);
+		scopeDescription = factory.getWorkingSetScopeDescription(workingSets, INCLUDE_MASK);
+		SearchUtil.updateLRUWorkingSets(workingSets);
+	}
+
+	private void initializeScope(JavaSearchScopeFactory factory, Set<IJavaElement> set) {
+		IJavaElement[] elements = set.toArray(new IJavaElement[set.size()]);
+		scope = factory.createJavaSearchScope(elements, INCLUDE_MASK);
+	}
+
+	private void collectScope(Set<IJavaElement> set, IJavaProject project) {
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		try {
+			IClasspathEntry[] entries = project.getResolvedClasspath(true);
+			for (IClasspathEntry entry : entries) {
+				if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
+					IPath path = entry.getPath();
+					IResource resource = root.findMember(path);
+					IJavaElement element = JavaCore.create(resource);
+					collectScope(set, element);
+				}
+			}
+		} catch (JavaModelException e) {
+			return;
+		}
+	}
+
+	private void collectScope(Set<IJavaElement> set, IJavaElement element) {
+		IProject project = element.getJavaProject().getProject();
+		if (isCollectScope(project) && containsSearchIn(element)) {
+			set.add(element);
+		}
+	}
+
+	private boolean isCollectScope(IProject project) {
+		if (project.equals(dmdlProject)) {
+			return true;
+		}
+
+		try {
+			IProject[] projects = project.getReferencedProjects();
+			for (IProject p : projects) {
+				if (p.equals(dmdlProject)) {
+					return true;
+				}
+			}
+		} catch (CoreException e) {
+		}
+		return false;
 	}
 
 	public void initializeMethodPattern(List<String> methodPattern) {
 		this.methodPattern = methodPattern;
 	}
 
+	public void initializeLimit(boolean key, boolean exporter) {
+		this.limitKey = key;
+		this.limitExporter = exporter;
+	}
+
+	private void initializeSearchIn(Set<SearchIn> searchIn) {
+		this.searchIn = searchIn;
+	}
+
 	public IProject getProject() {
-		return project;
+		return dmdlProject;
 	}
 
 	public String getModelName() {
@@ -107,7 +245,7 @@ public class FindDataModelInJavaSearchData {
 
 	public String getModelClassName() {
 		if (modelClassName == null) {
-			modelClassName = ModelUiUtil.getModelClassName(project, modelName);
+			modelClassName = ModelUiUtil.getModelClassName(dmdlProject, modelName);
 		}
 		return modelClassName;
 	}
@@ -141,6 +279,10 @@ public class FindDataModelInJavaSearchData {
 	}
 
 	public SearchPattern createSearchPattern() {
+		if (getPropertyName() == null) {
+			return createTypePattern();
+		}
+
 		List<SearchPattern> list = new ArrayList<SearchPattern>();
 		createMethodPattern(list);
 		createKeyPattern(list);
@@ -155,6 +297,14 @@ public class FindDataModelInJavaSearchData {
 			}
 		}
 		return result;
+	}
+
+	protected SearchPattern createTypePattern() {
+		IJavaProject javaProject = JavaCore.create(getProject());
+		IType type = TypeUtil.findType(javaProject, getModelClassName());
+		int limitTo = IJavaSearchConstants.REFERENCES;
+		int matchRule = SearchPattern.R_EXACT_MATCH | SearchPattern.R_CASE_SENSITIVE | SearchPattern.R_ERASURE_MATCH;
+		return SearchPattern.createPattern(type, limitTo, matchRule);
 	}
 
 	protected void createMethodPattern(List<SearchPattern> list) {
@@ -187,6 +337,9 @@ public class FindDataModelInJavaSearchData {
 	}
 
 	protected void createKeyPattern(List<SearchPattern> list) {
+		if (!limitKey) {
+			return;
+		}
 		int searchFor = IJavaSearchConstants.ANNOTATION_TYPE;
 		int limitTo = IJavaSearchConstants.ANNOTATION_TYPE_REFERENCE;
 		int matchRule = SearchPattern.R_EXACT_MATCH | SearchPattern.R_CASE_SENSITIVE;
@@ -195,11 +348,49 @@ public class FindDataModelInJavaSearchData {
 	}
 
 	protected void createGetOrderPattern(List<SearchPattern> list) {
+		if (!limitExporter) {
+			return;
+		}
 		String method = "getOrder() java.util.List<java.lang.String>";
 		int searchFor = IJavaSearchConstants.METHOD;
 		int limitTo = IJavaSearchConstants.DECLARATIONS;
 		int matchRule = SearchPattern.R_EXACT_MATCH | SearchPattern.R_CASE_SENSITIVE;
 		SearchPattern pattern = SearchPattern.createPattern(method, searchFor, limitTo, matchRule);
 		list.add(pattern);
+	}
+
+	public boolean containsSearchIn(IJavaElement element) {
+		if (searchIn == null) {
+			return true;
+		}
+
+		SearchIn dir = getSearchIn(element);
+		return searchIn.contains(dir);
+	}
+
+	private SearchIn getSearchIn(IJavaElement element) {
+		IResource resource = element.getResource();
+		if (resource == null) {
+			return null;
+		}
+		IPath path = resource.getProjectRelativePath();
+		if (path.segmentCount() > 0) {
+			String segment = path.segment(0);
+			if ("target".equals(segment) || "build".equals(segment)) {
+				return SearchIn.GENERATE;
+			}
+			if ("test".equals(segment)) {
+				return SearchIn.TEST;
+			}
+		}
+
+		if (path.segmentCount() > 1) {
+			String segment = path.segment(1);
+			if ("test".equals(segment)) {
+				return SearchIn.TEST;
+			}
+		}
+
+		return SearchIn.MAIN;
 	}
 }

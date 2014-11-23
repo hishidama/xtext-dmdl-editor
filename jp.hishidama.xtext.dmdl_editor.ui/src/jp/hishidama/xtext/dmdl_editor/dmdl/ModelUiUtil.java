@@ -9,6 +9,9 @@ import java.util.List;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.config.AsakusafwProperties;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.BuildPropertiesUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
+import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.DeclaredDmdlHyperlink;
+import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.OpenDeclaredDmdlHyperlinkDetector;
+import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.OpenKeyDmdlHyperlinkDetector;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.search.DMDLEObjectSearch;
 
@@ -20,9 +23,17 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.text.ITextSelection;
+import org.eclipse.jface.text.hyperlink.IHyperlink;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.texteditor.ITextEditor;
+import org.eclipse.xtext.resource.EObjectAtOffsetHelper;
 import org.eclipse.xtext.resource.IEObjectDescription;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.GlobalURIEditorOpener;
+import org.eclipse.xtext.ui.editor.XtextEditor;
+import org.eclipse.xtext.ui.editor.model.IXtextDocument;
+import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
 public class ModelUiUtil {
 
@@ -181,6 +192,84 @@ public class ModelUiUtil {
 				return model;
 			}
 		}
+		return null;
+	}
+
+	public static class ModelFind {
+		private final ModelDefinition model;
+		private final Property property;
+
+		public ModelFind(ModelDefinition model, Property property) {
+			this.model = model;
+			this.property = property;
+		}
+
+		public boolean foundModel() {
+			return model != null;
+		}
+
+		public ModelDefinition getModel() {
+			return model;
+		}
+
+		public boolean foundProperty() {
+			return property != null;
+		}
+
+		public Property getProperty() {
+			return property;
+		}
+	}
+
+	public static ModelFind findInEditorSelection(IEditorPart editorPart) {
+		if (!(editorPart instanceof ITextEditor)) {
+			return null;
+		}
+		ITextEditor editor = (ITextEditor) editorPart;
+
+		ITextSelection selection = (ITextSelection) editor.getSelectionProvider().getSelection();
+		final int offset = selection.getOffset();
+
+		if (editor instanceof XtextEditor) {
+			XtextEditor xeditor = (XtextEditor) editor;
+			IXtextDocument document = xeditor.getDocument();
+			EObject object = document.readOnly(new IUnitOfWork<EObject, XtextResource>() {
+				private EObjectAtOffsetHelper helper = new EObjectAtOffsetHelper();
+
+				public EObject exec(XtextResource state) throws Exception {
+					return helper.resolveContainedElementAt(state, offset);
+				}
+			});
+			Property property = PropertyUtil.getProperty(object);
+			if (property != null) {
+				return new ModelFind(null, property);
+			}
+			ModelDefinition model = ModelUtil.getModel(object);
+			if (model != null) {
+				return new ModelFind(model, null);
+			}
+			return null;
+		}
+
+		IHyperlink[] links;
+		{
+			links = new OpenDeclaredDmdlHyperlinkDetector().detectHyperlinks(editor, offset);
+			if (links == null || links.length == 0) {
+				links = new OpenKeyDmdlHyperlinkDetector().detectHyperlinks(editor, offset);
+			}
+		}
+		if (links != null) {
+			for (IHyperlink link : links) {
+				DeclaredDmdlHyperlink dmdl = (DeclaredDmdlHyperlink) link;
+				EObject token = dmdl.getToken();
+				if (token instanceof Property) {
+					return new ModelFind(null, (Property) token);
+				} else if (token instanceof ModelDefinition) {
+					return new ModelFind((ModelDefinition) token, null);
+				}
+			}
+		}
+
 		return null;
 	}
 

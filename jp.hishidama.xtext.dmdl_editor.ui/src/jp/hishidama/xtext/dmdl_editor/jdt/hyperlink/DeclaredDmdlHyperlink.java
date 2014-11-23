@@ -10,14 +10,21 @@ import org.eclipse.jface.text.hyperlink.IHyperlink;
 import org.eclipse.xtext.ui.editor.GlobalURIEditorOpener;
 
 public class DeclaredDmdlHyperlink implements IHyperlink {
-	private URI uri;
-	private IRegion region;
-	private String name;
+	private final EObject token;
+	private final URI uri;
+	private final IRegion region;
+	private final String name;
 
 	public DeclaredDmdlHyperlink(EObject token, IRegion region, String name) {
+		this.token = token;
 		this.uri = EcoreUtil.getURI(token);
 		this.region = region;
 		this.name = name;
+
+	}
+
+	public EObject getToken() {
+		return token;
 	}
 
 	public IRegion getHyperlinkRegion() {

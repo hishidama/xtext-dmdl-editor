@@ -3,11 +3,11 @@ package jp.hishidama.xtext.dmdl_editor.jdt.hyperlink;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.eclipse_plugin.jdt.hyperlink.JdtHyperlinkDetector;
 import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
-import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.IField;
@@ -46,22 +46,8 @@ public class OpenDeclaredDmdlHyperlinkDetector extends JdtHyperlinkDetector {
 
 	@Override
 	protected IHyperlink[] detectMethodHyperlinks(IMethod method, IRegion word) {
-		String snakeName = cutMethodName(method.getElementName());
-		return detectPropertyHyperlinks(method, snakeName, word);
-	}
-
-	private static String cutMethodName(String name) {
-		if (name.startsWith("set")) {
-			name = name.substring(3);
-		} else if (name.startsWith("get")) {
-			name = name.substring(3);
-		}
-		if (name.endsWith("Option")) {
-			name = name.substring(0, name.length() - 6);
-		} else if (name.endsWith("AsString")) {
-			name = name.substring(0, name.length() - 8);
-		}
-		return StringUtil.toFirstLower(name);
+		String name = PropertyUtil.cutMethodName(method.getElementName());
+		return detectPropertyHyperlinks(method, name, word);
 	}
 
 	private IHyperlink[] detectPropertyHyperlinks(IJavaElement code, String name, IRegion word) {

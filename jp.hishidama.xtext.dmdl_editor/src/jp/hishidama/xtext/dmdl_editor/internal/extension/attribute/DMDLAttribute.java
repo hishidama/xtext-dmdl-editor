@@ -8,7 +8,6 @@ import java.util.List;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.extension.AsakusafwConfiguration;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElement;
-import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 
@@ -167,13 +166,9 @@ public class DMDLAttribute {
 	}
 
 	public static List<String> getModelNameValueList(AttributeElement element) {
-		ModelDefinition model = PropertyUtil.getModelDefinition(element);
-		if (model != null) {
-			String modelName = model.getName();
-			if (modelName != null) {
-				return Arrays.asList(String.format("\"%s\"", modelName),
-						String.format("\"%s\"", modelName.toUpperCase()));
-			}
+		String modelName = PropertyUtil.getModelName(element);
+		if (modelName != null) {
+			return Arrays.asList(String.format("\"%s\"", modelName), String.format("\"%s\"", modelName.toUpperCase()));
 		}
 		return null;
 	}
