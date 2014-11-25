@@ -28,7 +28,7 @@ public class OpenDeclaredDmdlHyperlinkDetector extends JdtHyperlinkDetector {
 		if (model == null) {
 			return null;
 		}
-		return new IHyperlink[] { new DeclaredDmdlHyperlink(model, word, model.getName()) };
+		return new IHyperlink[] { new DeclaredDmdlHyperlink(model, null, word) };
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class OpenDeclaredDmdlHyperlinkDetector extends JdtHyperlinkDetector {
 		if (property == null) {
 			return null;
 		}
-		return new IHyperlink[] { new DeclaredDmdlHyperlink(property, word, property.getName()) };
+		return new IHyperlink[] { new DeclaredDmdlHyperlink(model, property, word) };
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class OpenDeclaredDmdlHyperlinkDetector extends JdtHyperlinkDetector {
 		}
 		ModelDefinition model = ModelUiUtil.findModelByClass(project, name);
 		if (model != null) {
-			return new IHyperlink[] { new DeclaredDmdlHyperlink(model, word, model.getName()) };
+			return new IHyperlink[] { new DeclaredDmdlHyperlink(model, null, word) };
 		}
 		return null;
 	}

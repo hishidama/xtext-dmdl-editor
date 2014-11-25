@@ -2,6 +2,7 @@ package jp.hishidama.xtext.dmdl_editor.jdt.hyperlink;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.eclipse_plugin.jdt.hyperlink.CompilationUnitHyperlinkDetector;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 
 import org.eclipse.jdt.core.ICompilationUnit;
@@ -29,14 +30,16 @@ public class OpenKeyDmdlHyperlinkDetector extends CompilationUnitHyperlinkDetect
 			ExporterPropertyStringFinder finder = new ExporterPropertyStringFinder(type, region.getOffset());
 			Property property = finder.getProperty();
 			if (property != null) {
-				return new IHyperlink[] { new DeclaredDmdlHyperlink(property, finder.getRegion(), property.getName()) };
+				ModelDefinition model = finder.getModel();
+				return new IHyperlink[] { new DeclaredDmdlHyperlink(model, property, finder.getRegion()) };
 			}
 		}
 
 		KeyPropertyStringFinder finder = new KeyPropertyStringFinder(unit, region.getOffset());
 		Property property = finder.getProperty();
 		if (property != null) {
-			return new IHyperlink[] { new DeclaredDmdlHyperlink(property, finder.getRegion(), property.getName()) };
+			ModelDefinition model = finder.getModel();
+			return new IHyperlink[] { new DeclaredDmdlHyperlink(model, property, finder.getRegion()) };
 		}
 
 		return null;

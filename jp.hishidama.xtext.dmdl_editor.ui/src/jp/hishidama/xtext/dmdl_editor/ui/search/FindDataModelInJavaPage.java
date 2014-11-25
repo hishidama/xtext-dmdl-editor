@@ -283,7 +283,7 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 
 		Property property = dialog.getSelectedProperty();
 		if (property != null) {
-			setProperty(property);
+			setProperty(dialog.getSelectedDataModel(), property);
 		} else {
 			setModel(dialog.getSelectedDataModel());
 		}
@@ -298,12 +298,20 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 		propertyText.setText("");
 	}
 
-	private void setProperty(Property property) {
+	private void setProperty(ModelDefinition model, Property property) {
 		if (property == null) {
-			modelText.setText("");
+			if (model == null) {
+				modelText.setText("");
+			} else {
+				modelText.setText(model.getName());
+			}
 			propertyText.setText("");
 		} else {
-			modelText.setText(PropertyUtil.getModelName(property));
+			if (model == null) {
+				modelText.setText(PropertyUtil.getModelName(property));
+			} else {
+				modelText.setText(model.getName());
+			}
 			propertyText.setText(property.getName());
 		}
 	}
@@ -349,8 +357,8 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 			ModelFind find = ModelUiUtil.findInEditorSelection(editor);
 			if (find != null) {
 				if (find.foundProperty()) {
-					setProperty(find.getProperty());
-				} else if (find.foundModel()) {
+					setProperty(find.getModel(), find.getProperty());
+				} else {
 					setModel(find.getModel());
 				}
 			}

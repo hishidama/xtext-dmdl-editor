@@ -200,12 +200,9 @@ public class ModelUiUtil {
 		private final Property property;
 
 		public ModelFind(ModelDefinition model, Property property) {
+			assert model != null;
 			this.model = model;
 			this.property = property;
-		}
-
-		public boolean foundModel() {
-			return model != null;
 		}
 
 		public ModelDefinition getModel() {
@@ -242,7 +239,8 @@ public class ModelUiUtil {
 			});
 			Property property = PropertyUtil.getProperty(object);
 			if (property != null) {
-				return new ModelFind(null, property);
+				ModelDefinition model = ModelUtil.getModel(property);
+				return new ModelFind(model, property);
 			}
 			ModelDefinition model = ModelUtil.getModel(object);
 			if (model != null) {
@@ -261,12 +259,9 @@ public class ModelUiUtil {
 		if (links != null) {
 			for (IHyperlink link : links) {
 				DeclaredDmdlHyperlink dmdl = (DeclaredDmdlHyperlink) link;
-				EObject token = dmdl.getToken();
-				if (token instanceof Property) {
-					return new ModelFind(null, (Property) token);
-				} else if (token instanceof ModelDefinition) {
-					return new ModelFind((ModelDefinition) token, null);
-				}
+				ModelDefinition model = dmdl.getModel();
+				Property property = dmdl.getProperty();
+				return new ModelFind(model, property);
 			}
 		}
 

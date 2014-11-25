@@ -113,7 +113,7 @@ public abstract class AbstractDataModelTreeDialog extends EditDialog {
 							obj = data.getData();
 							if (obj instanceof Property) {
 								Property property = (Property) obj;
-								if (isSelectedProperty(data, property)) {
+								if (isSelectedProperty(data, model, property)) {
 									tree.getTree().setSelection(child);
 									break;
 								}
@@ -134,7 +134,7 @@ public abstract class AbstractDataModelTreeDialog extends EditDialog {
 		return false;
 	}
 
-	protected boolean isSelectedProperty(DMDLTreeData data, Property property) {
+	protected boolean isSelectedProperty(DMDLTreeData data, ModelDefinition model, Property property) {
 		return false;
 	}
 }

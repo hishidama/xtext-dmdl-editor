@@ -4,11 +4,8 @@ import java.util.EnumSet;
 import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.util.ProjectUtil;
-import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil.ModelFind;
-import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
-import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchData.SearchIn;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -51,13 +48,12 @@ public class FindDataModelInJavaHandler extends AbstractHandler {
 		ModelFind find = ModelUiUtil.findInEditorSelection(editor);
 		if (find != null) {
 			if (find.foundProperty()) {
-				Property property = find.getProperty();
-				String modelName = PropertyUtil.getModelName(property);
-				String propertyName = property.getName();
+				String modelName = find.getModel().getName();
+				String propertyName = find.getProperty().getName();
 				findReferences(event, modelName, propertyName, searchIn);
-			} else if (find.foundModel()) {
-				ModelDefinition model = find.getModel();
-				findReferences(event, model.getName(), null, searchIn);
+			} else {
+				String modelName = find.getModel().getName();
+				findReferences(event, modelName, null, searchIn);
 			}
 		}
 	}

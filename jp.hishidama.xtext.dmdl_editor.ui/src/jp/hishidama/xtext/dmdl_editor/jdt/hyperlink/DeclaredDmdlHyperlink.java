@@ -1,5 +1,7 @@
 package jp.hishidama.xtext.dmdl_editor.jdt.hyperlink;
 
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 
 import org.eclipse.emf.common.util.URI;
@@ -10,21 +12,28 @@ import org.eclipse.jface.text.hyperlink.IHyperlink;
 import org.eclipse.xtext.ui.editor.GlobalURIEditorOpener;
 
 public class DeclaredDmdlHyperlink implements IHyperlink {
-	private final EObject token;
+	private final ModelDefinition model;
+	private final Property property;
 	private final URI uri;
 	private final IRegion region;
 	private final String name;
 
-	public DeclaredDmdlHyperlink(EObject token, IRegion region, String name) {
-		this.token = token;
+	public DeclaredDmdlHyperlink(ModelDefinition model, Property property, IRegion region) {
+		this.model = model;
+		this.property = property;
+		EObject token = (property != null) ? property : model;
 		this.uri = EcoreUtil.getURI(token);
 		this.region = region;
-		this.name = name;
+		this.name = (property != null) ? property.getName() : model.getName();
 
 	}
 
-	public EObject getToken() {
-		return token;
+	public ModelDefinition getModel() {
+		return model;
+	}
+
+	public Property getProperty() {
+		return property;
 	}
 
 	public IRegion getHyperlinkRegion() {

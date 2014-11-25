@@ -2,7 +2,6 @@ package jp.hishidama.xtext.dmdl_editor.ui.dialog;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
-import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData;
 
 import org.eclipse.core.resources.IProject;
@@ -39,9 +38,9 @@ public class DmdlPropertySelectionDialog extends DataModelTreeDialog {
 	}
 
 	@Override
-	protected boolean isSelectedProperty(DMDLTreeData data, Property property) {
+	protected boolean isSelectedProperty(DMDLTreeData data, ModelDefinition model, Property property) {
 		if (property.getName().equals(propertyName)) {
-			String mname = PropertyUtil.getModelName(property);
+			String mname = model.getName();
 			if (mname != null && mname.equals(modelName)) {
 				this.treeData = data;
 				return true;
@@ -61,6 +60,17 @@ public class DmdlPropertySelectionDialog extends DataModelTreeDialog {
 	}
 
 	public ModelDefinition getSelectedDataModel() {
+		for (DMDLTreeData data = getSelectionData(); data != null; data = data.getParent()) {
+			Object obj = data.getData();
+			if (obj instanceof Property) {
+				DMDLTreeData parent = data.getParent();
+				Object parentData = parent.getData();
+				if (parentData instanceof ModelDefinition) {
+					return (ModelDefinition) parentData;
+				}
+			}
+		}
+
 		if (!enableResultModel) {
 			return null;
 		}
