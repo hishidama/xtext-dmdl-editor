@@ -1,5 +1,6 @@
 package jp.hishidama.xtext.dmdl_editor.jdt.hyperlink;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.AfwStringUtil;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.eclipse_plugin.jdt.hyperlink.JdtHyperlinkDetector;
 import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
@@ -71,12 +72,7 @@ public class OpenDeclaredDmdlHyperlinkDetector extends JdtHyperlinkDetector {
 	}
 
 	private IHyperlink[] detectHyperlinks(IProject project, String typeName, IRegion word) {
-		String name = typeName;
-		int s = name.indexOf('<');
-		int e = name.lastIndexOf('>');
-		if (s >= 0 && e >= 0) {
-			name = name.substring(s + 1, e);
-		}
+		String name = AfwStringUtil.extractModelClassName(typeName);
 		ModelDefinition model = ModelUiUtil.findModelByClass(project, name);
 		if (model != null) {
 			return new IHyperlink[] { new DeclaredDmdlHyperlink(model, null, word) };

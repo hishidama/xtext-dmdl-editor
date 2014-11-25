@@ -2,6 +2,7 @@ package jp.hishidama.xtext.dmdl_editor.ui.search;
 
 import java.util.List;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.AfwStringUtil;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil.NamePosition;
@@ -18,13 +19,11 @@ import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.ASTVisitor;
-import org.eclipse.jdt.core.dom.ArrayInitializer;
 import org.eclipse.jdt.core.dom.Expression;
 import org.eclipse.jdt.core.dom.MemberValuePair;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.MethodInvocation;
 import org.eclipse.jdt.core.dom.NormalAnnotation;
-import org.eclipse.jdt.core.dom.SimpleType;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import org.eclipse.jdt.core.dom.StringLiteral;
 import org.eclipse.jdt.core.dom.Type;
@@ -100,11 +99,9 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 			if (parent instanceof SingleVariableDeclaration) {
 				SingleVariableDeclaration decl = (SingleVariableDeclaration) parent;
 				Type type = decl.getType();
-				if (type instanceof SimpleType) {
-					String name = ((SimpleType) type).getName().getFullyQualifiedName();
-					if (!name.equals(data.getModelClassSimpleName())) {
-						return false;
-					}
+				String name = AfwStringUtil.extractModelClassName(type.toString());
+				if (!name.equals(data.getModelClassSimpleName())) {
+					return false;
 				}
 			}
 
@@ -115,27 +112,18 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 					String name = pair.getName().getIdentifier();
 					if ("group".equals(name) || "order".equals(name)) {
 						Expression value = pair.getValue();
-						if (value instanceof ArrayInitializer) {
-							ArrayInitializer array = (ArrayInitializer) value;
-							List<ASTNode> list = array.expressions();
-							for (ASTNode a : list) {
-								if (a instanceof StringLiteral) {
-									String literal = ((StringLiteral) a).getLiteralValue();
-									NamePosition pos = PropertyUtil.nameIndexOf(literal, data.getPropertyName());
-									if (pos != null) {
-										result.addMatch(match.getElement(), a.getStartPosition() + 1 + pos.getOffset(),
-												pos.getLength());
-									}
+						value.accept(new ASTVisitor() {
+							@Override
+							public boolean visit(StringLiteral node) {
+								String literal = node.getLiteralValue();
+								NamePosition pos = PropertyUtil.nameIndexOf(literal, data.getPropertyName());
+								if (pos != null) {
+									result.addMatch(match.getElement(), node.getStartPosition() + 1 + pos.getOffset(),
+											pos.getLength());
 								}
+								return true;
 							}
-						} else if (value instanceof StringLiteral) {
-							String literal = ((StringLiteral) value).getLiteralValue();
-							NamePosition pos = PropertyUtil.nameIndexOf(literal, data.getPropertyName());
-							if (pos != null) {
-								result.addMatch(match.getElement(), value.getStartPosition() + 1 + pos.getOffset(),
-										pos.getLength());
-							}
-						}
+						});
 					}
 				}
 			}

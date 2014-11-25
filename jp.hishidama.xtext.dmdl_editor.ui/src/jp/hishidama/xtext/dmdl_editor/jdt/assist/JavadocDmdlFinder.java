@@ -2,6 +2,7 @@ package jp.hishidama.xtext.dmdl_editor.jdt.assist;
 
 import java.util.List;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.AfwStringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 
@@ -45,11 +46,7 @@ public class JavadocDmdlFinder extends ASTVisitor {
 		}
 
 		IProject project = unit.getJavaProject().getProject();
-		int n = modelClassName.indexOf('<');
-		int e = modelClassName.lastIndexOf('>');
-		if (n >= 0 && e >= 0) {
-			modelClassName = modelClassName.substring(n + 1, e);
-		}
+		modelClassName = AfwStringUtil.extractModelClassName(modelClassName);
 		this.model = ModelUiUtil.findModelByClass(project, modelClassName);
 		return model;
 	}
