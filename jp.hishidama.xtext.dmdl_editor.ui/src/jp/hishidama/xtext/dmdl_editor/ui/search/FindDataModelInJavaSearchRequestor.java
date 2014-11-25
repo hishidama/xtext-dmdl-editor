@@ -27,6 +27,7 @@ import org.eclipse.jdt.core.dom.NormalAnnotation;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import org.eclipse.jdt.core.dom.StringLiteral;
 import org.eclipse.jdt.core.dom.Type;
+import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.search.SearchMatch;
 import org.eclipse.jdt.core.search.SearchRequestor;
 
@@ -95,14 +96,24 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 				return true;
 			}
 
-			ASTNode parent = node.getParent();
-			if (parent instanceof SingleVariableDeclaration) {
-				SingleVariableDeclaration decl = (SingleVariableDeclaration) parent;
-				Type type = decl.getType();
-				String name = AfwStringUtil.extractModelClassName(type.toString());
-				if (!name.equals(data.getModelClassSimpleName())) {
-					return false;
+			String modelClassName = null;
+			for (ASTNode parent = node.getParent(); parent != null; parent = parent.getParent()) {
+				if (parent instanceof SingleVariableDeclaration) {
+					SingleVariableDeclaration decl = (SingleVariableDeclaration) parent;
+					Type type = decl.getType();
+					modelClassName = AfwStringUtil.extractModelClassName(type.toString());
+					break;
+				} else if (parent instanceof TypeDeclaration) {
+					TypeDeclaration decl = (TypeDeclaration) parent;
+					modelClassName = decl.getName().getIdentifier();
+					break;
 				}
+			}
+			if (modelClassName == null) {
+				return true;
+			}
+			if (!modelClassName.equals(data.getModelClassSimpleName())) {
+				return false;
 			}
 
 			List<ASTNode> values = node.values();
