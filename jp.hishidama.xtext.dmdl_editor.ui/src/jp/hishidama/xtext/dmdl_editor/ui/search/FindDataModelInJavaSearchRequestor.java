@@ -159,6 +159,11 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 				return true;
 			}
 
+			String modelClassName = PorterUtil.getModelClassName(type);
+			if (modelClassName == null || !modelClassName.equals(data.getModelClassName())) {
+				return true;
+			}
+
 			node.getBody().accept(new ASTVisitor() {
 				@Override
 				public boolean visit(StringLiteral node) {
