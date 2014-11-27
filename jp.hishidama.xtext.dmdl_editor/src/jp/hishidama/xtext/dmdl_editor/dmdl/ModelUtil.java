@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.AfwStringUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
@@ -19,6 +21,10 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.MethodDeclaration;
+import org.eclipse.jdt.core.dom.TypeDeclaration;
+import org.eclipse.jdt.core.dom.TypeParameter;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.INode;
@@ -437,5 +443,44 @@ public class ModelUtil {
 			}
 		}
 		return sb.toString();
+	}
+
+	public static List<String> getModelClassName(org.eclipse.jdt.core.dom.Type type) {
+		Map<String, Set<String>> map = collectTypeParameter(type);
+		String name = AfwStringUtil.extractModelClassName(type.toString());
+		Set<String> set = map.get(name);
+		if (set == null) {
+			return Collections.singletonList(name);
+		}
+
+		return new ArrayList<String>(set);
+	}
+
+	@SuppressWarnings("unchecked")
+	private static Map<String, Set<String>> collectTypeParameter(ASTNode node) {
+		Map<String, Set<String>> map = new HashMap<String, Set<String>>();
+		for (; node != null; node = node.getParent()) {
+			List<TypeParameter> typeParameters = null;
+			if (node instanceof MethodDeclaration) {
+				typeParameters = ((MethodDeclaration) node).typeParameters();
+			} else if (node instanceof TypeDeclaration) {
+				typeParameters = ((TypeDeclaration) node).typeParameters();
+			}
+
+			if (typeParameters != null) {
+				for (TypeParameter param : typeParameters) {
+					String name = param.getName().getIdentifier();
+					if (!map.containsKey(name)) {
+						List<org.eclipse.jdt.core.dom.Type> typeBounds = param.typeBounds();
+						Set<String> set = new LinkedHashSet<String>(typeBounds.size());
+						for (org.eclipse.jdt.core.dom.Type bound : typeBounds) {
+							set.add(AfwStringUtil.extractModelClassName(bound.toString()));
+						}
+						map.put(name, set);
+					}
+				}
+			}
+		}
+		return map;
 	}
 }

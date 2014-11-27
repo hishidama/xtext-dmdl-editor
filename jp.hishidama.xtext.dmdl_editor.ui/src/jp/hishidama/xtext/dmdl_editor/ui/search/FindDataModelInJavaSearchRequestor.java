@@ -1,9 +1,10 @@
 package jp.hishidama.xtext.dmdl_editor.ui.search;
 
+import java.util.Arrays;
 import java.util.List;
 
-import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.AfwStringUtil;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil.NamePosition;
 
@@ -26,7 +27,6 @@ import org.eclipse.jdt.core.dom.MethodInvocation;
 import org.eclipse.jdt.core.dom.NormalAnnotation;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import org.eclipse.jdt.core.dom.StringLiteral;
-import org.eclipse.jdt.core.dom.Type;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.search.SearchMatch;
 import org.eclipse.jdt.core.search.SearchRequestor;
@@ -96,24 +96,8 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 				return true;
 			}
 
-			String modelClassName = null;
-			for (ASTNode parent = node.getParent(); parent != null; parent = parent.getParent()) {
-				if (parent instanceof SingleVariableDeclaration) {
-					SingleVariableDeclaration decl = (SingleVariableDeclaration) parent;
-					Type type = decl.getType();
-					modelClassName = AfwStringUtil.extractModelClassName(type.toString());
-					break;
-				} else if (parent instanceof TypeDeclaration) {
-					TypeDeclaration decl = (TypeDeclaration) parent;
-					modelClassName = decl.getName().getIdentifier();
-					break;
-				}
-			}
-			if (modelClassName == null) {
+			if (!isTargetModel(node.getParent())) {
 				return true;
-			}
-			if (!modelClassName.equals(data.getModelClassSimpleName())) {
-				return false;
 			}
 
 			List<ASTNode> values = node.values();
@@ -135,6 +119,31 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 								return true;
 							}
 						});
+					}
+				}
+			}
+
+			return false;
+		}
+
+		private boolean isTargetModel(ASTNode node) {
+			List<String> modelClassNameList = null;
+			for (; node != null; node = node.getParent()) {
+				if (node instanceof SingleVariableDeclaration) {
+					SingleVariableDeclaration decl = (SingleVariableDeclaration) node;
+					modelClassNameList = ModelUtil.getModelClassName(decl.getType());
+					break;
+				} else if (node instanceof TypeDeclaration) {
+					TypeDeclaration decl = (TypeDeclaration) node;
+					modelClassNameList = Arrays.asList(decl.getName().getIdentifier());
+					break;
+				}
+			}
+
+			if (modelClassNameList != null) {
+				for (String name : modelClassNameList) {
+					if (name.equals(data.getModelClassSimpleName())) {
+						return true;
 					}
 				}
 			}

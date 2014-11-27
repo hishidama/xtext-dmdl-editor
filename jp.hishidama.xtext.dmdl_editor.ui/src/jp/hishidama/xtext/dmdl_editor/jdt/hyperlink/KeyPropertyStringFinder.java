@@ -1,5 +1,7 @@
 package jp.hishidama.xtext.dmdl_editor.jdt.hyperlink;
 
+import java.util.List;
+
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.AfwStringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
@@ -122,7 +124,20 @@ public class KeyPropertyStringFinder extends ASTVisitor {
 	public void endVisit(SingleVariableDeclaration node) {
 		if (propertyName != null) {
 			if (declarationType == null) {
-				this.declarationType = node.getType().toString();
+				IProject project = unit.getJavaProject().getProject();
+				List<String> list = ModelUtil.getModelClassName(node.getType());
+				if (list.size() == 1) {
+					this.declarationType = list.get(0);
+					return;
+				}
+				for (String name : list) {
+					ModelDefinition m = ModelUiUtil.findModelByClass(project, name);
+					Property property = ModelUtil.findProperty(m, propertyName);
+					if (property != null) {
+						this.declarationType = name;
+						return;
+					}
+				}
 			}
 		}
 	}
