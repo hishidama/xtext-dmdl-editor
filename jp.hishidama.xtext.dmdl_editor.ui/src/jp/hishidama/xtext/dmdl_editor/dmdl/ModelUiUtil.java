@@ -14,6 +14,7 @@ import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.OpenDeclaredDmdlHyperlinkDet
 import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.OpenKeyDmdlHyperlinkDetector;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.search.DMDLEObjectSearch;
+import jp.hishidama.xtext.dmdl_editor.ui.util.DMDLXtextUiUtil;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -25,6 +26,8 @@ import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.text.hyperlink.IHyperlink;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.texteditor.ITextEditor;
 import org.eclipse.xtext.resource.EObjectAtOffsetHelper;
@@ -33,6 +36,7 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.GlobalURIEditorOpener;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
+import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
 public class ModelUiUtil {
@@ -195,30 +199,55 @@ public class ModelUiUtil {
 		return null;
 	}
 
-	public static class ModelFind {
-		private final ModelDefinition model;
-		private final Property property;
-
-		public ModelFind(ModelDefinition model, Property property) {
-			assert model != null;
-			this.model = model;
-			this.property = property;
+	public static ModelProperty findModel(ISelection selection) {
+		if (selection instanceof IStructuredSelection) {
+			IStructuredSelection ss = (IStructuredSelection) selection;
+			Object element = ss.getFirstElement();
+			if (element instanceof ModelProperty) {
+				return (ModelProperty) element;
+			}
+			if (element instanceof EObjectNode) {
+				ModelDefinition model = null;
+				Property property = null;
+				for (EObjectNode node = (EObjectNode) element; node != null; node = (EObjectNode) node.getParent()) {
+					EObject object = DMDLXtextUiUtil.getEObject(node);
+					if (object instanceof Property) {
+						property = (Property) object;
+					} else if (object instanceof ModelDefinition) {
+						model = (ModelDefinition) object;
+						break;
+					}
+				}
+				if (model != null) {
+					return new ModelProperty(model, property);
+				}
+			}
 		}
 
-		public ModelDefinition getModel() {
-			return model;
-		}
-
-		public boolean foundProperty() {
-			return property != null;
-		}
-
-		public Property getProperty() {
-			return property;
-		}
+		return null;
 	}
 
-	public static ModelFind findInEditorSelection(IEditorPart editorPart) {
+	private static ModelProperty findModel(IXtextDocument document, final int offset) {
+		EObject object = document.readOnly(new IUnitOfWork<EObject, XtextResource>() {
+			private EObjectAtOffsetHelper helper = new EObjectAtOffsetHelper();
+
+			public EObject exec(XtextResource state) throws Exception {
+				return helper.resolveContainedElementAt(state, offset);
+			}
+		});
+		Property property = PropertyUtil.getProperty(object);
+		if (property != null) {
+			ModelDefinition model = ModelUtil.getModel(property);
+			return new ModelProperty(model, property);
+		}
+		ModelDefinition model = ModelUtil.getModel(object);
+		if (model != null) {
+			return new ModelProperty(model, null);
+		}
+		return null;
+	}
+
+	public static ModelProperty findInEditorSelection(IEditorPart editorPart) {
 		if (!(editorPart instanceof ITextEditor)) {
 			return null;
 		}
@@ -230,23 +259,7 @@ public class ModelUiUtil {
 		if (editor instanceof XtextEditor) {
 			XtextEditor xeditor = (XtextEditor) editor;
 			IXtextDocument document = xeditor.getDocument();
-			EObject object = document.readOnly(new IUnitOfWork<EObject, XtextResource>() {
-				private EObjectAtOffsetHelper helper = new EObjectAtOffsetHelper();
-
-				public EObject exec(XtextResource state) throws Exception {
-					return helper.resolveContainedElementAt(state, offset);
-				}
-			});
-			Property property = PropertyUtil.getProperty(object);
-			if (property != null) {
-				ModelDefinition model = ModelUtil.getModel(property);
-				return new ModelFind(model, property);
-			}
-			ModelDefinition model = ModelUtil.getModel(object);
-			if (model != null) {
-				return new ModelFind(model, null);
-			}
-			return null;
+			return findModel(document, offset);
 		}
 
 		IHyperlink[] links;
@@ -261,7 +274,7 @@ public class ModelUiUtil {
 				DeclaredDmdlHyperlink dmdl = (DeclaredDmdlHyperlink) link;
 				ModelDefinition model = dmdl.getModel();
 				Property property = dmdl.getProperty();
-				return new ModelFind(model, property);
+				return new ModelProperty(model, property);
 			}
 		}
 

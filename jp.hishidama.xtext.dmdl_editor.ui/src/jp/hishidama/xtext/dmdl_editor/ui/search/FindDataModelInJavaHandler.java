@@ -4,8 +4,8 @@ import java.util.EnumSet;
 import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.util.ProjectUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelProperty;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
-import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil.ModelFind;
 import jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchData.SearchIn;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -45,9 +45,9 @@ public class FindDataModelInJavaHandler extends AbstractHandler {
 
 	private void execute(final ExecutionEvent event, Set<SearchIn> searchIn) {
 		IEditorPart editor = HandlerUtil.getActiveEditor(event);
-		ModelFind find = ModelUiUtil.findInEditorSelection(editor);
+		ModelProperty find = ModelUiUtil.findInEditorSelection(editor);
 		if (find != null) {
-			if (find.foundProperty()) {
+			if (find.hasProperty()) {
 				String modelName = find.getModel().getName();
 				String propertyName = find.getProperty().getName();
 				findReferences(event, modelName, propertyName, searchIn);

@@ -8,19 +8,23 @@ import java.util.Set;
 import jp.hishidama.eclipse_plugin.dialog.ProjectSelectionDialog;
 import jp.hishidama.eclipse_plugin.util.FileUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelProperty;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
-import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil.ModelFind;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.dialog.DmdlPropertySelectionDialog;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
 import jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchData.LimitTo;
 import jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchData.SearchIn;
+import jp.hishidama.xtext.dmdl_editor.util.DMDLXtextUtil;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.DialogPage;
@@ -343,6 +347,14 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 				setProject(project);
 				return;
 			}
+
+			ModelProperty find = ModelUiUtil.findModel(sel);
+			if (find != null) {
+				ModelDefinition model = find.getModel();
+				setProject(DMDLXtextUtil.getProject(model));
+				setModelProperty(find);
+				return;
+			}
 		}
 
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
@@ -354,18 +366,22 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 			} else {
 				setProject(null);
 			}
-			ModelFind find = ModelUiUtil.findInEditorSelection(editor);
-			if (find != null) {
-				if (find.foundProperty()) {
-					setProperty(find.getModel(), find.getProperty());
-				} else {
-					setModel(find.getModel());
-				}
-			}
+			ModelProperty find = ModelUiUtil.findInEditorSelection(editor);
+			setModelProperty(find);
 			return;
 		}
 
 		setProject(null);
+	}
+
+	private void setModelProperty(ModelProperty find) {
+		if (find != null) {
+			if (find.hasProperty()) {
+				setProperty(find.getModel(), find.getProperty());
+			} else {
+				setModel(find.getModel());
+			}
+		}
 	}
 
 	private void setProject(IProject project) {

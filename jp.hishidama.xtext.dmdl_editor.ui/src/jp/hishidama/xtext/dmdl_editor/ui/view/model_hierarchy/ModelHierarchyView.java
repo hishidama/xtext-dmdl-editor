@@ -9,11 +9,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import jp.hishidama.eclipse_plugin.jface.SelectionProviderAdapter;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.JoinExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.JoinTerm;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelProperty;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
@@ -35,6 +37,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -104,6 +107,8 @@ public class ModelHierarchyView extends ViewPart {
 		}
 
 		splitter.setWeights(new int[] { 35, 65 });
+
+		getSite().setSelectionProvider(new SelectionProviderAdapter());
 	}
 
 	private Control createForm1(ViewForm parent) {
@@ -267,6 +272,7 @@ public class ModelHierarchyView extends ViewPart {
 		table2 = new TableViewer(parent, SWT.MULTI);
 		table2.setLabelProvider(new DMDLTreeLabelProvider());
 		table2.setContentProvider(new Tree2ContentProvider());
+		table2.addSelectionChangedListener(new Table2SelectionChangeListener());
 		table2.addDoubleClickListener(new DoubleClickListener());
 		return table2.getControl();
 	}
@@ -295,6 +301,16 @@ public class ModelHierarchyView extends ViewPart {
 		}
 
 		public void dispose() {
+		}
+	}
+
+	private class Table2SelectionChangeListener implements ISelectionChangedListener {
+
+		public void selectionChanged(SelectionChangedEvent event) {
+			IStructuredSelection selection = (IStructuredSelection) event.getSelection();
+			Property property = (Property) selection.getFirstElement();
+			ModelProperty element = new ModelProperty(model2, property);
+			getSite().getSelectionProvider().setSelection(new StructuredSelection(element));
 		}
 	}
 
