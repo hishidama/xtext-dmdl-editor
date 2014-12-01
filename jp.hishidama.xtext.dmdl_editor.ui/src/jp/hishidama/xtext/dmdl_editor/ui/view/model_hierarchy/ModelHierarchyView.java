@@ -29,6 +29,8 @@ import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeLabelProvider;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -50,7 +52,9 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.ToolBar;
+import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
 
 /**
@@ -59,6 +63,10 @@ import org.eclipse.ui.part.ViewPart;
 @SuppressWarnings("restriction")
 public class ModelHierarchyView extends ViewPart {
 	public static final String ID = "jp.hishidama.xtext.dmdl_editor.view.ModelHierarchyView";
+
+	private static final String MENU_ID = "jp.hishidama.xtext.dmdl_editor.ui.modelHierarchyView";
+
+	private static final String CONTEXT_MENU_ID = "ModelHierarchyViewContextMenu";
 
 	private IProject project;
 
@@ -109,6 +117,7 @@ public class ModelHierarchyView extends ViewPart {
 		splitter.setWeights(new int[] { 35, 65 });
 
 		getSite().setSelectionProvider(new SelectionProviderAdapter());
+		configureContextMenu();
 	}
 
 	private Control createForm1(ViewForm parent) {
@@ -464,5 +473,16 @@ public class ModelHierarchyView extends ViewPart {
 			}
 		}
 		table2.setInput(properties);
+	}
+
+	// @see org.eclipse.xtext.ui.editor.outline.impl.OutlinePage#configureContextMenu()
+	protected void configureContextMenu() {
+		MenuManager menuManager = new MenuManager(CONTEXT_MENU_ID, CONTEXT_MENU_ID);
+		menuManager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
+		menuManager.setRemoveAllWhenShown(true);
+
+		Menu contextMenu = menuManager.createContextMenu(table2.getTable());
+		table2.getTable().setMenu(contextMenu);
+		getSite().registerContextMenu(MENU_ID, menuManager, table2);
 	}
 }

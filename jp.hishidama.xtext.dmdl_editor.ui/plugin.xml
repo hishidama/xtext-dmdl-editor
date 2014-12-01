@@ -323,6 +323,56 @@
             </menu>
         </menuContribution>
     </extension>
+    <extension point="org.eclipse.ui.menus">
+        <menuContribution locationURI="popup:jp.hishidama.xtext.dmdl_editor.ui.modelHierarchyView?after=additions">
+            <menu
+                  id="jp.hishidama.xtext.dmdl_editor.modelHierarchyView.contextmenu.references"
+                  label="References in Java">
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                     label="Search in src/main">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                        value="main">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                     label="Search in src">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                        value="src">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                     label="Search All">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                        value="all">
+                  </parameter>
+               </command>
+               <separator
+                     name="separator"
+                     visible="true">
+               </separator>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                     label="Open Search Dialog">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                        value="open">
+                  </parameter>
+               </command>
+               <visibleWhen checkEnabled="false">
+                  <with variable="selection">
+                     <iterate ifEmpty="false">
+                     </iterate>
+                  </with>
+               </visibleWhen>
+            </menu>
+        </menuContribution>
+    </extension>
     <extension point="org.eclipse.ui.handlers">
         <handler
             class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"

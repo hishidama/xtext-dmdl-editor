@@ -12,6 +12,7 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.search.ui.ISearchQuery;
 import org.eclipse.search.ui.NewSearchUI;
 import org.eclipse.ui.IEditorPart;
@@ -44,8 +45,12 @@ public class FindDataModelInJavaHandler extends AbstractHandler {
 	}
 
 	private void execute(final ExecutionEvent event, Set<SearchIn> searchIn) {
-		IEditorPart editor = HandlerUtil.getActiveEditor(event);
-		ModelProperty find = ModelUiUtil.findInEditorSelection(editor);
+		ISelection selection = HandlerUtil.getCurrentSelection(event);
+		ModelProperty find = ModelUiUtil.findModel(selection);
+		if (find == null) {
+			IEditorPart editor = HandlerUtil.getActiveEditor(event);
+			find = ModelUiUtil.findInEditorSelection(editor);
+		}
 		if (find != null) {
 			if (find.hasProperty()) {
 				String modelName = find.getModel().getName();
