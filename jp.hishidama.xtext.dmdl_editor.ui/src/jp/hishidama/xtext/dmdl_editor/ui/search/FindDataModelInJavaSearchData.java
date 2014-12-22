@@ -11,13 +11,11 @@ import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaElement;
@@ -30,9 +28,6 @@ import org.eclipse.jdt.core.search.IJavaSearchConstants;
 import org.eclipse.jdt.core.search.IJavaSearchScope;
 import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.internal.ui.search.JavaSearchScopeFactory;
-import org.eclipse.jdt.internal.ui.search.SearchUtil;
-import org.eclipse.search.ui.ISearchPageContainer;
-import org.eclipse.ui.IWorkingSet;
 
 @SuppressWarnings("restriction")
 public class FindDataModelInJavaSearchData {
@@ -64,26 +59,7 @@ public class FindDataModelInJavaSearchData {
 	}
 
 	// @see org.eclipse.jdt.internal.ui.search.JavaSearchPage#performNewSearch()
-	public void initializeScope(ISearchPageContainer container, Set<SearchIn> searchIn) {
-		initializeSearchIn(searchIn);
-
-		switch (container.getSelectedScope()) {
-		case ISearchPageContainer.WORKSPACE_SCOPE:
-			initializeScopeWorkspace();
-			break;
-		case ISearchPageContainer.SELECTION_SCOPE:
-			initializeScopeSelection(container);
-			break;
-		case ISearchPageContainer.SELECTED_PROJECTS_SCOPE:
-			initializeScopeProjects(container);
-			break;
-		case ISearchPageContainer.WORKING_SET_SCOPE:
-			initializeScopeWorkingSet(container);
-			break;
-		}
-	}
-
-	public void initializeScopeWorkspace(Set<SearchIn> searchIn) {
+	public void initializeScope(Set<SearchIn> searchIn) {
 		initializeSearchIn(searchIn);
 		initializeScopeWorkspace();
 	}
@@ -108,70 +84,6 @@ public class FindDataModelInJavaSearchData {
 		JavaSearchScopeFactory factory = JavaSearchScopeFactory.getInstance();
 		initializeScope(factory, set);
 		scopeDescription = factory.getWorkspaceScopeDescription(INCLUDE_MASK);
-	}
-
-	private void initializeScopeSelection(ISearchPageContainer container) {
-		JavaSearchScopeFactory factory = JavaSearchScopeFactory.getInstance();
-
-		IJavaElement[] javaElements = new IJavaElement[0];
-		if (container.getActiveEditorInput() != null) {
-			IFile file = (IFile) container.getActiveEditorInput().getAdapter(IFile.class);
-			if (file != null && file.exists()) {
-				IJavaElement javaElement = JavaCore.create(file);
-				if (javaElement != null)
-					javaElements = new IJavaElement[] { javaElement };
-			}
-		} else {
-			javaElements = factory.getJavaElements(container.getSelection());
-		}
-
-		Set<IJavaElement> set = new HashSet<IJavaElement>();
-		for (IJavaElement element : javaElements) {
-			collectScope(set, element);
-		}
-
-		initializeScope(factory, set);
-		scopeDescription = factory.getSelectionScopeDescription(javaElements, INCLUDE_MASK);
-	}
-
-	private void initializeScopeProjects(ISearchPageContainer container) {
-		Set<IJavaElement> set = new HashSet<IJavaElement>();
-
-		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		String[] projectNames = container.getSelectedProjectNames();
-		for (String name : projectNames) {
-			IProject project = root.getProject(name);
-			if (isCollectScope(project)) {
-				collectScope(set, JavaCore.create(project));
-			}
-		}
-
-		JavaSearchScopeFactory factory = JavaSearchScopeFactory.getInstance();
-		initializeScope(factory, set);
-		scopeDescription = factory.getProjectScopeDescription(projectNames, INCLUDE_MASK);
-	}
-
-	private void initializeScopeWorkingSet(ISearchPageContainer container) {
-		IWorkingSet[] workingSets = container.getSelectedWorkingSets();
-		if (workingSets == null || workingSets.length <= 0) {
-			return;
-		}
-
-		Set<IJavaElement> set = new HashSet<IJavaElement>();
-		for (IWorkingSet workingSet : workingSets) {
-			IAdaptable[] elements = workingSet.getElements();
-			for (IAdaptable a : elements) {
-				IJavaElement element = (IJavaElement) a.getAdapter(IJavaElement.class);
-				if (element != null) {
-					collectScope(set, element);
-				}
-			}
-		}
-
-		JavaSearchScopeFactory factory = JavaSearchScopeFactory.getInstance();
-		initializeScope(factory, set);
-		scopeDescription = factory.getWorkingSetScopeDescription(workingSets, INCLUDE_MASK);
-		SearchUtil.updateLRUWorkingSets(workingSets);
 	}
 
 	private void initializeScope(JavaSearchScopeFactory factory, Set<IJavaElement> set) {

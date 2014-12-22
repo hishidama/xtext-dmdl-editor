@@ -475,7 +475,7 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 		}
 
 		FindDataModelInJavaSearchData data = new FindDataModelInJavaSearchData(project, modelName, propertyName);
-		data.initializeScope(getContainer(), getSearchIn());
+		data.initializeScope(getSearchIn());
 		data.initializeMethodPattern(getMethodPattern());
 		data.initializeLimit(containsLimit(LimitTo.KEY), containsLimit(LimitTo.EXPORTER));
 		FindDataModelInJavaSearchQuery query = new FindDataModelInJavaSearchQuery(data);

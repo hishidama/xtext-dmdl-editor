@@ -1330,7 +1330,7 @@
             label="DataModel Search"
             sizeHint="460,160"
             extensions="java:90, jav:90"
-            showScopeSection="true"
+            showScopeSection="false"
             canSearchEnclosingProjects="true"
             class="jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaPage">
       </page>

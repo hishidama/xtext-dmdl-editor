@@ -76,7 +76,7 @@ public class FindDataModelInJavaHandler extends AbstractHandler {
 		IProject project = ProjectUtil.getProject(event);
 
 		FindDataModelInJavaSearchData data = new FindDataModelInJavaSearchData(project, modelName, propertyName);
-		data.initializeScopeWorkspace(searchIn);
+		data.initializeScope(searchIn);
 		ISearchQuery query = new FindDataModelInJavaSearchQuery(data);
 
 		NewSearchUI.activateSearchResultView();
