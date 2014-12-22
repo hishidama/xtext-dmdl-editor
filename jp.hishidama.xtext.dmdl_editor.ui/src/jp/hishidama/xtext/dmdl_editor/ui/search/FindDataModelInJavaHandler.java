@@ -7,6 +7,7 @@ import jp.hishidama.eclipse_plugin.util.ProjectUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelProperty;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.jdt.search.OperatorMethodSearchHandler;
+import jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchData.SearchClass;
 import jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchData.SearchIn;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -28,12 +29,21 @@ public class FindDataModelInJavaHandler extends AbstractHandler {
 		String action = event.getParameter("jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action");
 		if ("main".equalsIgnoreCase(action)) {
 			Set<SearchIn> set = EnumSet.of(SearchIn.MAIN);
-			execute(event, set);
+			execute(event, set, null);
+		} else if ("main-operator".equalsIgnoreCase(action)) {
+			Set<SearchIn> set = EnumSet.of(SearchIn.MAIN);
+			execute(event, set, EnumSet.of(SearchClass.OPERATOR));
+		} else if ("main-flow".equalsIgnoreCase(action)) {
+			Set<SearchIn> set = EnumSet.of(SearchIn.MAIN);
+			execute(event, set, EnumSet.of(SearchClass.JOBFLOW, SearchClass.JOBFLOW));
+		} else if ("main-porter".equalsIgnoreCase(action)) {
+			Set<SearchIn> set = EnumSet.of(SearchIn.MAIN);
+			execute(event, set, EnumSet.of(SearchClass.PORTER));
 		} else if ("src".equalsIgnoreCase(action)) {
 			Set<SearchIn> set = EnumSet.of(SearchIn.MAIN, SearchIn.TEST);
-			execute(event, set);
+			execute(event, set, null);
 		} else if ("all".equalsIgnoreCase(action)) {
-			execute(event, null);
+			execute(event, null, null);
 		} else {
 			open();
 		}
@@ -45,7 +55,8 @@ public class FindDataModelInJavaHandler extends AbstractHandler {
 		NewSearchUI.openSearchDialog(window, FindDataModelInJavaPage.ID);
 	}
 
-	private void execute(final ExecutionEvent event, Set<SearchIn> searchIn) throws ExecutionException {
+	private void execute(final ExecutionEvent event, Set<SearchIn> searchIn, Set<SearchClass> searchClass)
+			throws ExecutionException {
 		{
 			OperatorMethodSearchHandler handler = new OperatorMethodSearchHandler();
 			Object target = handler.execute(event);
@@ -64,19 +75,21 @@ public class FindDataModelInJavaHandler extends AbstractHandler {
 			if (find.hasProperty()) {
 				String modelName = find.getModel().getName();
 				String propertyName = find.getProperty().getName();
-				findReferences(event, modelName, propertyName, searchIn);
+				findReferences(event, modelName, propertyName, searchIn, searchClass);
 			} else {
 				String modelName = find.getModel().getName();
-				findReferences(event, modelName, null, searchIn);
+				findReferences(event, modelName, null, searchIn, searchClass);
 			}
 		}
 	}
 
-	private void findReferences(ExecutionEvent event, String modelName, String propertyName, Set<SearchIn> searchIn) {
+	private void findReferences(ExecutionEvent event, String modelName, String propertyName, Set<SearchIn> searchIn,
+			Set<SearchClass> searchClass) {
 		IProject project = ProjectUtil.getProject(event);
 
 		FindDataModelInJavaSearchData data = new FindDataModelInJavaSearchData(project, modelName, propertyName);
 		data.initializeScope(searchIn);
+		data.initializeSearchClass(searchClass);
 		ISearchQuery query = new FindDataModelInJavaSearchQuery(data);
 
 		NewSearchUI.activateSearchResultView();

@@ -282,6 +282,30 @@
                   label="Asakusa DSL References">
                <command
                      commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                     label="Search in src/main(Operator)">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                        value="main-operator">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                     label="Search in src/main(Flow)">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                        value="main-flow">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                     label="Search in src/main(Importer/Exporter)">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                        value="main-porter">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
                      label="Search in src/main">
                   <parameter
                         name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
@@ -328,6 +352,30 @@
             <menu
                   id="jp.hishidama.xtext.dmdl_editor.modelHierarchyView.contextmenu.references"
                   label="Asakusa DSL References">
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                     label="Search in src/main(Operator)">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                        value="main-operator">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                     label="Search in src/main(Flow)">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                        value="main-flow">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                     label="Search in src/main(Importer/Exporter)">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                        value="main-porter">
+                  </parameter>
+               </command>
                <command
                      commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
                      label="Search in src/main">
@@ -1232,6 +1280,30 @@
          <menu
                id="jp.hishidama.xtext.dmdl_editor.jdt.menu.references"
                label="Asakusa DSL References">
+            <command
+                  commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                  label="Search in src/main(Operator)">
+               <parameter
+                     name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                     value="main-operator">
+               </parameter>
+            </command>
+            <command
+                  commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                  label="Search in src/main(Flow)">
+               <parameter
+                     name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                     value="main-flow">
+               </parameter>
+            </command>
+            <command
+                  commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                  label="Search in src/main(Importer/Exporter)">
+               <parameter
+                     name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                     value="main-porter">
+               </parameter>
+            </command>
             <command
                   commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
                   label="Search in src/main">

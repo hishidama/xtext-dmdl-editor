@@ -6,7 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.OperatorUtil;
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
@@ -18,8 +20,10 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jdt.core.IClasspathEntry;
+import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IMember;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
@@ -40,6 +44,10 @@ public class FindDataModelInJavaSearchData {
 		MAIN, TEST, GENERATE
 	}
 
+	public static enum SearchClass {
+		OPERATOR, JOBFLOW, FLOWPART, PORTER
+	}
+
 	private final IProject dmdlProject;
 	private final String modelName;
 	private final String propertyName;
@@ -48,6 +56,7 @@ public class FindDataModelInJavaSearchData {
 	private boolean limitExporter = true;
 	private List<String> methodPattern = null;
 	private Set<SearchIn> searchIn = null;
+	private Set<SearchClass> searchClass = null;
 
 	private IJavaSearchScope scope;
 	private String scopeDescription;
@@ -143,6 +152,10 @@ public class FindDataModelInJavaSearchData {
 
 	private void initializeSearchIn(Set<SearchIn> searchIn) {
 		this.searchIn = searchIn;
+	}
+
+	public void initializeSearchClass(Set<SearchClass> searchClass) {
+		this.searchClass = searchClass;
 	}
 
 	public IProject getProject() {
@@ -304,5 +317,53 @@ public class FindDataModelInJavaSearchData {
 		}
 
 		return SearchIn.MAIN;
+	}
+
+	public boolean containsSearchClass(IJavaElement element) {
+		if (searchClass == null) {
+			return true;
+		}
+
+		SearchClass c = getSearchClass(element);
+		return searchClass.contains(c);
+	}
+
+	private SearchClass getSearchClass(IJavaElement element) {
+		IType type = null;
+		if (element instanceof IType) {
+			type = (IType) element;
+		} else if (element instanceof IMember) {
+			ICompilationUnit unit = ((IMember) element).getCompilationUnit();
+			try {
+				IType[] types = unit.getTypes();
+				for (IType t : types) {
+					type = t;
+					break;
+				}
+			} catch (JavaModelException e) {
+			}
+		}
+		if (type != null) {
+			if (FlowUtil.isJobFlow(type)) {
+				return SearchClass.JOBFLOW;
+			}
+			if (FlowUtil.isFlowPart(type)) {
+				return SearchClass.FLOWPART;
+			}
+			if (PorterUtil.isPorterOrFormat(type)) {
+				return SearchClass.PORTER;
+			}
+
+			String name = type.getFullyQualifiedName();
+			if (name.endsWith("Factory")) {
+				type = TypeUtil.findType(type.getJavaProject(), StringUtil.removeEnds(name, "Factory"));
+				if (type != null) {
+					if (FlowUtil.isFlowPart(type)) {
+						return SearchClass.FLOWPART;
+					}
+				}
+			}
+		}
+		return SearchClass.OPERATOR;
 	}
 }

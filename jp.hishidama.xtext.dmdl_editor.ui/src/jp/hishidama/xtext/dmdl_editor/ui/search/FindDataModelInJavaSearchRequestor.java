@@ -47,6 +47,9 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 		if (element instanceof IImportDeclaration) {
 			return;
 		}
+		if (!data.containsSearchClass(element)) {
+			return;
+		}
 
 		if (data.getPropertyName() == null) {
 			result.addMatch(element, match.getOffset(), match.getLength());

@@ -15,6 +15,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.dialog.DmdlPropertySelectionDialog;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
 import jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchData.LimitTo;
+import jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchData.SearchClass;
 import jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchData.SearchIn;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLXtextUtil;
 
@@ -72,6 +73,7 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 	private List<Button> limitButtons = new ArrayList<Button>();
 	private List<Button> methodButtons = new ArrayList<Button>();
 	private List<Button> searchInButtons = new ArrayList<Button>();
+	private List<Button> searchClassButtons = new ArrayList<Button>();
 	private Button limitMethodButton;
 
 	private List<Button> dialogSaveButtons = new ArrayList<Button>();
@@ -150,6 +152,7 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 		}
 
 		createSearchIn(block);
+		createSearchClass(block);
 
 		setControl(composite);
 		Dialog.applyDialogFont(composite);
@@ -221,6 +224,24 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 		searchInButtons.add(createCheckButton(field, "generated-sources", SearchIn.GENERATE, false));
 
 		for (Button button : searchInButtons) {
+			button.addSelectionListener(updateListener);
+		}
+
+		return field;
+	}
+
+	private Control createSearchClass(Composite composite) {
+		Group field = new Group(composite, SWT.NONE);
+		field.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
+		field.setText("Search Class");
+		field.setLayout(new GridLayout(4, false));
+
+		searchClassButtons.add(createCheckButton(field, "Operator", SearchClass.OPERATOR, true));
+		searchClassButtons.add(createCheckButton(field, "JobFlow", SearchClass.JOBFLOW, true));
+		searchClassButtons.add(createCheckButton(field, "FlowPart", SearchClass.FLOWPART, true));
+		searchClassButtons.add(createCheckButton(field, "Importer/Exporter", SearchClass.PORTER, true));
+
+		for (Button button : searchClassButtons) {
 			button.addSelectionListener(updateListener);
 		}
 
@@ -426,6 +447,9 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 		if (getSearchIn().isEmpty()) {
 			return false;
 		}
+		if (getSearchClass().isEmpty()) {
+			return false;
+		}
 
 		return true;
 	}
@@ -461,6 +485,16 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 		return set;
 	}
 
+	public Set<SearchClass> getSearchClass() {
+		Set<SearchClass> set = EnumSet.noneOf(SearchClass.class);
+		for (Button button : searchClassButtons) {
+			if (button.getSelection()) {
+				set.add((SearchClass) button.getData());
+			}
+		}
+		return set;
+	}
+
 	public boolean performAction() {
 		storeConfiguration();
 
@@ -478,6 +512,7 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 		data.initializeScope(getSearchIn());
 		data.initializeMethodPattern(getMethodPattern());
 		data.initializeLimit(containsLimit(LimitTo.KEY), containsLimit(LimitTo.EXPORTER));
+		data.initializeSearchClass(getSearchClass());
 		FindDataModelInJavaSearchQuery query = new FindDataModelInJavaSearchQuery(data);
 
 		NewSearchUI.activateSearchResultView();
