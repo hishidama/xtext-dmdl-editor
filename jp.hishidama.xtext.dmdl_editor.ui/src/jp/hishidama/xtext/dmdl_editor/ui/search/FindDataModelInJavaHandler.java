@@ -38,7 +38,7 @@ public class FindDataModelInJavaHandler extends AbstractHandler {
 			execute(event, set, EnumSet.of(SearchClass.JOBFLOW, SearchClass.JOBFLOW));
 		} else if ("main-porter".equalsIgnoreCase(action)) {
 			Set<SearchIn> set = EnumSet.of(SearchIn.MAIN);
-			execute(event, set, EnumSet.of(SearchClass.PORTER));
+			execute(event, set, EnumSet.of(SearchClass.IMPORTER, SearchClass.EXPORTER));
 		} else if ("src".equalsIgnoreCase(action)) {
 			Set<SearchIn> set = EnumSet.of(SearchIn.MAIN, SearchIn.TEST);
 			execute(event, set, null);

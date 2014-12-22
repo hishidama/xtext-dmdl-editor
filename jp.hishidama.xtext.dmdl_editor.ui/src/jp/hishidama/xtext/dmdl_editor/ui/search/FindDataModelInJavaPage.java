@@ -205,12 +205,13 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 		Group field = new Group(composite, SWT.NONE);
 		field.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
 		field.setText("Search Class");
-		field.setLayout(new GridLayout(4, false));
+		field.setLayout(new GridLayout(5, false));
 
 		searchClassButtons.add(createCheckButton(field, "Operator", SearchClass.OPERATOR, true));
 		searchClassButtons.add(createCheckButton(field, "JobFlow", SearchClass.JOBFLOW, true));
 		searchClassButtons.add(createCheckButton(field, "FlowPart", SearchClass.FLOWPART, true));
-		searchClassButtons.add(createCheckButton(field, "Importer/Exporter", SearchClass.PORTER, true));
+		searchClassButtons.add(createCheckButton(field, "Importer", SearchClass.IMPORTER, true));
+		searchClassButtons.add(createCheckButton(field, "Exporter", SearchClass.EXPORTER, true));
 
 		for (Button button : searchClassButtons) {
 			button.addSelectionListener(updateListener);

@@ -64,7 +64,7 @@ public class FindDataModelInJavaSearchData {
 	}
 
 	public static enum SearchClass {
-		OPERATOR, JOBFLOW, FLOWPART, PORTER
+		OPERATOR, JOBFLOW, FLOWPART, IMPORTER, EXPORTER
 	}
 
 	private final IProject dmdlProject;
@@ -369,8 +369,14 @@ public class FindDataModelInJavaSearchData {
 			if (FlowUtil.isFlowPart(type)) {
 				return SearchClass.FLOWPART;
 			}
-			if (PorterUtil.isPorterOrFormat(type)) {
-				return SearchClass.PORTER;
+			{
+				String name = PorterUtil.getPorterOrFormatInterfaceName(type);
+				if (PorterUtil.isImPorterOrInput(name)) {
+					return SearchClass.IMPORTER;
+				}
+				if (PorterUtil.isExPorterOrOutput(name)) {
+					return SearchClass.EXPORTER;
+				}
 			}
 
 			String name = type.getFullyQualifiedName();
