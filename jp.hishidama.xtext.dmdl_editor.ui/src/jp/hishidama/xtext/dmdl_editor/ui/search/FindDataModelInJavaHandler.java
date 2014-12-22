@@ -6,6 +6,7 @@ import java.util.Set;
 import jp.hishidama.eclipse_plugin.util.ProjectUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelProperty;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
+import jp.hishidama.xtext.dmdl_editor.jdt.search.OperatorMethodSearchHandler;
 import jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchData.SearchIn;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -44,7 +45,15 @@ public class FindDataModelInJavaHandler extends AbstractHandler {
 		NewSearchUI.openSearchDialog(window, FindDataModelInJavaPage.ID);
 	}
 
-	private void execute(final ExecutionEvent event, Set<SearchIn> searchIn) {
+	private void execute(final ExecutionEvent event, Set<SearchIn> searchIn) throws ExecutionException {
+		{
+			OperatorMethodSearchHandler handler = new OperatorMethodSearchHandler();
+			Object target = handler.execute(event);
+			if (target != null) {
+				return;
+			}
+		}
+
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 		ModelProperty find = ModelUiUtil.findModel(selection);
 		if (find == null) {
