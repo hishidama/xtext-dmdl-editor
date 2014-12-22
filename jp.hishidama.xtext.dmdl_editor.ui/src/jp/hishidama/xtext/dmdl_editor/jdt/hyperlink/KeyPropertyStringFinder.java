@@ -176,9 +176,14 @@ public class KeyPropertyStringFinder extends ASTVisitor {
 			@Override
 			public boolean visit(StringLiteral node) {
 				String value = node.getLiteralValue();
-				NamePosition pos = PropertyUtil.findName(value);
-				if (pos == null) {
-					return false;
+				NamePosition pos;
+				if (value.isEmpty()) {
+					pos = new NamePosition(0, 0);
+				} else {
+					pos = PropertyUtil.findName(value);
+					if (pos == null) {
+						return false;
+					}
 				}
 
 				text = value;
