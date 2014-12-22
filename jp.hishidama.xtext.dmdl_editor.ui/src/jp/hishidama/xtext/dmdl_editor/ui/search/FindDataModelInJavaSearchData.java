@@ -112,7 +112,6 @@ public class FindDataModelInJavaSearchData {
 
 		JavaSearchScopeFactory factory = JavaSearchScopeFactory.getInstance();
 		initializeScope(factory, set);
-		scopeDescription = factory.getWorkspaceScopeDescription(INCLUDE_MASK);
 	}
 
 	private void initializeScope(JavaSearchScopeFactory factory, Set<IJavaElement> set) {
@@ -214,6 +213,28 @@ public class FindDataModelInJavaSearchData {
 	}
 
 	public String getScopeDescription() {
+		if (scopeDescription == null) {
+			if (searchIn == null) {
+				scopeDescription = "workspace";
+			} else {
+				if (searchIn.contains(SearchIn.MAIN)) {
+					if (searchIn.contains(SearchIn.TEST)) {
+						scopeDescription = "src";
+					} else {
+						scopeDescription = "src/main";
+					}
+				} else if (searchIn.contains(SearchIn.TEST)) {
+					scopeDescription = "src/test";
+				}
+				if (searchIn.contains(SearchIn.GENERATE)) {
+					if (scopeDescription != null) {
+						scopeDescription += ", generated-sources";
+					} else {
+						scopeDescription = "generated-sources";
+					}
+				}
+			}
+		}
 		return scopeDescription;
 	}
 
