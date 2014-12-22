@@ -42,7 +42,7 @@ public class FindDataModelInJavaSearchData {
 		// setter
 		SET("set%s"), SET_OPTION("set%sOption"), SET_STRING("set%sAsString"),
 		// other
-		KEY, EXPORTER;
+		KEY, EXPORTER, PORTER_NAME;
 
 		private final String data;
 
@@ -73,6 +73,7 @@ public class FindDataModelInJavaSearchData {
 
 	private boolean limitKey = true;
 	private boolean limitExporter = true;
+	private boolean limitPorterName = true;
 	private List<String> methodPattern = null;
 	private Set<SearchIn> searchIn = null;
 	private Set<SearchClass> searchClass = null;
@@ -164,9 +165,10 @@ public class FindDataModelInJavaSearchData {
 		this.methodPattern = methodPattern;
 	}
 
-	public void initializeLimit(boolean key, boolean exporter) {
-		this.limitKey = key;
-		this.limitExporter = exporter;
+	public void initializeLimit(Set<LimitTo> limit) {
+		this.limitKey = limit.contains(LimitTo.KEY);
+		this.limitExporter = limit.contains(LimitTo.EXPORTER);
+		this.limitPorterName = limit.contains(LimitTo.PORTER_NAME);
 	}
 
 	private void initializeSearchIn(Set<SearchIn> searchIn) {
@@ -223,14 +225,15 @@ public class FindDataModelInJavaSearchData {
 	}
 
 	public SearchPattern createSearchPattern() {
-		if (getPropertyName() == null) {
-			return createTypePattern();
-		}
-
 		List<SearchPattern> list = new ArrayList<SearchPattern>();
-		createMethodPattern(list);
-		createKeyPattern(list);
-		createGetOrderPattern(list);
+		if (getPropertyName() == null) {
+			createTypePattern(list);
+			createPorterNamePattern(list);
+		} else {
+			createMethodPattern(list);
+			createKeyPattern(list);
+			createGetOrderPattern(list);
+		}
 
 		SearchPattern result = null;
 		for (SearchPattern pattern : list) {
@@ -243,12 +246,13 @@ public class FindDataModelInJavaSearchData {
 		return result;
 	}
 
-	protected SearchPattern createTypePattern() {
+	protected void createTypePattern(List<SearchPattern> list) {
 		IJavaProject javaProject = JavaCore.create(getProject());
 		IType type = TypeUtil.findType(javaProject, getModelClassName());
 		int limitTo = IJavaSearchConstants.REFERENCES;
 		int matchRule = SearchPattern.R_EXACT_MATCH | SearchPattern.R_CASE_SENSITIVE | SearchPattern.R_ERASURE_MATCH;
-		return SearchPattern.createPattern(type, limitTo, matchRule);
+		SearchPattern pattern = SearchPattern.createPattern(type, limitTo, matchRule);
+		list.add(pattern);
 	}
 
 	protected void createMethodPattern(List<SearchPattern> list) {
@@ -300,6 +304,18 @@ public class FindDataModelInJavaSearchData {
 		int limitTo = IJavaSearchConstants.DECLARATIONS;
 		int matchRule = SearchPattern.R_EXACT_MATCH | SearchPattern.R_CASE_SENSITIVE;
 		SearchPattern pattern = SearchPattern.createPattern(method, searchFor, limitTo, matchRule);
+		list.add(pattern);
+	}
+
+	protected void createPorterNamePattern(List<SearchPattern> list) {
+		if (!limitPorterName) {
+			return;
+		}
+		String type = "*";
+		int searchFor = IJavaSearchConstants.TYPE;
+		int limitTo = IJavaSearchConstants.DECLARATIONS;
+		int matchRule = SearchPattern.R_PATTERN_MATCH;
+		SearchPattern pattern = SearchPattern.createPattern(type, searchFor, limitTo, matchRule);
 		list.add(pattern);
 	}
 

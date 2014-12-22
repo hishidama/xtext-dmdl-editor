@@ -52,7 +52,7 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 		}
 
 		if (data.getPropertyName() == null) {
-			result.addMatch(element, match.getOffset(), match.getLength());
+			acceptModel(element, match);
 			return;
 		}
 
@@ -199,6 +199,64 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 
 			result.addMatch(match.getElement(), match.getOffset(), match.getLength());
 
+			return true;
+		}
+	}
+
+	private void acceptModel(IJavaElement element, SearchMatch match) {
+		if (element instanceof IType) {
+			IType type = (IType) element;
+			ICompilationUnit unit = type.getCompilationUnit();
+			ASTParser parser = ASTParser.newParser(AST.JLS4);
+			parser.setSource(unit);
+			ASTNode node = parser.createAST(new NullProgressMonitor());
+			TypeVisitor visitor = new TypeVisitor(match);
+			node.accept(visitor);
+			if (visitor.foundTypeDeclaration()) {
+				String modelClassName = PorterUtil.getModelClassName(type);
+				if (modelClassName == null) {
+					return;
+				}
+				if (!modelClassName.equals(data.getModelClassName())) {
+					return;
+				}
+			}
+		}
+
+		result.addMatch(element, match.getOffset(), match.getLength());
+	}
+
+	private class TypeVisitor extends ASTVisitor {
+
+		private final SearchMatch match;
+
+		private boolean foundTypeDeclaration = false;
+
+		public TypeVisitor(SearchMatch match) {
+			this.match = match;
+		}
+
+		public boolean foundTypeDeclaration() {
+			return foundTypeDeclaration;
+		}
+
+		@Override
+		public boolean preVisit2(ASTNode node) {
+			return include(node);
+		}
+
+		private boolean include(ASTNode node) {
+			int offset = node.getStartPosition();
+			int length = node.getLength();
+			return (offset <= match.getOffset()) && (match.getOffset() < offset + length);
+		}
+
+		@Override
+		public boolean visit(TypeDeclaration node) {
+			if (include(node.getName())) {
+				foundTypeDeclaration = true;
+				return false;
+			}
 			return true;
 		}
 	}

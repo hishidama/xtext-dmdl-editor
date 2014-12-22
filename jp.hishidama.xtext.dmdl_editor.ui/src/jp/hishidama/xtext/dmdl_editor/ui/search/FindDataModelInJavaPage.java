@@ -176,6 +176,7 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 		limitButtons.add(createCheckButton(field1, "setAsString", LimitTo.SET_STRING, true));
 		limitButtons.add(createCheckButton(field2, "@Key(group,order)", LimitTo.KEY, true));
 		limitButtons.add(createCheckButton(field2, "Exporter(order)", LimitTo.EXPORTER, true));
+		limitButtons.add(createCheckButton(field2, "Importer/Exporter Name", LimitTo.PORTER_NAME, true));
 
 		for (Button button : limitButtons) {
 			button.addSelectionListener(updateListener);
@@ -438,15 +439,14 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 		return list;
 	}
 
-	public boolean containsLimit(LimitTo limit) {
+	public Set<LimitTo> getLimit() {
+		Set<LimitTo> set = EnumSet.noneOf(LimitTo.class);
 		for (Button button : limitButtons) {
 			if (button.getSelection()) {
-				if (button.getData() == limit) {
-					return true;
-				}
+				set.add((LimitTo) button.getData());
 			}
 		}
-		return false;
+		return set;
 	}
 
 	public Set<SearchIn> getSearchIn() {
@@ -485,7 +485,7 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 		FindDataModelInJavaSearchData data = new FindDataModelInJavaSearchData(project, modelName, propertyName);
 		data.initializeScope(getSearchIn());
 		data.initializeMethodPattern(getMethodPattern());
-		data.initializeLimit(containsLimit(LimitTo.KEY), containsLimit(LimitTo.EXPORTER));
+		data.initializeLimit(getLimit());
 		data.initializeSearchClass(getSearchClass());
 		FindDataModelInJavaSearchQuery query = new FindDataModelInJavaSearchQuery(data);
 
