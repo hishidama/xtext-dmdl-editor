@@ -37,6 +37,8 @@ import org.eclipse.search.ui.NewSearchUI;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -71,6 +73,7 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 	private Button propertyButton;
 
 	private List<Button> limitButtons = new ArrayList<Button>();
+	private List<Button> methodButtons = new ArrayList<Button>();
 	private List<Button> searchInButtons = new ArrayList<Button>();
 	private List<Button> searchClassButtons = new ArrayList<Button>();
 
@@ -164,10 +167,32 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 
 		Composite field1 = new Composite(field, SWT.NONE);
 		field1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		field1.setLayout(new GridLayout(6, false));
+		field1.setLayout(new GridLayout(7, false));
 		Composite field2 = new Composite(field, SWT.NONE);
 		field2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		field2.setLayout(new GridLayout(6, false));
+		field2.setLayout(new GridLayout(3, false));
+
+		Label label = new Label(field1, SWT.NONE);
+		label.setText("Method:");
+		label.addMouseListener(new MouseListener() {
+
+			public void mouseUp(MouseEvent e) {
+			}
+
+			public void mouseDown(MouseEvent e) {
+				boolean check = true;
+				for (Button button : methodButtons) {
+					check &= button.getSelection();
+				}
+				for (Button button : methodButtons) {
+					button.setSelection(!check);
+				}
+				updateOKStatus();
+			}
+
+			public void mouseDoubleClick(MouseEvent e) {
+			}
+		});
 		limitButtons.add(createCheckButton(field1, "get", LimitTo.GET, true));
 		limitButtons.add(createCheckButton(field1, "getOption", LimitTo.GET_OPTION, true));
 		limitButtons.add(createCheckButton(field1, "getAsString", LimitTo.GET_STRING, true));
@@ -180,6 +205,10 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 
 		for (Button button : limitButtons) {
 			button.addSelectionListener(updateListener);
+			LimitTo limit = (LimitTo) button.getData();
+			if (limit.getData() != null) {
+				methodButtons.add(button);
+			}
 		}
 
 		return field;
@@ -427,13 +456,11 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 
 	public List<String> getMethodPattern() {
 		List<String> list = new ArrayList<String>();
-		for (Button button : limitButtons) {
+		for (Button button : methodButtons) {
 			if (button.getSelection()) {
 				LimitTo limit = (LimitTo) button.getData();
 				String data = limit.getData();
-				if (data != null) {
-					list.add(data);
-				}
+				list.add(data);
 			}
 		}
 		return list;
