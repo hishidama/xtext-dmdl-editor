@@ -37,7 +37,26 @@ import org.eclipse.jdt.internal.ui.search.JavaSearchScopeFactory;
 public class FindDataModelInJavaSearchData {
 
 	public static enum LimitTo {
-		METHOD, KEY, EXPORTER
+		// getter
+		GET("get%s"), GET_OPTION("get%sOption"), GET_STRING("get%sAsString"),
+		// setter
+		SET("set%s"), SET_OPTION("set%sOption"), SET_STRING("set%sAsString"),
+		// other
+		KEY, EXPORTER;
+
+		private final String data;
+
+		LimitTo() {
+			this(null);
+		}
+
+		LimitTo(String data) {
+			this.data = data;
+		}
+
+		public String getData() {
+			return data;
+		}
 	}
 
 	public static enum SearchIn {

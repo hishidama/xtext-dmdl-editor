@@ -71,10 +71,8 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 	private Button propertyButton;
 
 	private List<Button> limitButtons = new ArrayList<Button>();
-	private List<Button> methodButtons = new ArrayList<Button>();
 	private List<Button> searchInButtons = new ArrayList<Button>();
 	private List<Button> searchClassButtons = new ArrayList<Button>();
-	private Button limitMethodButton;
 
 	private List<Button> dialogSaveButtons = new ArrayList<Button>();
 
@@ -146,11 +144,9 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 			GridData data = new GridData(GridData.FILL, GridData.FILL, false, false, 3, 1);
 			block.setLayoutData(data);
 			block.setLayout(new GridLayout(2, true));
-
-			createLimitTo(block);
-			createMethodName(block);
 		}
 
+		createLimitTo(block);
 		createSearchIn(block);
 		createSearchClass(block);
 
@@ -162,51 +158,26 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 
 	private Control createLimitTo(Composite composite) {
 		Group field = new Group(composite, SWT.NONE);
-		field.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		field.setText("Limit To");
-		field.setLayout(new GridLayout(2, false));
+		field.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
+		field.setText("Use As");
+		field.setLayout(new GridLayout(1, false));
 
-		limitMethodButton = createCheckButton(field, "method", LimitTo.METHOD, true);
-		limitButtons.add(limitMethodButton);
-		new Label(field, SWT.NONE);
-
-		limitButtons.add(createCheckButton(field, "@Key", LimitTo.KEY, true));
-		limitButtons.add(createCheckButton(field, "Exporter", LimitTo.EXPORTER, true));
+		Composite field1 = new Composite(field, SWT.NONE);
+		field1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		field1.setLayout(new GridLayout(6, false));
+		Composite field2 = new Composite(field, SWT.NONE);
+		field2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		field2.setLayout(new GridLayout(6, false));
+		limitButtons.add(createCheckButton(field1, "get", LimitTo.GET, true));
+		limitButtons.add(createCheckButton(field1, "getOption", LimitTo.GET_OPTION, true));
+		limitButtons.add(createCheckButton(field1, "getAsString", LimitTo.GET_STRING, true));
+		limitButtons.add(createCheckButton(field1, "set", LimitTo.SET, true));
+		limitButtons.add(createCheckButton(field1, "setOption", LimitTo.SET_OPTION, true));
+		limitButtons.add(createCheckButton(field1, "setAsString", LimitTo.SET_STRING, true));
+		limitButtons.add(createCheckButton(field2, "@Key(group,order)", LimitTo.KEY, true));
+		limitButtons.add(createCheckButton(field2, "Exporter(order)", LimitTo.EXPORTER, true));
 
 		for (Button button : limitButtons) {
-			if (button == limitMethodButton) {
-				button.addSelectionListener(new SelectionAdapter() {
-					@Override
-					public void widgetSelected(SelectionEvent e) {
-						boolean select = limitMethodButton.getSelection();
-						for (Button button : methodButtons) {
-							button.setSelection(select);
-						}
-						updateOKStatus();
-					}
-				});
-			} else {
-				button.addSelectionListener(updateListener);
-			}
-		}
-
-		return field;
-	}
-
-	private Control createMethodName(Composite composite) {
-		Group field = new Group(composite, SWT.NONE);
-		field.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		field.setText("Method Name");
-		field.setLayout(new GridLayout(3, false));
-
-		methodButtons.add(createCheckButton(field, "get", "get%s", true));
-		methodButtons.add(createCheckButton(field, "getOption", "get%sOption", true));
-		methodButtons.add(createCheckButton(field, "getAsString", "get%sAsString", true));
-		methodButtons.add(createCheckButton(field, "set", "set%s", true));
-		methodButtons.add(createCheckButton(field, "setOption", "set%sOption", true));
-		methodButtons.add(createCheckButton(field, "setAsString", "set%sAsString", true));
-
-		for (Button button : methodButtons) {
 			button.addSelectionListener(updateListener);
 		}
 
@@ -434,8 +405,6 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 			return false;
 		}
 
-		limitMethodButton.setSelection(!getMethodPattern().isEmpty());
-
 		boolean limitExists = false;
 		for (Button button : limitButtons) {
 			limitExists |= button.getSelection();
@@ -456,9 +425,13 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 
 	public List<String> getMethodPattern() {
 		List<String> list = new ArrayList<String>();
-		for (Button button : methodButtons) {
+		for (Button button : limitButtons) {
 			if (button.getSelection()) {
-				list.add((String) button.getData());
+				LimitTo limit = (LimitTo) button.getData();
+				String data = limit.getData();
+				if (data != null) {
+					list.add(data);
+				}
 			}
 		}
 		return list;
