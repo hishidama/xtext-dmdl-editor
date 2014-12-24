@@ -16,6 +16,7 @@ import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IMember;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTParser;
@@ -206,6 +207,12 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 	private void acceptModel(IJavaElement element, SearchMatch match) {
 		if (element instanceof IType) {
 			IType type = (IType) element;
+			try {
+				if (type.isEnum() || type.isAnnotation()) {
+					return;
+				}
+			} catch (JavaModelException e) {
+			}
 			ICompilationUnit unit = type.getCompilationUnit();
 			ASTParser parser = ASTParser.newParser(AST.JLS4);
 			parser.setSource(unit);
