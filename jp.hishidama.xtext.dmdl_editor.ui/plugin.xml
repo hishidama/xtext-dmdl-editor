@@ -1346,6 +1346,14 @@
             allPopups="true"
             locationURI="popup:org.eclipse.jdt.ui.source.menu?after=additions">
          <separator
+               name="jp.hishidama.xtext.dmdl_editor.jdt.separator.editorSourceMenu1"
+               visible="true">
+         </separator>
+         <command
+               commandId="jp.hishidama.eclipse_plugin.jdt.method.modifyMethodInvocation"
+               style="push">
+         </command>
+         <separator
                name="jp.hishidama.xtext.dmdl_editor.jdt.separator.editorSourceMenu"
                visible="true">
          </separator>
