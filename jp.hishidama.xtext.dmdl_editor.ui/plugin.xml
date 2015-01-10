@@ -745,6 +745,15 @@
                      value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-flow-test-class">
                </parameter>
             </command>
+            <separator
+                  name="beginBatchCompile"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
+                  icon="icons/ch_callers.gif"
+                  style="push">
+            </command>
          </menu>
       </menuContribution>
       <menuContribution
@@ -752,14 +761,20 @@
          <toolbar
                id="jp.hishidama.xtext.dmdl_editor.toolbar">
             <command
-                  commandId="jp.hishidama.asakusafwWrapper.command.dmdlErrorCheck"
-                  icon="icons/hishidama16.gif"
-                  tooltip="Asakusa FrameworkのDMDLパーサーを使用してDMDLのエラーチェックを行います。">
+                  id="jp.hishidama.xtext.dmdl_editor.ui.toolbar.newDataModel"
+                  commandId="org.eclipse.ui.newWizard"
+                  style="pulldown">
+               <parameter
+                     name="newWizardId"
+                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-datamodel">
+               </parameter>
             </command>
             <command
+                  id="jp.hishidama.xtext.dmdl_editor.ui.toolbar.dmdlCompile"
                   commandId="jp.hishidama.asakusafwWrapper.command.dmdlCompile"
                   icon="icons/hishidama16.gif"
-                  tooltip="Asakusa FrameworkのDMDLコンパイラーを起動してJavaクラスを生成します。">
+                  tooltip="Asakusa FrameworkのDMDLコンパイラーを起動してJavaクラスを生成します。"
+                  style="push">
             </command>
             <command
                   commandId="jp.hishidama.xtext.dmdl_editor.command.searchDataModel"
@@ -770,6 +785,32 @@
                   name="beginNewWizard"
                   visible="true">
             </separator>
+            <command
+                  id="jp.hishidama.xtext.dmdl_editor.ui.toolbar.newClassWizard"
+                  commandId="org.eclipse.ui.newWizard"
+                  style="pulldown">
+               <parameter
+                     name="newWizardId"
+                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-porter-class">
+               </parameter>
+            </command>
+            <command
+                  id="jp.hishidama.xtext.dmdl_editor.ui.toolbar.newOperatorWizard"
+                  commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorMethod"
+                  icon="icons/newpublic_co.gif"
+                  tooltip="Operatorクラスに演算子メソッドを追加します。"
+                  style="pulldown">
+            </command>
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
+                  icon="icons/ch_callers.gif"
+                  tooltip="Batchクラスをコンパイルします。"
+                  style="push">
+            </command>
+         </toolbar>
+      </menuContribution>
+      <menuContribution
+            locationURI="menu:jp.hishidama.xtext.dmdl_editor.ui.toolbar.newDataModel">
             <command
                   commandId="org.eclipse.ui.newWizard"
                   style="push">
@@ -791,23 +832,15 @@
                      value="jp.hishidama.xtext.dmdl_editor.ui.wizard.attribute">
                </parameter>
             </command>
+            <separator
+                  name="beginErrorCheck"
+                  visible="true">
+            </separator>
             <command
-                  id="jp.hishidama.xtext.dmdl_editor.ui.toolbar.newClassWizard"
-                  commandId="org.eclipse.ui.newWizard"
-                  style="pulldown">
-               <parameter
-                     name="newWizardId"
-                     value="jp.hishidama.xtext.dmdl_editor.ui.wizard.new-porter-class">
-               </parameter>
+                  commandId="jp.hishidama.asakusafwWrapper.command.dmdlErrorCheck"
+                  icon="icons/hishidama16.gif"
+                  tooltip="Asakusa FrameworkのDMDLパーサーを使用してDMDLのエラーチェックを行います。">
             </command>
-            <command
-                  id="jp.hishidama.xtext.dmdl_editor.ui.toolbar.newOperatorWizard"
-                  commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorMethod"
-                  icon="icons/newpublic_co.gif"
-                  tooltip="Operatorクラスに演算子メソッドを追加します。"
-                  style="pulldown">
-            </command>
-         </toolbar>
       </menuContribution>
       <menuContribution
             locationURI="menu:jp.hishidama.xtext.dmdl_editor.ui.toolbar.newClassWizard">
@@ -1249,7 +1282,7 @@
                <with variable="activeEditor">
                   <test
                         forcePluginActivation="true"
-                        property="jp.hishidama.xtext.dmdl_editor.ui.jdt.isFlowClass" />
+                        property="jp.hishidama.eclipse_plugin.asakusafw_wrapper.jdt.isFlowClass" />
                </with>
             </and>
          </enabledWhen>
@@ -1391,18 +1424,13 @@
                   commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyJobflowClass"
                   style="push">
             </command>
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.batchCompile.editorMenu"
+                  icon="icons/ch_callers.gif"
+                  style="push">
+            </command>
          </menu>
       </menuContribution>
-   </extension>
-   <extension
-         point="org.eclipse.core.expressions.propertyTesters">
-      <propertyTester
-            class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.DmdlJdtPropertyTester"
-            id="jp.hishidama.xtext.dmdl_editor.ui.jdtPropertyTester"
-            namespace="jp.hishidama.xtext.dmdl_editor.ui.jdt"
-            properties="isFlowClass"
-            type="org.eclipse.ui.texteditor.ITextEditor">
-      </propertyTester>
    </extension>
 
    <extension point="org.eclipse.search.searchPages">
