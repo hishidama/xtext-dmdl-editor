@@ -2,6 +2,7 @@ package jp.hishidama.xtext.dmdl_editor.jdt.editor_menu;
 
 import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.DeclaredDmdlHyperlink;
 import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.OpenDeclaredDmdlHyperlinkDetector;
+import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.OpenKeyDmdlHyperlinkDetector;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -16,6 +17,7 @@ import org.eclipse.xtext.ui.editor.copyqualifiedname.ClipboardUtil;
 @SuppressWarnings("restriction")
 public class JavaEditorCopyDmdlNameHandler extends AbstractHandler {
 	private OpenDeclaredDmdlHyperlinkDetector detector = new OpenDeclaredDmdlHyperlinkDetector();
+	private OpenKeyDmdlHyperlinkDetector keyDetector = new OpenKeyDmdlHyperlinkDetector();
 
 	// @Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -27,6 +29,9 @@ public class JavaEditorCopyDmdlNameHandler extends AbstractHandler {
 		int offset = selection.getOffset();
 
 		IHyperlink[] links = detector.detectHyperlinks(editor, offset);
+		if (links == null || links.length <= 0) {
+			links = keyDetector.detectHyperlinks(editor, offset);
+		}
 		if (links != null && links.length >= 1) {
 			DeclaredDmdlHyperlink link = (DeclaredDmdlHyperlink) links[0];
 			copyToClipboard(link.getName());
