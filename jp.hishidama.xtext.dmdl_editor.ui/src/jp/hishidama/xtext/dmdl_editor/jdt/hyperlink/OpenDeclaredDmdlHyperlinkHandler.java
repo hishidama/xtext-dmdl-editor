@@ -10,6 +10,7 @@ import org.eclipse.ui.texteditor.ITextEditor;
 
 public class OpenDeclaredDmdlHyperlinkHandler extends AbstractHandler {
 	private OpenDeclaredDmdlHyperlinkDetector detector = new OpenDeclaredDmdlHyperlinkDetector();
+	private OpenKeyDmdlHyperlinkDetector keyDetector = new OpenKeyDmdlHyperlinkDetector();
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ITextEditor editor = (ITextEditor) HandlerUtil.getActiveEditor(event);
@@ -20,6 +21,9 @@ public class OpenDeclaredDmdlHyperlinkHandler extends AbstractHandler {
 		int offset = selection.getOffset();
 
 		IHyperlink[] links = detector.detectHyperlinks(editor, offset);
+		if (links == null || links.length <= 0) {
+			links = keyDetector.detectHyperlinks(editor, offset);
+		}
 		if (links != null && links.length >= 1) {
 			IHyperlink link = links[0];
 			link.open();
