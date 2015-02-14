@@ -218,6 +218,8 @@ public class PropertyUtil {
 			name = name.substring(3);
 		} else if (name.startsWith("get")) {
 			name = name.substring(3);
+		} else if (name.startsWith("is")) {
+			name = name.substring(2);
 		}
 		if (name.endsWith("Option")) {
 			name = name.substring(0, name.length() - 6);

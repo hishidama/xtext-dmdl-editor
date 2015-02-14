@@ -38,24 +38,24 @@ public class FindDataModelInJavaSearchData {
 
 	public static enum LimitTo {
 		// getter
-		GET("get%s"), GET_OPTION("get%sOption"), GET_STRING("get%sAsString"),
+		GET("get%s", "is%s"), GET_OPTION("get%sOption"), GET_STRING("get%sAsString"),
 		// setter
 		SET("set%s"), SET_OPTION("set%sOption"), SET_STRING("set%sAsString"),
 		// other
 		KEY, EXPORTER, PORTER_NAME;
 
-		private final String data;
+		private final List<String> pattern;
 
-		LimitTo() {
-			this(null);
+		LimitTo(String... pattern) {
+			if (pattern.length > 0) {
+				this.pattern = Arrays.asList(pattern);
+			} else {
+				this.pattern = null;
+			}
 		}
 
-		LimitTo(String data) {
-			this.data = data;
-		}
-
-		public String getData() {
-			return data;
+		public List<String> getMethodPattern() {
+			return pattern;
 		}
 	}
 
@@ -240,7 +240,13 @@ public class FindDataModelInJavaSearchData {
 
 	public List<String> getMethodPattern() {
 		if (methodPattern == null) {
-			return Arrays.asList("get%s", "get%sOption", "get%sAsString", "set%s", "set%sOption", "set%sAsString");
+			methodPattern = new ArrayList<String>();
+			for (LimitTo limit : LimitTo.values()) {
+				List<String> pattern = limit.getMethodPattern();
+				if (pattern != null) {
+					methodPattern.addAll(pattern);
+				}
+			}
 		}
 		return methodPattern;
 	}

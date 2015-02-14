@@ -206,7 +206,7 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 		for (Button button : limitButtons) {
 			button.addSelectionListener(updateListener);
 			LimitTo limit = (LimitTo) button.getData();
-			if (limit.getData() != null) {
+			if (limit.getMethodPattern() != null) {
 				methodButtons.add(button);
 			}
 		}
@@ -459,8 +459,8 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 		for (Button button : methodButtons) {
 			if (button.getSelection()) {
 				LimitTo limit = (LimitTo) button.getData();
-				String data = limit.getData();
-				list.add(data);
+				List<String> data = limit.getMethodPattern();
+				list.addAll(data);
 			}
 		}
 		return list;
