@@ -45,12 +45,12 @@ public class FindDataModelInJavaHandler extends AbstractHandler {
 		} else if ("all".equalsIgnoreCase(action)) {
 			execute(event, null, null);
 		} else {
-			open();
+			openSearchDialog();
 		}
 		return null;
 	}
 
-	private void open() {
+	private void openSearchDialog() {
 		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		NewSearchUI.openSearchDialog(window, FindDataModelInJavaPage.ID);
 	}

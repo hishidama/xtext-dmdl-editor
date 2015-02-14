@@ -80,6 +80,10 @@ Javaエディターを拡張している機能もあります。
     * プロパティー名や「ASC」「DESC」の入力補完が出来る。
 * Javadocの入力補完が出来る。
     * フィールドの型や@param,@returnの型がデータモデルクラスの場合、該当Javadocの入力補完候補にデータモデル名が表示される。
+* フローでの演算子の使用箇所を検索できる。
+    * Operatorクラスの演算子メソッドを右クリックして ``[Asakusa DSL References]→[Search in src/main(Flow)]`` を選択すると、JobFlow/FlowPart上で該当演算子が使われている箇所を検索する。
+* MasterSelectionの使用箇所を検索できる。
+    * OperatorクラスのMasterSelectionメソッドを右クリックして ``[Asakusa DSL References]→[Search in src/main(Operator)]`` を選択すると、Operatorクラス内で該当MasterSelectionが使われている箇所を検索する。
 
 DMDLとは直接関係無い機能ですが、以下のようなことも出来ます。
 

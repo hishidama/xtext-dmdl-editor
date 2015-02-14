@@ -1447,9 +1447,9 @@
          point="org.eclipse.search.searchResultViewPages">
       <viewPage
             id="jp.hishidama.xtext.dmdl_editor.ui.FindDataModelInJavaSearchResultPage"
-            searchResultClass="jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchResult"
+            searchResultClass="jp.hishidama.xtext.dmdl_editor.jdt.search.JavaElementSearchResult"
             helpContextId="org.eclipse.jdt.ui.java_search_result"
-            class="jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchResultPage">
+            class="jp.hishidama.xtext.dmdl_editor.jdt.search.JavaElementSearchResultPage">
       </viewPage>
    </extension>
 </plugin>

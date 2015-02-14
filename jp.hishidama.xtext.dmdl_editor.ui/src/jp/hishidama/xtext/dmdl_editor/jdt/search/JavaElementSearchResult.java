@@ -1,4 +1,4 @@
-package jp.hishidama.xtext.dmdl_editor.ui.search;
+package jp.hishidama.xtext.dmdl_editor.jdt.search;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,12 +18,12 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 
-public class FindDataModelInJavaSearchResult extends AbstractTextSearchResult implements IFileMatchAdapter,
+public class JavaElementSearchResult extends AbstractTextSearchResult implements IFileMatchAdapter,
 		IEditorMatchAdapter {
 
-	private final FindDataModelInJavaSearchQuery query;
+	private final ResultLabelSearchQuery query;
 
-	public FindDataModelInJavaSearchResult(FindDataModelInJavaSearchQuery query) {
+	public JavaElementSearchResult(ResultLabelSearchQuery query) {
 		this.query = query;
 	}
 

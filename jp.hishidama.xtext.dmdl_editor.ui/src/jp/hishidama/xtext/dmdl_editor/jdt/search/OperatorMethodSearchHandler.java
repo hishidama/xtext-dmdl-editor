@@ -2,6 +2,7 @@ package jp.hishidama.xtext.dmdl_editor.jdt.search;
 
 import java.lang.reflect.InvocationTargetException;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.OperatorUtil;
 import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
@@ -17,6 +18,8 @@ import org.eclipse.jdt.internal.ui.actions.SelectionConverter;
 import org.eclipse.jdt.internal.ui.javaeditor.JavaEditor;
 import org.eclipse.jdt.ui.actions.FindReferencesAction;
 import org.eclipse.jface.text.ITextSelection;
+import org.eclipse.search.ui.ISearchQuery;
+import org.eclipse.search.ui.NewSearchUI;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.handlers.HandlerUtil;
 
@@ -44,13 +47,19 @@ public class OperatorMethodSearchHandler extends AbstractHandler {
 			return null;
 		}
 
+		final IMethod[] masterSelectionMethod = { null };
 		final IJavaElement[] returnTarget = { null };
 		FindReferencesAction action = new FindReferencesAction(editor) {
 			@Override
 			public void run(IJavaElement element) {
 				IJavaElement target = null;
 				if (element instanceof IMethod) {
-					target = getTargetMethod((IMethod) element);
+					IMethod method = (IMethod) element;
+					masterSelectionMethod[0] = getMasterSelectionMethod(method);
+					if (masterSelectionMethod[0] != null) {
+						return;
+					}
+					target = getTargetMethod(method);
 				} else if (element instanceof IType) {
 					target = getTargetType((IType) element);
 				}
@@ -65,7 +74,18 @@ public class OperatorMethodSearchHandler extends AbstractHandler {
 		ITextSelection selection = (ITextSelection) editor.getSelectionProvider().getSelection();
 		action.run(selection);
 
+		if (masterSelectionMethod[0] != null) {
+			findMasterSelection(masterSelectionMethod[0]);
+			return masterSelectionMethod[0];
+		}
 		return returnTarget[0];
+	}
+
+	private IMethod getMasterSelectionMethod(IMethod method) {
+		if (OperatorUtil.isOperator(method, OperatorType.MASTER_SELECTION)) {
+			return method;
+		}
+		return null;
 	}
 
 	private IMethod getTargetMethod(IMethod method) {
@@ -93,5 +113,12 @@ public class OperatorMethodSearchHandler extends AbstractHandler {
 		}
 		IType factoryType = TypeUtil.findType(type.getJavaProject(), name);
 		return factoryType;
+	}
+
+	private void findMasterSelection(IMethod method) {
+		ISearchQuery query = new MasterSelectionSearchQuery(method);
+
+		NewSearchUI.activateSearchResultView();
+		NewSearchUI.runQueryInBackground(query);
 	}
 }

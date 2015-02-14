@@ -7,6 +7,7 @@ import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil.NamePosition;
+import jp.hishidama.xtext.dmdl_editor.jdt.search.JavaElementSearchResult;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -35,9 +36,9 @@ import org.eclipse.jdt.core.search.SearchRequestor;
 public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 
 	private final FindDataModelInJavaSearchData data;
-	private final FindDataModelInJavaSearchResult result;
+	private final JavaElementSearchResult result;
 
-	public FindDataModelInJavaSearchRequestor(FindDataModelInJavaSearchData data, FindDataModelInJavaSearchResult result) {
+	public FindDataModelInJavaSearchRequestor(FindDataModelInJavaSearchData data, JavaElementSearchResult result) {
 		this.data = data;
 		this.result = result;
 	}

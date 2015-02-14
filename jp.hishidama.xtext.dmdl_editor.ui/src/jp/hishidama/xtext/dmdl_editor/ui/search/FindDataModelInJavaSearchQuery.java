@@ -2,6 +2,9 @@ package jp.hishidama.xtext.dmdl_editor.ui.search;
 
 import java.text.MessageFormat;
 
+import jp.hishidama.xtext.dmdl_editor.jdt.search.JavaElementSearchResult;
+import jp.hishidama.xtext.dmdl_editor.jdt.search.ResultLabelSearchQuery;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -12,19 +15,18 @@ import org.eclipse.jdt.core.search.SearchEngine;
 import org.eclipse.jdt.core.search.SearchParticipant;
 import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.core.search.SearchRequestor;
-import org.eclipse.search.ui.ISearchQuery;
 
-public class FindDataModelInJavaSearchQuery implements ISearchQuery {
+public class FindDataModelInJavaSearchQuery implements ResultLabelSearchQuery {
 	private final FindDataModelInJavaSearchData data;
 
-	private FindDataModelInJavaSearchResult searchResult;
+	private JavaElementSearchResult searchResult;
 
 	public FindDataModelInJavaSearchQuery(FindDataModelInJavaSearchData data) {
 		this.data = data;
 	}
 
 	public IStatus run(IProgressMonitor monitor) throws OperationCanceledException {
-		FindDataModelInJavaSearchResult result = getSearchResult();
+		JavaElementSearchResult result = getSearchResult();
 		result.removeAll();
 
 		SearchPattern pattern = data.createSearchPattern();
@@ -59,9 +61,9 @@ public class FindDataModelInJavaSearchQuery implements ISearchQuery {
 		return true;
 	}
 
-	public FindDataModelInJavaSearchResult getSearchResult() {
+	public JavaElementSearchResult getSearchResult() {
 		if (searchResult == null) {
-			searchResult = new FindDataModelInJavaSearchResult(this);
+			searchResult = new JavaElementSearchResult(this);
 		}
 		return searchResult;
 	}
