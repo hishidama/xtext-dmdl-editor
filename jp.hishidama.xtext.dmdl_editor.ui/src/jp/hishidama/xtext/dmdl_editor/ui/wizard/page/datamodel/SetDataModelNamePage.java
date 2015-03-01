@@ -30,6 +30,8 @@ import org.eclipse.swt.widgets.Text;
 public class SetDataModelNamePage extends WizardPage {
 	private IProject project;
 	private String path;
+	private String initialPositionModelName;
+	private PositionType initialPositionType;
 
 	private String fixModelName;
 	private String fixModelDescription;
@@ -60,11 +62,13 @@ public class SetDataModelNamePage extends WizardPage {
 		setDescription("作成するデータモデルの名前と種類を入力して下さい。");
 	}
 
-	public void setDmdlFile(String path) {
+	public void setDmdlFile(String path, String modelName, PositionType position) {
 		this.path = path;
 		if (file != null) {
 			file.setText(path);
 		}
+		this.initialPositionModelName = modelName;
+		this.initialPositionType = position;
 	}
 
 	public void setDataModelName(String name) {
@@ -131,7 +135,7 @@ public class SetDataModelNamePage extends WizardPage {
 
 			createPosition(field, "ファイルの先頭", PositionType.FILE_FIRST);
 			createPosition(field, "ファイルの先頭（コメントの後）", PositionType.FILE_FIRST_COMMENT);
-			createPosition(field, "ファイルの末尾", PositionType.FILE_LAST).setSelection(true);
+			createPosition(field, "ファイルの末尾", PositionType.FILE_LAST);
 			new Label(field, SWT.NONE); // dummy
 			new Label(field, SWT.NONE); // dummy
 
@@ -143,6 +147,19 @@ public class SetDataModelNamePage extends WizardPage {
 				positionModelName = new Text(field, SWT.BORDER);
 				positionModelName.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 				positionModelName.addModifyListener(listener);
+				if (initialPositionModelName != null) {
+					positionModelName.setText(initialPositionModelName);
+				}
+			}
+			if (initialPositionType == null) {
+				initialPositionType = PositionType.FILE_LAST;
+			}
+			for (Button button : positionList) {
+				PositionType pos = (PositionType) button.getData();
+				if (pos == initialPositionType) {
+					button.setSelection(true);
+					break;
+				}
 			}
 
 			new Label(composite, SWT.NONE); // dummy
@@ -247,6 +264,9 @@ public class SetDataModelNamePage extends WizardPage {
 		}
 
 		PositionType pos = getPosition();
+		if (pos == null) {
+			return;
+		}
 		if (pos.name().startsWith("DM_")) {
 			String src = positionModelName.getText().trim();
 			if (src.isEmpty()) {

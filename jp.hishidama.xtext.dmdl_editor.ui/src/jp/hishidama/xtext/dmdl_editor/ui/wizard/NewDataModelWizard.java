@@ -28,8 +28,11 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
@@ -38,17 +41,26 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
+import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.ui.editor.XtextEditor;
+import org.eclipse.xtext.ui.editor.model.IXtextDocument;
+import org.eclipse.xtext.ui.editor.model.XtextDocumentUtil;
+import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
 public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 	protected IProject project;
 	protected DataModelType fixType;
 	private String[] sourceModels;
 	protected String defaultFile = "src/main/dmdl/";
+	private String positionModelName = null;
+	private PositionType positionType = PositionType.FILE_LAST;
 
 	private SetDataModelNamePage modelPage;
 	private CreateDataModelJoinPage joinPage;
@@ -102,8 +114,67 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 		project = file.getProject();
 		if ("dmdl".equals(file.getFileExtension())) {
 			defaultFile = file.getProjectRelativePath().toPortableString();
+			initFilePosition(file);
 		} else {
 			defaultFile = file.getParent().getProjectRelativePath().toPortableString() + "/";
+		}
+	}
+
+	private void initFilePosition(IFile file) {
+		IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		if (!(editorPart instanceof XtextEditor)) {
+			return;
+		}
+		XtextEditor editor = (XtextEditor) editorPart;
+		if (!file.equals(((FileEditorInput) editor.getEditorInput()).getFile())) {
+			return;
+		}
+		IXtextDocument doc = XtextDocumentUtil.get(file);
+		if (doc != null) {
+			ITextSelection ts = (ITextSelection) editor.getSelectionProvider().getSelection();
+			final int offset = ts.getOffset();
+			ModelDefinition model = doc.readOnly(new IUnitOfWork<ModelDefinition, XtextResource>() {
+				public ModelDefinition exec(XtextResource state) throws Exception {
+					EList<EObject> list = state.getContents();
+					for (EObject object : list) {
+						Script script = (Script) object;
+						ModelDefinition prevModel = null;
+						for (ModelDefinition model : script.getList()) {
+							ICompositeNode node = NodeModelUtils.findActualNodeFor(model);
+							if (node.getTotalOffset() <= offset && offset < node.getTotalEndOffset()) {
+								String text = node.getText();
+								int space = 0;
+								for (; space < text.length(); space++) {
+									switch (text.charAt(space)) {
+									case ' ':
+									case '\t':
+									case '\r':
+									case '\n':
+										continue;
+									default:
+										break;
+									}
+									break;
+								}
+								if (offset < node.getTotalOffset() + space) {
+									if (prevModel == null) {
+										positionType = PositionType.FILE_FIRST;
+										return null;
+									}
+									return prevModel;
+								}
+								return model;
+							}
+							prevModel = model;
+						}
+					}
+					return null;
+				}
+			});
+			if (model != null) {
+				positionModelName = model.getName();
+				positionType = PositionType.DM_AFTER;
+			}
 		}
 	}
 
@@ -123,7 +194,7 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 	@Override
 	public void addPages() {
 		modelPage = new SetDataModelNamePage(project, fixType);
-		modelPage.setDmdlFile(defaultFile);
+		modelPage.setDmdlFile(defaultFile, positionModelName, positionType);
 		addModelPage(modelPage);
 
 		addPage(DataModelType.RECORD, new CreateDataModelNormalPage());
