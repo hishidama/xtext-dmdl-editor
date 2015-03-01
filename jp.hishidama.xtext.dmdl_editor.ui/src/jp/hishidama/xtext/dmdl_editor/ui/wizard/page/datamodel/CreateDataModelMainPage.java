@@ -1,7 +1,9 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -40,6 +42,8 @@ public abstract class CreateDataModelMainPage<R extends DataModelRow> extends Cr
 					model = ModelUiUtil.findModel(project, modelName);
 				}
 				if (model != null) {
+					Set<String> refModelNameSet = new LinkedHashSet<String>();
+
 					List<EObject> list = ModelUtil.getRawProperties(model);
 					int index = 0;
 					for (EObject object : list) {
@@ -53,12 +57,38 @@ public abstract class CreateDataModelMainPage<R extends DataModelRow> extends Cr
 							throw new UnsupportedOperationException("object=" + object);
 						}
 						index = addToList(index, row);
+
+						String refModelName = row.getRefModelName();
+						if (refModelName != null) {
+							refModelNameSet.add(refModelName);
+						}
 					}
 					tableViewer.refresh();
 					validate(true);
+
+					String filter = createModelNameFilter(refModelNameSet);
+					if (filter != null) {
+						sourceViewer.setModelNameFilter(filter);
+					}
 				}
 			}
 		}
+	}
+
+	protected String createModelNameFilter(Collection<String> modelNames) {
+		if (modelNames.isEmpty()) {
+			return null;
+		}
+		StringBuilder sb = new StringBuilder(32);
+		for (String name : modelNames) {
+			if (sb.length() != 0) {
+				sb.append('|');
+			}
+			sb.append('^');
+			sb.append(name);
+			sb.append('$');
+		}
+		return sb.toString();
 	}
 
 	@Override

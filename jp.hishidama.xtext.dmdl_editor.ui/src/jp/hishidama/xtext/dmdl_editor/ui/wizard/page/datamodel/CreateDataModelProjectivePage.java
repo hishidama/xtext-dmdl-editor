@@ -1,6 +1,6 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel;
 
-public class CreateDataModelProjectivePage extends CreateDataModelNormalPage {
+public class CreateDataModelProjectivePage extends CreateDataModelRecordPage {
 
 	public CreateDataModelProjectivePage() {
 		super("CreateDataModelProjectivePage", "射影データモデルの定義", "射影データモデルを定義して下さい。");

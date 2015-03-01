@@ -19,12 +19,12 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class EditNormalPropertyDialog extends EditDialog {
+public class EditRecordPropertyDialog extends EditDialog {
 	public static final String[] DATA_TYPE = { "INT", "LONG", "FLOAT", "DOUBLE", "TEXT", "DECIMAL", "DATE", "DATETIME",
 			"BOOLEAN", "BYTE", "SHORT" };
 
 	private IProject project;
-	private DataModelNormalRow row;
+	private DataModelRecordRow row;
 
 	private Button radio1, radio2;
 	private Text nameText;
@@ -33,7 +33,7 @@ public class EditNormalPropertyDialog extends EditDialog {
 	private Text refModelText;
 	private Button refModelButton;
 
-	public EditNormalPropertyDialog(Shell parentShell, IProject project, DataModelNormalRow row) {
+	public EditRecordPropertyDialog(Shell parentShell, IProject project, DataModelRecordRow row) {
 		super(parentShell, "プロパティー編集");
 		this.project = project;
 		this.row = row;

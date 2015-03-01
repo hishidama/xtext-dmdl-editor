@@ -15,7 +15,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.CreateDataModelJoinKeyPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.CreateDataModelJoinPage;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.CreateDataModelNormalPage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.CreateDataModelRecordPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.CreateDataModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.CreateDataModelProjectivePage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.datamodel.CreateDataModelSummarizePage;
@@ -197,14 +197,13 @@ public class NewDataModelWizard extends Wizard implements IWorkbenchWizard {
 		modelPage.setDmdlFile(defaultFile, positionModelName, positionType);
 		addModelPage(modelPage);
 
-		addPage(DataModelType.RECORD, new CreateDataModelNormalPage());
+		addPage(DataModelType.RECORD, new CreateDataModelRecordPage());
 		addPage(DataModelType.SUMMARIZED, new CreateDataModelSummarizePage());
 		joinKeyPage = new CreateDataModelJoinKeyPage();
 		joinPage = new CreateDataModelJoinPage(joinKeyPage);
 		addPage(DataModelType.JOINED, joinPage);
 		addPage(DataModelType.JOINED, joinKeyPage);
 		addPage(DataModelType.PROJECTIVE, new CreateDataModelProjectivePage());
-
 	}
 
 	protected void addModelPage(SetDataModelNamePage page) {

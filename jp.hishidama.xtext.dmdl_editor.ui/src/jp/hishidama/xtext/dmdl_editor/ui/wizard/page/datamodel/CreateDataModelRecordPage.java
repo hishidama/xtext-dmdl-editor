@@ -4,6 +4,7 @@ import static jp.hishidama.eclipse_plugin.util.StringUtil.isEmpty;
 import static jp.hishidama.eclipse_plugin.util.StringUtil.nonEmpty;
 
 import java.text.MessageFormat;
+import java.util.Collection;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
@@ -15,7 +16,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.window.Window;
 
-class DataModelNormalRow extends DataModelRow {
+class DataModelRecordRow extends DataModelRow {
 
 	@Override
 	public String getText(int columnIndex) {
@@ -72,13 +73,13 @@ class DataModelNormalRow extends DataModelRow {
 	}
 }
 
-public class CreateDataModelNormalPage extends CreateDataModelMainPage<DataModelNormalRow> {
+public class CreateDataModelRecordPage extends CreateDataModelMainPage<DataModelRecordRow> {
 
-	public CreateDataModelNormalPage() {
-		this("CreateDataModelNormalPage", "データモデルの定義", "データモデルを定義して下さい。");
+	public CreateDataModelRecordPage() {
+		this("CreateDataModelRecordPage", "データモデルの定義", "データモデルを定義して下さい。");
 	}
 
-	protected CreateDataModelNormalPage(String pageName, String pageTitle, String pageDescription) {
+	protected CreateDataModelRecordPage(String pageName, String pageTitle, String pageDescription) {
 		super(pageName, pageTitle, pageDescription);
 	}
 
@@ -91,13 +92,21 @@ public class CreateDataModelNormalPage extends CreateDataModelMainPage<DataModel
 	}
 
 	@Override
-	protected DataModelNormalRow newAddRow() {
-		return new DataModelNormalRow();
+	protected String createModelNameFilter(Collection<String> modelNames) {
+		if (modelName == null) {
+			return null;
+		}
+		return "^" + modelName + "$";
 	}
 
 	@Override
-	protected boolean doEditDialog(DataModelNormalRow row) {
-		EditNormalPropertyDialog dialog = new EditNormalPropertyDialog(getShell(), project, row);
+	protected DataModelRecordRow newAddRow() {
+		return new DataModelRecordRow();
+	}
+
+	@Override
+	protected boolean doEditDialog(DataModelRecordRow row) {
+		EditRecordPropertyDialog dialog = new EditRecordPropertyDialog(getShell(), project, row);
 		return dialog.open() == Window.OK;
 	}
 
@@ -107,8 +116,8 @@ public class CreateDataModelNormalPage extends CreateDataModelMainPage<DataModel
 	}
 
 	@Override
-	protected DataModelNormalRow newCopyRow(ModelDefinition model, Property prop) {
-		DataModelNormalRow row = new DataModelNormalRow();
+	protected DataModelRecordRow newCopyRow(ModelDefinition model, Property prop) {
+		DataModelRecordRow row = new DataModelRecordRow();
 		row.name = prop.getName();
 		row.description = PropertyUtil.getDecodedDescription(prop);
 		row.dataType = PropertyUtil.getResolvedDataTypeText(prop);
@@ -116,8 +125,8 @@ public class CreateDataModelNormalPage extends CreateDataModelMainPage<DataModel
 	}
 
 	@Override
-	protected DataModelNormalRow newDefCopyRow(ModelDefinition model, Property prop, boolean copyAttribute) {
-		DataModelNormalRow row = newCopyRow(model, prop);
+	protected DataModelRecordRow newDefCopyRow(ModelDefinition model, Property prop, boolean copyAttribute) {
+		DataModelRecordRow row = newCopyRow(model, prop);
 		if (copyAttribute) {
 			row.attribute = PropertyUtil.getAttributeString(prop);
 		}
@@ -135,8 +144,8 @@ public class CreateDataModelNormalPage extends CreateDataModelMainPage<DataModel
 	}
 
 	@Override
-	protected DataModelNormalRow newReferenceRow(ModelDefinition model, Property prop) {
-		DataModelNormalRow row = new DataModelNormalRow();
+	protected DataModelRecordRow newReferenceRow(ModelDefinition model, Property prop) {
+		DataModelRecordRow row = new DataModelRecordRow();
 		row.refModelName = model.getName();
 		return row;
 	}
@@ -152,7 +161,7 @@ public class CreateDataModelNormalPage extends CreateDataModelMainPage<DataModel
 	}
 
 	@Override
-	protected void setGeneratorProperty(DataModelTextGenerator gen, DataModelNormalRow row) {
+	protected void setGeneratorProperty(DataModelTextGenerator gen, DataModelRecordRow row) {
 		if (nonEmpty(row.dataType)) {
 			gen.appendProperty(row.name, row.description, row.dataType, row.attribute);
 		} else if (nonEmpty(row.refModelName)) {

@@ -70,6 +70,8 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 	private boolean summarizeModelOnly;
 	private ModelTreeNodePredicate predicate;
 
+	private Text modelNameText;
+
 	public DataModelTreeViewer(Composite parent, int style, int nameWidth, int attrWidth) {
 		this(parent, style, nameWidth, attrWidth, false);
 	}
@@ -135,7 +137,7 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 		createLabel(field, "");
 		Combo modelTypeCombo = createTypeCombo(field, "model type :");
 
-		Text modelNameText = createFilterTextField(field, "model name filter :");
+		modelNameText = createFilterTextField(field, "model name filter :");
 		Text modelDescText = createFilterTextField(field, "description :");
 		Text modelAttrText = createFilterTextField(field, "attribute :");
 		registerModelFilter(modelNameText, modelDescText, modelAttrText, modelTypeCombo);
@@ -242,6 +244,10 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 				}
 			});
 		}
+	}
+
+	public void setModelNameFilter(String filter) {
+		modelNameText.setText(filter);
 	}
 
 	// CheckboxTreeViewer
