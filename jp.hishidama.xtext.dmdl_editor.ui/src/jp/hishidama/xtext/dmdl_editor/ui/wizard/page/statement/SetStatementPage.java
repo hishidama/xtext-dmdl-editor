@@ -1,21 +1,30 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.statement;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jp.hishidama.eclipse_plugin.wizard.page.EditWizardPage;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLVariableTableUtil;
 
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 
 public class SetStatementPage extends EditWizardPage {
 	private static final String KEY_STATEMENT = "SetStatementPage.STATEMENT";
+	private static final String KEY_HISTORY = "SetStatementPage.HISTORY";
 
 	private Text statText;
+
+	private Combo hisCombo;
 
 	public SetStatementPage() {
 		super("SetStatementPage");
@@ -39,6 +48,19 @@ public class SetStatementPage extends EditWizardPage {
 		statText.setText(getDefaultStatement());
 		statText.addModifyListener(MODIFY_REFRESH_LISTENER);
 
+		createLabel(composite, "history:");
+		hisCombo = new Combo(composite, SWT.READ_ONLY);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(hisCombo);
+		List<String> list = getStatementHistory();
+		hisCombo.setItems(list.toArray(new String[list.size()]));
+		hisCombo.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				String text = hisCombo.getText();
+				statText.setText(text);
+			}
+		});
+
 		createGroup(composite);
 
 		return composite;
@@ -53,9 +75,45 @@ public class SetStatementPage extends EditWizardPage {
 		return value;
 	}
 
+	private List<String> getStatementHistory() {
+		IDialogSettings settings = getDialogSettings();
+		int count;
+		try {
+			count = settings.getInt(KEY_HISTORY);
+		} catch (Exception e) {
+			count = 0;
+		}
+
+		List<String> list = new ArrayList<String>(count);
+		for (int i = 0; i < count; i++) {
+			String key = String.format("%s.%d", KEY_HISTORY, i);
+			String s = settings.get(key);
+			if (s != null) {
+				list.add(s);
+			}
+		}
+		return list;
+	}
+
 	public void saveDialogSettings() {
 		IDialogSettings settings = getDialogSettings();
-		settings.put(KEY_STATEMENT, getStatementText());
+		String statement = getStatementText();
+		settings.put(KEY_STATEMENT, statement);
+
+		String[] items = hisCombo.getItems();
+		List<String> list = new ArrayList<String>(items.length + 1);
+		for (String s : items) {
+			if (!statement.equals(s)) {
+				list.add(s);
+			}
+		}
+		list.add(0, statement);
+		int count = Math.min(list.size(), 20);
+		settings.put(KEY_HISTORY, count);
+		for (int i = 0; i < count; i++) {
+			String key = String.format("%s.%d", KEY_HISTORY, i);
+			settings.put(key, list.get(i));
+		}
 	}
 
 	protected void createGroup(Composite composite) {
