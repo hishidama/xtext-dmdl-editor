@@ -46,6 +46,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Item;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
@@ -66,6 +67,7 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 	 */
 	private TreeItem lastClickedItem = null;
 
+	private boolean autoSelection = true;
 	private boolean joinModelOnly;
 	private boolean summarizeModelOnly;
 	private ModelTreeNodePredicate predicate;
@@ -221,6 +223,7 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 				public void widgetSelected(SelectionEvent e) {
 					collapseAll();
 					expandToLevel(2);
+					selectAuto();
 				}
 			});
 		}
@@ -231,6 +234,7 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
 					expandAll();
+					selectAuto();
 				}
 			});
 		}
@@ -280,7 +284,6 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 
 	@Override
 	protected void handleDoubleSelect(SelectionEvent event) {
-
 		if (lastClickedItem != null) {
 			TreeItem item = lastClickedItem;
 			Object data = item.getData();
@@ -297,7 +300,6 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 
 	@Override
 	protected void handleSelect(SelectionEvent event) {
-
 		lastClickedItem = null;
 		if (event.detail == SWT.CHECK) {
 			TreeItem item = (TreeItem) event.item;
@@ -484,6 +486,7 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 			public void modifyText(ModifyEvent e) {
 				fileNameFilter = DMDLStringUtil.getPattern(nameText.getText());
 				refresh();
+				selectAuto();
 			}
 		});
 	}
@@ -494,6 +497,7 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 				modelNameFilter = DMDLStringUtil.getNamePattern(nameText.getText());
 				refresh();
 				expandToLevel(2);
+				selectAuto();
 			}
 		});
 		descText.addModifyListener(new ModifyListener() {
@@ -501,6 +505,7 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 				modelDescFilter = DMDLStringUtil.getPattern(descText.getText());
 				refresh();
 				expandToLevel(2);
+				selectAuto();
 			}
 		});
 		attrText.addModifyListener(new ModifyListener() {
@@ -508,6 +513,7 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 				modelAttrFilter = DMDLStringUtil.getPattern(attrText.getText());
 				refresh();
 				expandToLevel(2);
+				selectAuto();
 			}
 		});
 		typeCombo.addSelectionListener(new SelectionAdapter() {
@@ -521,6 +527,7 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 				}
 				refresh();
 				expandToLevel(2);
+				selectAuto();
 			}
 		});
 	}
@@ -531,6 +538,7 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 				propNameFilter = DMDLStringUtil.getNamePattern(nameText.getText());
 				refresh();
 				expandAll();
+				selectAuto();
 			}
 		});
 		descText.addModifyListener(new ModifyListener() {
@@ -538,6 +546,7 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 				propescFilter = DMDLStringUtil.getPattern(descText.getText());
 				refresh();
 				expandAll();
+				selectAuto();
 			}
 		});
 		attrText.addModifyListener(new ModifyListener() {
@@ -545,8 +554,38 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 				propAttrFilter = DMDLStringUtil.getPattern(attrText.getText());
 				refresh();
 				expandAll();
+				selectAuto();
 			}
 		});
+	}
+
+	protected void selectAuto() {
+		if (!autoSelection) {
+			return;
+		}
+
+		ITreeSelection selection = getSelection();
+		if (!selection.isEmpty()) {
+			return;
+		}
+
+		Item expand = null;
+		loop: for (Widget widget = getControl(); widget != null;) {
+			Item[] children = getChildren(widget);
+			for (Item item : children) {
+				if (getExpanded(item)) {
+					widget = item;
+					continue loop;
+				}
+				expand = item;
+				break;
+			}
+			break;
+		}
+		if (expand != null) {
+			setSelection(Arrays.asList(expand));
+		}
+		updateSelection(getSelection());
 	}
 
 	public ModelDefinition findModel(String modelName) {
