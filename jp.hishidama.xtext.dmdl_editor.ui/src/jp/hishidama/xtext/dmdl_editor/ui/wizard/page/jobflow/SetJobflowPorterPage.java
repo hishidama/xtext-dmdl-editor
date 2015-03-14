@@ -199,6 +199,32 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		}
 
 		@Override
+		protected void createAddButton(Composite field) {
+			Button button1 = createPushButton(field, "add Imp");
+			button1.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					doAdd1(true);
+				}
+			});
+			Button button2 = createPushButton(field, "add Exp");
+			button2.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					doAdd1(false);
+				}
+			});
+
+			Button button3 = createPushButton(field, "adds");
+			button3.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					doAdd();
+				}
+			});
+		}
+
+		@Override
 		protected void createButtonAfterDup(Composite field) {
 			Button button = createPushButton(field, "rename");
 			button.setToolTipText("選択された行の名前を一括して置換します。");
@@ -268,6 +294,15 @@ public class SetJobflowPorterPage extends EditWizardPage {
 				return element.modelDescription;
 			default:
 				throw new UnsupportedOperationException("columnIndex=" + columnIndex);
+			}
+		}
+
+		protected void doAdd1(boolean in) {
+			JobflowPorterRow element = createElement();
+			element.in = in;
+			EditJobflowPorterDialog dialog = new EditJobflowPorterDialog(getShell(), javaProject, element);
+			if (dialog.open() == Window.OK) {
+				doAdd(element);
 			}
 		}
 
