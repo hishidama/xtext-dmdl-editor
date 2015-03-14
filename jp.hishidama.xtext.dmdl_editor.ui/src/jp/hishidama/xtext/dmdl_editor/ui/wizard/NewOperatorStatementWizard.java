@@ -36,7 +36,7 @@ public class NewOperatorStatementWizard extends Wizard {
 
 	@Override
 	public void addPages() {
-		modelPage = new SelectDataModelPage("使用するデータモデルの指定", project, null, false);
+		modelPage = new SelectDataModelPage("使用するデータモデルの指定", project, null, false, false);
 		modelPage.setDescription("対象となるデータモデルを1つ選択して下さい。");
 		addPage(modelPage);
 
