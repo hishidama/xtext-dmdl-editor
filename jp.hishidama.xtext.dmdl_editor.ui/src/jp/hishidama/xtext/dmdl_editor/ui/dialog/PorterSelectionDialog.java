@@ -71,13 +71,6 @@ public class PorterSelectionDialog extends ProjectFileSelectionDialog {
 					if (importerFilter == false && exporterFilter == false) {
 						exporterButton.setSelection(true);
 						exporterFilter = true;
-						getTreeViewer().refresh();
-						getTreeViewer().expandAll();
-						return;
-					}
-					getTreeViewer().refresh();
-					if (importerFilter) {
-						getTreeViewer().expandAll();
 					}
 				}
 			});
@@ -88,13 +81,6 @@ public class PorterSelectionDialog extends ProjectFileSelectionDialog {
 					if (importerFilter == false && exporterFilter == false) {
 						importerButton.setSelection(true);
 						importerFilter = true;
-						getTreeViewer().refresh();
-						getTreeViewer().expandAll();
-						return;
-					}
-					getTreeViewer().refresh();
-					if (exporterFilter) {
-						getTreeViewer().expandAll();
 					}
 				}
 			});
@@ -108,10 +94,6 @@ public class PorterSelectionDialog extends ProjectFileSelectionDialog {
 			text.addModifyListener(new ModifyListener() {
 				public void modifyText(ModifyEvent e) {
 					fileNameFilter = DMDLStringUtil.getPattern(text.getText());
-					getTreeViewer().refresh();
-					if (fileNameFilter != null) {
-						getTreeViewer().expandAll();
-					}
 				}
 			});
 			text.setFocus();
@@ -121,10 +103,6 @@ public class PorterSelectionDialog extends ProjectFileSelectionDialog {
 			text.addModifyListener(new ModifyListener() {
 				public void modifyText(ModifyEvent e) {
 					commentFilter = DMDLStringUtil.getPattern(text.getText());
-					getTreeViewer().refresh();
-					if (commentFilter != null) {
-						getTreeViewer().expandAll();
-					}
 				}
 			});
 		}
@@ -133,10 +111,6 @@ public class PorterSelectionDialog extends ProjectFileSelectionDialog {
 			text.addModifyListener(new ModifyListener() {
 				public void modifyText(ModifyEvent e) {
 					modelNameFilter = DMDLStringUtil.getNamePattern(text.getText());
-					getTreeViewer().refresh();
-					if (modelNameFilter != null) {
-						getTreeViewer().expandAll();
-					}
 				}
 			});
 		}
@@ -145,10 +119,18 @@ public class PorterSelectionDialog extends ProjectFileSelectionDialog {
 			text.addModifyListener(new ModifyListener() {
 				public void modifyText(ModifyEvent e) {
 					modelDescFilter = DMDLStringUtil.getPattern(text.getText());
+				}
+			});
+		}
+		{
+			Button button = new Button(field, SWT.PUSH);
+			button.setLayoutData(GridDataFactory.fillDefaults().grab(false, false).create());
+			button.setText("apply filter");
+			button.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
 					getTreeViewer().refresh();
-					if (modelDescFilter != null) {
-						getTreeViewer().expandAll();
-					}
+					getTreeViewer().expandAll();
 				}
 			});
 		}
