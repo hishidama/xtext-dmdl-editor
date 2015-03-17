@@ -7,13 +7,20 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import jp.hishidama.xtext.dmdl_editor.dmdl.JoinExpression;
+import jp.hishidama.xtext.dmdl_editor.dmdl.JoinTerm;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
+import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
+import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression;
+import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 public abstract class CreateDataModelMainPage<R extends DataModelRow> extends CreateDataModelPage<R> {
@@ -42,7 +49,26 @@ public abstract class CreateDataModelMainPage<R extends DataModelRow> extends Cr
 					model = ModelUiUtil.findModel(project, modelName);
 				}
 				if (model != null) {
-					Set<String> refModelNameSet = new LinkedHashSet<String>();
+					Set<String> modelNameSet = new LinkedHashSet<String>();
+
+					EObject rhs = model.getRhs();
+					if (rhs instanceof RecordExpression) {
+						modelNameSet.add(model.getName());
+						EList<RecordTerm> terms = ((RecordExpression) rhs).getTerms();
+						for (RecordTerm term : terms) {
+							addSet(modelNameSet, term.getReference());
+						}
+					} else if (rhs instanceof JoinExpression) {
+						EList<JoinTerm> terms = ((JoinExpression) rhs).getTerms();
+						for (JoinTerm term : terms) {
+							addSet(modelNameSet, term.getReference());
+						}
+					} else if (rhs instanceof SummarizeExpression) {
+						EList<SummarizeTerm> terms = ((SummarizeExpression) rhs).getTerms();
+						for (SummarizeTerm term : terms) {
+							addSet(modelNameSet, term.getReference());
+						}
+					}
 
 					List<EObject> list = ModelUtil.getRawProperties(model);
 					int index = 0;
@@ -57,19 +83,26 @@ public abstract class CreateDataModelMainPage<R extends DataModelRow> extends Cr
 							throw new UnsupportedOperationException("object=" + object);
 						}
 						index = addToList(index, row);
-
-						String refModelName = row.getRefModelName();
-						if (refModelName != null) {
-							refModelNameSet.add(refModelName);
-						}
 					}
 					tableViewer.refresh();
 					validate(true);
 
-					String filter = createModelNameFilter(refModelNameSet);
+					String filter = createModelNameFilter(modelNameSet);
 					if (filter != null) {
 						sourceViewer.setModelNameFilter(filter);
 					}
+				}
+			}
+		}
+	}
+
+	private void addSet(Set<String> set, ModelReference ref) {
+		if (ref != null) {
+			ModelDefinition def = ref.getName();
+			if (def != null) {
+				String n = def.getName();
+				if (n != null) {
+					set.add(n);
 				}
 			}
 		}

@@ -4,7 +4,6 @@ import static jp.hishidama.eclipse_plugin.util.StringUtil.isEmpty;
 import static jp.hishidama.eclipse_plugin.util.StringUtil.nonEmpty;
 
 import java.text.MessageFormat;
-import java.util.Collection;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
@@ -89,14 +88,6 @@ public class CreateDataModelRecordPage extends CreateDataModelMainPage<DataModel
 		addColumn("description", 128);
 		addColumn("type", 96);
 		addColumn("ref model", 128);
-	}
-
-	@Override
-	protected String createModelNameFilter(Collection<String> modelNames) {
-		if (modelName == null) {
-			return null;
-		}
-		return "^" + modelName + "$";
 	}
 
 	@Override
