@@ -10,6 +10,8 @@ import jp.hishidama.xtext.dmdl_editor.ui.viewer.DataModelTreeViewer;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.widgets.Composite;
@@ -83,6 +85,13 @@ public abstract class AbstractDataModelTreeDialog extends EditDialog {
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			public void selectionChanged(SelectionChangedEvent event) {
 				refreshOkButton();
+			}
+		});
+		viewer.addDoubleClickListener(new IDoubleClickListener() {
+			public void doubleClick(DoubleClickEvent event) {
+				if (refreshOkButton()) {
+					okPressed();
+				}
 			}
 		});
 
