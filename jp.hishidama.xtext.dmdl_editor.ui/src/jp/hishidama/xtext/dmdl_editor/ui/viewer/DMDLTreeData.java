@@ -99,7 +99,7 @@ public abstract class DMDLTreeData {
 
 		public boolean select(Pattern filter) {
 			if (filter != null) {
-				if (!filter.matcher(getText()).matches()) {
+				if (!filter.matcher(getText()).find()) {
 					return false;
 				}
 			}
@@ -189,12 +189,12 @@ public abstract class DMDLTreeData {
 
 		public boolean select(Pattern nameFilter, Pattern descFilter, Pattern attrFilter, DataModelType typeFilter) {
 			if (nameFilter != null) {
-				if (!nameFilter.matcher(getText()).matches()) {
+				if (!nameFilter.matcher(getText()).find()) {
 					return false;
 				}
 			}
 			if (descFilter != null) {
-				if (!descFilter.matcher(getDescription()).matches()) {
+				if (!descFilter.matcher(getDescription()).find()) {
 					return false;
 				}
 			}
@@ -308,12 +308,12 @@ public abstract class DMDLTreeData {
 
 		public boolean select(Pattern nameFilter, Pattern descFilter, Pattern attrFilter) {
 			if (nameFilter != null) {
-				if (!nameFilter.matcher(getText()).matches()) {
+				if (!nameFilter.matcher(getText()).find()) {
 					return false;
 				}
 			}
 			if (descFilter != null) {
-				if (!descFilter.matcher(getDescription()).matches()) {
+				if (!descFilter.matcher(getDescription()).find()) {
 					return false;
 				}
 			}

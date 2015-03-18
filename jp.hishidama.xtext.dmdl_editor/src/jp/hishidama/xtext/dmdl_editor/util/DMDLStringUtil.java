@@ -36,7 +36,6 @@ public class DMDLStringUtil {
 		}
 
 		StringBuilder sb = new StringBuilder(filter.length() * 2);
-		int wildcard = 0;
 		for (int i = 0; i < filter.length();) {
 			int c = filter.codePointAt(i);
 			switch (c) {
@@ -45,11 +44,9 @@ public class DMDLStringUtil {
 				break;
 			case '?':
 				sb.append(".");
-				wildcard++;
 				break;
 			case '*':
 				sb.append(".*");
-				wildcard++;
 				break;
 			default:
 				sb.appendCodePoint(c);
@@ -57,8 +54,7 @@ public class DMDLStringUtil {
 			}
 			i += Character.charCount(c);
 		}
-		String pattern = (wildcard > 0) ? sb.toString() : ".*" + sb + ".*";
-		return Pattern.compile(pattern, Pattern.DOTALL | Pattern.CASE_INSENSITIVE);
+		return Pattern.compile(sb.toString(), Pattern.DOTALL | Pattern.CASE_INSENSITIVE);
 	}
 
 	public static Pattern getNamePattern(String filter) {

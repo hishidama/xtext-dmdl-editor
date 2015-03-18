@@ -268,7 +268,7 @@ public class PorterSelectionDialog extends ProjectFileSelectionDialog {
 			if (fileNameFilter != null) {
 				String fileName = file.getName();
 				fileName = fileName.substring(0, fileName.length() - ".java".length());
-				if (!fileNameFilter.matcher(fileName).matches()) {
+				if (!fileNameFilter.matcher(fileName).find()) {
 					return false;
 				}
 			}
@@ -293,12 +293,12 @@ public class PorterSelectionDialog extends ProjectFileSelectionDialog {
 				}
 			}
 			if (modelNameFilter != null) {
-				if (!modelNameFilter.matcher(info.getModelName()).matches()) {
+				if (!modelNameFilter.matcher(info.getModelName()).find()) {
 					return false;
 				}
 			}
 			if (modelDescFilter != null) {
-				if (!modelDescFilter.matcher(info.getModelDescription()).matches()) {
+				if (!modelDescFilter.matcher(info.getModelDescription()).find()) {
 					return false;
 				}
 			}
