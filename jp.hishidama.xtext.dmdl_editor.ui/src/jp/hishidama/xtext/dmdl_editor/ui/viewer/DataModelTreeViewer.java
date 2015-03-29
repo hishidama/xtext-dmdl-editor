@@ -34,6 +34,9 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseAdapter;
@@ -154,8 +157,19 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 	private Text createFilterTextField(Composite field, String label) {
 		createLabel(field, label);
 
-		return createText(field);
+		Text text = createText(field);
+		text.addKeyListener(FILTER_TEXT_KEY_LESTENER);
+		return text;
 	}
+
+	private KeyListener FILTER_TEXT_KEY_LESTENER = new KeyAdapter() {
+		@Override
+		public void keyPressed(KeyEvent e) {
+			if (e.keyCode == SWT.ARROW_DOWN) {
+				getTree().setFocus();
+			}
+		}
+	};
 
 	private void createLabel(Composite field, String label) {
 		new Label(field, SWT.NONE).setText(label);
