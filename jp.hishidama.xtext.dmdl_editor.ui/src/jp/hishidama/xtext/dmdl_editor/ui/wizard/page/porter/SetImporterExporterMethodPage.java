@@ -3,11 +3,14 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.porter;
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.extension.AsakusafwConfiguration;
+import jp.hishidama.eclipse_plugin.util.DialogSettingsUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.extension.DMDLImporterExporterGenerator;
 import jp.hishidama.xtext.dmdl_editor.ui.extension.DMDLImporterExporterGenerator.FieldData;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLVariableTableUtil;
@@ -117,14 +120,19 @@ public class SetImporterExporterMethodPage extends WizardPage {
 	private void createTextField(Group group, String key, boolean required, String label, String desc, String tip) {
 		createLabel(group, required, label, desc, tip);
 
-		Text text = new Text(group, SWT.BORDER);
+		Combo combo = new Combo(group, SWT.BORDER);
 		GridData grid = new GridData(GridData.FILL_HORIZONTAL);
-		text.setLayoutData(grid);
-		String value = getSetting(key);
-		text.setText(nonNull(value));
-		text.addModifyListener(listener);
+		combo.setLayoutData(grid);
 
-		fieldMap.put(key, new Field(required, label, text));
+		List<String> list = DialogSettingsUtil.getList(getDialogSettings(), getKey1(key));
+		combo.setItems(list.toArray(new String[list.size()]));
+
+		String value = getSetting(key);
+		combo.setText(nonNull(value));
+
+		combo.addModifyListener(listener);
+
+		fieldMap.put(key, new Field(required, label, combo, true));
 	}
 
 	private void createComboField(Group group, String key, boolean required, String label, String desc, String tip,
@@ -152,7 +160,7 @@ public class SetImporterExporterMethodPage extends WizardPage {
 		combo.setText(nonNull(value));
 		combo.addModifyListener(listener);
 
-		fieldMap.put(key, new Field(required, label, combo));
+		fieldMap.put(key, new Field(required, label, combo, false));
 	}
 
 	private void createLabel(Group group, boolean required, String label, String desc, String tip) {
@@ -168,11 +176,13 @@ public class SetImporterExporterMethodPage extends WizardPage {
 		public boolean required;
 		public String label;
 		public Widget widget;
+		public boolean history;
 
-		public Field(boolean required, String label, Widget widget) {
+		public Field(boolean required, String label, Widget widget, boolean history) {
 			this.required = required;
 			this.label = label;
 			this.widget = widget;
+			this.history = history;
 		}
 
 		public String getText() {
@@ -205,13 +215,35 @@ public class SetImporterExporterMethodPage extends WizardPage {
 
 	public Map<String, String> getValues() {
 		Map<String, String> map = new HashMap<String, String>(fieldMap.size());
+		Map<String, Set<String>> saveMap = new HashMap<String, Set<String>>();
 		for (Entry<String, Field> entry : fieldMap.entrySet()) {
 			String key = entry.getKey();
 			Field f = entry.getValue();
 			String value = f.getText();
 			map.put(key, value);
+
 			setSetting(key, value);
+			if (f.history && (f.widget instanceof Combo)) {
+				Combo combo = (Combo) f.widget;
+				String key1 = getKey1(key);
+				Set<String> set = saveMap.get(key1);
+				if (set == null) {
+					set = new LinkedHashSet<String>();
+					saveMap.put(key1, set);
+					set.add(value);
+				}
+				for (String s : combo.getItems()) {
+					set.add(s);
+				}
+			}
 		}
+
+		for (Entry<String, Set<String>> entry : saveMap.entrySet()) {
+			String key1 = entry.getKey();
+			Set<String> set = entry.getValue();
+			DialogSettingsUtil.put(getDialogSettings(), key1, set, 20);
+		}
+
 		return map;
 	}
 

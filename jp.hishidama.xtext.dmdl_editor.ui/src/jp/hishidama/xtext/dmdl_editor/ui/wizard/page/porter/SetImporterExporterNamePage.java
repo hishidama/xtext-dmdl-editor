@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.config.AsakusafwProperties;
+import jp.hishidama.eclipse_plugin.util.DialogSettingsUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.extension.DMDLImporterExporterGenerator;
 
 import org.eclipse.jface.dialogs.IDialogSettings;
@@ -29,6 +30,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
@@ -46,7 +48,7 @@ public class SetImporterExporterNamePage extends WizardPage {
 	private List<DMDLImporterExporterGenerator> generatorList;
 
 	private Text srcText;
-	private Text packageText;
+	private Combo packageCombo;
 	private List<Field> fieldList = new ArrayList<Field>();
 	private ModifyListener listener = new ModifyListener() {
 		public void modifyText(ModifyEvent e) {
@@ -90,12 +92,14 @@ public class SetImporterExporterNamePage extends WizardPage {
 			Label label = new Label(composite, SWT.NONE);
 			label.setText("パッケージ名");
 
-			packageText = new Text(composite, SWT.BORDER);
+			packageCombo = new Combo(composite, SWT.BORDER);
 			GridData grid = new GridData(GridData.FILL_HORIZONTAL);
-			packageText.setLayoutData(grid);
-			String text = (initPackName != null) ? initPackName : getSetting(SETTINGS_PACKAGE, "");
-			packageText.setText(text);
-			packageText.addModifyListener(listener);
+			packageCombo.setLayoutData(grid);
+			DialogSettingsUtil.load(getDialogSettings(), packageCombo, SETTINGS_PACKAGE, "");
+			if (initPackName != null) {
+				packageCombo.setText(initPackName);
+			}
+			packageCombo.addModifyListener(listener);
 		}
 
 		final Table table = new Table(composite, SWT.SINGLE | SWT.BORDER | SWT.CHECK | SWT.FULL_SELECTION);
@@ -257,7 +261,7 @@ public class SetImporterExporterNamePage extends WizardPage {
 			}
 			return;
 		}
-		if (packageText.getText().trim().isEmpty()) {
+		if (packageCombo.getText().trim().isEmpty()) {
 			if (setError) {
 				setErrorMessage("パッケージ名を入力して下さい。");
 			}
@@ -289,11 +293,11 @@ public class SetImporterExporterNamePage extends WizardPage {
 	}
 
 	public void setProperties(AsakusafwProperties properties) {
-		if (properties != null && packageText.getText().isEmpty()) {
+		if (properties != null && packageCombo.getText().isEmpty()) {
 			String s = getSetting(SETTINGS_PACKAGE, null);
 			if (s == null) {
 				s = properties.getPackageDefault();
-				packageText.setText(nonNull(s));
+				packageCombo.setText(nonNull(s));
 			}
 		}
 	}
@@ -305,8 +309,12 @@ public class SetImporterExporterNamePage extends WizardPage {
 	}
 
 	public String getPackageName() {
-		String value = packageText.getText().trim();
-		setSetting(SETTINGS_PACKAGE, value);
+		String text = packageCombo.getText();
+		String value = text.trim();
+		if (!value.equals(text)) {
+			packageCombo.setText(value);
+		}
+		DialogSettingsUtil.save(getDialogSettings(), packageCombo, SETTINGS_PACKAGE, 20);
 		return value;
 	}
 
