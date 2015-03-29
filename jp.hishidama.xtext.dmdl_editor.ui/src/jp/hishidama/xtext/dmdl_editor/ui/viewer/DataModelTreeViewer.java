@@ -357,6 +357,13 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 			TreeItem row = (TreeItem) findItem(obj);
 			boolean c = getChecked(obj);
 			row.setGrayed(false);
+
+			List<DMDLTreeData> children = ((DMDLTreeData.FileNode) obj).getChildren();
+			if (children.size() != row.getItemCount()) {
+				for (DMDLTreeData child : children) {
+					internalExpand(child, false);
+				}
+			}
 			for (TreeItem item : row.getItems()) {
 				item.setChecked(c);
 			}
