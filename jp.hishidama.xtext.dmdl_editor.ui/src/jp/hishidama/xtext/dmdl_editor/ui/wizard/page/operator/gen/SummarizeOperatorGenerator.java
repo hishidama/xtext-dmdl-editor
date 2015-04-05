@@ -29,7 +29,7 @@ public class SummarizeOperatorGenerator extends OperatorGenerator {
 		List<OperatorOutputModelRow> olist = getOutputModelList();
 		for (OperatorOutputModelRow row : olist) {
 			addJavadocReturn(javadoc, row.getLabel());
-			return row.modelClassName;
+			return row.getModelClassName();
 		}
 		return "error";
 	}

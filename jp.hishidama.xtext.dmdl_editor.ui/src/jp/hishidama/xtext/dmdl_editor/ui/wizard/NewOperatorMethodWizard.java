@@ -9,6 +9,7 @@ import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.MasterJoinInputModelPage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorOutputModelRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectMasterSelectionTargetPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorInputModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorOutputModelPage;
@@ -100,8 +101,17 @@ public class NewOperatorMethodWizard extends Wizard {
 		inputPage.addRole("in");
 		addPage(opType, inputPage);
 
-		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType);
+		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType) {
+			@Override
+			protected String validate(OperatorOutputModelRow row, int i) {
+				if (row.projective) {
+					return "変換演算子の出力には射影モデルを指定できません。";
+				}
+				return super.validate(row, i);
+			}
+		};
 		outputPage.addRole("out");
+		outputPage.setInputPage(inputPage);
 		addPage(opType, outputPage);
 
 		SetCacheFieldPage fieldPage = new SetCacheFieldPage(type, opType, null, outputPage, true);
@@ -115,6 +125,8 @@ public class NewOperatorMethodWizard extends Wizard {
 		addPage(opType, inputPage);
 
 		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType);
+		outputPage.setOutputIsResult(true);
+		outputPage.setInputPage(inputPage);
 		addPage(opType, outputPage);
 
 		SetCacheFieldPage fieldPage = new SetCacheFieldPage(type, opType, null, outputPage, false);
@@ -187,6 +199,8 @@ public class NewOperatorMethodWizard extends Wizard {
 		addPage(opType, inputPage);
 
 		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType);
+		outputPage.setOutputIsResult(true);
+		outputPage.setInputPage(inputPage);
 		addPage(opType, outputPage);
 
 		SetCacheFieldPage fieldPage = new SetCacheFieldPage(type, opType, null, outputPage, false);
@@ -224,6 +238,8 @@ public class NewOperatorMethodWizard extends Wizard {
 		addPage(opType, inputPage);
 
 		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType);
+		outputPage.setOutputIsResult(true);
+		outputPage.setInputPage(inputPage);
 		addPage(opType, outputPage);
 
 		SetCacheFieldPage fieldPage = new SetCacheFieldPage(type, opType, null, outputPage, false);

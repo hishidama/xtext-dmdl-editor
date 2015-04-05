@@ -42,6 +42,14 @@ public class ModelUtil {
 		return null;
 	}
 
+	public static boolean isProjective(ModelDefinition model) {
+		if (model == null) {
+			return false;
+		}
+		String type = model.getType();
+		return "projective".equals(type);
+	}
+
 	public static void appendTooltipModelName(StringBuilder sb, ModelDefinition model) {
 		String desc = model.getDescription();
 		if (desc != null) {

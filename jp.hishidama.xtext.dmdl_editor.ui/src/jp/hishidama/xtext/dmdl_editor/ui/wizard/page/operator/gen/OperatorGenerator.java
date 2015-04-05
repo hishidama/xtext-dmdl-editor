@@ -1,7 +1,10 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.gen;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
 import jp.hishidama.eclipse_plugin.jdt.util.AstRewriteUtility;
@@ -10,6 +13,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.FieldCacheRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorInputModelRow;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorModelRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorOutputModelRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorInputModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorOutputModelPage;
@@ -40,6 +44,7 @@ import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import org.eclipse.jdt.core.dom.Statement;
 import org.eclipse.jdt.core.dom.Type;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
+import org.eclipse.jdt.core.dom.TypeParameter;
 import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
 import org.eclipse.jdt.core.dom.rewrite.ListRewrite;
 import org.eclipse.jface.text.IDocument;
@@ -183,6 +188,7 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		getParameters(plist, javadoc);
 
 		method.setReturnType2(getReturnType(javadoc));
+		generateMethodTypeParameters(method);
 
 		return method;
 	}
@@ -196,6 +202,18 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 	protected abstract String getReturnTypeName(Javadoc javadoc);
 
 	protected abstract void getParameters(List<SingleVariableDeclaration> plist, Javadoc javadoc);
+
+	@SuppressWarnings("unchecked")
+	protected void generateMethodTypeParameters(MethodDeclaration method) {
+		List<TypeParameter> tlist = method.typeParameters();
+		for (OperatorModelRow row : getGenericsModelList()) {
+			TypeParameter parameter = ast.newTypeParameter();
+			parameter.setName(ast.newSimpleName(row.genericsName));
+			List<Type> bounds = parameter.typeBounds();
+			bounds.add(newType(row.getModelClassName()));
+			tlist.add(parameter);
+		}
+	}
 
 	protected abstract Block getBody();
 
@@ -229,8 +247,8 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		OperatorInputModelRow row0 = ilist.get(0);
 		OperatorInputModelRow row1 = ilist.get(1);
 
-		MethodDeclaration method = generateMasterSelectionMethod(methodName, null, row0.modelClassName,
-				row0.getLabel(), row1.modelClassName, row1.getLabel());
+		MethodDeclaration method = generateMasterSelectionMethod(methodName, null, row0.getModelTypeName(),
+				row0.getLabel(), row1.getModelTypeName(), row1.getLabel());
 		listRewrite.insertAfter(method, previousElement, null);
 
 		return method;
@@ -253,6 +271,7 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		mlist.add(ast.newModifier(ModifierKeyword.PUBLIC_KEYWORD));
 
 		method.setReturnType2(newType(masterType));
+		generateMethodTypeParameters(method);
 
 		List<SingleVariableDeclaration> plist = method.parameters();
 		plist.add(newListParameter(masterType, "masters", null, null));
@@ -303,6 +322,52 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		throw new IllegalStateException();
 	}
 
+	protected final List<OperatorModelRow> getGenericsModelList() {
+		List<OperatorModelRow> list = new ArrayList<OperatorModelRow>();
+		Set<String> set = new HashSet<String>();
+		for (IWizardPage page : pageList) {
+			if (page instanceof SelectOperatorInputModelPage) {
+				for (OperatorInputModelRow row : ((SelectOperatorInputModelPage) page).getElementList()) {
+					collectGenericsModelList(list, row, set);
+				}
+			} else if (page instanceof SelectOperatorOutputModelPage) {
+				for (OperatorOutputModelRow row : ((SelectOperatorOutputModelPage) page).getElementList()) {
+					collectGenericsModelList(list, row, set);
+				}
+			}
+		}
+		return list;
+	}
+
+	private Set<String> typeParameterSet = null;
+
+	@Override
+	protected boolean isTypeParameter(String typeName) {
+		if (typeParameterSet == null) {
+			Set<String> set = new HashSet<String>();
+
+			List<OperatorModelRow> list = getGenericsModelList();
+			for (OperatorModelRow row : list) {
+				if (row.projective) {
+					set.add(row.genericsName);
+				}
+			}
+
+			typeParameterSet = set;
+		}
+		return typeParameterSet.contains(typeName);
+	}
+
+	private void collectGenericsModelList(List<OperatorModelRow> list, OperatorModelRow row, Set<String> set) {
+		if (row.projective) {
+			String key = String.format("<%s>%s", row.genericsName, row.getModelClassName());
+			if (!set.contains(key)) {
+				set.add(key);
+				list.add(row);
+			}
+		}
+	}
+
 	protected final SetMasterSelectionPage getMasterSelectionPage() {
 		for (int i = pageList.size() - 1; i >= 0; i--) {
 			IWizardPage page = pageList.get(i);
@@ -324,6 +389,9 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 	}
 
 	protected final String getLabel(ModelDefinition model) {
+		if (model == null) {
+			return "";
+		}
 		String description = ModelUtil.getDecodedDescriptionText(model);
 		if (!description.isEmpty()) {
 			return description;

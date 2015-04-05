@@ -57,7 +57,7 @@ public class MasterJoinInputModelPage extends SelectOperatorInputModelPage {
 					}
 					row.modelName = modelName;
 					row.modelDescription = ModelUtil.getDecodedDescriptionText(rmodel);
-					row.modelClassName = ModelUiUtil.getModelClassName(project, modelName);
+					row.setModelClassName(ModelUiUtil.getModelClassName(project, modelName));
 				}
 			}
 			if (i >= 2) {

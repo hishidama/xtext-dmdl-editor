@@ -26,7 +26,7 @@ public class MasterJoinOperatorGenerator extends OperatorGenerator {
 		List<OperatorOutputModelRow> olist = getOutputModelList();
 		for (OperatorOutputModelRow row : olist) {
 			addJavadocReturn(javadoc, row.getLabel());
-			return row.modelClassName;
+			return row.getModelTypeName();
 		}
 		throw new IllegalStateException();
 	}
@@ -35,7 +35,7 @@ public class MasterJoinOperatorGenerator extends OperatorGenerator {
 	protected void getParameters(List<SingleVariableDeclaration> plist, Javadoc javadoc) {
 		List<OperatorInputModelRow> ilist = getInputModelList();
 		for (OperatorInputModelRow row : ilist) {
-			plist.add(newSimpleParameter(row.modelClassName, row.name));
+			plist.add(newSimpleParameter(row.getModelTypeName(), row.name));
 			addJavadocParam(javadoc, row.name, row.getLabel());
 		}
 	}

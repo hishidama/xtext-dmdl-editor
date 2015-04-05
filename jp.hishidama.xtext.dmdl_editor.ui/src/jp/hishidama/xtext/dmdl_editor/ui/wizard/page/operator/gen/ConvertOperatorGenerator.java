@@ -36,7 +36,7 @@ public class ConvertOperatorGenerator extends OperatorGenerator {
 	protected String getReturnTypeName(Javadoc javadoc) {
 		OperatorOutputModelRow row = getReturnRow();
 		addJavadocReturn(javadoc, row.getLabel());
-		return row.modelClassName;
+		return row.getModelTypeName();
 	}
 
 	private OperatorOutputModelRow getReturnRow() {
@@ -51,7 +51,7 @@ public class ConvertOperatorGenerator extends OperatorGenerator {
 	protected void getParameters(List<SingleVariableDeclaration> plist, Javadoc javadoc) {
 		List<OperatorInputModelRow> ilist = getInputModelList();
 		for (OperatorInputModelRow row : ilist) {
-			plist.add(newSimpleParameter(row.modelClassName, row.name));
+			plist.add(newSimpleParameter(row.getModelTypeName(), row.name));
 			addJavadocParam(javadoc, row.name, row.getLabel());
 		}
 	}
@@ -66,11 +66,11 @@ public class ConvertOperatorGenerator extends OperatorGenerator {
 		String fieldName = getFieldName(rrow);
 		String varName = "result";
 		if (fieldName != null) {
-			slist.add(newVariableDeclarationStatement(rrow.modelClassName, varName, newThisFieldAccess(fieldName)));
+			slist.add(newVariableDeclarationStatement(rrow.getModelTypeName(), varName, newThisFieldAccess(fieldName)));
 			slist.add(newMethodInvocationStatement(varName, "reset"));
 		} else {
-			slist.add(newVariableDeclarationStatement(rrow.modelClassName, varName,
-					newClassInstanceCreation(rrow.modelClassName)));
+			slist.add(newVariableDeclarationStatement(rrow.getModelTypeName(), varName,
+					newClassInstanceCreation(rrow.getModelTypeName())));
 		}
 
 		addStatement(varName, slist, rrow);
@@ -119,7 +119,7 @@ public class ConvertOperatorGenerator extends OperatorGenerator {
 	private String getFieldName(OperatorOutputModelRow rrow) {
 		SetCacheFieldPage fieldPage = getCacheFieldPage();
 		for (FieldCacheRow row : fieldPage.getCheckedFieldList()) {
-			if (rrow.modelClassName.equals(row.modelClassName)) {
+			if (rrow.getModelClassName().equals(row.modelClassName)) {
 				return row.name;
 			}
 		}

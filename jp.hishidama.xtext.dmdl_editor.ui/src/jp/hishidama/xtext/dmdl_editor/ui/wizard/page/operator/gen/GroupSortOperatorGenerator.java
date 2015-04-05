@@ -31,13 +31,13 @@ public class GroupSortOperatorGenerator extends OperatorGenerator {
 	protected void getParameters(List<SingleVariableDeclaration> plist, Javadoc javadoc) {
 		List<OperatorInputModelRow> ilist = getInputModelList();
 		for (OperatorInputModelRow row : ilist) {
-			plist.add(newListParameter(row.modelClassName, row.name, row.keyList, row.orderList));
+			plist.add(newListParameter(row.getModelTypeName(), row.name, row.keyList, row.orderList));
 			addJavadocParam(javadoc, row.name, row.getLabel());
 		}
 
 		List<OperatorOutputModelRow> olist = getOutputModelList();
 		for (OperatorOutputModelRow row : olist) {
-			plist.add(newResultParameter(row.modelClassName, row.name));
+			plist.add(newResultParameter(row.getModelTypeName(), row.name));
 			addJavadocParam(javadoc, row.name, row.getLabel());
 		}
 	}

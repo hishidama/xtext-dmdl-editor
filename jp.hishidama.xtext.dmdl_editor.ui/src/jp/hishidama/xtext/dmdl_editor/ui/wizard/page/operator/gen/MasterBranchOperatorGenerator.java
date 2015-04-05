@@ -28,7 +28,7 @@ public class MasterBranchOperatorGenerator extends BranchOperatorGenerator {
 	protected void getParameters(List<SingleVariableDeclaration> plist, Javadoc javadoc) {
 		List<OperatorInputModelRow> ilist = getInputModelList();
 		for (OperatorInputModelRow row : ilist) {
-			plist.add(newSimpleParameter(row.modelClassName, row.name, row.keyList, null));
+			plist.add(newSimpleParameter(row.getModelTypeName(), row.name, row.keyList, null));
 			addJavadocParam(javadoc, row.name, row.getLabel());
 		}
 	}

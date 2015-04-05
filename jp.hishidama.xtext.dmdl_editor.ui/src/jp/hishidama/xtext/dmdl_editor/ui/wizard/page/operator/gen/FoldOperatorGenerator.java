@@ -33,8 +33,8 @@ public class FoldOperatorGenerator extends OperatorGenerator {
 		for (OperatorInputModelRow row : ilist) {
 			String left = getLeftName(row);
 			String right = getRightName(left);
-			plist.add(newSimpleParameter(row.modelClassName, left, row.keyList, null));
-			plist.add(newSimpleParameter(row.modelClassName, right));
+			plist.add(newSimpleParameter(row.getModelTypeName(), left, row.keyList, null));
+			plist.add(newSimpleParameter(row.getModelTypeName(), right));
 			addJavadocParam(javadoc, left, row.getLabel());
 			addJavadocParam(javadoc, right, row.getLabel());
 			return;

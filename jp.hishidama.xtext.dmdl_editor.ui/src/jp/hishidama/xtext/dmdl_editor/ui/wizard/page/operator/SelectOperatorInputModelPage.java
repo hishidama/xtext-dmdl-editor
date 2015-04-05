@@ -1,13 +1,11 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
 import jp.hishidama.eclipse_plugin.jface.ModifiableTable;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
-import jp.hishidama.eclipse_plugin.wizard.page.EditWizardPage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
@@ -21,33 +19,19 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public class SelectOperatorInputModelPage extends EditWizardPage {
+public class SelectOperatorInputModelPage extends SelectOperatorModelPage<OperatorInputModelRow> {
 
-	protected final IProject project;
 	private final boolean hasKey;
 	private final boolean hasOrder;
-	private boolean joinOnly;
-	private List<String> roleList = new ArrayList<String>();
-
-	protected ModelTable table;
 
 	public SelectOperatorInputModelPage(IProject project, OperatorType opType, boolean hasKey, boolean hasOrder) {
-		super("SelectOperatorInputModelPage");
+		super("SelectOperatorInputModelPage", project);
 
 		setTitle(MessageFormat.format("{0}の入力モデルの指定", opType.getName()));
 		setDescription("演算子の入力となるデータモデルを選択して下さい。");
 
-		this.project = project;
 		this.hasKey = hasKey;
 		this.hasOrder = hasOrder;
-	}
-
-	public void setJoinModelOnly() {
-		this.joinOnly = true;
-	}
-
-	public void addRole(String role) {
-		roleList.add(role);
 	}
 
 	@Override
@@ -60,9 +44,9 @@ public class SelectOperatorInputModelPage extends EditWizardPage {
 		}
 
 		createLabel(composite, "data model:");
-		table = new ModelTable(composite);
-		initializeModelTable(table);
+		table = initializeModelTable(new ModelTable(composite));
 		table.addColumn("role", 64, SWT.NONE);
+		table.addColumn("generics name", 32, SWT.NONE);
 		table.addColumn("name", 128, SWT.NONE);
 		table.addColumn("model name", 128, SWT.NONE);
 		table.addColumn("model description", 128, SWT.NONE);
@@ -89,7 +73,7 @@ public class SelectOperatorInputModelPage extends EditWizardPage {
 		return composite;
 	}
 
-	protected void initializeModelTable(ModelTable table) {
+	protected ModelTable initializeModelTable(ModelTable table) {
 		switch (roleList.size()) {
 		case 0:
 			break;
@@ -100,6 +84,7 @@ public class SelectOperatorInputModelPage extends EditWizardPage {
 			table.setEnableButton(false, true, true, false);
 			break;
 		}
+		return table;
 	}
 
 	protected class ModelTable extends ModifiableTable<OperatorInputModelRow> {
@@ -114,14 +99,16 @@ public class SelectOperatorInputModelPage extends EditWizardPage {
 			case 0:
 				return getRoleName(element);
 			case 1:
-				return element.name;
+				return element.genericsName;
 			case 2:
-				return element.modelName;
+				return element.name;
 			case 3:
-				return element.modelDescription;
+				return element.modelName;
 			case 4:
-				return element.getKeyText();
+				return element.modelDescription;
 			case 5:
+				return element.getKeyText();
+			case 6:
 				return element.getOrderText();
 			default:
 				throw new UnsupportedOperationException("columnIndex=" + columnIndex);
@@ -141,9 +128,13 @@ public class SelectOperatorInputModelPage extends EditWizardPage {
 
 				OperatorInputModelRow row = createElement();
 				row.name = StringUtil.toLowerCamelCase(modelName);
-				row.modelClassName = ModelUiUtil.getModelClassName(project, modelName);
+				row.setModelClassName(ModelUiUtil.getModelClassName(project, modelName));
 				row.modelName = modelName;
 				row.modelDescription = ModelUtil.getDecodedDescriptionText(model);
+				row.projective = ModelUtil.isProjective(model);
+				if (row.projective) {
+					row.genericsName = modelName.substring(0, 1).toUpperCase();
+				}
 				super.doAdd(row);
 			}
 		}
@@ -169,47 +160,5 @@ public class SelectOperatorInputModelPage extends EditWizardPage {
 	protected OperatorInputModelDialog createOperatorInputModelDialog(OperatorInputModelRow element) {
 		return new OperatorInputModelDialog(getShell(), project, getRoleName(element), element, hasKey, hasOrder,
 				joinOnly);
-	}
-
-	String getRoleName(OperatorInputModelRow row) {
-		if (!roleList.isEmpty()) {
-			int n = table.getIndex(row);
-			if (n >= 0 && n < roleList.size()) {
-				return roleList.get(n);
-			}
-		}
-		return null;
-	}
-
-	private boolean first = true;
-
-	@Override
-	public void setVisible(boolean visible) {
-		super.setVisible(visible);
-		if (visible && first) {
-			first = false;
-			if (roleList.size() >= 1) {
-				table.setSelection(0);
-			}
-		}
-	}
-
-	@Override
-	protected String validate() {
-		int i = 1;
-		for (OperatorInputModelRow row : table.getElementList()) {
-			if (StringUtil.isEmpty(row.name)) {
-				return MessageFormat.format("変数名を入力して下さい。（{0,number,#}行目）", i);
-			}
-			if (StringUtil.isEmpty(row.modelName)) {
-				return MessageFormat.format("モデルを選択して下さい。（{0,number,#}行目）", i);
-			}
-			i++;
-		}
-		return null;
-	}
-
-	public List<OperatorInputModelRow> getElementList() {
-		return table.getElementList();
 	}
 }

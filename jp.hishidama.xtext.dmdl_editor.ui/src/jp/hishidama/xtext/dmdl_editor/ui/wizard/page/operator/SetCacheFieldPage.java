@@ -59,7 +59,7 @@ public class SetCacheFieldPage extends EditWizardPage {
 			for (OperatorInputModelRow irow : list) {
 				FieldCacheRow row = new FieldCacheRow();
 				row.name = irow.name;
-				row.modelClassName = irow.modelClassName;
+				row.modelClassName = irow.getModelClassName();
 				row.modelName = irow.modelName;
 				row.modelDescription = irow.modelDescription;
 				rowList.add(row);
@@ -69,7 +69,7 @@ public class SetCacheFieldPage extends EditWizardPage {
 			for (OperatorOutputModelRow orow : outputPage.getElementList()) {
 				FieldCacheRow row = new FieldCacheRow();
 				row.name = orow.name;
-				row.modelClassName = orow.modelClassName;
+				row.modelClassName = orow.getModelClassName();
 				row.modelName = orow.modelName;
 				row.modelDescription = orow.modelDescription;
 				rowList.add(row);

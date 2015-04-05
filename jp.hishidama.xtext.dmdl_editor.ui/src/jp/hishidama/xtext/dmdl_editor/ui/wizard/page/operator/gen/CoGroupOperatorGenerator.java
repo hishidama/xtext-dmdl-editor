@@ -34,13 +34,13 @@ public class CoGroupOperatorGenerator extends OperatorGenerator {
 		for (OperatorInputModelRow row : ilist) {
 			List<String> keyList = (row.keyList != null) ? row.keyList : Collections.<String> emptyList();
 			List<String> orderList = (row.orderList != null) ? row.orderList : Collections.<String> emptyList();
-			plist.add(newListParameter(row.modelClassName, row.name, keyList, orderList));
+			plist.add(newListParameter(row.getModelTypeName(), row.name, keyList, orderList));
 			addJavadocParam(javadoc, row.name, row.getLabel());
 		}
 
 		List<OperatorOutputModelRow> olist = getOutputModelList();
 		for (OperatorOutputModelRow row : olist) {
-			plist.add(newResultParameter(row.modelClassName, row.name));
+			plist.add(newResultParameter(row.getModelTypeName(), row.name));
 			addJavadocParam(javadoc, row.name, row.getLabel());
 		}
 	}

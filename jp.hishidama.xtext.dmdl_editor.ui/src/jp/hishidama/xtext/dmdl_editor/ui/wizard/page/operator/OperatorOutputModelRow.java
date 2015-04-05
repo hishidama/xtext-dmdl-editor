@@ -2,11 +2,7 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator;
 
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 
-public class OperatorOutputModelRow {
-	public String name;
-	public String modelClassName;
-	public String modelName;
-	public String modelDescription;
+public class OperatorOutputModelRow extends OperatorModelRow {
 
 	public String getLabel() {
 		if (StringUtil.nonEmpty(modelDescription)) {
