@@ -28,6 +28,7 @@ import org.eclipse.jdt.core.dom.BodyDeclaration;
 import org.eclipse.jdt.core.dom.ClassInstanceCreation;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.EmptyStatement;
+import org.eclipse.jdt.core.dom.EnhancedForStatement;
 import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.IExtendedModifier;
 import org.eclipse.jdt.core.dom.Javadoc;
@@ -36,6 +37,7 @@ import org.eclipse.jdt.core.dom.Modifier;
 import org.eclipse.jdt.core.dom.Modifier.ModifierKeyword;
 import org.eclipse.jdt.core.dom.NormalAnnotation;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
+import org.eclipse.jdt.core.dom.Statement;
 import org.eclipse.jdt.core.dom.Type;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
@@ -260,7 +262,19 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 
 		addJavadocReturn(javadoc, "実際に利用するマスターデータ、利用可能なものがない場合は{@code null}");
 
-		method.setBody(newReturnNullBlock());
+		{
+			Block block = ast.newBlock();
+			List<Statement> slist = block.statements();
+
+			EnhancedForStatement forStatement = ast.newEnhancedForStatement();
+			forStatement.setParameter(newSimpleParameter(masterType, "master"));
+			forStatement.setExpression(ast.newSimpleName("masters"));
+			forStatement.setBody(newEmptyBlock());
+			slist.add(forStatement);
+
+			slist.add(newReturnStatement(ast.newNullLiteral()));
+			method.setBody(block);
+		}
 
 		return method;
 	}
