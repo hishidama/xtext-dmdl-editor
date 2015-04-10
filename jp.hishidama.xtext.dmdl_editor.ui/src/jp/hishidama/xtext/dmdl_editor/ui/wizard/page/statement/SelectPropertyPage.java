@@ -70,7 +70,7 @@ public class SelectPropertyPage extends EditWizardPage {
 	protected class PropertyTable extends ModifiableTable<PropertyRow> {
 
 		public PropertyTable(Composite parent) {
-			super(parent, SWT.BORDER | SWT.FULL_SELECTION | SWT.CHECK);
+			super(parent, SWT.BORDER | SWT.FULL_SELECTION | SWT.MULTI | SWT.CHECK);
 			setEnableButton(false, false, true, false);
 		}
 
