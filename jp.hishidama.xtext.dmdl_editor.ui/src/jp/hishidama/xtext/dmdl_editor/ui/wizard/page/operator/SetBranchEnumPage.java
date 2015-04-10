@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
+import jp.hishidama.eclipse_plugin.dialog.ClassSelectionDialog;
 import jp.hishidama.eclipse_plugin.jdt.util.JavadocUtil;
+import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
 import jp.hishidama.eclipse_plugin.jface.ModifiableTable;
+import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.eclipse_plugin.wizard.page.EditWizardPage;
 
 import org.eclipse.jdt.core.IType;
@@ -33,7 +36,11 @@ public class SetBranchEnumPage extends EditWizardPage {
 
 	private Button button0;
 	private Group group0;
+	private Button button01;
 	private Combo enumCombo;
+	private Button button02;
+	private Text enumText;
+	private Button selectButton02;
 
 	private Button button1;
 	private Group group1;
@@ -65,10 +72,28 @@ public class SetBranchEnumPage extends EditWizardPage {
 
 			group0 = new Group(composite, SWT.SHADOW_IN);
 			group0.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-			group0.setLayout(new GridLayout());
+			group0.setLayout(new GridLayout(3, false));
+
+			button01 = new Button(group0, SWT.RADIO);
+			button01.setText("オペレータークラス内：");
+			button01.setSelection(true);
 			existsList = getExistsEnumList();
 			enumCombo = createCombo(group0, 1);
 			enumCombo.setItems(existsList.toArray(new String[existsList.size()]));
+			createLabel(group0, "");
+
+			button02 = new Button(group0, SWT.RADIO);
+			button02.setText("オペレータークラス外：");
+			enumText = createText(group0, 1);
+			enumText.setEditable(false);
+			selectButton02 = new Button(group0, SWT.PUSH);
+			selectButton02.setText("select");
+			selectButton02.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					selectOuterEnum();
+				}
+			});
 		}
 		{
 			button1 = new Button(composite, SWT.RADIO);
@@ -105,6 +130,18 @@ public class SetBranchEnumPage extends EditWizardPage {
 				setEnabled(false, true);
 			}
 		});
+		button01.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				validate(isVisible());
+			}
+		});
+		button02.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				validate(isVisible());
+			}
+		});
 
 		if (existsList.isEmpty()) {
 			button1.setSelection(true);
@@ -119,11 +156,17 @@ public class SetBranchEnumPage extends EditWizardPage {
 
 	void setEnabled(boolean b0, boolean b1) {
 		group0.setEnabled(b0);
+		button01.setEnabled(b0);
 		enumCombo.setEnabled(b0);
+		button02.setEnabled(b0);
+		enumText.setEnabled(b0);
+		selectButton02.setEnabled(b0);
+
 		group1.setEnabled(b1);
 		commentText.setEnabled(b1);
 		nameText.setEnabled(b1);
 		table.setEnabled(b1);
+
 		validate(isVisible());
 	}
 
@@ -139,6 +182,17 @@ public class SetBranchEnumPage extends EditWizardPage {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	void selectOuterEnum() {
+		button01.setSelection(false);
+		button02.setSelection(true);
+		ClassSelectionDialog dialog = ClassSelectionDialog.createEnum(getShell(), type.getJavaProject(),
+				getContainer(), null);
+		if (dialog.open() == Window.OK) {
+			enumText.setText(StringUtil.nonNull(dialog.getSelectedClassName()));
+		}
+		validate(isVisible());
 	}
 
 	public static class EnumRow {
@@ -200,9 +254,17 @@ public class SetBranchEnumPage extends EditWizardPage {
 		}
 
 		if (button0.getSelection()) {
-			String name = enumCombo.getText().trim();
-			if (name.isEmpty()) {
-				return "列挙クラスを選択して下さい。";
+			if (button01.getSelection()) {
+				String name = enumCombo.getText().trim();
+				if (name.isEmpty()) {
+					return "列挙クラスを選択して下さい。";
+				}
+			}
+			if (button02.getSelection()) {
+				String name = enumText.getText();
+				if (name.isEmpty()) {
+					return "列挙クラスを選択して下さい。";
+				}
 			}
 			return null;
 		}
@@ -227,7 +289,11 @@ public class SetBranchEnumPage extends EditWizardPage {
 
 	public String getEnumName() {
 		if (button0.getSelection()) {
-			return enumCombo.getText().trim();
+			if (button01.getSelection()) {
+				return enumCombo.getText().trim();
+			} else {
+				return enumText.getText();
+			}
 		} else {
 			return nameText.getText().trim();
 		}
@@ -237,7 +303,13 @@ public class SetBranchEnumPage extends EditWizardPage {
 		if (button1.getSelection()) {
 			return commentText.getText().trim();
 		} else {
-			IType enumType = type.getType(getEnumName());
+			String name = getEnumName();
+			IType enumType;
+			if (name.contains(".")) {
+				enumType = TypeUtil.findType(type.getJavaProject(), name);
+			} else {
+				enumType = type.getType(name);
+			}
 			Javadoc javadoc = JavadocUtil.getJavadoc(enumType);
 			String comment = JavadocUtil.getHeader(javadoc);
 			if (comment != null) {

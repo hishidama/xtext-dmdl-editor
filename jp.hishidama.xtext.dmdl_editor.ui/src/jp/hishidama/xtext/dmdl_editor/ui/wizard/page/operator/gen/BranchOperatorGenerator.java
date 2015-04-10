@@ -30,7 +30,7 @@ public class BranchOperatorGenerator extends OperatorGenerator {
 
 	@Override
 	protected Type getReturnType(Javadoc javadoc) {
-		return ast.newSimpleType(ast.newSimpleName(getReturnTypeName(javadoc)));
+		return newType(getReturnTypeName(javadoc));
 	}
 
 	@Override
