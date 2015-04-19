@@ -13,6 +13,7 @@ import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.dom.Assignment;
 import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.BodyDeclaration;
+import org.eclipse.jdt.core.dom.Expression;
 import org.eclipse.jdt.core.dom.FieldAccess;
 import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.Javadoc;
@@ -216,8 +217,14 @@ public class JobflowClassModifier extends AstRewriteUtility {
 			NormalAnnotation a = newNormalAnnotation(row.in ? FlowUtil.IMPORT_NAME : FlowUtil.EXPORT_NAME);
 			{
 				addTo(a, newMemberValuePair("name", row.name));
-				TypeLiteral literal = ast.newTypeLiteral();
-				literal.setType(newType(row.porterClassName));
+				Expression literal;
+				if (row.porterClassName != null) {
+					TypeLiteral typeLiteral = ast.newTypeLiteral();
+					typeLiteral.setType(newType(row.porterClassName));
+					literal = typeLiteral;
+				} else {
+					literal = ast.newNullLiteral();
+				}
 				addTo(a, newMemberValuePair("description", literal));
 				param.modifiers().add(a);
 			}
