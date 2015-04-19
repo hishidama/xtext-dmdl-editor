@@ -3,6 +3,7 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.gen;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
+import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorInputModelRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetBranchEnumPage;
 
@@ -52,7 +53,7 @@ public class MasterBranchOperatorGenerator extends BranchOperatorGenerator {
 		}
 
 		SetBranchEnumPage page = getBranchEnumPage();
-		String enumName = page.getEnumName();
+		String enumName = StringUtil.getSimpleName(page.getEnumName());
 
 		ASTRewrite rewriter = getAstRewrite();
 		String comment = "// TODO MasterBranchでは、マスターが無い場合にnullが渡ってくるので、nullチェックが必要です。";
