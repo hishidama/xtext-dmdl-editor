@@ -1,5 +1,7 @@
 package jp.hishidama.xtext.dmdl_editor.jdt.assist;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.AfwStringUtil;
@@ -20,6 +22,7 @@ import org.eclipse.jdt.core.dom.SimpleName;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import org.eclipse.jdt.core.dom.TagElement;
 import org.eclipse.jdt.core.dom.Type;
+import org.eclipse.jdt.core.dom.TypeParameter;
 
 public class JavadocDmdlFinder extends ASTVisitor {
 	private ICompilationUnit unit;
@@ -27,28 +30,40 @@ public class JavadocDmdlFinder extends ASTVisitor {
 
 	private String varName;
 	private String modelClassName;
+	private List<String> modelClassNameList = Collections.emptyList();
 
 	public JavadocDmdlFinder(ICompilationUnit unit, int offset) {
 		this.unit = unit;
 		this.offset = offset;
 	}
 
-	private ModelDefinition model;
+	private List<ModelDefinition> modelList;
 
-	public ModelDefinition getModel() {
-		if (model != null) {
-			return model;
+	public List<ModelDefinition> getModel() {
+		if (modelList != null) {
+			return modelList;
 		}
 
 		visit();
 		if (modelClassName == null) {
-			return null;
+			return Collections.emptyList();
 		}
 
 		IProject project = unit.getJavaProject().getProject();
+		this.modelList = new ArrayList<ModelDefinition>();
+		addToList(modelList, project, modelClassName);
+		for (String name : modelClassNameList) {
+			addToList(modelList, project, name);
+		}
+		return modelList;
+	}
+
+	private void addToList(List<ModelDefinition> list, IProject project, String modelClassName) {
 		modelClassName = AfwStringUtil.extractModelClassName(modelClassName);
-		this.model = ModelUiUtil.findModelByClass(project, modelClassName);
-		return model;
+		ModelDefinition model = ModelUiUtil.findModelByClass(project, modelClassName);
+		if (model != null) {
+			list.add(model);
+		}
 	}
 
 	private boolean visited = false;
@@ -93,6 +108,16 @@ public class JavadocDmdlFinder extends ASTVisitor {
 					if (varName.equals(name)) {
 						this.modelClassName = variable.getType().toString();
 						break;
+					}
+				}
+			}
+			List<TypeParameter> typeParameters = node.typeParameters();
+			for (TypeParameter tp : typeParameters) {
+				if (tp.getName().getIdentifier().equals(this.modelClassName)) {
+					List<Type> bounds = tp.typeBounds();
+					this.modelClassNameList = new ArrayList<String>();
+					for (Type bound : bounds) {
+						modelClassNameList.add(bound.toString());
 					}
 				}
 			}

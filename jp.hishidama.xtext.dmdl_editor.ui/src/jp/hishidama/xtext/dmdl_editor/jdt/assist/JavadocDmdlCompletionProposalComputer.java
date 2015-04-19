@@ -16,6 +16,9 @@ import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 
+/**
+ * Javadocの入力補完
+ */
 public class JavadocDmdlCompletionProposalComputer implements IJavaCompletionProposalComputer {
 
 	// @Override
@@ -34,23 +37,21 @@ public class JavadocDmdlCompletionProposalComputer implements IJavaCompletionPro
 		int offset = context.getInvocationOffset();
 		JavadocDmdlFinder finder = new JavadocDmdlFinder(cu, offset);
 
-		ModelDefinition model = finder.getModel();
-		if (model == null) {
-			return Collections.emptyList();
-		}
-
-		List<ICompletionProposal> list = new ArrayList<ICompletionProposal>();
-		{
-			String s = ModelUtil.getDecodedDescription(model);
-			if (s != null) {
+		List<ModelDefinition> modelList = finder.getModel();
+		List<ICompletionProposal> list = new ArrayList<ICompletionProposal>(modelList.size());
+		for (ModelDefinition model : modelList) {
+			{
+				String s = ModelUtil.getDecodedDescription(model);
+				if (s != null) {
+					CompletionProposal proposal = new CompletionProposal(s, offset, 0, s.length());
+					list.add(proposal);
+				}
+			}
+			{
+				String s = model.getName();
 				CompletionProposal proposal = new CompletionProposal(s, offset, 0, s.length());
 				list.add(proposal);
 			}
-		}
-		{
-			String s = model.getName();
-			CompletionProposal proposal = new CompletionProposal(s, offset, 0, s.length());
-			list.add(proposal);
 		}
 		return list;
 	}
