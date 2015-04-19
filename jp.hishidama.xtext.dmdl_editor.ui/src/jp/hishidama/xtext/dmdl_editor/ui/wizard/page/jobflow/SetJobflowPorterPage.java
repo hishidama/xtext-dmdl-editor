@@ -13,6 +13,7 @@ import jp.hishidama.eclipse_plugin.jdt.util.AnnotationUtil;
 import jp.hishidama.eclipse_plugin.jdt.util.JavadocUtil;
 import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
 import jp.hishidama.eclipse_plugin.jface.ModifiableTable;
+import jp.hishidama.eclipse_plugin.util.DialogSettingsUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.eclipse_plugin.wizard.page.EditWizardPage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
@@ -40,8 +41,8 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Text;
 
 public class SetJobflowPorterPage extends EditWizardPage {
 
@@ -191,7 +192,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 	protected class JobflowPorterTable extends ModifiableTable<JobflowPorterRow> {
 		private static final String KEY = "JobflowPorterTable.NAME_RULE";
 
-		private Text nameText;
+		private Combo nameRuleCombo;
 
 		public JobflowPorterTable(Composite parent) {
 			super(parent, SWT.BORDER | SWT.MULTI | SWT.FULL_SELECTION);
@@ -239,13 +240,11 @@ public class SetJobflowPorterPage extends EditWizardPage {
 
 		public void createTextArea(Composite field) {
 			createLabel(field, "名前の命名ルール :").setToolTipText("追加・改名を実行した際に使われます。");
-			nameText = createText(field, 1, null);
-			IDialogSettings settings = getDialogSettings();
-			String value = settings.get(KEY);
-			if (value == null || value.trim().isEmpty()) {
-				value = "$(className.toLowerCamelCase)";
-			}
-			nameText.setText(value);
+			nameRuleCombo = new Combo(field, SWT.BORDER);
+			GridData data = new GridData(GridData.FILL_HORIZONTAL);
+			data.horizontalSpan = 1;
+			nameRuleCombo.setLayoutData(data);
+			DialogSettingsUtil.load(getDialogSettings(), nameRuleCombo, KEY, "$(className.toLowerCamelCase)");
 
 			Button button = new Button(field, SWT.PUSH);
 			button.setText("select");
@@ -254,8 +253,10 @@ public class SetJobflowPorterPage extends EditWizardPage {
 				public void widgetSelected(SelectionEvent e) {
 					JobflowPortNameRuleDialog dialog = new JobflowPortNameRuleDialog(getShell());
 					if (dialog.open() == Window.OK) {
+						refreshNameRuleComboItems();
 						String value = dialog.getSelectedValue();
-						nameText.setText(value);
+						nameRuleCombo.setText(value);
+						refreshNameRuleComboItems();
 					}
 				}
 			});
@@ -273,8 +274,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		}
 
 		public void saveDialogSettings() {
-			String value = nameText.getText();
-			getDialogSettings().put(KEY, value);
+			DialogSettingsUtil.save(getDialogSettings(), nameRuleCombo, KEY, 20);
 		}
 
 		@Override
@@ -301,7 +301,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 			JobflowPorterRow element = createElement();
 			element.in = in;
 			EditJobflowPorterDialog dialog = new EditJobflowPorterDialog(getShell(), javaProject, element,
-					nameText.getText(), 0);
+					nameRuleCombo.getText(), 0);
 			if (dialog.open() == Window.OK) {
 				doAdd(element);
 			}
@@ -323,7 +323,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 
 			List<PorterFile> files = dialog.getSelectedFiles();
 			List<JobflowPorterRow> result = new ArrayList<JobflowPorterRow>(files.size());
-			String nameRule = nameText.getText();
+			String nameRule = nameRuleCombo.getText();
 			int i = 0;
 			for (PorterFile file : files) {
 				doAdd(file, result, nameRule, i++);
@@ -381,7 +381,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		@Override
 		protected void editElement(JobflowPorterRow element) {
 			EditJobflowPorterDialog dialog = new EditJobflowPorterDialog(getShell(), javaProject, element,
-					nameText.getText(), 0);
+					nameRuleCombo.getText(), 0);
 			dialog.open();
 		}
 
@@ -391,7 +391,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		}
 
 		protected void doRename() {
-			String nameRule = nameText.getText();
+			String nameRule = nameRuleCombo.getText();
 			List<JobflowPorterRow> list = getElementList();
 			int[] index = table.getSelectionIndices();
 			for (int i = 0; i < index.length; i++) {
@@ -404,7 +404,12 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		@Override
 		public void refresh() {
 			super.refresh();
+			refreshNameRuleComboItems();
 			validate(visible);
+		}
+
+		void refreshNameRuleComboItems() {
+			DialogSettingsUtil.refreshComboItems(nameRuleCombo);
 		}
 	}
 
