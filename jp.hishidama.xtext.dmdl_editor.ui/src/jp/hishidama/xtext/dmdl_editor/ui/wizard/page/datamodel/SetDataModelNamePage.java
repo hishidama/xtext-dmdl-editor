@@ -166,23 +166,23 @@ public class SetDataModelNamePage extends WizardPage {
 		}
 		{
 			Label label = new Label(composite, SWT.NONE);
-			label.setText("データモデル名");
-
-			modelName = new Text(composite, SWT.BORDER);
-			modelName.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-			modelName.setText("");
-			modelName.addModifyListener(listener);
-
-			new Label(composite, SWT.NONE); // dummy
-		}
-		{
-			Label label = new Label(composite, SWT.NONE);
 			label.setText("データモデルの説明");
 
 			desc = new Text(composite, SWT.BORDER);
 			desc.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 			desc.setText("");
 			desc.addModifyListener(listener);
+
+			new Label(composite, SWT.NONE); // dummy
+		}
+		{
+			Label label = new Label(composite, SWT.NONE);
+			label.setText("データモデル名");
+
+			modelName = new Text(composite, SWT.BORDER);
+			modelName.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+			modelName.setText("");
+			modelName.addModifyListener(listener);
 
 			new Label(composite, SWT.NONE); // dummy
 		}
@@ -236,6 +236,14 @@ public class SetDataModelNamePage extends WizardPage {
 	private static class Field {
 		public Button button;
 		public DataModelType type;
+	}
+
+	@Override
+	public void setVisible(boolean visible) {
+		super.setVisible(visible);
+		if (visible) {
+			desc.setFocus();
+		}
 	}
 
 	private void validate(boolean setError) {

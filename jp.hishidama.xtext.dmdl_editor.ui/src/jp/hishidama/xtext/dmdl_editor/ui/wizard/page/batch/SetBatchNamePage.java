@@ -42,8 +42,8 @@ public class SetBatchNamePage extends EditWizardPage {
 		layout.numColumns = nColumns;
 		composite.setLayout(layout);
 
-		nameText = createTextField(composite, nColumns - 1, "Batch name:");
 		commentText = createTextField(composite, nColumns - 1, "comment:");
+		nameText = createTextField(composite, nColumns - 1, "Batch name:");
 		{
 			createLabel(composite, "parameter:");
 			table = new BatchParameterTable(composite);
@@ -69,10 +69,10 @@ public class SetBatchNamePage extends EditWizardPage {
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
 		if (visible) {
-			if (nameText != null && nameText.getText().trim().isEmpty()) {
+			if (nameText.getText().trim().isEmpty()) {
 				nameText.setText(getWizard().getTypeName());
 			}
-			nameText.setFocus();
+			commentText.setFocus();
 		}
 	}
 

@@ -31,8 +31,8 @@ public class SetJobflowNamePage extends EditWizardPage {
 		layout.numColumns = nColumns;
 		composite.setLayout(layout);
 
-		nameText = createTextField(composite, nColumns - 1, "JobFlow name:");
 		descText = createTextField(composite, nColumns - 1, "comment:");
+		nameText = createTextField(composite, nColumns - 1, "JobFlow name:");
 
 		return composite;
 	}
@@ -41,10 +41,10 @@ public class SetJobflowNamePage extends EditWizardPage {
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
 		if (visible) {
-			if (nameText != null && nameText.getText().trim().isEmpty()) {
+			if (nameText.getText().trim().isEmpty()) {
 				nameText.setText(getWizard().getTypeName());
 			}
-			nameText.setFocus();
+			descText.setFocus();
 		}
 	}
 

@@ -22,10 +22,10 @@ public class BranchEnumDialog extends EditDialog {
 
 	@Override
 	protected void createFields(Composite composite) {
-		nameText = createTextField(composite, "name");
-		nameText.setText(nonNull(row.name));
 		commentText = createTextField(composite, "comment");
 		commentText.setText(nonNull(row.comment));
+		nameText = createTextField(composite, "name");
+		nameText.setText(nonNull(row.name));
 	}
 
 	@Override

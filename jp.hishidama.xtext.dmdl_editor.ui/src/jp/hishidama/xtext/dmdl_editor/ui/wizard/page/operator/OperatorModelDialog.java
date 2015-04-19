@@ -58,7 +58,6 @@ public class OperatorModelDialog<R extends OperatorModelRow> extends EditDialog 
 
 		nameText = createTextField(composite, "name");
 		nameText.setText(nonNull(row.name));
-		nameText.setFocus();
 		modelClassName = row.getModelClassName();
 		TextButtonPair pair = createTextButtonField(composite, "model name", "select");
 		modelNameText = pair.text;
@@ -74,6 +73,12 @@ public class OperatorModelDialog<R extends OperatorModelRow> extends EditDialog 
 		modelDescText = createTextField(composite, "model description");
 		modelDescText.setText(nonNull(row.modelDescription));
 		modelDescText.setEditable(false);
+
+		if (selectModel) {
+			pair.button.setFocus();
+		} else {
+			nameText.setFocus();
+		}
 	}
 
 	@Override

@@ -107,8 +107,8 @@ public class SetBranchEnumPage extends EditWizardPage {
 
 			createLabel(group1, "列挙定数：");
 			table = new EnumTable(group1);
-			table.addColumn("name", 128, SWT.NONE);
 			table.addColumn("comment", 256, SWT.NONE);
+			table.addColumn("name", 128, SWT.NONE);
 
 			createLabel(group1, "");
 			Composite field = new Composite(group1, SWT.NONE);
@@ -210,9 +210,9 @@ public class SetBranchEnumPage extends EditWizardPage {
 		protected String getText(EnumRow element, int columnIndex) {
 			switch (columnIndex) {
 			case 0:
-				return element.name;
-			case 1:
 				return element.comment;
+			case 1:
+				return element.name;
 			default:
 				throw new UnsupportedOperationException("columnIndex=" + columnIndex);
 			}
