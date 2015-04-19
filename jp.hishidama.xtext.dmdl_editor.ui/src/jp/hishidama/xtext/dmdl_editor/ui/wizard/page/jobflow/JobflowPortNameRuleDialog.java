@@ -14,6 +14,7 @@ public class JobflowPortNameRuleDialog extends PortNameRuleDialog {
 	@Override
 	protected void createFields(Composite composite) {
 		createRadioButton(composite, "Importer/Exporter class name", "$(className.toLowerCamelCase)");
+		createRadioButton(composite, "model name", "$(modelName.toLowerCamelCase)");
 		createRadioButton(composite, "model name + In/Out", "$(modelName.toLowerCamelCase)$(in?In:Out)");
 		createRadioButton(composite, "model name + sequencial numer", "$(modelName.toLowerCamelCase)$(number.1.%d)");
 		createRadioButton(composite, "in/out + sequencial numer", "$(in?in:out)$(number.1.%d)");

@@ -300,7 +300,8 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		protected void doAdd1(boolean in) {
 			JobflowPorterRow element = createElement();
 			element.in = in;
-			EditJobflowPorterDialog dialog = new EditJobflowPorterDialog(getShell(), javaProject, element);
+			EditJobflowPorterDialog dialog = new EditJobflowPorterDialog(getShell(), javaProject, element,
+					nameText.getText(), 0);
 			if (dialog.open() == Window.OK) {
 				doAdd(element);
 			}
@@ -379,7 +380,8 @@ public class SetJobflowPorterPage extends EditWizardPage {
 
 		@Override
 		protected void editElement(JobflowPorterRow element) {
-			EditJobflowPorterDialog dialog = new EditJobflowPorterDialog(getShell(), javaProject, element);
+			EditJobflowPorterDialog dialog = new EditJobflowPorterDialog(getShell(), javaProject, element,
+					nameText.getText(), 0);
 			dialog.open();
 		}
 

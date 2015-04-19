@@ -1,5 +1,8 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.jobflow;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.eclipse_plugin.dialog.ClassSelectionDialog;
 import jp.hishidama.eclipse_plugin.dialog.ClassSelectionDialog.Filter;
@@ -10,6 +13,7 @@ import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLVariableTableUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 
 import org.eclipse.jdt.core.IJavaProject;
@@ -24,8 +28,10 @@ import org.eclipse.swt.widgets.Text;
 
 public class EditJobflowPorterDialog extends EditDialog {
 
-	private IJavaProject javaProject;
-	private JobflowPorterRow row;
+	private final IJavaProject javaProject;
+	private final JobflowPorterRow row;
+	private final String nameRule;
+	private final int number;
 
 	private Text inText;
 	private Text nameText;
@@ -35,10 +41,13 @@ public class EditJobflowPorterDialog extends EditDialog {
 	private Text modelNameText;
 	private Text modelDescText;
 
-	public EditJobflowPorterDialog(Shell parentShell, IJavaProject javaProject, JobflowPorterRow row) {
+	public EditJobflowPorterDialog(Shell parentShell, IJavaProject javaProject, JobflowPorterRow row, String nameRule,
+			int number) {
 		super(parentShell, "Importer/Exporter編集", 3);
 		this.javaProject = javaProject;
 		this.row = row;
+		this.nameRule = nameRule;
+		this.number = number;
 	}
 
 	@Override
@@ -110,7 +119,7 @@ public class EditJobflowPorterDialog extends EditDialog {
 				String modelDescription = ModelUtil.getDecodedDescriptionText(model);
 				modelDescText.setText(modelDescription);
 				if (nameText.getText().trim().isEmpty()) {
-					nameText.setText(StringUtil.toLowerCamelCase(modelName));
+					nameText.setText(getName(className, modelName, modelDescription));
 				}
 				if (commentText.getText().isEmpty()) {
 					commentText.setText(modelDescription);
@@ -124,6 +133,21 @@ public class EditJobflowPorterDialog extends EditDialog {
 			modelNameText.setText("");
 			modelDescText.setText("");
 		}
+	}
+
+	private String getName(String porterClassName, String modelName, String modelDescription) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("in", Boolean.toString(row.in));
+		map.put("className", StringUtil.getSimpleName(porterClassName));
+		map.put("modelName", modelName);
+		map.put("modelDescription", modelDescription);
+		map.put("number", Integer.toString(this.number));
+
+		String name = DMDLVariableTableUtil.replaceVariable(this.nameRule, map);
+		if (StringUtil.nonEmpty(name)) {
+			return name;
+		}
+		return StringUtil.toFirstLower(StringUtil.getSimpleName(porterClassName));
 	}
 
 	@Override
