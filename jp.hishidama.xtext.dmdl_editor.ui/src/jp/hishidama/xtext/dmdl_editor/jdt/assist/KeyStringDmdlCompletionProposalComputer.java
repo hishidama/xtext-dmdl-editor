@@ -42,6 +42,9 @@ public class KeyStringDmdlCompletionProposalComputer implements IJavaCompletionP
 		IType type = unit.findPrimaryType();
 		if (PorterUtil.isExporter(type)) {
 			ExporterPropertyStringFinder finder = new ExporterPropertyStringFinder(type, offset);
+			if (!finder.foundTargetMethod()) {
+				return Collections.emptyList();
+			}
 			String prefix = getPrefix(finder.getPropertyName(), finder.getRegion(), offset);
 			if (prefix == null) {
 				return Collections.emptyList();

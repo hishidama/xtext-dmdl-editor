@@ -1,5 +1,7 @@
 package jp.hishidama.xtext.dmdl_editor.jdt.hyperlink;
 
+import java.util.List;
+
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
@@ -14,6 +16,7 @@ import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.ASTVisitor;
+import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.StringLiteral;
 import org.eclipse.jface.text.IRegion;
@@ -23,6 +26,7 @@ public class ExporterPropertyStringFinder extends ASTVisitor {
 	private IType type;
 	private int offset;
 
+	private boolean isTargetMethod = false;
 	private IRegion region;
 	private Region textRegion;
 	private String text;
@@ -31,6 +35,11 @@ public class ExporterPropertyStringFinder extends ASTVisitor {
 	public ExporterPropertyStringFinder(IType type, int offset) {
 		this.type = type;
 		this.offset = offset;
+	}
+
+	public boolean foundTargetMethod() {
+		visit();
+		return isTargetMethod;
 	}
 
 	public String getPropertyName() {
@@ -99,21 +108,68 @@ public class ExporterPropertyStringFinder extends ASTVisitor {
 	@Override
 	public boolean visit(MethodDeclaration node) {
 		String methodName = node.getName().getIdentifier();
-		return "getOrder".equals(methodName);
-	}
-
-	@Override
-	public boolean visit(StringLiteral node) {
-		String value = node.getLiteralValue();
-		NamePosition pos = PropertyUtil.findName(value);
-		if (pos == null) {
+		if ("getOrder".equals(methodName)) {
+			isTargetMethod = true;
+			visitGetOrder(node.getBody());
+			return false;
+		} else if ("getResourcePattern".equals(methodName)) {
+			isTargetMethod = true;
+			visitGetResourcePattern(node.getBody());
 			return false;
 		}
+		return true;
+	}
 
-		this.text = value;
-		this.textRegion = new Region(node.getStartPosition() + 1, node.getLength() - 2);
-		this.propertyName = pos.getName(value);
-		this.region = new Region(node.getStartPosition() + 1 + pos.getOffset(), pos.getLength());
-		return false;
+	private void visitGetOrder(Block block) {
+		block.accept(new ASTVisitor() {
+			@Override
+			public boolean preVisit2(ASTNode node) {
+				return ExporterPropertyStringFinder.this.preVisit2(node);
+			}
+
+			@Override
+			public boolean visit(StringLiteral node) {
+				String value = node.getLiteralValue();
+				NamePosition pos = PropertyUtil.findName(value);
+				if (pos == null) {
+					return false;
+				}
+
+				text = value;
+				textRegion = new Region(node.getStartPosition() + 1, node.getLength() - 2);
+				propertyName = pos.getName(value);
+				region = new Region(node.getStartPosition() + 1 + pos.getOffset(), pos.getLength());
+				return false;
+			}
+		});
+	}
+
+	private void visitGetResourcePattern(Block block) {
+		block.accept(new ASTVisitor() {
+			@Override
+			public boolean preVisit2(ASTNode node) {
+				return ExporterPropertyStringFinder.this.preVisit2(node);
+			}
+
+			@Override
+			public boolean visit(StringLiteral node) {
+				String value = node.getLiteralValue();
+				List<NamePosition> list = PropertyUtil.getResourcePatternProperties(value);
+				for (NamePosition pos : list) {
+					int offset = node.getStartPosition() + 1 + pos.getOffset();
+					int length = pos.getLength();
+					if (offset <= ExporterPropertyStringFinder.this.offset
+							&& ExporterPropertyStringFinder.this.offset <= offset + length) {
+						text = value;
+						textRegion = new Region(node.getStartPosition() + 1, node.getLength() - 2);
+						propertyName = pos.getName(value).trim();
+						region = new Region(offset, length);
+						return false;
+					}
+				}
+				isTargetMethod = false;
+				return false;
+			}
+		});
 	}
 }
