@@ -27,6 +27,7 @@ public class ExporterPropertyStringFinder extends ASTVisitor {
 	private int offset;
 
 	private boolean isTargetMethod = false;
+	private String targetMethodName;
 	private IRegion region;
 	private Region textRegion;
 	private String text;
@@ -40,6 +41,11 @@ public class ExporterPropertyStringFinder extends ASTVisitor {
 	public boolean foundTargetMethod() {
 		visit();
 		return isTargetMethod;
+	}
+
+	public String getMethodName() {
+		visit();
+		return targetMethodName;
 	}
 
 	public String getPropertyName() {
@@ -62,6 +68,7 @@ public class ExporterPropertyStringFinder extends ASTVisitor {
 
 	public ModelDefinition getModel() {
 		if (model == null) {
+			visit();
 			String modelClassName = PorterUtil.getModelClassName(type);
 			model = ModelUiUtil.findModelByClass(type.getJavaProject().getProject(), modelClassName);
 		}
@@ -108,6 +115,7 @@ public class ExporterPropertyStringFinder extends ASTVisitor {
 	@Override
 	public boolean visit(MethodDeclaration node) {
 		String methodName = node.getName().getIdentifier();
+		this.targetMethodName = methodName;
 		if ("getOrder".equals(methodName)) {
 			isTargetMethod = true;
 			visitGetOrder(node.getBody());

@@ -43,13 +43,19 @@ public class KeyStringDmdlCompletionProposalComputer implements IJavaCompletionP
 		if (PorterUtil.isExporter(type)) {
 			ExporterPropertyStringFinder finder = new ExporterPropertyStringFinder(type, offset);
 			if (!finder.foundTargetMethod()) {
-				return Collections.emptyList();
+				return getModelProposal(finder.getMethodName(), finder.getModel(), offset);
 			}
 			String prefix = getPrefix(finder.getPropertyName(), finder.getRegion(), offset);
 			if (prefix == null) {
-				return Collections.emptyList();
+				return getModelProposal(finder.getMethodName(), finder.getModel(), offset);
 			}
 			return getPrefixProposal(finder.getRegion(), finder.getModel(), prefix, offset);
+		} else if (PorterUtil.isImporter(type)) {
+			ImporterStringFinder finder = new ImporterStringFinder(type, offset);
+			if (finder.foundStringLiteral()) {
+				return getModelProposal(finder.getMethodName(), finder.getModel(), offset);
+			}
+			return Collections.emptyList();
 		}
 
 		KeyPropertyStringFinder finder = new KeyPropertyStringFinder(unit, offset);
@@ -80,6 +86,19 @@ public class KeyStringDmdlCompletionProposalComputer implements IJavaCompletionP
 			return name;
 		}
 		return name.substring(0, len);
+	}
+
+	private List<ICompletionProposal> getModelProposal(String methodName, ModelDefinition model, int offset) {
+		if ("getBasePath".equals(methodName) || "getResourcePattern".equals(methodName)) {
+			if (model != null) {
+				String s = model.getName();
+				int start = offset;
+				int len = 0;
+				ICompletionProposal proposal = new CompletionProposal(s, start, len, s.length());
+				return Arrays.asList(proposal);
+			}
+		}
+		return Collections.emptyList();
 	}
 
 	private List<ICompletionProposal> getPrefixProposal(IRegion region, ModelDefinition model, String prefix, int offset) {
