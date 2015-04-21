@@ -1,7 +1,11 @@
 package jp.hishidama.xtext.dmdl_editor.dmdl;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
@@ -207,6 +211,23 @@ public class PropertyUtil {
 		}
 
 		return null;
+	}
+
+	private final static Pattern RESOURCE_PATTERN_PROPERTY_PATTERN = Pattern.compile("\\{(?<name>.*?)(\\:.*?)?\\}");
+
+	public static List<NamePosition> getResourcePatternProperties(String text) {
+		List<NamePosition> list = new ArrayList<NamePosition>();
+
+		Matcher matcher = RESOURCE_PATTERN_PROPERTY_PATTERN.matcher(text);
+		while (matcher.find()) {
+			int start = matcher.start(1);
+			if (start >= 2 && text.charAt(start - 2) == '$') {
+				continue;
+			}
+			NamePosition pos = new NamePosition(start, matcher.end(1));
+			list.add(pos);
+		}
+		return list;
 	}
 
 	private static boolean isPropertyNameChar(char c) {

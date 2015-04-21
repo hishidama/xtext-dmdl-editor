@@ -22,6 +22,7 @@ import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.ASTVisitor;
+import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.Expression;
 import org.eclipse.jdt.core.dom.MemberValuePair;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
@@ -162,7 +163,7 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 				return true;
 			}
 			String methodName = node.getName().getFullyQualifiedName();
-			if (!"getOrder".equals(methodName)) {
+			if (!"getOrder".equals(methodName) && !"getResourcePattern".equals(methodName)) {
 				return true;
 			}
 
@@ -177,7 +178,17 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 				return true;
 			}
 
-			node.getBody().accept(new ASTVisitor() {
+			if ("getOrder".equals(methodName)) {
+				visitGetOrder(node.getBody());
+			} else if ("getResourcePattern".equals(methodName)) {
+				visitGetResourcePattern(node.getBody());
+			}
+
+			return true;
+		}
+
+		private void visitGetOrder(Block block) {
+			block.accept(new ASTVisitor() {
 				@Override
 				public boolean visit(StringLiteral node) {
 					String literal = node.getLiteralValue();
@@ -189,8 +200,24 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 					return true;
 				}
 			});
+		}
 
-			return true;
+		private void visitGetResourcePattern(Block block) {
+			block.accept(new ASTVisitor() {
+				@Override
+				public boolean visit(StringLiteral node) {
+					String literal = node.getLiteralValue();
+					List<NamePosition> list = PropertyUtil.getResourcePatternProperties(literal);
+					for (NamePosition pos : list) {
+						String name = pos.getName(literal).trim();
+						if (name.equals(data.getPropertyName())) {
+							result.addMatch(match.getElement(), node.getStartPosition() + 1 + pos.getOffset(),
+									pos.getLength());
+						}
+					}
+					return true;
+				}
+			});
 		}
 
 		@Override

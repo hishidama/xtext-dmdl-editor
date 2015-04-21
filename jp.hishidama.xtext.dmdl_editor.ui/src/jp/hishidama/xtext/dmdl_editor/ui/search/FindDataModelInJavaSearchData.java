@@ -260,6 +260,7 @@ public class FindDataModelInJavaSearchData {
 			createMethodPattern(list);
 			createKeyPattern(list);
 			createGetOrderPattern(list);
+			createGetResourcePattern(list);
 		}
 
 		SearchPattern result = null;
@@ -327,6 +328,18 @@ public class FindDataModelInJavaSearchData {
 			return;
 		}
 		String method = "getOrder() java.util.List<java.lang.String>";
+		int searchFor = IJavaSearchConstants.METHOD;
+		int limitTo = IJavaSearchConstants.DECLARATIONS;
+		int matchRule = SearchPattern.R_EXACT_MATCH | SearchPattern.R_CASE_SENSITIVE;
+		SearchPattern pattern = SearchPattern.createPattern(method, searchFor, limitTo, matchRule);
+		list.add(pattern);
+	}
+
+	protected void createGetResourcePattern(List<SearchPattern> list) {
+		if (!limitExporter) {
+			return;
+		}
+		String method = "getResourcePattern() java.lang.String";
 		int searchFor = IJavaSearchConstants.METHOD;
 		int limitTo = IJavaSearchConstants.DECLARATIONS;
 		int matchRule = SearchPattern.R_EXACT_MATCH | SearchPattern.R_CASE_SENSITIVE;
