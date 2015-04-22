@@ -43,17 +43,17 @@ public class KeyStringDmdlCompletionProposalComputer implements IJavaCompletionP
 		if (PorterUtil.isExporter(type)) {
 			ExporterPropertyStringFinder finder = new ExporterPropertyStringFinder(type, offset);
 			if (!finder.foundTargetMethod()) {
-				return getModelProposal(finder.getMethodName(), finder.getModel(), offset);
+				return getModelProposal(finder.getMethodName(), finder.getModel(), offset, false);
 			}
 			String prefix = getPrefix(finder.getPropertyName(), finder.getRegion(), offset);
 			if (prefix == null) {
-				return getModelProposal(finder.getMethodName(), finder.getModel(), offset);
+				return getModelProposal(finder.getMethodName(), finder.getModel(), offset, false);
 			}
 			return getPrefixProposal(finder.getRegion(), finder.getModel(), prefix, offset);
 		} else if (PorterUtil.isImporter(type)) {
 			ImporterStringFinder finder = new ImporterStringFinder(type, offset);
 			if (finder.foundStringLiteral()) {
-				return getModelProposal(finder.getMethodName(), finder.getModel(), offset);
+				return getModelProposal(finder.getMethodName(), finder.getModel(), offset, true);
 			}
 			return Collections.emptyList();
 		}
@@ -88,17 +88,41 @@ public class KeyStringDmdlCompletionProposalComputer implements IJavaCompletionP
 		return name.substring(0, len);
 	}
 
-	private List<ICompletionProposal> getModelProposal(String methodName, ModelDefinition model, int offset) {
-		if ("getBasePath".equals(methodName) || "getResourcePattern".equals(methodName)) {
-			if (model != null) {
-				String s = model.getName();
-				int start = offset;
-				int len = 0;
-				ICompletionProposal proposal = new CompletionProposal(s, start, len, s.length());
-				return Arrays.asList(proposal);
-			}
+	private List<ICompletionProposal> getModelProposal(String methodName, ModelDefinition model, int offset,
+			boolean importer) {
+		final boolean exporter = !importer;
+
+		List<ICompletionProposal> list = new ArrayList<ICompletionProposal>();
+		if (model != null) {
+			addToList(list, model.getName(), offset, 0, null);
+			addToList(list, ModelUtil.getDecodedDescription(model), offset, 0, null);
 		}
-		return Collections.emptyList();
+		if ("getBasePath".equals(methodName)) {
+			addToList(list, "/", offset, 0, "パス区切り文字");
+			addToList(list, "${}", offset, 0, "バッチ引数<br>${バッチ引数名}");
+		}
+		if ((importer && "getResourcePattern".equals(methodName)) || "getDeletePatterns".equals(methodName)) {
+			addToList(list, "/", offset, 0, "パス区切り文字");
+			addToList(list, "${}", offset, 0, "バッチ引数<br>${バッチ引数名}");
+			addToList(list, "*", offset, 0, "ワイルドカード");
+			addToList(list, "**", offset, 0, "サブディレクトリー全て（自分自身を含む）");
+			addToList(list, "{|}", offset, 0, "選択<br>{パス1|パス2|パス3…}");
+		}
+		if (exporter && "getResourcePattern".equals(methodName)) {
+			addToList(list, "/", offset, 0, "パス区切り文字");
+			addToList(list, "${}", offset, 0, "バッチ引数<br>${バッチ引数名}");
+			addToList(list, "{}", offset, 0, "プレースホルダー（プロパティーの内容）<br>{プロパティー名}<br>{日付プロパティー名:日付書式}<br>{日時プロパティー名:日付書式}");
+			addToList(list, "[..]", offset, 0, "ランダムな値<br>[開始番号..終了番号]");
+			addToList(list, "*", offset, 0, "ワイルドカード");
+		}
+		return list;
+	}
+
+	private void addToList(List<ICompletionProposal> list, String s, int start, int len, String additional) {
+		if (s == null) {
+			return;
+		}
+		list.add(new CompletionProposal(s, start, len, s.length(), null, null, null, additional));
 	}
 
 	private List<ICompletionProposal> getPrefixProposal(IRegion region, ModelDefinition model, String prefix, int offset) {
