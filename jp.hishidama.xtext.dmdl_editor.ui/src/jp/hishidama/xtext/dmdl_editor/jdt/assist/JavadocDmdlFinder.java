@@ -5,12 +5,14 @@ import java.util.Collections;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.AfwStringUtil;
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTParser;
@@ -22,6 +24,7 @@ import org.eclipse.jdt.core.dom.SimpleName;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import org.eclipse.jdt.core.dom.TagElement;
 import org.eclipse.jdt.core.dom.Type;
+import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.core.dom.TypeParameter;
 
 public class JavadocDmdlFinder extends ASTVisitor {
@@ -77,6 +80,7 @@ public class JavadocDmdlFinder extends ASTVisitor {
 		ASTParser parser = ASTParser.newParser(AST.JLS4);
 		parser.setSource(unit);
 		parser.setSourceRange(offset, 1);
+		parser.setResolveBindings(true);
 		ASTNode node = parser.createAST(new NullProgressMonitor());
 		node.accept(this);
 	}
@@ -86,6 +90,17 @@ public class JavadocDmdlFinder extends ASTVisitor {
 		int offset = node.getStartPosition();
 		int length = node.getLength();
 		return offset <= this.offset && this.offset <= offset + length;
+	}
+
+	@Override
+	public boolean visit(TypeDeclaration node) {
+		Javadoc javadoc = node.getJavadoc();
+		if (preVisit2(javadoc)) {
+			IType type = (IType) node.resolveBinding().getJavaElement();
+			this.modelClassName = PorterUtil.getModelClassName(type);
+			return false;
+		}
+		return true;
 	}
 
 	@Override
