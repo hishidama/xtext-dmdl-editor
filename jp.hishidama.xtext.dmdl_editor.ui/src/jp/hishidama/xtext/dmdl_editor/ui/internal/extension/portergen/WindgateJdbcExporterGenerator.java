@@ -23,6 +23,7 @@ public class WindgateJdbcExporterGenerator extends WindgateGenerator {
 	public void initializeFields() {
 		addFieldWindgate();
 		addFieldWindgateJdbc();
+		addFieldWindgateJdbcExporter();
 	}
 
 	@Override
@@ -36,5 +37,6 @@ public class WindgateJdbcExporterGenerator extends WindgateGenerator {
 		appendMethodProfileName(sb);
 		appendMethodTableName(sb);
 		appendMethodColumnNames(sb);
+		appendMethodCustomTruncate(sb);
 	}
 }

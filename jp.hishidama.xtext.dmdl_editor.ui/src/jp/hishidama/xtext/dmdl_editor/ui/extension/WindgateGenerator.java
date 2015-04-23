@@ -1,6 +1,5 @@
 package jp.hishidama.xtext.dmdl_editor.ui.extension;
 
-
 /**
  * WindGateのImporter/Exporterクラスのソースを生成する.
  * 
@@ -18,6 +17,7 @@ public abstract class WindgateGenerator extends DMDLImporterExporterGenerator {
 	public static final String KEY_TABLE_NAME = "windate.jdbc.tableName";
 	public static final String KEY_COLUMN_NAMES = "windate.jdbc.columnNames";
 	public static final String KEY_CONDITION = "windate.jdbc.condition";
+	public static final String KEY_CUSTOM_TRUNCATE = "windate.jdbc.customTruncate";
 
 	// フィールド定義用
 	/**
@@ -40,8 +40,8 @@ public abstract class WindgateGenerator extends DMDLImporterExporterGenerator {
 	 * WindGateのpath項目の追加.
 	 */
 	protected final void addFieldWindgatePath(String groupName) {
-		addTextField(null, groupName, KEY_PATH, true, "getPath()",
-				"ファイルのパス", "プロファイル内で指定されているresource.local.basePath からの相対パス\n" + "「data.csv」と入力すると\nreturn \"data.csv\";\nになります。");
+		addTextField(null, groupName, KEY_PATH, true, "getPath()", "ファイルのパス",
+				"プロファイル内で指定されているresource.local.basePath からの相対パス\n" + "「data.csv」と入力すると\nreturn \"data.csv\";\nになります。");
 	}
 
 	/**
@@ -50,17 +50,26 @@ public abstract class WindgateGenerator extends DMDLImporterExporterGenerator {
 	protected final void addFieldWindgateJdbc() {
 		addTextField(null, GROUP_WINDGATE_JDBC, KEY_TABLE_NAME, false, "getTableName()", "テーブル名", "テーブル名\n"
 				+ "「TABLE1」と入力すると\nreturn \"TABLE1\";\n未入力だとgetTableName()は生成（オーバーライド）されず、DMDLで指定されたテーブル名が使われます。");
-		addTextField(null, GROUP_WINDGATE_JDBC, KEY_COLUMN_NAMES, false, "getColumnNames()", "カラム名", "絞り込むカラム名（カンマ区切り）\n"
-				+ "「COL1, COL2」と入力すると\nreturn Arrays.asList(\"COL1\", \"COL2\");\n"
-				+ "未入力だと\nreturn super.getColumnNames();\nとなります。");
+		addTextField(null, GROUP_WINDGATE_JDBC, KEY_COLUMN_NAMES, false, "getColumnNames()", "カラム名",
+				"絞り込むカラム名（カンマ区切り）\n" + "「COL1, COL2」と入力すると\nreturn Arrays.asList(\"COL1\", \"COL2\");\n"
+						+ "未入力だと\nreturn super.getColumnNames();\nとなります。");
 	}
 
 	/**
 	 * WindGate JDBC Importer項目の追加.
 	 */
 	protected final void addFieldWindgateJdbcImporter() {
-		addTextField(null, GROUP_WINDGATE_JDBC_IMPORTER, KEY_CONDITION, false, "getCondition()",
-				"WHERE条件", "インポーターが利用する抽出条件（SQLの条件式）\n" + "「COL1 = 123」と入力すると\nreturn \"COL1 = 123\";\nになります。");
+		addTextField(null, GROUP_WINDGATE_JDBC_IMPORTER, KEY_CONDITION, false, "getCondition()", "WHERE条件",
+				"インポーターが利用する抽出条件（SQLの条件式）\n" + "「COL1 = 123」と入力すると\nreturn \"COL1 = 123\";\nになります。");
+	}
+
+	/**
+	 * WindGate JDBC Exporter項目の追加.
+	 */
+	protected final void addFieldWindgateJdbcExporter() {
+		addTextField("0.7.3", GROUP_WINDGATE_JDBC_EXPORTER, KEY_CUSTOM_TRUNCATE, false, "getCustomTruncate()",
+				"削除SQL文", "INSERT前にテーブルのデータを削除する為のSQL文\n"
+						+ "「DELETE FROM ZZZ」と入力すると\nreturn \"DELETE FROM ZZZ\";\nになります。");
 	}
 
 	// メソッド生成用
@@ -119,6 +128,19 @@ public abstract class WindgateGenerator extends DMDLImporterExporterGenerator {
 			appendMethodNull(sb, "getCondition");
 		} else {
 			appendMethod(sb, "getCondition", cond);
+		}
+	}
+
+	/**
+	 * getCustomTruncate()メソッド生成.
+	 * 
+	 * @param sb
+	 *            生成先
+	 */
+	protected final void appendMethodCustomTruncate(StringBuilder sb) {
+		String sql = getValue(KEY_CUSTOM_TRUNCATE);
+		if (!sql.trim().isEmpty()) {
+			appendMethod(sb, "getCustomTruncate", sql);
 		}
 	}
 }
