@@ -22,6 +22,8 @@ public class WindgateCsvAttributeDefinition extends DMDLAttributeWizardDefinitio
 			attribute = new DMDLAttribute("windgate.csv", "WindGate ローカルCSVファイル");
 			attribute.addq("charset", "ファイルの文字エンコーディング", "UTF-8").completionq("UTF-8", "MS932");
 			attribute.add("has_header", "ヘッダー行を使うかどうか", "FALSE").completion("TRUE", "FALSE");
+			attribute.add("force_header", "ヘッダー行（形式チェックを行わない）を使うかどうか", "FALSE").completion("TRUE", "FALSE")
+					.version("0.7.3");
 			attribute.addq("true", "TRUE値の表現形式", "true").completionq("true");
 			attribute.addq("false", "FALSE値の表現形式", "false").completionq("false");
 			attribute.addq("date", "DATE型の表現形式", "yyyy-MM-dd").completionq("yyyy-MM-dd");
