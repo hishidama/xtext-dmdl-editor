@@ -89,7 +89,7 @@ public class OpenDeclaredDmdlHyperlinkDetector extends JdtHyperlinkDetector {
 		}
 		try {
 			if (type.isClass()) {
-				if (PorterUtil.isPorter(type)) {
+				if (PorterUtil.getPorterOrFormatInterfaceName(type) != null) {
 					String modelClassName = PorterUtil.getModelClassName(type.getJavaProject(),
 							type.getFullyQualifiedName());
 					model = ModelUiUtil.findModelByClass(project, modelClassName);
