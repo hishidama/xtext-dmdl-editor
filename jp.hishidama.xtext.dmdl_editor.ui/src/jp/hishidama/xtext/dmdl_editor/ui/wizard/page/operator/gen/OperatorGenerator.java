@@ -339,6 +339,16 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		return list;
 	}
 
+	private void collectGenericsModelList(List<OperatorModelRow> list, OperatorModelRow row, Set<String> set) {
+		if (row.projective) {
+			String key = String.format("<%s>%s", row.genericsName, row.getModelClassName());
+			if (!set.contains(key)) {
+				set.add(key);
+				list.add(row);
+			}
+		}
+	}
+
 	private Set<String> typeParameterSet = null;
 
 	@Override
@@ -356,16 +366,6 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 			typeParameterSet = set;
 		}
 		return typeParameterSet.contains(typeName);
-	}
-
-	private void collectGenericsModelList(List<OperatorModelRow> list, OperatorModelRow row, Set<String> set) {
-		if (row.projective) {
-			String key = String.format("<%s>%s", row.genericsName, row.getModelClassName());
-			if (!set.contains(key)) {
-				set.add(key);
-				list.add(row);
-			}
-		}
 	}
 
 	protected final SetMasterSelectionPage getMasterSelectionPage() {

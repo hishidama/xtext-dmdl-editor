@@ -6,12 +6,29 @@ public class FlowpartModelRow implements Cloneable {
 	public boolean in;
 	public String name;
 	public String comment;
-	public String modelClassName;
+	private String modelClassName;
 	public String modelName;
 	public String modelDescription;
+	public boolean projective;
+	public String genericsName;
 
 	public String getIn() {
 		return in ? "in" : "out";
+	}
+
+	public void setModelClassName(String modelClassName) {
+		this.modelClassName = modelClassName;
+	}
+
+	public String getModelClassName() {
+		return modelClassName;
+	}
+
+	public String getModelTypeName() {
+		if (projective) {
+			return genericsName;
+		}
+		return modelClassName;
 	}
 
 	public String getLabel() {

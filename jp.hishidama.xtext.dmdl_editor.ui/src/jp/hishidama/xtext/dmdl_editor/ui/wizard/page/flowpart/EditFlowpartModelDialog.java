@@ -29,6 +29,7 @@ public class EditFlowpartModelDialog extends EditDialog {
 	private String modelClassName;
 	private Text modelNameText;
 	private Text modelDescText;
+	private Text genericsNameText;
 
 	public EditFlowpartModelDialog(Shell parentShell, IProject project, FlowpartModelRow row) {
 		super(parentShell, "In/Out編集", 3);
@@ -42,11 +43,17 @@ public class EditFlowpartModelDialog extends EditDialog {
 		inButton = buttons.get(0);
 		inButton.setSelection(row.in);
 		buttons.get(1).setSelection(!row.in);
+
+		genericsNameText = createTextField(composite, "generics name");
+		genericsNameText.setText(nonNull(row.genericsName));
+		genericsNameText.setEditable(row.projective);
+		genericsNameText.setToolTipText("射影モデルを使う場合は、型変数名を入力して下さい。");
+
 		nameText = createTextField(composite, "name");
 		nameText.setText(nonNull(row.name));
 		commentText = createTextField(composite, "comment");
 		commentText.setText(nonNull(row.comment));
-		modelClassName = row.modelClassName;
+		modelClassName = row.getModelClassName();
 		TextButtonPair pair = createTextButtonField(composite, "model name", "select");
 		modelNameText = pair.text;
 		modelNameText.setText(nonNull(row.modelName));
@@ -86,6 +93,14 @@ public class EditFlowpartModelDialog extends EditDialog {
 		if (commentText.getText().isEmpty()) {
 			commentText.setText(modelDescription);
 		}
+		if (ModelUtil.isProjective(model)) {
+			genericsNameText.setEditable(true);
+			if (genericsNameText.getText().trim().isEmpty()) {
+				genericsNameText.setText(modelName.substring(0, 1).toUpperCase());
+			}
+		} else {
+			genericsNameText.setEditable(false);
+		}
 	}
 
 	@Override
@@ -96,6 +111,11 @@ public class EditFlowpartModelDialog extends EditDialog {
 		if (StringUtil.isEmpty(modelNameText.getText().trim())) {
 			return false;
 		}
+		if (genericsNameText.getEditable()) {
+			if (StringUtil.isEmpty(genericsNameText.getText().trim())) {
+				return false;
+			}
+		}
 		return true;
 	}
 
@@ -104,9 +124,15 @@ public class EditFlowpartModelDialog extends EditDialog {
 		row.in = inButton.getSelection();
 		row.name = nameText.getText().trim();
 		row.comment = commentText.getText();
-		row.modelClassName = modelClassName;
+		row.setModelClassName(modelClassName);
 		row.modelName = modelNameText.getText();
 		row.modelDescription = modelDescText.getText();
+		row.projective = genericsNameText.getEditable();
+		if (row.projective) {
+			row.genericsName = genericsNameText.getText().trim();
+		} else {
+			row.genericsName = null;
+		}
 
 		super.okPressed();
 	}

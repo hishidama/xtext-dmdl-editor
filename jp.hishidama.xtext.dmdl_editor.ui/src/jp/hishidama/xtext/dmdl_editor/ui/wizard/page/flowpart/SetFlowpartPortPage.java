@@ -74,6 +74,7 @@ public class SetFlowpartPortPage extends EditWizardPage {
 		createLabel(composite, "data model:");
 		table = new FlowpartModelTable(composite);
 		table.addColumn("in/out", 64, SWT.NONE);
+		table.addColumn("generics name", 32, SWT.NONE);
 		table.addColumn("name", 128, SWT.NONE);
 		table.addColumn("comment", 128, SWT.NONE);
 		table.addColumn("model name", 128, SWT.NONE);
@@ -126,8 +127,8 @@ public class SetFlowpartPortPage extends EditWizardPage {
 				row.in = t.startsWith(FlowUtil.IN_NAME);
 				row.name = param.getElementName();
 				row.comment = StringUtil.trim(paramJavadoc.get(row.name));
-				row.modelClassName = t.substring(s + 1, e);
-				ModelDefinition model = ModelUiUtil.findModelByClass(project, row.modelClassName);
+				row.setModelClassName(t.substring(s + 1, e));
+				ModelDefinition model = ModelUiUtil.findModelByClass(project, row.getModelClassName());
 				if (model != null) {
 					row.modelName = model.getName();
 					row.modelDescription = ModelUtil.getDecodedDescriptionText(model);
@@ -274,12 +275,14 @@ public class SetFlowpartPortPage extends EditWizardPage {
 			case 0:
 				return element.getIn();
 			case 1:
-				return element.name;
+				return element.genericsName;
 			case 2:
-				return element.comment;
+				return element.name;
 			case 3:
-				return element.modelName;
+				return element.comment;
 			case 4:
+				return element.modelName;
+			case 5:
 				return element.modelDescription;
 			default:
 				throw new UnsupportedOperationException("columnIndex=" + columnIndex);
@@ -300,10 +303,14 @@ public class SetFlowpartPortPage extends EditWizardPage {
 
 				FlowpartModelRow row = createElement();
 				row.in = in;
-				row.modelClassName = ModelUiUtil.getModelClassName(project, modelName);
+				row.setModelClassName(ModelUiUtil.getModelClassName(project, modelName));
 				row.modelName = modelName;
 				row.modelDescription = ModelUtil.getDecodedDescriptionText(model);
 				row.comment = row.modelDescription;
+				row.projective = ModelUtil.isProjective(model);
+				if (row.projective) {
+					row.genericsName = modelName.substring(0, 1).toUpperCase();
+				}
 
 				row.name = getName(row, nameRule, i++);
 

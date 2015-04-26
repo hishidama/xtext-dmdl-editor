@@ -1,6 +1,12 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import jp.hishidama.eclipse_plugin.java.ClassGenerator;
+import jp.hishidama.eclipse_plugin.util.FileUtil;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -9,9 +15,6 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
-
-import jp.hishidama.eclipse_plugin.java.ClassGenerator;
-import jp.hishidama.eclipse_plugin.util.FileUtil;
 
 public class NewFlowpartClassGenerator extends ClassGenerator {
 	private IProject project;
@@ -58,6 +61,7 @@ public class NewFlowpartClassGenerator extends ClassGenerator {
 		appendAnnotation(sb);
 		sb.append("public class ");
 		sb.append(className);
+		appendGenerics(sb);
 		sb.append(" extends ");
 		sb.append(getCachedClassName("com.asakusafw.vocabulary.flow.FlowDescription"));
 		sb.append(" {\n");
@@ -73,6 +77,41 @@ public class NewFlowpartClassGenerator extends ClassGenerator {
 		sb.append("@");
 		sb.append(getCachedClassName("com.asakusafw.vocabulary.flow.FlowPart"));
 		sb.append("\n");
+	}
+
+	private void appendGenerics(StringBuilder sb) {
+		List<FlowpartModelRow> list = new ArrayList<FlowpartModelRow>();
+
+		Set<String> set = new HashSet<String>();
+		for (FlowpartModelRow row : modelList) {
+			if (row.projective) {
+				String key = String.format("<%s>%s", row.genericsName, row.getModelClassName());
+				if (!set.contains(key)) {
+					set.add(key);
+					list.add(row);
+					super.typeParameterSet.add(row.genericsName);
+				}
+			}
+		}
+
+		if (list.isEmpty()) {
+			return;
+		}
+
+		sb.append("<");
+		boolean first = true;
+		for (FlowpartModelRow row : list) {
+			if (first) {
+				first = false;
+			} else {
+				sb.append(", ");
+			}
+			sb.append(row.genericsName);
+			sb.append(" extends ");
+			sb.append(getCachedClassName(row.getModelClassName()));
+
+		}
+		sb.append("> ");
 	}
 
 	private void appendFields(StringBuilder sb) {
@@ -100,7 +139,7 @@ public class NewFlowpartClassGenerator extends ClassGenerator {
 			sb.append(getCachedClassName("com.asakusafw.vocabulary.flow.Out"));
 		}
 		sb.append("<");
-		sb.append(getCachedClassName(row.modelClassName));
+		sb.append(getCachedClassName(row.getModelTypeName()));
 		sb.append("> ");
 		sb.append(row.name);
 	}

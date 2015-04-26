@@ -1,5 +1,6 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -49,6 +50,44 @@ public class FlowpartClassModifier extends AstRewriteUtility {
 		this.document = document;
 		this.type = type;
 		this.portPage = portPage;
+	}
+
+	private Set<String> typeParameterSet = null;
+
+	@Override
+	protected boolean isTypeParameter(String typeName) {
+		if (typeParameterSet == null) {
+			Set<String> set = new HashSet<String>();
+
+			List<FlowpartModelRow> list = getGenericsModelList();
+			for (FlowpartModelRow row : list) {
+				if (row.projective) {
+					set.add(row.genericsName);
+				}
+			}
+
+			typeParameterSet = set;
+		}
+		return typeParameterSet.contains(typeName);
+	}
+
+	protected final List<FlowpartModelRow> getGenericsModelList() {
+		List<FlowpartModelRow> list = new ArrayList<FlowpartModelRow>();
+		Set<String> set = new HashSet<String>();
+		for (FlowpartModelRow row : portPage.getDataModelList()) {
+			collectGenericsModelList(list, row, set);
+		}
+		return list;
+	}
+
+	private void collectGenericsModelList(List<FlowpartModelRow> list, FlowpartModelRow row, Set<String> set) {
+		if (row.projective) {
+			String key = String.format("<%s>%s", row.genericsName, row.getModelClassName());
+			if (!set.contains(key)) {
+				set.add(key);
+				list.add(row);
+			}
+		}
 	}
 
 	public void execute() throws BadLocationException, CoreException {
@@ -121,7 +160,7 @@ public class FlowpartClassModifier extends AstRewriteUtility {
 			FieldDeclaration field = ast.newFieldDeclaration(fragment);
 			field.setJavadoc(javadoc);
 			field.modifiers().addAll(ast.newModifiers(Modifier.PRIVATE | Modifier.FINAL));
-			field.setType(newType(row.in ? FlowUtil.IN_NAME : FlowUtil.OUT_NAME, row.modelClassName));
+			field.setType(newType(row.in ? FlowUtil.IN_NAME : FlowUtil.OUT_NAME, row.getModelTypeName()));
 
 			if (prev == null) {
 				rewriter.insertFirst(field, null);
@@ -230,7 +269,7 @@ public class FlowpartClassModifier extends AstRewriteUtility {
 		SingleVariableDeclaration prev = first;
 		for (FlowpartModelRow row : dstList) {
 			SingleVariableDeclaration param = ast.newSingleVariableDeclaration();
-			param.setType(newType(row.in ? FlowUtil.IN_NAME : FlowUtil.OUT_NAME, row.modelClassName));
+			param.setType(newType(row.in ? FlowUtil.IN_NAME : FlowUtil.OUT_NAME, row.getModelTypeName()));
 			param.setName(ast.newSimpleName(row.name));
 
 			if (prev == null) {
