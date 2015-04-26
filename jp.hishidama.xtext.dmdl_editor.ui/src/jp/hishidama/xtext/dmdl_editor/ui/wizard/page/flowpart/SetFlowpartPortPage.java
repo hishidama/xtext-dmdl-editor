@@ -28,6 +28,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.ILocalVariable;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.ITypeParameter;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.window.Window;
@@ -114,6 +115,19 @@ public class SetFlowpartPortPage extends EditWizardPage {
 		}
 		IProject project = type.getJavaProject().getProject();
 		try {
+			Map<String, String> genericsMap = new HashMap<String, String>();
+			for (ITypeParameter param : type.getTypeParameters()) {
+				String name = param.getElementName();
+				StringBuilder sb = new StringBuilder(128);
+				for (String bound : param.getBounds()) {
+					if (sb.length() != 0) {
+						sb.append("& ");
+					}
+					sb.append(bound);
+				}
+				genericsMap.put(name, sb.toString());
+			}
+
 			Map<String, String> paramJavadoc = JavadocUtil.getParamMap(JavadocUtil.getJavadoc(constructor));
 			for (ILocalVariable param : constructor.getParameters()) {
 				String t = TypeUtil.getVariableTypeName(param);
@@ -122,16 +136,33 @@ public class SetFlowpartPortPage extends EditWizardPage {
 				if (s < 0 || e < 0) {
 					continue;
 				}
+				String modelClassName = t.substring(s + 1, e);
 
 				FlowpartModelRow row = new FlowpartModelRow();
 				row.in = t.startsWith(FlowUtil.IN_NAME);
 				row.name = param.getElementName();
 				row.comment = StringUtil.trim(paramJavadoc.get(row.name));
-				row.setModelClassName(t.substring(s + 1, e));
-				ModelDefinition model = ModelUiUtil.findModelByClass(project, row.getModelClassName());
-				if (model != null) {
-					row.modelName = model.getName();
-					row.modelDescription = ModelUtil.getDecodedDescriptionText(model);
+				row.setModelClassName(modelClassName);
+
+				String genericsBound = genericsMap.get(modelClassName);
+				if (genericsBound != null) {
+					row.projective = true;
+					row.genericsName = modelClassName;
+					row.setModelClassName(genericsBound);
+					for (String boundClassName : genericsBound.split("&")) {
+						ModelDefinition model = ModelUiUtil.findModelByClass(project, boundClassName.trim());
+						if (model != null) {
+							row.modelName = model.getName();
+							row.modelDescription = ModelUtil.getDecodedDescriptionText(model);
+							break;
+						}
+					}
+				} else {
+					ModelDefinition model = ModelUiUtil.findModelByClass(project, modelClassName);
+					if (model != null) {
+						row.modelName = model.getName();
+						row.modelDescription = ModelUtil.getDecodedDescriptionText(model);
+					}
 				}
 
 				String desc = AnnotationUtil.getAnnotationValue(type, param, FlowUtil.IMPORT_NAME, "description");
@@ -142,7 +173,7 @@ public class SetFlowpartPortPage extends EditWizardPage {
 				list.add(row);
 			}
 		} catch (JavaModelException e) {
-			LogUtil.logWarn("", e);
+			LogUtil.logWarn("FlowPart parse error.", e);
 		}
 
 		return list;

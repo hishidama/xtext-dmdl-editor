@@ -7,6 +7,8 @@ import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
 import jp.hishidama.eclipse_plugin.jdt.util.AstRewriteUtility;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -22,12 +24,16 @@ import org.eclipse.jdt.core.dom.Javadoc;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.Modifier;
 import org.eclipse.jdt.core.dom.Modifier.ModifierKeyword;
+import org.eclipse.jdt.core.dom.QualifiedType;
 import org.eclipse.jdt.core.dom.SimpleName;
+import org.eclipse.jdt.core.dom.SimpleType;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import org.eclipse.jdt.core.dom.Statement;
 import org.eclipse.jdt.core.dom.TagElement;
 import org.eclipse.jdt.core.dom.ThisExpression;
+import org.eclipse.jdt.core.dom.Type;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
+import org.eclipse.jdt.core.dom.TypeParameter;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 import org.eclipse.jdt.core.dom.rewrite.ASTRewrite;
 import org.eclipse.jdt.core.dom.rewrite.ListRewrite;
@@ -102,6 +108,7 @@ public class FlowpartClassModifier extends AstRewriteUtility {
 			srcSet.add(row.name);
 		}
 
+		modifyTypeParameter();
 		modifyField();
 		modifyConstructor();
 
@@ -127,6 +134,54 @@ public class FlowpartClassModifier extends AstRewriteUtility {
 			}
 		}
 		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	private void modifyTypeParameter() {
+		List<FlowpartModelRow> rlist = getGenericsModelList();
+		if (rlist.isEmpty()) {
+			return;
+		}
+
+		Set<String> set = new HashSet<String>();
+		for (FlowpartModelRow row : rlist) {
+			set.add(row.genericsName);
+		}
+
+		ListRewrite rewriter = getAstRewrite().getListRewrite(astType, TypeDeclaration.TYPE_PARAMETERS_PROPERTY);
+
+		List<TypeParameter> tlist = astType.typeParameters();
+		typeParamRemove: for (TypeParameter param : tlist) {
+			List<Type> bounds = param.typeBounds();
+			for (Type bound : bounds) {
+				String name = null;
+				if (bound instanceof SimpleType) {
+					name = ((SimpleType) bound).getName().getFullyQualifiedName();
+				} else if (bound instanceof QualifiedType) {
+					name = ((QualifiedType) bound).getName().getIdentifier();
+				}
+				ModelDefinition model = ModelUiUtil.findModelByClass(type.getJavaProject().getProject(), name);
+				if (model != null) {
+					rewriter.remove(param, null);
+					continue typeParamRemove;
+				}
+			}
+		}
+
+		TypeParameter prev = null;
+		for (FlowpartModelRow row : rlist) {
+			TypeParameter param = ast.newTypeParameter();
+			param.setName(ast.newSimpleName(row.genericsName));
+			List<Type> bounds = param.typeBounds();
+			bounds.add(newType(row.getModelClassName()));
+
+			if (prev == null) {
+				rewriter.insertFirst(param, null);
+			} else {
+				rewriter.insertAfter(param, prev, null);
+			}
+			prev = param;
+		}
 	}
 
 	@SuppressWarnings("unchecked")
