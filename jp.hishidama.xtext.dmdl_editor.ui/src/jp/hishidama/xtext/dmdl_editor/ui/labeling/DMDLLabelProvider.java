@@ -81,7 +81,7 @@ public class DMDLLabelProvider extends DefaultEObjectLabelProvider {
 		return DMDLImages.getPropertyImage();
 	}
 
-	protected Image _image(Attribute a) {
+	protected Image image(Attribute a) {
 		return DMDLImages.getAttributeImage();
 	}
 }
