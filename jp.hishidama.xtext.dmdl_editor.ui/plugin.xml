@@ -359,6 +359,16 @@
     </extension>
     <extension point="org.eclipse.ui.menus">
         <menuContribution locationURI="popup:jp.hishidama.xtext.dmdl_editor.ui.modelHierarchyView?after=additions">
+            <command
+                  commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyQualifiedName">
+            </command>
+            <command
+                  commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyJavaName">
+            </command>
+            <separator
+                  name="beginReferences"
+                  visible="true">
+            </separator>
             <menu
                   id="jp.hishidama.xtext.dmdl_editor.modelHierarchyView.contextmenu.references"
                   label="Asakusa DSL References">
@@ -1092,6 +1102,18 @@
             id="jp.hishidama.xtext.dmdl_editor.hyperlinking.OpenModelHierarchy"
             name="Open DataModel Hierarchy">
       </command>
+      <command
+            categoryId="jp.hishidama.xtext.dmdl_editor.commands.category"
+            description="Copy Java Name"
+            id="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyJavaName"
+            name="Copy Java Name">
+      </command>
+      <command
+            categoryId="jp.hishidama.xtext.dmdl_editor.commands.category"
+            description="Copy Qualified Name"
+            id="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyQualifiedName"
+            name="Copy Qualified Name">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -1118,6 +1140,14 @@
                   definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.Editor.opened">
             </reference>
          </activeWhen>
+      </handler>
+      <handler
+            class="jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy.copyname.ModelHierarchyCopyQualifiedNameHandler"
+            commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyQualifiedName">
+      </handler>
+      <handler
+            class="jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy.copyname.ModelHierarchyCopyJavaNameHandler"
+            commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyJavaName">
       </handler>
    </extension>
    <extension

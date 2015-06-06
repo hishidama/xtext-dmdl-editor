@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -315,11 +316,18 @@ public class ModelHierarchyView extends ViewPart {
 
 	private class Table2SelectionChangeListener implements ISelectionChangedListener {
 
+		@SuppressWarnings("unchecked")
 		public void selectionChanged(SelectionChangedEvent event) {
 			IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-			Property property = (Property) selection.getFirstElement();
-			ModelProperty element = new ModelProperty(model2, property);
-			getSite().getSelectionProvider().setSelection(new StructuredSelection(element));
+
+			List<ModelProperty> list = new ArrayList<ModelProperty>(selection.size());
+			for (Iterator<Property> i = selection.iterator(); i.hasNext();) {
+				Property property = i.next();
+				ModelProperty element = new ModelProperty(model2, property);
+				list.add(element);
+			}
+
+			getSite().getSelectionProvider().setSelection(new StructuredSelection(list));
 		}
 	}
 
