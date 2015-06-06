@@ -53,7 +53,7 @@
             </activeWhen>
         </handler>
         <handler
-            class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+            class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyQualifiedNameHandler"
             commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
             <activeWhen>
                 <and>

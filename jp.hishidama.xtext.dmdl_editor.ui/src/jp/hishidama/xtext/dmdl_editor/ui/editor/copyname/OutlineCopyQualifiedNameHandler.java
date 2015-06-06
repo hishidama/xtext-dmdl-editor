@@ -11,17 +11,19 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.xtext.ui.editor.copyqualifiedname.AbstractCopyQualifiedNameHandler;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
+import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
 /**
  * @see org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler
  */
 @SuppressWarnings("restriction")
-public class OutlineCopyJavaNameHandler extends AbstractCopyJavaNameHandler {
+public class OutlineCopyQualifiedNameHandler extends AbstractCopyQualifiedNameHandler {
 
 	@Override
-	protected String getName(ExecutionEvent event) {
+	protected String getQualifiedName(ExecutionEvent event) {
 		List<String> list = getNames(event);
 		if (list.isEmpty()) {
 			return null;
@@ -55,17 +57,27 @@ public class OutlineCopyJavaNameHandler extends AbstractCopyJavaNameHandler {
 	}
 
 	private String getName(IOutlineNode outlineNode) {
+		if (outlineNode == null) {
+			return null;
+		}
+		if (outlineNode instanceof DocumentRootNode) {
+			return null;
+		}
+
 		Object text = outlineNode.getText();
 		if (text instanceof String) {
-			String s = (String) text;
-			int n = s.indexOf(':');
-			return StringUtil.toCamelCase((n < 0) ? s : s.substring(0, n).trim());
+			String name = (String) text;
+			String parent = getName(outlineNode.getParent());
+			if (parent != null) {
+				return parent + "." + name;
+			}
+			return name;
 		}
 
 		return outlineNode.readOnly(new IUnitOfWork<String, EObject>() {
 			// @Override
 			public String exec(EObject selectedElement) throws Exception {
-				return getJavaName(selectedElement);
+				return getQualifiedName(selectedElement);
 			}
 		});
 	}

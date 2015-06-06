@@ -4,6 +4,7 @@ import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Grouping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -31,6 +32,13 @@ public abstract class AbstractCopyJavaNameHandler extends AbstractHandler {
 			if (object instanceof ModelDefinition) {
 				String modelName = ((ModelDefinition) object).getName();
 				return StringUtil.toCamelCase(modelName);
+			}
+			if (object instanceof ModelReference) {
+				ModelDefinition model = ((ModelReference) object).getName();
+				if (model != null) {
+					String modelName = model.getName();
+					return StringUtil.toCamelCase(modelName);
+				}
 			}
 			if (object instanceof Property) {
 				String name = ((Property) object).getName();
