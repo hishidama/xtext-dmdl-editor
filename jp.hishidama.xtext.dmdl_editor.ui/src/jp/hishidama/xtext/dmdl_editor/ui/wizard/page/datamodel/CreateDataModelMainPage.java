@@ -75,7 +75,7 @@ public abstract class CreateDataModelMainPage<R extends DataModelRow> extends Cr
 					for (EObject object : list) {
 						R row;
 						if (object instanceof Property) {
-							row = newDefCopyRow(model, (Property) object, true);
+							row = newInitRow(model, (Property) object);
 						} else if (object instanceof ModelReference) {
 							ModelReference ref = (ModelReference) object;
 							row = newReferenceModel(model, ref.getName());
@@ -106,6 +106,10 @@ public abstract class CreateDataModelMainPage<R extends DataModelRow> extends Cr
 				}
 			}
 		}
+	}
+
+	protected R newInitRow(ModelDefinition model, Property property) {
+		return newDefCopyRow(model, property, true);
 	}
 
 	protected String createModelNameFilter(Collection<String> modelNames) {

@@ -11,16 +11,19 @@ import java.util.Map;
 
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm;
 import jp.hishidama.xtext.dmdl_editor.validation.ErrorStatus;
 import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
@@ -185,6 +188,25 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 		addColumn("aggregate", 64);
 		addColumn("src model", 128);
 		addColumn("src property", 128);
+	}
+
+	@Override
+	protected DataModelSummarizeRow newInitRow(ModelDefinition sumModel, Property property) {
+		ModelDefinition model = sumModel;
+		for (EObject object = property.eContainer(); object != null; object = object.eContainer()) {
+			if (object instanceof SummarizeTerm) {
+				SummarizeTerm term = (SummarizeTerm) object;
+				ModelReference ref = term.getReference();
+				if (ref != null) {
+					model = ref.getName();
+					break;
+				}
+			}
+		}
+
+		DataModelSummarizeRow row = newCopyRow(model, property);
+		row.attribute = PropertyUtil.getAttributeString(property);
+		return row;
 	}
 
 	@Override
