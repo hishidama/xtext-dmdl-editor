@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -161,7 +162,8 @@ public abstract class AttributeUpdater {
 	}
 
 	private boolean executeFinish(List<FileResource> rlist) throws IOException {
-		Map<Object, Object> options = null;
+		Map<Object, Object> options = new HashMap<Object, Object>();
+		// SaveOptions.newBuilder().format().getOptions().addTo(options);
 
 		String errorMessage = "";
 
