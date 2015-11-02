@@ -67,6 +67,22 @@ public class ModelUiUtil {
 		String name = getNamespace(model);
 		if (name == null) {
 			name = "dmdl";
+		} else if (name.contains("_")) {
+			StringBuilder sb = new StringBuilder(name.length());
+			String[] ss = name.split("_");
+			boolean first = true;
+			for (String s : ss) {
+				if (first) {
+					sb.append(s);
+					first = false;
+				} else {
+					if (s.length() > 0) {
+						sb.append(Character.toUpperCase(s.charAt(0)));
+						sb.append(s.substring(1));
+					}
+				}
+			}
+			name = sb.toString();
 		}
 		return pack + "." + name;
 	}
