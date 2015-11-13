@@ -95,7 +95,7 @@ public class JavadocDmdlFinder extends ASTVisitor {
 	@Override
 	public boolean visit(TypeDeclaration node) {
 		Javadoc javadoc = node.getJavadoc();
-		if (preVisit2(javadoc)) {
+		if (javadoc != null && preVisit2(javadoc)) {
 			IType type = (IType) node.resolveBinding().getJavaElement();
 			this.modelClassName = PorterUtil.getModelClassName(type);
 			return false;
@@ -112,7 +112,8 @@ public class JavadocDmdlFinder extends ASTVisitor {
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean visit(MethodDeclaration node) {
-		if (javadoc(node.getJavadoc())) {
+		Javadoc javadoc = node.getJavadoc();
+		if (javadoc != null && javadoc(javadoc)) {
 			if ("return".equals(varName)) {
 				Type type = node.getReturnType2();
 				this.modelClassName = type.toString();
