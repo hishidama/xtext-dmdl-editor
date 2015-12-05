@@ -28,6 +28,9 @@
             class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioSeqfileAttributeDefinition">
       </classpath>
       <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioLineAttributeDefinition">
+      </classpath>
+      <classpath
             class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioTsvAttributeDefinition">
       </classpath>
       <classpath
@@ -60,6 +63,9 @@
       </classpath>
       <classpath
             class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioSeqfileAttributeDefinition">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioLineAttributeDefinition">
       </classpath>
       <classpath
             class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioTsvAttributeDefinition">

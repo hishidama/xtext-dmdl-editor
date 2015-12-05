@@ -12,6 +12,17 @@ public class DMDLAttributeList {
 
 	private List<DMDLAttribute> attributeList = new ArrayList<DMDLAttribute>();
 
+	/**
+	 * DMDLAttribute作成.
+	 * 
+	 * @param name
+	 *            属性名
+	 * @param tooltip
+	 *            ツールチップ
+	 * @param append
+	 *            {@link #getAddAttribute(String)} で出力するかどうか
+	 * @return DMDLAttribute
+	 */
 	public DMDLAttribute create(String name, String tooltip, boolean append) {
 		DMDLAttribute a = new DMDLAttribute(name, tooltip, append);
 		attributeList.add(a);
