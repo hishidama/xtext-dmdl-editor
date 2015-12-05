@@ -3,6 +3,8 @@ package jp.hishidama.xtext.dmdl_editor.ui.search;
 import java.util.EnumSet;
 import java.util.Set;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
+import jp.hishidama.eclipse_plugin.util.JdtUtil;
 import jp.hishidama.eclipse_plugin.util.ProjectUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelProperty;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
@@ -14,6 +16,9 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.jdt.core.IJavaElement;
+import org.eclipse.jdt.core.IMethod;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.search.ui.ISearchQuery;
 import org.eclipse.search.ui.NewSearchUI;
@@ -80,6 +85,22 @@ public class FindDataModelInJavaHandler extends AbstractHandler {
 				String modelName = find.getModel().getName();
 				findReferences(event, modelName, null, searchIn, searchClass);
 			}
+			return;
+		}
+
+		{
+			IJavaElement element = JdtUtil.getJavaElement(event);
+			if (element instanceof IMethod) {
+				IMethod method = (IMethod) element;
+				element = method.getDeclaringType();
+			}
+			if (element instanceof IType) {
+				IType type = (IType) element;
+				if (FlowUtil.isJobFlow(type)) {
+					findReferences(type, searchIn);
+					return;
+				}
+			}
 		}
 	}
 
@@ -90,6 +111,16 @@ public class FindDataModelInJavaHandler extends AbstractHandler {
 		FindDataModelInJavaSearchData data = new FindDataModelInJavaSearchData(project, modelName, propertyName);
 		data.initializeScope(searchIn);
 		data.initializeSearchClass(searchClass);
+		ISearchQuery query = new FindDataModelInJavaSearchQuery(data);
+
+		NewSearchUI.activateSearchResultView();
+		NewSearchUI.runQueryInBackground(query);
+	}
+
+	private void findReferences(IType type, Set<SearchIn> searchIn) {
+		FindDataModelInJavaSearchData data = new FindDataModelInJavaSearchData(type);
+		data.initializeScope(searchIn);
+		data.initializeSearchClass(null);
 		ISearchQuery query = new FindDataModelInJavaSearchQuery(data);
 
 		NewSearchUI.activateSearchResultView();

@@ -70,6 +70,7 @@ public class FindDataModelInJavaSearchData {
 	private final IProject dmdlProject;
 	private final String modelName;
 	private final String propertyName;
+	private final IType searchType;
 
 	private boolean limitKey = true;
 	private boolean limitExporter = true;
@@ -85,6 +86,14 @@ public class FindDataModelInJavaSearchData {
 		this.dmdlProject = project;
 		this.modelName = modelName;
 		this.propertyName = propertyName;
+		this.searchType = null;
+	}
+
+	public FindDataModelInJavaSearchData(IType type) {
+		this.dmdlProject = type.getJavaProject().getProject();
+		this.modelName = null;
+		this.propertyName = null;
+		this.searchType = type;
 	}
 
 	// @see org.eclipse.jdt.internal.ui.search.JavaSearchPage#performNewSearch()
@@ -208,6 +217,13 @@ public class FindDataModelInJavaSearchData {
 		return propertyName;
 	}
 
+	public String getSearchTypeName() {
+		if (searchType == null) {
+			return null;
+		}
+		return searchType.getFullyQualifiedName();
+	}
+
 	public IJavaSearchScope getScope() {
 		return scope;
 	}
@@ -253,7 +269,9 @@ public class FindDataModelInJavaSearchData {
 
 	public SearchPattern createSearchPattern() {
 		List<SearchPattern> list = new ArrayList<SearchPattern>();
-		if (getPropertyName() == null) {
+		if (searchType != null) {
+			createTypePattern(searchType, list);
+		} else if (getPropertyName() == null) {
 			createTypePattern(list);
 			createPorterNamePattern(list);
 		} else {
@@ -277,6 +295,10 @@ public class FindDataModelInJavaSearchData {
 	protected void createTypePattern(List<SearchPattern> list) {
 		IJavaProject javaProject = JavaCore.create(getProject());
 		IType type = TypeUtil.findType(javaProject, getModelClassName());
+		createTypePattern(type, list);
+	}
+
+	protected void createTypePattern(IType type, List<SearchPattern> list) {
 		int limitTo = IJavaSearchConstants.REFERENCES;
 		int matchRule = SearchPattern.R_EXACT_MATCH | SearchPattern.R_CASE_SENSITIVE | SearchPattern.R_ERASURE_MATCH;
 		SearchPattern pattern = SearchPattern.createPattern(type, limitTo, matchRule);

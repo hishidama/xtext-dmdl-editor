@@ -43,6 +43,10 @@ public class FindDataModelInJavaSearchQuery implements ResultLabelSearchQuery {
 	}
 
 	public String getLabel() {
+		String name = data.getSearchTypeName();
+		if (name != null) {
+			return name;
+		}
 		if (data.getPropertyName() == null) {
 			return data.getModelName();
 		}
