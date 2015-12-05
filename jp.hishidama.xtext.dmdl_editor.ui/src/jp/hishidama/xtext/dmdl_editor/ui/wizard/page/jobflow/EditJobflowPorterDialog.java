@@ -76,6 +76,8 @@ public class EditJobflowPorterDialog extends EditDialog {
 		modelDescText = createTextField(composite, "model description");
 		modelDescText.setText(nonNull(row.modelDescription));
 		modelDescText.setEditable(false);
+
+		pair.button.setFocus();
 	}
 
 	@Override
