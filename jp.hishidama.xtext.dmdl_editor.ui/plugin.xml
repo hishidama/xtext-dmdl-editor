@@ -772,6 +772,26 @@
             <command
                   commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
                   icon="icons/ch_callers.gif"
+                  label="Compile Batch (compileBatchapp)"
+                  style="push">
+               <parameter
+                     name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
+                     value="compileBatchapp">
+               </parameter>
+            </command>
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
+                  icon="icons/ch_callers.gif"
+                  label="Compile Batch (sparkCompileBatchapps)"
+                  style="push">
+               <parameter
+                     name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
+                     value="sparkCompileBatchapp">
+               </parameter>
+            </command>
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
+                  icon="icons/ch_callers.gif"
                   style="push">
             </command>
          </menu>
@@ -822,10 +842,15 @@
                   style="pulldown">
             </command>
             <command
+                  id="jp.hishidama.xtext.dmdl_editor.ui.toolbar.batchCompile"
                   commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
                   icon="icons/ch_callers.gif"
                   tooltip="Batchクラスをコンパイルします。"
-                  style="push">
+                  style="pulldown">
+               <parameter
+                     name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
+                     value="compileBatchapp">
+               </parameter>
             </command>
          </toolbar>
       </menuContribution>
@@ -929,6 +954,34 @@
                commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorStatement"
                icon="icons/newpublic_co.gif"
                tooltip="プロパティー一覧を用いてステートメントを一括生成します。"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="menu:jp.hishidama.xtext.dmdl_editor.ui.toolbar.batchCompile">
+         <command
+               commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
+               icon="icons/ch_callers.gif"
+               label="Compile Batch (compileBatchapp)"
+               style="push">
+            <parameter
+                  name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
+                  value="compileBatchapp">
+            </parameter>
+         </command>
+         <command
+               commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
+               icon="icons/ch_callers.gif"
+               label="Compile Batch (sparkCompileBatchapps)"
+               style="push">
+            <parameter
+                  name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
+                  value="sparkCompileBatchapp">
+            </parameter>
+         </command>
+         <command
+               commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
+               icon="icons/ch_callers.gif"
                style="push">
          </command>
       </menuContribution>
@@ -1481,6 +1534,30 @@
             <command
                   commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyJobflowClass"
                   style="push">
+            </command>
+            <separator
+                  name="separator"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.batchCompile.editorMenu"
+                  icon="icons/ch_callers.gif"
+                  label="Compile Batch (compileBatchapp)"
+                  style="push">
+               <parameter
+                     name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
+                     value="compileBatchapp">
+               </parameter>
+            </command>
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.batchCompile.editorMenu"
+                  icon="icons/ch_callers.gif"
+                  label="Compile Batch (sparkCompileBatchapps)"
+                  style="push">
+               <parameter
+                     name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
+                     value="sparkCompileBatchapp">
+               </parameter>
             </command>
             <command
                   commandId="jp.hishidama.asakusafwWrapper.command.batchCompile.editorMenu"
