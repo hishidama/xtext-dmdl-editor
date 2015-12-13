@@ -223,6 +223,8 @@ public class SetBatchDescribePage extends EditWizardPage {
 					item.setChecked(!item.getChecked());
 				}
 			});
+
+			pair.button.setFocus();
 		}
 
 		@Override
