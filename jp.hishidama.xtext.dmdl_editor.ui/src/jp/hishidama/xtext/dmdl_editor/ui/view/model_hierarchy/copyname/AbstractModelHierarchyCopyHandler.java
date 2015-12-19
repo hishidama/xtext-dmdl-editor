@@ -19,7 +19,7 @@ import org.eclipse.xtext.ui.editor.copyqualifiedname.ClipboardUtil;
  * @see org.eclipse.xtext.ui.editor.copyqualifiedname.AbstractCopyQualifiedNameHandler
  */
 @SuppressWarnings("restriction")
-public abstract class AbstractModelHierarychyCopyHandler extends AbstractHandler {
+public abstract class AbstractModelHierarchyCopyHandler extends AbstractHandler {
 
 	// @Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {

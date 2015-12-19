@@ -554,9 +554,110 @@
             <command
                   commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyQualifiedName">
             </command>
-            <command
-                  commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyJavaName">
-            </command>
+            <menu
+                  id="jp.hishidama.xtext.dmdl_editor.modelHierarchyView.contextmenu.copy_vertical"
+                  label="Copy Names (vertical)">
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyName"
+                     label="Copy Simple Name">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.ModelHierarchyCopyName.action"
+                        value="SimpleName/vertical">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyName"
+                     label="Copy Java Name">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.ModelHierarchyCopyName.action"
+                        value="JavaName/vertical">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyName"
+                     label="Copy Description">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.ModelHierarchyCopyName.action"
+                        value="Description/vertical">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyName"
+                     label="Copy DataType">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.ModelHierarchyCopyName.action"
+                        value="DataType/vertical">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyName"
+                     label="Copy Name,Description">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.ModelHierarchyCopyName.action"
+                        value="SimpleName,Description/vertical">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyName"
+                     label="Copy Name,Desc,Type">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.ModelHierarchyCopyName.action"
+                        value="SimpleName,Description,DataType/vertical">
+                  </parameter>
+               </command>
+            </menu>
+            <menu
+                  id="jp.hishidama.xtext.dmdl_editor.modelHierarchyView.contextmenu.copy_horizon"
+                  label="Copy Names (horizon)">
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyName"
+                     label="Copy Simple Name">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.ModelHierarchyCopyName.action"
+                        value="SimpleName/horizon">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyName"
+                     label="Copy Java Name">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.ModelHierarchyCopyName.action"
+                        value="JavaName/horizon">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyName"
+                     label="Copy Description">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.ModelHierarchyCopyName.action"
+                        value="Description/horizon">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyName"
+                     label="Copy DataType">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.ModelHierarchyCopyName.action"
+                        value="DataType/horizon">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyName"
+                     label="Copy Name,Description">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.ModelHierarchyCopyName.action"
+                        value="SimpleName,Description/horizon">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyName"
+                     label="Copy Name,Desc,Type">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.ModelHierarchyCopyName.action"
+                        value="SimpleName,Description,DataType/horizon">
+                  </parameter>
+               </command>
+            </menu>
             <separator
                   name="beginReferences"
                   visible="true">
@@ -1349,9 +1450,13 @@
       </command>
       <command
             categoryId="jp.hishidama.xtext.dmdl_editor.commands.category"
-            description="Copy Java Name"
-            id="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyJavaName"
-            name="Copy Java Name">
+            description="Copy Name"
+            id="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyName"
+            name="Copy Name">
+         <commandParameter
+               id="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.ModelHierarchyCopyName.action"
+               name="action">
+         </commandParameter>
       </command>
       <command
             categoryId="jp.hishidama.xtext.dmdl_editor.commands.category"
@@ -1391,8 +1496,8 @@
             commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyQualifiedName">
       </handler>
       <handler
-            class="jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy.copyname.ModelHierarchyCopyJavaNameHandler"
-            commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyJavaName">
+            class="jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy.copyname.ModelHierarchyCopyNameHandler"
+            commandId="jp.hishidama.xtext.dmdl_editor.model_hierarchy.copyname.ModelHierarchyCopyName">
       </handler>
    </extension>
    <extension
