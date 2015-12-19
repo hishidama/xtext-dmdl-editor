@@ -72,8 +72,8 @@
             </activeWhen>
         </handler>
         <handler
-            class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyJavaNameHandler"
-            commandId="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyJavaName">
+            class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyNameHandler"
+            commandId="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName">
             <activeWhen>
                 <and>
                     <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.XtextEditor.opened" />
@@ -205,10 +205,14 @@
             name="Copy Java Name">
       </command>
       <command
-            id="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyJavaName"
+            id="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName"
             categoryId="org.eclipse.ui.category.edit"
             description="Copy the java name for the selected element"
-            name="Copy Java Name">
+            name="Copy Name">
+         <commandParameter
+               id="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName.action"
+               name="action">
+         </commandParameter>
       </command>
     </extension>
     <extension point="org.eclipse.ui.menus">
@@ -254,6 +258,7 @@
                 </visibleWhen>
              </command>
          </menuContribution>
+         <!-- outline context menu -->
          <menuContribution locationURI="popup:org.eclipse.xtext.ui.outline?after=additions">
             <command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName"
                 style="push" tooltip="Copy Qualified Name">
@@ -266,17 +271,204 @@
                     </and>
                 </visibleWhen>
             </command>
-            <command commandId="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyJavaName"
-                style="push" tooltip="Copy Java Name">
-                 <visibleWhen checkEnabled="false">
-                    <and>
-                        <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.XtextEditor.opened" />
-                        <iterate>
-                            <adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
-                        </iterate>
-                    </and>
-                </visibleWhen>
-            </command>
+            <menu id="copy.vertical"
+                  label="Copy Names (vertical)">
+               <command commandId="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName"
+                   label="Copy Simple Name"
+                   style="push" tooltip="Copy Simple Name">
+                    <parameter
+                          name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName.action"
+                          value="SimpleName/vertical">
+                    </parameter>
+                    <visibleWhen checkEnabled="false">
+                       <and>
+                           <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.XtextEditor.opened" />
+                           <iterate>
+                               <adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+                           </iterate>
+                       </and>
+                   </visibleWhen>
+               </command>
+               <command commandId="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName"
+                   label="Copy Java Name"
+                   style="push" tooltip="Copy Java Name">
+                    <parameter
+                          name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName.action"
+                          value="JavaName/vertical">
+                    </parameter>
+                    <visibleWhen checkEnabled="false">
+                       <and>
+                           <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.XtextEditor.opened" />
+                           <iterate>
+                               <adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+                           </iterate>
+                       </and>
+                   </visibleWhen>
+               </command>
+               <command commandId="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName"
+                   label="Copy Description"
+                   style="push" tooltip="Copy Description">
+                    <parameter
+                          name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName.action"
+                          value="Description/vertical">
+                    </parameter>
+                    <visibleWhen checkEnabled="false">
+                       <and>
+                           <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.XtextEditor.opened" />
+                           <iterate>
+                               <adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+                           </iterate>
+                       </and>
+                   </visibleWhen>
+               </command>
+               <command commandId="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName"
+                   label="Copy DataType"
+                   style="push" tooltip="Copy DataType">
+                    <parameter
+                          name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName.action"
+                          value="DataType/vertical">
+                    </parameter>
+                    <visibleWhen checkEnabled="false">
+                       <and>
+                           <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.XtextEditor.opened" />
+                           <iterate>
+                               <adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+                           </iterate>
+                       </and>
+                   </visibleWhen>
+               </command>
+               <command commandId="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName"
+                   label="Copy Name,Description"
+                   style="push" tooltip="Copy Name,Description">
+                    <parameter
+                          name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName.action"
+                          value="SimpleName,Description/vertical">
+                    </parameter>
+                    <visibleWhen checkEnabled="false">
+                       <and>
+                           <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.XtextEditor.opened" />
+                           <iterate>
+                               <adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+                           </iterate>
+                       </and>
+                   </visibleWhen>
+               </command>
+               <command commandId="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName"
+                   label="Copy Name,Desc,Type"
+                   style="push" tooltip="Copy Name,Description,DataType">
+                    <parameter
+                          name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName.action"
+                          value="SimpleName,Description,DataType/vertical">
+                    </parameter>
+                    <visibleWhen checkEnabled="false">
+                       <and>
+                           <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.XtextEditor.opened" />
+                           <iterate>
+                               <adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+                           </iterate>
+                       </and>
+                   </visibleWhen>
+               </command>
+            </menu>
+            <menu id="copy.horizon"
+                  label="Copy Names (horizon)">
+               <command commandId="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName"
+                   label="Copy Simple Name"
+                   style="push" tooltip="Copy Simple Name">
+                    <parameter
+                          name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName.action"
+                          value="SimpleName/horizon">
+                    </parameter>
+                    <visibleWhen checkEnabled="false">
+                       <and>
+                           <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.XtextEditor.opened" />
+                           <iterate>
+                               <adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+                           </iterate>
+                       </and>
+                   </visibleWhen>
+               </command>
+               <command commandId="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName"
+                   label="Copy Java Name"
+                   style="push" tooltip="Copy Java Name">
+                    <parameter
+                          name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName.action"
+                          value="JavaName/horizon">
+                    </parameter>
+                    <visibleWhen checkEnabled="false">
+                       <and>
+                           <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.XtextEditor.opened" />
+                           <iterate>
+                               <adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+                           </iterate>
+                       </and>
+                   </visibleWhen>
+               </command>
+               <command commandId="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName"
+                   label="Copy Description"
+                   style="push" tooltip="Copy Description">
+                    <parameter
+                          name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName.action"
+                          value="Description/horizon">
+                    </parameter>
+                    <visibleWhen checkEnabled="false">
+                       <and>
+                           <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.XtextEditor.opened" />
+                           <iterate>
+                               <adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+                           </iterate>
+                       </and>
+                   </visibleWhen>
+               </command>
+               <command commandId="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName"
+                   label="Copy DataType"
+                   style="push" tooltip="Copy DataType">
+                    <parameter
+                          name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName.action"
+                          value="DataType/horizon">
+                    </parameter>
+                    <visibleWhen checkEnabled="false">
+                       <and>
+                           <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.XtextEditor.opened" />
+                           <iterate>
+                               <adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+                           </iterate>
+                       </and>
+                   </visibleWhen>
+               </command>
+               <command commandId="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName"
+                   label="Copy Name,Description"
+                   style="push" tooltip="Copy Name,Description">
+                    <parameter
+                          name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName.action"
+                          value="SimpleName,Description/horizon">
+                    </parameter>
+                    <visibleWhen checkEnabled="false">
+                       <and>
+                           <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.XtextEditor.opened" />
+                           <iterate>
+                               <adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+                           </iterate>
+                       </and>
+                   </visibleWhen>
+               </command>
+               <command commandId="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName"
+                   label="Copy Name,Desc,Type"
+                   style="push" tooltip="Copy Name,Description,DataType">
+                    <parameter
+                          name="jp.hishidama.xtext.dmdl_editor.ui.editor.copyname.OutlineCopyName.action"
+                          value="SimpleName,Description,DataType/horizon">
+                    </parameter>
+                    <visibleWhen checkEnabled="false">
+                       <and>
+                           <reference definitionId="jp.hishidama.xtext.dmdl_editor.DMDL.XtextEditor.opened" />
+                           <iterate>
+                               <adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
+                           </iterate>
+                       </and>
+                   </visibleWhen>
+               </command>
+            </menu>
          </menuContribution>
     </extension>
     <extension point="org.eclipse.ui.menus">
