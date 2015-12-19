@@ -89,19 +89,27 @@ public class FindDataModelInJavaHandler extends AbstractHandler {
 		}
 
 		{
-			IJavaElement element = JdtUtil.getJavaElement(event);
-			if (element instanceof IMethod) {
-				IMethod method = (IMethod) element;
-				element = method.getDeclaringType();
-			}
-			if (element instanceof IType) {
-				IType type = (IType) element;
-				if (FlowUtil.isJobFlow(type)) {
-					findReferences(type, searchIn);
-					return;
-				}
+			IType type = findJobFlowType(event);
+			if (type != null) {
+				findReferences(type, searchIn);
+				return;
 			}
 		}
+	}
+
+	private IType findJobFlowType(ExecutionEvent event) {
+		IJavaElement element = JdtUtil.getJavaElement(event);
+		if (element instanceof IMethod) {
+			IMethod method = (IMethod) element;
+			element = method.getDeclaringType();
+		}
+		if (element instanceof IType) {
+			IType type = (IType) element;
+			if (FlowUtil.isJobFlow(type)) {
+				return type;
+			}
+		}
+		return null;
 	}
 
 	private void findReferences(ExecutionEvent event, String modelName, String propertyName, Set<SearchIn> searchIn,
