@@ -1,5 +1,6 @@
 package jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -71,6 +72,7 @@ public class ModelHierarchyView extends ViewPart {
 
 	private IProject project;
 
+	private ModelDefinition model1;
 	private Label form1Title;
 	private TreeViewer tree1;
 	private SuperModelAction superModelAction;
@@ -118,6 +120,7 @@ public class ModelHierarchyView extends ViewPart {
 		splitter.setWeights(new int[] { 35, 65 });
 
 		getSite().setSelectionProvider(new SelectionProviderAdapter());
+		updateToolTipAndDescription();
 		configureContextMenu();
 	}
 
@@ -337,6 +340,7 @@ public class ModelHierarchyView extends ViewPart {
 
 	public void setInput(IProject project, ModelDefinition model) {
 		this.project = project;
+		this.model1 = model;
 
 		String modelName = model.getName();
 		form1Title.setText(modelName);
@@ -346,6 +350,8 @@ public class ModelHierarchyView extends ViewPart {
 		tree1.setInput(new Object[] { model });
 		tree1.expandAll();
 		setModel2(model);
+
+		updateToolTipAndDescription();
 	}
 
 	private void initializeModels() {
@@ -483,7 +489,21 @@ public class ModelHierarchyView extends ViewPart {
 		table2.setInput(properties);
 	}
 
-	// @see org.eclipse.xtext.ui.editor.outline.impl.OutlinePage#configureContextMenu()
+	private void updateToolTipAndDescription() {
+		String tooltip; //$NON-NLS-1$
+		if (model1 != null) {
+			tooltip = MessageFormat.format("{0} of ''{1}''", getPartName(), model1.getName());
+		} else {
+			tooltip = getPartName();
+		}
+		// String description = tooltip;
+
+		setTitleToolTip(tooltip);
+		// setContentDescription(description);
+	}
+
+	// @see
+	// org.eclipse.xtext.ui.editor.outline.impl.OutlinePage#configureContextMenu()
 	protected void configureContextMenu() {
 		MenuManager menuManager = new MenuManager(CONTEXT_MENU_ID, CONTEXT_MENU_ID);
 		menuManager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
