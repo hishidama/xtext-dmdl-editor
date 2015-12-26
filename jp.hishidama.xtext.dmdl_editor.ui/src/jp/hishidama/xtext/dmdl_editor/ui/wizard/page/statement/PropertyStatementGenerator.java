@@ -7,7 +7,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLVariableTableUtil;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 
-public class OperatorStatementGenerator {
+public class PropertyStatementGenerator {
 
 	public void execute(IDocument document, int offset, SelectPropertyPage propertyPage, SetStatementPage statementPage)
 			throws BadLocationException {

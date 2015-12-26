@@ -2,7 +2,7 @@ package jp.hishidama.xtext.dmdl_editor.jdt.editor_menu;
 
 import jp.hishidama.eclipse_plugin.util.DocumentUtil;
 import jp.hishidama.eclipse_plugin.util.FileUtil;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.NewOperatorStatementWizard;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.NewPropertyStatementWizard;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -18,7 +18,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.texteditor.ITextEditor;
 
-public class NewOperatorStatementHandler extends AbstractHandler {
+public class NewPropertyStatementHandler extends AbstractHandler {
 
 	// @Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -42,7 +42,7 @@ public class NewOperatorStatementHandler extends AbstractHandler {
 	}
 
 	private void execute(IProject project, IDocument document, int offset) throws JavaModelException {
-		NewOperatorStatementWizard wizard = new NewOperatorStatementWizard();
+		NewPropertyStatementWizard wizard = new NewPropertyStatementWizard();
 		wizard.init(project, document, offset);
 		WizardDialog dialog = new WizardDialog(null, wizard);
 		dialog.open();

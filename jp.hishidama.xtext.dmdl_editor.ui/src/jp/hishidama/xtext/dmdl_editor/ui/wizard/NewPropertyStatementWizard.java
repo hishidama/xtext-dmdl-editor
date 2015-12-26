@@ -3,7 +3,7 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SelectDataModelPage;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.statement.OperatorStatementGenerator;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.statement.PropertyStatementGenerator;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.statement.SelectPropertyPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.statement.SetStatementPage;
 
@@ -13,7 +13,7 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.wizard.Wizard;
 
-public class NewOperatorStatementWizard extends Wizard {
+public class NewPropertyStatementWizard extends Wizard {
 
 	private IProject project;
 	private IDocument document;
@@ -23,7 +23,7 @@ public class NewOperatorStatementWizard extends Wizard {
 	private SelectPropertyPage propertyPage;
 	private SetStatementPage statementPage;
 
-	public NewOperatorStatementWizard() {
+	public NewPropertyStatementWizard() {
 		setWindowTitle("プロパティーを用いたステートメント一括生成");
 		setDialogSettings(DMDLActivator.getInstance().getDialogSettings());
 	}
@@ -51,7 +51,7 @@ public class NewOperatorStatementWizard extends Wizard {
 	public boolean performFinish() {
 		statementPage.saveDialogSettings();
 
-		OperatorStatementGenerator gen = new OperatorStatementGenerator();
+		PropertyStatementGenerator gen = new PropertyStatementGenerator();
 		try {
 			gen.execute(document, offset, propertyPage, statementPage);
 		} catch (Exception e) {

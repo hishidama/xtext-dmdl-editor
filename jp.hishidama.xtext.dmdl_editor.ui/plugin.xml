@@ -1260,7 +1260,7 @@
                style="push">
          </command>
          <command
-               commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorStatement"
+               commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newPropertyStatement"
                icon="icons/newpublic_co.gif"
                tooltip="プロパティー一覧を用いてステートメントを一括生成します。"
                style="push">
@@ -1643,8 +1643,8 @@
       </command>
       <command
             categoryId="jp.hishidama.xtext.dmdl_editor.jdt.category"
-            id="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorStatement"
-            name="New Operator Statement">
+            id="jp.hishidama.xtext.dmdl_editor.jdt.command.newPropertyStatement"
+            name="New Property Statement">
       </command>
       <command
             categoryId="jp.hishidama.xtext.dmdl_editor.jdt.category"
@@ -1674,8 +1674,8 @@
          </enabledWhen>
       </handler>
       <handler
-            class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.NewOperatorStatementHandler"
-            commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorStatement">
+            class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.NewPropertyStatementHandler"
+            commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newPropertyStatement">
          <enabledWhen>
             <with variable="activeEditorId">
                <equals value="org.eclipse.jdt.ui.CompilationUnitEditor" />
@@ -1828,7 +1828,7 @@
                style="push">
          </command>
          <command
-               commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorStatement"
+               commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newPropertyStatement"
                icon="icons/newpublic_co.gif"
                style="push">
          </command>
@@ -1848,7 +1848,7 @@
                   style="push">
             </command>
             <command
-                  commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newOperatorStatement"
+                  commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newPropertyStatement"
                   icon="icons/newpublic_co.gif"
                   style="push">
             </command>
