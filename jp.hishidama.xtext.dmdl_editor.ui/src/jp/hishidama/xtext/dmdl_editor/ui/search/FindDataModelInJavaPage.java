@@ -16,6 +16,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.dialog.DmdlPropertySelectionDialog;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
 import jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchData.LimitTo;
 import jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchData.SearchClass;
+import jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchData.SearchHierarchy;
 import jp.hishidama.xtext.dmdl_editor.ui.search.FindDataModelInJavaSearchData.SearchIn;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLXtextUtil;
 
@@ -76,6 +77,7 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 	private List<Button> methodButtons = new ArrayList<Button>();
 	private List<Button> searchInButtons = new ArrayList<Button>();
 	private List<Button> searchClassButtons = new ArrayList<Button>();
+	private List<Button> searchHierarchyButtons = new ArrayList<Button>();
 
 	private List<Button> dialogSaveButtons = new ArrayList<Button>();
 
@@ -151,6 +153,7 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 
 		createLimitTo(block);
 		createSearchIn(block);
+		createSearchHierarchy(block);
 		createSearchClass(block);
 
 		setControl(composite);
@@ -161,7 +164,7 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 
 	private Control createLimitTo(Composite composite) {
 		Group field = new Group(composite, SWT.NONE);
-		field.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
+		field.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		field.setText("Use As");
 		field.setLayout(new GridLayout(1, false));
 
@@ -216,7 +219,7 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 
 	private Control createSearchIn(Composite composite) {
 		Group field = new Group(composite, SWT.NONE);
-		field.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
+		field.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		field.setText("Search In");
 		field.setLayout(new GridLayout(3, false));
 
@@ -231,9 +234,25 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 		return field;
 	}
 
+	private Control createSearchHierarchy(Composite composite) {
+		Group field = new Group(composite, SWT.NONE);
+		field.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		field.setText("Include Hierarchy Properties");
+		field.setLayout(new GridLayout(2, false));
+
+		searchHierarchyButtons.add(createCheckButton(field, "projective model", SearchHierarchy.PROJECTIVE, true));
+		searchHierarchyButtons.add(createCheckButton(field, "sub model", SearchHierarchy.SUB, true));
+
+		for (Button button : searchHierarchyButtons) {
+			button.addSelectionListener(updateListener);
+		}
+
+		return field;
+	}
+
 	private Control createSearchClass(Composite composite) {
 		Group field = new Group(composite, SWT.NONE);
-		field.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
+		field.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		field.setText("Search Class");
 		field.setLayout(new GridLayout(5, false));
 
@@ -496,6 +515,16 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 		return set;
 	}
 
+	public Set<SearchHierarchy> getSearchHierarchy() {
+		Set<SearchHierarchy> set = EnumSet.noneOf(SearchHierarchy.class);
+		for (Button button : searchHierarchyButtons) {
+			if (button.getSelection()) {
+				set.add((SearchHierarchy) button.getData());
+			}
+		}
+		return set;
+	}
+
 	public boolean performAction() {
 		storeConfiguration();
 
@@ -514,6 +543,7 @@ public class FindDataModelInJavaPage extends DialogPage implements ISearchPage {
 		data.initializeMethodPattern(getMethodPattern());
 		data.initializeLimit(getLimit());
 		data.initializeSearchClass(getSearchClass());
+		data.initializeSearchHierarchy(getSearchHierarchy());
 		FindDataModelInJavaSearchQuery query = new FindDataModelInJavaSearchQuery(data);
 
 		NewSearchUI.activateSearchResultView();

@@ -2,31 +2,21 @@ package jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.jface.SelectionProviderAdapter;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
-import jp.hishidama.xtext.dmdl_editor.dmdl.JoinExpression;
-import jp.hishidama.xtext.dmdl_editor.dmdl.JoinTerm;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelProperty;
-import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
-import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
-import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
-import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression;
-import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm;
 import jp.hishidama.xtext.dmdl_editor.ui.labeling.DMDLImages;
+import jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy.ModelHierarchy.ModelInfo;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeLabelProvider;
 
 import org.eclipse.core.resources.IProject;
@@ -34,7 +24,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.ToolBarManager;
-import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -83,8 +72,7 @@ public class ModelHierarchyView extends ViewPart {
 	private TableViewer table2;
 	private ShowAllPropertiesAction showAllPropertiesAction;
 
-	private Map<String, ModelInfo> modelMap;
-	private List<ModelDefinition> projectiveList;
+	private ModelHierarchy modelHierarchy;
 
 	@Override
 	public void createPartControl(Composite parent) {
@@ -174,7 +162,7 @@ public class ModelHierarchyView extends ViewPart {
 			}
 
 			ModelDefinition model = (ModelDefinition) element;
-			ModelInfo mi = modelMap.get(model.getName());
+			ModelInfo mi = modelHierarchy.getModel(model.getName());
 			if (mi == null) {
 				return false;
 			}
@@ -206,7 +194,7 @@ public class ModelHierarchyView extends ViewPart {
 
 			List<Object> list = new ArrayList<Object>();
 			ModelDefinition model = (ModelDefinition) parentElement;
-			ModelInfo mi = modelMap.get(model.getName());
+			ModelInfo mi = modelHierarchy.getModel(model.getName());
 			if (mi == null) {
 				return null;
 			}
@@ -237,7 +225,7 @@ public class ModelHierarchyView extends ViewPart {
 
 		private Object[] getAutoProjection(Attribute parentElement) {
 			ModelDefinition model = ModelUtil.getModel(parentElement);
-			ModelInfo mi = modelMap.get(model.getName());
+			ModelInfo mi = modelHierarchy.getModel(model.getName());
 			if (mi == null) {
 				return null;
 			}
@@ -355,95 +343,8 @@ public class ModelHierarchyView extends ViewPart {
 	}
 
 	private void initializeModels() {
-		ProgressMonitorDialog dialog = new ProgressMonitorDialog(null);
-		List<ModelDefinition> list = ModelUiUtil.getAllModels(project, dialog);
-		modelMap = new HashMap<String, ModelHierarchyView.ModelInfo>(list.size());
-		projectiveList = new ArrayList<ModelDefinition>();
-		for (ModelDefinition model : list) {
-			ModelInfo mi = new ModelInfo();
-			mi.model = model;
-			modelMap.put(model.getName(), mi);
-
-			EObject rhs = model.getRhs();
-			if (rhs instanceof RecordExpression) {
-				for (RecordTerm term : ((RecordExpression) rhs).getTerms()) {
-					ModelReference ref = term.getReference();
-					if (ref != null) {
-						ModelDefinition m = ref.getName();
-						if (m != null) {
-							mi.superList.add(m);
-						}
-					}
-				}
-			} else if (rhs instanceof SummarizeExpression) {
-				for (SummarizeTerm term : ((SummarizeExpression) rhs).getTerms()) {
-					ModelReference ref = term.getReference();
-					if (ref != null) {
-						ModelDefinition m = ref.getName();
-						if (m != null) {
-							mi.superList.add(m);
-						}
-					}
-				}
-			} else if (rhs instanceof JoinExpression) {
-				for (JoinTerm term : ((JoinExpression) rhs).getTerms()) {
-					ModelReference ref = term.getReference();
-					if (ref != null) {
-						ModelDefinition m = ref.getName();
-						if (m != null) {
-							mi.superList.add(m);
-						}
-					}
-				}
-			}
-
-			if ("projective".equals(model.getType())) {
-				projectiveList.add(model);
-			}
-		}
-
-		for (ModelInfo mi : modelMap.values()) {
-			for (ModelDefinition model : mi.superList) {
-				String name = model.getName();
-				ModelInfo superInfo = modelMap.get(name);
-				if (superInfo != null) {
-					superInfo.subList.add(mi.model);
-				}
-			}
-
-			if (ModelUtil.containsAttribute(mi.model, "auto_projection")) {
-				List<ModelDefinition> autoList = ModelUtil.getProjectiveContainsModel(mi.model, projectiveList);
-				if (autoList != null) {
-					mi.autoSuperList = autoList;
-					for (ModelDefinition a : autoList) {
-						ModelInfo ami = modelMap.get(a.getName());
-						if (ami != null) {
-							ami.autoSubList.add(mi.model);
-						}
-					}
-				}
-			}
-		}
-
-		Comparator<ModelDefinition> comparator = new Comparator<ModelDefinition>() {
-			public int compare(ModelDefinition o1, ModelDefinition o2) {
-				return o1.getName().compareTo(o2.getName());
-			}
-		};
-		for (ModelInfo mi : modelMap.values()) {
-			Collections.sort(mi.superList, comparator);
-			Collections.sort(mi.autoSuperList, comparator);
-			Collections.sort(mi.subList, comparator);
-			Collections.sort(mi.autoSubList, comparator);
-		}
-	}
-
-	private static class ModelInfo {
-		public ModelDefinition model;
-		public List<ModelDefinition> superList = new ArrayList<ModelDefinition>();
-		public List<ModelDefinition> autoSuperList = Collections.emptyList();
-		public List<ModelDefinition> subList = new ArrayList<ModelDefinition>();
-		public List<ModelDefinition> autoSubList = new ArrayList<ModelDefinition>();
+		modelHierarchy = new ModelHierarchy();
+		modelHierarchy.initializeModels(project, null);
 	}
 
 	private static class SubAutoProjection {

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
+import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil.NamePosition;
@@ -24,6 +25,8 @@ import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.Block;
 import org.eclipse.jdt.core.dom.Expression;
+import org.eclipse.jdt.core.dom.IMethodBinding;
+import org.eclipse.jdt.core.dom.ITypeBinding;
 import org.eclipse.jdt.core.dom.MemberValuePair;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.MethodInvocation;
@@ -68,6 +71,7 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 	private void accept(ICompilationUnit unit, SearchMatch match) {
 		ASTParser parser = ASTParser.newParser(AST.JLS4);
 		parser.setSource(unit);
+		parser.setResolveBindings(true);
 		ASTNode node = parser.createAST(new NullProgressMonitor());
 		AcceptVisitor visitor = new AcceptVisitor(match);
 		node.accept(visitor);
@@ -147,8 +151,9 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 			}
 
 			if (modelClassNameList != null) {
-				for (String name : modelClassNameList) {
-					if (name.equals(data.getModelClassSimpleName())) {
+				for (String className : modelClassNameList) {
+					String modelName = StringUtil.toSnakeCase(StringUtil.getSimpleName(className));
+					if (data.containsForPropertySearch(modelName)) {
 						return true;
 					}
 				}
@@ -174,7 +179,8 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 			}
 
 			String modelClassName = PorterUtil.getModelClassName(type);
-			if (modelClassName == null || !modelClassName.equals(data.getModelClassName())) {
+			String modelName = StringUtil.toSnakeCase(StringUtil.getSimpleName(modelClassName));
+			if (!data.containsForPropertySearch(modelName)) {
 				return true;
 			}
 
@@ -226,7 +232,12 @@ public class FindDataModelInJavaSearchRequestor extends SearchRequestor {
 				return true;
 			}
 
-			result.addMatch(match.getElement(), match.getOffset(), match.getLength());
+			IMethodBinding bind = node.resolveMethodBinding();
+			ITypeBinding type = bind.getDeclaringClass();
+			String modelName = StringUtil.toSnakeCase(type.getName());
+			if (data.containsForPropertySearch(modelName)) {
+				result.addMatch(match.getElement(), match.getOffset(), match.getLength());
+			}
 
 			return true;
 		}

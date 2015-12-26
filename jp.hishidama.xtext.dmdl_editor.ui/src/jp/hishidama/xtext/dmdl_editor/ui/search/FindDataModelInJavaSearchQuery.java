@@ -29,7 +29,7 @@ public class FindDataModelInJavaSearchQuery implements ResultLabelSearchQuery {
 		JavaElementSearchResult result = getSearchResult();
 		result.removeAll();
 
-		SearchPattern pattern = data.createSearchPattern();
+		SearchPattern pattern = data.createSearchPattern(monitor);
 		SearchParticipant[] participants = { SearchEngine.getDefaultSearchParticipant() };
 		IJavaSearchScope scope = data.getScope();
 		SearchRequestor requestor = new FindDataModelInJavaSearchRequestor(data, result);
@@ -54,7 +54,14 @@ public class FindDataModelInJavaSearchQuery implements ResultLabelSearchQuery {
 	}
 
 	public String getResultLabel(int matchCount) {
-		return MessageFormat.format("''{0}'' - {1} found in {2}", getLabel(), matchCount, data.getScopeDescription());
+		String ex;
+		if (data.isIncludeHierarchyProperties()) {
+			ex = " include hierarchy";
+		} else {
+			ex = "";
+		}
+		return MessageFormat.format("''{0}''{3} - {1} found in {2}", getLabel(), matchCount,
+				data.getScopeDescription(), ex);
 	}
 
 	public boolean canRerun() {

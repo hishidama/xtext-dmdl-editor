@@ -2,7 +2,9 @@ package jp.hishidama.xtext.dmdl_editor.ui.search;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -11,7 +13,10 @@ import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.OperatorUtil;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy.ModelHierarchy;
+import jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy.ModelHierarchy.ModelInfo;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -19,6 +24,7 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
@@ -67,6 +73,10 @@ public class FindDataModelInJavaSearchData {
 		OPERATOR, JOBFLOW, FLOWPART, IMPORTER, EXPORTER
 	}
 
+	public static enum SearchHierarchy {
+		PROJECTIVE, SUB
+	}
+
 	private final IProject dmdlProject;
 	private final String modelName;
 	private final String propertyName;
@@ -78,6 +88,7 @@ public class FindDataModelInJavaSearchData {
 	private List<String> methodPattern = null;
 	private Set<SearchIn> searchIn = null;
 	private Set<SearchClass> searchClass = null;
+	private Set<SearchHierarchy> searchHierarchy = null;
 
 	private IJavaSearchScope scope;
 	private String scopeDescription;
@@ -187,6 +198,10 @@ public class FindDataModelInJavaSearchData {
 		this.searchClass = searchClass;
 	}
 
+	public void initializeSearchHierarchy(Set<SearchHierarchy> searchHierarchy) {
+		this.searchHierarchy = searchHierarchy;
+	}
+
 	public IProject getProject() {
 		return dmdlProject;
 	}
@@ -267,7 +282,7 @@ public class FindDataModelInJavaSearchData {
 		return methodPattern;
 	}
 
-	public SearchPattern createSearchPattern() {
+	public SearchPattern createSearchPattern(IProgressMonitor monitor) {
 		List<SearchPattern> list = new ArrayList<SearchPattern>();
 		if (searchType != null) {
 			createTypePattern(searchType, list);
@@ -275,7 +290,7 @@ public class FindDataModelInJavaSearchData {
 			createTypePattern(list);
 			createPorterNamePattern(list);
 		} else {
-			createMethodPattern(list);
+			createMethodPattern(list, monitor);
 			createKeyPattern(list);
 			createGetOrderPattern(list);
 			createGetResourcePattern(list);
@@ -305,13 +320,20 @@ public class FindDataModelInJavaSearchData {
 		list.add(pattern);
 	}
 
-	protected void createMethodPattern(List<SearchPattern> list) {
+	protected void createMethodPattern(List<SearchPattern> list, IProgressMonitor monitor) {
 		List<String> names = getMethodPattern();
 		if (names.isEmpty()) {
 			return;
 		}
 
-		String className = ModelUiUtil.getModelClassName(getProject(), getModelName());
+		Set<String> modelNames = initializeSearchModels(monitor);
+		for (String modelName : modelNames) {
+			createMethodPattern(list, modelName, names);
+		}
+	}
+
+	private void createMethodPattern(List<SearchPattern> list, String modelName, List<String> names) {
+		String className = ModelUiUtil.getModelClassName(getProject(), modelName);
 		IJavaProject javaProject = JavaCore.create(getProject());
 		IType type = TypeUtil.findType(javaProject, className);
 		if (type == null) {
@@ -468,5 +490,84 @@ public class FindDataModelInJavaSearchData {
 			}
 		}
 		return SearchClass.OPERATOR;
+	}
+
+	public boolean isIncludeHierarchyProperties() {
+		return searchHierarchy != null && !searchHierarchy.isEmpty();
+	}
+
+	private Set<String> searchModels;
+
+	public boolean containsForPropertySearch(String modelName) {
+		if (searchModels == null) {
+			// 呼ばれないはずだが、念のため初期化する
+			searchModels = Collections.singleton(getModelName());
+		}
+		return searchModels.contains(modelName);
+	}
+
+	private Set<String> initializeSearchModels(IProgressMonitor monitor) {
+		if (searchModels == null) {
+			searchModels = searchModels(monitor);
+		}
+		return searchModels;
+	}
+
+	private Set<String> searchModels(IProgressMonitor monitor) {
+		Set<String> result = new LinkedHashSet<String>();
+		result.add(getModelName());
+
+		if (searchHierarchy == null || searchHierarchy.isEmpty()) {
+			return result;
+		}
+
+		ModelHierarchy hierarchy = new ModelHierarchy();
+		hierarchy.initializeModels(getProject(), monitor);
+		ModelInfo mi = hierarchy.getModel(getModelName());
+		if (mi == null) {
+			return result;
+		}
+
+		if (searchHierarchy.contains(SearchHierarchy.PROJECTIVE)) {
+			collectHierarchyProjective(result, mi.superList);
+			collectHierarchyProjective(result, mi.autoSuperList);
+		}
+		if (searchHierarchy.contains(SearchHierarchy.SUB)) {
+			Set<String> r = new LinkedHashSet<String>();
+			collectHierarchySub(r, hierarchy, mi);
+			result.addAll(r);
+		}
+		return result;
+	}
+
+	private void collectHierarchyProjective(Set<String> result, List<ModelDefinition> list) {
+		for (ModelDefinition model : list) {
+			if (!"projective".equals(model.getType())) {
+				continue;
+			}
+			result.add(model.getName());
+		}
+	}
+
+	private void collectHierarchySub(Set<String> result, ModelHierarchy hierarchy, ModelInfo mi) {
+		if (mi == null) {
+			return;
+		}
+		collectHierarchySub(result, hierarchy, mi.subList);
+		collectHierarchySub(result, hierarchy, mi.autoSubList);
+	}
+
+	private void collectHierarchySub(Set<String> result, ModelHierarchy hierarchy, List<ModelDefinition> list) {
+		for (ModelDefinition model : list) {
+			String type = model.getType();
+			if ("summarized".equals(type) || "joined".equals(type)) {
+				continue;
+			}
+
+			String name = model.getName();
+			if (result.add(name)) {
+				collectHierarchySub(result, hierarchy, hierarchy.getModel(name));
+			}
+		}
 	}
 }

@@ -492,6 +492,14 @@
                </command>
                <command
                      commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                     label="Search in src/main(Operator) include Hierarchy">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                        value="main-operator-hierarchy">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
                      label="Search in src/main(Flow)">
                   <parameter
                         name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
@@ -671,6 +679,14 @@
                   <parameter
                         name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
                         value="main-operator">
+                  </parameter>
+               </command>
+               <command
+                     commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                     label="Search in src/main(Operator) include Hierarchy">
+                  <parameter
+                        name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                        value="main-operator-hierarchy">
                   </parameter>
                </command>
                <command
@@ -1727,6 +1743,14 @@
                <parameter
                      name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
                      value="main-operator">
+               </parameter>
+            </command>
+            <command
+                  commandId="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava"
+                  label="Search in src/main(Operator) include Hierarchy">
+               <parameter
+                     name="jp.hishidama.xtext.dmdl_editor.command.findDataModelInJava.action"
+                     value="main-operator-hierarchy">
                </parameter>
             </command>
             <command

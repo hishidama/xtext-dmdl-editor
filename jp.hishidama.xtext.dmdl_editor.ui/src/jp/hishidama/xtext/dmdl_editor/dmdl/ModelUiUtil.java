@@ -312,6 +312,13 @@ public class ModelUiUtil {
 		}
 	}
 
+	public static List<ModelDefinition> getAllModels(IProject project, IProgressMonitor monitor) {
+		DMDLEObjectSearch search = new DMDLEObjectSearch(project.getName(), monitor);
+		List<ModelDefinition> list = new ArrayList<ModelDefinition>();
+		collectModel(list, search);
+		return list;
+	}
+
 	private static class CollectModelTask implements IRunnableWithProgress {
 		private IProject project;
 		private List<ModelDefinition> list = new ArrayList<ModelDefinition>();
