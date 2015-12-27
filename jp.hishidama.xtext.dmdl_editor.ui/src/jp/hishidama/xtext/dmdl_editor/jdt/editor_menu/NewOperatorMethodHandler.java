@@ -3,6 +3,7 @@ package jp.hishidama.xtext.dmdl_editor.jdt.editor_menu;
 import jp.hishidama.eclipse_plugin.util.DocumentUtil;
 import jp.hishidama.eclipse_plugin.util.FileUtil;
 import jp.hishidama.eclipse_plugin.util.JdtUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.NewOperatorMethodWizard;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -37,7 +38,7 @@ public class NewOperatorMethodHandler extends AbstractHandler {
 				try {
 					execute(document, cu, offset);
 				} catch (Exception e) {
-					e.printStackTrace();
+					LogUtil.logError("NewOperatorMethodHandler", e);
 				}
 			}
 		}

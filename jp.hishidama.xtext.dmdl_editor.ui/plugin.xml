@@ -1265,6 +1265,12 @@
                tooltip="プロパティー一覧を用いてステートメントを一括生成します。"
                style="push">
          </command>
+         <command
+               commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newModelStatement"
+               icon="icons/newpublic_co.gif"
+               tooltip="データモデル一覧を用いてステートメントを一括生成します。"
+               style="push">
+         </command>
       </menuContribution>
       <menuContribution
             locationURI="menu:jp.hishidama.xtext.dmdl_editor.ui.toolbar.batchCompile">
@@ -1648,6 +1654,11 @@
       </command>
       <command
             categoryId="jp.hishidama.xtext.dmdl_editor.jdt.category"
+            id="jp.hishidama.xtext.dmdl_editor.jdt.command.newModelStatement"
+            name="New DataModel Statement">
+      </command>
+      <command
+            categoryId="jp.hishidama.xtext.dmdl_editor.jdt.category"
             id="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyJobflowClass"
             name="Modify JobFlow/FlowPart Field">
       </command>
@@ -1676,6 +1687,15 @@
       <handler
             class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.NewPropertyStatementHandler"
             commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newPropertyStatement">
+         <enabledWhen>
+            <with variable="activeEditorId">
+               <equals value="org.eclipse.jdt.ui.CompilationUnitEditor" />
+            </with>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.NewModelStatementHandler"
+            commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newModelStatement">
          <enabledWhen>
             <with variable="activeEditorId">
                <equals value="org.eclipse.jdt.ui.CompilationUnitEditor" />
@@ -1833,6 +1853,11 @@
                style="push">
          </command>
          <command
+               commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newModelStatement"
+               icon="icons/newpublic_co.gif"
+               style="push">
+         </command>
+         <command
                commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.modifyJobflowClass"
                style="push">
          </command>
@@ -1849,6 +1874,11 @@
             </command>
             <command
                   commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newPropertyStatement"
+                  icon="icons/newpublic_co.gif"
+                  style="push">
+            </command>
+            <command
+                  commandId="jp.hishidama.xtext.dmdl_editor.jdt.command.newModelStatement"
                   icon="icons/newpublic_co.gif"
                   style="push">
             </command>

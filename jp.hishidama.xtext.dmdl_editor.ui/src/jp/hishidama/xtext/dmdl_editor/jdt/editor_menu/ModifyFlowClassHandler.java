@@ -5,6 +5,7 @@ import jp.hishidama.eclipse_plugin.jdt.util.AnnotationUtil;
 import jp.hishidama.eclipse_plugin.util.DocumentUtil;
 import jp.hishidama.eclipse_plugin.util.FileUtil;
 import jp.hishidama.eclipse_plugin.util.JdtUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.ModifyFlowpartClassWizard;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.ModifyJobflowClassWizard;
 
@@ -36,7 +37,7 @@ public class ModifyFlowClassHandler extends AbstractHandler {
 				try {
 					execute(document, cu);
 				} catch (Exception e) {
-					e.printStackTrace();
+					LogUtil.logError("ModifyFlowClassHandler", e);
 				}
 			}
 		}

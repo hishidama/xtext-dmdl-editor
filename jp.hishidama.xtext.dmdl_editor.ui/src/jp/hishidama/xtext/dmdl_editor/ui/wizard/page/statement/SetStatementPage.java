@@ -19,15 +19,16 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 
 public class SetStatementPage extends EditWizardPage {
-	private static final String KEY_STATEMENT = "SetStatementPage.STATEMENT";
-	private static final String KEY_HISTORY = "SetStatementPage.HISTORY";
+
+	private final boolean isProperty;
 
 	private Text statText;
 
 	private Combo hisCombo;
 
-	public SetStatementPage() {
+	public SetStatementPage(boolean isProperty) {
 		super("SetStatementPage");
+		this.isProperty = isProperty;
 
 		setTitle("文の入力");
 		setDescription("作成する文を入力して下さい。");
@@ -44,13 +45,13 @@ public class SetStatementPage extends EditWizardPage {
 
 		createLabel(composite, "statement:");
 		statText = new Text(composite, SWT.BORDER | SWT.MULTI);
-		GridDataFactory.fillDefaults().grab(true, true).hint(-1, 64).applyTo(statText);
+		GridDataFactory.fillDefaults().grab(true, true).hint(256, 64).applyTo(statText);
 		statText.setText(getDefaultStatement());
 		statText.addModifyListener(MODIFY_REFRESH_LISTENER);
 
 		createLabel(composite, "history:");
 		hisCombo = new Combo(composite, SWT.READ_ONLY);
-		GridDataFactory.fillDefaults().grab(true, false).applyTo(hisCombo);
+		GridDataFactory.fillDefaults().grab(true, false).hint(256, SWT.DEFAULT).applyTo(hisCombo);
 		List<String> list = getStatementHistory();
 		hisCombo.setItems(list.toArray(new String[list.size()]));
 		hisCombo.addSelectionListener(new SelectionAdapter() {
@@ -61,21 +62,36 @@ public class SetStatementPage extends EditWizardPage {
 			}
 		});
 
-		createGroup(composite);
+		createDescription(composite);
 
 		return composite;
 	}
 
 	private String getDefaultStatement() {
+		final String KEY_STATEMENT = getSettingKeyStatement();
+
 		IDialogSettings settings = getDialogSettings();
 		String value = settings.get(KEY_STATEMENT);
 		if (value == null) {
-			value = "// $(description)\n" + "left.set$(name.toCamelCase)Option(right.get$(name.toCamelCase)Option());";
+			value = isProperty ? getDefaultStatementProperty() : getDefaultStatementModel();
 		}
 		return value;
 	}
 
+	private String getDefaultStatementProperty() {
+		return "// $(description)\n" + "left.set$(name.toCamelCase)Option(right.get$(name.toCamelCase)Option());";
+	}
+
+	private String getDefaultStatementModel() {
+		StringBuilder sb = new StringBuilder(400);
+		sb.append("In<$(modelName.toCamelCase)> $(modelName.toLowerCamelCase) = tester.input(\"$(modelName.toLowerCamelCase)\", $(modelName.toCamelCase).class).prepare(\"$(modelName).xls#input\");\n");
+		sb.append("Out<$(modelName.toCamelCase)> $(modelName.toLowerCamelCase) = tester.output(\"$(modelName.toLowerCamelCase)\", $(modelName.toCamelCase).class).verify(\"$(modelName).xls#output\", \"$(modelName).xls#rule\");");
+		return sb.toString();
+	}
+
 	private List<String> getStatementHistory() {
+		final String KEY_HISTORY = getSettingKeyHistory();
+
 		IDialogSettings settings = getDialogSettings();
 		int count;
 		try {
@@ -96,6 +112,9 @@ public class SetStatementPage extends EditWizardPage {
 	}
 
 	public void saveDialogSettings() {
+		final String KEY_STATEMENT = getSettingKeyStatement();
+		final String KEY_HISTORY = getSettingKeyHistory();
+
 		IDialogSettings settings = getDialogSettings();
 		String statement = getStatementText();
 		settings.put(KEY_STATEMENT, statement);
@@ -116,18 +135,34 @@ public class SetStatementPage extends EditWizardPage {
 		}
 	}
 
-	protected void createGroup(Composite composite) {
+	protected void createDescription(Composite composite) {
 		Group group = new Group(composite, SWT.SHADOW_IN);
 		GridDataFactory.fillDefaults().grab(true, false).span(2, 1).applyTo(group);
 		group.setLayout(new GridLayout(2, false));
 		createLabel(group, "右記の変数を指定することが出来ます。\n行を選択してCtrl+Cを押すと変数名をコピーできます。");
-		DMDLVariableTableUtil.createVariableTable(group, false, true);
+		DMDLVariableTableUtil.createVariableTable(group, !isProperty, isProperty);
 
 		createLabel(group, "例えば右記の様な文を書くことが出来ます。");
 		Text text = new Text(group, SWT.BORDER | SWT.MULTI);
-		GridDataFactory.fillDefaults().grab(true, false).applyTo(text);
-		text.setText("// $(description)\n" + "left.set$(name.toCamelCase)Option(right.get$(name.toCamelCase)Option());");
+		GridDataFactory.fillDefaults().grab(true, false).hint(256, SWT.DEFAULT).applyTo(text);
+		text.setText(isProperty ? getDefaultStatementProperty() : getDefaultStatementModel());
 		text.setEditable(false);
+	}
+
+	private String getSettingKeyStatement() {
+		if (isProperty) {
+			return "SetStatementPage.STATEMENT";
+		} else {
+			return "SetStatementPage.model.STATEMENT";
+		}
+	}
+
+	private String getSettingKeyHistory() {
+		if (isProperty) {
+			return "SetStatementPage.HISTORY";
+		} else {
+			return "SetStatementPage.model.HISTORY";
+		}
 	}
 
 	@Override

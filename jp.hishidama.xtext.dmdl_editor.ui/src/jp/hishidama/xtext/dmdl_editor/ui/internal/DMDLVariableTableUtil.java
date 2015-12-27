@@ -44,6 +44,7 @@ public class DMDLVariableTableUtil {
 			createItem(table, "モデル名", "$(modelName)");
 			createItem(table, "モデル名（大文字）", "$(modelName.toUpper)");
 			createItem(table, "モデル名（CamelCase）", "$(modelName.toCamelCase)");
+			createItem(table, "モデル名（camelCase）", "$(modelName.toLowerCamelCase)");
 			createItem(table, "モデル説明", "$(modelDescription)");
 		}
 		if (hasProperty) {
