@@ -13,9 +13,11 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.wizard.IWizard;
@@ -37,7 +39,8 @@ public class ModifyFlowClassHandler extends AbstractHandler {
 				try {
 					execute(document, cu);
 				} catch (Exception e) {
-					LogUtil.logError("ModifyFlowClassHandler", e);
+					IStatus status = LogUtil.logError("ModifyFlowClassHandler", e);
+					ErrorDialog.openError(null, "ModifyFlowClassHandler error", "エラーが発生しました。", status);
 				}
 			}
 		}

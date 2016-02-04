@@ -10,7 +10,9 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.ISelection;
@@ -34,7 +36,8 @@ public class NewModelStatementHandler extends AbstractHandler {
 				try {
 					execute(file.getProject(), document, offset);
 				} catch (Exception e) {
-					LogUtil.logError("NewModelStatementHandler", e);
+					IStatus status = LogUtil.logError("NewModelStatementHandler", e);
+					ErrorDialog.openError(null, "NewModelStatementHandler error", "エラーが発生しました。", status);
 				}
 			}
 		}
