@@ -1,5 +1,6 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
@@ -12,6 +13,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.jface.dialogs.MessageDialog;
 
 public class MasterJoinInputModelPage extends SelectOperatorInputModelPage {
 
@@ -44,6 +46,13 @@ public class MasterJoinInputModelPage extends SelectOperatorInputModelPage {
 
 		ModelDefinition model = ModelUiUtil.findModel(project, name);
 		JoinExpression rhs = ModelUtil.getJoinExpression(model);
+		if (rhs == null) {
+			MessageDialog.openError(getShell(), "MasterJoinInputModelPage error", MessageFormat.format(
+					"結合モデル{0}の情報が取得できませんでした。\nデータモデルにエラーが無いか、DMDLのコンパイルやEclipseのビルドが正常に行われているか等を確認して下さい。", name));
+			joinModelName = null;
+			table.refresh();
+			return;
+		}
 		int i = 0;
 		for (JoinTerm term : rhs.getTerms()) {
 			ModelReference ref = term.getReference();
