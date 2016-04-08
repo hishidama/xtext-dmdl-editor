@@ -1081,7 +1081,7 @@
             <command
                   commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
                   icon="icons/ch_callers.gif"
-                  label="Compile Batch (compileBatchapp)"
+                  label="compileBatchapp (afw0.7)"
                   style="push">
                <parameter
                      name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
@@ -1091,11 +1091,31 @@
             <command
                   commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
                   icon="icons/ch_callers.gif"
-                  label="Compile Batch (sparkCompileBatchapps)"
+                  label="mapreduceCompileBatchapps (afw0.8)"
                   style="push">
                <parameter
                      name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
-                     value="sparkCompileBatchapp">
+                     value="mapreduceCompileBatchapps">
+               </parameter>
+            </command>
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
+                  icon="icons/ch_callers.gif"
+                  label="sparkCompileBatchapps"
+                  style="push">
+               <parameter
+                     name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
+                     value="sparkCompileBatchapps">
+               </parameter>
+            </command>
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
+                  icon="icons/ch_callers.gif"
+                  label="m3bpCompileBatchapps"
+                  style="push">
+               <parameter
+                     name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
+                     value="m3bpCompileBatchapps">
                </parameter>
             </command>
             <command
@@ -1277,7 +1297,7 @@
          <command
                commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
                icon="icons/ch_callers.gif"
-               label="Compile Batch (compileBatchapp)"
+               label="compileBatchapp (afw0.7)"
                style="push">
             <parameter
                   name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
@@ -1287,11 +1307,31 @@
          <command
                commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
                icon="icons/ch_callers.gif"
-               label="Compile Batch (sparkCompileBatchapps)"
+               label="mapreduceCompileBatchapps (afw0.8)"
                style="push">
             <parameter
                   name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
-                  value="sparkCompileBatchapp">
+                  value="mapreduceCompileBatchapps">
+            </parameter>
+         </command>
+         <command
+               commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
+               icon="icons/ch_callers.gif"
+               label="sparkCompileBatchapps"
+               style="push">
+            <parameter
+                  name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
+                  value="sparkCompileBatchapps">
+            </parameter>
+         </command>
+         <command
+               commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
+               icon="icons/ch_callers.gif"
+               label="m3bpCompileBatchapps"
+               style="push">
+            <parameter
+                  name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
+                  value="m3bpCompileBatchapps">
             </parameter>
          </command>
          <command
@@ -1893,7 +1933,7 @@
             <command
                   commandId="jp.hishidama.asakusafwWrapper.command.batchCompile.editorMenu"
                   icon="icons/ch_callers.gif"
-                  label="Compile Batch (compileBatchapp)"
+                  label="compileBatchapp (afw0.7)"
                   style="push">
                <parameter
                      name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
@@ -1903,11 +1943,31 @@
             <command
                   commandId="jp.hishidama.asakusafwWrapper.command.batchCompile.editorMenu"
                   icon="icons/ch_callers.gif"
-                  label="Compile Batch (sparkCompileBatchapps)"
+                  label="mapreduceCompileBatchapps (afw0.8)"
                   style="push">
                <parameter
                      name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
-                     value="sparkCompileBatchapp">
+                     value="mapreduceCompileBatchapps">
+               </parameter>
+            </command>
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.batchCompile.editorMenu"
+                  icon="icons/ch_callers.gif"
+                  label="sparkCompileBatchapps"
+                  style="push">
+               <parameter
+                     name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
+                     value="sparkCompileBatchapps">
+               </parameter>
+            </command>
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.batchCompile.editorMenu"
+                  icon="icons/ch_callers.gif"
+                  label="m3bpCompileBatchapps"
+                  style="push">
+               <parameter
+                     name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
+                     value="m3bpCompileBatchapps">
                </parameter>
             </command>
             <command
