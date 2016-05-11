@@ -163,6 +163,16 @@
         </page>
         <page
               category="jp.hishidama.xtext.dmdl_editor.ui.jp.hishidama.xtext.dmdl_editor.AsakusafwVersion"
+              class="jp.hishidama.eclipse_plugin.asakusafw_wrapper.property.AsakusafwCompileBatchappsPropertyPage"
+              id="jp.hishidama.xtext.dmdl_editor.ui.jp.hishidama.xtext.dmdl_editor.AsakusafwCompileBatchapps"
+              name="compileBatchapps">
+            <enabledWhen>
+                <adapt type="org.eclipse.core.resources.IProject"/>
+            </enabledWhen>
+            <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
+        </page>
+        <page
+              category="jp.hishidama.xtext.dmdl_editor.ui.jp.hishidama.xtext.dmdl_editor.AsakusafwVersion"
               class="jp.hishidama.eclipse_plugin.asakusafw_wrapper.property.AsakusafwBatchCompilerPropertyPage"
               id="jp.hishidama.xtext.dmdl_editor.ui.jp.hishidama.xtext.dmdl_editor.AsakusafwBatchCompiler"
               name="Batch Compiler">
