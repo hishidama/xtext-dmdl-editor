@@ -45,6 +45,7 @@ public class DirectioCsvAttributeDefinition extends DMDLAttributeWizardDefinitio
 			{
 				DMDLAttribute a = propertyAttribute.create("directio.csv.field", "CSV フィールド名", true);
 				a.addq("name", "フィールド名", "$(name)");
+				a.addq("quote", "クォート動作", "default").completionq("default", "needed", "always").version("0.9.0");
 			}
 			propertyAttribute.create("directio.csv.ignore", "無視するフィールド", false);
 			propertyAttribute.create("directio.csv.file_name", "ファイル名", false).dataType("TEXT");
