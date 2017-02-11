@@ -4,6 +4,7 @@ import java.text.MessageFormat;
 
 import jp.hishidama.xtext.dmdl_editor.jdt.search.JavaElementSearchResult;
 import jp.hishidama.xtext.dmdl_editor.jdt.search.ResultLabelSearchQuery;
+import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -30,6 +31,9 @@ public class FindDataModelInJavaSearchQuery implements ResultLabelSearchQuery {
 		result.removeAll();
 
 		SearchPattern pattern = data.createSearchPattern(monitor);
+		if (pattern == null) {
+			return LogUtil.infoStatus("FindDataModelInJavaSearchQuery: createSearchPattern() returns null.");
+		}
 		SearchParticipant[] participants = { SearchEngine.getDefaultSearchParticipant() };
 		IJavaSearchScope scope = data.getScope();
 		SearchRequestor requestor = new FindDataModelInJavaSearchRequestor(data, result);

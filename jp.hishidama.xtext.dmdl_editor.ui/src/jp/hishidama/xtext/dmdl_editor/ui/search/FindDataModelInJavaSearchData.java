@@ -310,6 +310,9 @@ public class FindDataModelInJavaSearchData {
 	protected void createTypePattern(List<SearchPattern> list) {
 		IJavaProject javaProject = JavaCore.create(getProject());
 		IType type = TypeUtil.findType(javaProject, getModelClassName());
+		if (type == null) {
+			return;
+		}
 		createTypePattern(type, list);
 	}
 
