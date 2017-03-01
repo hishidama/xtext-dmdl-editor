@@ -7,6 +7,7 @@ import java.util.Map;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowParameter;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil.FlowParameters;
 import jp.hishidama.eclipse_plugin.jface.ModifiableTable;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.eclipse_plugin.wizard.page.EditWizardPage;
@@ -43,7 +44,7 @@ public class SetExcelNamePage extends EditWizardPage {
 	private Text ruleSheetText;
 
 	private IType classUnderTest;
-	private List<FlowParameter> parameterList;
+	private FlowParameters parameters;
 
 	public SetExcelNamePage(NewTestClassWizardPage classPage) {
 		super("SetExcelNamePage");
@@ -117,8 +118,8 @@ public class SetExcelNamePage extends EditWizardPage {
 		classUnderTest = type;
 
 		table.removeAll();
-		parameterList = FlowUtil.getFlowParameters(type);
-		for (FlowParameter parameter : parameterList) {
+		parameters = FlowUtil.getFlowParameters(type);
+		for (FlowParameter parameter : parameters.parameterList) {
 			if (!parameter.isPort()) {
 				continue;
 			}
@@ -129,12 +130,45 @@ public class SetExcelNamePage extends EditWizardPage {
 			if (row.name == null) {
 				row.name = parameter.getName();
 			}
-			row.modelClassName = parameter.getModelClassName();
-			ModelDefinition model = ModelUiUtil.findModelByClass(getProject(), row.modelClassName);
-			if (model != null) {
-				row.modelName = model.getName();
-				row.modelDescription = ModelUtil.getDecodedDescription(model);
-				row.excelDstFileName = row.modelName + ".xls";
+			row.originalModelClassName = parameter.getModelClassName();
+
+			String[] tpBounds = parameters.typeParameterMap.get(parameter.getModelClassName());
+			if (tpBounds != null) {
+				String excelFileName = null;
+				for (String bound : tpBounds) {
+					if (row.modelClassName == null) {
+						row.modelClassName = bound;
+					} else {
+						row.modelClassName += "," + bound;
+					}
+					ModelDefinition model = ModelUiUtil.findModelByClass(getProject(), bound);
+					if (model != null) {
+						if (row.modelName == null) {
+							row.modelName = model.getName();
+						} else {
+							row.modelName += " + " + model.getName();
+						}
+						if (row.modelDescription == null) {
+							row.modelDescription = ModelUtil.getDecodedDescription(model);
+						} else {
+							row.modelDescription += ", " + ModelUtil.getDecodedDescription(model);
+						}
+						if (excelFileName == null) {
+							excelFileName = model.getName();
+						} else {
+							excelFileName += "+" + model.getName();
+						}
+					}
+				}
+				row.excelDstFileName = excelFileName + ".xls";
+			} else {
+				row.modelClassName = parameter.getModelClassName();
+				ModelDefinition model = ModelUiUtil.findModelByClass(getProject(), row.modelClassName);
+				if (model != null) {
+					row.modelName = model.getName();
+					row.modelDescription = ModelUtil.getDecodedDescription(model);
+					row.excelDstFileName = row.modelName + ".xls";
+				}
 			}
 			if (row.in) {
 				row.sheetName = "input";
@@ -196,6 +230,10 @@ public class SetExcelNamePage extends EditWizardPage {
 						}
 					}
 				}
+			}
+			if (row.modelName == null) {
+				String message = MessageFormat.format("not found datamodel by Xtext. class={0}", row.modelClassName);
+				return message;
 			}
 		}
 		return null;
@@ -416,6 +454,10 @@ public class SetExcelNamePage extends EditWizardPage {
 	}
 
 	public List<FlowParameter> getParameterList() {
-		return parameterList;
+		return parameters.parameterList;
+	}
+
+	public Map<String, String[]> getTypeParameterMap() {
+		return parameters.typeParameterMap;
 	}
 }

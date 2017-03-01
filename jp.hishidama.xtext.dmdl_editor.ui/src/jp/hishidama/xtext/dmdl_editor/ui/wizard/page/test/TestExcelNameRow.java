@@ -3,6 +3,7 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test;
 public class TestExcelNameRow {
 	public boolean in;
 	public String name;
+	public String originalModelClassName;
 	public String modelClassName;
 	public String modelName;
 	public String modelDescription;

@@ -29,8 +29,7 @@ public abstract class NewFlowTestClassGenerator extends ClassGenerator {
 		this.srcDir = dir;
 	}
 
-	public void generate(String packageName, String className, String superClassName, String classUnderTestName,
-			List<TestExcelNameRow> portList, List<FlowParameter> paramList) throws CoreException {
+	public void generate(String packageName, String className, String superClassName, String classUnderTestName, List<TestExcelNameRow> portList, List<FlowParameter> paramList) throws CoreException {
 		this.superClassName = superClassName;
 		this.classUnderTestName = classUnderTestName;
 		this.portList = portList;
@@ -145,8 +144,12 @@ public abstract class NewFlowTestClassGenerator extends ClassGenerator {
 		sb.append("(\"");
 		sb.append(row.name);
 		sb.append("\", ");
-		sb.append(getCachedClassName(row.modelClassName));
+		sb.append(getCachedClassName(getDataBaseClassName(row)));
 		sb.append(".class)");
+	}
+
+	protected String getDataBaseClassName(TestExcelNameRow row) {
+		return row.modelClassName;
 	}
 
 	protected void appendDataBasePrefix(StringBuilder sb, TestExcelNameRow row) {
