@@ -176,6 +176,24 @@ public interface DmdlFactory extends EFactory
   AttributeValueArray createAttributeValueArray();
 
   /**
+   * Returns a new object of class '<em>Attribute Value Map</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attribute Value Map</em>'.
+   * @generated
+   */
+  AttributeValueMap createAttributeValueMap();
+
+  /**
+   * Returns a new object of class '<em>Attribute Pair</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attribute Pair</em>'.
+   * @generated
+   */
+  AttributePair createAttributePair();
+
+  /**
    * Returns a new object of class '<em>Grouping</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

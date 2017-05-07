@@ -250,7 +250,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getProperty()
    * @generated
    */
-  int PROPERTY = 22;
+  int PROPERTY = 24;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -706,6 +706,71 @@ public interface DmdlPackage extends EPackage
   int ATTRIBUTE_VALUE_ARRAY_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributeValueMapImpl <em>Attribute Value Map</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributeValueMapImpl
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeValueMap()
+   * @generated
+   */
+  int ATTRIBUTE_VALUE_MAP = 17;
+
+  /**
+   * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_VALUE_MAP__ELEMENTS = 0;
+
+  /**
+   * The number of structural features of the '<em>Attribute Value Map</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_VALUE_MAP_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributePairImpl <em>Attribute Pair</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributePairImpl
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributePair()
+   * @generated
+   */
+  int ATTRIBUTE_PAIR = 18;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_PAIR__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_PAIR__VALUE = 1;
+
+  /**
+   * The number of structural features of the '<em>Attribute Pair</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_PAIR_FEATURE_COUNT = 2;
+
+  /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.GroupingImpl <em>Grouping</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -713,7 +778,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getGrouping()
    * @generated
    */
-  int GROUPING = 17;
+  int GROUPING = 19;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' reference list.
@@ -741,7 +806,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getModelMapping()
    * @generated
    */
-  int MODEL_MAPPING = 18;
+  int MODEL_MAPPING = 20;
 
   /**
    * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
@@ -769,7 +834,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyMapping()
    * @generated
    */
-  int PROPERTY_MAPPING = 19;
+  int PROPERTY_MAPPING = 21;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -824,7 +889,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getModelFolding()
    * @generated
    */
-  int MODEL_FOLDING = 20;
+  int MODEL_FOLDING = 22;
 
   /**
    * The feature id for the '<em><b>Foldings</b></em>' containment reference list.
@@ -852,7 +917,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyFolding()
    * @generated
    */
-  int PROPERTY_FOLDING = 21;
+  int PROPERTY_FOLDING = 23;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -916,7 +981,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getQualifiedNameObject()
    * @generated
    */
-  int QUALIFIED_NAME_OBJECT = 23;
+  int QUALIFIED_NAME_OBJECT = 25;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -944,7 +1009,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 24;
+  int LITERAL = 26;
 
   /**
    * The feature id for the '<em><b>String Value</b></em>' attribute.
@@ -990,7 +1055,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getType()
    * @generated
    */
-  int TYPE = 25;
+  int TYPE = 27;
 
 
   /**
@@ -1470,6 +1535,59 @@ public interface DmdlPackage extends EPackage
    * @generated
    */
   EReference getAttributeValueArray_Elements();
+
+  /**
+   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueMap <em>Attribute Value Map</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Attribute Value Map</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueMap
+   * @generated
+   */
+  EClass getAttributeValueMap();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueMap#getElements <em>Elements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Elements</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueMap#getElements()
+   * @see #getAttributeValueMap()
+   * @generated
+   */
+  EReference getAttributeValueMap_Elements();
+
+  /**
+   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.AttributePair <em>Attribute Pair</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Attribute Pair</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.AttributePair
+   * @generated
+   */
+  EClass getAttributePair();
+
+  /**
+   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.AttributePair#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Name</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.AttributePair#getName()
+   * @see #getAttributePair()
+   * @generated
+   */
+  EReference getAttributePair_Name();
+
+  /**
+   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.AttributePair#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Value</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.AttributePair#getValue()
+   * @see #getAttributePair()
+   * @generated
+   */
+  EReference getAttributePair_Value();
 
   /**
    * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Grouping <em>Grouping</em>}'.
@@ -2120,6 +2238,50 @@ public interface DmdlPackage extends EPackage
      * @generated
      */
     EReference ATTRIBUTE_VALUE_ARRAY__ELEMENTS = eINSTANCE.getAttributeValueArray_Elements();
+
+    /**
+     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributeValueMapImpl <em>Attribute Value Map</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributeValueMapImpl
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeValueMap()
+     * @generated
+     */
+    EClass ATTRIBUTE_VALUE_MAP = eINSTANCE.getAttributeValueMap();
+
+    /**
+     * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ATTRIBUTE_VALUE_MAP__ELEMENTS = eINSTANCE.getAttributeValueMap_Elements();
+
+    /**
+     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributePairImpl <em>Attribute Pair</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.AttributePairImpl
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributePair()
+     * @generated
+     */
+    EClass ATTRIBUTE_PAIR = eINSTANCE.getAttributePair();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ATTRIBUTE_PAIR__NAME = eINSTANCE.getAttributePair_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ATTRIBUTE_PAIR__VALUE = eINSTANCE.getAttributePair_Value();
 
     /**
      * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.GroupingImpl <em>Grouping</em>}' class.

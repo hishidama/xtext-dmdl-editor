@@ -82,6 +82,8 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
       case DmdlPackage.ATTRIBUTE_ELEMENT: return createAttributeElement();
       case DmdlPackage.ATTRIBUTE_VALUE: return createAttributeValue();
       case DmdlPackage.ATTRIBUTE_VALUE_ARRAY: return createAttributeValueArray();
+      case DmdlPackage.ATTRIBUTE_VALUE_MAP: return createAttributeValueMap();
+      case DmdlPackage.ATTRIBUTE_PAIR: return createAttributePair();
       case DmdlPackage.GROUPING: return createGrouping();
       case DmdlPackage.MODEL_MAPPING: return createModelMapping();
       case DmdlPackage.PROPERTY_MAPPING: return createPropertyMapping();
@@ -314,6 +316,28 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
   {
     AttributeValueArrayImpl attributeValueArray = new AttributeValueArrayImpl();
     return attributeValueArray;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AttributeValueMap createAttributeValueMap()
+  {
+    AttributeValueMapImpl attributeValueMap = new AttributeValueMapImpl();
+    return attributeValueMap;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AttributePair createAttributePair()
+  {
+    AttributePairImpl attributePair = new AttributePairImpl();
+    return attributePair;
   }
 
   /**

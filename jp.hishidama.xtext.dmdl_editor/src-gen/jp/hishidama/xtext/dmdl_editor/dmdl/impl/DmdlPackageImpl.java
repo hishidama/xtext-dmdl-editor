@@ -7,8 +7,10 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElement;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementBlock;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
+import jp.hishidama.xtext.dmdl_editor.dmdl.AttributePair;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValue;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueArray;
+import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueMap;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlFactory;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Grouping;
@@ -165,6 +167,20 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * @generated
    */
   private EClass attributeValueArrayEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass attributeValueMapEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass attributePairEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -747,6 +763,56 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getAttributeValueMap()
+  {
+    return attributeValueMapEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAttributeValueMap_Elements()
+  {
+    return (EReference)attributeValueMapEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAttributePair()
+  {
+    return attributePairEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAttributePair_Name()
+  {
+    return (EReference)attributePairEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAttributePair_Value()
+  {
+    return (EReference)attributePairEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getGrouping()
   {
     return groupingEClass;
@@ -1054,6 +1120,13 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     attributeValueArrayEClass = createEClass(ATTRIBUTE_VALUE_ARRAY);
     createEReference(attributeValueArrayEClass, ATTRIBUTE_VALUE_ARRAY__ELEMENTS);
 
+    attributeValueMapEClass = createEClass(ATTRIBUTE_VALUE_MAP);
+    createEReference(attributeValueMapEClass, ATTRIBUTE_VALUE_MAP__ELEMENTS);
+
+    attributePairEClass = createEClass(ATTRIBUTE_PAIR);
+    createEReference(attributePairEClass, ATTRIBUTE_PAIR__NAME);
+    createEReference(attributePairEClass, ATTRIBUTE_PAIR__VALUE);
+
     groupingEClass = createEClass(GROUPING);
     createEReference(groupingEClass, GROUPING__NAME);
 
@@ -1182,6 +1255,13 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
 
     initEClass(attributeValueArrayEClass, AttributeValueArray.class, "AttributeValueArray", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAttributeValueArray_Elements(), this.getAttributeValue(), null, "elements", null, 0, -1, AttributeValueArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(attributeValueMapEClass, AttributeValueMap.class, "AttributeValueMap", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAttributeValueMap_Elements(), this.getAttributePair(), null, "elements", null, 0, -1, AttributeValueMap.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(attributePairEClass, AttributePair.class, "AttributePair", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAttributePair_Name(), this.getLiteral(), null, "name", null, 0, 1, AttributePair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAttributePair_Value(), this.getAttributeValue(), null, "value", null, 0, 1, AttributePair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(groupingEClass, Grouping.class, "Grouping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getGrouping_Name(), this.getProperty(), null, "name", null, 0, -1, Grouping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

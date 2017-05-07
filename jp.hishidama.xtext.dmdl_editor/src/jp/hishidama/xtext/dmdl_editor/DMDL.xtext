@@ -71,10 +71,18 @@ AttributeElement:
 	name=Name "=" value=AttributeValue;
 
 AttributeValue:
-	value=AttributeValueArray | value=QualifiedNameObject | value=Literal;
+	value=AttributeValueArray | value=AttributeValueMap | value=QualifiedNameObject | value=Literal;
 
 AttributeValueArray:
+	{AttributeValueArray} '{' '}' |
 	'{' elements+=AttributeValue (',' elements+=AttributeValue)* ','? '}';
+
+AttributeValueMap:
+	{AttributeValueMap} '{' ':' '}' |
+	'{' elements+=AttributePair ("," elements+=AttributePair)* ','? '}';
+
+AttributePair:
+	name=Literal ':' value=AttributeValue;
 
 Grouping:
 	'%' name+=[Property|Name] (',' name+=[Property|Name])*;

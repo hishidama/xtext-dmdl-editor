@@ -19,14 +19,16 @@ public class DMDLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected DMDLGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_AttributeElementBlock_CommaKeyword_2_1_q;
-	protected AbstractElementAlias match_AttributeValueArray_CommaKeyword_3_q;
+	protected AbstractElementAlias match_AttributeValueArray_CommaKeyword_1_3_q;
+	protected AbstractElementAlias match_AttributeValueMap_CommaKeyword_1_3_q;
 	protected AbstractElementAlias match_PropertyFolding_EqualsSignGreaterThanSignKeyword_4_1_or_HyphenMinusGreaterThanSignKeyword_4_0;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (DMDLGrammarAccess) access;
 		match_AttributeElementBlock_CommaKeyword_2_1_q = new TokenAlias(false, true, grammarAccess.getAttributeElementBlockAccess().getCommaKeyword_2_1());
-		match_AttributeValueArray_CommaKeyword_3_q = new TokenAlias(false, true, grammarAccess.getAttributeValueArrayAccess().getCommaKeyword_3());
+		match_AttributeValueArray_CommaKeyword_1_3_q = new TokenAlias(false, true, grammarAccess.getAttributeValueArrayAccess().getCommaKeyword_1_3());
+		match_AttributeValueMap_CommaKeyword_1_3_q = new TokenAlias(false, true, grammarAccess.getAttributeValueMapAccess().getCommaKeyword_1_3());
 		match_PropertyFolding_EqualsSignGreaterThanSignKeyword_4_1_or_HyphenMinusGreaterThanSignKeyword_4_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPropertyFoldingAccess().getEqualsSignGreaterThanSignKeyword_4_1()), new TokenAlias(false, false, grammarAccess.getPropertyFoldingAccess().getHyphenMinusGreaterThanSignKeyword_4_0()));
 	}
 	
@@ -44,8 +46,10 @@ public class DMDLSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if(match_AttributeElementBlock_CommaKeyword_2_1_q.equals(syntax))
 				emit_AttributeElementBlock_CommaKeyword_2_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_AttributeValueArray_CommaKeyword_3_q.equals(syntax))
-				emit_AttributeValueArray_CommaKeyword_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_AttributeValueArray_CommaKeyword_1_3_q.equals(syntax))
+				emit_AttributeValueArray_CommaKeyword_1_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_AttributeValueMap_CommaKeyword_1_3_q.equals(syntax))
+				emit_AttributeValueMap_CommaKeyword_1_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_PropertyFolding_EqualsSignGreaterThanSignKeyword_4_1_or_HyphenMinusGreaterThanSignKeyword_4_0.equals(syntax))
 				emit_PropertyFolding_EqualsSignGreaterThanSignKeyword_4_1_or_HyphenMinusGreaterThanSignKeyword_4_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
@@ -64,7 +68,15 @@ public class DMDLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * Syntax:
 	 *     ','?
 	 */
-	protected void emit_AttributeValueArray_CommaKeyword_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_AttributeValueArray_CommaKeyword_1_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Syntax:
+	 *     ','?
+	 */
+	protected void emit_AttributeValueMap_CommaKeyword_1_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

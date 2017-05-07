@@ -82,6 +82,13 @@
     <genClasses ecoreClass="DMDL.ecore#//AttributeValueArray">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//AttributeValueArray/elements"/>
     </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//AttributeValueMap">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//AttributeValueMap/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//AttributePair">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//AttributePair/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//AttributePair/value"/>
+    </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//Grouping">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DMDL.ecore#//Grouping/name"/>
     </genClasses>

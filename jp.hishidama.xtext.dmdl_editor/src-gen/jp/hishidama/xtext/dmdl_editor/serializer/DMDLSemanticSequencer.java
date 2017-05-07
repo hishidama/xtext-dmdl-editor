@@ -7,8 +7,10 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElement;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementBlock;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
+import jp.hishidama.xtext.dmdl_editor.dmdl.AttributePair;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValue;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueArray;
+import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueMap;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Grouping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.JoinExpression;
@@ -78,6 +80,12 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case DmdlPackage.ATTRIBUTE_PAIR:
+				if(context == grammarAccess.getAttributePairRule()) {
+					sequence_AttributePair(context, (AttributePair) semanticObject); 
+					return; 
+				}
+				else break;
 			case DmdlPackage.ATTRIBUTE_VALUE:
 				if(context == grammarAccess.getAttributeValueRule()) {
 					sequence_AttributeValue(context, (AttributeValue) semanticObject); 
@@ -87,6 +95,12 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case DmdlPackage.ATTRIBUTE_VALUE_ARRAY:
 				if(context == grammarAccess.getAttributeValueArrayRule()) {
 					sequence_AttributeValueArray(context, (AttributeValueArray) semanticObject); 
+					return; 
+				}
+				else break;
+			case DmdlPackage.ATTRIBUTE_VALUE_MAP:
+				if(context == grammarAccess.getAttributeValueMapRule()) {
+					sequence_AttributeValueMap(context, (AttributeValueMap) semanticObject); 
 					return; 
 				}
 				else break;
@@ -247,7 +261,26 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (elements+=AttributeValue elements+=AttributeValue*)
+	 *     (name=Literal value=AttributeValue)
+	 */
+	protected void sequence_AttributePair(EObject context, AttributePair semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.ATTRIBUTE_PAIR__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.ATTRIBUTE_PAIR__NAME));
+			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.ATTRIBUTE_PAIR__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.ATTRIBUTE_PAIR__VALUE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getAttributePairAccess().getNameLiteralParserRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getAttributePairAccess().getValueAttributeValueParserRuleCall_2_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {AttributeValueArray}
 	 */
 	protected void sequence_AttributeValueArray(EObject context, AttributeValueArray semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -256,7 +289,16 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (value=AttributeValueArray | value=QualifiedNameObject | value=Literal)
+	 *     {AttributeValueMap}
+	 */
+	protected void sequence_AttributeValueMap(EObject context, AttributeValueMap semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (value=AttributeValueArray | value=AttributeValueMap | value=QualifiedNameObject | value=Literal)
 	 */
 	protected void sequence_AttributeValue(EObject context, AttributeValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

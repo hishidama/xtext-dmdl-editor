@@ -638,15 +638,17 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
 		private final RuleCall cValueAttributeValueArrayParserRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
 		private final Assignment cValueAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cValueQualifiedNameObjectParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		private final RuleCall cValueAttributeValueMapParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
 		private final Assignment cValueAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
-		private final RuleCall cValueLiteralParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
+		private final RuleCall cValueQualifiedNameObjectParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
+		private final Assignment cValueAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final RuleCall cValueLiteralParserRuleCall_3_0 = (RuleCall)cValueAssignment_3.eContents().get(0);
 		
 		//AttributeValue:
-		//	value=AttributeValueArray | value=QualifiedNameObject | value=Literal;
+		//	value=AttributeValueArray | value=AttributeValueMap | value=QualifiedNameObject | value=Literal;
 		public ParserRule getRule() { return rule; }
 
-		//value=AttributeValueArray | value=QualifiedNameObject | value=Literal
+		//value=AttributeValueArray | value=AttributeValueMap | value=QualifiedNameObject | value=Literal
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//value=AttributeValueArray
@@ -655,65 +657,195 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		//AttributeValueArray
 		public RuleCall getValueAttributeValueArrayParserRuleCall_0_0() { return cValueAttributeValueArrayParserRuleCall_0_0; }
 
-		//value=QualifiedNameObject
+		//value=AttributeValueMap
 		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
 
-		//QualifiedNameObject
-		public RuleCall getValueQualifiedNameObjectParserRuleCall_1_0() { return cValueQualifiedNameObjectParserRuleCall_1_0; }
+		//AttributeValueMap
+		public RuleCall getValueAttributeValueMapParserRuleCall_1_0() { return cValueAttributeValueMapParserRuleCall_1_0; }
 
-		//value=Literal
+		//value=QualifiedNameObject
 		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
 
+		//QualifiedNameObject
+		public RuleCall getValueQualifiedNameObjectParserRuleCall_2_0() { return cValueQualifiedNameObjectParserRuleCall_2_0; }
+
+		//value=Literal
+		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
+
 		//Literal
-		public RuleCall getValueLiteralParserRuleCall_2_0() { return cValueLiteralParserRuleCall_2_0; }
+		public RuleCall getValueLiteralParserRuleCall_3_0() { return cValueLiteralParserRuleCall_3_0; }
 	}
 
 	public class AttributeValueArrayElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AttributeValueArray");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cElementsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cElementsAttributeValueParserRuleCall_1_0 = (RuleCall)cElementsAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cElementsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cElementsAttributeValueParserRuleCall_2_1_0 = (RuleCall)cElementsAssignment_2_1.eContents().get(0);
-		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cAttributeValueArrayAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Keyword cRightCurlyBracketKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cElementsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cElementsAttributeValueParserRuleCall_1_1_0 = (RuleCall)cElementsAssignment_1_1.eContents().get(0);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final Keyword cCommaKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
+		private final Assignment cElementsAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cElementsAttributeValueParserRuleCall_1_2_1_0 = (RuleCall)cElementsAssignment_1_2_1.eContents().get(0);
+		private final Keyword cCommaKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
+		private final Keyword cRightCurlyBracketKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
 		
 		//AttributeValueArray:
-		//	"{" elements+=AttributeValue ("," elements+=AttributeValue)* ","? "}";
+		//	{AttributeValueArray} "{" "}" | "{" elements+=AttributeValue ("," elements+=AttributeValue)* ","? "}";
 		public ParserRule getRule() { return rule; }
 
-		//"{" elements+=AttributeValue ("," elements+=AttributeValue)* ","? "}"
-		public Group getGroup() { return cGroup; }
+		//{AttributeValueArray} "{" "}" | "{" elements+=AttributeValue ("," elements+=AttributeValue)* ","? "}"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//{AttributeValueArray} "{" "}"
+		public Group getGroup_0() { return cGroup_0; }
+
+		//{AttributeValueArray}
+		public Action getAttributeValueArrayAction_0_0() { return cAttributeValueArrayAction_0_0; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
-
-		//elements+=AttributeValue
-		public Assignment getElementsAssignment_1() { return cElementsAssignment_1; }
-
-		//AttributeValue
-		public RuleCall getElementsAttributeValueParserRuleCall_1_0() { return cElementsAttributeValueParserRuleCall_1_0; }
-
-		//("," elements+=AttributeValue)*
-		public Group getGroup_2() { return cGroup_2; }
-
-		//","
-		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
-
-		//elements+=AttributeValue
-		public Assignment getElementsAssignment_2_1() { return cElementsAssignment_2_1; }
-
-		//AttributeValue
-		public RuleCall getElementsAttributeValueParserRuleCall_2_1_0() { return cElementsAttributeValueParserRuleCall_2_1_0; }
-
-		//","?
-		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
+		public Keyword getLeftCurlyBracketKeyword_0_1() { return cLeftCurlyBracketKeyword_0_1; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_0_2() { return cRightCurlyBracketKeyword_0_2; }
+
+		//"{" elements+=AttributeValue ("," elements+=AttributeValue)* ","? "}"
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_1_0() { return cLeftCurlyBracketKeyword_1_0; }
+
+		//elements+=AttributeValue
+		public Assignment getElementsAssignment_1_1() { return cElementsAssignment_1_1; }
+
+		//AttributeValue
+		public RuleCall getElementsAttributeValueParserRuleCall_1_1_0() { return cElementsAttributeValueParserRuleCall_1_1_0; }
+
+		//("," elements+=AttributeValue)*
+		public Group getGroup_1_2() { return cGroup_1_2; }
+
+		//","
+		public Keyword getCommaKeyword_1_2_0() { return cCommaKeyword_1_2_0; }
+
+		//elements+=AttributeValue
+		public Assignment getElementsAssignment_1_2_1() { return cElementsAssignment_1_2_1; }
+
+		//AttributeValue
+		public RuleCall getElementsAttributeValueParserRuleCall_1_2_1_0() { return cElementsAttributeValueParserRuleCall_1_2_1_0; }
+
+		//","?
+		public Keyword getCommaKeyword_1_3() { return cCommaKeyword_1_3; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_1_4() { return cRightCurlyBracketKeyword_1_4; }
+	}
+
+	public class AttributeValueMapElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AttributeValueMap");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cAttributeValueMapAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Keyword cColonKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
+		private final Keyword cRightCurlyBracketKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cElementsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cElementsAttributePairParserRuleCall_1_1_0 = (RuleCall)cElementsAssignment_1_1.eContents().get(0);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final Keyword cCommaKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
+		private final Assignment cElementsAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cElementsAttributePairParserRuleCall_1_2_1_0 = (RuleCall)cElementsAssignment_1_2_1.eContents().get(0);
+		private final Keyword cCommaKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
+		private final Keyword cRightCurlyBracketKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
+		
+		//AttributeValueMap:
+		//	{AttributeValueMap} "{" ":" "}" | "{" elements+=AttributePair ("," elements+=AttributePair)* ","? "}";
+		public ParserRule getRule() { return rule; }
+
+		//{AttributeValueMap} "{" ":" "}" | "{" elements+=AttributePair ("," elements+=AttributePair)* ","? "}"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//{AttributeValueMap} "{" ":" "}"
+		public Group getGroup_0() { return cGroup_0; }
+
+		//{AttributeValueMap}
+		public Action getAttributeValueMapAction_0_0() { return cAttributeValueMapAction_0_0; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_0_1() { return cLeftCurlyBracketKeyword_0_1; }
+
+		//":"
+		public Keyword getColonKeyword_0_2() { return cColonKeyword_0_2; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_0_3() { return cRightCurlyBracketKeyword_0_3; }
+
+		//"{" elements+=AttributePair ("," elements+=AttributePair)* ","? "}"
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_1_0() { return cLeftCurlyBracketKeyword_1_0; }
+
+		//elements+=AttributePair
+		public Assignment getElementsAssignment_1_1() { return cElementsAssignment_1_1; }
+
+		//AttributePair
+		public RuleCall getElementsAttributePairParserRuleCall_1_1_0() { return cElementsAttributePairParserRuleCall_1_1_0; }
+
+		//("," elements+=AttributePair)*
+		public Group getGroup_1_2() { return cGroup_1_2; }
+
+		//","
+		public Keyword getCommaKeyword_1_2_0() { return cCommaKeyword_1_2_0; }
+
+		//elements+=AttributePair
+		public Assignment getElementsAssignment_1_2_1() { return cElementsAssignment_1_2_1; }
+
+		//AttributePair
+		public RuleCall getElementsAttributePairParserRuleCall_1_2_1_0() { return cElementsAttributePairParserRuleCall_1_2_1_0; }
+
+		//","?
+		public Keyword getCommaKeyword_1_3() { return cCommaKeyword_1_3; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_1_4() { return cRightCurlyBracketKeyword_1_4; }
+	}
+
+	public class AttributePairElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AttributePair");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameLiteralParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cValueAttributeValueParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
+		
+		//AttributePair:
+		//	name=Literal ":" value=AttributeValue;
+		public ParserRule getRule() { return rule; }
+
+		//name=Literal ":" value=AttributeValue
+		public Group getGroup() { return cGroup; }
+
+		//name=Literal
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+
+		//Literal
+		public RuleCall getNameLiteralParserRuleCall_0_0() { return cNameLiteralParserRuleCall_0_0; }
+
+		//":"
+		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+
+		//value=AttributeValue
+		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
+
+		//AttributeValue
+		public RuleCall getValueAttributeValueParserRuleCall_2_0() { return cValueAttributeValueParserRuleCall_2_0; }
 	}
 
 	public class GroupingElements extends AbstractParserRuleElementFinder {
@@ -1217,6 +1349,8 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	private AttributeElementElements pAttributeElement;
 	private AttributeValueElements pAttributeValue;
 	private AttributeValueArrayElements pAttributeValueArray;
+	private AttributeValueMapElements pAttributeValueMap;
+	private AttributePairElements pAttributePair;
 	private GroupingElements pGrouping;
 	private ModelMappingElements pModelMapping;
 	private PropertyMappingElements pPropertyMapping;
@@ -1433,7 +1567,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AttributeValue:
-	//	value=AttributeValueArray | value=QualifiedNameObject | value=Literal;
+	//	value=AttributeValueArray | value=AttributeValueMap | value=QualifiedNameObject | value=Literal;
 	public AttributeValueElements getAttributeValueAccess() {
 		return (pAttributeValue != null) ? pAttributeValue : (pAttributeValue = new AttributeValueElements());
 	}
@@ -1443,13 +1577,33 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AttributeValueArray:
-	//	"{" elements+=AttributeValue ("," elements+=AttributeValue)* ","? "}";
+	//	{AttributeValueArray} "{" "}" | "{" elements+=AttributeValue ("," elements+=AttributeValue)* ","? "}";
 	public AttributeValueArrayElements getAttributeValueArrayAccess() {
 		return (pAttributeValueArray != null) ? pAttributeValueArray : (pAttributeValueArray = new AttributeValueArrayElements());
 	}
 	
 	public ParserRule getAttributeValueArrayRule() {
 		return getAttributeValueArrayAccess().getRule();
+	}
+
+	//AttributeValueMap:
+	//	{AttributeValueMap} "{" ":" "}" | "{" elements+=AttributePair ("," elements+=AttributePair)* ","? "}";
+	public AttributeValueMapElements getAttributeValueMapAccess() {
+		return (pAttributeValueMap != null) ? pAttributeValueMap : (pAttributeValueMap = new AttributeValueMapElements());
+	}
+	
+	public ParserRule getAttributeValueMapRule() {
+		return getAttributeValueMapAccess().getRule();
+	}
+
+	//AttributePair:
+	//	name=Literal ":" value=AttributeValue;
+	public AttributePairElements getAttributePairAccess() {
+		return (pAttributePair != null) ? pAttributePair : (pAttributePair = new AttributePairElements());
+	}
+	
+	public ParserRule getAttributePairRule() {
+		return getAttributePairAccess().getRule();
 	}
 
 	//Grouping:

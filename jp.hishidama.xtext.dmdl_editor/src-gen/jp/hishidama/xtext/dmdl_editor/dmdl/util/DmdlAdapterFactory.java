@@ -160,6 +160,16 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
         return createAttributeValueArrayAdapter();
       }
       @Override
+      public Adapter caseAttributeValueMap(AttributeValueMap object)
+      {
+        return createAttributeValueMapAdapter();
+      }
+      @Override
+      public Adapter caseAttributePair(AttributePair object)
+      {
+        return createAttributePairAdapter();
+      }
+      @Override
       public Adapter caseGrouping(Grouping object)
       {
         return createGroupingAdapter();
@@ -472,6 +482,36 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAttributeValueArrayAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueMap <em>Attribute Value Map</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueMap
+   * @generated
+   */
+  public Adapter createAttributeValueMapAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.AttributePair <em>Attribute Pair</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.AttributePair
+   * @generated
+   */
+  public Adapter createAttributePairAdapter()
   {
     return null;
   }
