@@ -6,6 +6,7 @@ package jp.hishidama.xtext.dmdl_editor.ui.labeling;
 import java.util.List;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
+import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElement;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Grouping;
@@ -83,5 +84,9 @@ public class DMDLLabelProvider extends DefaultEObjectLabelProvider {
 
 	protected Image image(Attribute a) {
 		return DMDLImages.getAttributeImage();
+	}
+
+	protected Image image(AttributeElement e) {
+		return DMDLImages.getPropertyImage();
 	}
 }

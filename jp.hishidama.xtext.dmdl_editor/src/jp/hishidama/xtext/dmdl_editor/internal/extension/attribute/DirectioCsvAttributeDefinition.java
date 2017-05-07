@@ -8,6 +8,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.extension.DMDLAttributeCompletion;
 import jp.hishidama.xtext.dmdl_editor.extension.DMDLAttributeWizardDefinition;
 
+// https://github.com/asakusafw/asakusafw/tree/master/directio-project/asakusa-directio-dmdl/src/main/java/com/asakusafw/dmdl/directio/csv/driver
 public class DirectioCsvAttributeDefinition extends DMDLAttributeWizardDefinition implements DMDLAttributeCompletion {
 
 	@Override

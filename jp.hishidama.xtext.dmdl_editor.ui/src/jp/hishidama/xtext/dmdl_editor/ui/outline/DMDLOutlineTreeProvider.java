@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Set;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
+import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElement;
+import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementBlock;
+import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeElementList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Grouping;
@@ -177,11 +180,23 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 
+	protected void _createChildren(IOutlineNode parentNode, Attribute attribute) {
+		AttributeElementBlock block = attribute.getElementBlock();
+		if (block != null) {
+			AttributeElementList list = block.getElements();
+			if (list != null) {
+				for (AttributeElement node : list.getElements()) {
+					createNode(parentNode, node);
+				}
+			}
+		}
+	}
+
 	/*
 	 * isLeaf
 	 */
 
-	protected boolean _isLeaf(Attribute modelElement) {
+	protected boolean _isLeaf(AttributeElement modelElement) {
 		return true;
 	}
 

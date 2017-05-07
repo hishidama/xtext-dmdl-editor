@@ -3,7 +3,6 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowParameter;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
