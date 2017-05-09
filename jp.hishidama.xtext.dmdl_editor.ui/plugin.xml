@@ -1616,6 +1616,18 @@
             class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.DirectioSeqfileExporterGenerator">
       </classpath>
       <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.DirectioTextCsvImporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.DirectioTextCsvExporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.DirectioTextTabularImporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.DirectioTextTabularExporterGenerator">
+      </classpath>
+      <classpath
             class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.DirectioTsvImporterGenerator">
       </classpath>
       <classpath
