@@ -71,6 +71,12 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
       case DmdlPackage.RECORD_TERM: return createRecordTerm();
       case DmdlPackage.MODEL_REFERENCE: return createModelReference();
       case DmdlPackage.PROPERTY_DEFINITION: return createPropertyDefinition();
+      case DmdlPackage.PROPERTY_EXPRESSION: return createPropertyExpression();
+      case DmdlPackage.PROPERTY_EXPRESSION_LIST: return createPropertyExpressionList();
+      case DmdlPackage.PROPERTY_EXPRESSION_MAP: return createPropertyExpressionMap();
+      case DmdlPackage.PROPERTY_EXPRESSION_MAP_ENTRY: return createPropertyExpressionMapEntry();
+      case DmdlPackage.PROPERTY_EXPRESSION_REFERNCE: return createPropertyExpressionRefernce();
+      case DmdlPackage.TYPE: return createType();
       case DmdlPackage.JOIN_EXPRESSION: return createJoinExpression();
       case DmdlPackage.JOIN_TERM: return createJoinTerm();
       case DmdlPackage.SUMMARIZE_EXPRESSION: return createSummarizeExpression();
@@ -91,6 +97,7 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
       case DmdlPackage.PROPERTY_FOLDING: return createPropertyFolding();
       case DmdlPackage.PROPERTY: return createProperty();
       case DmdlPackage.QUALIFIED_NAME_OBJECT: return createQualifiedNameObject();
+      case DmdlPackage.COLLECTION_TYPE: return createCollectionType();
       case DmdlPackage.LITERAL: return createLiteral();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -107,8 +114,8 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case DmdlPackage.TYPE:
-        return createTypeFromString(eDataType, initialValue);
+      case DmdlPackage.BASIC_TYPE:
+        return createBasicTypeFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -124,8 +131,8 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case DmdlPackage.TYPE:
-        return convertTypeToString(eDataType, instanceValue);
+      case DmdlPackage.BASIC_TYPE:
+        return convertBasicTypeToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -195,6 +202,72 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
   {
     PropertyDefinitionImpl propertyDefinition = new PropertyDefinitionImpl();
     return propertyDefinition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PropertyExpression createPropertyExpression()
+  {
+    PropertyExpressionImpl propertyExpression = new PropertyExpressionImpl();
+    return propertyExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PropertyExpressionList createPropertyExpressionList()
+  {
+    PropertyExpressionListImpl propertyExpressionList = new PropertyExpressionListImpl();
+    return propertyExpressionList;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PropertyExpressionMap createPropertyExpressionMap()
+  {
+    PropertyExpressionMapImpl propertyExpressionMap = new PropertyExpressionMapImpl();
+    return propertyExpressionMap;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PropertyExpressionMapEntry createPropertyExpressionMapEntry()
+  {
+    PropertyExpressionMapEntryImpl propertyExpressionMapEntry = new PropertyExpressionMapEntryImpl();
+    return propertyExpressionMapEntry;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PropertyExpressionRefernce createPropertyExpressionRefernce()
+  {
+    PropertyExpressionRefernceImpl propertyExpressionRefernce = new PropertyExpressionRefernceImpl();
+    return propertyExpressionRefernce;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Type createType()
+  {
+    TypeImpl type = new TypeImpl();
+    return type;
   }
 
   /**
@@ -422,6 +495,17 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public CollectionType createCollectionType()
+  {
+    CollectionTypeImpl collectionType = new CollectionTypeImpl();
+    return collectionType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Literal createLiteral()
   {
     LiteralImpl literal = new LiteralImpl();
@@ -433,9 +517,9 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Type createTypeFromString(EDataType eDataType, String initialValue)
+  public BasicType createBasicTypeFromString(EDataType eDataType, String initialValue)
   {
-    Type result = Type.get(initialValue);
+    BasicType result = BasicType.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
@@ -445,7 +529,7 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertTypeToString(EDataType eDataType, Object instanceValue)
+  public String convertBasicTypeToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

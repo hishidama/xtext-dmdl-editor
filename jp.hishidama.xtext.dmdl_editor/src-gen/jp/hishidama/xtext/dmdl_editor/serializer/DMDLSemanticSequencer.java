@@ -11,6 +11,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.AttributePair;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValue;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueArray;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueMap;
+import jp.hishidama.xtext.dmdl_editor.dmdl.CollectionType;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Grouping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.JoinExpression;
@@ -21,6 +22,11 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpression;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionList;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMap;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMapEntry;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionRefernce;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedNameObject;
@@ -29,6 +35,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Script;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Type;
 import jp.hishidama.xtext.dmdl_editor.services.DMDLGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
@@ -104,6 +111,12 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case DmdlPackage.COLLECTION_TYPE:
+				if(context == grammarAccess.getCollectionTypeRule()) {
+					sequence_CollectionType(context, (CollectionType) semanticObject); 
+					return; 
+				}
+				else break;
 			case DmdlPackage.GROUPING:
 				if(context == grammarAccess.getGroupingRule()) {
 					sequence_Grouping(context, (Grouping) semanticObject); 
@@ -159,6 +172,36 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
+			case DmdlPackage.PROPERTY_EXPRESSION:
+				if(context == grammarAccess.getPropertyExpressionRule()) {
+					sequence_PropertyExpression(context, (PropertyExpression) semanticObject); 
+					return; 
+				}
+				else break;
+			case DmdlPackage.PROPERTY_EXPRESSION_LIST:
+				if(context == grammarAccess.getPropertyExpressionListRule()) {
+					sequence_PropertyExpressionList(context, (PropertyExpressionList) semanticObject); 
+					return; 
+				}
+				else break;
+			case DmdlPackage.PROPERTY_EXPRESSION_MAP:
+				if(context == grammarAccess.getPropertyExpressionMapRule()) {
+					sequence_PropertyExpressionMap(context, (PropertyExpressionMap) semanticObject); 
+					return; 
+				}
+				else break;
+			case DmdlPackage.PROPERTY_EXPRESSION_MAP_ENTRY:
+				if(context == grammarAccess.getPropertyExpressionMapEntryRule()) {
+					sequence_PropertyExpressionMapEntry(context, (PropertyExpressionMapEntry) semanticObject); 
+					return; 
+				}
+				else break;
+			case DmdlPackage.PROPERTY_EXPRESSION_REFERNCE:
+				if(context == grammarAccess.getPropertyExpressionRefernceRule()) {
+					sequence_PropertyExpressionRefernce(context, (PropertyExpressionRefernce) semanticObject); 
+					return; 
+				}
+				else break;
 			case DmdlPackage.PROPERTY_FOLDING:
 				if(context == grammarAccess.getPropertyRule() ||
 				   context == grammarAccess.getPropertyFoldingRule()) {
@@ -206,6 +249,12 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case DmdlPackage.SUMMARIZE_TERM:
 				if(context == grammarAccess.getSummarizeTermRule()) {
 					sequence_SummarizeTerm(context, (SummarizeTerm) semanticObject); 
+					return; 
+				}
+				else break;
+			case DmdlPackage.TYPE:
+				if(context == grammarAccess.getTypeRule()) {
+					sequence_Type(context, (Type) semanticObject); 
 					return; 
 				}
 				else break;
@@ -316,6 +365,15 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     (elementType=Type | (map?=':' elementType=Type))
+	 */
+	protected void sequence_CollectionType(EObject context, CollectionType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (name+=[Property|Name] name+=[Property|Name]*)
 	 */
 	protected void sequence_Grouping(EObject context, Grouping semanticObject) {
@@ -403,9 +461,75 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (description=Description? attributes=AttributeList? name=Name type=Type)
+	 *     (
+	 *         description=Description? 
+	 *         attributes=AttributeList? 
+	 *         ((name=Name type=Type expression=PropertyExpression?) | (name=Name expression=PropertyExpression))
+	 *     )
 	 */
 	protected void sequence_PropertyDefinition(EObject context, PropertyDefinition semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {PropertyExpressionList}
+	 */
+	protected void sequence_PropertyExpressionList(EObject context, PropertyExpressionList semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (name=Literal property=[Property|Name])
+	 */
+	protected void sequence_PropertyExpressionMapEntry(EObject context, PropertyExpressionMapEntry semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.PROPERTY_EXPRESSION_MAP_ENTRY__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.PROPERTY_EXPRESSION_MAP_ENTRY__NAME));
+			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.PROPERTY_EXPRESSION_MAP_ENTRY__PROPERTY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.PROPERTY_EXPRESSION_MAP_ENTRY__PROPERTY));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getPropertyExpressionMapEntryAccess().getNameLiteralParserRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getPropertyExpressionMapEntryAccess().getPropertyPropertyNameParserRuleCall_2_0_1(), semanticObject.getProperty());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {PropertyExpressionMap}
+	 */
+	protected void sequence_PropertyExpressionMap(EObject context, PropertyExpressionMap semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     name=[Property|QualifiedName]
+	 */
+	protected void sequence_PropertyExpressionRefernce(EObject context, PropertyExpressionRefernce semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.PROPERTY_EXPRESSION_REFERNCE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.PROPERTY_EXPRESSION_REFERNCE__NAME));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getPropertyExpressionRefernceAccess().getNamePropertyQualifiedNameParserRuleCall_0_1(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (expression=PropertyExpressionList | expression=PropertyExpressionMap | expression=PropertyExpressionRefernce)
+	 */
+	protected void sequence_PropertyExpression(EObject context, PropertyExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -485,6 +609,15 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (reference=ModelReference folding=ModelFolding grouping=Grouping?)
 	 */
 	protected void sequence_SummarizeTerm(EObject context, SummarizeTerm semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (basicType=BasicType | collectionType=CollectionType)
+	 */
+	protected void sequence_Type(EObject context, Type semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 }

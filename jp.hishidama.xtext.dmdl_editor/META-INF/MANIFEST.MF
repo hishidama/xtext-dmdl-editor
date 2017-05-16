@@ -24,7 +24,9 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  jp.hishidama.eclipse_plugin.utility,
  org.eclipse.ui.workbench,
  org.eclipse.jface,
- org.eclipse.jdt.core
+ org.eclipse.jdt.core,
+ org.eclipse.xtext.xbase.lib,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

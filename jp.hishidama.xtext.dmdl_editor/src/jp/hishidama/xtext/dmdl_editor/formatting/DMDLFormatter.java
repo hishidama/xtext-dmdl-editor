@@ -21,9 +21,11 @@ import com.google.inject.Inject;
 /**
  * This class contains custom formatting description.
  * 
- * see : http://www.eclipse.org/Xtext/documentation.html#formatting on how and when to use it
+ * see : http://www.eclipse.org/Xtext/documentation.html#formatting on how and
+ * when to use it
  * 
- * Also see {@link org.eclipse.xtext.xtext.XtextFormattingTokenSerializer} as an example
+ * Also see {@link org.eclipse.xtext.xtext.XtextFormattingTokenSerializer} as an
+ * example
  */
 public class DMDLFormatter extends AbstractDeclarativeFormatter {
 	@Inject
@@ -51,6 +53,9 @@ public class DMDLFormatter extends AbstractDeclarativeFormatter {
 		curlyBrace(c, f.getRecordTermAccess());
 		curlyBrace(c, f.getModelMappingAccess());
 		curlyBrace(c, f.getModelFoldingAccess());
+		curlyBrace1(c, f.getPropertyExpressionListAccess());
+		curlyBrace1(c, f.getPropertyExpressionMapAccess());
+		curlyBrace0(c, f.getCollectionTypeAccess());
 
 		// カンマ
 		for (Keyword comma : f.findKeywords(",")) {
@@ -105,6 +110,22 @@ public class DMDLFormatter extends AbstractDeclarativeFormatter {
 		}
 	}
 
+	private void curlyBrace1(FormattingConfig c, AbstractElementFinder rule) {
+		for (Pair<Keyword, Keyword> pair : rule.findKeywordPairs("{", "}")) {
+			c.setIndentation(pair.getFirst(), pair.getSecond());
+		}
+	}
+
+	private void curlyBrace0(FormattingConfig c, AbstractElementFinder rule) {
+		for (Pair<Keyword, Keyword> pair : rule.findKeywordPairs("{", "}")) {
+			c.setNoSpace().after(pair.getFirst()); // 直後は詰める
+			c.setNoSpace().before(pair.getSecond()); // 直前は詰める
+		}
+		for (Keyword period : rule.findKeywords(":")) {
+			c.setNoSpace().around(period); // 両側とも詰める
+		}
+	}
+
 	@Override
 	protected IIndentationInformation getIndentInfo() {
 		return new IIndentationInformation() {
@@ -121,8 +142,7 @@ public class DMDLFormatter extends AbstractDeclarativeFormatter {
 	}
 
 	@Override
-	public ITokenStream createFormatterStream(EObject context, String indent, ITokenStream out,
-			boolean preserveWhitespaces) {
+	public ITokenStream createFormatterStream(EObject context, String indent, ITokenStream out, boolean preserveWhitespaces) {
 		return super.createFormatterStream(context, indent, wrapStream(out), preserveWhitespaces);
 	}
 

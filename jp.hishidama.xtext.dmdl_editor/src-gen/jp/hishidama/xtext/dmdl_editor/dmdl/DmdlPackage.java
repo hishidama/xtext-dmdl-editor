@@ -250,7 +250,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getProperty()
    * @generated
    */
-  int PROPERTY = 24;
+  int PROPERTY = 30;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -326,7 +326,7 @@ public interface DmdlPackage extends EPackage
   int PROPERTY_DEFINITION__NAME = PROPERTY__NAME;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -335,13 +335,208 @@ public interface DmdlPackage extends EPackage
   int PROPERTY_DEFINITION__TYPE = PROPERTY_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_DEFINITION__EXPRESSION = PROPERTY_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Property Definition</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_DEFINITION_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 1;
+  int PROPERTY_DEFINITION_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionImpl <em>Property Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionImpl
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyExpression()
+   * @generated
+   */
+  int PROPERTY_EXPRESSION = 6;
+
+  /**
+   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_EXPRESSION__EXPRESSION = 0;
+
+  /**
+   * The number of structural features of the '<em>Property Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_EXPRESSION_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionListImpl <em>Property Expression List</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionListImpl
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyExpressionList()
+   * @generated
+   */
+  int PROPERTY_EXPRESSION_LIST = 7;
+
+  /**
+   * The feature id for the '<em><b>Elements</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_EXPRESSION_LIST__ELEMENTS = 0;
+
+  /**
+   * The number of structural features of the '<em>Property Expression List</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_EXPRESSION_LIST_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionMapImpl <em>Property Expression Map</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionMapImpl
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyExpressionMap()
+   * @generated
+   */
+  int PROPERTY_EXPRESSION_MAP = 8;
+
+  /**
+   * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_EXPRESSION_MAP__ELEMENTS = 0;
+
+  /**
+   * The number of structural features of the '<em>Property Expression Map</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_EXPRESSION_MAP_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionMapEntryImpl <em>Property Expression Map Entry</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionMapEntryImpl
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyExpressionMapEntry()
+   * @generated
+   */
+  int PROPERTY_EXPRESSION_MAP_ENTRY = 9;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_EXPRESSION_MAP_ENTRY__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Property</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_EXPRESSION_MAP_ENTRY__PROPERTY = 1;
+
+  /**
+   * The number of structural features of the '<em>Property Expression Map Entry</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_EXPRESSION_MAP_ENTRY_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionRefernceImpl <em>Property Expression Refernce</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionRefernceImpl
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyExpressionRefernce()
+   * @generated
+   */
+  int PROPERTY_EXPRESSION_REFERNCE = 10;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_EXPRESSION_REFERNCE__NAME = 0;
+
+  /**
+   * The number of structural features of the '<em>Property Expression Refernce</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_EXPRESSION_REFERNCE_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.TypeImpl <em>Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.TypeImpl
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getType()
+   * @generated
+   */
+  int TYPE = 11;
+
+  /**
+   * The feature id for the '<em><b>Basic Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE__BASIC_TYPE = 0;
+
+  /**
+   * The feature id for the '<em><b>Collection Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE__COLLECTION_TYPE = 1;
+
+  /**
+   * The number of structural features of the '<em>Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.JoinExpressionImpl <em>Join Expression</em>}' class.
@@ -351,7 +546,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getJoinExpression()
    * @generated
    */
-  int JOIN_EXPRESSION = 6;
+  int JOIN_EXPRESSION = 12;
 
   /**
    * The feature id for the '<em><b>Terms</b></em>' containment reference list.
@@ -379,7 +574,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getJoinTerm()
    * @generated
    */
-  int JOIN_TERM = 7;
+  int JOIN_TERM = 13;
 
   /**
    * The feature id for the '<em><b>Reference</b></em>' containment reference.
@@ -425,7 +620,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getSummarizeExpression()
    * @generated
    */
-  int SUMMARIZE_EXPRESSION = 8;
+  int SUMMARIZE_EXPRESSION = 14;
 
   /**
    * The feature id for the '<em><b>Terms</b></em>' containment reference list.
@@ -453,7 +648,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getSummarizeTerm()
    * @generated
    */
-  int SUMMARIZE_TERM = 9;
+  int SUMMARIZE_TERM = 15;
 
   /**
    * The feature id for the '<em><b>Reference</b></em>' containment reference.
@@ -499,7 +694,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeList()
    * @generated
    */
-  int ATTRIBUTE_LIST = 10;
+  int ATTRIBUTE_LIST = 16;
 
   /**
    * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -527,7 +722,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttribute()
    * @generated
    */
-  int ATTRIBUTE = 11;
+  int ATTRIBUTE = 17;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -564,7 +759,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeElementBlock()
    * @generated
    */
-  int ATTRIBUTE_ELEMENT_BLOCK = 12;
+  int ATTRIBUTE_ELEMENT_BLOCK = 18;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' containment reference.
@@ -592,7 +787,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeElementList()
    * @generated
    */
-  int ATTRIBUTE_ELEMENT_LIST = 13;
+  int ATTRIBUTE_ELEMENT_LIST = 19;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -620,7 +815,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeElement()
    * @generated
    */
-  int ATTRIBUTE_ELEMENT = 14;
+  int ATTRIBUTE_ELEMENT = 20;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -657,7 +852,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeValue()
    * @generated
    */
-  int ATTRIBUTE_VALUE = 15;
+  int ATTRIBUTE_VALUE = 21;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -685,7 +880,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeValueArray()
    * @generated
    */
-  int ATTRIBUTE_VALUE_ARRAY = 16;
+  int ATTRIBUTE_VALUE_ARRAY = 22;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -713,7 +908,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributeValueMap()
    * @generated
    */
-  int ATTRIBUTE_VALUE_MAP = 17;
+  int ATTRIBUTE_VALUE_MAP = 23;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -741,7 +936,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getAttributePair()
    * @generated
    */
-  int ATTRIBUTE_PAIR = 18;
+  int ATTRIBUTE_PAIR = 24;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -778,7 +973,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getGrouping()
    * @generated
    */
-  int GROUPING = 19;
+  int GROUPING = 25;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' reference list.
@@ -806,7 +1001,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getModelMapping()
    * @generated
    */
-  int MODEL_MAPPING = 20;
+  int MODEL_MAPPING = 26;
 
   /**
    * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
@@ -834,7 +1029,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyMapping()
    * @generated
    */
-  int PROPERTY_MAPPING = 21;
+  int PROPERTY_MAPPING = 27;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -889,7 +1084,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getModelFolding()
    * @generated
    */
-  int MODEL_FOLDING = 22;
+  int MODEL_FOLDING = 28;
 
   /**
    * The feature id for the '<em><b>Foldings</b></em>' containment reference list.
@@ -917,7 +1112,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyFolding()
    * @generated
    */
-  int PROPERTY_FOLDING = 23;
+  int PROPERTY_FOLDING = 29;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -981,7 +1176,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getQualifiedNameObject()
    * @generated
    */
-  int QUALIFIED_NAME_OBJECT = 25;
+  int QUALIFIED_NAME_OBJECT = 31;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1002,6 +1197,43 @@ public interface DmdlPackage extends EPackage
   int QUALIFIED_NAME_OBJECT_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.CollectionTypeImpl <em>Collection Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.CollectionTypeImpl
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getCollectionType()
+   * @generated
+   */
+  int COLLECTION_TYPE = 32;
+
+  /**
+   * The feature id for the '<em><b>Element Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COLLECTION_TYPE__ELEMENT_TYPE = 0;
+
+  /**
+   * The feature id for the '<em><b>Map</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COLLECTION_TYPE__MAP = 1;
+
+  /**
+   * The number of structural features of the '<em>Collection Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COLLECTION_TYPE_FEATURE_COUNT = 2;
+
+  /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.LiteralImpl <em>Literal</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1009,7 +1241,7 @@ public interface DmdlPackage extends EPackage
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 26;
+  int LITERAL = 33;
 
   /**
    * The feature id for the '<em><b>String Value</b></em>' attribute.
@@ -1048,14 +1280,14 @@ public interface DmdlPackage extends EPackage
   int LITERAL_FEATURE_COUNT = 3;
 
   /**
-   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Type <em>Type</em>}' enum.
+   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.BasicType <em>Basic Type</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Type
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getType()
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.BasicType
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getBasicType()
    * @generated
    */
-  int TYPE = 27;
+  int BASIC_TYPE = 34;
 
 
   /**
@@ -1229,15 +1461,174 @@ public interface DmdlPackage extends EPackage
   EClass getPropertyDefinition();
 
   /**
-   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Type</em>'.
+   * @return the meta object for the containment reference '<em>Type</em>'.
    * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition#getType()
    * @see #getPropertyDefinition()
    * @generated
    */
-  EAttribute getPropertyDefinition_Type();
+  EReference getPropertyDefinition_Type();
+
+  /**
+   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition#getExpression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expression</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition#getExpression()
+   * @see #getPropertyDefinition()
+   * @generated
+   */
+  EReference getPropertyDefinition_Expression();
+
+  /**
+   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpression <em>Property Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Property Expression</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpression
+   * @generated
+   */
+  EClass getPropertyExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpression#getExpression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expression</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpression#getExpression()
+   * @see #getPropertyExpression()
+   * @generated
+   */
+  EReference getPropertyExpression_Expression();
+
+  /**
+   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionList <em>Property Expression List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Property Expression List</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionList
+   * @generated
+   */
+  EClass getPropertyExpressionList();
+
+  /**
+   * Returns the meta object for the reference list '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionList#getElements <em>Elements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Elements</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionList#getElements()
+   * @see #getPropertyExpressionList()
+   * @generated
+   */
+  EReference getPropertyExpressionList_Elements();
+
+  /**
+   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMap <em>Property Expression Map</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Property Expression Map</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMap
+   * @generated
+   */
+  EClass getPropertyExpressionMap();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMap#getElements <em>Elements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Elements</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMap#getElements()
+   * @see #getPropertyExpressionMap()
+   * @generated
+   */
+  EReference getPropertyExpressionMap_Elements();
+
+  /**
+   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMapEntry <em>Property Expression Map Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Property Expression Map Entry</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMapEntry
+   * @generated
+   */
+  EClass getPropertyExpressionMapEntry();
+
+  /**
+   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMapEntry#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Name</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMapEntry#getName()
+   * @see #getPropertyExpressionMapEntry()
+   * @generated
+   */
+  EReference getPropertyExpressionMapEntry_Name();
+
+  /**
+   * Returns the meta object for the reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMapEntry#getProperty <em>Property</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Property</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMapEntry#getProperty()
+   * @see #getPropertyExpressionMapEntry()
+   * @generated
+   */
+  EReference getPropertyExpressionMapEntry_Property();
+
+  /**
+   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionRefernce <em>Property Expression Refernce</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Property Expression Refernce</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionRefernce
+   * @generated
+   */
+  EClass getPropertyExpressionRefernce();
+
+  /**
+   * Returns the meta object for the reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionRefernce#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Name</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionRefernce#getName()
+   * @see #getPropertyExpressionRefernce()
+   * @generated
+   */
+  EReference getPropertyExpressionRefernce_Name();
+
+  /**
+   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Type <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Type</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Type
+   * @generated
+   */
+  EClass getType();
+
+  /**
+   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Type#getBasicType <em>Basic Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Basic Type</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Type#getBasicType()
+   * @see #getType()
+   * @generated
+   */
+  EAttribute getType_BasicType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Type#getCollectionType <em>Collection Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Collection Type</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Type#getCollectionType()
+   * @see #getType()
+   * @generated
+   */
+  EReference getType_CollectionType();
 
   /**
    * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.JoinExpression <em>Join Expression</em>}'.
@@ -1770,6 +2161,38 @@ public interface DmdlPackage extends EPackage
   EAttribute getQualifiedNameObject_Name();
 
   /**
+   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.CollectionType <em>Collection Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Collection Type</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.CollectionType
+   * @generated
+   */
+  EClass getCollectionType();
+
+  /**
+   * Returns the meta object for the containment reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.CollectionType#getElementType <em>Element Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Element Type</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.CollectionType#getElementType()
+   * @see #getCollectionType()
+   * @generated
+   */
+  EReference getCollectionType_ElementType();
+
+  /**
+   * Returns the meta object for the attribute '{@link jp.hishidama.xtext.dmdl_editor.dmdl.CollectionType#isMap <em>Map</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Map</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.CollectionType#isMap()
+   * @see #getCollectionType()
+   * @generated
+   */
+  EAttribute getCollectionType_Map();
+
+  /**
    * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Literal <em>Literal</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1813,14 +2236,14 @@ public interface DmdlPackage extends EPackage
   EAttribute getLiteral_DecimalValue();
 
   /**
-   * Returns the meta object for enum '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Type <em>Type</em>}'.
+   * Returns the meta object for enum '{@link jp.hishidama.xtext.dmdl_editor.dmdl.BasicType <em>Basic Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Type</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Type
+   * @return the meta object for enum '<em>Basic Type</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.BasicType
    * @generated
    */
-  EEnum getType();
+  EEnum getBasicType();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1986,12 +2409,144 @@ public interface DmdlPackage extends EPackage
     EClass PROPERTY_DEFINITION = eINSTANCE.getPropertyDefinition();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PROPERTY_DEFINITION__TYPE = eINSTANCE.getPropertyDefinition_Type();
+    EReference PROPERTY_DEFINITION__TYPE = eINSTANCE.getPropertyDefinition_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROPERTY_DEFINITION__EXPRESSION = eINSTANCE.getPropertyDefinition_Expression();
+
+    /**
+     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionImpl <em>Property Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionImpl
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyExpression()
+     * @generated
+     */
+    EClass PROPERTY_EXPRESSION = eINSTANCE.getPropertyExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROPERTY_EXPRESSION__EXPRESSION = eINSTANCE.getPropertyExpression_Expression();
+
+    /**
+     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionListImpl <em>Property Expression List</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionListImpl
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyExpressionList()
+     * @generated
+     */
+    EClass PROPERTY_EXPRESSION_LIST = eINSTANCE.getPropertyExpressionList();
+
+    /**
+     * The meta object literal for the '<em><b>Elements</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROPERTY_EXPRESSION_LIST__ELEMENTS = eINSTANCE.getPropertyExpressionList_Elements();
+
+    /**
+     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionMapImpl <em>Property Expression Map</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionMapImpl
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyExpressionMap()
+     * @generated
+     */
+    EClass PROPERTY_EXPRESSION_MAP = eINSTANCE.getPropertyExpressionMap();
+
+    /**
+     * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROPERTY_EXPRESSION_MAP__ELEMENTS = eINSTANCE.getPropertyExpressionMap_Elements();
+
+    /**
+     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionMapEntryImpl <em>Property Expression Map Entry</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionMapEntryImpl
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyExpressionMapEntry()
+     * @generated
+     */
+    EClass PROPERTY_EXPRESSION_MAP_ENTRY = eINSTANCE.getPropertyExpressionMapEntry();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROPERTY_EXPRESSION_MAP_ENTRY__NAME = eINSTANCE.getPropertyExpressionMapEntry_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Property</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROPERTY_EXPRESSION_MAP_ENTRY__PROPERTY = eINSTANCE.getPropertyExpressionMapEntry_Property();
+
+    /**
+     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionRefernceImpl <em>Property Expression Refernce</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionRefernceImpl
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyExpressionRefernce()
+     * @generated
+     */
+    EClass PROPERTY_EXPRESSION_REFERNCE = eINSTANCE.getPropertyExpressionRefernce();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROPERTY_EXPRESSION_REFERNCE__NAME = eINSTANCE.getPropertyExpressionRefernce_Name();
+
+    /**
+     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.TypeImpl <em>Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.TypeImpl
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getType()
+     * @generated
+     */
+    EClass TYPE = eINSTANCE.getType();
+
+    /**
+     * The meta object literal for the '<em><b>Basic Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TYPE__BASIC_TYPE = eINSTANCE.getType_BasicType();
+
+    /**
+     * The meta object literal for the '<em><b>Collection Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TYPE__COLLECTION_TYPE = eINSTANCE.getType_CollectionType();
 
     /**
      * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.JoinExpressionImpl <em>Join Expression</em>}' class.
@@ -2434,6 +2989,32 @@ public interface DmdlPackage extends EPackage
     EAttribute QUALIFIED_NAME_OBJECT__NAME = eINSTANCE.getQualifiedNameObject_Name();
 
     /**
+     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.CollectionTypeImpl <em>Collection Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.CollectionTypeImpl
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getCollectionType()
+     * @generated
+     */
+    EClass COLLECTION_TYPE = eINSTANCE.getCollectionType();
+
+    /**
+     * The meta object literal for the '<em><b>Element Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COLLECTION_TYPE__ELEMENT_TYPE = eINSTANCE.getCollectionType_ElementType();
+
+    /**
+     * The meta object literal for the '<em><b>Map</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COLLECTION_TYPE__MAP = eINSTANCE.getCollectionType_Map();
+
+    /**
      * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.LiteralImpl <em>Literal</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2468,14 +3049,14 @@ public interface DmdlPackage extends EPackage
     EAttribute LITERAL__DECIMAL_VALUE = eINSTANCE.getLiteral_DecimalValue();
 
     /**
-     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Type <em>Type</em>}' enum.
+     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.BasicType <em>Basic Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see jp.hishidama.xtext.dmdl_editor.dmdl.Type
-     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getType()
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.BasicType
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getBasicType()
      * @generated
      */
-    EEnum TYPE = eINSTANCE.getType();
+    EEnum BASIC_TYPE = eINSTANCE.getBasicType();
 
   }
 

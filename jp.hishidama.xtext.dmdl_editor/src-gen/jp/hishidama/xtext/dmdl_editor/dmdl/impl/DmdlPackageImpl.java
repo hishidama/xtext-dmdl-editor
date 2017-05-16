@@ -11,6 +11,8 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.AttributePair;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValue;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueArray;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeValueMap;
+import jp.hishidama.xtext.dmdl_editor.dmdl.BasicType;
+import jp.hishidama.xtext.dmdl_editor.dmdl.CollectionType;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlFactory;
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Grouping;
@@ -23,6 +25,11 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpression;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionList;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMap;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMapEntry;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionRefernce;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedNameObject;
@@ -90,6 +97,48 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * @generated
    */
   private EClass propertyDefinitionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass propertyExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass propertyExpressionListEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass propertyExpressionMapEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass propertyExpressionMapEntryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass propertyExpressionRefernceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -236,6 +285,13 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass collectionTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass literalEClass = null;
 
   /**
@@ -243,7 +299,7 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EEnum typeEEnum = null;
+  private EEnum basicTypeEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -473,9 +529,159 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPropertyDefinition_Type()
+  public EReference getPropertyDefinition_Type()
   {
-    return (EAttribute)propertyDefinitionEClass.getEStructuralFeatures().get(0);
+    return (EReference)propertyDefinitionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPropertyDefinition_Expression()
+  {
+    return (EReference)propertyDefinitionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPropertyExpression()
+  {
+    return propertyExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPropertyExpression_Expression()
+  {
+    return (EReference)propertyExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPropertyExpressionList()
+  {
+    return propertyExpressionListEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPropertyExpressionList_Elements()
+  {
+    return (EReference)propertyExpressionListEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPropertyExpressionMap()
+  {
+    return propertyExpressionMapEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPropertyExpressionMap_Elements()
+  {
+    return (EReference)propertyExpressionMapEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPropertyExpressionMapEntry()
+  {
+    return propertyExpressionMapEntryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPropertyExpressionMapEntry_Name()
+  {
+    return (EReference)propertyExpressionMapEntryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPropertyExpressionMapEntry_Property()
+  {
+    return (EReference)propertyExpressionMapEntryEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPropertyExpressionRefernce()
+  {
+    return propertyExpressionRefernceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPropertyExpressionRefernce_Name()
+  {
+    return (EReference)propertyExpressionRefernceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getType()
+  {
+    return typeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getType_BasicType()
+  {
+    return (EAttribute)typeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getType_CollectionType()
+  {
+    return (EReference)typeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -983,6 +1189,36 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getCollectionType()
+  {
+    return collectionTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCollectionType_ElementType()
+  {
+    return (EReference)collectionTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCollectionType_Map()
+  {
+    return (EAttribute)collectionTypeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getLiteral()
   {
     return literalEClass;
@@ -1023,9 +1259,9 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EEnum getType()
+  public EEnum getBasicType()
   {
-    return typeEEnum;
+    return basicTypeEEnum;
   }
 
   /**
@@ -1079,7 +1315,28 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     createEReference(modelReferenceEClass, MODEL_REFERENCE__NAME);
 
     propertyDefinitionEClass = createEClass(PROPERTY_DEFINITION);
-    createEAttribute(propertyDefinitionEClass, PROPERTY_DEFINITION__TYPE);
+    createEReference(propertyDefinitionEClass, PROPERTY_DEFINITION__TYPE);
+    createEReference(propertyDefinitionEClass, PROPERTY_DEFINITION__EXPRESSION);
+
+    propertyExpressionEClass = createEClass(PROPERTY_EXPRESSION);
+    createEReference(propertyExpressionEClass, PROPERTY_EXPRESSION__EXPRESSION);
+
+    propertyExpressionListEClass = createEClass(PROPERTY_EXPRESSION_LIST);
+    createEReference(propertyExpressionListEClass, PROPERTY_EXPRESSION_LIST__ELEMENTS);
+
+    propertyExpressionMapEClass = createEClass(PROPERTY_EXPRESSION_MAP);
+    createEReference(propertyExpressionMapEClass, PROPERTY_EXPRESSION_MAP__ELEMENTS);
+
+    propertyExpressionMapEntryEClass = createEClass(PROPERTY_EXPRESSION_MAP_ENTRY);
+    createEReference(propertyExpressionMapEntryEClass, PROPERTY_EXPRESSION_MAP_ENTRY__NAME);
+    createEReference(propertyExpressionMapEntryEClass, PROPERTY_EXPRESSION_MAP_ENTRY__PROPERTY);
+
+    propertyExpressionRefernceEClass = createEClass(PROPERTY_EXPRESSION_REFERNCE);
+    createEReference(propertyExpressionRefernceEClass, PROPERTY_EXPRESSION_REFERNCE__NAME);
+
+    typeEClass = createEClass(TYPE);
+    createEAttribute(typeEClass, TYPE__BASIC_TYPE);
+    createEReference(typeEClass, TYPE__COLLECTION_TYPE);
 
     joinExpressionEClass = createEClass(JOIN_EXPRESSION);
     createEReference(joinExpressionEClass, JOIN_EXPRESSION__TERMS);
@@ -1151,13 +1408,17 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     qualifiedNameObjectEClass = createEClass(QUALIFIED_NAME_OBJECT);
     createEAttribute(qualifiedNameObjectEClass, QUALIFIED_NAME_OBJECT__NAME);
 
+    collectionTypeEClass = createEClass(COLLECTION_TYPE);
+    createEReference(collectionTypeEClass, COLLECTION_TYPE__ELEMENT_TYPE);
+    createEAttribute(collectionTypeEClass, COLLECTION_TYPE__MAP);
+
     literalEClass = createEClass(LITERAL);
     createEAttribute(literalEClass, LITERAL__STRING_VALUE);
     createEAttribute(literalEClass, LITERAL__INT_VALUE);
     createEAttribute(literalEClass, LITERAL__DECIMAL_VALUE);
 
     // Create enums
-    typeEEnum = createEEnum(TYPE);
+    basicTypeEEnum = createEEnum(BASIC_TYPE);
   }
 
   /**
@@ -1215,7 +1476,28 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     initEReference(getModelReference_Name(), this.getModelDefinition(), null, "name", null, 0, 1, ModelReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(propertyDefinitionEClass, PropertyDefinition.class, "PropertyDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPropertyDefinition_Type(), this.getType(), "type", null, 0, 1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPropertyDefinition_Type(), this.getType(), null, "type", null, 0, 1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPropertyDefinition_Expression(), this.getPropertyExpression(), null, "expression", null, 0, 1, PropertyDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(propertyExpressionEClass, PropertyExpression.class, "PropertyExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPropertyExpression_Expression(), ecorePackage.getEObject(), null, "expression", null, 0, 1, PropertyExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(propertyExpressionListEClass, PropertyExpressionList.class, "PropertyExpressionList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPropertyExpressionList_Elements(), this.getProperty(), null, "elements", null, 0, -1, PropertyExpressionList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(propertyExpressionMapEClass, PropertyExpressionMap.class, "PropertyExpressionMap", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPropertyExpressionMap_Elements(), this.getPropertyExpressionMapEntry(), null, "elements", null, 0, -1, PropertyExpressionMap.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(propertyExpressionMapEntryEClass, PropertyExpressionMapEntry.class, "PropertyExpressionMapEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPropertyExpressionMapEntry_Name(), this.getLiteral(), null, "name", null, 0, 1, PropertyExpressionMapEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPropertyExpressionMapEntry_Property(), this.getProperty(), null, "property", null, 0, 1, PropertyExpressionMapEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(propertyExpressionRefernceEClass, PropertyExpressionRefernce.class, "PropertyExpressionRefernce", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPropertyExpressionRefernce_Name(), this.getProperty(), null, "name", null, 0, 1, PropertyExpressionRefernce.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getType_BasicType(), this.getBasicType(), "basicType", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getType_CollectionType(), this.getCollectionType(), null, "collectionType", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(joinExpressionEClass, JoinExpression.class, "JoinExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getJoinExpression_Terms(), this.getJoinTerm(), null, "terms", null, 0, -1, JoinExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1287,24 +1569,28 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     initEClass(qualifiedNameObjectEClass, QualifiedNameObject.class, "QualifiedNameObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getQualifiedNameObject_Name(), ecorePackage.getEString(), "name", null, 0, 1, QualifiedNameObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(collectionTypeEClass, CollectionType.class, "CollectionType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCollectionType_ElementType(), this.getType(), null, "elementType", null, 0, 1, CollectionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCollectionType_Map(), ecorePackage.getEBoolean(), "map", null, 0, 1, CollectionType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(literalEClass, Literal.class, "Literal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getLiteral_StringValue(), ecorePackage.getEString(), "stringValue", null, 0, 1, Literal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getLiteral_IntValue(), ecorePackage.getEInt(), "intValue", null, 0, 1, Literal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getLiteral_DecimalValue(), ecorePackage.getEBigDecimal(), "decimalValue", null, 0, 1, Literal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
-    initEEnum(typeEEnum, Type.class, "Type");
-    addEEnumLiteral(typeEEnum, Type.INT);
-    addEEnumLiteral(typeEEnum, Type.LONG);
-    addEEnumLiteral(typeEEnum, Type.BYTE);
-    addEEnumLiteral(typeEEnum, Type.SHORT);
-    addEEnumLiteral(typeEEnum, Type.DECIMAL);
-    addEEnumLiteral(typeEEnum, Type.FLOAT);
-    addEEnumLiteral(typeEEnum, Type.DOUBLE);
-    addEEnumLiteral(typeEEnum, Type.TEXT);
-    addEEnumLiteral(typeEEnum, Type.BOOLEAN);
-    addEEnumLiteral(typeEEnum, Type.DATE);
-    addEEnumLiteral(typeEEnum, Type.DATETIME);
+    initEEnum(basicTypeEEnum, BasicType.class, "BasicType");
+    addEEnumLiteral(basicTypeEEnum, BasicType.INT);
+    addEEnumLiteral(basicTypeEEnum, BasicType.LONG);
+    addEEnumLiteral(basicTypeEEnum, BasicType.BYTE);
+    addEEnumLiteral(basicTypeEEnum, BasicType.SHORT);
+    addEEnumLiteral(basicTypeEEnum, BasicType.DECIMAL);
+    addEEnumLiteral(basicTypeEEnum, BasicType.FLOAT);
+    addEEnumLiteral(basicTypeEEnum, BasicType.DOUBLE);
+    addEEnumLiteral(basicTypeEEnum, BasicType.TEXT);
+    addEEnumLiteral(basicTypeEEnum, BasicType.BOOLEAN);
+    addEEnumLiteral(basicTypeEEnum, BasicType.DATE);
+    addEEnumLiteral(basicTypeEEnum, BasicType.DATETIME);
 
     // Create resource
     createResource(eNS_URI);

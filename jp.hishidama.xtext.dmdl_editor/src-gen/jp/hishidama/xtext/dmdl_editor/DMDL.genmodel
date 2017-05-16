@@ -4,21 +4,21 @@
     editorDirectory="/jp.hishidama.xtext.dmdl_editor.editor/src" modelPluginID="jp.hishidama.xtext.dmdl_editor"
     forceOverwrite="true" modelName="DMDL" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="jp.hishidama.xtext.dmdl_editor.edit"
-    editorPluginID="jp.hishidama.xtext.dmdl_editor.editor" runtimeVersion="2.9">
+    editorPluginID="jp.hishidama.xtext.dmdl_editor.editor" runtimeVersion="2.10">
   <genPackages prefix="Dmdl" basePackage="jp.hishidama.xtext.dmdl_editor" disposableProviderFactory="true"
       fileExtensions="dmdl" ecorePackage="DMDL.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="DMDL.ecore#//Type">
-      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/INT"/>
-      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/LONG"/>
-      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/BYTE"/>
-      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/SHORT"/>
-      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/DECIMAL"/>
-      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/FLOAT"/>
-      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/DOUBLE"/>
-      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/TEXT"/>
-      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/BOOLEAN"/>
-      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/DATE"/>
-      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//Type/DATETIME"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="DMDL.ecore#//BasicType">
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//BasicType/INT"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//BasicType/LONG"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//BasicType/BYTE"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//BasicType/SHORT"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//BasicType/DECIMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//BasicType/FLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//BasicType/DOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//BasicType/TEXT"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//BasicType/BOOLEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//BasicType/DATE"/>
+      <genEnumLiterals ecoreEnumLiteral="DMDL.ecore#//BasicType/DATETIME"/>
     </genEnums>
     <genClasses ecoreClass="DMDL.ecore#//Script">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//Script/list"/>
@@ -41,7 +41,28 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DMDL.ecore#//ModelReference/name"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//PropertyDefinition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//PropertyDefinition/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//PropertyDefinition/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//PropertyDefinition/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//PropertyExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//PropertyExpression/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//PropertyExpressionList">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DMDL.ecore#//PropertyExpressionList/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//PropertyExpressionMap">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//PropertyExpressionMap/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//PropertyExpressionMapEntry">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//PropertyExpressionMapEntry/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DMDL.ecore#//PropertyExpressionMapEntry/property"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//PropertyExpressionRefernce">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DMDL.ecore#//PropertyExpressionRefernce/name"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//Type">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//Type/basicType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//Type/collectionType"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//JoinExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//JoinExpression/terms"/>
@@ -112,6 +133,10 @@
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//QualifiedNameObject">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//QualifiedNameObject/name"/>
+    </genClasses>
+    <genClasses ecoreClass="DMDL.ecore#//CollectionType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMDL.ecore#//CollectionType/elementType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//CollectionType/map"/>
     </genClasses>
     <genClasses ecoreClass="DMDL.ecore#//Literal">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMDL.ecore#//Literal/stringValue"/>
