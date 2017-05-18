@@ -77,6 +77,60 @@ public interface DmdlFactory extends EFactory
   PropertyDefinition createPropertyDefinition();
 
   /**
+   * Returns a new object of class '<em>Property Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Property Expression</em>'.
+   * @generated
+   */
+  PropertyExpression createPropertyExpression();
+
+  /**
+   * Returns a new object of class '<em>Property Expression List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Property Expression List</em>'.
+   * @generated
+   */
+  PropertyExpressionList createPropertyExpressionList();
+
+  /**
+   * Returns a new object of class '<em>Property Expression Map</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Property Expression Map</em>'.
+   * @generated
+   */
+  PropertyExpressionMap createPropertyExpressionMap();
+
+  /**
+   * Returns a new object of class '<em>Property Expression Map Entry</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Property Expression Map Entry</em>'.
+   * @generated
+   */
+  PropertyExpressionMapEntry createPropertyExpressionMapEntry();
+
+  /**
+   * Returns a new object of class '<em>Property Expression Refernce</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Property Expression Refernce</em>'.
+   * @generated
+   */
+  PropertyExpressionRefernce createPropertyExpressionRefernce();
+
+  /**
+   * Returns a new object of class '<em>Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type</em>'.
+   * @generated
+   */
+  Type createType();
+
+  /**
    * Returns a new object of class '<em>Join Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -255,6 +309,15 @@ public interface DmdlFactory extends EFactory
    * @generated
    */
   QualifiedNameObject createQualifiedNameObject();
+
+  /**
+   * Returns a new object of class '<em>Collection Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Collection Type</em>'.
+   * @generated
+   */
+  CollectionType createCollectionType();
 
   /**
    * Returns a new object of class '<em>Literal</em>'.

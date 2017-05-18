@@ -271,8 +271,7 @@ public class ModelUtil {
 		return null;
 	}
 
-	public static List<ModelDefinition> getProjectiveContainsModel(ModelDefinition model,
-			List<ModelDefinition> projectiveList) {
+	public static List<ModelDefinition> getProjectiveContainsModel(ModelDefinition model, List<ModelDefinition> projectiveList) {
 		if (model == null || projectiveList == null) {
 			return Collections.emptyList();
 		}
@@ -298,7 +297,7 @@ public class ModelUtil {
 			for (Property property : projProps) {
 				String name = property.getName();
 				Type type = PropertyUtil.getResolvedDataType(property);
-				if (map.get(name) != type) {
+				if (!equals(map.get(name), type)) {
 					continue loop;
 				}
 			}
@@ -306,6 +305,22 @@ public class ModelUtil {
 		}
 
 		return result;
+	}
+
+	private static boolean equals(Type type1, Type type2) {
+		if (type1 == null) {
+			return type2 == null;
+		}
+		if (type2 == null) {
+			return false;
+		}
+		BasicType basicType1 = type1.getBasicType();
+		BasicType basicType2 = type2.getBasicType();
+		if (basicType1 != null || basicType2 != null) {
+			return basicType1 == basicType2;
+		}
+		// TODO Type.equals
+		return false;
 	}
 
 	public static Property findProperty(ModelDefinition model, String name) {

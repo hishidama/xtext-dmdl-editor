@@ -4,11 +4,14 @@ package jp.hishidama.xtext.dmdl_editor.dmdl.impl;
 
 import jp.hishidama.xtext.dmdl_editor.dmdl.DmdlPackage;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Type;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -20,6 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyDefinitionImpl#getType <em>Type</em>}</li>
+ *   <li>{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyDefinitionImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,24 +32,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class PropertyDefinitionImpl extends PropertyImpl implements PropertyDefinition
 {
   /**
-   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected static final Type TYPE_EDEFAULT = Type.INT;
+  protected Type type;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getExpression()
    * @generated
    * @ordered
    */
-  protected Type type = TYPE_EDEFAULT;
+  protected PropertyExpression expression;
 
   /**
    * <!-- begin-user-doc -->
@@ -83,12 +87,103 @@ public class PropertyDefinitionImpl extends PropertyImpl implements PropertyDefi
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(Type newType)
+  public NotificationChain basicSetType(Type newType, NotificationChain msgs)
   {
     Type oldType = type;
-    type = newType == null ? TYPE_EDEFAULT : newType;
+    type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DmdlPackage.PROPERTY_DEFINITION__TYPE, oldType, type));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DmdlPackage.PROPERTY_DEFINITION__TYPE, oldType, newType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setType(Type newType)
+  {
+    if (newType != type)
+    {
+      NotificationChain msgs = null;
+      if (type != null)
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DmdlPackage.PROPERTY_DEFINITION__TYPE, null, msgs);
+      if (newType != null)
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DmdlPackage.PROPERTY_DEFINITION__TYPE, null, msgs);
+      msgs = basicSetType(newType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DmdlPackage.PROPERTY_DEFINITION__TYPE, newType, newType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PropertyExpression getExpression()
+  {
+    return expression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetExpression(PropertyExpression newExpression, NotificationChain msgs)
+  {
+    PropertyExpression oldExpression = expression;
+    expression = newExpression;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DmdlPackage.PROPERTY_DEFINITION__EXPRESSION, oldExpression, newExpression);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setExpression(PropertyExpression newExpression)
+  {
+    if (newExpression != expression)
+    {
+      NotificationChain msgs = null;
+      if (expression != null)
+        msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DmdlPackage.PROPERTY_DEFINITION__EXPRESSION, null, msgs);
+      if (newExpression != null)
+        msgs = ((InternalEObject)newExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DmdlPackage.PROPERTY_DEFINITION__EXPRESSION, null, msgs);
+      msgs = basicSetExpression(newExpression, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, DmdlPackage.PROPERTY_DEFINITION__EXPRESSION, newExpression, newExpression));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case DmdlPackage.PROPERTY_DEFINITION__TYPE:
+        return basicSetType(null, msgs);
+      case DmdlPackage.PROPERTY_DEFINITION__EXPRESSION:
+        return basicSetExpression(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -103,6 +198,8 @@ public class PropertyDefinitionImpl extends PropertyImpl implements PropertyDefi
     {
       case DmdlPackage.PROPERTY_DEFINITION__TYPE:
         return getType();
+      case DmdlPackage.PROPERTY_DEFINITION__EXPRESSION:
+        return getExpression();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -120,6 +217,9 @@ public class PropertyDefinitionImpl extends PropertyImpl implements PropertyDefi
       case DmdlPackage.PROPERTY_DEFINITION__TYPE:
         setType((Type)newValue);
         return;
+      case DmdlPackage.PROPERTY_DEFINITION__EXPRESSION:
+        setExpression((PropertyExpression)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -135,7 +235,10 @@ public class PropertyDefinitionImpl extends PropertyImpl implements PropertyDefi
     switch (featureID)
     {
       case DmdlPackage.PROPERTY_DEFINITION__TYPE:
-        setType(TYPE_EDEFAULT);
+        setType((Type)null);
+        return;
+      case DmdlPackage.PROPERTY_DEFINITION__EXPRESSION:
+        setExpression((PropertyExpression)null);
         return;
     }
     super.eUnset(featureID);
@@ -152,26 +255,11 @@ public class PropertyDefinitionImpl extends PropertyImpl implements PropertyDefi
     switch (featureID)
     {
       case DmdlPackage.PROPERTY_DEFINITION__TYPE:
-        return type != TYPE_EDEFAULT;
+        return type != null;
+      case DmdlPackage.PROPERTY_DEFINITION__EXPRESSION:
+        return expression != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (type: ");
-    result.append(type);
-    result.append(')');
-    return result.toString();
   }
 
 } //PropertyDefinitionImpl

@@ -204,6 +204,10 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		return true;
 	}
 
+	protected boolean _isLeaf(Property modelElement) {
+		return true;
+	}
+
 	protected boolean _isLeaf(Grouping modelElement) {
 		return false;
 	}
@@ -227,8 +231,9 @@ public class DMDLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		String name = p.getName();
 		Type type = PropertyUtil.getResolvedDataType(p);
 		if (type != null) {
+			String typeText = PropertyUtil.getDataTypeText(type);
 			StyledString ss = newStyledString(name);
-			ss.append(" : " + type, StyledString.DECORATIONS_STYLER);
+			ss.append(" : " + typeText, StyledString.DECORATIONS_STYLER);
 			return ss;
 		}
 		return name;

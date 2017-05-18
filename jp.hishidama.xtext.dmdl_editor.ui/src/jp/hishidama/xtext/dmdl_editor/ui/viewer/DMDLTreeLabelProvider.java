@@ -106,8 +106,9 @@ public class DMDLTreeLabelProvider extends LabelProvider implements ITableLabelP
 
 				Type type = PropertyUtil.getResolvedDataType(prop);
 				if (type != null) {
+					String typeText = PropertyUtil.getDataTypeText(type);
 					sb.append(" : ");
-					sb.append(type);
+					sb.append(typeText);
 				}
 			}
 			return sb.toString();

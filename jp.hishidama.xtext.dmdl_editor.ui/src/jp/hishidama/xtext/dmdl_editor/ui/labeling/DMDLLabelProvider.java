@@ -14,7 +14,9 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.JoinTerm;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeTerm;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Type;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -44,6 +46,10 @@ public class DMDLLabelProvider extends DefaultEObjectLabelProvider {
 
 	protected Object text(Attribute a) {
 		return "@" + a.getName();
+	}
+
+	protected Object text(Type type) {
+		return PropertyUtil.getDataTypeText(type);
 	}
 
 	protected Object text(Grouping group) {

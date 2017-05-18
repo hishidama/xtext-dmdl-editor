@@ -11,6 +11,7 @@ import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
@@ -30,8 +31,9 @@ public class PropertyUtil {
 
 		Type type = getResolvedDataType(property);
 		if (type != null) {
+			String typeText = getDataTypeText(type);
 			sb.append(" : ");
-			sb.append(type);
+			sb.append(typeText);
 		}
 	}
 
@@ -45,8 +47,34 @@ public class PropertyUtil {
 
 	public static String getResolvedDataTypeText(Property property) {
 		Type type = getResolvedDataType(property);
+		return getDataTypeText(type);
+	}
+
+	public static String getDataTypeText(Type type) {
 		if (type != null) {
-			return type.name();
+			CollectionType ctype = type.getCollectionType();
+			if (ctype != null) {
+				if (ctype.isMap()) {
+					return String.format("{:%s}", getDataTypeText(ctype.getElementType()));
+				} else {
+					return String.format("{%s}", getDataTypeText(ctype.getElementType()));
+				}
+			}
+
+			// ReferenceType rtype = type.getReferenceType();
+			// if (rtype != null) {
+			// Property property = rtype.getName();
+			// if (property != null) {
+			// return getResolvedDataTypeText(property);
+			// }
+			// return "<reference>";
+			// }
+
+			// BasicType(enum)にはデフォルト値が入る（nullにならない）ことがあるので、最後に判定する
+			BasicType btype = type.getBasicType();
+			if (btype != null) {
+				return btype.name();
+			}
 		}
 		return "";
 	}
@@ -72,7 +100,39 @@ public class PropertyUtil {
 
 		if (property instanceof PropertyDefinition) {
 			PropertyDefinition p = (PropertyDefinition) property;
-			return p.getType();
+			Type type = p.getType();
+			if (type != null) {
+				return type;
+			}
+			PropertyExpression exp = p.getExpression();
+			if (exp != null) {
+				EObject object = exp.getExpression();
+				if (object instanceof PropertyExpressionList) {
+					PropertyExpressionList list = (PropertyExpressionList) object;
+					for (Property element : list.getElements()) {
+						Type t = getResolvedDataType(element);
+						if (t != null) {
+							return newCollectionType(t, false);
+						}
+					}
+					return null;
+				}
+				if (object instanceof PropertyExpressionMap) {
+					PropertyExpressionMap map = (PropertyExpressionMap) object;
+					for (PropertyExpressionMapEntry entry : map.getElements()) {
+						Type t = getResolvedDataType(entry.getProperty());
+						if (t != null) {
+							return newCollectionType(t, true);
+						}
+					}
+					return null;
+				}
+				if (object instanceof PropertyExpressionRefernce) {
+					PropertyExpressionRefernce ref = (PropertyExpressionRefernce) object;
+					return getResolvedDataType(ref.getName());
+				}
+			}
+			return null;
 		}
 		if (property instanceof PropertyMapping) {
 			PropertyMapping p = (PropertyMapping) property;
@@ -82,7 +142,7 @@ public class PropertyUtil {
 			PropertyFolding p = (PropertyFolding) property;
 			String aggr = p.getAggregator();
 			if ("count".equals(aggr)) {
-				return Type.LONG;
+				return newType(BasicType.LONG);
 			}
 
 			Type r = resoloveDataType(p.getFrom(), set);
@@ -90,17 +150,21 @@ public class PropertyUtil {
 				if (r == null) {
 					return null;
 				}
-				switch (r) {
+				BasicType btype = r.getBasicType();
+				if (btype == null) {
+					return null;
+				}
+				switch (btype) {
 				case BYTE:
 				case SHORT:
 				case INT:
 				case LONG:
-					return Type.LONG;
+					return newType(BasicType.LONG);
 				case FLOAT:
 				case DOUBLE:
-					return Type.DOUBLE;
+					return newType(BasicType.DOUBLE);
 				case DECIMAL:
-					return Type.DECIMAL;
+					return newType(BasicType.DECIMAL);
 				default:
 					return null;
 				}
@@ -108,6 +172,22 @@ public class PropertyUtil {
 			return r;
 		}
 		throw new IllegalStateException("property=" + property);
+	}
+
+	private static Type newType(BasicType basicType) {
+		Type type = DmdlFactory.eINSTANCE.createType();
+		type.setBasicType(basicType);
+		return type;
+	}
+
+	private static Type newCollectionType(Type elementType, boolean isMap) {
+		CollectionType ctype = DmdlFactory.eINSTANCE.createCollectionType();
+		ctype.setElementType(EcoreUtil.copy(elementType));
+		ctype.setMap(isMap);
+
+		Type type = DmdlFactory.eINSTANCE.createType();
+		type.setCollectionType(ctype);
+		return type;
 	}
 
 	public static String getModelName(EObject object) {

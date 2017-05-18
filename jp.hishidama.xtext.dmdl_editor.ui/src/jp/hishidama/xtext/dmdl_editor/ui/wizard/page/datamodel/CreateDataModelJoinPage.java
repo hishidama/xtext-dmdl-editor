@@ -33,6 +33,7 @@ import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.xtext.EcoreUtil2;
@@ -397,7 +398,7 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 					String pname = nonEmpty(row.name) ? row.name : row.refPropertyName;
 					String pdesc = nonEmpty(row.description) ? row.description : ((p != null) ? PropertyUtil
 							.getDecodedDescription(p) : null);
-					Type ptype = PropertyUtil.getResolvedDataType(p);
+					Type ptype = EcoreUtil.copy(PropertyUtil.getResolvedDataType(p));
 					PropertyDefinition n = InjectorUtil.getInstance(PropertyDefinitionImpl.class);
 					n.setName(pname);
 					n.setDescription(DMDLStringUtil.encodeDescription(pdesc));

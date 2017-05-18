@@ -29,7 +29,34 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//ModelDefinition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyDefinition" eSuperTypes="#//Property">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//PropertyExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyExpressionList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" unique="false"
+        upperBound="-1" eType="#//Property"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyExpressionMap">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//PropertyExpressionMapEntry" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyExpressionMapEntry">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//Literal"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="#//Property"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyExpressionRefernce">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//Property"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Type">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="basicType" eType="#//BasicType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="collectionType" eType="#//CollectionType"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JoinExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="terms" upperBound="-1"
@@ -123,7 +150,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="QualifiedNameObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Type">
+  <eClassifiers xsi:type="ecore:EEnum" name="BasicType">
     <eLiterals name="INT" literal="INT"/>
     <eLiterals name="LONG" value="1" literal="LONG"/>
     <eLiterals name="BYTE" value="2" literal="BYTE"/>
@@ -135,6 +162,11 @@
     <eLiterals name="BOOLEAN" value="8" literal="BOOLEAN"/>
     <eLiterals name="DATE" value="9" literal="DATE"/>
     <eLiterals name="DATETIME" value="10" literal="DATETIME"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CollectionType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementType" eType="#//Type"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="map" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Literal">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

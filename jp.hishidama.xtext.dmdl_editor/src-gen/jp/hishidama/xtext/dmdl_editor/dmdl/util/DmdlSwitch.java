@@ -115,6 +115,48 @@ public class DmdlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case DmdlPackage.PROPERTY_EXPRESSION:
+      {
+        PropertyExpression propertyExpression = (PropertyExpression)theEObject;
+        T result = casePropertyExpression(propertyExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DmdlPackage.PROPERTY_EXPRESSION_LIST:
+      {
+        PropertyExpressionList propertyExpressionList = (PropertyExpressionList)theEObject;
+        T result = casePropertyExpressionList(propertyExpressionList);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DmdlPackage.PROPERTY_EXPRESSION_MAP:
+      {
+        PropertyExpressionMap propertyExpressionMap = (PropertyExpressionMap)theEObject;
+        T result = casePropertyExpressionMap(propertyExpressionMap);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DmdlPackage.PROPERTY_EXPRESSION_MAP_ENTRY:
+      {
+        PropertyExpressionMapEntry propertyExpressionMapEntry = (PropertyExpressionMapEntry)theEObject;
+        T result = casePropertyExpressionMapEntry(propertyExpressionMapEntry);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DmdlPackage.PROPERTY_EXPRESSION_REFERNCE:
+      {
+        PropertyExpressionRefernce propertyExpressionRefernce = (PropertyExpressionRefernce)theEObject;
+        T result = casePropertyExpressionRefernce(propertyExpressionRefernce);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case DmdlPackage.TYPE:
+      {
+        Type type = (Type)theEObject;
+        T result = caseType(type);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case DmdlPackage.JOIN_EXPRESSION:
       {
         JoinExpression joinExpression = (JoinExpression)theEObject;
@@ -257,6 +299,13 @@ public class DmdlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case DmdlPackage.COLLECTION_TYPE:
+      {
+        CollectionType collectionType = (CollectionType)theEObject;
+        T result = caseCollectionType(collectionType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case DmdlPackage.LITERAL:
       {
         Literal literal = (Literal)theEObject;
@@ -360,6 +409,102 @@ public class DmdlSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePropertyDefinition(PropertyDefinition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Property Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Property Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePropertyExpression(PropertyExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Property Expression List</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Property Expression List</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePropertyExpressionList(PropertyExpressionList object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Property Expression Map</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Property Expression Map</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePropertyExpressionMap(PropertyExpressionMap object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Property Expression Map Entry</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Property Expression Map Entry</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePropertyExpressionMapEntry(PropertyExpressionMapEntry object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Property Expression Refernce</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Property Expression Refernce</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePropertyExpressionRefernce(PropertyExpressionRefernce object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseType(Type object)
   {
     return null;
   }
@@ -680,6 +825,22 @@ public class DmdlSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseQualifiedNameObject(QualifiedNameObject object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Collection Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Collection Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCollectionType(CollectionType object)
   {
     return null;
   }

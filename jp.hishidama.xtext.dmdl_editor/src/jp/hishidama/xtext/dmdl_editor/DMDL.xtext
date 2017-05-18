@@ -29,11 +29,35 @@ RecordTerm:
 ModelReference:
 	name=[ModelDefinition|Name];
 
+/* Property Definitions */
 PropertyDefinition:
 	(description=Description)?
 	(attributes=AttributeList)?
-	name=Name ':' type=Type
+	(name=Name ':' type=Type ('=' expression=PropertyExpression)? |
+	name=Name '=' expression=PropertyExpression)
 	';';
+
+PropertyExpression:
+	expression=PropertyExpressionList |
+	expression=PropertyExpressionMap |
+	expression=PropertyExpressionRefernce;
+
+PropertyExpressionList:
+	{PropertyExpressionList} '{' '}' |
+	'{' elements+=[Property|Name] (',' elements+=[Property|Name])* ','? '}';
+
+PropertyExpressionMap:
+	{PropertyExpressionMap} '{' ':' '}' |
+	'{' elements+=PropertyExpressionMapEntry ("," elements+=PropertyExpressionMapEntry)* ','? '}';
+
+PropertyExpressionMapEntry:
+	name=Literal ':' property=[Property|Name];
+
+PropertyExpressionRefernce:
+	name=[Property|QualifiedName];
+
+Type:
+	basicType=BasicType | collectionType=CollectionType /*| referenceType=ReferenceType*/;
 
 JoinExpression:
 	terms+=JoinTerm ('+' terms+=JoinTerm)*;
@@ -134,8 +158,16 @@ terminal fragment SYMBOL_CHAR:
 	';';
 
 /* Basic Types */
-enum Type:
+enum BasicType:
 	INT | LONG | BYTE | SHORT | DECIMAL | FLOAT | DOUBLE | TEXT | BOOLEAN | DATE | DATETIME;
+
+/* Collection Types */
+CollectionType:
+	'{' elementType=Type '}' | '{' map?=':' elementType=Type '}';
+
+/* Reference Types */
+//ReferenceType:
+//	name=[Property|Name];
 
 Literal:
 	stringValue=STRING | intValue=INT | decimalValue=DECIMAL;

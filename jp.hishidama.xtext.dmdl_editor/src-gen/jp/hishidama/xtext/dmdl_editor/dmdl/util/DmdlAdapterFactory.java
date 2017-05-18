@@ -105,6 +105,36 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
         return createPropertyDefinitionAdapter();
       }
       @Override
+      public Adapter casePropertyExpression(PropertyExpression object)
+      {
+        return createPropertyExpressionAdapter();
+      }
+      @Override
+      public Adapter casePropertyExpressionList(PropertyExpressionList object)
+      {
+        return createPropertyExpressionListAdapter();
+      }
+      @Override
+      public Adapter casePropertyExpressionMap(PropertyExpressionMap object)
+      {
+        return createPropertyExpressionMapAdapter();
+      }
+      @Override
+      public Adapter casePropertyExpressionMapEntry(PropertyExpressionMapEntry object)
+      {
+        return createPropertyExpressionMapEntryAdapter();
+      }
+      @Override
+      public Adapter casePropertyExpressionRefernce(PropertyExpressionRefernce object)
+      {
+        return createPropertyExpressionRefernceAdapter();
+      }
+      @Override
+      public Adapter caseType(Type object)
+      {
+        return createTypeAdapter();
+      }
+      @Override
       public Adapter caseJoinExpression(JoinExpression object)
       {
         return createJoinExpressionAdapter();
@@ -203,6 +233,11 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
       public Adapter caseQualifiedNameObject(QualifiedNameObject object)
       {
         return createQualifiedNameObjectAdapter();
+      }
+      @Override
+      public Adapter caseCollectionType(CollectionType object)
+      {
+        return createCollectionTypeAdapter();
       }
       @Override
       public Adapter caseLiteral(Literal object)
@@ -317,6 +352,96 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPropertyDefinitionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpression <em>Property Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpression
+   * @generated
+   */
+  public Adapter createPropertyExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionList <em>Property Expression List</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionList
+   * @generated
+   */
+  public Adapter createPropertyExpressionListAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMap <em>Property Expression Map</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMap
+   * @generated
+   */
+  public Adapter createPropertyExpressionMapAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMapEntry <em>Property Expression Map Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMapEntry
+   * @generated
+   */
+  public Adapter createPropertyExpressionMapEntryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionRefernce <em>Property Expression Refernce</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionRefernce
+   * @generated
+   */
+  public Adapter createPropertyExpressionRefernceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Type <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.Type
+   * @generated
+   */
+  public Adapter createTypeAdapter()
   {
     return null;
   }
@@ -617,6 +742,21 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createQualifiedNameObjectAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.CollectionType <em>Collection Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.CollectionType
+   * @generated
+   */
+  public Adapter createCollectionTypeAdapter()
   {
     return null;
   }
