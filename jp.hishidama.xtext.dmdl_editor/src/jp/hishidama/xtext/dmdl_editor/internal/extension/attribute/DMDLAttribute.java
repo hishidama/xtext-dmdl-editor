@@ -77,7 +77,7 @@ public class DMDLAttribute {
 	public DmdlAttributeElement add(String name, String tooltip, String value) {
 		DmdlAttributeElement element = new DmdlAttributeElement();
 		element.name = name;
-		element.tooltip = tooltip;
+		element.tooltip = tooltip.replaceAll("<", "&lt").replaceAll(">", "&gt");
 		element.value = value;
 
 		elementList.add(element);
