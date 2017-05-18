@@ -1713,112 +1713,62 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getDATETIMEDATETIMEKeyword_10_0() { return cDATETIMEDATETIMEKeyword_10_0; }
 	}
 	
-	private final ScriptElements pScript;
-	private final ModelDefinitionElements pModelDefinition;
-	private final RecordExpressionElements pRecordExpression;
-	private final RecordTermElements pRecordTerm;
-	private final ModelReferenceElements pModelReference;
-	private final PropertyDefinitionElements pPropertyDefinition;
-	private final PropertyExpressionElements pPropertyExpression;
-	private final PropertyExpressionListElements pPropertyExpressionList;
-	private final PropertyExpressionMapElements pPropertyExpressionMap;
-	private final PropertyExpressionMapEntryElements pPropertyExpressionMapEntry;
-	private final PropertyExpressionRefernceElements pPropertyExpressionRefernce;
-	private final TypeElements pType;
-	private final JoinExpressionElements pJoinExpression;
-	private final JoinTermElements pJoinTerm;
-	private final SummarizeExpressionElements pSummarizeExpression;
-	private final SummarizeTermElements pSummarizeTerm;
-	private final DescriptionElements pDescription;
-	private final AttributeListElements pAttributeList;
-	private final AttributeElements pAttribute;
-	private final AttributeElementBlockElements pAttributeElementBlock;
-	private final AttributeElementListElements pAttributeElementList;
-	private final AttributeElementElements pAttributeElement;
-	private final AttributeValueElements pAttributeValue;
-	private final AttributeValueArrayElements pAttributeValueArray;
-	private final AttributeValueMapElements pAttributeValueMap;
-	private final AttributePairElements pAttributePair;
-	private final GroupingElements pGrouping;
-	private final ModelMappingElements pModelMapping;
-	private final PropertyMappingElements pPropertyMapping;
-	private final ModelFoldingElements pModelFolding;
-	private final PropertyFoldingElements pPropertyFolding;
-	private final PropertyElements pProperty;
-	private final QualifiedNameObjectElements pQualifiedNameObject;
-	private final QualifiedNameElements pQualifiedName;
-	private final NameElements pName;
-	private final TerminalRule tNAME_TOKEN;
-	private final TerminalRule tDIGIT_CHAR;
-	private final TerminalRule tSYMBOL_CHAR;
-	private final BasicTypeElements unknownRuleBasicType;
-	private final CollectionTypeElements pCollectionType;
-	private final LiteralElements pLiteral;
-	private final TerminalRule tSTRING;
-	private final TerminalRule tHEX_CHAR;
-	private final TerminalRule tOCTAL_ESCAPE;
-	private final TerminalRule tINT;
-	private final TerminalRule tDECIMAL;
-	private final TerminalRule tML_COMMENT;
-	private final TerminalRule tSL_COMMENT;
-	private final TerminalRule tWS;
-	private final TerminalRule tBLANK_CHAR;
+	private ScriptElements pScript;
+	private ModelDefinitionElements pModelDefinition;
+	private RecordExpressionElements pRecordExpression;
+	private RecordTermElements pRecordTerm;
+	private ModelReferenceElements pModelReference;
+	private PropertyDefinitionElements pPropertyDefinition;
+	private PropertyExpressionElements pPropertyExpression;
+	private PropertyExpressionListElements pPropertyExpressionList;
+	private PropertyExpressionMapElements pPropertyExpressionMap;
+	private PropertyExpressionMapEntryElements pPropertyExpressionMapEntry;
+	private PropertyExpressionRefernceElements pPropertyExpressionRefernce;
+	private TypeElements pType;
+	private JoinExpressionElements pJoinExpression;
+	private JoinTermElements pJoinTerm;
+	private SummarizeExpressionElements pSummarizeExpression;
+	private SummarizeTermElements pSummarizeTerm;
+	private DescriptionElements pDescription;
+	private AttributeListElements pAttributeList;
+	private AttributeElements pAttribute;
+	private AttributeElementBlockElements pAttributeElementBlock;
+	private AttributeElementListElements pAttributeElementList;
+	private AttributeElementElements pAttributeElement;
+	private AttributeValueElements pAttributeValue;
+	private AttributeValueArrayElements pAttributeValueArray;
+	private AttributeValueMapElements pAttributeValueMap;
+	private AttributePairElements pAttributePair;
+	private GroupingElements pGrouping;
+	private ModelMappingElements pModelMapping;
+	private PropertyMappingElements pPropertyMapping;
+	private ModelFoldingElements pModelFolding;
+	private PropertyFoldingElements pPropertyFolding;
+	private PropertyElements pProperty;
+	private QualifiedNameObjectElements pQualifiedNameObject;
+	private QualifiedNameElements pQualifiedName;
+	private NameElements pName;
+	private TerminalRule tNAME_TOKEN;
+	private TerminalRule tDIGIT_CHAR;
+	private TerminalRule tSYMBOL_CHAR;
+	private BasicTypeElements unknownRuleBasicType;
+	private CollectionTypeElements pCollectionType;
+	private LiteralElements pLiteral;
+	private TerminalRule tSTRING;
+	private TerminalRule tHEX_CHAR;
+	private TerminalRule tOCTAL_ESCAPE;
+	private TerminalRule tINT;
+	private TerminalRule tDECIMAL;
+	private TerminalRule tML_COMMENT;
+	private TerminalRule tSL_COMMENT;
+	private TerminalRule tWS;
+	private TerminalRule tBLANK_CHAR;
 	
 	private final Grammar grammar;
 
 	@Inject
 	public DMDLGrammarAccess(GrammarProvider grammarProvider) {
 		this.grammar = internalFindGrammar(grammarProvider);
-		this.pScript = new ScriptElements();
-		this.pModelDefinition = new ModelDefinitionElements();
-		this.pRecordExpression = new RecordExpressionElements();
-		this.pRecordTerm = new RecordTermElements();
-		this.pModelReference = new ModelReferenceElements();
-		this.pPropertyDefinition = new PropertyDefinitionElements();
-		this.pPropertyExpression = new PropertyExpressionElements();
-		this.pPropertyExpressionList = new PropertyExpressionListElements();
-		this.pPropertyExpressionMap = new PropertyExpressionMapElements();
-		this.pPropertyExpressionMapEntry = new PropertyExpressionMapEntryElements();
-		this.pPropertyExpressionRefernce = new PropertyExpressionRefernceElements();
-		this.pType = new TypeElements();
-		this.pJoinExpression = new JoinExpressionElements();
-		this.pJoinTerm = new JoinTermElements();
-		this.pSummarizeExpression = new SummarizeExpressionElements();
-		this.pSummarizeTerm = new SummarizeTermElements();
-		this.pDescription = new DescriptionElements();
-		this.pAttributeList = new AttributeListElements();
-		this.pAttribute = new AttributeElements();
-		this.pAttributeElementBlock = new AttributeElementBlockElements();
-		this.pAttributeElementList = new AttributeElementListElements();
-		this.pAttributeElement = new AttributeElementElements();
-		this.pAttributeValue = new AttributeValueElements();
-		this.pAttributeValueArray = new AttributeValueArrayElements();
-		this.pAttributeValueMap = new AttributeValueMapElements();
-		this.pAttributePair = new AttributePairElements();
-		this.pGrouping = new GroupingElements();
-		this.pModelMapping = new ModelMappingElements();
-		this.pPropertyMapping = new PropertyMappingElements();
-		this.pModelFolding = new ModelFoldingElements();
-		this.pPropertyFolding = new PropertyFoldingElements();
-		this.pProperty = new PropertyElements();
-		this.pQualifiedNameObject = new QualifiedNameObjectElements();
-		this.pQualifiedName = new QualifiedNameElements();
-		this.pName = new NameElements();
-		this.tNAME_TOKEN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NAME_TOKEN");
-		this.tDIGIT_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DIGIT_CHAR");
-		this.tSYMBOL_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SYMBOL_CHAR");
-		this.unknownRuleBasicType = new BasicTypeElements();
-		this.pCollectionType = new CollectionTypeElements();
-		this.pLiteral = new LiteralElements();
-		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING");
-		this.tHEX_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HEX_CHAR");
-		this.tOCTAL_ESCAPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OCTAL_ESCAPE");
-		this.tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INT");
-		this.tDECIMAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DECIMAL");
-		this.tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT");
-		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT");
-		this.tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS");
-		this.tBLANK_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "BLANK_CHAR");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1847,7 +1797,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//Script:
 	//	list+=ModelDefinition*;
 	public ScriptElements getScriptAccess() {
-		return pScript;
+		return (pScript != null) ? pScript : (pScript = new ScriptElements());
 	}
 	
 	public ParserRule getScriptRule() {
@@ -1858,7 +1808,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//	description=Description? attributes=AttributeList? (type="projective"? name=Name "=" rhs=RecordExpression |
 	//	type="joined" name=Name "=" rhs=JoinExpression | type="summarized" name=Name "=" rhs=SummarizeExpression) ";";
 	public ModelDefinitionElements getModelDefinitionAccess() {
-		return pModelDefinition;
+		return (pModelDefinition != null) ? pModelDefinition : (pModelDefinition = new ModelDefinitionElements());
 	}
 	
 	public ParserRule getModelDefinitionRule() {
@@ -1868,7 +1818,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//RecordExpression:
 	//	terms+=RecordTerm ("+" terms+=RecordTerm)*;
 	public RecordExpressionElements getRecordExpressionAccess() {
-		return pRecordExpression;
+		return (pRecordExpression != null) ? pRecordExpression : (pRecordExpression = new RecordExpressionElements());
 	}
 	
 	public ParserRule getRecordExpressionRule() {
@@ -1878,7 +1828,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//RecordTerm:
 	//	"{" {RecordTerm} properties+=PropertyDefinition* "}" | reference=ModelReference;
 	public RecordTermElements getRecordTermAccess() {
-		return pRecordTerm;
+		return (pRecordTerm != null) ? pRecordTerm : (pRecordTerm = new RecordTermElements());
 	}
 	
 	public ParserRule getRecordTermRule() {
@@ -1888,7 +1838,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//ModelReference:
 	//	name=[ModelDefinition|Name];
 	public ModelReferenceElements getModelReferenceAccess() {
-		return pModelReference;
+		return (pModelReference != null) ? pModelReference : (pModelReference = new ModelReferenceElements());
 	}
 	
 	public ParserRule getModelReferenceRule() {
@@ -1899,7 +1849,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//	description=Description? attributes=AttributeList? (name=Name ":" type=Type ("=" expression=PropertyExpression)? |
 	//	name=Name "=" expression=PropertyExpression) ";";
 	public PropertyDefinitionElements getPropertyDefinitionAccess() {
-		return pPropertyDefinition;
+		return (pPropertyDefinition != null) ? pPropertyDefinition : (pPropertyDefinition = new PropertyDefinitionElements());
 	}
 	
 	public ParserRule getPropertyDefinitionRule() {
@@ -1909,7 +1859,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//PropertyExpression:
 	//	expression=PropertyExpressionList | expression=PropertyExpressionMap | expression=PropertyExpressionRefernce;
 	public PropertyExpressionElements getPropertyExpressionAccess() {
-		return pPropertyExpression;
+		return (pPropertyExpression != null) ? pPropertyExpression : (pPropertyExpression = new PropertyExpressionElements());
 	}
 	
 	public ParserRule getPropertyExpressionRule() {
@@ -1919,7 +1869,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//PropertyExpressionList:
 	//	{PropertyExpressionList} "{" "}" | "{" elements+=[Property|Name] ("," elements+=[Property|Name])* ","? "}";
 	public PropertyExpressionListElements getPropertyExpressionListAccess() {
-		return pPropertyExpressionList;
+		return (pPropertyExpressionList != null) ? pPropertyExpressionList : (pPropertyExpressionList = new PropertyExpressionListElements());
 	}
 	
 	public ParserRule getPropertyExpressionListRule() {
@@ -1930,7 +1880,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//	{PropertyExpressionMap} "{" ":" "}" | "{" elements+=PropertyExpressionMapEntry (","
 	//	elements+=PropertyExpressionMapEntry)* ","? "}";
 	public PropertyExpressionMapElements getPropertyExpressionMapAccess() {
-		return pPropertyExpressionMap;
+		return (pPropertyExpressionMap != null) ? pPropertyExpressionMap : (pPropertyExpressionMap = new PropertyExpressionMapElements());
 	}
 	
 	public ParserRule getPropertyExpressionMapRule() {
@@ -1940,7 +1890,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//PropertyExpressionMapEntry:
 	//	name=Literal ":" property=[Property|Name];
 	public PropertyExpressionMapEntryElements getPropertyExpressionMapEntryAccess() {
-		return pPropertyExpressionMapEntry;
+		return (pPropertyExpressionMapEntry != null) ? pPropertyExpressionMapEntry : (pPropertyExpressionMapEntry = new PropertyExpressionMapEntryElements());
 	}
 	
 	public ParserRule getPropertyExpressionMapEntryRule() {
@@ -1950,7 +1900,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//PropertyExpressionRefernce:
 	//	name=[Property|QualifiedName];
 	public PropertyExpressionRefernceElements getPropertyExpressionRefernceAccess() {
-		return pPropertyExpressionRefernce;
+		return (pPropertyExpressionRefernce != null) ? pPropertyExpressionRefernce : (pPropertyExpressionRefernce = new PropertyExpressionRefernceElements());
 	}
 	
 	public ParserRule getPropertyExpressionRefernceRule() {
@@ -1960,7 +1910,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	/// *| referenceType=ReferenceType* / Type:
 	//	basicType=BasicType | collectionType=CollectionType;
 	public TypeElements getTypeAccess() {
-		return pType;
+		return (pType != null) ? pType : (pType = new TypeElements());
 	}
 	
 	public ParserRule getTypeRule() {
@@ -1970,7 +1920,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//JoinExpression:
 	//	terms+=JoinTerm ("+" terms+=JoinTerm)*;
 	public JoinExpressionElements getJoinExpressionAccess() {
-		return pJoinExpression;
+		return (pJoinExpression != null) ? pJoinExpression : (pJoinExpression = new JoinExpressionElements());
 	}
 	
 	public ParserRule getJoinExpressionRule() {
@@ -1980,7 +1930,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//JoinTerm:
 	//	reference=ModelReference mapping=ModelMapping? grouping=Grouping?;
 	public JoinTermElements getJoinTermAccess() {
-		return pJoinTerm;
+		return (pJoinTerm != null) ? pJoinTerm : (pJoinTerm = new JoinTermElements());
 	}
 	
 	public ParserRule getJoinTermRule() {
@@ -1990,7 +1940,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//SummarizeExpression:
 	//	terms+=SummarizeTerm ("+" terms+=SummarizeTerm)*;
 	public SummarizeExpressionElements getSummarizeExpressionAccess() {
-		return pSummarizeExpression;
+		return (pSummarizeExpression != null) ? pSummarizeExpression : (pSummarizeExpression = new SummarizeExpressionElements());
 	}
 	
 	public ParserRule getSummarizeExpressionRule() {
@@ -2000,7 +1950,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//SummarizeTerm:
 	//	reference=ModelReference folding=ModelFolding grouping=Grouping?;
 	public SummarizeTermElements getSummarizeTermAccess() {
-		return pSummarizeTerm;
+		return (pSummarizeTerm != null) ? pSummarizeTerm : (pSummarizeTerm = new SummarizeTermElements());
 	}
 	
 	public ParserRule getSummarizeTermRule() {
@@ -2010,7 +1960,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//Description:
 	//	STRING;
 	public DescriptionElements getDescriptionAccess() {
-		return pDescription;
+		return (pDescription != null) ? pDescription : (pDescription = new DescriptionElements());
 	}
 	
 	public ParserRule getDescriptionRule() {
@@ -2020,7 +1970,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	/// * Attributes * / AttributeList:
 	//	attributes+=Attribute+;
 	public AttributeListElements getAttributeListAccess() {
-		return pAttributeList;
+		return (pAttributeList != null) ? pAttributeList : (pAttributeList = new AttributeListElements());
 	}
 	
 	public ParserRule getAttributeListRule() {
@@ -2030,7 +1980,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//Attribute:
 	//	"@" name=QualifiedName elementBlock=AttributeElementBlock?;
 	public AttributeElements getAttributeAccess() {
-		return pAttribute;
+		return (pAttribute != null) ? pAttribute : (pAttribute = new AttributeElements());
 	}
 	
 	public ParserRule getAttributeRule() {
@@ -2040,7 +1990,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//AttributeElementBlock:
 	//	{AttributeElementBlock} "(" (elements=AttributeElementList ","?)? ")";
 	public AttributeElementBlockElements getAttributeElementBlockAccess() {
-		return pAttributeElementBlock;
+		return (pAttributeElementBlock != null) ? pAttributeElementBlock : (pAttributeElementBlock = new AttributeElementBlockElements());
 	}
 	
 	public ParserRule getAttributeElementBlockRule() {
@@ -2050,7 +2000,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//AttributeElementList:
 	//	elements+=AttributeElement ("," elements+=AttributeElement)*;
 	public AttributeElementListElements getAttributeElementListAccess() {
-		return pAttributeElementList;
+		return (pAttributeElementList != null) ? pAttributeElementList : (pAttributeElementList = new AttributeElementListElements());
 	}
 	
 	public ParserRule getAttributeElementListRule() {
@@ -2060,7 +2010,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//AttributeElement:
 	//	name=Name "=" value=AttributeValue;
 	public AttributeElementElements getAttributeElementAccess() {
-		return pAttributeElement;
+		return (pAttributeElement != null) ? pAttributeElement : (pAttributeElement = new AttributeElementElements());
 	}
 	
 	public ParserRule getAttributeElementRule() {
@@ -2070,7 +2020,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//AttributeValue:
 	//	value=AttributeValueArray | value=AttributeValueMap | value=QualifiedNameObject | value=Literal;
 	public AttributeValueElements getAttributeValueAccess() {
-		return pAttributeValue;
+		return (pAttributeValue != null) ? pAttributeValue : (pAttributeValue = new AttributeValueElements());
 	}
 	
 	public ParserRule getAttributeValueRule() {
@@ -2080,7 +2030,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//AttributeValueArray:
 	//	{AttributeValueArray} "{" "}" | "{" elements+=AttributeValue ("," elements+=AttributeValue)* ","? "}";
 	public AttributeValueArrayElements getAttributeValueArrayAccess() {
-		return pAttributeValueArray;
+		return (pAttributeValueArray != null) ? pAttributeValueArray : (pAttributeValueArray = new AttributeValueArrayElements());
 	}
 	
 	public ParserRule getAttributeValueArrayRule() {
@@ -2090,7 +2040,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//AttributeValueMap:
 	//	{AttributeValueMap} "{" ":" "}" | "{" elements+=AttributePair ("," elements+=AttributePair)* ","? "}";
 	public AttributeValueMapElements getAttributeValueMapAccess() {
-		return pAttributeValueMap;
+		return (pAttributeValueMap != null) ? pAttributeValueMap : (pAttributeValueMap = new AttributeValueMapElements());
 	}
 	
 	public ParserRule getAttributeValueMapRule() {
@@ -2100,7 +2050,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//AttributePair:
 	//	name=Literal ":" value=AttributeValue;
 	public AttributePairElements getAttributePairAccess() {
-		return pAttributePair;
+		return (pAttributePair != null) ? pAttributePair : (pAttributePair = new AttributePairElements());
 	}
 	
 	public ParserRule getAttributePairRule() {
@@ -2110,7 +2060,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//Grouping:
 	//	"%" name+=[Property|Name] ("," name+=[Property|Name])*;
 	public GroupingElements getGroupingAccess() {
-		return pGrouping;
+		return (pGrouping != null) ? pGrouping : (pGrouping = new GroupingElements());
 	}
 	
 	public ParserRule getGroupingRule() {
@@ -2120,7 +2070,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//ModelMapping:
 	//	"->" "{" {ModelMapping} mappings+=PropertyMapping* "}";
 	public ModelMappingElements getModelMappingAccess() {
-		return pModelMapping;
+		return (pModelMapping != null) ? pModelMapping : (pModelMapping = new ModelMappingElements());
 	}
 	
 	public ParserRule getModelMappingRule() {
@@ -2130,7 +2080,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//PropertyMapping:
 	//	description=Description? attributes=AttributeList? from=[Property|Name] "->" name=Name ";";
 	public PropertyMappingElements getPropertyMappingAccess() {
-		return pPropertyMapping;
+		return (pPropertyMapping != null) ? pPropertyMapping : (pPropertyMapping = new PropertyMappingElements());
 	}
 	
 	public ParserRule getPropertyMappingRule() {
@@ -2140,7 +2090,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//ModelFolding:
 	//	"=>" "{" {ModelFolding} foldings+=PropertyFolding* "}";
 	public ModelFoldingElements getModelFoldingAccess() {
-		return pModelFolding;
+		return (pModelFolding != null) ? pModelFolding : (pModelFolding = new ModelFoldingElements());
 	}
 	
 	public ParserRule getModelFoldingRule() {
@@ -2151,7 +2101,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//	description=Description? attributes=AttributeList? aggregator=QualifiedName from=[Property|Name] ("->" | "=>")
 	//	name=Name ";";
 	public PropertyFoldingElements getPropertyFoldingAccess() {
-		return pPropertyFolding;
+		return (pPropertyFolding != null) ? pPropertyFolding : (pPropertyFolding = new PropertyFoldingElements());
 	}
 	
 	public ParserRule getPropertyFoldingRule() {
@@ -2161,7 +2111,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//Property:
 	//	PropertyDefinition | PropertyMapping | PropertyFolding;
 	public PropertyElements getPropertyAccess() {
-		return pProperty;
+		return (pProperty != null) ? pProperty : (pProperty = new PropertyElements());
 	}
 	
 	public ParserRule getPropertyRule() {
@@ -2171,7 +2121,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//QualifiedNameObject:
 	//	name=QualifiedName;
 	public QualifiedNameObjectElements getQualifiedNameObjectAccess() {
-		return pQualifiedNameObject;
+		return (pQualifiedNameObject != null) ? pQualifiedNameObject : (pQualifiedNameObject = new QualifiedNameObjectElements());
 	}
 	
 	public ParserRule getQualifiedNameObjectRule() {
@@ -2181,7 +2131,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//QualifiedName returns ecore::EString:
 	//	Name ("." Name)*;
 	public QualifiedNameElements getQualifiedNameAccess() {
-		return pQualifiedName;
+		return (pQualifiedName != null) ? pQualifiedName : (pQualifiedName = new QualifiedNameElements());
 	}
 	
 	public ParserRule getQualifiedNameRule() {
@@ -2191,7 +2141,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//Name:
 	//	NAME_TOKEN | "projective" | "joined" | "summarized";
 	public NameElements getNameAccess() {
-		return pName;
+		return (pName != null) ? pName : (pName = new NameElements());
 	}
 	
 	public ParserRule getNameRule() {
@@ -2201,25 +2151,25 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//terminal NAME_TOKEN:
 	//	!(DIGIT_CHAR | SYMBOL_CHAR | BLANK_CHAR) !(SYMBOL_CHAR | BLANK_CHAR)*;
 	public TerminalRule getNAME_TOKENRule() {
-		return tNAME_TOKEN;
+		return (tNAME_TOKEN != null) ? tNAME_TOKEN : (tNAME_TOKEN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NAME_TOKEN"));
 	} 
 
 	//terminal fragment DIGIT_CHAR:
 	//	"0".."9";
 	public TerminalRule getDIGIT_CHARRule() {
-		return tDIGIT_CHAR;
+		return (tDIGIT_CHAR != null) ? tDIGIT_CHAR : (tDIGIT_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DIGIT_CHAR"));
 	} 
 
 	//terminal fragment SYMBOL_CHAR:
 	//	"=" | "{" | "}" | "%" | ":" | "<" | ">" | "@" | "." | "(" | ")" | "\"" | "\'" | "," | "-" | "+" | "*" | "/" | ";";
 	public TerminalRule getSYMBOL_CHARRule() {
-		return tSYMBOL_CHAR;
+		return (tSYMBOL_CHAR != null) ? tSYMBOL_CHAR : (tSYMBOL_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SYMBOL_CHAR"));
 	} 
 
 	/// * Basic Types * / enum BasicType:
 	//	INT | LONG | BYTE | SHORT | DECIMAL | FLOAT | DOUBLE | TEXT | BOOLEAN | DATE | DATETIME;
 	public BasicTypeElements getBasicTypeAccess() {
-		return unknownRuleBasicType;
+		return (unknownRuleBasicType != null) ? unknownRuleBasicType : (unknownRuleBasicType = new BasicTypeElements());
 	}
 	
 	public EnumRule getBasicTypeRule() {
@@ -2229,7 +2179,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	/// * Collection Types * / CollectionType:
 	//	"{" elementType=Type "}" | "{" map?=":" elementType=Type "}";
 	public CollectionTypeElements getCollectionTypeAccess() {
-		return pCollectionType;
+		return (pCollectionType != null) ? pCollectionType : (pCollectionType = new CollectionTypeElements());
 	}
 	
 	public ParserRule getCollectionTypeRule() {
@@ -2241,7 +2191,7 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//Literal:
 	//	stringValue=STRING | intValue=INT | decimalValue=DECIMAL;
 	public LiteralElements getLiteralAccess() {
-		return pLiteral;
+		return (pLiteral != null) ? pLiteral : (pLiteral = new LiteralElements());
 	}
 	
 	public ParserRule getLiteralRule() {
@@ -2252,54 +2202,54 @@ public class DMDLGrammarAccess extends AbstractGrammarElementFinder {
 	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\\") | "\\u" HEX_CHAR HEX_CHAR HEX_CHAR HEX_CHAR | OCTAL_ESCAPE |
 	//	!("\\" | "\""))* "\"";
 	public TerminalRule getSTRINGRule() {
-		return tSTRING;
+		return (tSTRING != null) ? tSTRING : (tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING"));
 	} 
 
 	//terminal fragment HEX_CHAR:
 	//	"0".."9" | "a".."f" | "A".."F";
 	public TerminalRule getHEX_CHARRule() {
-		return tHEX_CHAR;
+		return (tHEX_CHAR != null) ? tHEX_CHAR : (tHEX_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HEX_CHAR"));
 	} 
 
 	//terminal fragment OCTAL_ESCAPE:
 	//	"\\0" ("0".."7" | "0".."7" "0".."7" | "0".."3" "0".."7" "0".."7");
 	public TerminalRule getOCTAL_ESCAPERule() {
-		return tOCTAL_ESCAPE;
+		return (tOCTAL_ESCAPE != null) ? tOCTAL_ESCAPE : (tOCTAL_ESCAPE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OCTAL_ESCAPE"));
 	} 
 
 	//terminal INT returns ecore::EInt:
 	//	"0" | "1".."9" "0".."9"*;
 	public TerminalRule getINTRule() {
-		return tINT;
+		return (tINT != null) ? tINT : (tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INT"));
 	} 
 
 	//terminal DECIMAL returns ecore::EBigDecimal:
 	//	"." "0".."9"+ | "0." "0".."9"* | "1".."9" "0".."9"* "." "0".."9"*;
 	public TerminalRule getDECIMALRule() {
-		return tDECIMAL;
+		return (tDECIMAL != null) ? tDECIMAL : (tDECIMAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DECIMAL"));
 	} 
 
 	//terminal ML_COMMENT:
 	//	"/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
-		return tML_COMMENT;
+		return (tML_COMMENT != null) ? tML_COMMENT : (tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT"));
 	} 
 
 	//terminal SL_COMMENT:
 	//	("//" | "--") !("\n" | "\r")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
-		return tSL_COMMENT;
+		return (tSL_COMMENT != null) ? tSL_COMMENT : (tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT"));
 	} 
 
 	//terminal WS:
 	//	BLANK_CHAR+;
 	public TerminalRule getWSRule() {
-		return tWS;
+		return (tWS != null) ? tWS : (tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS"));
 	} 
 
 	//terminal fragment BLANK_CHAR:
 	//	" " | "\t" | "\r" | "\n";
 	public TerminalRule getBLANK_CHARRule() {
-		return tBLANK_CHAR;
+		return (tBLANK_CHAR != null) ? tBLANK_CHAR : (tBLANK_CHAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "BLANK_CHAR"));
 	} 
 }

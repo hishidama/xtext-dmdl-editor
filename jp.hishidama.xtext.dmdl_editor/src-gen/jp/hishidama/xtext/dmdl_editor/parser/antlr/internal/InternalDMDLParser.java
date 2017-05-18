@@ -24,47 +24,47 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_NAME_TOKEN", "RULE_INT", "RULE_DECIMAL", "RULE_DIGIT_CHAR", "RULE_SYMBOL_CHAR", "RULE_BLANK_CHAR", "RULE_HEX_CHAR", "RULE_OCTAL_ESCAPE", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'projective'", "'='", "'joined'", "'summarized'", "';'", "'+'", "'{'", "'}'", "':'", "','", "'@'", "'('", "')'", "'%'", "'->'", "'=>'", "'.'", "'INT'", "'LONG'", "'BYTE'", "'SHORT'", "'DECIMAL'", "'FLOAT'", "'DOUBLE'", "'TEXT'", "'BOOLEAN'", "'DATE'", "'DATETIME'"
     };
+    public static final int T__29=29;
+    public static final int T__28=28;
+    public static final int T__27=27;
+    public static final int T__26=26;
+    public static final int T__25=25;
+    public static final int RULE_OCTAL_ESCAPE=12;
+    public static final int T__24=24;
+    public static final int T__23=23;
+    public static final int T__22=22;
+    public static final int T__21=21;
+    public static final int T__20=20;
+    public static final int EOF=-1;
     public static final int RULE_DIGIT_CHAR=8;
-    public static final int RULE_HEX_CHAR=11;
     public static final int T__19=19;
     public static final int T__16=16;
-    public static final int T__17=17;
     public static final int T__18=18;
-    public static final int RULE_DECIMAL=7;
-    public static final int T__26=26;
-    public static final int RULE_NAME_TOKEN=5;
-    public static final int T__27=27;
-    public static final int T__28=28;
+    public static final int T__17=17;
     public static final int RULE_INT=6;
-    public static final int T__29=29;
-    public static final int T__22=22;
-    public static final int RULE_OCTAL_ESCAPE=12;
-    public static final int RULE_ML_COMMENT=13;
-    public static final int T__23=23;
-    public static final int T__24=24;
-    public static final int T__25=25;
-    public static final int T__20=20;
-    public static final int T__21=21;
-    public static final int RULE_STRING=4;
-    public static final int RULE_SYMBOL_CHAR=9;
+    public static final int RULE_BLANK_CHAR=10;
+    public static final int RULE_DECIMAL=7;
+    public static final int T__42=42;
+    public static final int T__43=43;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int RULE_HEX_CHAR=11;
     public static final int RULE_SL_COMMENT=14;
-    public static final int T__37=37;
-    public static final int T__38=38;
-    public static final int T__39=39;
+    public static final int RULE_ML_COMMENT=13;
+    public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int T__32=32;
+    public static final int RULE_STRING=4;
     public static final int T__33=33;
     public static final int T__34=34;
     public static final int T__35=35;
     public static final int T__36=36;
-    public static final int EOF=-1;
-    public static final int T__30=30;
-    public static final int T__31=31;
-    public static final int RULE_BLANK_CHAR=10;
-    public static final int T__32=32;
+    public static final int T__37=37;
+    public static final int T__38=38;
+    public static final int RULE_NAME_TOKEN=5;
+    public static final int T__39=39;
+    public static final int RULE_SYMBOL_CHAR=9;
     public static final int RULE_WS=15;
-    public static final int T__40=40;
-    public static final int T__41=41;
-    public static final int T__42=42;
-    public static final int T__43=43;
 
     // delegates
     // delegators
@@ -391,11 +391,11 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                 {
                 int LA5_2 = input.LA(2);
 
-                if ( (LA5_2==RULE_NAME_TOKEN||LA5_2==16||(LA5_2>=18 && LA5_2<=19)) ) {
-                    alt5=2;
-                }
-                else if ( (LA5_2==17) ) {
+                if ( (LA5_2==17) ) {
                     alt5=1;
+                }
+                else if ( (LA5_2==RULE_NAME_TOKEN||LA5_2==16||(LA5_2>=18 && LA5_2<=19)) ) {
+                    alt5=2;
                 }
                 else {
                     NoViableAltException nvae =
@@ -1417,11 +1417,11 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                 {
                 int LA12_2 = input.LA(2);
 
-                if ( (LA12_2==24) ) {
-                    alt12=1;
-                }
-                else if ( (LA12_2==17) ) {
+                if ( (LA12_2==17) ) {
                     alt12=2;
+                }
+                else if ( (LA12_2==24) ) {
+                    alt12=1;
                 }
                 else {
                     NoViableAltException nvae =
@@ -1453,11 +1453,11 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                 {
                 int LA12_4 = input.LA(2);
 
-                if ( (LA12_4==24) ) {
-                    alt12=1;
-                }
-                else if ( (LA12_4==17) ) {
+                if ( (LA12_4==17) ) {
                     alt12=2;
+                }
+                else if ( (LA12_4==24) ) {
+                    alt12=1;
                 }
                 else {
                     NoViableAltException nvae =
@@ -2254,11 +2254,11 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
             if ( (LA19_0==22) ) {
                 int LA19_1 = input.LA(2);
 
-                if ( (LA19_1==RULE_STRING||(LA19_1>=RULE_INT && LA19_1<=RULE_DECIMAL)) ) {
-                    alt19=2;
-                }
-                else if ( (LA19_1==24) ) {
+                if ( (LA19_1==24) ) {
                     alt19=1;
+                }
+                else if ( (LA19_1==RULE_STRING||(LA19_1>=RULE_INT && LA19_1<=RULE_DECIMAL)) ) {
+                    alt19=2;
                 }
                 else {
                     NoViableAltException nvae =
@@ -4450,6 +4450,11 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
             case 22:
                 {
                 switch ( input.LA(2) ) {
+                case 24:
+                    {
+                    alt31=2;
+                    }
+                    break;
                 case RULE_NAME_TOKEN:
                 case 16:
                 case 18:
@@ -4462,31 +4467,13 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     break;
                 case RULE_STRING:
                     {
-                    int LA31_5 = input.LA(3);
-
-                    if ( (LA31_5==23||LA31_5==25) ) {
-                        alt31=1;
-                    }
-                    else if ( (LA31_5==24) ) {
-                        alt31=2;
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 31, 5, input);
-
-                        throw nvae;
-                    }
-                    }
-                    break;
-                case RULE_INT:
-                    {
                     int LA31_6 = input.LA(3);
 
-                    if ( (LA31_6==23||LA31_6==25) ) {
-                        alt31=1;
-                    }
-                    else if ( (LA31_6==24) ) {
+                    if ( (LA31_6==24) ) {
                         alt31=2;
+                    }
+                    else if ( (LA31_6==23||LA31_6==25) ) {
+                        alt31=1;
                     }
                     else {
                         NoViableAltException nvae =
@@ -4496,15 +4483,15 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     }
                     break;
-                case RULE_DECIMAL:
+                case RULE_INT:
                     {
                     int LA31_7 = input.LA(3);
 
-                    if ( (LA31_7==23||LA31_7==25) ) {
-                        alt31=1;
-                    }
-                    else if ( (LA31_7==24) ) {
+                    if ( (LA31_7==24) ) {
                         alt31=2;
+                    }
+                    else if ( (LA31_7==23||LA31_7==25) ) {
+                        alt31=1;
                     }
                     else {
                         NoViableAltException nvae =
@@ -4514,9 +4501,22 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
                     }
                     }
                     break;
-                case 24:
+                case RULE_DECIMAL:
                     {
-                    alt31=2;
+                    int LA31_8 = input.LA(3);
+
+                    if ( (LA31_8==24) ) {
+                        alt31=2;
+                    }
+                    else if ( (LA31_8==23||LA31_8==25) ) {
+                        alt31=1;
+                    }
+                    else {
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 31, 8, input);
+
+                        throw nvae;
+                    }
                     }
                     break;
                 default:
@@ -5058,11 +5058,11 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
             if ( (LA37_0==22) ) {
                 int LA37_1 = input.LA(2);
 
-                if ( (LA37_1==RULE_STRING||(LA37_1>=RULE_INT && LA37_1<=RULE_DECIMAL)) ) {
-                    alt37=2;
-                }
-                else if ( (LA37_1==24) ) {
+                if ( (LA37_1==24) ) {
                     alt37=1;
+                }
+                else if ( (LA37_1==RULE_STRING||(LA37_1>=RULE_INT && LA37_1<=RULE_DECIMAL)) ) {
+                    alt37=2;
                 }
                 else {
                     NoViableAltException nvae =
@@ -6841,11 +6841,11 @@ public class InternalDMDLParser extends AbstractInternalAntlrParser {
             if ( (LA48_0==22) ) {
                 int LA48_1 = input.LA(2);
 
-                if ( (LA48_1==22||(LA48_1>=33 && LA48_1<=43)) ) {
-                    alt48=1;
-                }
-                else if ( (LA48_1==24) ) {
+                if ( (LA48_1==24) ) {
                     alt48=2;
+                }
+                else if ( (LA48_1==22||(LA48_1>=33 && LA48_1<=43)) ) {
+                    alt48=1;
                 }
                 else {
                     NoViableAltException nvae =

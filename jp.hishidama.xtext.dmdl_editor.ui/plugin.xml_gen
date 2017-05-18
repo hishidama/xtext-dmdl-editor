@@ -250,9 +250,7 @@
    <extension
          point="org.eclipse.xtext.builder.participant">
       <participant
-            class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
-            fileExtensions="dmdl"
-            >
+            class="jp.hishidama.xtext.dmdl_editor.ui.DMDLExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant">
       </participant>
    </extension>
    <extension

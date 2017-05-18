@@ -4,7 +4,7 @@
     editorDirectory="/jp.hishidama.xtext.dmdl_editor.editor/src" modelPluginID="jp.hishidama.xtext.dmdl_editor"
     forceOverwrite="true" modelName="DMDL" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="jp.hishidama.xtext.dmdl_editor.edit"
-    editorPluginID="jp.hishidama.xtext.dmdl_editor.editor" runtimeVersion="2.10">
+    editorPluginID="jp.hishidama.xtext.dmdl_editor.editor" runtimeVersion="2.9">
   <genPackages prefix="Dmdl" basePackage="jp.hishidama.xtext.dmdl_editor" disposableProviderFactory="true"
       fileExtensions="dmdl" ecorePackage="DMDL.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="DMDL.ecore#//BasicType">
