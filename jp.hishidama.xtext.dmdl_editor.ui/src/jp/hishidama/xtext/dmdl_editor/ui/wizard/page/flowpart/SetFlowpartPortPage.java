@@ -117,15 +117,12 @@ public class SetFlowpartPortPage extends EditWizardPage {
 		try {
 			Map<String, String> genericsMap = new HashMap<String, String>();
 			for (ITypeParameter param : type.getTypeParameters()) {
-				String name = param.getElementName();
-				StringBuilder sb = new StringBuilder(128);
+				String genericsName = param.getElementName();
+				String className = null;
 				for (String bound : param.getBounds()) {
-					if (sb.length() != 0) {
-						sb.append("& ");
-					}
-					sb.append(bound);
+					className = FlowpartModelRow.catModelClassName(className, bound);
 				}
-				genericsMap.put(name, sb.toString());
+				genericsMap.put(genericsName, className);
 			}
 
 			Map<String, String> paramJavadoc = JavadocUtil.getParamMap(JavadocUtil.getJavadoc(constructor));
@@ -146,15 +143,13 @@ public class SetFlowpartPortPage extends EditWizardPage {
 
 				String genericsBound = genericsMap.get(modelClassName);
 				if (genericsBound != null) {
-					row.projective = true;
 					row.genericsName = modelClassName;
 					row.setModelClassName(genericsBound);
-					for (String boundClassName : genericsBound.split("&")) {
-						ModelDefinition model = ModelUiUtil.findModelByClass(project, boundClassName.trim());
+					for (String boundClassName : row.getModelClassNames()) {
+						ModelDefinition model = ModelUiUtil.findModelByClass(project, boundClassName);
 						if (model != null) {
-							row.modelName = model.getName();
-							row.modelDescription = ModelUtil.getDecodedDescriptionText(model);
-							break;
+							row.modelName = FlowpartModelRow.catModelName(row.modelName, model.getName());
+							row.modelDescription = FlowpartModelRow.catModelDescription(row.modelDescription, ModelUtil.getDecodedDescriptionText(model));
 						}
 					}
 				} else {
@@ -338,8 +333,7 @@ public class SetFlowpartPortPage extends EditWizardPage {
 				row.modelName = modelName;
 				row.modelDescription = ModelUtil.getDecodedDescriptionText(model);
 				row.comment = row.modelDescription;
-				row.projective = ModelUtil.isProjective(model);
-				if (row.projective) {
+				if (ModelUtil.isProjective(model)) {
 					row.genericsName = modelName.substring(0, 1).toUpperCase();
 				}
 

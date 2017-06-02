@@ -29,8 +29,7 @@ public class NewFlowpartClassGenerator extends ClassGenerator {
 		this.srcDir = dir;
 	}
 
-	public void generate(String packageName, String className, String description, List<FlowpartModelRow> modelList,
-			List<ArgumentRow> argList) throws CoreException {
+	public void generate(String packageName, String className, String description, List<FlowpartModelRow> modelList, List<ArgumentRow> argList) throws CoreException {
 		this.description = description;
 		this.modelList = modelList;
 		this.argList = argList;
@@ -84,7 +83,7 @@ public class NewFlowpartClassGenerator extends ClassGenerator {
 
 		Set<String> set = new HashSet<String>();
 		for (FlowpartModelRow row : modelList) {
-			if (row.projective) {
+			if (row.isGenerics()) {
 				String key = String.format("<%s>%s", row.genericsName, row.getModelClassName());
 				if (!set.contains(key)) {
 					set.add(key);

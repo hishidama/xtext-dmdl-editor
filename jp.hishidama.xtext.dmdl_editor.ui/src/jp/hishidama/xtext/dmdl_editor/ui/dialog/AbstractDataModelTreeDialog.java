@@ -1,5 +1,8 @@
 package jp.hishidama.xtext.dmdl_editor.ui.dialog;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jp.hishidama.eclipse_plugin.dialog.EditDialog;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
@@ -14,6 +17,7 @@ import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -106,6 +110,7 @@ public abstract class AbstractDataModelTreeDialog extends EditDialog {
 
 	@Override
 	protected void refresh() {
+		List<TreeItem> selectionList = new ArrayList<TreeItem>();
 		all: for (TreeItem row : tree.getTree().getItems()) {
 			for (TreeItem item : row.getItems()) {
 				DMDLTreeData data = (DMDLTreeData) item.getData();
@@ -116,7 +121,7 @@ public abstract class AbstractDataModelTreeDialog extends EditDialog {
 				if (obj instanceof ModelDefinition) {
 					ModelDefinition model = (ModelDefinition) obj;
 					if (isSelectedModel(data, model)) {
-						tree.getTree().setSelection(item);
+						selectionList.add(item);
 						if (expandProperty()) {
 							tree.expandToLevel(data, 1);
 						}
@@ -130,17 +135,21 @@ public abstract class AbstractDataModelTreeDialog extends EditDialog {
 							if (obj instanceof Property) {
 								Property property = (Property) obj;
 								if (isSelectedProperty(data, model, property)) {
-									tree.getTree().setSelection(child);
+									selectionList.remove(item);
+									selectionList.add(child);
 									break;
 								}
 							}
 						}
 
-						break all;
+						if ((getDataModelTreeStyle() & SWT.MULTI) == 0) {
+							break all;
+						}
 					}
 				}
 			}
 		}
+		tree.getTree().setSelection(selectionList.toArray(new TreeItem[selectionList.size()]));
 		refreshOkButton();
 	}
 

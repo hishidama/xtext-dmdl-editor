@@ -3,13 +3,16 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 
 public class FlowpartModelRow implements Cloneable {
+	private static final String MODEL_CLASS_DELIMITTER = " & ";
+	public static final String MODEL_NAME_DELIMITTER = " + ";
+	private static final String MODEL_DESC_DELIMITTER = ", ";
+
 	public boolean in;
 	public String name;
 	public String comment;
 	private String modelClassName;
 	public String modelName;
 	public String modelDescription;
-	public boolean projective;
 	public String genericsName;
 
 	public String getIn() {
@@ -24,8 +27,48 @@ public class FlowpartModelRow implements Cloneable {
 		return modelClassName;
 	}
 
+	public String[] getModelClassNames() {
+		return modelClassName.split(MODEL_CLASS_DELIMITTER);
+	}
+
+	public static String catModelClassName(String s, String name) {
+		if (name == null) {
+			return s;
+		}
+		if (s == null) {
+			return name;
+		} else {
+			return s + MODEL_CLASS_DELIMITTER + name;
+		}
+	}
+
+	public static String catModelName(String s, String name) {
+		assert name != null;
+		if (s == null) {
+			return name;
+		} else {
+			return s + MODEL_NAME_DELIMITTER + name;
+		}
+	}
+
+	public static String catModelDescription(String s, String description) {
+		assert description != null;
+		if (s == null || s.isEmpty()) {
+			return description;
+		} else {
+			if (!description.isEmpty()) {
+				return s + MODEL_DESC_DELIMITTER + description;
+			}
+			return s;
+		}
+	}
+
+	public boolean isGenerics() {
+		return genericsName != null && !genericsName.isEmpty();
+	}
+
 	public String getModelTypeName() {
-		if (projective) {
+		if (isGenerics()) {
 			return genericsName;
 		}
 		return modelClassName;

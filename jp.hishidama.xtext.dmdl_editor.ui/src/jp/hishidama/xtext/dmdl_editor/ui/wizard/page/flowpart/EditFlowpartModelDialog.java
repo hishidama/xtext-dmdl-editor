@@ -1,13 +1,14 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import jp.hishidama.eclipse_plugin.dialog.EditDialog;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
-import jp.hishidama.xtext.dmdl_editor.ui.dialog.DmdlModelSelectionDialog;
+import jp.hishidama.xtext.dmdl_editor.ui.dialog.DmdlModelMultiSelectionDialog;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.window.Window;
@@ -46,7 +47,6 @@ public class EditFlowpartModelDialog extends EditDialog {
 
 		genericsNameText = createTextField(composite, "generics name");
 		genericsNameText.setText(nonNull(row.genericsName));
-		genericsNameText.setEditable(row.projective);
 		genericsNameText.setToolTipText("射影モデルを使う場合は、型変数名を入力して下さい。");
 
 		nameText = createTextField(composite, "name");
@@ -76,32 +76,45 @@ public class EditFlowpartModelDialog extends EditDialog {
 		refreshOkButton();
 	}
 
+	private static final String MODEL_NAME_DELIMITTER_PATTERN = Pattern.quote(FlowpartModelRow.MODEL_NAME_DELIMITTER);
+
 	protected void selectDataModel() {
-		DmdlModelSelectionDialog dialog = new DmdlModelSelectionDialog(getShell(), project);
-		dialog.setInitialModel(modelNameText.getText());
+		DmdlModelMultiSelectionDialog dialog = new DmdlModelMultiSelectionDialog(getShell(), project);
+		dialog.setInitialModel(modelNameText.getText().split(MODEL_NAME_DELIMITTER_PATTERN));
 		if (dialog.open() != Window.OK) {
 			return;
 		}
 
-		ModelDefinition model = dialog.getSelectedDataModel();
-		String modelName = nonNull(model.getName());
-		String modelDescription = ModelUtil.getDecodedDescriptionText(model);
+		List<ModelDefinition> list = dialog.getSelectedDataModelList();
+		String modelName = null;
+		String modelDescription = null;
+		String modelClassName = null;
+		String genericsName = null;
+		for (ModelDefinition model : list) {
+			String mname = nonNull(model.getName());
+			modelName = FlowpartModelRow.catModelName(modelName, mname);
+			modelDescription = FlowpartModelRow.catModelDescription(modelDescription, ModelUtil.getDecodedDescriptionText(model));
+			modelClassName = FlowpartModelRow.catModelClassName(modelClassName, ModelUiUtil.getModelClassName(project, mname));
+
+			if (genericsName == null) {
+				if (list.size() >= 2 || ModelUtil.isProjective(model)) {
+					genericsName = mname.substring(0, 1).toUpperCase();
+				}
+			}
+		}
 		modelNameText.setText(modelName);
 		modelDescText.setText(modelDescription);
-		this.modelClassName = ModelUiUtil.getModelClassName(project, modelName);
+		this.modelClassName = modelClassName;
 		if (nameText.getText().trim().isEmpty()) {
-			nameText.setText(StringUtil.toLowerCamelCase(modelName));
+			nameText.setText(StringUtil.toLowerCamelCase(modelName.replaceAll(MODEL_NAME_DELIMITTER_PATTERN, "_")));
 		}
 		if (commentText.getText().isEmpty()) {
 			commentText.setText(modelDescription);
 		}
-		if (ModelUtil.isProjective(model)) {
-			genericsNameText.setEditable(true);
+		if (genericsName != null) {
 			if (genericsNameText.getText().trim().isEmpty()) {
-				genericsNameText.setText(modelName.substring(0, 1).toUpperCase());
+				genericsNameText.setText(genericsName);
 			}
-		} else {
-			genericsNameText.setEditable(false);
 		}
 	}
 
@@ -129,12 +142,7 @@ public class EditFlowpartModelDialog extends EditDialog {
 		row.setModelClassName(modelClassName);
 		row.modelName = modelNameText.getText();
 		row.modelDescription = modelDescText.getText();
-		row.projective = genericsNameText.getEditable();
-		if (row.projective) {
-			row.genericsName = genericsNameText.getText().trim();
-		} else {
-			row.genericsName = null;
-		}
+		row.genericsName = genericsNameText.getText().trim();
 
 		super.okPressed();
 	}

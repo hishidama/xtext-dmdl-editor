@@ -23,7 +23,7 @@ public abstract class DataModelTreeMultiDialog extends AbstractDataModelTreeDial
 
 	public void setInitialModel(String... name) {
 		names.clear();
-		for (String s : names) {
+		for (String s : name) {
 			names.add(s);
 		}
 	}

@@ -67,7 +67,7 @@ public class FlowpartClassModifier extends AstRewriteUtility {
 
 			List<FlowpartModelRow> list = getGenericsModelList();
 			for (FlowpartModelRow row : list) {
-				if (row.projective) {
+				if (row.isGenerics()) {
 					set.add(row.genericsName);
 				}
 			}
@@ -87,7 +87,7 @@ public class FlowpartClassModifier extends AstRewriteUtility {
 	}
 
 	private void collectGenericsModelList(List<FlowpartModelRow> list, FlowpartModelRow row, Set<String> set) {
-		if (row.projective) {
+		if (row.isGenerics()) {
 			String key = String.format("<%s>%s", row.genericsName, row.getModelClassName());
 			if (!set.contains(key)) {
 				set.add(key);
@@ -173,7 +173,9 @@ public class FlowpartClassModifier extends AstRewriteUtility {
 			TypeParameter param = ast.newTypeParameter();
 			param.setName(ast.newSimpleName(row.genericsName));
 			List<Type> bounds = param.typeBounds();
-			bounds.add(newType(row.getModelClassName()));
+			for (String className : row.getModelClassNames()) {
+				bounds.add(newType(className));
+			}
 
 			if (prev == null) {
 				rewriter.insertFirst(param, null);
