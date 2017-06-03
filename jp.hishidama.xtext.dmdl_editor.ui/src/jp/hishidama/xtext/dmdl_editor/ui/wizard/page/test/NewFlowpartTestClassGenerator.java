@@ -73,7 +73,7 @@ public class NewFlowpartTestClassGenerator extends NewFlowTestClassGenerator {
 	protected void appendRunTest(StringBuilder sb) {
 		sb.append("\t\t");
 		sb.append(getCachedClassName("com.asakusafw.vocabulary.flow.FlowDescription"));
-		sb.append(" flowPart = new ");
+		sb.append(" flow = new ");
 		sb.append(getCachedClassName(classUnderTestName));
 		if (!typeParameterMap.isEmpty()) {
 			sb.append("<");
@@ -100,6 +100,6 @@ public class NewFlowpartTestClassGenerator extends NewFlowTestClassGenerator {
 		}
 		sb.append(");\n");
 
-		sb.append("\t\ttester.runTest(flowPart);\n");
+		sb.append("\t\ttester.runTest(flow);\n");
 	}
 }

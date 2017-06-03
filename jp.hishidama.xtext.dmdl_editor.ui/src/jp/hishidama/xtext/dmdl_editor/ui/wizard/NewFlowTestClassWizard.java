@@ -237,7 +237,7 @@ public class NewFlowTestClassWizard extends NewClassWizard {
 	}
 
 	private NewFlowTestClassGenerator createGenerator(Map<String, String> typeParameterMap) {
-		if (classPage.isJobFlow()) {
+		if (classPage.isJobFlowTester()) {
 			return new NewJobflowTestClassGenerator(classPage.getJavaProject().getProject(), classPage
 					.getPackageFragmentRoot().getPath());
 		} else {
