@@ -15,14 +15,19 @@ import org.eclipse.jdt.core.dom.MemberValuePair;
 import org.eclipse.jdt.core.dom.NormalAnnotation;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 
-public class ModelFinder extends ASTVisitor {
+/**
+ * <pre>
+ * &#064;Key(group=対象 , order=対象)
+ * </pre>
+ */
+public class KeyMemberFinder extends ASTVisitor {
 	private ICompilationUnit unit;
 	private int offset;
 
 	private SingleVariableDeclaration declaration;
 	private String memberName;
 
-	public ModelFinder(ICompilationUnit unit, int offset) {
+	public KeyMemberFinder(ICompilationUnit unit, int offset) {
 		this.unit = unit;
 		this.offset = offset;
 	}

@@ -9,6 +9,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil.NamePosition;
+import jp.hishidama.xtext.dmdl_editor.jdt.assist.ImporterStringFinder;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.core.IType;
@@ -22,6 +23,27 @@ import org.eclipse.jdt.core.dom.StringLiteral;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.Region;
 
+/**
+ * 
+ * <pre>
+ * public class Exporter {
+ *   public String getBasePath()　{　// 対象
+ *     return "";
+ *   }
+ *   public String getResourcePattern()　{
+ *     return "{対象}";
+ *   }
+ *   public List&lt;String&gt; getOrder() {
+ *     return Arrays.asList("対象");
+ *   }
+ *   public List&lt;String&gt; getDeletePatterns() {　// 対象
+ *     return Arrays.asList("");
+ *   }
+ * }
+ * </pre>
+ * 
+ * @see ImporterStringFinder
+ */
 public class ExporterPropertyStringFinder extends ASTVisitor {
 	private IType type;
 	private int offset;
@@ -166,8 +188,7 @@ public class ExporterPropertyStringFinder extends ASTVisitor {
 				for (NamePosition pos : list) {
 					int offset = node.getStartPosition() + 1 + pos.getOffset();
 					int length = pos.getLength();
-					if (offset <= ExporterPropertyStringFinder.this.offset
-							&& ExporterPropertyStringFinder.this.offset <= offset + length) {
+					if (offset <= ExporterPropertyStringFinder.this.offset && ExporterPropertyStringFinder.this.offset <= offset + length) {
 						text = value;
 						textRegion = new Region(node.getStartPosition() + 1, node.getLength() - 2);
 						propertyName = pos.getName(value).trim();

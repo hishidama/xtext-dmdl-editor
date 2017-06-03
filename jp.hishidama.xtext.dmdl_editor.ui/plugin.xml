@@ -1667,7 +1667,7 @@
       <javaCompletionProposalComputer
             activate="true"
             categoryId="jp.hishidama.xtext.dmdl_editor.ui.jdt.assist.category"
-            class="jp.hishidama.xtext.dmdl_editor.jdt.assist.KeyStringDmdlCompletionProposalComputer"
+            class="jp.hishidama.xtext.dmdl_editor.jdt.assist.StringDmdlCompletionProposalComputer"
             needsSortingAfterFiltering="false">
          <partition
                type="__java_string">

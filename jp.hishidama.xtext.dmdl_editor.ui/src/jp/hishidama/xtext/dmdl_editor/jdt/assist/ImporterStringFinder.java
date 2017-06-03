@@ -3,6 +3,7 @@ package jp.hishidama.xtext.dmdl_editor.jdt.assist;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
+import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.ExporterPropertyStringFinder;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.core.IType;
@@ -13,6 +14,21 @@ import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.StringLiteral;
 
+/**
+ * 
+ * <pre>
+ * public class Importer {
+ *   public String getBasePath()　{
+ *     return "対象";
+ *   }
+ *   public String getResourcePattern()　{
+ *     return "対象";
+ *   }
+ * }
+ * </pre>
+ * 
+ * @see ExporterPropertyStringFinder
+ */
 public class ImporterStringFinder extends ASTVisitor {
 	private IType type;
 	private int offset;

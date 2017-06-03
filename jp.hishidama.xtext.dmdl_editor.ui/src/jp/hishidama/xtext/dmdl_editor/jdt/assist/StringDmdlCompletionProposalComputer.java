@@ -23,15 +23,17 @@ import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 
-public class KeyStringDmdlCompletionProposalComputer implements IJavaCompletionProposalComputer {
+/**
+ * 文字列内の入力補完
+ */
+public class StringDmdlCompletionProposalComputer implements IJavaCompletionProposalComputer {
 
 	// @Override
 	public void sessionStarted() {
 	}
 
 	// @Override
-	public List<ICompletionProposal> computeCompletionProposals(ContentAssistInvocationContext context,
-			IProgressMonitor monitor) {
+	public List<ICompletionProposal> computeCompletionProposals(ContentAssistInvocationContext context, IProgressMonitor monitor) {
 		if (!(context instanceof JavaContentAssistInvocationContext)) {
 			return Collections.emptyList();
 		}
@@ -88,8 +90,7 @@ public class KeyStringDmdlCompletionProposalComputer implements IJavaCompletionP
 		return name.substring(0, len);
 	}
 
-	private List<ICompletionProposal> getModelProposal(String methodName, ModelDefinition model, int offset,
-			boolean importer) {
+	private List<ICompletionProposal> getModelProposal(String methodName, ModelDefinition model, int offset, boolean importer) {
 		final boolean exporter = !importer;
 
 		List<ICompletionProposal> list = new ArrayList<ICompletionProposal>();
@@ -145,8 +146,7 @@ public class KeyStringDmdlCompletionProposalComputer implements IJavaCompletionP
 		return list;
 	}
 
-	private List<ICompletionProposal> getOrderProposal(IRegion propertyRegion, String text, IRegion textRegion,
-			int offset) {
+	private List<ICompletionProposal> getOrderProposal(IRegion propertyRegion, String text, IRegion textRegion, int offset) {
 		int propertyEnd = propertyRegion.getOffset() + propertyRegion.getLength();
 		int textEnd = textRegion.getOffset() + textRegion.getLength();
 		int start = propertyEnd + 1;
@@ -166,8 +166,7 @@ public class KeyStringDmdlCompletionProposalComputer implements IJavaCompletionP
 	}
 
 	// @Override
-	public List<IContextInformation> computeContextInformation(ContentAssistInvocationContext context,
-			IProgressMonitor monitor) {
+	public List<IContextInformation> computeContextInformation(ContentAssistInvocationContext context, IProgressMonitor monitor) {
 		return null;
 	}
 

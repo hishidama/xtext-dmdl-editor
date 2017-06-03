@@ -17,7 +17,11 @@ import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.ASTVisitor;
+import org.eclipse.jdt.core.dom.Expression;
+import org.eclipse.jdt.core.dom.IMethodBinding;
+import org.eclipse.jdt.core.dom.ITypeBinding;
 import org.eclipse.jdt.core.dom.MemberValuePair;
+import org.eclipse.jdt.core.dom.MethodInvocation;
 import org.eclipse.jdt.core.dom.NormalAnnotation;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import org.eclipse.jdt.core.dom.StringLiteral;
@@ -25,6 +29,15 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.Region;
 
+/**
+ * <pre>
+ * &#064;Key(group = { "対象" }, order = { "対象" })
+ * </pre>
+ * 
+ * <pre>
+ * OperatorTestEnvironment.loader().group(&quot;対象&quot;).order(&quot;対象&quot;).asView()
+ * </pre>
+ */
 public class KeyPropertyStringFinder extends ASTVisitor {
 	private ICompilationUnit unit;
 	private int offset;
@@ -105,6 +118,7 @@ public class KeyPropertyStringFinder extends ASTVisitor {
 		ASTParser parser = ASTParser.newParser(AST.JLS4);
 		parser.setSource(unit);
 		parser.setSourceRange(offset, 1);
+		parser.setResolveBindings(true);
 		ASTNode node = parser.createAST(new NullProgressMonitor());
 		node.accept(this);
 	}
@@ -167,33 +181,84 @@ public class KeyPropertyStringFinder extends ASTVisitor {
 			return true;
 		}
 
-		node.getValue().accept(new ASTVisitor() {
-			@Override
-			public boolean preVisit2(ASTNode node) {
-				return include(node);
-			}
+		node.getValue().accept(new StringVisitor());
+		return false;
+	}
 
-			@Override
-			public boolean visit(StringLiteral node) {
-				String value = node.getLiteralValue();
-				NamePosition pos;
-				if (value.isEmpty()) {
-					pos = new NamePosition(0, 0);
-				} else {
-					pos = PropertyUtil.findName(value);
-					if (pos == null) {
-						return false;
-					}
+	private class StringVisitor extends ASTVisitor {
+		@Override
+		public boolean preVisit2(ASTNode node) {
+			return include(node);
+		}
+
+		@Override
+		public boolean visit(StringLiteral node) {
+			String value = node.getLiteralValue();
+			NamePosition pos;
+			if (value.isEmpty()) {
+				pos = new NamePosition(0, 0);
+			} else {
+				pos = PropertyUtil.findName(value);
+				if (pos == null) {
+					return false;
 				}
-
-				text = value;
-				textRegion = new Region(node.getStartPosition() + 1, node.getLength() - 2);
-				propertyName = pos.getName(value);
-				region = new Region(node.getStartPosition() + 1 + pos.getOffset(), pos.getLength());
-				return false;
 			}
-		});
 
+			text = value;
+			textRegion = new Region(node.getStartPosition() + 1, node.getLength() - 2);
+			propertyName = pos.getName(value);
+			region = new Region(node.getStartPosition() + 1 + pos.getOffset(), pos.getLength());
+			return false;
+		}
+	}
+
+	@Override
+	public boolean visit(MethodInvocation node) {
+		{
+			int count = 0;
+			for (Object obj : node.arguments()) {
+				Expression arg = (Expression) obj;
+				if (include(arg)) {
+					count++;
+				}
+			}
+			if (count != 1) {
+				return true;
+			}
+		}
+
+		String name = node.getName().getIdentifier();
+		// System.out.println(node);
+
+		String expected;
+		{
+			if ("group".equals(name)) {
+				expected = "com.asakusafw.testdriver.loader.DataLoader";
+			} else if ("order".equals(name)) {
+				expected = "com.asakusafw.testdriver.loader.GroupLoader";
+			} else {
+				return true;
+			}
+		}
+		String decl = null;
+		{
+			IMethodBinding method = node.resolveMethodBinding();
+			if (method != null) {
+				ITypeBinding type = method.getDeclaringClass();
+				if (type != null) {
+					decl = type.getBinaryName();
+				}
+			}
+		}
+		if (!expected.equals(decl)) {
+			return true;
+		}
+
+		node.accept(new StringVisitor());
+		if (this.propertyName != null) {
+			this.memberName = name;
+			this.declarationType = AfwStringUtil.extractTypeParameter(node.resolveTypeBinding().getName());
+		}
 		return false;
 	}
 }

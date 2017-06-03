@@ -19,6 +19,15 @@ import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 
+/**
+ * &#064;Keyのgroup, orderの補完
+ * 
+ * <pre>
+ * &#064;Key(group = { 対象 } , order = { 対象 })
+ * </pre>
+ * 
+ * @see StringDmdlCompletionProposalComputer
+ */
 public class KeyDmdlCompletionProposalComputer implements IJavaCompletionProposalComputer {
 
 	// @Override
@@ -26,8 +35,7 @@ public class KeyDmdlCompletionProposalComputer implements IJavaCompletionProposa
 	}
 
 	// @Override
-	public List<ICompletionProposal> computeCompletionProposals(ContentAssistInvocationContext context,
-			IProgressMonitor monitor) {
+	public List<ICompletionProposal> computeCompletionProposals(ContentAssistInvocationContext context, IProgressMonitor monitor) {
 		if (!isAssist(context)) {
 			return Collections.emptyList();
 		}
@@ -39,7 +47,7 @@ public class KeyDmdlCompletionProposalComputer implements IJavaCompletionProposa
 
 		ICompilationUnit cu = javaContext.getCompilationUnit();
 		int offset = context.getInvocationOffset();
-		ModelFinder finder = new ModelFinder(cu, offset);
+		KeyMemberFinder finder = new KeyMemberFinder(cu, offset);
 
 		ModelDefinition model = finder.getModel();
 		if (model == null) {
@@ -82,8 +90,7 @@ public class KeyDmdlCompletionProposalComputer implements IJavaCompletionProposa
 	}
 
 	// @Override
-	public List<IContextInformation> computeContextInformation(ContentAssistInvocationContext context,
-			IProgressMonitor monitor) {
+	public List<IContextInformation> computeContextInformation(ContentAssistInvocationContext context, IProgressMonitor monitor) {
 		return null;
 	}
 
