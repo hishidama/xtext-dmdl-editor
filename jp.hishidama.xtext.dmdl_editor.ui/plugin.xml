@@ -1101,7 +1101,7 @@
             <command
                   commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
                   icon="icons/ch_callers.gif"
-                  label="mapreduceCompileBatchapps (afw0.8)"
+                  label="mapreduceCompileBatchapps (afw0.8-)"
                   style="push">
                <parameter
                      name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
@@ -1188,7 +1188,7 @@
                   style="pulldown">
                <parameter
                      name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
-                     value="compileBatchapp">
+                     value="recompile">
                </parameter>
             </command>
          </toolbar>
@@ -1317,7 +1317,7 @@
          <command
                commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
                icon="icons/ch_callers.gif"
-               label="mapreduceCompileBatchapps (afw0.8)"
+               label="mapreduceCompileBatchapps (afw0.8-)"
                style="push">
             <parameter
                   name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
@@ -1965,7 +1965,7 @@
             <command
                   commandId="jp.hishidama.asakusafwWrapper.command.batchCompile.editorMenu"
                   icon="icons/ch_callers.gif"
-                  label="mapreduceCompileBatchapps (afw0.8)"
+                  label="mapreduceCompileBatchapps (afw0.8-)"
                   style="push">
                <parameter
                      name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
