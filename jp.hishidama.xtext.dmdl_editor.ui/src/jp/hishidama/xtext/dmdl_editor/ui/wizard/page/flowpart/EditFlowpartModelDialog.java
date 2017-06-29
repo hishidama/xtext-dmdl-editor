@@ -126,11 +126,6 @@ public class EditFlowpartModelDialog extends EditDialog {
 		if (StringUtil.isEmpty(modelNameText.getText().trim())) {
 			return false;
 		}
-		if (genericsNameText.getEditable()) {
-			if (StringUtil.isEmpty(genericsNameText.getText().trim())) {
-				return false;
-			}
-		}
 		return true;
 	}
 
