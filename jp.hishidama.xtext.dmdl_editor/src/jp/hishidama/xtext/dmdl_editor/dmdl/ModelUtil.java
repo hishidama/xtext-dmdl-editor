@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -119,6 +120,18 @@ public class ModelUtil {
 		Set<String> set = new HashSet<String>();
 		resolveProperties(list, model, set);
 		return list;
+	}
+
+	public static Map<String, Property> toMap(List<Property> list) {
+		if (list == null) {
+			return Collections.emptyMap();
+		}
+
+		Map<String, Property> map = new LinkedHashMap<String, Property>(list.size());
+		for (Property property : list) {
+			map.put(property.getName(), property);
+		}
+		return map;
 	}
 
 	private static void resolveProperties(List<Property> list, ModelDefinition model, Set<String> set) {

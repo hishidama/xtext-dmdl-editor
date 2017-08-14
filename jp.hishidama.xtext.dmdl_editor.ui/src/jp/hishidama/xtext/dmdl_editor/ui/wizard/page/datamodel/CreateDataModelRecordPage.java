@@ -8,6 +8,7 @@ import java.text.MessageFormat;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil.PropertyExpressionType;
 import jp.hishidama.xtext.dmdl_editor.validation.ErrorStatus;
 import jp.hishidama.xtext.dmdl_editor.validation.ValidationUtil;
 
@@ -16,6 +17,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.window.Window;
 
 class DataModelRecordRow extends DataModelRow {
+
+	public String propertyCollection;
 
 	@Override
 	public String getText(int columnIndex) {
@@ -27,9 +30,22 @@ class DataModelRecordRow extends DataModelRow {
 		case 2:
 			return dataType;
 		case 3:
+			if (propertyCollection != null && !propertyCollection.isEmpty()) {
+				int n = propertyCollection.indexOf('=');
+				if (n >= 0) {
+					String list = propertyCollection.substring(n + 1).trim();
+					if (!list.isEmpty()) {
+						return list;
+					} else {
+						String type = propertyCollection.substring(0, n).trim();
+						return type;
+					}
+				}
+				return propertyCollection.trim();
+			}
 			return refModelName;
 		default:
-			throw new UnsupportedOperationException(MessageFormat.format("index={0}", columnIndex));
+			throw new AssertionError(MessageFormat.format("index={0}", columnIndex));
 		}
 	}
 
@@ -54,21 +70,6 @@ class DataModelRecordRow extends DataModelRow {
 			}
 		}
 		return warning;
-	}
-
-	@Override
-	public String getName() {
-		return name;
-	}
-
-	@Override
-	public String getDescription() {
-		return description;
-	}
-
-	@Override
-	public String getDataType() {
-		return dataType;
 	}
 }
 
@@ -97,7 +98,7 @@ public class CreateDataModelRecordPage extends CreateDataModelMainPage<DataModel
 
 	@Override
 	protected boolean doEditDialog(DataModelRecordRow row) {
-		EditRecordPropertyDialog dialog = new EditRecordPropertyDialog(getShell(), project, row);
+		EditRecordPropertyDialog dialog = new EditRecordPropertyDialog(getShell(), project, modelName, row);
 		return dialog.open() == Window.OK;
 	}
 
@@ -107,11 +108,13 @@ public class CreateDataModelRecordPage extends CreateDataModelMainPage<DataModel
 	}
 
 	@Override
-	protected DataModelRecordRow newCopyRow(ModelDefinition model, Property prop) {
+	protected DataModelRecordRow newCopyRow(ModelDefinition model, Property property) {
 		DataModelRecordRow row = new DataModelRecordRow();
-		row.name = prop.getName();
-		row.description = PropertyUtil.getDecodedDescription(prop);
-		row.dataType = PropertyUtil.getResolvedDataTypeText(prop);
+		row.name = property.getName();
+		row.description = PropertyUtil.getDecodedDescription(property);
+		row.dataType = PropertyUtil.getResolvedDataTypeText(property);
+		PropertyExpressionType expression = PropertyUtil.getPropertyExpression(property);
+		row.propertyCollection = PropertyCollection.toText(expression);
 		return row;
 	}
 
@@ -153,12 +156,18 @@ public class CreateDataModelRecordPage extends CreateDataModelMainPage<DataModel
 
 	@Override
 	protected void setGeneratorProperty(DataModelTextGenerator gen, DataModelRecordRow row) {
-		if (nonEmpty(row.dataType)) {
-			gen.appendProperty(row.name, row.description, row.dataType, row.attribute);
-		} else if (nonEmpty(row.refModelName)) {
+		if (isEmpty(row.dataType) && nonEmpty(row.refModelName)) {
 			gen.appendRefProperty(row.refModelName);
-		} else {
-			gen.appendProperty(row.name, row.description, row.dataType, row.attribute);
+			return;
 		}
+
+		if (nonEmpty(row.propertyCollection)) {
+			String type = PropertyCollection.getType(row.propertyCollection);
+			String expr = PropertyCollection.getExpressionText(row.propertyCollection);
+			gen.appendProperty(row.name, row.description, type, row.attribute, expr);
+			return;
+		}
+
+		gen.appendProperty(row.name, row.description, row.dataType, row.attribute, null);
 	}
 }

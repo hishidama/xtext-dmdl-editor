@@ -23,9 +23,9 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
 class DataModelJoinKey extends DataModelRow {
-	private Table table;
-	private Map<String, String[]> comboMap;
-	private Map<String, String> descMap;
+	private final Table table;
+	private final Map<String, String[]> comboMap;
+	private final Map<String, String> descMap;
 
 	public DataModelJoinKey(Table table, Map<String, String[]> comboMap, Map<String, String> descMap) {
 		this.table = table;
@@ -103,8 +103,7 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 	private Map<String, String> descMap = new HashMap<String, String>();
 
 	public CreateDataModelJoinKeyPage() {
-		super("CreateDataModelJoinKeyPage", "結合キーの指定",
-				"結合データモデルのキーを定義して下さい。\n（結合元データモデルのそれぞれのプロパティーを同時に選択してcopyボタンを押すと定義が作れます）");
+		super("CreateDataModelJoinKeyPage", "結合キーの指定", "結合データモデルのキーを定義して下さい。\n（結合元データモデルのそれぞれのプロパティーを同時に選択してcopyボタンを押すと定義が作れます）");
 	}
 
 	@Override
@@ -306,8 +305,7 @@ public class CreateDataModelJoinKeyPage extends CreateDataModelPage<DataModelJoi
 				List<DMDLTreeData> children = data.getChildren();
 				for (DMDLTreeData c : children) {
 					DataModelJoinRow row = (DataModelJoinRow) c.getOtherData();
-					gen.appendRefProperty(row.name, row.description, row.refModelName, row.refPropertyName,
-							row.attribute);
+					gen.appendRefProperty(row.name, row.description, row.refModelName, row.refPropertyName, row.attribute);
 				}
 			} else {
 				gen.appendRefProperty(modelName);

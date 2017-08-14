@@ -1,9 +1,11 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart;
 
+import jp.hishidama.xtext.dmdl_editor.ui.dialog.SelectRuleDialog;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-public class FlowpartPortNameRuleDialog extends PortNameRuleDialog {
+public class FlowpartPortNameRuleDialog extends SelectRuleDialog {
 
 	public FlowpartPortNameRuleDialog(Shell parentShell) {
 		super(parentShell, "Select FlowPart port name rule");

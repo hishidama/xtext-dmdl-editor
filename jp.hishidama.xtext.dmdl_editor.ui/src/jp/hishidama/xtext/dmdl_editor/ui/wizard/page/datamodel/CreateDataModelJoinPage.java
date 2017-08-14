@@ -55,7 +55,7 @@ class DataModelJoinRow extends DataModelRow {
 		case 3:
 			return refPropertyName;
 		default:
-			throw new UnsupportedOperationException(MessageFormat.format("index={0}", columnIndex));
+			throw new AssertionError(MessageFormat.format("index={0}", columnIndex));
 		}
 	}
 
@@ -75,16 +75,6 @@ class DataModelJoinRow extends DataModelRow {
 			return new ErrorStatus("結合元データモデルは必須です。");
 		}
 		return warning;
-	}
-
-	@Override
-	public String getName() {
-		return name;
-	}
-
-	@Override
-	public String getDescription() {
-		return description;
 	}
 
 	@Override
@@ -151,8 +141,7 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 
 	@Override
 	protected String getCopyToolTipText() {
-		return "データモデルのプロパティーを結合モデルの対象にします。\n" + "例えばp1とp2をコピーすると、\n" + "joined model = src -> { p1->p1; p2->p2; };\n"
-				+ "となります。";
+		return "データモデルのプロパティーを結合モデルの対象にします。\n" + "例えばp1とp2をコピーすると、\n" + "joined model = src -> { p1->p1; p2->p2; };\n" + "となります。";
 	}
 
 	@Override
@@ -396,8 +385,7 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 						}
 					}
 					String pname = nonEmpty(row.name) ? row.name : row.refPropertyName;
-					String pdesc = nonEmpty(row.description) ? row.description : ((p != null) ? PropertyUtil
-							.getDecodedDescription(p) : null);
+					String pdesc = nonEmpty(row.description) ? row.description : ((p != null) ? PropertyUtil.getDecodedDescription(p) : null);
 					Type ptype = EcoreUtil.copy(PropertyUtil.getResolvedDataType(p));
 					PropertyDefinition n = InjectorUtil.getInstance(PropertyDefinitionImpl.class);
 					n.setName(pname);

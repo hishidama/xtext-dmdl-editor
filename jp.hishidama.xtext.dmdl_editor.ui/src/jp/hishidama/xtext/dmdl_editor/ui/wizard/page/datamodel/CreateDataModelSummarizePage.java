@@ -54,7 +54,7 @@ class DataModelSummarizeRow extends DataModelRow {
 		case 5:
 			return refPropertyName;
 		default:
-			throw new UnsupportedOperationException(MessageFormat.format("index={0}", columnIndex));
+			throw new AssertionError(MessageFormat.format("index={0}", columnIndex));
 		}
 	}
 
@@ -80,16 +80,6 @@ class DataModelSummarizeRow extends DataModelRow {
 			return new ErrorStatus("集計元データモデルは必須です。");
 		}
 		return warning;
-	}
-
-	@Override
-	public String getName() {
-		return name;
-	}
-
-	@Override
-	public String getDescription() {
-		return description;
 	}
 
 	@Override
@@ -125,15 +115,13 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 			}
 
 			public Button createButton() {
-				Button button = CreateDataModelSummarizePage.this.createButton(field, label, true,
-						new SelectionAdapter() {
-							@Override
-							public void widgetSelected(SelectionEvent e) {
-								execute();
-							}
-						});
-				button.setToolTipText(MessageFormat.format(
-						"選択されているプロパティーを{0}に変更します。\nデータモデル定義でプロパティーを選択して「{1}」キーを押すことでも変更できます。", label, c));
+				Button button = CreateDataModelSummarizePage.this.createButton(field, label, true, new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						execute();
+					}
+				});
+				button.setToolTipText(MessageFormat.format("選択されているプロパティーを{0}に変更します。\nデータモデル定義でプロパティーを選択して「{1}」キーを押すことでも変更できます。", label, c));
 				return button;
 			}
 
@@ -234,8 +222,7 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 
 	@Override
 	protected String getCopyToolTipText() {
-		return "データモデルのプロパティーを集計対象にします。\n" + "例えばp1とp2をコピーすると、\n"
-				+ "summarized model = src => { any p1->p1; any p2->p2; }\n" + "となります。";
+		return "データモデルのプロパティーを集計対象にします。\n" + "例えばp1とp2をコピーすると、\n" + "summarized model = src => { any p1->p1; any p2->p2; }\n" + "となります。";
 	}
 
 	@Override
@@ -330,8 +317,7 @@ public class CreateDataModelSummarizePage extends CreateDataModelMainPage<DataMo
 
 	@Override
 	protected void setGeneratorProperty(DataModelTextGenerator gen, DataModelSummarizeRow row) {
-		gen.appendSumProperty(row.name, row.description, row.sumType, row.refModelName, row.refPropertyName,
-				row.attribute);
+		gen.appendSumProperty(row.name, row.description, row.sumType, row.refModelName, row.refPropertyName, row.attribute);
 		if (row.key) {
 			gen.appendKey(row.name, row.refPropertyName);
 		}

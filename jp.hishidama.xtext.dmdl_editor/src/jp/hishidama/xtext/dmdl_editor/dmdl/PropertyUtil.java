@@ -1,8 +1,11 @@
 package jp.hishidama.xtext.dmdl_editor.dmdl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,6 +13,7 @@ import java.util.regex.Pattern;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
@@ -188,6 +192,122 @@ public class PropertyUtil {
 		Type type = DmdlFactory.eINSTANCE.createType();
 		type.setCollectionType(ctype);
 		return type;
+	}
+
+	public static class PropertyExpressionType {
+		private final Type type;
+
+		private final List<Property> expressionList;
+
+		private final Map<String, Property> expressionMap;
+
+		private final Property reference;
+
+		public PropertyExpressionType(Type type) {
+			this.type = type;
+			this.expressionList = null;
+			this.expressionMap = null;
+			this.reference = null;
+		}
+
+		public PropertyExpressionType(Type type, List<Property> list) {
+			this.type = type;
+			this.expressionList = list;
+			this.expressionMap = null;
+			this.reference = null;
+		}
+
+		public PropertyExpressionType(Type type, Map<String, Property> map) {
+			this.type = type;
+			this.expressionList = null;
+			this.expressionMap = map;
+			this.reference = null;
+		}
+
+		public PropertyExpressionType(Type type, Property reference) {
+			this.type = type;
+			this.expressionList = null;
+			this.expressionMap = null;
+			this.reference = reference;
+		}
+
+		public Type getType() {
+			return type;
+		}
+
+		public boolean isList() {
+			return expressionList != null;
+		}
+
+		public List<Property> getList() {
+			return expressionList;
+		}
+
+		public boolean isMap() {
+			return expressionMap != null;
+		}
+
+		public Map<String, Property> getMap() {
+			return expressionMap;
+		}
+
+		public boolean isReference() {
+			return reference != null;
+		}
+
+		public Property getReference() {
+			return reference;
+		}
+	}
+
+	public static PropertyExpressionType getPropertyExpression(Property property) {
+		if (!(property instanceof PropertyDefinition)) {
+			return null;
+		}
+		PropertyDefinition def = (PropertyDefinition) property;
+		PropertyExpression pe = def.getExpression();
+		if (pe == null) {
+			return null;
+		}
+
+		Type type = def.getType();
+		EObject expression = pe.getExpression();
+		if (expression instanceof PropertyExpressionList) {
+			EList<Property> elements = ((PropertyExpressionList) expression).getElements();
+			return new PropertyExpressionType(type, elements);
+		}
+		if (expression instanceof PropertyExpressionMap) {
+			EList<PropertyExpressionMapEntry> elements = ((PropertyExpressionMap) expression).getElements();
+			Map<String, Property> map = new LinkedHashMap<String, Property>(elements.size());
+			for (PropertyExpressionMapEntry entry : elements) {
+				map.put(toString(entry.getName()), entry.getProperty());
+			}
+			return new PropertyExpressionType(type, map);
+		}
+		if (expression instanceof PropertyExpressionRefernce) {
+			Property reference = ((PropertyExpressionRefernce) expression).getName();
+			return new PropertyExpressionType(type, reference);
+		}
+		return new PropertyExpressionType(type);
+	}
+
+	private static String toString(Literal literal) {
+		String s = literal.getStringValue();
+		if (s != null) {
+			if (s.startsWith("\"")) {
+				s = s.substring(1);
+			}
+			if (s.endsWith("\"")) {
+				s = s.substring(0, s.length() - 1);
+			}
+			return s;
+		}
+		BigDecimal d = literal.getDecimalValue();
+		if (d != null) {
+			return d.toPlainString();
+		}
+		int n = literal.getIntValue();
+		return Integer.toString(n);
 	}
 
 	public static String getModelName(EObject object) {

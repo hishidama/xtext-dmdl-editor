@@ -42,15 +42,26 @@ public class DataModelTextGenerator {
 	private static final String NOTHING = "\0nothing\0";
 	private String refNameOnly = null;
 
-	public void appendProperty(String name, String desc, String type, String attribute) {
+	public void appendProperty(String name, String desc, String type, String attribute, String expression) {
 		block("", null, true, true);
 
 		appendDescription(desc);
 		appendAttribute(attribute);
 		sb.append(indent);
 		sb.append(StringUtil.get(name, "プロパティー名が未定義"));
-		sb.append(" : ");
-		sb.append(StringUtil.get(type, "データ型が未定義"));
+		sb.append(" ");
+		if (expression == null) {
+			sb.append(": ");
+			sb.append(StringUtil.get(type, "データ型が未定義"));
+		} else {
+			if (type != null) {
+				sb.append(": ");
+				sb.append(type);
+				sb.append(" ");
+			}
+			sb.append("= ");
+			sb.append(expression);
+		}
 		sb.append(";\n");
 	}
 
@@ -75,8 +86,7 @@ public class DataModelTextGenerator {
 		sb.append(";\n");
 	}
 
-	public void appendSumProperty(String name, String desc, String type, String refModelName, String refName,
-			String attribute) {
+	public void appendSumProperty(String name, String desc, String type, String refModelName, String refName, String attribute) {
 		block(StringUtil.get(refModelName, "集計元データモデル名が未定義"), "=>", true, true);
 
 		appendDescription(desc);
@@ -185,8 +195,7 @@ public class DataModelTextGenerator {
 			IFormattedRegion r = formatter.format(result.getRootNode(), 0, all.length());
 			text = r.getFormattedText();
 		} catch (Exception e) {
-			LogUtil.logWarn(MessageFormat.format("{0} formatting error.\nsrc=[{1}]", getClass().getSimpleName(), all),
-					e);
+			LogUtil.logWarn(MessageFormat.format("{0} formatting error.\nsrc=[{1}]", getClass().getSimpleName(), all), e);
 			text = all.toString();
 		}
 		return text;

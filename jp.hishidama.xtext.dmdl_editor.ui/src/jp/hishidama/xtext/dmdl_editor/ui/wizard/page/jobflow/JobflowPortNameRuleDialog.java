@@ -1,11 +1,11 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.jobflow;
 
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.PortNameRuleDialog;
+import jp.hishidama.xtext.dmdl_editor.ui.dialog.SelectRuleDialog;
 
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-public class JobflowPortNameRuleDialog extends PortNameRuleDialog {
+public class JobflowPortNameRuleDialog extends SelectRuleDialog {
 
 	public JobflowPortNameRuleDialog(Shell parentShell) {
 		super(parentShell, "Select JobFlow port name rule");

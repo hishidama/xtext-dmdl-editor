@@ -15,6 +15,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData.FileNode;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData.FileNode.ModelTreeNodePredicate;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData.ModelNode;
+import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeData.PropertyNode;
 import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 
 import org.eclipse.core.resources.IFile;
@@ -353,12 +354,12 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 	}
 
 	private void refreshChecked(Object obj) {
-		if (obj instanceof DMDLTreeData.FileNode) {
+		if (obj instanceof FileNode) {
 			TreeItem row = (TreeItem) findItem(obj);
 			boolean c = getChecked(obj);
 			row.setGrayed(false);
 
-			List<DMDLTreeData> children = ((DMDLTreeData.FileNode) obj).getChildren();
+			List<DMDLTreeData> children = ((FileNode) obj).getChildren();
 			if (children.size() != row.getItemCount()) {
 				for (DMDLTreeData child : children) {
 					internalExpand(child, false);
@@ -367,8 +368,8 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 			for (TreeItem item : row.getItems()) {
 				item.setChecked(c);
 			}
-		} else if (obj instanceof DMDLTreeData.ModelNode) {
-			TreeItem row = (TreeItem) findItem(((DMDLTreeData.ModelNode) obj).getParent());
+		} else if (obj instanceof ModelNode) {
+			TreeItem row = (TreeItem) findItem(((ModelNode) obj).getParent());
 			int empty = 0, checked = 0;
 			TreeItem[] items = row.getItems();
 			for (TreeItem item : items) {
@@ -408,7 +409,7 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 		List<IFile> files = DMDLFileUtil.getDmdlFiles(project);
 		List<DMDLTreeData> list = new ArrayList<DMDLTreeData>(files.size());
 		for (IFile file : files) {
-			FileNode node = new DMDLTreeData.FileNode(file, resourceSet, depth);
+			FileNode node = new FileNode(file, resourceSet, depth);
 			node.setChildrenPredicate(predicate);
 			list.add(node);
 		}
@@ -436,7 +437,7 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 			if (model == null) {
 				continue;
 			}
-			DMDLTreeData.ModelNode modelNode = new DMDLTreeData.ModelNode(project, null, model);
+			ModelNode modelNode = new ModelNode(project, null, model);
 			list.add(modelNode);
 		}
 		setInputList(list);
@@ -451,48 +452,47 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 
 		@Override
 		public boolean select(Viewer viewer, Object parentElement, Object element) {
-			if (element instanceof DMDLTreeData.FileNode) {
-				return select(viewer, parentElement, (DMDLTreeData.FileNode) element, true);
+			if (element instanceof FileNode) {
+				return select(viewer, parentElement, (FileNode) element, true);
 			}
-			if (element instanceof DMDLTreeData.ModelNode) {
-				return select(viewer, parentElement, (DMDLTreeData.ModelNode) element, true);
+			if (element instanceof ModelNode) {
+				return select(viewer, parentElement, (ModelNode) element, true);
 			}
-			if (element instanceof DMDLTreeData.PropertyNode) {
-				return select(viewer, parentElement, (DMDLTreeData.PropertyNode) element, true);
+			if (element instanceof PropertyNode) {
+				return select(viewer, parentElement, (PropertyNode) element, true);
 			}
 			return true;
 		}
 
-		private boolean select(Viewer viewer, Object parentElement, DMDLTreeData.FileNode node, boolean direct) {
+		private boolean select(Viewer viewer, Object parentElement, FileNode node, boolean direct) {
 			if (fileNameFilter != null) {
 				if (!node.select(fileNameFilter)) {
 					return false;
 				}
 			}
 			for (DMDLTreeData child : node.getChildren()) {
-				if (select(viewer, node, (DMDLTreeData.ModelNode) child, false)) {
+				if (select(viewer, node, (ModelNode) child, false)) {
 					return true;
 				}
 			}
 			return false;
 		}
 
-		private boolean select(Viewer viewer, Object parentElement, DMDLTreeData.ModelNode node, boolean direct) {
-			if (modelNameFilter != null || modelDescFilter != null || modelAttrFilter != null
-					|| modelTypeFilter != null) {
+		private boolean select(Viewer viewer, Object parentElement, ModelNode node, boolean direct) {
+			if (modelNameFilter != null || modelDescFilter != null || modelAttrFilter != null || modelTypeFilter != null) {
 				if (!node.select(modelNameFilter, modelDescFilter, modelAttrFilter, modelTypeFilter)) {
 					return false;
 				}
 			}
 			for (DMDLTreeData child : node.getChildren()) {
-				if (select(viewer, node, (DMDLTreeData.PropertyNode) child, false)) {
+				if (select(viewer, node, (PropertyNode) child, false)) {
 					return true;
 				}
 			}
 			return false;
 		}
 
-		private boolean select(Viewer viewer, Object parentElement, DMDLTreeData.PropertyNode node, boolean direct) {
+		private boolean select(Viewer viewer, Object parentElement, PropertyNode node, boolean direct) {
 			return node.select(propNameFilter, propescFilter, propAttrFilter);
 		}
 	}
@@ -610,33 +610,57 @@ public class DataModelTreeViewer extends TreeViewer implements ICheckable {
 	}
 
 	public ModelDefinition findModel(String modelName) {
-		List<DMDLTreeData> list = getInput();
-		return findModel(list, modelName);
+		ModelNode node = findModelNode(modelName);
+		if (node != null) {
+			return node.getData();
+		}
+		return null;
 	}
 
-	private ModelDefinition findModel(List<DMDLTreeData> list, String modelName) {
+	public ModelNode findModelNode(String modelName) {
+		List<DMDLTreeData> list = getInput();
+		return findModelNode(list, modelName);
+	}
+
+	private ModelNode findModelNode(List<DMDLTreeData> list, String modelName) {
 		if (list == null) {
 			return null;
 		}
 		for (DMDLTreeData node : list) {
-			if (node instanceof DMDLTreeData.FileNode) {
-				ModelDefinition model = findModel(node.getChildren(), modelName);
+			if (node instanceof FileNode) {
+				ModelNode model = findModelNode(node.getChildren(), modelName);
 				if (model != null) {
 					return model;
 				}
 			}
-			if (node instanceof DMDLTreeData.ModelNode) {
+			if (node instanceof ModelNode) {
 				ModelDefinition model = (ModelDefinition) node.getData();
 				if (model.getName().equals(modelName)) {
-					return model;
+					return (ModelNode) node;
 				}
 			}
 		}
 		return null;
 	}
 
-	public List<DMDLTreeData.ModelNode> getCheckedModelList() {
-		List<ModelNode> list = new ArrayList<DMDLTreeData.ModelNode>();
+	public PropertyNode findPropertyNode(String modelName, String propertyName) {
+		ModelNode mnode = findModelNode(modelName);
+		if (mnode == null) {
+			return null;
+		}
+
+		for (DMDLTreeData node : mnode.getChildren()) {
+			PropertyNode pnode = (PropertyNode) node;
+			if (propertyName.equals(pnode.getData().getName())) {
+				return pnode;
+			}
+		}
+
+		return null;
+	}
+
+	public List<ModelNode> getCheckedModelList() {
+		List<ModelNode> list = new ArrayList<ModelNode>();
 		for (TreeItem row : getTree().getItems()) {
 			for (TreeItem item : row.getItems()) {
 				if (item.getChecked()) {
