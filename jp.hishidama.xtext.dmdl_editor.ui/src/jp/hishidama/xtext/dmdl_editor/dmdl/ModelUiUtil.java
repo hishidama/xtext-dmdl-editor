@@ -4,7 +4,9 @@ import static jp.hishidama.eclipse_plugin.util.StringUtil.toCamelCase;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.config.AsakusafwProperties;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.BuildPropertiesUtil;
@@ -390,5 +392,13 @@ public class ModelUiUtil {
 			return ModelUtil.getProperties(model);
 		}
 		return null;
+	}
+
+	public static Map<String, Property> getPropertiesMap(IProject project, String modelName) {
+		ModelDefinition model = findModel(project, modelName);
+		if (model != null) {
+			return ModelUtil.getPropertiesMap(model);
+		}
+		return Collections.emptyMap();
 	}
 }

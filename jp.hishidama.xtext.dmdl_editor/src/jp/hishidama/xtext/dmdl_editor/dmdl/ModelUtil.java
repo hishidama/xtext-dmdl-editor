@@ -1,9 +1,9 @@
 package jp.hishidama.xtext.dmdl_editor.dmdl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -116,43 +116,31 @@ public class ModelUtil {
 	}
 
 	public static List<Property> getProperties(ModelDefinition model) {
-		List<Property> list = new ArrayList<Property>();
-		Set<String> set = new HashSet<String>();
-		resolveProperties(list, model, set);
-		return list;
+		Map<String, Property> map = getPropertiesMap(model);
+		return new ArrayList<Property>(map.values());
 	}
 
-	public static Map<String, Property> toMap(List<Property> list) {
-		if (list == null) {
-			return Collections.emptyMap();
-		}
-
-		Map<String, Property> map = new LinkedHashMap<String, Property>(list.size());
-		for (Property property : list) {
-			map.put(property.getName(), property);
-		}
-		return map;
-	}
-
-	private static void resolveProperties(List<Property> list, ModelDefinition model, Set<String> set) {
+	public static Map<String, Property> getPropertiesMap(ModelDefinition model) {
 		if (model == null) {
-			return;
+			return Collections.emptyMap();
 		}
 		EObject rhs = model.getRhs();
 		if (rhs == null) {
-			return;
+			return Collections.emptyMap();
 		}
+
+		Map<String, Property> result = new LinkedHashMap<String, Property>();
 		if (rhs instanceof RecordExpression) {
 			EList<RecordTerm> terms = ((RecordExpression) rhs).getTerms();
 			for (RecordTerm term : terms) {
 				ModelReference ref = term.getReference();
 				if (ref != null) {
 					if (!recursiveModel(term.eContainer(), ref.getName())) {
-						resolveProperties(list, ref.getName(), set);
+						addProperties(result, getPropertiesMap(ref.getName()).values(), false);
 					}
 				} else {
 					EList<PropertyDefinition> properties = term.getProperties();
-					addProperties(list, properties, set);
+					addProperties(result, properties, true);
 				}
 			}
 		} else if (rhs instanceof JoinExpression) {
@@ -161,12 +149,12 @@ public class ModelUtil {
 				ModelMapping mapping = term.getMapping();
 				if (mapping != null) {
 					EList<PropertyMapping> properties = mapping.getMappings();
-					addProperties(list, properties, set);
+					addProperties(result, properties, true);
 				} else {
 					ModelReference ref = term.getReference();
 					if (ref != null) {
 						if (!recursiveModel(term.eContainer(), ref.getName())) {
-							resolveProperties(list, ref.getName(), set);
+							addProperties(result, getPropertiesMap(ref.getName()).values(), false);
 						}
 					}
 				}
@@ -177,21 +165,24 @@ public class ModelUtil {
 				ModelFolding folding = term.getFolding();
 				if (folding != null) {
 					EList<PropertyFolding> properties = folding.getFoldings();
-					addProperties(list, properties, set);
+					addProperties(result, properties, true);
 				}
 			}
 		}
+		return result;
 	}
 
-	private static void addProperties(List<Property> list, List<? extends Property> properties, Set<String> set) {
+	private static void addProperties(Map<String, Property> result, Collection<? extends Property> properties, boolean overwrite) {
 		for (Property property : properties) {
 			String name = property.getName();
-			if (set.contains(name)) {
-				continue;
-			}
-			set.add(name);
 
-			list.add(property);
+			if (!overwrite) {
+				if (result.containsKey(name)) {
+					continue;
+				}
+			}
+
+			result.put(name, property);
 		}
 	}
 

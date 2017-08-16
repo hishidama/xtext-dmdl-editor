@@ -7,7 +7,6 @@ import jp.hishidama.eclipse_plugin.dialog.EditDialog;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
-import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.dialog.DmdlModelSelectionDialog;
@@ -245,8 +244,7 @@ public class EditRecordPropertyDialog extends EditDialog {
 					row.setDataType(type);
 				} else {
 					row.setDataType(dataType);
-					ModelDefinition model = ModelUiUtil.findModel(project, modelName);
-					Map<String, Property> propertyMap = ModelUtil.toMap(ModelUtil.getProperties(model));
+					Map<String, Property> propertyMap = ModelUiUtil.getPropertiesMap(project, modelName);
 					for (CollectionEntry entry : list) {
 						Property p = propertyMap.get(entry.name);
 						String t = PropertyUtil.getResolvedDataTypeText(p);

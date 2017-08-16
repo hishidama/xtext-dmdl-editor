@@ -13,7 +13,6 @@ import jp.hishidama.eclipse_plugin.util.DialogSettingsUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
-import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil.PropertyExpressionType;
@@ -292,11 +291,7 @@ public class CollectionListDialog extends CollectionDialog {
 		}
 		// 右の表の初期化
 		{
-			Map<String, Property> map;
-			{
-				List<Property> properties = ModelUiUtil.getProperties(project, dataModelName);
-				map = ModelUtil.toMap(properties);
-			}
+			Map<String, Property> map = ModelUiUtil.getPropertiesMap(project, dataModelName);
 			int i = 0;
 			for (CollectionEntry entry : propertyNameList) {
 				CollectionListRow row = new CollectionListRow();
