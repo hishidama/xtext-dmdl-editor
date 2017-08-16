@@ -169,6 +169,9 @@ public class PropertyCollection {
 	}
 
 	public static boolean isReference(String text) {
+		if (text.isEmpty()) {
+			return false;
+		}
 		int n = text.indexOf('=');
 		if (n >= 0) {
 			return text.indexOf('{', n + 1) < 0;
