@@ -8,6 +8,7 @@ import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.FieldCacheRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorInputModelRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorOutputModelRow;
@@ -95,6 +96,9 @@ public class ConvertOperatorGenerator extends OperatorGenerator {
 		if (plist != null) {
 			ASTRewrite rewriter = getAstRewrite();
 			for (Property property : plist) {
+				if (PropertyUtil.isPropertyReference(property)) {
+					continue;
+				}
 				String name = property.getName();
 				String camelName = StringUtil.toCamelCase(name);
 
