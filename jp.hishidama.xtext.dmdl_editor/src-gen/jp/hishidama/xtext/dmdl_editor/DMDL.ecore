@@ -50,7 +50,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="#//Property"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PropertyExpressionRefernce">
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyExpressionReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelName" eType="#//ModelDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//Property"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type">

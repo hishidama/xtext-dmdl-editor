@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
@@ -33,8 +34,7 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 
 	@Override
-	public void completePropertyFolding_Aggregator(EObject model, Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
+	public void completePropertyFolding_Aggregator(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		acceptor.accept(createCompletionProposal("any", context));
 		acceptor.accept(createCompletionProposal("sum", context));
 		acceptor.accept(createCompletionProposal("min", context));
@@ -43,8 +43,7 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 	}
 
 	@Override
-	public void completePropertyMapping_Name(EObject model, Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
+	public void completePropertyMapping_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		PropertyMapping property = (PropertyMapping) model;
 		Property ref = property.getFrom();
 		if (ref != null) {
@@ -53,8 +52,7 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 	}
 
 	@Override
-	public void completePropertyFolding_Name(EObject model, Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
+	public void completePropertyFolding_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		PropertyFolding property = (PropertyFolding) model;
 		Property ref = property.getFrom();
 		if (ref != null) {
@@ -63,8 +61,7 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 	}
 
 	@Override
-	public void completeAttribute_Name(EObject model, Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
+	public void completeAttribute_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		Attribute attribute = (Attribute) model;
 		AttributeList list = (AttributeList) attribute.eContainer();
 		EObject container = list.eContainer();
@@ -77,15 +74,8 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 	}
 
 	@Override
-	public void completeAttributeElement_Name(EObject model, Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
-		Attribute attribute = null;
-		for (EObject object = model; object != null; object = object.eContainer()) {
-			if (object instanceof Attribute) {
-				attribute = (Attribute) object;
-				break;
-			}
-		}
+	public void completeAttributeElement_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		Attribute attribute = EcoreUtil2.getContainerOfType(model, Attribute.class);
 		if (attribute != null) {
 			AttributeList list = (AttributeList) attribute.eContainer();
 			EObject container = list.eContainer();
@@ -99,15 +89,8 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 	}
 
 	@Override
-	public void completeAttributeElement_Value(EObject model, Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
-		AttributeElement element = null;
-		for (EObject object = model; object != null; object = object.eContainer()) {
-			if (object instanceof AttributeElement) {
-				element = (AttributeElement) object;
-				break;
-			}
-		}
+	public void completeAttributeElement_Value(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		AttributeElement element = EcoreUtil2.getContainerOfType(model, AttributeElement.class);
 		if (element != null) {
 			Attribute attribute = null;
 			AttributeList list = null;
@@ -145,8 +128,7 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 		}
 	}
 
-	private void completeModelAttributeElement(Attribute attribute, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
+	private void completeModelAttributeElement(Attribute attribute, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		String attributeName = AttributeUtil.getAttributeName(attribute);
 		if (attributeName == null) {
 			return;
@@ -167,8 +149,7 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 		}
 	}
 
-	private void completeModelAttributeValue(Attribute attribute, AttributeElement element,
-			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	private void completeModelAttributeValue(Attribute attribute, AttributeElement element, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		String attributeName = AttributeUtil.getAttributeName(attribute);
 		if (attributeName == null) {
 			return;
@@ -179,8 +160,7 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 		List<DMDLAttributeCompletion> list = ExtensionUtil.getAttributeCompletions();
 		for (DMDLAttributeCompletion completion : list) {
 			if (attributeName.equals(completion.getCompletionModelAttributeName())) {
-				List<String> values = completion.getCompletionModelAttributeValueList(element, element.getName(),
-						version);
+				List<String> values = completion.getCompletionModelAttributeValueList(element, element.getName(), version);
 				if (values != null) {
 					for (String value : values) {
 						acceptor.accept(createCompletionProposal(value, context));
@@ -192,8 +172,7 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 
 	// プロパティー属性の入力補完
 
-	private void completePropertyAttribute(Property property, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
+	private void completePropertyAttribute(Property property, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		List<DMDLAttributeCompletion> list = ExtensionUtil.getAttributeCompletions();
 		for (DMDLAttributeCompletion completion : list) {
 			List<String> names = completion.getCompletionPropertyAttributeName(property);
@@ -205,8 +184,7 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 		}
 	}
 
-	private void completePropertyAttributeElement(Property property, Attribute attribute, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
+	private void completePropertyAttributeElement(Property property, Attribute attribute, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		String attributeName = AttributeUtil.getAttributeName(attribute);
 		if (attributeName == null) {
 			return;
@@ -216,8 +194,7 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 
 		List<DMDLAttributeCompletion> list = ExtensionUtil.getAttributeCompletions();
 		for (DMDLAttributeCompletion completion : list) {
-			List<String> names = completion.getCompletionPropertyAttributeElementNameList(property, attributeName,
-					version);
+			List<String> names = completion.getCompletionPropertyAttributeElementNameList(property, attributeName, version);
 			if (names != null) {
 				for (String name : names) {
 					acceptor.accept(createCompletionProposal(name + " = ", context));
@@ -226,8 +203,7 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 		}
 	}
 
-	private void completePropertyAttributeValue(Property property, Attribute attribute, AttributeElement element,
-			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	private void completePropertyAttributeValue(Property property, Attribute attribute, AttributeElement element, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		String attributeName = AttributeUtil.getAttributeName(attribute);
 		if (attributeName == null) {
 			return;
@@ -237,8 +213,7 @@ public class DMDLProposalProvider extends AbstractDMDLProposalProvider {
 
 		List<DMDLAttributeCompletion> list = ExtensionUtil.getAttributeCompletions();
 		for (DMDLAttributeCompletion completion : list) {
-			List<String> values = completion.getCompletionPropertyAttributeElementValueList(attributeName, element,
-					element.getName(), version);
+			List<String> values = completion.getCompletionPropertyAttributeElementValueList(attributeName, element, element.getName(), version);
 			if (values != null) {
 				for (String value : values) {
 					acceptor.accept(createCompletionProposal(value, context));

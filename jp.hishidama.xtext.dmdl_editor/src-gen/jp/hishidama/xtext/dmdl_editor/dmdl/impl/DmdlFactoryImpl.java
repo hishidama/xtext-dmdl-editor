@@ -75,7 +75,7 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
       case DmdlPackage.PROPERTY_EXPRESSION_LIST: return createPropertyExpressionList();
       case DmdlPackage.PROPERTY_EXPRESSION_MAP: return createPropertyExpressionMap();
       case DmdlPackage.PROPERTY_EXPRESSION_MAP_ENTRY: return createPropertyExpressionMapEntry();
-      case DmdlPackage.PROPERTY_EXPRESSION_REFERNCE: return createPropertyExpressionRefernce();
+      case DmdlPackage.PROPERTY_EXPRESSION_REFERENCE: return createPropertyExpressionReference();
       case DmdlPackage.TYPE: return createType();
       case DmdlPackage.JOIN_EXPRESSION: return createJoinExpression();
       case DmdlPackage.JOIN_TERM: return createJoinTerm();
@@ -253,10 +253,10 @@ public class DmdlFactoryImpl extends EFactoryImpl implements DmdlFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public PropertyExpressionRefernce createPropertyExpressionRefernce()
+  public PropertyExpressionReference createPropertyExpressionReference()
   {
-    PropertyExpressionRefernceImpl propertyExpressionRefernce = new PropertyExpressionRefernceImpl();
-    return propertyExpressionRefernce;
+    PropertyExpressionReferenceImpl propertyExpressionReference = new PropertyExpressionReferenceImpl();
+    return propertyExpressionReference;
   }
 
   /**

@@ -26,7 +26,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMap;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMapEntry;
-import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionRefernce;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedNameObject;
@@ -196,9 +196,9 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 					return; 
 				}
 				else break;
-			case DmdlPackage.PROPERTY_EXPRESSION_REFERNCE:
-				if(context == grammarAccess.getPropertyExpressionRefernceRule()) {
-					sequence_PropertyExpressionRefernce(context, (PropertyExpressionRefernce) semanticObject); 
+			case DmdlPackage.PROPERTY_EXPRESSION_REFERENCE:
+				if(context == grammarAccess.getPropertyExpressionReferenceRule()) {
+					sequence_PropertyExpressionReference(context, (PropertyExpressionReference) semanticObject); 
 					return; 
 				}
 				else break;
@@ -511,23 +511,26 @@ public class DMDLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     name=[Property|QualifiedName]
+	 *     (modelName=[ModelDefinition|Name] name=[Property|Name])
 	 */
-	protected void sequence_PropertyExpressionRefernce(EObject context, PropertyExpressionRefernce semanticObject) {
+	protected void sequence_PropertyExpressionReference(EObject context, PropertyExpressionReference semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.PROPERTY_EXPRESSION_REFERNCE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.PROPERTY_EXPRESSION_REFERNCE__NAME));
+			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.PROPERTY_EXPRESSION_REFERENCE__MODEL_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.PROPERTY_EXPRESSION_REFERENCE__MODEL_NAME));
+			if(transientValues.isValueTransient(semanticObject, DmdlPackage.Literals.PROPERTY_EXPRESSION_REFERENCE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DmdlPackage.Literals.PROPERTY_EXPRESSION_REFERENCE__NAME));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPropertyExpressionRefernceAccess().getNamePropertyQualifiedNameParserRuleCall_0_1(), semanticObject.getName());
+		feeder.accept(grammarAccess.getPropertyExpressionReferenceAccess().getModelNameModelDefinitionNameParserRuleCall_0_0_1(), semanticObject.getModelName());
+		feeder.accept(grammarAccess.getPropertyExpressionReferenceAccess().getNamePropertyNameParserRuleCall_2_0_1(), semanticObject.getName());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (expression=PropertyExpressionList | expression=PropertyExpressionMap | expression=PropertyExpressionRefernce)
+	 *     (expression=PropertyExpressionList | expression=PropertyExpressionMap | expression=PropertyExpressionReference)
 	 */
 	protected void sequence_PropertyExpression(EObject context, PropertyExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

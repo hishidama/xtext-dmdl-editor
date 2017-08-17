@@ -15,9 +15,13 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.RecordTerm;
 import jp.hishidama.xtext.dmdl_editor.dmdl.SummarizeExpression;
@@ -144,5 +148,60 @@ public class DMDLScopeProvider extends AbstractDeclarativeScopeProvider {
 		if (ref != null) {
 			add(list, ref.getName(), set);
 		}
+	}
+
+	// プロパティー参照（List）
+	public IScope scope_PropertyExpressionList_elements(EObject context, EReference ref) {
+		return scopePropertyReferenceCollection(context, ref);
+	}
+
+	// プロパティー参照（Map）
+	public IScope scope_PropertyExpressionMapEntry_property(EObject context, EReference ref) {
+		return scopePropertyReferenceCollection(context, ref);
+	}
+
+	private IScope scopePropertyReferenceCollection(EObject context, EReference ref) {
+		List<EObject> list = new ArrayList<EObject>();
+
+		ModelDefinition model = EcoreUtil2.getContainerOfType(context, ModelDefinition.class);
+		List<Property> properties = ModelUtil.getProperties(model);
+		for (Property property : properties) {
+			if (!PropertyUtil.isPropertyReference(property)) {
+				list.add(property);
+			}
+		}
+
+		return Scopes.scopeFor(list);
+	}
+
+	// プロパティー参照（reference）
+	public IScope scope_PropertyExpressionReference_modelName(EObject context, EReference ref) {
+		List<ModelDefinition> list = new ArrayList<ModelDefinition>();
+
+		ModelDefinition model = EcoreUtil2.getContainerOfType(context, ModelDefinition.class);
+		RecordExpression rhs = (RecordExpression) model.getRhs();
+		EList<RecordTerm> terms = rhs.getTerms();
+		for (RecordTerm term : terms) {
+			ModelReference m = term.getReference();
+			if (m != null) {
+				list.add(m.getName());
+			}
+		}
+
+		return Scopes.scopeFor(list);
+	}
+
+	public IScope scope_PropertyExpressionReference_name(PropertyExpressionReference context, EReference ref) {
+		List<Property> list = new ArrayList<Property>();
+
+		ModelDefinition model = context.getModelName();
+		List<Property> properties = ModelUtil.getProperties(model);
+		for (Property property : properties) {
+			if (PropertyUtil.isPropertyReference(property)) {
+				list.add(property);
+			}
+		}
+
+		return Scopes.scopeFor(list);
 	}
 }

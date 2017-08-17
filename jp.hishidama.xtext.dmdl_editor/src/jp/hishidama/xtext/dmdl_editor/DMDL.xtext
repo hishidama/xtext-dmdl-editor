@@ -40,7 +40,7 @@ PropertyDefinition:
 PropertyExpression:
 	expression=PropertyExpressionList |
 	expression=PropertyExpressionMap |
-	expression=PropertyExpressionRefernce;
+	expression=PropertyExpressionReference;
 
 PropertyExpressionList:
 	{PropertyExpressionList} '{' '}' |
@@ -53,8 +53,8 @@ PropertyExpressionMap:
 PropertyExpressionMapEntry:
 	name=Literal ':' property=[Property|Name];
 
-PropertyExpressionRefernce:
-	name=[Property|QualifiedName];
+PropertyExpressionReference:
+	modelName=[ModelDefinition|Name] '.' name=[Property|Name];
 
 Type:
 	basicType=BasicType | collectionType=CollectionType /*| referenceType=ReferenceType*/;

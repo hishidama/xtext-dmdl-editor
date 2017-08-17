@@ -143,10 +143,10 @@ public class DmdlSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case DmdlPackage.PROPERTY_EXPRESSION_REFERNCE:
+      case DmdlPackage.PROPERTY_EXPRESSION_REFERENCE:
       {
-        PropertyExpressionRefernce propertyExpressionRefernce = (PropertyExpressionRefernce)theEObject;
-        T result = casePropertyExpressionRefernce(propertyExpressionRefernce);
+        PropertyExpressionReference propertyExpressionReference = (PropertyExpressionReference)theEObject;
+        T result = casePropertyExpressionReference(propertyExpressionReference);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -478,17 +478,17 @@ public class DmdlSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Property Expression Refernce</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Property Expression Reference</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Property Expression Refernce</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Property Expression Reference</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePropertyExpressionRefernce(PropertyExpressionRefernce object)
+  public T casePropertyExpressionReference(PropertyExpressionReference object)
   {
     return null;
   }

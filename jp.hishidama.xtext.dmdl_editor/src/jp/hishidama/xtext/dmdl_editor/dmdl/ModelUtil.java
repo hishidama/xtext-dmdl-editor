@@ -34,13 +34,7 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 public class ModelUtil {
 
 	public static ModelDefinition getModel(EObject object) {
-		while (object != null) {
-			if (object instanceof ModelDefinition) {
-				return (ModelDefinition) object;
-			}
-			object = object.eContainer();
-		}
-		return null;
+		return EcoreUtil2.getContainerOfType(object, ModelDefinition.class);
 	}
 
 	public static boolean isProjective(ModelDefinition model) {

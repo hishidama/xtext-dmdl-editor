@@ -474,14 +474,23 @@ public interface DmdlPackage extends EPackage
   int PROPERTY_EXPRESSION_MAP_ENTRY_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionRefernceImpl <em>Property Expression Refernce</em>}' class.
+   * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionReferenceImpl <em>Property Expression Reference</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionRefernceImpl
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyExpressionRefernce()
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionReferenceImpl
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyExpressionReference()
    * @generated
    */
-  int PROPERTY_EXPRESSION_REFERNCE = 10;
+  int PROPERTY_EXPRESSION_REFERENCE = 10;
+
+  /**
+   * The feature id for the '<em><b>Model Name</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_EXPRESSION_REFERENCE__MODEL_NAME = 0;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' reference.
@@ -490,16 +499,16 @@ public interface DmdlPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PROPERTY_EXPRESSION_REFERNCE__NAME = 0;
+  int PROPERTY_EXPRESSION_REFERENCE__NAME = 1;
 
   /**
-   * The number of structural features of the '<em>Property Expression Refernce</em>' class.
+   * The number of structural features of the '<em>Property Expression Reference</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_EXPRESSION_REFERNCE_FEATURE_COUNT = 1;
+  int PROPERTY_EXPRESSION_REFERENCE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.TypeImpl <em>Type</em>}' class.
@@ -1578,25 +1587,36 @@ public interface DmdlPackage extends EPackage
   EReference getPropertyExpressionMapEntry_Property();
 
   /**
-   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionRefernce <em>Property Expression Refernce</em>}'.
+   * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionReference <em>Property Expression Reference</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Property Expression Refernce</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionRefernce
+   * @return the meta object for class '<em>Property Expression Reference</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionReference
    * @generated
    */
-  EClass getPropertyExpressionRefernce();
+  EClass getPropertyExpressionReference();
 
   /**
-   * Returns the meta object for the reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionRefernce#getName <em>Name</em>}'.
+   * Returns the meta object for the reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionReference#getModelName <em>Model Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Model Name</em>'.
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionReference#getModelName()
+   * @see #getPropertyExpressionReference()
+   * @generated
+   */
+  EReference getPropertyExpressionReference_ModelName();
+
+  /**
+   * Returns the meta object for the reference '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionReference#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference '<em>Name</em>'.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionRefernce#getName()
-   * @see #getPropertyExpressionRefernce()
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionReference#getName()
+   * @see #getPropertyExpressionReference()
    * @generated
    */
-  EReference getPropertyExpressionRefernce_Name();
+  EReference getPropertyExpressionReference_Name();
 
   /**
    * Returns the meta object for class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.Type <em>Type</em>}'.
@@ -2505,14 +2525,22 @@ public interface DmdlPackage extends EPackage
     EReference PROPERTY_EXPRESSION_MAP_ENTRY__PROPERTY = eINSTANCE.getPropertyExpressionMapEntry_Property();
 
     /**
-     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionRefernceImpl <em>Property Expression Refernce</em>}' class.
+     * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionReferenceImpl <em>Property Expression Reference</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionRefernceImpl
-     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyExpressionRefernce()
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyExpressionReferenceImpl
+     * @see jp.hishidama.xtext.dmdl_editor.dmdl.impl.DmdlPackageImpl#getPropertyExpressionReference()
      * @generated
      */
-    EClass PROPERTY_EXPRESSION_REFERNCE = eINSTANCE.getPropertyExpressionRefernce();
+    EClass PROPERTY_EXPRESSION_REFERENCE = eINSTANCE.getPropertyExpressionReference();
+
+    /**
+     * The meta object literal for the '<em><b>Model Name</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROPERTY_EXPRESSION_REFERENCE__MODEL_NAME = eINSTANCE.getPropertyExpressionReference_ModelName();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' reference feature.
@@ -2520,7 +2548,7 @@ public interface DmdlPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PROPERTY_EXPRESSION_REFERNCE__NAME = eINSTANCE.getPropertyExpressionRefernce_Name();
+    EReference PROPERTY_EXPRESSION_REFERENCE__NAME = eINSTANCE.getPropertyExpressionReference_Name();
 
     /**
      * The meta object literal for the '{@link jp.hishidama.xtext.dmdl_editor.dmdl.impl.TypeImpl <em>Type</em>}' class.

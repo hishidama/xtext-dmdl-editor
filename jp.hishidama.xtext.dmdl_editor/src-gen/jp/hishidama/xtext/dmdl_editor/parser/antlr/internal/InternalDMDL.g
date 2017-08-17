@@ -719,9 +719,9 @@ rulePropertyExpression returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPropertyExpressionAccess().getExpressionPropertyExpressionRefernceParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getPropertyExpressionAccess().getExpressionPropertyExpressionReferenceParserRuleCall_2_0()); 
 	    }
-		lv_expression_2_0=rulePropertyExpressionRefernce		{
+		lv_expression_2_0=rulePropertyExpressionReference		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getPropertyExpressionRule());
 	        }
@@ -729,7 +729,7 @@ rulePropertyExpression returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_2_0, 
-        		"PropertyExpressionRefernce");
+        		"PropertyExpressionReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -973,36 +973,55 @@ rulePropertyExpressionMapEntry returns [EObject current=null]
 
 
 
-// Entry rule entryRulePropertyExpressionRefernce
-entryRulePropertyExpressionRefernce returns [EObject current=null] 
+// Entry rule entryRulePropertyExpressionReference
+entryRulePropertyExpressionReference returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getPropertyExpressionRefernceRule()); }
-	 iv_rulePropertyExpressionRefernce=rulePropertyExpressionRefernce 
-	 { $current=$iv_rulePropertyExpressionRefernce.current; } 
+	{ newCompositeNode(grammarAccess.getPropertyExpressionReferenceRule()); }
+	 iv_rulePropertyExpressionReference=rulePropertyExpressionReference 
+	 { $current=$iv_rulePropertyExpressionReference.current; } 
 	 EOF 
 ;
 
-// Rule PropertyExpressionRefernce
-rulePropertyExpressionRefernce returns [EObject current=null] 
+// Rule PropertyExpressionReference
+rulePropertyExpressionReference returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(
+((
 (
 		{
 			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPropertyExpressionRefernceRule());
+	            $current = createModelElement(grammarAccess.getPropertyExpressionReferenceRule());
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getPropertyExpressionRefernceAccess().getNamePropertyCrossReference_0()); 
+	        newCompositeNode(grammarAccess.getPropertyExpressionReferenceAccess().getModelNameModelDefinitionCrossReference_0_0()); 
 	    }
-		ruleQualifiedName		{ 
+		ruleName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
+)	otherlv_1='.' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getPropertyExpressionReferenceAccess().getFullStopKeyword_1());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPropertyExpressionReferenceRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getPropertyExpressionReferenceAccess().getNamePropertyCrossReference_2_0()); 
+	    }
+		ruleName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
 )
+))
 ;
 
 

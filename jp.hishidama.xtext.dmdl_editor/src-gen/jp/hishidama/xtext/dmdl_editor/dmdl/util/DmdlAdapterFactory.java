@@ -125,9 +125,9 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
         return createPropertyExpressionMapEntryAdapter();
       }
       @Override
-      public Adapter casePropertyExpressionRefernce(PropertyExpressionRefernce object)
+      public Adapter casePropertyExpressionReference(PropertyExpressionReference object)
       {
-        return createPropertyExpressionRefernceAdapter();
+        return createPropertyExpressionReferenceAdapter();
       }
       @Override
       public Adapter caseType(Type object)
@@ -417,16 +417,16 @@ public class DmdlAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionRefernce <em>Property Expression Refernce</em>}'.
+   * Creates a new adapter for an object of class '{@link jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionReference <em>Property Expression Reference</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionRefernce
+   * @see jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionReference
    * @generated
    */
-  public Adapter createPropertyExpressionRefernceAdapter()
+  public Adapter createPropertyExpressionReferenceAdapter()
   {
     return null;
   }

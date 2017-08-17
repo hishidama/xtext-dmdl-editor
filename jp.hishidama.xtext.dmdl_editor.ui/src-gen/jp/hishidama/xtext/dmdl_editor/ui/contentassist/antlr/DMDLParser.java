@@ -71,6 +71,7 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPropertyExpressionMapAccess().getGroup_1(), "rule__PropertyExpressionMap__Group_1__0");
 					put(grammarAccess.getPropertyExpressionMapAccess().getGroup_1_2(), "rule__PropertyExpressionMap__Group_1_2__0");
 					put(grammarAccess.getPropertyExpressionMapEntryAccess().getGroup(), "rule__PropertyExpressionMapEntry__Group__0");
+					put(grammarAccess.getPropertyExpressionReferenceAccess().getGroup(), "rule__PropertyExpressionReference__Group__0");
 					put(grammarAccess.getJoinExpressionAccess().getGroup(), "rule__JoinExpression__Group__0");
 					put(grammarAccess.getJoinExpressionAccess().getGroup_1(), "rule__JoinExpression__Group_1__0");
 					put(grammarAccess.getJoinTermAccess().getGroup(), "rule__JoinTerm__Group__0");
@@ -133,7 +134,8 @@ public class DMDLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPropertyExpressionMapAccess().getElementsAssignment_1_2_1(), "rule__PropertyExpressionMap__ElementsAssignment_1_2_1");
 					put(grammarAccess.getPropertyExpressionMapEntryAccess().getNameAssignment_0(), "rule__PropertyExpressionMapEntry__NameAssignment_0");
 					put(grammarAccess.getPropertyExpressionMapEntryAccess().getPropertyAssignment_2(), "rule__PropertyExpressionMapEntry__PropertyAssignment_2");
-					put(grammarAccess.getPropertyExpressionRefernceAccess().getNameAssignment(), "rule__PropertyExpressionRefernce__NameAssignment");
+					put(grammarAccess.getPropertyExpressionReferenceAccess().getModelNameAssignment_0(), "rule__PropertyExpressionReference__ModelNameAssignment_0");
+					put(grammarAccess.getPropertyExpressionReferenceAccess().getNameAssignment_2(), "rule__PropertyExpressionReference__NameAssignment_2");
 					put(grammarAccess.getTypeAccess().getBasicTypeAssignment_0(), "rule__Type__BasicTypeAssignment_0");
 					put(grammarAccess.getTypeAccess().getCollectionTypeAssignment_1(), "rule__Type__CollectionTypeAssignment_1");
 					put(grammarAccess.getJoinExpressionAccess().getTermsAssignment_0(), "rule__JoinExpression__TermsAssignment_0");

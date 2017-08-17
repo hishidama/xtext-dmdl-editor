@@ -29,7 +29,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpression;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionList;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMap;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionMapEntry;
-import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionRefernce;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.QualifiedNameObject;
@@ -131,7 +131,7 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass propertyExpressionRefernceEClass = null;
+  private EClass propertyExpressionReferenceEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -639,9 +639,9 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getPropertyExpressionRefernce()
+  public EClass getPropertyExpressionReference()
   {
-    return propertyExpressionRefernceEClass;
+    return propertyExpressionReferenceEClass;
   }
 
   /**
@@ -649,9 +649,19 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPropertyExpressionRefernce_Name()
+  public EReference getPropertyExpressionReference_ModelName()
   {
-    return (EReference)propertyExpressionRefernceEClass.getEStructuralFeatures().get(0);
+    return (EReference)propertyExpressionReferenceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPropertyExpressionReference_Name()
+  {
+    return (EReference)propertyExpressionReferenceEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1331,8 +1341,9 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     createEReference(propertyExpressionMapEntryEClass, PROPERTY_EXPRESSION_MAP_ENTRY__NAME);
     createEReference(propertyExpressionMapEntryEClass, PROPERTY_EXPRESSION_MAP_ENTRY__PROPERTY);
 
-    propertyExpressionRefernceEClass = createEClass(PROPERTY_EXPRESSION_REFERNCE);
-    createEReference(propertyExpressionRefernceEClass, PROPERTY_EXPRESSION_REFERNCE__NAME);
+    propertyExpressionReferenceEClass = createEClass(PROPERTY_EXPRESSION_REFERENCE);
+    createEReference(propertyExpressionReferenceEClass, PROPERTY_EXPRESSION_REFERENCE__MODEL_NAME);
+    createEReference(propertyExpressionReferenceEClass, PROPERTY_EXPRESSION_REFERENCE__NAME);
 
     typeEClass = createEClass(TYPE);
     createEAttribute(typeEClass, TYPE__BASIC_TYPE);
@@ -1492,8 +1503,9 @@ public class DmdlPackageImpl extends EPackageImpl implements DmdlPackage
     initEReference(getPropertyExpressionMapEntry_Name(), this.getLiteral(), null, "name", null, 0, 1, PropertyExpressionMapEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPropertyExpressionMapEntry_Property(), this.getProperty(), null, "property", null, 0, 1, PropertyExpressionMapEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(propertyExpressionRefernceEClass, PropertyExpressionRefernce.class, "PropertyExpressionRefernce", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPropertyExpressionRefernce_Name(), this.getProperty(), null, "name", null, 0, 1, PropertyExpressionRefernce.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(propertyExpressionReferenceEClass, PropertyExpressionReference.class, "PropertyExpressionReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPropertyExpressionReference_ModelName(), this.getModelDefinition(), null, "modelName", null, 0, 1, PropertyExpressionReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPropertyExpressionReference_Name(), this.getProperty(), null, "name", null, 0, 1, PropertyExpressionReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getType_BasicType(), this.getBasicType(), "basicType", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -113,13 +113,13 @@ public interface DmdlFactory extends EFactory
   PropertyExpressionMapEntry createPropertyExpressionMapEntry();
 
   /**
-   * Returns a new object of class '<em>Property Expression Refernce</em>'.
+   * Returns a new object of class '<em>Property Expression Reference</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Property Expression Refernce</em>'.
+   * @return a new object of class '<em>Property Expression Reference</em>'.
    * @generated
    */
-  PropertyExpressionRefernce createPropertyExpressionRefernce();
+  PropertyExpressionReference createPropertyExpressionReference();
 
   /**
    * Returns a new object of class '<em>Type</em>'.

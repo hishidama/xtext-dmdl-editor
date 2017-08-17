@@ -16,6 +16,7 @@ import jp.hishidama.xtext.dmdl_editor.util.DMDLStringUtil;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
@@ -131,8 +132,8 @@ public class PropertyUtil {
 					}
 					return null;
 				}
-				if (object instanceof PropertyExpressionRefernce) {
-					PropertyExpressionRefernce ref = (PropertyExpressionRefernce) object;
+				if (object instanceof PropertyExpressionReference) {
+					PropertyExpressionReference ref = (PropertyExpressionReference) object;
 					return getResolvedDataType(ref.getName());
 				}
 			}
@@ -284,8 +285,8 @@ public class PropertyUtil {
 			}
 			return new PropertyExpressionType(type, map);
 		}
-		if (expression instanceof PropertyExpressionRefernce) {
-			Property reference = ((PropertyExpressionRefernce) expression).getName();
+		if (expression instanceof PropertyExpressionReference) {
+			Property reference = ((PropertyExpressionReference) expression).getName();
 			return new PropertyExpressionType(type, reference);
 		}
 		return new PropertyExpressionType(type);
@@ -319,13 +320,7 @@ public class PropertyUtil {
 	}
 
 	public static Property getProperty(EObject object) {
-		while (object != null) {
-			if (object instanceof Property) {
-				return (Property) object;
-			}
-			object = object.eContainer();
-		}
-		return null;
+		return EcoreUtil2.getContainerOfType(object, Property.class);
 	}
 
 	public static String getAttributeString(Property property) {
@@ -448,5 +443,19 @@ public class PropertyUtil {
 			name = name.substring(0, name.length() - 8);
 		}
 		return StringUtil.toFirstLower(name);
+	}
+
+	public static boolean isPropertyReference(Property property) {
+		if (property instanceof PropertyDefinition) {
+			PropertyDefinition p = (PropertyDefinition) property;
+			if (p.getExpression() != null) {
+				return true;
+			}
+			Type type = p.getType();
+			if (type != null) {
+				return type.getCollectionType() != null;
+			}
+		}
+		return false;
 	}
 }
