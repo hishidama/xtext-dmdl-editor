@@ -70,7 +70,7 @@ public class PropertyCollection {
 					}
 					sb.append("\"");
 					sb.append(entry.getKey());
-					sb.append(" \":");
+					sb.append("\":");
 					sb.append(entry.getValue().getName());
 				}
 				sb.append(" }");
