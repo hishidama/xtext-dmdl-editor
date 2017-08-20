@@ -23,6 +23,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Type;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil.PropertyFilter;
 import jp.hishidama.xtext.dmdl_editor.dmdl.impl.ModelDefinitionImpl;
 import jp.hishidama.xtext.dmdl_editor.dmdl.impl.PropertyDefinitionImpl;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
@@ -287,7 +288,7 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 	protected DataModelJoinRow newReferenceModel(ModelDefinition model, ModelDefinition refModel) {
 		DataModelJoinRow row = new DataModelJoinRow();
 		row.refModelName = refModel.getName();
-		List<Property> list = ModelUtil.getProperties(refModel);
+		List<Property> list = ModelUtil.getProperties(refModel, PropertyFilter.ALL);
 		for (Property p : list) {
 			setKey(model, row.refModelName, p.getName());
 		}
@@ -375,7 +376,7 @@ public class CreateDataModelJoinPage extends CreateDataModelMainPage<DataModelJo
 					if (p == null) {
 						String name = nonEmpty(row.refPropertyName) ? row.refPropertyName : row.name;
 						if (plist == null) {
-							plist = ModelUtil.getProperties(model);
+							plist = ModelUtil.getProperties(model, PropertyFilter.ALL);
 						}
 						for (Property org : plist) {
 							if (name.equals(org.getName())) {

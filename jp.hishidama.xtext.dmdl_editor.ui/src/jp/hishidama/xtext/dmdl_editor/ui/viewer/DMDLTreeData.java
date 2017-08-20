@@ -12,6 +12,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Script;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil.PropertyFilter;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 
 import org.eclipse.core.resources.IFile;
@@ -255,7 +256,7 @@ public abstract class DMDLTreeData {
 				return Collections.emptyList();
 			}
 			if (children == null) {
-				List<Property> list = ModelUtil.getProperties(model);
+				List<Property> list = ModelUtil.getProperties(model, PropertyFilter.ALL);
 				children = new ArrayList<DMDLTreeData>(list.size());
 				for (Property p : list) {
 					children.add(new PropertyNode(project, this, p, depth - 1));

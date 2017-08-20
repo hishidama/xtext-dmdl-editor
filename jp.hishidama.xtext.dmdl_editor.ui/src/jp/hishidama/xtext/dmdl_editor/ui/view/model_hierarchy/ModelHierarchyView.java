@@ -15,6 +15,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelProperty;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil.PropertyFilter;
 import jp.hishidama.xtext.dmdl_editor.ui.labeling.DMDLImages;
 import jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy.ModelHierarchy.ModelInfo;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeLabelProvider;
@@ -371,7 +372,7 @@ public class ModelHierarchyView extends ViewPart {
 	public void setShowAllProperties(boolean checked) {
 		List<Property> properties;
 		if (checked) {
-			properties = ModelUtil.getProperties(model2);
+			properties = ModelUtil.getProperties(model2, PropertyFilter.ALL);
 		} else {
 			List<EObject> list = ModelUtil.getRawProperties(model2);
 			Set<String> set = new HashSet<String>(list.size());

@@ -5,8 +5,8 @@ import java.util.List;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil.PropertyFilter;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
-import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorInputModelRow;
 
 import org.eclipse.jdt.core.dom.Annotation;
@@ -68,12 +68,9 @@ public class FoldOperatorGenerator extends OperatorGenerator {
 		String left = getLeftName(row);
 		String right = getRightName(left);
 
-		List<Property> plist = ModelUiUtil.getProperties(getProject(), row.modelName);
+		List<Property> plist = ModelUiUtil.getProperties(getProject(), row.modelName, PropertyFilter.PROPERTY);
 		if (plist != null) {
 			for (Property property : plist) {
-				if (PropertyUtil.isPropertyReference(property)) {
-					continue;
-				}
 				String name = property.getName();
 				String camelName = StringUtil.toCamelCase(name);
 

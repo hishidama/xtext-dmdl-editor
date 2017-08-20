@@ -14,6 +14,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil.PropertyFilter;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.swt.SWT;
@@ -41,8 +42,7 @@ public class OperatorInputModelDialog extends OperatorModelDialog<OperatorInputM
 		public String order;
 	}
 
-	public OperatorInputModelDialog(Shell parentShell, IProject project, String role, OperatorInputModelRow row,
-			boolean hasKey, boolean hasOrder, boolean joinOnly) {
+	public OperatorInputModelDialog(Shell parentShell, IProject project, String role, OperatorInputModelRow row, boolean hasKey, boolean hasOrder, boolean joinOnly) {
 		super(parentShell, "入力データモデル選択", project, role, row, joinOnly, false);
 		this.hasKey = hasKey;
 		this.hasOrder = hasOrder;
@@ -249,7 +249,7 @@ public class OperatorInputModelDialog extends OperatorModelDialog<OperatorInputM
 		oldModelName = modelName;
 
 		ModelDefinition model = ModelUiUtil.findModel(project, modelName);
-		propertyList = ModelUtil.getProperties(model);
+		propertyList = ModelUtil.getProperties(model, PropertyFilter.PROPERTY);
 	}
 
 	private void initializeKeyGroupTable() {

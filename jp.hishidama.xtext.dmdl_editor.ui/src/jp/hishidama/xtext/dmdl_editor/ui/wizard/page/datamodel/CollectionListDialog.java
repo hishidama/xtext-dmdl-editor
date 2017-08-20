@@ -15,6 +15,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil.PropertyFilter;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil.PropertyExpressionType;
 import jp.hishidama.xtext.dmdl_editor.ui.dialog.SelectRuleDialog;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
@@ -291,7 +292,7 @@ public class CollectionListDialog extends CollectionDialog {
 		}
 		// 右の表の初期化
 		{
-			Map<String, Property> map = ModelUiUtil.getPropertiesMap(project, dataModelName);
+			Map<String, Property> map = ModelUiUtil.getPropertiesMap(project, dataModelName, PropertyFilter.ALL);
 			int i = 0;
 			for (CollectionEntry entry : propertyNameList) {
 				CollectionListRow row = new CollectionListRow();

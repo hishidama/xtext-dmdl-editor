@@ -16,6 +16,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelFolding;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelMapping;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelReference;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil.PropertyFilter;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyExpressionReference;
@@ -161,15 +162,8 @@ public class DMDLScopeProvider extends AbstractDeclarativeScopeProvider {
 	}
 
 	private IScope scopePropertyReferenceCollection(EObject context, EReference ref) {
-		List<EObject> list = new ArrayList<EObject>();
-
 		ModelDefinition model = EcoreUtil2.getContainerOfType(context, ModelDefinition.class);
-		List<Property> properties = ModelUtil.getProperties(model);
-		for (Property property : properties) {
-			if (!PropertyUtil.isPropertyReference(property)) {
-				list.add(property);
-			}
-		}
+		List<Property> list = ModelUtil.getProperties(model, PropertyFilter.PROPERTY);
 
 		return Scopes.scopeFor(list);
 	}
@@ -192,15 +186,8 @@ public class DMDLScopeProvider extends AbstractDeclarativeScopeProvider {
 	}
 
 	public IScope scope_PropertyExpressionReference_name(PropertyExpressionReference context, EReference ref) {
-		List<Property> list = new ArrayList<Property>();
-
 		ModelDefinition model = context.getModelName();
-		List<Property> properties = ModelUtil.getProperties(model);
-		for (Property property : properties) {
-			if (PropertyUtil.isPropertyReference(property)) {
-				list.add(property);
-			}
-		}
+		List<Property> list = ModelUtil.getProperties(model, PropertyFilter.REFERENCE);
 
 		return Scopes.scopeFor(list);
 	}

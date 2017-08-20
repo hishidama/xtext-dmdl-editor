@@ -7,8 +7,8 @@ import java.util.Set;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil.PropertyFilter;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
-import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.FieldCacheRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorInputModelRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorOutputModelRow;
@@ -70,8 +70,7 @@ public class ConvertOperatorGenerator extends OperatorGenerator {
 			slist.add(newVariableDeclarationStatement(rrow.getModelTypeName(), varName, newThisFieldAccess(fieldName)));
 			slist.add(newMethodInvocationStatement(varName, "reset"));
 		} else {
-			slist.add(newVariableDeclarationStatement(rrow.getModelTypeName(), varName,
-					newClassInstanceCreation(rrow.getModelTypeName())));
+			slist.add(newVariableDeclarationStatement(rrow.getModelTypeName(), varName, newClassInstanceCreation(rrow.getModelTypeName())));
 		}
 
 		addStatement(varName, slist, rrow);
@@ -84,7 +83,7 @@ public class ConvertOperatorGenerator extends OperatorGenerator {
 		OperatorInputModelRow row = getInputRow();
 		Set<String> set = new HashSet<String>();
 		{
-			List<Property> plist = ModelUiUtil.getProperties(getProject(), row.modelName);
+			List<Property> plist = ModelUiUtil.getProperties(getProject(), row.modelName, PropertyFilter.PROPERTY);
 			if (plist != null) {
 				for (Property property : plist) {
 					set.add(property.getName());
@@ -92,13 +91,10 @@ public class ConvertOperatorGenerator extends OperatorGenerator {
 			}
 		}
 
-		List<Property> plist = ModelUiUtil.getProperties(getProject(), rrow.modelName);
+		List<Property> plist = ModelUiUtil.getProperties(getProject(), rrow.modelName, PropertyFilter.PROPERTY);
 		if (plist != null) {
 			ASTRewrite rewriter = getAstRewrite();
 			for (Property property : plist) {
-				if (PropertyUtil.isPropertyReference(property)) {
-					continue;
-				}
 				String name = property.getName();
 				String camelName = StringUtil.toCamelCase(name);
 

@@ -8,6 +8,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil.PropertyFilter;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SelectDataModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.SelectDataModelPage.ModelFile;
 
@@ -126,7 +127,7 @@ public class SelectPropertyPage extends EditWizardPage {
 		nowModel = model;
 
 		table.removeAll();
-		List<Property> plist = ModelUtil.getProperties(model);
+		List<Property> plist = ModelUtil.getProperties(model, PropertyFilter.ALL);
 		for (Property property : plist) {
 			PropertyRow row = new PropertyRow();
 			row.name = property.getName();

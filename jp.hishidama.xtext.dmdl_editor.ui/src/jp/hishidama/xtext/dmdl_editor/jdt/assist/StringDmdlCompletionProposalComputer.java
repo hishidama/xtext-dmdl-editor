@@ -9,6 +9,7 @@ import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil.PropertyFilter;
 import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.ExporterPropertyStringFinder;
 import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.KeyPropertyStringFinder;
 
@@ -128,7 +129,7 @@ public class StringDmdlCompletionProposalComputer implements IJavaCompletionProp
 
 	private List<ICompletionProposal> getPrefixProposal(IRegion region, ModelDefinition model, String prefix, int offset) {
 		List<ICompletionProposal> list = new ArrayList<ICompletionProposal>();
-		for (Property property : ModelUtil.getProperties(model)) {
+		for (Property property : ModelUtil.getProperties(model, PropertyFilter.PROPERTY)) {
 			String s = property.getName();
 			if (s.startsWith(prefix)) {
 				int start, len;

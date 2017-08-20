@@ -11,6 +11,7 @@ import java.util.Map;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.config.AsakusafwProperties;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.BuildPropertiesUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil.PropertyFilter;
 import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.DeclaredDmdlHyperlink;
 import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.OpenDeclaredDmdlHyperlinkDetector;
 import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.OpenKeyDmdlHyperlinkDetector;
@@ -378,26 +379,26 @@ public class ModelUiUtil {
 		return editor != null;
 	}
 
-	public static List<Property> getProperties(IProject project, String modelName) {
+	public static List<Property> getProperties(IProject project, String modelName, PropertyFilter filter) {
 		ModelDefinition model = findModel(project, modelName);
 		if (model != null) {
-			return ModelUtil.getProperties(model);
+			return ModelUtil.getProperties(model, filter);
 		}
 		return null;
 	}
 
-	public static List<Property> getProperties(IProject project, String modelName, IRunnableContext container) {
+	public static List<Property> getProperties(IProject project, String modelName, IRunnableContext container, PropertyFilter filter) {
 		ModelDefinition model = findModel(project, modelName, container);
 		if (model != null) {
-			return ModelUtil.getProperties(model);
+			return ModelUtil.getProperties(model, filter);
 		}
 		return null;
 	}
 
-	public static Map<String, Property> getPropertiesMap(IProject project, String modelName) {
+	public static Map<String, Property> getPropertiesMap(IProject project, String modelName, PropertyFilter filter) {
 		ModelDefinition model = findModel(project, modelName);
 		if (model != null) {
-			return ModelUtil.getPropertiesMap(model);
+			return ModelUtil.getPropertiesMap(model, filter);
 		}
 		return Collections.emptyMap();
 	}

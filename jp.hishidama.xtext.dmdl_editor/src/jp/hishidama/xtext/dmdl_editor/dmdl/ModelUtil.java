@@ -109,12 +109,21 @@ public class ModelUtil {
 		return null;
 	}
 
-	public static List<Property> getProperties(ModelDefinition model) {
-		Map<String, Property> map = getPropertiesMap(model);
+	public enum PropertyFilter {
+		/** 全て */
+		ALL,
+		/** 通常のプロパティーのみ */
+		PROPERTY,
+		/** プロパティー参照のみ */
+		REFERENCE,
+	}
+
+	public static List<Property> getProperties(ModelDefinition model, PropertyFilter filter) {
+		Map<String, Property> map = getPropertiesMap(model, filter);
 		return new ArrayList<Property>(map.values());
 	}
 
-	public static Map<String, Property> getPropertiesMap(ModelDefinition model) {
+	public static Map<String, Property> getPropertiesMap(ModelDefinition model, PropertyFilter filter) {
 		if (model == null) {
 			return Collections.emptyMap();
 		}
@@ -130,11 +139,11 @@ public class ModelUtil {
 				ModelReference ref = term.getReference();
 				if (ref != null) {
 					if (!recursiveModel(term.eContainer(), ref.getName())) {
-						addProperties(result, getPropertiesMap(ref.getName()).values(), false);
+						addProperties(result, getPropertiesMap(ref.getName(), filter).values(), false, filter);
 					}
 				} else {
 					EList<PropertyDefinition> properties = term.getProperties();
-					addProperties(result, properties, true);
+					addProperties(result, properties, true, filter);
 				}
 			}
 		} else if (rhs instanceof JoinExpression) {
@@ -143,12 +152,12 @@ public class ModelUtil {
 				ModelMapping mapping = term.getMapping();
 				if (mapping != null) {
 					EList<PropertyMapping> properties = mapping.getMappings();
-					addProperties(result, properties, true);
+					addProperties(result, properties, true, filter);
 				} else {
 					ModelReference ref = term.getReference();
 					if (ref != null) {
 						if (!recursiveModel(term.eContainer(), ref.getName())) {
-							addProperties(result, getPropertiesMap(ref.getName()).values(), false);
+							addProperties(result, getPropertiesMap(ref.getName(), filter).values(), false, filter);
 						}
 					}
 				}
@@ -159,15 +168,29 @@ public class ModelUtil {
 				ModelFolding folding = term.getFolding();
 				if (folding != null) {
 					EList<PropertyFolding> properties = folding.getFoldings();
-					addProperties(result, properties, true);
+					addProperties(result, properties, true, filter);
 				}
 			}
 		}
 		return result;
 	}
 
-	private static void addProperties(Map<String, Property> result, Collection<? extends Property> properties, boolean overwrite) {
+	private static void addProperties(Map<String, Property> result, Collection<? extends Property> properties, boolean overwrite, PropertyFilter filter) {
 		for (Property property : properties) {
+			switch (filter) {
+			case PROPERTY:
+				if (PropertyUtil.isPropertyReference(property)) {
+					continue;
+				}
+				break;
+			case REFERENCE:
+				if (!PropertyUtil.isPropertyReference(property)) {
+					continue;
+				}
+				break;
+			default:
+				break;
+			}
 			String name = property.getName();
 
 			if (!overwrite) {
@@ -274,7 +297,7 @@ public class ModelUtil {
 			return Collections.emptyList();
 		}
 
-		List<Property> properties = ModelUtil.getProperties(model);
+		List<Property> properties = ModelUtil.getProperties(model, PropertyFilter.ALL);
 		Map<String, Type> map = new HashMap<String, Type>(properties.size());
 		for (Property property : properties) {
 			String name = property.getName();
@@ -288,7 +311,7 @@ public class ModelUtil {
 			if (modelName.equals(projectiveModel.getName())) {
 				continue;
 			}
-			List<Property> projProps = ModelUtil.getProperties(projectiveModel);
+			List<Property> projProps = ModelUtil.getProperties(projectiveModel, PropertyFilter.ALL);
 			if (projProps == null || projProps.isEmpty()) {
 				continue;
 			}
@@ -325,8 +348,21 @@ public class ModelUtil {
 		if (model == null || name == null) {
 			return null;
 		}
-		List<Property> list = getProperties(model);
-		return findProperty(list, name);
+
+		Map<String, Property> map = getPropertiesMap(model, PropertyFilter.ALL);
+		{
+			Property p = map.get(name);
+			if (p != null) {
+				return p;
+			}
+		}
+		for (Property p : map.values()) {
+			String pname = StringUtil.toLowerCamelCase(p.getName());
+			if (name.equals(pname)) {
+				return p;
+			}
+		}
+		return null;
 	}
 
 	public static Property findProperty(List<Property> list, String name) {

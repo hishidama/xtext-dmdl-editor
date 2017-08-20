@@ -7,6 +7,7 @@ import java.util.List;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil.PropertyFilter;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
@@ -55,7 +56,7 @@ public class KeyDmdlCompletionProposalComputer implements IJavaCompletionProposa
 		}
 
 		List<ICompletionProposal> list = new ArrayList<ICompletionProposal>();
-		for (Property property : ModelUtil.getProperties(model)) {
+		for (Property property : ModelUtil.getProperties(model, PropertyFilter.PROPERTY)) {
 			String s = '"' + property.getName() + '"';
 			CompletionProposal proposal = new CompletionProposal(s, offset, 0, s.length());
 			list.add(proposal);
