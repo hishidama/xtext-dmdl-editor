@@ -1131,6 +1131,16 @@
             <command
                   commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
                   icon="icons/ch_callers.gif"
+                  label="vanillaCompileBatchapps"
+                  style="push">
+               <parameter
+                     name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
+                     value="vanillaCompileBatchapps">
+               </parameter>
+            </command>
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
+                  icon="icons/ch_callers.gif"
                   style="push">
             </command>
          </menu>
@@ -1342,6 +1352,16 @@
             <parameter
                   name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
                   value="m3bpCompileBatchapps">
+            </parameter>
+         </command>
+         <command
+               commandId="jp.hishidama.asakusafwWrapper.command.batchCompile"
+               icon="icons/ch_callers.gif"
+               label="vanillaCompileBatchapps"
+               style="push">
+            <parameter
+                  name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
+                  value="vanillaCompileBatchapps">
             </parameter>
          </command>
          <command
@@ -1990,6 +2010,16 @@
                <parameter
                      name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
                      value="m3bpCompileBatchapps">
+               </parameter>
+            </command>
+            <command
+                  commandId="jp.hishidama.asakusafwWrapper.command.batchCompile.editorMenu"
+                  icon="icons/ch_callers.gif"
+                  label="vanillaCompileBatchapps"
+                  style="push">
+               <parameter
+                     name="jp.hishidama.asakusafwWrapper.command.batchCompile.action"
+                     value="vanillaCompileBatchapps">
                </parameter>
             </command>
             <command
