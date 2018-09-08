@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.PorterUtil;
+import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
@@ -131,7 +132,7 @@ public class StringDmdlCompletionProposalComputer implements IJavaCompletionProp
 		List<ICompletionProposal> list = new ArrayList<ICompletionProposal>();
 		for (Property property : ModelUtil.getProperties(model, PropertyFilter.PROPERTY)) {
 			String s = property.getName();
-			if (s.startsWith(prefix)) {
+			if (s.startsWith(prefix.toLowerCase()) || s.startsWith(StringUtil.toSnakeCase(prefix))) {
 				int start, len;
 				if (prefix.isEmpty()) {
 					start = offset;
