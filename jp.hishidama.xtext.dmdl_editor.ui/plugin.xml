@@ -2050,4 +2050,14 @@
             class="jp.hishidama.xtext.dmdl_editor.jdt.search.JavaElementSearchResultPage">
       </viewPage>
    </extension>
+   <extension
+         point="org.eclipse.ltk.core.refactoring.renameParticipants">
+      <renameParticipant
+            id="jp.hishidama.xtext.dmdl_editor.ui.javaElementRenameParticipant"
+            name="Rename MasterSelection"
+            class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.JavaElementRenameParticipant">
+            <enablement>
+            </enablement>
+      </renameParticipant>
+   </extension>
 </plugin>
