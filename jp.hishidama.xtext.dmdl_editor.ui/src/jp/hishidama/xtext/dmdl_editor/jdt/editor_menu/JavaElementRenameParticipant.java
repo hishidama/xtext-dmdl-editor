@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.OperatorUtil;
+import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
 import jp.hishidama.eclipse_plugin.util.JdtUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 
@@ -45,6 +47,7 @@ import org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor;
 import org.eclipse.ltk.core.refactoring.participants.RenameParticipant;
 import org.eclipse.text.edits.MultiTextEdit;
 import org.eclipse.text.edits.ReplaceEdit;
+import org.eclipse.text.edits.TextEdit;
 
 // http://help.eclipse.org/kepler/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Freference%2Fextension-points%2Forg_eclipse_ltk_core_refactoring_renameParticipants.html
 // http://www.eclipse.org/jdt/ui/r3_2/RenameType.html
@@ -60,6 +63,12 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 		if (element instanceof IMethod) {
 			IMethod method = (IMethod) element;
 			if (OperatorUtil.isUserOperator(method) || OperatorUtil.isMasterSelection(method)) {
+				return true;
+			}
+		}
+		if (element instanceof IType) {
+			IType type = (IType) element;
+			if (OperatorUtil.isOperator(type)) {
 				return true;
 			}
 		}
@@ -88,8 +97,15 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 				if (OperatorUtil.isMasterSelection(method)) {
 					change = createChangeMasterSelection(method);
 				} else {
-					change = createChangeOperator(pm, method);
+					change = createChangeMethod(pm, method);
 				}
+			} else if (element instanceof IType) {
+				IType type = (IType) element;
+				change = createChangeType(pm, type);
+			} else if (element instanceof ICompilationUnit) {
+				ICompilationUnit cu = (ICompilationUnit) element;
+				IType type = TypeUtil.getPublicType(cu);
+				change = createChangeType(pm, type);
 			}
 
 			if (change != null) {
@@ -111,7 +127,7 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 		return result;
 	}
 
-	private Change createChangeOperator(IProgressMonitor pm, IMethod method) throws CoreException {
+	private Change createChangeMethod(IProgressMonitor pm, IMethod method) throws CoreException {
 		IMethod factoryMethod = getFactoryMethod(method);
 		if (factoryMethod == null) {
 			return null;
@@ -121,46 +137,36 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 
 		Map<String, String> methodMap = new HashMap<String, String>();
 		Map<String, String> typeMap = new HashMap<String, String>();
-		SearchPattern pattern = createSearchPattern(factoryMethod, returnType, methodMap, typeMap);
+		SearchPattern pattern = createMethodSearchPattern(factoryMethod, returnType, methodMap, typeMap);
 
-		return searchElement(pm, pattern, methodMap, typeMap);
+		MethodFinder finder = new MethodFinder(methodMap, typeMap);
+		return searchElement(pm, pattern, finder);
 	}
 
-	private SearchPattern createSearchPattern(IMethod method, IType type, Map<String, String> methodMap, Map<String, String> typeMap) {
+	private SearchPattern createMethodSearchPattern(IMethod method, IType type, Map<String, String> methodMap, Map<String, String> typeMap) {
+		List<SearchPattern> list = new ArrayList<SearchPattern>();
+
 		int limitTo = IJavaSearchConstants.REFERENCES; // 参照箇所を検索
 		int matchRule = SearchPattern.R_EXACT_MATCH | SearchPattern.R_CASE_SENSITIVE | SearchPattern.R_ERASURE_MATCH;
 
-		SearchPattern elementPattern = null;
 		if (method != null) {
-			elementPattern = SearchPattern.createPattern(method, limitTo, matchRule);
+			list.add(SearchPattern.createPattern(method, limitTo, matchRule));
 
 			String newName = getArguments().getNewName();
 			methodMap.put(method.getElementName(), newName);
 		}
-		SearchPattern typePattern = null;
 		if (type != null) {
-			typePattern = SearchPattern.createPattern(type, limitTo, matchRule);
+			list.add(SearchPattern.createPattern(type, limitTo, matchRule));
 
+			String oldFullName = type.getFullyQualifiedName().replace('$', '.');
 			String newName = StringUtil.toCamelCase(getArguments().getNewName());
-			typeMap.put(type.getElementName(), newName);
-
-			String name = type.getFullyQualifiedName().replace('$', '.');
-			int n = name.lastIndexOf('.');
-			if (n >= 0) {
-				typeMap.put(name, name.substring(0, n + 1) + newName);
-			}
+			putType(typeMap, oldFullName, newName);
 		}
 
-		if (elementPattern == null) {
-			return typePattern;
-		}
-		if (typePattern == null) {
-			return elementPattern;
-		}
-		return SearchPattern.createOrPattern(elementPattern, typePattern);
+		return createSearchPattern(list);
 	}
 
-	private Change searchElement(IProgressMonitor pm, SearchPattern pattern, final Map<String, String> methodMap, final Map<String, String> typeMap) throws CoreException {
+	private Change searchElement(IProgressMonitor pm, SearchPattern pattern, final AbstractFinder finder) throws CoreException {
 		final List<TextChange> result = new ArrayList<TextChange>();
 		final Map<ICompilationUnit, TextChange> myMap = new HashMap<ICompilationUnit, TextChange>();
 
@@ -174,9 +180,8 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 					return;
 				}
 
-				OperatorFinder finder = new OperatorFinder(cu, methodMap, typeMap);
-				ReplaceEdit edit = finder.findEdit(match.getOffset());
-				if (edit == null) {
+				List<ReplaceEdit> editList = finder.getEditList(cu, match.getOffset());
+				if (editList.isEmpty()) {
 					return;
 				}
 
@@ -190,7 +195,10 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 					}
 					myMap.put(cu, change);
 				}
-				change.addEdit(edit);
+
+				for (TextEdit edit : editList) {
+					change.addEdit(edit);
+				}
 			}
 		};
 
@@ -208,43 +216,58 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 		return compositeChange;
 	}
 
-	private static class OperatorFinder extends ASTVisitor {
-		private final ASTNode rootNode;
-		private final Map<String, String> methodMap;
-		private final Map<String, String> typeMap;
-		private int offset;
-		private ReplaceEdit edit;
+	private static abstract class AbstractFinder extends ASTVisitor {
+		private static final int NO_CHECK_OFFSET = Integer.MIN_VALUE;
+		private Map<ICompilationUnit, ASTNode> nodeMap = new HashMap<ICompilationUnit, ASTNode>();
 
-		public OperatorFinder(ICompilationUnit unit, Map<String, String> methodMap, Map<String, String> typeMap) {
-			ASTParser parser = JdtUtil.newASTParser();
-			parser.setSource(unit);
-			this.rootNode = parser.createAST(new NullProgressMonitor());
-			this.methodMap = methodMap;
-			this.typeMap = typeMap;
+		protected int offset;
+		private List<ReplaceEdit> editList = new ArrayList<ReplaceEdit>();
+
+		public List<ReplaceEdit> getEditList(ICompilationUnit cu, int offset) {
+			this.offset = offset;
+			this.editList.clear();
+
+			ASTNode node = nodeMap.get(cu);
+			if (node == null) {
+				ASTParser parser = JdtUtil.newASTParser();
+				parser.setSource(cu);
+				node = parser.createAST(new NullProgressMonitor());
+				nodeMap.put(cu, node);
+			}
+			node.accept(this);
+
+			return editList;
 		}
 
-		public ReplaceEdit findEdit(int offset) {
-			this.offset = offset;
-			this.edit = null;
-			rootNode.accept(this);
-			return edit;
+		protected final void addEdit(ReplaceEdit edit) {
+			if (edit != null) {
+				editList.add(edit);
+			}
 		}
 
 		@Override
 		public boolean preVisit2(ASTNode node) {
+			if (offset == NO_CHECK_OFFSET) {
+				return true;
+			}
 			return node.getStartPosition() <= offset && offset < node.getStartPosition() + node.getLength();
+		}
+	}
+
+	private static class MethodFinder extends AbstractFinder {
+		private final Map<String, String> methodMap;
+		private final Map<String, String> typeMap;
+
+		public MethodFinder(Map<String, String> methodMap, Map<String, String> typeMap) {
+			this.methodMap = methodMap;
+			this.typeMap = typeMap;
 		}
 
 		@Override
 		public boolean visit(ImportDeclaration node) {
 			Name name = node.getName();
-			if (!preVisit2(name)) {
-				return false;
-			}
-			String oldName = name.getFullyQualifiedName();
-			String newName = typeMap.get(oldName);
-			if (newName != null) {
-				edit = new ReplaceEdit(name.getStartPosition(), name.getLength(), newName);
+			if (preVisit2(name)) {
+				createReplaceEdit(typeMap, name);
 			}
 			return false;
 		}
@@ -252,13 +275,8 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 		@Override
 		public boolean visit(SimpleType node) {
 			Name name = node.getName();
-			if (!preVisit2(name)) {
-				return false;
-			}
-			String oldName = name.getFullyQualifiedName();
-			String newName = typeMap.get(oldName);
-			if (newName != null) {
-				edit = new ReplaceEdit(name.getStartPosition(), name.getLength(), newName);
+			if (preVisit2(name)) {
+				createReplaceEdit(typeMap, name);
 			}
 			return false;
 		}
@@ -269,12 +287,16 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 			if (!preVisit2(name)) {
 				return true;
 			}
-			String oldName = name.getFullyQualifiedName();
-			String newName = methodMap.get(oldName);
-			if (newName != null) {
-				edit = new ReplaceEdit(name.getStartPosition(), name.getLength(), newName);
-			}
+			createReplaceEdit(methodMap, name);
 			return false;
+		}
+
+		private void createReplaceEdit(Map<String, String> map, Name name) {
+			String oldName = name.getFullyQualifiedName();
+			String newName = map.get(oldName);
+			if (newName != null) {
+				addEdit(new ReplaceEdit(name.getStartPosition(), name.getLength(), newName));
+			}
 		}
 	}
 
@@ -282,8 +304,8 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 		ICompilationUnit cu = method.getCompilationUnit();
 		String oldName = method.getElementName();
 		String newName = getArguments().getNewName();
-		MasterSelectionFinder finder = new MasterSelectionFinder(cu, oldName, newName);
-		List<ReplaceEdit> list = finder.getEditList();
+		MasterSelectionFinder finder = new MasterSelectionFinder(oldName, newName);
+		List<ReplaceEdit> list = finder.getEditList(cu, AbstractFinder.NO_CHECK_OFFSET);
 		if (list.isEmpty()) {
 			return null;
 		}
@@ -303,36 +325,13 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 		return result;
 	}
 
-	private static class MasterSelectionFinder extends ASTVisitor {
-		private final ICompilationUnit unit;
+	private static class MasterSelectionFinder extends AbstractFinder {
 		private final String oldName;
 		private final String newName;
 
-		private List<ReplaceEdit> editList = new ArrayList<ReplaceEdit>();
-
-		public MasterSelectionFinder(ICompilationUnit unit, String oldName, String newName) {
-			this.unit = unit;
+		public MasterSelectionFinder(String oldName, String newName) {
 			this.oldName = oldName;
 			this.newName = newName;
-		}
-
-		public List<ReplaceEdit> getEditList() {
-			visit();
-			return editList;
-		}
-
-		private boolean visited = false;
-
-		private void visit() {
-			if (visited) {
-				return;
-			}
-			visited = true;
-
-			ASTParser parser = JdtUtil.newASTParser();
-			parser.setSource(unit);
-			ASTNode node = parser.createAST(new NullProgressMonitor());
-			node.accept(this);
 		}
 
 		@Override
@@ -354,10 +353,88 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 			if (selectionName.equals(oldName)) {
 				int offset = node.getStartPosition() + 1;
 				int length = node.getLength() - 2;
-				ReplaceEdit edit = new ReplaceEdit(offset, length, newName);
-				editList.add(edit);
+				addEdit(new ReplaceEdit(offset, length, newName));
 			}
 			return false;
+		}
+	}
+
+	private Change createChangeType(IProgressMonitor pm, IType type) throws CoreException {
+		if (type == null) {
+			return null;
+		}
+
+		Map<String, String> typeMap = new HashMap<String, String>();
+		SearchPattern pattern = createTypeSearchPattern(type, typeMap);
+		if (pattern == null) {
+			return null;
+		}
+
+		TypeFinder finder = new TypeFinder(typeMap);
+		return searchElement(pm, pattern, finder);
+	}
+
+	private SearchPattern createTypeSearchPattern(IType type, Map<String, String> typeMap) throws JavaModelException {
+		List<SearchPattern> list = new ArrayList<SearchPattern>();
+		createTypeSearchPattern(type, "Factory", list, typeMap);
+		createTypeSearchPattern(type, "Impl", list, typeMap);
+		return createSearchPattern(list);
+	}
+
+	private void createTypeSearchPattern(IType type, String suffix, List<SearchPattern> patternList, Map<String, String> typeMap) throws JavaModelException {
+		IType targetType = type.getJavaProject().findType(type.getFullyQualifiedName() + suffix);
+		if (targetType == null) {
+			return;
+		}
+
+		int limitTo = IJavaSearchConstants.REFERENCES; // 参照箇所を検索
+		int matchRule = SearchPattern.R_EXACT_MATCH | SearchPattern.R_CASE_SENSITIVE | SearchPattern.R_ERASURE_MATCH;
+		SearchPattern pattern = SearchPattern.createPattern(targetType, limitTo, matchRule);
+		patternList.add(pattern);
+
+		putType(typeMap, targetType.getFullyQualifiedName(), getArguments().getNewName() + suffix);
+	}
+
+	private static class TypeFinder extends AbstractFinder {
+		private final Map<String, String> typeMap;
+
+		public TypeFinder(Map<String, String> typeMap) {
+			this.typeMap = typeMap;
+		}
+
+		@Override
+		public boolean visit(ImportDeclaration node) {
+			Name name = node.getName();
+			if (preVisit2(name)) {
+				createReplaceEdit(name);
+			}
+			return false;
+		}
+
+		@Override
+		public boolean visit(SimpleType node) {
+			Name name = node.getName();
+			if (preVisit2(name)) {
+				createReplaceEdit(name);
+			}
+			return false;
+		}
+
+		private void createReplaceEdit(Name name) {
+			String oldName = name.getFullyQualifiedName();
+			String newName = typeMap.get(oldName);
+			if (newName != null) {
+				addEdit(new ReplaceEdit(name.getStartPosition(), name.getLength(), newName));
+				return;
+			}
+
+			for (Entry<String, String> entry : typeMap.entrySet()) {
+				String oldPrefix = entry.getKey() + ".";
+				if (oldName.startsWith(oldPrefix)) {
+					addEdit(new ReplaceEdit(name.getStartPosition(), oldPrefix.length() - 1, entry.getValue()));
+					return;
+				}
+			}
 		}
 	}
 
@@ -381,5 +458,32 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 			return null;
 		}
 		return factoryMethod;
+	}
+
+	private static void putType(Map<String, String> typeMap, String oldFullName, String newName) {
+		int n = oldFullName.lastIndexOf('.');
+		if (n < 0) {
+			String oldName = oldFullName;
+			typeMap.put(oldName, newName);
+			return;
+		}
+
+		String oldName = oldFullName.substring(n + 1);
+		typeMap.put(oldName, newName);
+
+		String newFullName = oldFullName.substring(0, n + 1) + newName;
+		typeMap.put(oldFullName, newFullName);
+	}
+
+	private static SearchPattern createSearchPattern(List<SearchPattern> list) {
+		SearchPattern result = null;
+		for (SearchPattern pattern : list) {
+			if (result == null) {
+				result = pattern;
+			} else {
+				result = SearchPattern.createOrPattern(result, pattern);
+			}
+		}
+		return result;
 	}
 }
