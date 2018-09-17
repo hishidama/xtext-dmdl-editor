@@ -1,11 +1,14 @@
 package jp.hishidama.xtext.dmdl_editor.jdt.editor_menu;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.OperatorUtil;
 import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
 import jp.hishidama.eclipse_plugin.util.JdtUtil;
@@ -68,7 +71,7 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 		}
 		if (element instanceof IType) {
 			IType type = (IType) element;
-			if (OperatorUtil.isOperator(type)) {
+			if (OperatorUtil.isOperator(type) || FlowUtil.isFlowPart(type)) {
 				return true;
 			}
 		}
@@ -160,7 +163,8 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 
 			String oldFullName = type.getFullyQualifiedName().replace('$', '.');
 			String newName = StringUtil.toCamelCase(getArguments().getNewName());
-			putType(typeMap, oldFullName, newName);
+			String newFullName = StringUtil.getPackageName(oldFullName) + "." + newName;
+			putType(typeMap, oldFullName, newFullName);
 		}
 
 		return createSearchPattern(list);
@@ -364,7 +368,12 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 			return null;
 		}
 
-		Map<String, String> typeMap = new HashMap<String, String>();
+		Map<String, String> typeMap = new TreeMap<String, String>(new Comparator<String>() {
+			//			@Override
+			public int compare(String o1, String o2) {
+				return o2.length() - o1.length(); // 長さの降順
+			}
+		});
 		SearchPattern pattern = createTypeSearchPattern(type, typeMap);
 		if (pattern == null) {
 			return null;
@@ -377,7 +386,12 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 	private SearchPattern createTypeSearchPattern(IType type, Map<String, String> typeMap) throws JavaModelException {
 		List<SearchPattern> list = new ArrayList<SearchPattern>();
 		createTypeSearchPattern(type, "Factory", list, typeMap);
-		createTypeSearchPattern(type, "Impl", list, typeMap);
+		if (OperatorUtil.isOperator(type)) {
+			createTypeSearchPattern(type, "Impl", list, typeMap);
+		}
+		if (FlowUtil.isFlowPart(type)) {
+			createFlowPartSearchPattern(type, list, typeMap);
+		}
 		return createSearchPattern(list);
 	}
 
@@ -392,7 +406,26 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 		SearchPattern pattern = SearchPattern.createPattern(targetType, limitTo, matchRule);
 		patternList.add(pattern);
 
-		putType(typeMap, targetType.getFullyQualifiedName(), getArguments().getNewName() + suffix);
+		String oldFullName = targetType.getFullyQualifiedName();
+		String newFullName = StringUtil.getPackageName(oldFullName) + "." + getArguments().getNewName() + suffix;
+		putType(typeMap, oldFullName, newFullName);
+	}
+
+	private void createFlowPartSearchPattern(IType type, List<SearchPattern> patternList, Map<String, String> typeMap) throws JavaModelException {
+		IType targetType = type.getJavaProject().findType(type.getFullyQualifiedName() + "Factory." + type.getElementName());
+		if (targetType == null) {
+			return;
+		}
+
+		int limitTo = IJavaSearchConstants.REFERENCES; // 参照箇所を検索
+		int matchRule = SearchPattern.R_EXACT_MATCH | SearchPattern.R_CASE_SENSITIVE | SearchPattern.R_ERASURE_MATCH;
+		SearchPattern pattern = SearchPattern.createPattern(targetType, limitTo, matchRule);
+		patternList.add(pattern);
+
+		String oldFullName = targetType.getFullyQualifiedName().replace('$', '.');
+		String newName = getArguments().getNewName();
+		String newFullName = StringUtil.getPackageName(StringUtil.getPackageName(oldFullName)) + "." + newName + "Factory." + newName;
+		putType(typeMap, oldFullName, newFullName);
 	}
 
 	private static class TypeFinder extends AbstractFinder {
@@ -460,19 +493,9 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 		return factoryMethod;
 	}
 
-	private static void putType(Map<String, String> typeMap, String oldFullName, String newName) {
-		int n = oldFullName.lastIndexOf('.');
-		if (n < 0) {
-			String oldName = oldFullName;
-			typeMap.put(oldName, newName);
-			return;
-		}
-
-		String oldName = oldFullName.substring(n + 1);
-		typeMap.put(oldName, newName);
-
-		String newFullName = oldFullName.substring(0, n + 1) + newName;
+	private static void putType(Map<String, String> typeMap, String oldFullName, String newFullName) {
 		typeMap.put(oldFullName, newFullName);
+		typeMap.put(StringUtil.getSimpleName(oldFullName), StringUtil.getSimpleName(newFullName));
 	}
 
 	private static SearchPattern createSearchPattern(List<SearchPattern> list) {
