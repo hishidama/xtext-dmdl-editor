@@ -19,7 +19,7 @@ public class PorterFile {
 	public PorterFile(IFile file) {
 		this.file = file;
 
-		ICompilationUnit unit = JdtUtil.getJavaUnit(file);
+		ICompilationUnit unit = JdtUtil.getCompilationUnit(file);
 		if (unit != null) {
 			this.type = unit.findPrimaryType();
 		} else {

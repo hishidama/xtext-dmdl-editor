@@ -35,7 +35,7 @@ public class NewOperatorMethodHandler extends AbstractHandler {
 
 			IFile file = FileUtil.getFile(editor);
 			IDocument document = DocumentUtil.findEditorDocument(file);
-			ICompilationUnit cu = JdtUtil.getJavaUnit(file);
+			ICompilationUnit cu = JdtUtil.getCompilationUnit(file);
 			if (document != null && cu != null) {
 				try {
 					execute(document, cu, offset);
