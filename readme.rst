@@ -86,7 +86,7 @@ Javaエディターを拡張している機能もあります。
     * Operatorクラスの演算子メソッドを右クリックして ``[Asakusa DSL References]→[Search in src/main(Flow)]`` を選択すると、JobFlow/FlowPart上で該当演算子が使われている箇所を検索する。
 * MasterSelectionの使用箇所を検索できる。
     * OperatorクラスのMasterSelectionメソッドを右クリックして ``[Asakusa DSL References]→[Search in src/main(Operator)]`` を選択すると、Operatorクラス内で該当MasterSelectionが使われている箇所を検索する。
-* MasterSelectionのメソッド名を ``[Refactor]→[Rename...]`` で改名すると、使用している箇所の名前も連動して変更される。
+* Operatorのメソッド名を ``[Refactor]→[Rename...]`` で改名すると、使用している箇所の名前も連動して変更される。
 
 DMDLとは直接関係無い機能ですが、以下のようなことも出来ます。
 
