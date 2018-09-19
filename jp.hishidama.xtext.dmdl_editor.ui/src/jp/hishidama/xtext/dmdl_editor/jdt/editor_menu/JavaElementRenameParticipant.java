@@ -63,6 +63,10 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 
 	@Override
 	protected boolean initialize(Object element) {
+		if (!getArguments().getUpdateReferences()) {
+			return false;
+		}
+
 		if (element instanceof IMethod) {
 			IMethod method = (IMethod) element;
 			if (OperatorUtil.isUserOperator(method) || OperatorUtil.isMasterSelection(method)) {
@@ -369,7 +373,7 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 		}
 
 		Map<String, String> typeMap = new TreeMap<String, String>(new Comparator<String>() {
-			//			@Override
+			// @Override
 			public int compare(String o1, String o2) {
 				return o2.length() - o1.length(); // 長さの降順
 			}
