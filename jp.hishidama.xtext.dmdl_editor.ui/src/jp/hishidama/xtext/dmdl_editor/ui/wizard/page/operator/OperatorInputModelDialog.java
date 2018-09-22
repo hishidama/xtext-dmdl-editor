@@ -12,9 +12,9 @@ import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil.PropertyFilter;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
-import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil.PropertyFilter;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.swt.SWT;
@@ -27,14 +27,18 @@ import org.eclipse.swt.widgets.Shell;
 
 public class OperatorInputModelDialog extends OperatorModelDialog<OperatorInputModelRow> {
 
+	private boolean hasList;
 	private boolean hasKey;
 	private boolean hasOrder;
 
 	private List<Property> propertyList;
 	private Map<String, NamePair> oldKeyMap;
 	private Map<String, NamePair> oldOrderMap;
+
 	private KeyTable keyTable;
 	private KeyTable orderTable;
+	private Button onceButton;
+	private Button iterableButton;
 
 	private static class NamePair {
 		public int index;
@@ -42,8 +46,9 @@ public class OperatorInputModelDialog extends OperatorModelDialog<OperatorInputM
 		public String order;
 	}
 
-	public OperatorInputModelDialog(Shell parentShell, IProject project, String role, OperatorInputModelRow row, boolean hasKey, boolean hasOrder, boolean joinOnly) {
+	public OperatorInputModelDialog(Shell parentShell, IProject project, String role, OperatorInputModelRow row, boolean hasList, boolean hasKey, boolean hasOrder, boolean joinOnly) {
 		super(parentShell, "入力データモデル選択", project, role, row, joinOnly, false);
+		this.hasList = hasList;
 		this.hasKey = hasKey;
 		this.hasOrder = hasOrder;
 
@@ -109,6 +114,18 @@ public class OperatorInputModelDialog extends OperatorModelDialog<OperatorInputM
 
 			initializeKeys(nonNull(row.modelName));
 			initializeKeyOrderTable();
+		}
+		if (hasList) {
+			createLabel(composite, "list type");
+			Composite field = createRowLayout(composite);
+			onceButton = createCheckButton(field, "@Once");
+			onceButton.setSelection(row.once);
+
+			List<Button> list = createRadioField(field, null, "List", "Iterable");
+			iterableButton = list.get(1);
+			boolean iterable = "java.lang.Iterable".equals(row.listClassName);
+			list.get(0).setSelection(!iterable);
+			list.get(1).setSelection(iterable);
 		}
 	}
 
@@ -318,6 +335,14 @@ public class OperatorInputModelDialog extends OperatorModelDialog<OperatorInputM
 
 	@Override
 	protected void okPressed() {
+		if (hasList) {
+			row.once = onceButton.getSelection();
+			if (iterableButton.getSelection()) {
+				row.listClassName = "java.lang.Iterable";
+			} else {
+				row.listClassName = "java.util.List";
+			}
+		}
 		if (hasKey) {
 			row.keyList = new ArrayList<String>();
 			List<KeyRow> list = keyTable.getCheckedElementList();

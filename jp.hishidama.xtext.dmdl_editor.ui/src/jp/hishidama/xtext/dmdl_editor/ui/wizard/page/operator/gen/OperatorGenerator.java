@@ -36,6 +36,7 @@ import org.eclipse.jdt.core.dom.EnhancedForStatement;
 import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.IExtendedModifier;
 import org.eclipse.jdt.core.dom.Javadoc;
+import org.eclipse.jdt.core.dom.MarkerAnnotation;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.Modifier;
 import org.eclipse.jdt.core.dom.Modifier.ModifierKeyword;
@@ -247,16 +248,14 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		OperatorInputModelRow row0 = ilist.get(0);
 		OperatorInputModelRow row1 = ilist.get(1);
 
-		MethodDeclaration method = generateMasterSelectionMethod(methodName, null, row0.getModelTypeName(),
-				row0.getLabel(), row1.getModelTypeName(), row1.getLabel());
+		MethodDeclaration method = generateMasterSelectionMethod(methodName, null, row0.getModelTypeName(), row0.getLabel(), row1.getModelTypeName(), row1.getLabel());
 		listRewrite.insertAfter(method, previousElement, null);
 
 		return method;
 	}
 
 	@SuppressWarnings("unchecked")
-	protected MethodDeclaration generateMasterSelectionMethod(String methodName, String methodComment,
-			String masterType, String masterLabel, String txType, String txLabel) {
+	protected MethodDeclaration generateMasterSelectionMethod(String methodName, String methodComment, String masterType, String masterLabel, String txType, String txLabel) {
 		String comment = methodComment;
 		if (StringUtil.isEmpty(comment)) {
 			comment = "有効なマスターを選択する。";
@@ -274,7 +273,7 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		generateMethodTypeParameters(method);
 
 		List<SingleVariableDeclaration> plist = method.parameters();
-		plist.add(newListParameter(masterType, "masters", null, null));
+		plist.add(newListParameter("java.util.List", masterType, "masters"));
 		plist.add(newSimpleParameter(txType, "tx"));
 		addJavadocParam(javadoc, "masters", masterLabel);
 		addJavadocParam(javadoc, "tx", txLabel);
@@ -409,8 +408,7 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		return newSimpleParameter(typeName, name, null, null);
 	}
 
-	protected final SingleVariableDeclaration newSimpleParameter(String typeName, String name, List<String> keyList,
-			List<String> orderList) {
+	protected final SingleVariableDeclaration newSimpleParameter(String typeName, String name, List<String> keyList, List<String> orderList) {
 		SingleVariableDeclaration v = ast.newSingleVariableDeclaration();
 		v.setType(newType(typeName));
 		v.setName(ast.newSimpleName(name));
@@ -418,7 +416,6 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		return v;
 	}
 
-	@SuppressWarnings("unchecked")
 	private void addKeyAnnotation(SingleVariableDeclaration v, List<String> keyList, List<String> orderList) {
 		if (keyList == null && orderList == null) {
 			return;
@@ -432,16 +429,31 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 			addTo(a, newMemberValuePair("order", orderList));
 		}
 
+		@SuppressWarnings("unchecked")
 		List<IExtendedModifier> mlist = v.modifiers();
 		mlist.add(a);
 	}
 
-	protected final SingleVariableDeclaration newListParameter(String typeName, String name, List<String> keyList,
-			List<String> orderList) {
+	private void addOnceAnnotation(SingleVariableDeclaration v) {
+		MarkerAnnotation a = newMarkerAnnotation("com.asakusafw.vocabulary.model.Once");
+		@SuppressWarnings("unchecked")
+		List<IExtendedModifier> mlist = v.modifiers();
+		mlist.add(a);
+	}
+
+	protected final SingleVariableDeclaration newListParameter(String listClassName, String typeName, String name) {
 		SingleVariableDeclaration v = ast.newSingleVariableDeclaration();
-		v.setType(newType("java.util.List", typeName));
+		v.setType(newType(listClassName, typeName));
 		v.setName(ast.newSimpleName(name));
+		return v;
+	}
+
+	protected final SingleVariableDeclaration newListParameter(String listClassName, String typeName, String name, List<String> keyList, List<String> orderList, boolean once) {
+		SingleVariableDeclaration v = newListParameter(listClassName, typeName, name);
 		addKeyAnnotation(v, keyList, orderList);
+		if (once) {
+			addOnceAnnotation(v);
+		}
 		return v;
 	}
 
@@ -454,8 +466,8 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 
 	protected final EmptyStatement newResultCommentStatement() {
 		ASTRewrite rewriter = getAstRewrite();
-		String comment = "// TODO Resultのaddメソッドにデータモデルオブジェクトを渡すことにより、オブジェクトを出力します。\n"
-				+ "// XXX addは複数回呼び出せますが、Resultにaddしたオブジェクトはadd後に内容が変更されている可能性があるので、add後にオブジェクトの一部だけ変えて再度addするような使い方は出来ません。\n"
+		String comment = "// TODO Resultのaddメソッドにデータモデルオブジェクトを渡すことにより、オブジェクトを出力します。\n" //
+				+ "// XXX addは複数回呼び出せますが、Resultにaddしたオブジェクトはadd後に内容が変更されている可能性があるので、add後にオブジェクトの一部だけ変えて再度addするような使い方は出来ません。\n" //
 				+ "// XXX オブジェクトを使い回したい場合は、値を全てセットし直すか、Resultにaddする専用のオブジェクトを作ってcopyFromメソッドでコピーする等の方法を採る必要があります。";
 		EmptyStatement statement = (EmptyStatement) rewriter.createStringPlaceholder(comment, ASTNode.EMPTY_STATEMENT);
 		return statement;

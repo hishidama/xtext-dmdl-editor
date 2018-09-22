@@ -38,8 +38,7 @@ public class NewOperatorMethodWizard extends Wizard {
 
 	private SelectOperatorTypePage typePage;
 	private SetOperatorNamePage namePage;
-	private Map<OperatorType, List<IWizardPage>> pageMap = new EnumMap<OperatorType, List<IWizardPage>>(
-			OperatorType.class);
+	private Map<OperatorType, List<IWizardPage>> pageMap = new EnumMap<OperatorType, List<IWizardPage>>(OperatorType.class);
 
 	public NewOperatorMethodWizard() {
 		setWindowTitle("演算子メソッドの作成");
@@ -80,7 +79,7 @@ public class NewOperatorMethodWizard extends Wizard {
 
 	private void addBranchPages() {
 		OperatorType opType = OperatorType.BRANCH;
-		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, false);
+		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, false, false);
 		inputPage.addRole("in");
 		addPage(opType, inputPage);
 
@@ -90,14 +89,14 @@ public class NewOperatorMethodWizard extends Wizard {
 
 	private void addUpdatePages() {
 		OperatorType opType = OperatorType.UPDATE;
-		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, false);
+		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, false, false);
 		inputPage.addRole("in/out");
 		addPage(opType, inputPage);
 	}
 
 	private void addConvertPages() {
 		OperatorType opType = OperatorType.CONVERT;
-		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, false);
+		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, false, false);
 		inputPage.addRole("in");
 		addPage(opType, inputPage);
 
@@ -120,7 +119,7 @@ public class NewOperatorMethodWizard extends Wizard {
 
 	private void addExtractPages() {
 		OperatorType opType = OperatorType.EXTRACT;
-		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, false);
+		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, false, false);
 		inputPage.addRole("in");
 		addPage(opType, inputPage);
 
@@ -135,7 +134,7 @@ public class NewOperatorMethodWizard extends Wizard {
 
 	private void addMasterCheckPages() {
 		OperatorType opType = OperatorType.MASTER_CHECK;
-		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, true, false);
+		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, true, false);
 		inputPage.addRole("master");
 		inputPage.addRole("tx");
 		addPage(opType, inputPage);
@@ -146,8 +145,7 @@ public class NewOperatorMethodWizard extends Wizard {
 
 	private void addMasterJoinPages() {
 		OperatorType opType = OperatorType.MASTER_JOIN;
-		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType,
-				"結合モデル（MasterJoin演算子の出力となるデータモデル）を選択して下さい。");
+		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType, "結合モデル（MasterJoin演算子の出力となるデータモデル）を選択して下さい。");
 		outputPage.setJoinModelOnly();
 		outputPage.addRole("out");
 		addPage(opType, outputPage);
@@ -163,7 +161,7 @@ public class NewOperatorMethodWizard extends Wizard {
 
 	private void addMasterBranchPages() {
 		OperatorType opType = OperatorType.MASTER_BRANCH;
-		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, true, false);
+		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, true, false);
 		inputPage.addRole("master");
 		inputPage.addRole("tx");
 		addPage(opType, inputPage);
@@ -177,7 +175,7 @@ public class NewOperatorMethodWizard extends Wizard {
 
 	private void addMasterJoinUpdatePages() {
 		OperatorType opType = OperatorType.MASTER_JOIN_UPDATE;
-		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, true, false);
+		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, true, false);
 		inputPage.addRole("master");
 		inputPage.addRole("tx");
 		addPage(opType, inputPage);
@@ -195,7 +193,7 @@ public class NewOperatorMethodWizard extends Wizard {
 
 	private void addCoGroupPages() {
 		OperatorType opType = OperatorType.CO_GROUP;
-		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, true, true);
+		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, true, true, true);
 		addPage(opType, inputPage);
 
 		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType);
@@ -209,7 +207,7 @@ public class NewOperatorMethodWizard extends Wizard {
 
 	private void addSplitPages() {
 		OperatorType opType = OperatorType.SPLIT;
-		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, false);
+		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, false, false);
 		inputPage.setJoinModelOnly();
 		inputPage.addRole("in");
 		addPage(opType, inputPage);
@@ -217,8 +215,7 @@ public class NewOperatorMethodWizard extends Wizard {
 
 	private void addSummarizePages() {
 		OperatorType opType = OperatorType.SUMMARIZE;
-		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType,
-				"集計モデル（Summarize演算子の出力となるデータモデル）を選択して下さい。");
+		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType, "集計モデル（Summarize演算子の出力となるデータモデル）を選択して下さい。");
 		outputPage.setSummarizeModelOnly();
 		outputPage.addRole("out");
 		addPage(opType, outputPage);
@@ -226,14 +223,14 @@ public class NewOperatorMethodWizard extends Wizard {
 
 	private void addFoldPages() {
 		OperatorType opType = OperatorType.FOLD;
-		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, true, false);
+		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, true, false);
 		inputPage.addRole("in/out");
 		addPage(opType, inputPage);
 	}
 
 	private void addGroupSortPages() {
 		OperatorType opType = OperatorType.GROUP_SORT;
-		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, true, true);
+		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, true, true, true);
 		inputPage.addRole("in");
 		addPage(opType, inputPage);
 
@@ -248,7 +245,7 @@ public class NewOperatorMethodWizard extends Wizard {
 
 	private void addLoggingPages() {
 		OperatorType opType = OperatorType.LOGGING;
-		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, false);
+		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, false, false);
 		inputPage.addRole("in/out");
 		addPage(opType, inputPage);
 	}

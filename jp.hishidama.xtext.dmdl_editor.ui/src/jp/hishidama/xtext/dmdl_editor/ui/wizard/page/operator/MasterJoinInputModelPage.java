@@ -21,7 +21,7 @@ public class MasterJoinInputModelPage extends SelectOperatorInputModelPage {
 	private String joinModelName;
 
 	public MasterJoinInputModelPage(IProject project, SelectOperatorOutputModelPage outputPage) {
-		super(project, OperatorType.MASTER_JOIN, false, false);
+		super(project, OperatorType.MASTER_JOIN, false, false, false);
 		this.outputPage = outputPage;
 
 		setDescription("結合モデルのマスター/トランザクションを選択して下さい。");

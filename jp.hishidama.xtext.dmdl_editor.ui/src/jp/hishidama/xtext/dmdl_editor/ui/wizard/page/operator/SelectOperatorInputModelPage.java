@@ -21,15 +21,17 @@ import org.eclipse.swt.widgets.Composite;
 
 public class SelectOperatorInputModelPage extends SelectOperatorModelPage<OperatorInputModelRow> {
 
+	private final boolean hasList;
 	private final boolean hasKey;
 	private final boolean hasOrder;
 
-	public SelectOperatorInputModelPage(IProject project, OperatorType opType, boolean hasKey, boolean hasOrder) {
+	public SelectOperatorInputModelPage(IProject project, OperatorType opType, boolean hasList, boolean hasKey, boolean hasOrder) {
 		super("SelectOperatorInputModelPage", project);
 
 		setTitle(MessageFormat.format("{0}の入力モデルの指定", opType.getName()));
 		setDescription("演算子の入力となるデータモデルを選択して下さい。");
 
+		this.hasList = hasList;
 		this.hasKey = hasKey;
 		this.hasOrder = hasOrder;
 	}
@@ -158,7 +160,6 @@ public class SelectOperatorInputModelPage extends SelectOperatorModelPage<Operat
 	}
 
 	protected OperatorInputModelDialog createOperatorInputModelDialog(OperatorInputModelRow element) {
-		return new OperatorInputModelDialog(getShell(), project, getRoleName(element), element, hasKey, hasOrder,
-				joinOnly);
+		return new OperatorInputModelDialog(getShell(), project, getRoleName(element), element, hasList, hasKey, hasOrder, joinOnly);
 	}
 }

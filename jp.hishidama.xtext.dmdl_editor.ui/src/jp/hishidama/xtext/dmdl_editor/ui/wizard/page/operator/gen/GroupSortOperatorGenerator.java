@@ -31,7 +31,7 @@ public class GroupSortOperatorGenerator extends OperatorGenerator {
 	protected void getParameters(List<SingleVariableDeclaration> plist, Javadoc javadoc) {
 		List<OperatorInputModelRow> ilist = getInputModelList();
 		for (OperatorInputModelRow row : ilist) {
-			plist.add(newListParameter(row.getModelTypeName(), row.name, row.keyList, row.orderList));
+			plist.add(newListParameter(row.listClassName, row.getModelTypeName(), row.name, row.keyList, row.orderList, row.once));
 			addJavadocParam(javadoc, row.name, row.getLabel());
 		}
 

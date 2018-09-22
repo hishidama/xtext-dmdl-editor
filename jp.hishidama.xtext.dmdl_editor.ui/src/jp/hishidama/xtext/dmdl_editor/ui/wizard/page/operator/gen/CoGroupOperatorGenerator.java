@@ -34,7 +34,7 @@ public class CoGroupOperatorGenerator extends OperatorGenerator {
 		for (OperatorInputModelRow row : ilist) {
 			List<String> keyList = (row.keyList != null) ? row.keyList : Collections.<String> emptyList();
 			List<String> orderList = (row.orderList != null) ? row.orderList : Collections.<String> emptyList();
-			plist.add(newListParameter(row.getModelTypeName(), row.name, keyList, orderList));
+			plist.add(newListParameter(row.listClassName, row.getModelTypeName(), row.name, keyList, orderList, row.once));
 			addJavadocParam(javadoc, row.name, row.getLabel());
 		}
 
