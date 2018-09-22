@@ -1,14 +1,13 @@
 package jp.hishidama.xtext.dmdl_editor.jdt.refactoring;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import jp.hishidama.eclipse_plugin.util.JdtUtil;
 
-import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTParser;
@@ -25,22 +24,17 @@ import org.eclipse.text.edits.ReplaceEdit;
 abstract class JavaElementRefactoringFinder extends ASTVisitor {
 
 	private static final int NO_CHECK_OFFSET = Integer.MIN_VALUE;
-	private Map<ICompilationUnit, ASTNode> nodeMap = new HashMap<ICompilationUnit, ASTNode>();
 
 	protected int offset;
 	private List<ReplaceEdit> editList = new ArrayList<ReplaceEdit>();
 
-	public List<ReplaceEdit> getEditList(ICompilationUnit cu, int offset) {
+	public List<ReplaceEdit> getEditList(IProgressMonitor pm, ICompilationUnit cu, int offset) {
 		this.offset = offset;
 		this.editList.clear();
 
-		ASTNode node = nodeMap.get(cu);
-		if (node == null) {
-			ASTParser parser = JdtUtil.newASTParser();
-			parser.setSource(cu);
-			node = parser.createAST(new NullProgressMonitor());
-			nodeMap.put(cu, node);
-		}
+		ASTParser parser = JdtUtil.newASTParser();
+		parser.setSource(cu);
+		ASTNode node = parser.createAST(pm);
 		node.accept(this);
 
 		return editList;
@@ -69,8 +63,8 @@ abstract class JavaElementRefactoringFinder extends ASTVisitor {
 			this.newName = newName;
 		}
 
-		public List<ReplaceEdit> getEditList(ICompilationUnit cu) {
-			return getEditList(cu, NO_CHECK_OFFSET);
+		public List<ReplaceEdit> getEditList(IProgressMonitor pm, ICompilationUnit cu) {
+			return getEditList(pm, cu, NO_CHECK_OFFSET);
 		}
 
 		@Override

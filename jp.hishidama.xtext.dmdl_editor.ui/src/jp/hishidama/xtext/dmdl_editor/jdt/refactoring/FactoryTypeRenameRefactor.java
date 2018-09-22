@@ -1,6 +1,7 @@
 package jp.hishidama.xtext.dmdl_editor.jdt.refactoring;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -22,15 +23,33 @@ import org.eclipse.ltk.core.refactoring.participants.RefactoringParticipant;
 
 public class FactoryTypeRenameRefactor extends JavaElementRefactor {
 
-	private final IType type;
-	private final String oldTypeFullName;
-	private final String newTypeFullName;
+	public static final class TypePair {
+		final IType type;
+		private final String newFullName;
+
+		public TypePair(IType type, String newFullName) {
+			this.type = type;
+			this.newFullName = newFullName;
+		}
+
+		public String getOldFullName() {
+			return type.getFullyQualifiedName();
+		}
+
+		public String getNewFullName() {
+			return newFullName;
+		}
+	}
+
+	private final List<TypePair> typeList;
+
+	public FactoryTypeRenameRefactor(RefactoringParticipant participant, List<TypePair> typeList) {
+		super(participant);
+		this.typeList = typeList;
+	}
 
 	public FactoryTypeRenameRefactor(RefactoringParticipant participant, IType type, String newFullName) {
-		super(participant);
-		this.type = type;
-		this.oldTypeFullName = type.getFullyQualifiedName();
-		this.newTypeFullName = newFullName;
+		this(participant, Collections.singletonList(new TypePair(type, newFullName)));
 	}
 
 	public Change createChangeType(IProgressMonitor pm) throws CoreException {
@@ -45,7 +64,11 @@ public class FactoryTypeRenameRefactor extends JavaElementRefactor {
 			}
 		});
 
-		SearchPattern pattern = createSearchPattern(typeMap);
+		List<SearchPattern> list = new ArrayList<SearchPattern>();
+		for (TypePair pair : typeList) {
+			createSearchPattern(pair, list, typeMap);
+		}
+		SearchPattern pattern = SearchPatternUtil.createOrPattern(list);
 		if (pattern == null) {
 			return null;
 		}
@@ -54,22 +77,20 @@ public class FactoryTypeRenameRefactor extends JavaElementRefactor {
 		return searchElement(pm, pattern, finder);
 	}
 
-	private SearchPattern createSearchPattern(Map<String, String> typeMap) throws JavaModelException {
-		List<SearchPattern> list = new ArrayList<SearchPattern>();
-		createSuffixSearchPattern("Factory", list, typeMap);
-		if (OperatorUtil.isOperator(type)) {
-			createSuffixSearchPattern("Impl", list, typeMap);
+	private void createSearchPattern(TypePair pair, List<SearchPattern> list, Map<String, String> typeMap) throws JavaModelException {
+		createSuffixSearchPattern(pair, "Factory", list, typeMap);
+		if (OperatorUtil.isOperator(pair.type)) {
+			createSuffixSearchPattern(pair, "Impl", list, typeMap);
 		}
-		if (FlowUtil.isFlowPart(type)) {
-			createFlowPartSearchPattern(list, typeMap);
+		if (FlowUtil.isFlowPart(pair.type)) {
+			createFlowPartSearchPattern(pair, list, typeMap);
 		}
-		return SearchPatternUtil.createOrPattern(list);
 	}
 
-	private void createSuffixSearchPattern(String suffix, List<SearchPattern> patternList, Map<String, String> typeMap) throws JavaModelException {
-		String oldFullName = oldTypeFullName + suffix;
-		String newFullName = newTypeFullName + suffix;
-		IType targetType = type.getJavaProject().findType(oldFullName);
+	private void createSuffixSearchPattern(TypePair pair, String suffix, List<SearchPattern> patternList, Map<String, String> typeMap) throws JavaModelException {
+		String oldFullName = pair.getOldFullName() + suffix;
+		String newFullName = pair.getNewFullName() + suffix;
+		IType targetType = pair.type.getJavaProject().findType(oldFullName);
 		if (targetType == null) {
 			return;
 		}
@@ -78,10 +99,12 @@ public class FactoryTypeRenameRefactor extends JavaElementRefactor {
 		putType(typeMap, oldFullName, newFullName);
 	}
 
-	private void createFlowPartSearchPattern(List<SearchPattern> patternList, Map<String, String> typeMap) throws JavaModelException {
+	private void createFlowPartSearchPattern(TypePair pair, List<SearchPattern> patternList, Map<String, String> typeMap) throws JavaModelException {
+		String oldTypeFullName = pair.getOldFullName();
+		String newTypeFullName = pair.getNewFullName();
 		String oldFullName = oldTypeFullName + "Factory." + StringUtil.getSimpleName(oldTypeFullName);
 		String newFullName = newTypeFullName + "Factory." + StringUtil.getSimpleName(newTypeFullName);
-		IType targetType = type.getJavaProject().findType(oldFullName);
+		IType targetType = pair.type.getJavaProject().findType(oldFullName);
 		if (targetType == null) {
 			return;
 		}

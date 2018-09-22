@@ -47,7 +47,7 @@ public class JavaElementRefactor {
 		typeMap.put(StringUtil.getSimpleName(oldFullName), StringUtil.getSimpleName(newFullName));
 	}
 
-	protected Change searchElement(IProgressMonitor pm, SearchPattern pattern, final JavaElementRefactoringFinder finder) throws CoreException {
+	protected Change searchElement(final IProgressMonitor pm, SearchPattern pattern, final JavaElementRefactoringFinder finder) throws CoreException {
 		final List<TextChange> result = new ArrayList<TextChange>();
 		final Map<ICompilationUnit, TextChange> myMap = new HashMap<ICompilationUnit, TextChange>();
 
@@ -60,8 +60,9 @@ public class JavaElementRefactor {
 				if (cu == null) {
 					return;
 				}
+				// cu = cu.getPrimary().getWorkingCopy(pm);
 
-				List<ReplaceEdit> editList = finder.getEditList(cu, match.getOffset());
+				List<ReplaceEdit> editList = finder.getEditList(pm, cu, match.getOffset());
 				if (editList.isEmpty()) {
 					return;
 				}
@@ -78,8 +79,24 @@ public class JavaElementRefactor {
 				}
 
 				for (TextEdit edit : editList) {
-					change.addEdit(edit);
+					// パッケージ名の改名で、既存機能によるリファクタリングでimport文を削除して追加される場合に、文字数が短くなる改名だと範囲が被ることがある。
+					// そのままだと例外が発生するので、事前に判定する。
+					// ただし、必要なeditが登録できないので、リファクタリング結果は一部が失敗した状態になる。
+					// FIXME editの範囲が被らないようにするにはどうすればよいか？
+					if (!covers(change, edit)) {
+						change.addEdit(edit);
+					}
 				}
+			}
+
+			private boolean covers(TextChange change, TextEdit edit) {
+				TextEdit changeEdit = change.getEdit();
+				for (TextEdit child : changeEdit.getChildren()) {
+					if (child.covers(edit)) {
+						return true;
+					}
+				}
+				return false;
 			}
 		};
 

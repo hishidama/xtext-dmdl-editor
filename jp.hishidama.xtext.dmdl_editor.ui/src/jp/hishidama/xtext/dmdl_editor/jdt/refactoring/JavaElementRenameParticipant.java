@@ -1,5 +1,6 @@
 package jp.hishidama.xtext.dmdl_editor.jdt.refactoring;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
@@ -12,7 +13,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IMethod;
+import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.refactoring.CompilationUnitChange;
 import org.eclipse.ltk.core.refactoring.Change;
@@ -52,6 +55,9 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 				return true;
 			}
 		}
+		if (element instanceof IPackageFragment) {
+			return true;
+		}
 
 		return false;
 	}
@@ -62,20 +68,20 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 	}
 
 	@Override
-	public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
+	public Change createChange(IProgressMonitor pm0) throws CoreException, OperationCanceledException {
 		Change result = null;
 		CompositeChange compositeChange = null;
 
 		RefactoringProcessor processor = getProcessor();
 		Object[] elementList = processor.getElements();
-		SubMonitor subMonitor = SubMonitor.convert(pm, elementList.length);
+		SubMonitor pm = SubMonitor.convert(pm0, elementList.length);
 
 		for (Object element : elementList) {
 			Change change = null;
 			if (element instanceof IMethod) {
 				IMethod method = (IMethod) element;
 				if (OperatorUtil.isMasterSelection(method)) {
-					change = createChangeMasterSelection(method);
+					change = createChangeMasterSelection(pm, method);
 				} else {
 					change = createChangeMethod(pm, method);
 				}
@@ -86,6 +92,9 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 				ICompilationUnit cu = (ICompilationUnit) element;
 				IType type = TypeUtil.getPublicType(cu);
 				change = createChangeType(pm, type);
+			} else if (element instanceof IPackageFragment) {
+				IPackageFragment fragment = (IPackageFragment) element;
+				change = createChangePackage(pm, fragment);
 			}
 
 			if (change != null) {
@@ -101,18 +110,18 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 				}
 			}
 
-			subMonitor.worked(1);
+			pm.worked(1);
 		}
 
 		return result;
 	}
 
-	private Change createChangeMasterSelection(IMethod method) {
+	private Change createChangeMasterSelection(IProgressMonitor pm, IMethod method) {
 		ICompilationUnit cu = method.getCompilationUnit();
 		String oldName = method.getElementName();
 		String newName = getArguments().getNewName();
 		MasterSelectionFinder finder = new MasterSelectionFinder(oldName, newName);
-		List<ReplaceEdit> list = finder.getEditList(cu);
+		List<ReplaceEdit> list = finder.getEditList(pm, cu);
 		if (list.isEmpty()) {
 			return null;
 		}
@@ -146,5 +155,33 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 		String newFullName = type.getPackageFragment().getElementName() + "." + getArguments().getNewName();
 		FactoryTypeRenameRefactor refactor = new FactoryTypeRenameRefactor(this, type, newFullName);
 		return refactor.createChangeType(pm);
+	}
+
+	private Change createChangePackage(IProgressMonitor pm, IPackageFragment fragment) throws CoreException {
+		List<FactoryTypeRenameRefactor.TypePair> typeList = getTypeList(fragment);
+		if (typeList.isEmpty()) {
+			return null;
+		}
+
+		FactoryTypeRenameRefactor refactor = new FactoryTypeRenameRefactor(this, typeList);
+		return refactor.createChangeType(pm);
+	}
+
+	private List<FactoryTypeRenameRefactor.TypePair> getTypeList(IPackageFragment fragment) throws CoreException {
+		String newPackageName = getArguments().getNewName();
+
+		List<FactoryTypeRenameRefactor.TypePair> result = new ArrayList<FactoryTypeRenameRefactor.TypePair>();
+		for (IJavaElement child : fragment.getChildren()) {
+			if (child instanceof ICompilationUnit) {
+				IType type = TypeUtil.getPublicType((ICompilationUnit) child);
+				if (type != null) {
+					if (OperatorUtil.isOperator(type) || FlowUtil.isFlowPart(type)) {
+						String newFullName = newPackageName + "." + type.getElementName();
+						result.add(new FactoryTypeRenameRefactor.TypePair(type, newFullName));
+					}
+				}
+			}
+		}
+		return result;
 	}
 }
