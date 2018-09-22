@@ -2055,9 +2055,19 @@
       <renameParticipant
             id="jp.hishidama.xtext.dmdl_editor.ui.javaElementRenameParticipant"
             name="Rename MasterSelection"
-            class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.JavaElementRenameParticipant">
+            class="jp.hishidama.xtext.dmdl_editor.jdt.refactoring.JavaElementRenameParticipant">
             <enablement>
             </enablement>
       </renameParticipant>
+   </extension>
+   <extension
+         point="org.eclipse.ltk.core.refactoring.moveParticipants">
+      <moveParticipant
+            id="jp.hishidama.xtext.dmdl_editor.ui.javaElementMoveParticipant"
+            name="Rename MasterSelection"
+            class="jp.hishidama.xtext.dmdl_editor.jdt.refactoring.JavaElementMoveParticipant">
+            <enablement>
+            </enablement>
+      </moveParticipant>
    </extension>
 </plugin>
