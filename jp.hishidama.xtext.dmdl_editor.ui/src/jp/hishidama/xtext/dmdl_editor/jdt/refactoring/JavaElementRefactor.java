@@ -23,6 +23,7 @@ import org.eclipse.jdt.core.search.SearchRequestor;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.CompositeChange;
 import org.eclipse.ltk.core.refactoring.TextChange;
+import org.eclipse.ltk.core.refactoring.TextFileChange;
 import org.eclipse.ltk.core.refactoring.participants.RefactoringParticipant;
 import org.eclipse.text.edits.MultiTextEdit;
 import org.eclipse.text.edits.ReplaceEdit;
@@ -71,8 +72,7 @@ public class JavaElementRefactor {
 				if (change == null) {
 					change = participant.getTextChange(cu);
 					if (change == null) {
-						change = new CompilationUnitChange(cu.getElementName(), cu);
-						change.setEdit(new MultiTextEdit());
+						change = createCompilationUnitChange(cu);
 						result.add(change);
 					}
 					myMap.put(cu, change);
@@ -110,7 +110,15 @@ public class JavaElementRefactor {
 			return result.get(0);
 		}
 
-		CompositeChange compositeChange = new CompositeChange("composite", result.toArray(new TextChange[result.size()]));
+		CompositeChange compositeChange = new CompositeChange(participant.getName(), result.toArray(new TextChange[result.size()]));
 		return compositeChange;
+	}
+
+	static CompilationUnitChange createCompilationUnitChange(ICompilationUnit cu) {
+		CompilationUnitChange change = new CompilationUnitChange(cu.getElementName(), cu);
+		change.setSaveMode(TextFileChange.FORCE_SAVE);
+		change.setEdit(new MultiTextEdit());
+
+		return change;
 	}
 }

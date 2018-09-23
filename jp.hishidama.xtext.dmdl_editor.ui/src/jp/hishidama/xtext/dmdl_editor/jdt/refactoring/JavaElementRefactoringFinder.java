@@ -1,9 +1,12 @@
 package jp.hishidama.xtext.dmdl_editor.jdt.refactoring;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.util.JdtUtil;
 
@@ -54,39 +57,49 @@ abstract class JavaElementRefactoringFinder extends ASTVisitor {
 		return node.getStartPosition() <= offset && offset < node.getStartPosition() + node.getLength();
 	}
 
-	static class MasterSelectionFinder extends JavaElementRefactoringFinder {
+	static class StringFinder extends JavaElementRefactoringFinder {
 		private final String oldName;
 		private final String newName;
+		private boolean check = false;
 
-		public MasterSelectionFinder(String oldName, String newName) {
+		public StringFinder(String oldName, String newName) {
 			this.oldName = oldName;
 			this.newName = newName;
 		}
 
 		public List<ReplaceEdit> getEditList(IProgressMonitor pm, ICompilationUnit cu) {
+			this.check = false;
 			return getEditList(pm, cu, NO_CHECK_OFFSET);
 		}
+
+		private static final Set<String> CLASS_NAME_SET = new HashSet<String>(Arrays.asList(//
+				"MasterBranch", "MasterCheck", "MasterJoin", "MasterJoinUpdate", //
+				"Batch", "JobFlow"));
 
 		@Override
 		public boolean visit(NormalAnnotation node) {
 			String name = node.getTypeName().getFullyQualifiedName();
-			return "MasterCheck".equals(name) || "MasterJoin".equals(name) || "MasterBranch".equals(name) || "MasterJoinUpdate".equals(name);
+			return CLASS_NAME_SET.contains(name);
 		}
 
 		@Override
 		public boolean visit(MemberValuePair node) {
 			String name = node.getName().getIdentifier();
-			return "selection".equals(name);
+			this.check = "selection".equals(name) || "name".equals(name);
+			return check;
 		}
 
 		@Override
 		public boolean visit(StringLiteral node) {
-			String value = node.getLiteralValue();
-			String selectionName = value.trim();
-			if (selectionName.equals(oldName)) {
-				int offset = node.getStartPosition() + 1;
-				int length = node.getLength() - 2;
-				addEdit(new ReplaceEdit(offset, length, newName));
+			if (check) {
+				String value = node.getLiteralValue().trim();
+				if (value.equals(oldName)) {
+					int offset = node.getStartPosition() + 1;
+					int length = node.getLength() - 2;
+					addEdit(new ReplaceEdit(offset, length, newName));
+				}
+
+				this.check = false;
 			}
 			return false;
 		}

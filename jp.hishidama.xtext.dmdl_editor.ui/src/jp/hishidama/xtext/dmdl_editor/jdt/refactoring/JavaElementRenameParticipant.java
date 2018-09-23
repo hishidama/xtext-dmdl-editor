@@ -3,10 +3,11 @@ package jp.hishidama.xtext.dmdl_editor.jdt.refactoring;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.BatchUtil;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.OperatorUtil;
 import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
-import jp.hishidama.xtext.dmdl_editor.jdt.refactoring.JavaElementRefactoringFinder.MasterSelectionFinder;
+import jp.hishidama.xtext.dmdl_editor.jdt.refactoring.JavaElementRefactoringFinder.StringFinder;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -17,7 +18,6 @@ import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IType;
-import org.eclipse.jdt.core.refactoring.CompilationUnitChange;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.CompositeChange;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
@@ -25,7 +25,6 @@ import org.eclipse.ltk.core.refactoring.TextChange;
 import org.eclipse.ltk.core.refactoring.participants.CheckConditionsContext;
 import org.eclipse.ltk.core.refactoring.participants.RefactoringProcessor;
 import org.eclipse.ltk.core.refactoring.participants.RenameParticipant;
-import org.eclipse.text.edits.MultiTextEdit;
 import org.eclipse.text.edits.ReplaceEdit;
 
 // http://help.eclipse.org/kepler/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Freference%2Fextension-points%2Forg_eclipse_ltk_core_refactoring_renameParticipants.html
@@ -52,6 +51,8 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 		if (element instanceof IType) {
 			IType type = (IType) element;
 			if (OperatorUtil.isOperator(type) || FlowUtil.isFlowPart(type)) {
+				// if (OperatorUtil.isOperator(type) || FlowUtil.isFlow(type) ||
+				// BatchUtil.isBatch(type)) {
 				return true;
 			}
 		}
@@ -68,7 +69,18 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 	}
 
 	@Override
-	public Change createChange(IProgressMonitor pm0) throws CoreException, OperationCanceledException {
+	public Change createPreChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
+		return super.createPreChange(pm);
+		// return createChangeMain(pm);
+	}
+
+	@Override
+	public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
+		return createChangeMain(pm);
+		// return null;
+	}
+
+	private Change createChangeMain(IProgressMonitor pm0) throws CoreException, OperationCanceledException {
 		Change result = null;
 		CompositeChange compositeChange = null;
 
@@ -102,7 +114,7 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 					result = change;
 				} else {
 					if (compositeChange == null) {
-						compositeChange = new CompositeChange("rename composite");
+						compositeChange = new CompositeChange(getName());
 						compositeChange.add(result);
 						result = compositeChange;
 					}
@@ -120,7 +132,7 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 		ICompilationUnit cu = method.getCompilationUnit();
 		String oldName = method.getElementName();
 		String newName = getArguments().getNewName();
-		MasterSelectionFinder finder = new MasterSelectionFinder(oldName, newName);
+		StringFinder finder = new StringFinder(oldName, newName);
 		List<ReplaceEdit> list = finder.getEditList(pm, cu);
 		if (list.isEmpty()) {
 			return null;
@@ -129,8 +141,7 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 		Change result;
 		TextChange change = getTextChange(cu);
 		if (change == null) {
-			change = new CompilationUnitChange(cu.getElementName(), cu);
-			change.setEdit(new MultiTextEdit());
+			change = JavaElementRefactor.createCompilationUnitChange(cu);
 			result = change;
 		} else {
 			result = null;
@@ -151,10 +162,41 @@ public class JavaElementRenameParticipant extends RenameParticipant {
 		if (type == null) {
 			return null;
 		}
+		if (FlowUtil.isJobFlow(type) || BatchUtil.isBatch(type)) {
+			return createChangeBatch(pm, type);
+		}
 
 		String newFullName = type.getPackageFragment().getElementName() + "." + getArguments().getNewName();
 		FactoryTypeRenameRefactor refactor = new FactoryTypeRenameRefactor(this, type, newFullName);
 		return refactor.createChangeType(pm);
+	}
+
+	private Change createChangeBatch(IProgressMonitor pm, IType type) throws CoreException {
+		ICompilationUnit cu = type.getCompilationUnit();
+		String oldName = type.getElementName();
+		String newName = getArguments().getNewName();
+		StringFinder finder = new StringFinder(oldName, newName);
+		List<ReplaceEdit> list = finder.getEditList(pm, cu);
+		if (list.isEmpty()) {
+			return null;
+		}
+
+		Change result;
+		TextChange change = getTextChange(cu);
+		if (change == null) {
+			getProcessor().createChange(pm);
+			ICompilationUnit copy = cu;
+			// ICompilationUnit copy = cu.getPrimary();
+			// ICompilationUnit copy = cu.getWorkingCopy(pm);
+			change = JavaElementRefactor.createCompilationUnitChange(copy);
+			result = change;
+		} else {
+			result = null;
+		}
+		for (ReplaceEdit edit : list) {
+			change.addEdit(edit);
+		}
+		return result;
 	}
 
 	private Change createChangePackage(IProgressMonitor pm, IPackageFragment fragment) throws CoreException {

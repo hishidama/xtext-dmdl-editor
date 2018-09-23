@@ -71,7 +71,7 @@ public class JavaElementMoveParticipant extends MoveParticipant {
 					result = change;
 				} else {
 					if (compositeChange == null) {
-						compositeChange = new CompositeChange("move composite");
+						compositeChange = new CompositeChange(getName());
 						compositeChange.add(result);
 						result = compositeChange;
 					}
