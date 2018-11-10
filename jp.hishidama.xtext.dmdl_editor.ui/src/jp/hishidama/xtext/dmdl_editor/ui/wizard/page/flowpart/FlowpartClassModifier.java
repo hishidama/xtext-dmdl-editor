@@ -43,19 +43,26 @@ import org.eclipse.text.edits.TextEdit;
 
 public class FlowpartClassModifier extends AstRewriteUtility {
 
-	private IDocument document;
-	private IType type;
-	private SetFlowpartPortPage portPage;
+	private final IDocument document;
+	private final IType type;
+	private final SetFlowpartPortPage portPage;
+	private final SetArgumentPage argPage;
 
-	private List<FlowpartModelRow> srcList;
-	private List<FlowpartModelRow> dstList;
+	public interface FlowPartClassModifierRow {
+		public String getName();
+
+		public String getLabel();
+	}
+
+	private List<FlowPartClassModifierRow> dstList;
 	private TypeDeclaration astType;
 	private Set<String> srcSet;
 
-	public FlowpartClassModifier(IDocument document, IType type, SetFlowpartPortPage portPage) {
+	public FlowpartClassModifier(IDocument document, IType type, SetFlowpartPortPage portPage, SetArgumentPage argPage) {
 		this.document = document;
 		this.type = type;
 		this.portPage = portPage;
+		this.argPage = argPage;
 	}
 
 	private Set<String> typeParameterSet = null;
@@ -99,12 +106,16 @@ public class FlowpartClassModifier extends AstRewriteUtility {
 	public void execute() throws BadLocationException, CoreException {
 		initializeAst(type.getCompilationUnit());
 
-		this.srcList = portPage.getInitList();
-		this.dstList = portPage.getDataModelList();
+		this.dstList = new ArrayList<FlowPartClassModifierRow>();
+		this.dstList.addAll(portPage.getDataModelList());
+		this.dstList.addAll(argPage.getArgumentList());
 		this.astType = getAstType();
 
 		srcSet = new HashSet<String>();
-		for (FlowpartModelRow row : srcList) {
+		for (FlowpartModelRow row : portPage.getInitList()) {
+			srcSet.add(row.name);
+		}
+		for (ArgumentRow row : argPage.getInitList()) {
 			srcSet.add(row.name);
 		}
 
@@ -209,15 +220,15 @@ public class FlowpartClassModifier extends AstRewriteUtility {
 		}
 
 		BodyDeclaration prev = first;
-		for (FlowpartModelRow row : dstList) {
+		for (FlowPartClassModifierRow row : dstList) {
 			Javadoc javadoc = newJavadoc(row.getLabel());
 
 			VariableDeclarationFragment fragment = ast.newVariableDeclarationFragment();
-			fragment.setName(ast.newSimpleName(row.name));
+			fragment.setName(ast.newSimpleName(row.getName()));
 			FieldDeclaration field = ast.newFieldDeclaration(fragment);
 			field.setJavadoc(javadoc);
 			field.modifiers().addAll(ast.newModifiers(Modifier.PRIVATE | Modifier.FINAL));
-			field.setType(newType(row.in ? FlowUtil.IN_NAME : FlowUtil.OUT_NAME, row.getModelTypeName()));
+			field.setType(newType(row));
 
 			if (prev == null) {
 				rewriter.insertFirst(field, null);
@@ -226,6 +237,16 @@ public class FlowpartClassModifier extends AstRewriteUtility {
 			}
 			prev = field;
 		}
+	}
+
+	private Type newType(FlowPartClassModifierRow row0) {
+		if (row0 instanceof FlowpartModelRow) {
+			FlowpartModelRow row = (FlowpartModelRow) row0;
+			return newType(row.in ? FlowUtil.IN_NAME : FlowUtil.OUT_NAME, row.getModelTypeName());
+		}
+
+		ArgumentRow row = (ArgumentRow) row0;
+		return newType(row.type);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -288,10 +309,10 @@ public class FlowpartClassModifier extends AstRewriteUtility {
 		}
 
 		TagElement prev = first;
-		for (FlowpartModelRow row : dstList) {
+		for (FlowPartClassModifierRow row : dstList) {
 			TagElement tag = ast.newTagElement();
 			tag.setTagName(TagElement.TAG_PARAM);
-			tag.fragments().add(ast.newSimpleName(row.name));
+			tag.fragments().add(ast.newSimpleName(row.getName()));
 			tag.fragments().add(newTextElement(row.getLabel()));
 
 			if (prev == null) {
@@ -324,10 +345,10 @@ public class FlowpartClassModifier extends AstRewriteUtility {
 		}
 
 		SingleVariableDeclaration prev = first;
-		for (FlowpartModelRow row : dstList) {
+		for (FlowPartClassModifierRow row : dstList) {
 			SingleVariableDeclaration param = ast.newSingleVariableDeclaration();
-			param.setType(newType(row.in ? FlowUtil.IN_NAME : FlowUtil.OUT_NAME, row.getModelTypeName()));
-			param.setName(ast.newSimpleName(row.name));
+			param.setType(newType(row));
+			param.setName(ast.newSimpleName(row.getName()));
 
 			if (prev == null) {
 				rewriter.insertFirst(param, null);
@@ -369,11 +390,11 @@ public class FlowpartClassModifier extends AstRewriteUtility {
 		}
 
 		Statement prev = null;
-		for (FlowpartModelRow row : dstList) {
+		for (FlowPartClassModifierRow row : dstList) {
 			FieldAccess d = ast.newFieldAccess();
 			d.setExpression(ast.newThisExpression());
-			d.setName(ast.newSimpleName(row.name));
-			SimpleName s = ast.newSimpleName(row.name);
+			d.setName(ast.newSimpleName(row.getName()));
+			SimpleName s = ast.newSimpleName(row.getName());
 
 			Assignment assign = ast.newAssignment();
 			assign.setLeftHandSide(d);

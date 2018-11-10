@@ -1,17 +1,12 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
-import jp.hishidama.eclipse_plugin.jdt.util.AnnotationUtil;
-import jp.hishidama.eclipse_plugin.jdt.util.JavadocUtil;
-import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
 import jp.hishidama.eclipse_plugin.jface.ModifiableTable;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.eclipse_plugin.wizard.page.EditWizardPage;
@@ -21,15 +16,9 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.dialog.DmdlModelMultiSelectionDialog;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLVariableTableUtil;
-import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.TypeWizard;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.jdt.core.ILocalVariable;
-import org.eclipse.jdt.core.IMethod;
-import org.eclipse.jdt.core.IType;
-import org.eclipse.jdt.core.ITypeParameter;
-import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
@@ -57,8 +46,8 @@ public class SetFlowpartPortPage extends EditWizardPage {
 		setDescription("Set data model for FlowPart.");
 	}
 
-	public void init(IType type) {
-		this.initList = initList(type);
+	public void init(FlowPartConstructorParser parser) {
+		this.initList = parser.getPortList();
 	}
 
 	@Override
@@ -104,74 +93,6 @@ public class SetFlowpartPortPage extends EditWizardPage {
 		table.refresh();
 
 		return composite;
-	}
-
-	private List<FlowpartModelRow> initList(IType type) {
-		List<FlowpartModelRow> list = new ArrayList<FlowpartModelRow>();
-
-		IMethod constructor = TypeUtil.findConsructor(type);
-		if (constructor == null) {
-			return list;
-		}
-		IProject project = type.getJavaProject().getProject();
-		try {
-			Map<String, String> genericsMap = new HashMap<String, String>();
-			for (ITypeParameter param : type.getTypeParameters()) {
-				String genericsName = param.getElementName();
-				String className = null;
-				for (String bound : param.getBounds()) {
-					className = FlowpartModelRow.catModelClassName(className, bound);
-				}
-				genericsMap.put(genericsName, className);
-			}
-
-			Map<String, String> paramJavadoc = JavadocUtil.getParamMap(JavadocUtil.getJavadoc(constructor));
-			for (ILocalVariable param : constructor.getParameters()) {
-				String t = TypeUtil.getVariableTypeName(param);
-				int s = t.indexOf('<');
-				int e = t.lastIndexOf('>');
-				if (s < 0 || e < 0) {
-					continue;
-				}
-				String modelClassName = t.substring(s + 1, e);
-
-				FlowpartModelRow row = new FlowpartModelRow();
-				row.in = t.startsWith(FlowUtil.IN_NAME);
-				row.name = param.getElementName();
-				row.comment = StringUtil.trim(paramJavadoc.get(row.name));
-				row.setModelClassName(modelClassName);
-
-				String genericsBound = genericsMap.get(modelClassName);
-				if (genericsBound != null) {
-					row.genericsName = modelClassName;
-					row.setModelClassName(genericsBound);
-					for (String boundClassName : row.getModelClassNames()) {
-						ModelDefinition model = ModelUiUtil.findModelByClass(project, boundClassName);
-						if (model != null) {
-							row.modelName = FlowpartModelRow.catModelName(row.modelName, model.getName());
-							row.modelDescription = FlowpartModelRow.catModelDescription(row.modelDescription, ModelUtil.getDecodedDescriptionText(model));
-						}
-					}
-				} else {
-					ModelDefinition model = ModelUiUtil.findModelByClass(project, modelClassName);
-					if (model != null) {
-						row.modelName = model.getName();
-						row.modelDescription = ModelUtil.getDecodedDescriptionText(model);
-					}
-				}
-
-				String desc = AnnotationUtil.getAnnotationValue(type, param, FlowUtil.IMPORT_NAME, "description");
-				if (desc == null) {
-					desc = AnnotationUtil.getAnnotationValue(type, param, FlowUtil.EXPORT_NAME, "description");
-				}
-
-				list.add(row);
-			}
-		} catch (JavaModelException e) {
-			LogUtil.logWarn("FlowPart parse error.", e);
-		}
-
-		return list;
 	}
 
 	private boolean visible;

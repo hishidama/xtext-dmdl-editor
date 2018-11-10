@@ -16,6 +16,8 @@ import org.eclipse.swt.widgets.Composite;
 
 public class SetArgumentPage extends EditWizardPage {
 
+	private List<ArgumentRow> initList;
+
 	private FlowpartModelTable table;
 
 	public SetArgumentPage() {
@@ -23,6 +25,10 @@ public class SetArgumentPage extends EditWizardPage {
 
 		setTitle("Set Arguments");
 		setDescription("Set arguments.");
+	}
+
+	public void init(FlowPartConstructorParser parser) {
+		this.initList = parser.getArgumentList();
 	}
 
 	@Override
@@ -47,6 +53,12 @@ public class SetArgumentPage extends EditWizardPage {
 		// field.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		field.setLayout(new FillLayout(SWT.HORIZONTAL));
 		table.createButtonArea(field);
+
+		if (initList != null) {
+			for (ArgumentRow row : initList) {
+				table.addItem(row.clone());
+			}
+		}
 		table.refresh();
 
 		return composite;
@@ -114,5 +126,9 @@ public class SetArgumentPage extends EditWizardPage {
 
 	public List<ArgumentRow> getArgumentList() {
 		return table.getElementList();
+	}
+
+	public List<ArgumentRow> getInitList() {
+		return initList;
 	}
 }

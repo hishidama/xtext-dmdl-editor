@@ -1,8 +1,9 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart;
 
 import jp.hishidama.eclipse_plugin.util.StringUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.FlowpartClassModifier.FlowPartClassModifierRow;
 
-public class FlowpartModelRow implements Cloneable {
+public class FlowpartModelRow implements Cloneable, FlowPartClassModifierRow {
 	private static final String MODEL_CLASS_DELIMITTER = " & ";
 	public static final String MODEL_NAME_DELIMITTER = " + ";
 	private static final String MODEL_DESC_DELIMITTER = ", ";
@@ -17,6 +18,10 @@ public class FlowpartModelRow implements Cloneable {
 
 	public String getIn() {
 		return in ? "in" : "out";
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public void setModelClassName(String modelClassName) {

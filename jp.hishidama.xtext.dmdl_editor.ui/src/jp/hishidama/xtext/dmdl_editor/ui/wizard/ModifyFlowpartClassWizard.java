@@ -1,7 +1,9 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard;
 
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.FlowPartConstructorParser;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.FlowpartClassModifier;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.SetArgumentPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.SetFlowpartPortPage;
 
 import org.eclipse.core.resources.IResource;
@@ -19,6 +21,7 @@ public class ModifyFlowpartClassWizard extends Wizard implements TypeWizard {
 	private IType type;
 
 	private SetFlowpartPortPage portPage;
+	private SetArgumentPage argPage;
 
 	public ModifyFlowpartClassWizard() {
 		setWindowTitle("Modify FlowPart Constructor/Field");
@@ -31,9 +34,15 @@ public class ModifyFlowpartClassWizard extends Wizard implements TypeWizard {
 
 	@Override
 	public void addPages() {
+		FlowPartConstructorParser parser = new FlowPartConstructorParser(type);
+
 		portPage = new SetFlowpartPortPage();
-		portPage.init(type);
+		portPage.init(parser);
 		addPage(portPage);
+
+		argPage = new SetArgumentPage();
+		argPage.init(parser);
+		addPage(argPage);
 	}
 
 	public IJavaProject getJavaProject() {
@@ -48,7 +57,7 @@ public class ModifyFlowpartClassWizard extends Wizard implements TypeWizard {
 	public boolean performFinish() {
 		portPage.saveDialogSettings();
 
-		FlowpartClassModifier mon = new FlowpartClassModifier(document, type, portPage);
+		FlowpartClassModifier mon = new FlowpartClassModifier(document, type, portPage, argPage);
 		try {
 			mon.execute();
 		} catch (CoreException e) {
