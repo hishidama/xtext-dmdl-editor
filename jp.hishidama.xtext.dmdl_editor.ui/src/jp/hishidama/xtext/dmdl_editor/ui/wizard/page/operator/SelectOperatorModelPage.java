@@ -134,7 +134,7 @@ public abstract class SelectOperatorModelPage<R extends OperatorModelRow> extend
 		j = 1;
 		for (OperatorInputModelRow inputRow : getViewElementList()) {
 			if (row.name.equals(inputRow.name)) {
-				return MessageFormat.format("変数名{1}がビューページにある変数名と重複しています。（{0,number,#}行目, 入力ページ{2,number,#}行目）", i, row.name, j);
+				return MessageFormat.format("変数名{1}がビューページにある変数名と重複しています。（{0,number,#}行目, ビューページ{2,number,#}行目）", i, row.name, j);
 			}
 
 			j++;

@@ -53,6 +53,7 @@ public class BranchOperatorGenerator extends OperatorGenerator {
 		}
 
 		addViewParameters(plist, javadoc, true);
+		addArgumentParameters(plist, javadoc);
 	}
 
 	@Override

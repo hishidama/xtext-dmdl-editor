@@ -9,6 +9,8 @@ import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.FlowUtil;
 import jp.hishidama.eclipse_plugin.jdt.util.AstRewriteUtility;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.ArgumentRow;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetArgumentPage;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;

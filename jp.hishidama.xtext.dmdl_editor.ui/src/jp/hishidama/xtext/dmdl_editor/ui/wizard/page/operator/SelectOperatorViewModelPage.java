@@ -25,7 +25,7 @@ public class SelectOperatorViewModelPage extends SelectOperatorModelPage<Operato
 		super("SelectOperatorViewModelPage", project);
 
 		setTitle(MessageFormat.format("{0}のビューの指定", opType.getName()));
-		setDescription("ビューのデータモデルを選択して下さい。");
+		setDescription("ビューを使用する場合、ビューのデータモデルを選択して下さい。");
 	}
 
 	@Override

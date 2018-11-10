@@ -34,6 +34,7 @@ public class LoggingOperatorGenerator extends OperatorGenerator {
 		}
 
 		addViewParameters(plist, javadoc, true);
+		addArgumentParameters(plist, javadoc);
 	}
 
 	@Override

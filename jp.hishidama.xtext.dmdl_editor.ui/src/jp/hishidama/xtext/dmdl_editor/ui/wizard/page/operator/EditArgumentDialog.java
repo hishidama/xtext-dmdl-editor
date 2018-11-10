@@ -1,7 +1,8 @@
-package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart;
+package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator;
 
 import jp.hishidama.eclipse_plugin.dialog.ClassSelectionDialog;
 import jp.hishidama.eclipse_plugin.dialog.EditDialog;
+import jp.hishidama.eclipse_plugin.util.StringUtil;
 
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jface.window.Window;
@@ -64,6 +65,9 @@ public class EditArgumentDialog extends EditDialog {
 	}
 
 	private boolean isEnum(String type) {
+		if (StringUtil.isEmpty(type)) {
+			return false;
+		}
 		for (String s : TYPE_LIST) {
 			if (s.equals(type) && !s.equals(ENUM)) {
 				return false;

@@ -14,6 +14,7 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.ArgumentRow;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.ILocalVariable;

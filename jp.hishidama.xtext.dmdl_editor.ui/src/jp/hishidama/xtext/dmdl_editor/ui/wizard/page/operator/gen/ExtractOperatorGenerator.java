@@ -42,6 +42,8 @@ public class ExtractOperatorGenerator extends OperatorGenerator {
 			plist.add(newResultParameter(row.getModelTypeName(), row.name));
 			addJavadocParam(javadoc, row.name, row.getLabel());
 		}
+
+		addArgumentParameters(plist, javadoc);
 	}
 
 	@Override

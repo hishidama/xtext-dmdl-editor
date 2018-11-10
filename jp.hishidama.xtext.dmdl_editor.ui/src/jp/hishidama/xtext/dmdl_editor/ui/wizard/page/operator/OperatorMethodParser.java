@@ -12,10 +12,10 @@ import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.ArgumentRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.FlowpartModelRow;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.ILocalVariable;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.ITypeParameter;
@@ -39,6 +39,11 @@ public class OperatorMethodParser {
 		return viewList;
 	}
 
+	public List<ArgumentRow> getArgumentList() {
+		initList();
+		return argList;
+	}
+
 	private void initList() {
 		if (inputList != null) {
 			return;
@@ -48,7 +53,8 @@ public class OperatorMethodParser {
 		this.outputList = new ArrayList<OperatorOutputModelRow>();
 		this.argList = new ArrayList<ArgumentRow>();
 
-		IProject project = method.getJavaProject().getProject();
+		IJavaProject javaProject = method.getJavaProject();
+		IProject project = javaProject.getProject();
 		try {
 			Map<String, String> genericsMap = new HashMap<String, String>();
 			for (ITypeParameter param : method.getTypeParameters()) {
@@ -68,9 +74,14 @@ public class OperatorMethodParser {
 				if (s >= 0 && e >= 0) {
 					String listClassName = typeName.substring(0, s);
 					String modelClassName = typeName.substring(s + 1, e);
-					initPort(project, param, typeName, listClassName, modelClassName, paramJavadoc, genericsMap);
+					initPort(project, param, listClassName, modelClassName, paramJavadoc, genericsMap);
 				} else {
-					initArgument(param, typeName, paramJavadoc);
+					boolean isModel = ModelUiUtil.isModelClass(javaProject, typeName);
+					if (isModel) {
+						initPort(project, param, null, typeName, paramJavadoc, genericsMap);
+					} else {
+						initArgument(param, typeName, paramJavadoc);
+					}
 				}
 			}
 		} catch (JavaModelException e) {
@@ -78,7 +89,14 @@ public class OperatorMethodParser {
 		}
 	}
 
-	private void initPort(IProject project, ILocalVariable param, String typeName, String listClassName, String modelClassName, Map<String, String> paramJavadoc, Map<String, String> genericsMap) {
+	private void initPort(IProject project, ILocalVariable param, String listClassName, String modelClassName, Map<String, String> paramJavadoc, Map<String, String> genericsMap) {
+		if (listClassName == null) {
+			OperatorInputModelRow row = new OperatorInputModelRow();
+			row.listClassName = null;
+			initPort(row, project, param, modelClassName, paramJavadoc, genericsMap);
+			inputList.add(row);
+			return;
+		}
 		if (listClassName.endsWith("Result")) {
 			OperatorOutputModelRow row = new OperatorOutputModelRow();
 			initPort(row, project, param, modelClassName, paramJavadoc, genericsMap);

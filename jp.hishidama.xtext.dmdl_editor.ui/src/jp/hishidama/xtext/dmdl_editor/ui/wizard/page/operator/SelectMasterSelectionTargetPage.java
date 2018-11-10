@@ -141,4 +141,14 @@ public class SelectMasterSelectionTargetPage extends EditWizardPage {
 		OperatorMethodParser parser = new OperatorMethodParser(method);
 		return parser.getViewList();
 	}
+
+	public List<ArgumentRow> getTargetArgumentList() {
+		IMethod method = getTargetMethod();
+		if (method == null) {
+			return Collections.emptyList();
+		}
+
+		OperatorMethodParser parser = new OperatorMethodParser(method);
+		return parser.getArgumentList();
+	}
 }

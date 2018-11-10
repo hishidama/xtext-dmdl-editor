@@ -3,8 +3,8 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.FlowPartConstructorParser;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.FlowpartClassModifier;
-import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.SetArgumentPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.SetFlowpartPortPage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetArgumentPage;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
@@ -40,8 +40,8 @@ public class ModifyFlowpartClassWizard extends Wizard implements TypeWizard {
 		portPage.init(parser);
 		addPage(portPage);
 
-		argPage = new SetArgumentPage(type.getJavaProject());
-		argPage.init(parser);
+		argPage = new SetArgumentPage(type.getJavaProject(), null);
+		argPage.init(parser.getArgumentList());
 		addPage(argPage);
 	}
 

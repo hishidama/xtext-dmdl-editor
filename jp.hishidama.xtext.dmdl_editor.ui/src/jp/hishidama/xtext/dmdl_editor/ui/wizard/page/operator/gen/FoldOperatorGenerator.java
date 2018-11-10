@@ -42,6 +42,7 @@ public class FoldOperatorGenerator extends OperatorGenerator {
 		}
 
 		addViewParameters(plist, javadoc, true);
+		addArgumentParameters(plist, javadoc);
 	}
 
 	private String getLeftName(OperatorInputModelRow row) {

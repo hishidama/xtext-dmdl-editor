@@ -7,6 +7,7 @@ import java.util.Set;
 
 import jp.hishidama.eclipse_plugin.java.ClassGenerator;
 import jp.hishidama.eclipse_plugin.util.FileUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.ArgumentRow;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;

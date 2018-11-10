@@ -34,6 +34,7 @@ public class MasterJoinUpdateOperatorGenerator extends OperatorGenerator {
 		}
 
 		addViewParameters(plist, javadoc, true);
+		addArgumentParameters(plist, javadoc);
 	}
 
 	@Override

@@ -34,6 +34,7 @@ public class MasterBranchOperatorGenerator extends BranchOperatorGenerator {
 		}
 
 		addViewParameters(plist, javadoc, true);
+		addArgumentParameters(plist, javadoc);
 	}
 
 	@Override

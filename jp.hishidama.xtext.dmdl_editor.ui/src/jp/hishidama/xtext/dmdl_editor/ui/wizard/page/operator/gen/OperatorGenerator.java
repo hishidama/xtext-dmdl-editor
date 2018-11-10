@@ -12,6 +12,7 @@ import jp.hishidama.eclipse_plugin.jdt.util.AstRewriteUtility;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.ArgumentRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.FieldCacheRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorInputModelRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorModelRow;
@@ -20,6 +21,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectMasterSelect
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorInputModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorOutputModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorViewModelPage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetArgumentPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetCacheFieldPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetMasterSelectionPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetOperatorNamePage;
@@ -282,6 +284,7 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		addJavadocParam(javadoc, "tx", txLabel);
 
 		addViewParameters(plist, javadoc, false);
+		addArgumentParameters(plist, javadoc);
 
 		addJavadocReturn(javadoc, "実際に利用するマスターデータ、利用可能なものがない場合は{@code null}");
 
@@ -350,6 +353,26 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 			}
 		}
 		throw new IllegalStateException();
+	}
+
+	protected final List<ArgumentRow> getArgumentList() {
+		for (IWizardPage page : pageList) {
+			if (page instanceof SetArgumentPage) {
+				return ((SetArgumentPage) page).getArgumentList();
+			}
+			if (page instanceof SelectMasterSelectionTargetPage) {
+				return ((SelectMasterSelectionTargetPage) page).getTargetArgumentList();
+			}
+		}
+		throw new IllegalStateException();
+	}
+
+	protected final void addArgumentParameters(List<SingleVariableDeclaration> plist, Javadoc javadoc) {
+		List<ArgumentRow> alist = getArgumentList();
+		for (ArgumentRow row : alist) {
+			plist.add(newSimpleParameter(row.type, row.name));
+			addJavadocParam(javadoc, row.name, row.getLabel());
+		}
 	}
 
 	protected final List<OperatorModelRow> getGenericsModelList() {

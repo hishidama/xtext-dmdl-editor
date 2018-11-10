@@ -57,6 +57,7 @@ public class ConvertOperatorGenerator extends OperatorGenerator {
 		}
 
 		addViewParameters(plist, javadoc, true);
+		addArgumentParameters(plist, javadoc);
 	}
 
 	@SuppressWarnings("unchecked")

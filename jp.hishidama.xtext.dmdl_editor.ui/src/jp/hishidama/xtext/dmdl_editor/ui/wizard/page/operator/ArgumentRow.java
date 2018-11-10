@@ -1,4 +1,4 @@
-package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart;
+package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator;
 
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.FlowpartClassModifier.FlowPartClassModifierRow;
@@ -16,7 +16,7 @@ public class ArgumentRow implements Cloneable, FlowPartClassModifierRow {
 		if (StringUtil.nonEmpty(comment)) {
 			return comment;
 		}
-		return "TODO " + name;
+		return name;
 	}
 
 	@Override

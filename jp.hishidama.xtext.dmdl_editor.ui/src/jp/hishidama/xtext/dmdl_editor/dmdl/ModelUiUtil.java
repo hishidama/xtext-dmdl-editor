@@ -10,6 +10,7 @@ import java.util.Map;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.config.AsakusafwProperties;
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.util.BuildPropertiesUtil;
+import jp.hishidama.eclipse_plugin.jdt.util.TypeUtil;
 import jp.hishidama.eclipse_plugin.util.StringUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil.PropertyFilter;
 import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.DeclaredDmdlHyperlink;
@@ -25,6 +26,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.text.ITextSelection;
@@ -361,6 +364,14 @@ public class ModelUiUtil {
 			}
 			result.add(model);
 		}
+	}
+
+	public static boolean isModelClass(IJavaProject project, String className) {
+		IType type = TypeUtil.findType(project, className);
+		if (type == null) {
+			return false;
+		}
+		return TypeUtil.isImplements(type, "com.asakusafw.runtime.model.DataModel");
 	}
 
 	public static boolean openEditor(IProject project, String modelName) {
