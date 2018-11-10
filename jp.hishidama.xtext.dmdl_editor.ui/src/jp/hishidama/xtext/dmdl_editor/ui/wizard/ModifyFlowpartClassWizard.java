@@ -40,7 +40,7 @@ public class ModifyFlowpartClassWizard extends Wizard implements TypeWizard {
 		portPage.init(parser);
 		addPage(portPage);
 
-		argPage = new SetArgumentPage();
+		argPage = new SetArgumentPage(type.getJavaProject());
 		argPage.init(parser);
 		addPage(argPage);
 	}

@@ -119,7 +119,12 @@ public class FlowPartConstructorParser {
 	private void initArgument(ILocalVariable param, String typeName, Map<String, String> paramJavadoc) {
 		ArgumentRow row = new ArgumentRow();
 		row.name = param.getElementName();
-		row.type = typeName;
+		String resolveTypeName = TypeUtil.resolveTypeName(typeName, flowPartType);
+		if (resolveTypeName != null) {
+			row.type = resolveTypeName;
+		} else {
+			row.type = typeName;
+		}
 		row.comment = StringUtil.trim(paramJavadoc.get(row.name));
 
 		argList.add(row);

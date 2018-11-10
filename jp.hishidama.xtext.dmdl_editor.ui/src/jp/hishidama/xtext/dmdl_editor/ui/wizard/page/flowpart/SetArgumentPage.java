@@ -8,6 +8,7 @@ import java.util.Set;
 import jp.hishidama.eclipse_plugin.jface.ModifiableTable;
 import jp.hishidama.eclipse_plugin.wizard.page.EditWizardPage;
 
+import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -16,15 +17,18 @@ import org.eclipse.swt.widgets.Composite;
 
 public class SetArgumentPage extends EditWizardPage {
 
+	private IJavaProject javaProject;
 	private List<ArgumentRow> initList;
 
 	private FlowpartModelTable table;
 
-	public SetArgumentPage() {
+	public SetArgumentPage(IJavaProject javaProject) {
 		super("SetArgumentPage");
 
 		setTitle("Set Arguments");
 		setDescription("Set arguments.");
+
+		this.javaProject = javaProject;
 	}
 
 	public void init(FlowPartConstructorParser parser) {
@@ -100,7 +104,7 @@ public class SetArgumentPage extends EditWizardPage {
 		@Override
 		protected void doAdd() {
 			ArgumentRow element = createElement();
-			EditArgumentDialog dialog = new EditArgumentDialog(getShell(), element);
+			EditArgumentDialog dialog = new EditArgumentDialog(getShell(), javaProject, element);
 			if (dialog.open() == Window.OK) {
 				super.doAdd(element);
 			}
@@ -113,7 +117,7 @@ public class SetArgumentPage extends EditWizardPage {
 
 		@Override
 		protected void editElement(ArgumentRow element) {
-			EditArgumentDialog dialog = new EditArgumentDialog(getShell(), element);
+			EditArgumentDialog dialog = new EditArgumentDialog(getShell(), javaProject, element);
 			dialog.open();
 		}
 
