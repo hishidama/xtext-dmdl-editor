@@ -38,8 +38,10 @@ public class FoldOperatorGenerator extends OperatorGenerator {
 			plist.add(newSimpleParameter(row.getModelTypeName(), right));
 			addJavadocParam(javadoc, left, row.getLabel());
 			addJavadocParam(javadoc, right, row.getLabel());
-			return;
+			break;
 		}
+
+		addViewParameters(plist, javadoc, true);
 	}
 
 	private String getLeftName(OperatorInputModelRow row) {

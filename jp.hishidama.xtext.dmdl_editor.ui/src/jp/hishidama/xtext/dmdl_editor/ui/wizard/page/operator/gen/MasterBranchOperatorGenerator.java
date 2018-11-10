@@ -32,6 +32,8 @@ public class MasterBranchOperatorGenerator extends BranchOperatorGenerator {
 			plist.add(newSimpleParameter(row.getModelTypeName(), row.name, row.keyList, null));
 			addJavadocParam(javadoc, row.name, row.getLabel());
 		}
+
+		addViewParameters(plist, javadoc, true);
 	}
 
 	@Override

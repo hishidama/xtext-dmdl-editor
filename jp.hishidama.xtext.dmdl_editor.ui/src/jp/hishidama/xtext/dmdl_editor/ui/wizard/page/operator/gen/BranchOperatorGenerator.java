@@ -51,6 +51,8 @@ public class BranchOperatorGenerator extends OperatorGenerator {
 			plist.add(newSimpleParameter(row.getModelTypeName(), row.name));
 			addJavadocParam(javadoc, row.name, row.modelDescription);
 		}
+
+		addViewParameters(plist, javadoc, true);
 	}
 
 	@Override

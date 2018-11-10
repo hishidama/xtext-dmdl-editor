@@ -14,6 +14,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectMasterSelect
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorInputModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorOutputModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorTypePage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorViewModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetBranchEnumPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetCacheFieldPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetMasterSelectionPage;
@@ -83,6 +84,10 @@ public class NewOperatorMethodWizard extends Wizard {
 		inputPage.addRole("in");
 		addPage(opType, inputPage);
 
+		SelectOperatorViewModelPage viewPage = new SelectOperatorViewModelPage(project, opType);
+		viewPage.setInputPage(inputPage);
+		addPage(opType, viewPage);
+
 		SetBranchEnumPage outputPage = new SetBranchEnumPage(type, opType);
 		addPage(opType, outputPage);
 	}
@@ -92,6 +97,10 @@ public class NewOperatorMethodWizard extends Wizard {
 		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, false, false);
 		inputPage.addRole("in/out");
 		addPage(opType, inputPage);
+
+		SelectOperatorViewModelPage viewPage = new SelectOperatorViewModelPage(project, opType);
+		viewPage.setInputPage(inputPage);
+		addPage(opType, viewPage);
 	}
 
 	private void addConvertPages() {
@@ -99,6 +108,10 @@ public class NewOperatorMethodWizard extends Wizard {
 		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, false, false);
 		inputPage.addRole("in");
 		addPage(opType, inputPage);
+
+		SelectOperatorViewModelPage viewPage = new SelectOperatorViewModelPage(project, opType);
+		viewPage.setInputPage(inputPage);
+		addPage(opType, viewPage);
 
 		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType) {
 			@Override
@@ -110,7 +123,7 @@ public class NewOperatorMethodWizard extends Wizard {
 			}
 		};
 		outputPage.addRole("out");
-		outputPage.setInputPage(inputPage);
+		outputPage.setInputPage(inputPage, viewPage);
 		addPage(opType, outputPage);
 
 		SetCacheFieldPage fieldPage = new SetCacheFieldPage(type, opType, null, outputPage, true);
@@ -123,9 +136,13 @@ public class NewOperatorMethodWizard extends Wizard {
 		inputPage.addRole("in");
 		addPage(opType, inputPage);
 
+		SelectOperatorViewModelPage viewPage = new SelectOperatorViewModelPage(project, opType);
+		viewPage.setInputPage(inputPage);
+		addPage(opType, viewPage);
+
 		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType);
 		outputPage.setOutputIsResult(true);
-		outputPage.setInputPage(inputPage);
+		outputPage.setInputPage(inputPage, viewPage);
 		addPage(opType, outputPage);
 
 		SetCacheFieldPage fieldPage = new SetCacheFieldPage(type, opType, null, outputPage, false);
@@ -138,6 +155,10 @@ public class NewOperatorMethodWizard extends Wizard {
 		inputPage.addRole("master");
 		inputPage.addRole("tx");
 		addPage(opType, inputPage);
+
+		SelectOperatorViewModelPage viewPage = new SelectOperatorViewModelPage(project, opType);
+		viewPage.setInputPage(inputPage);
+		addPage(opType, viewPage);
 
 		SetMasterSelectionPage msPage = new SetMasterSelectionPage(type, opType);
 		addPage(opType, msPage);
@@ -155,6 +176,10 @@ public class NewOperatorMethodWizard extends Wizard {
 		inputPage.addRole("tx");
 		addPage(opType, inputPage);
 
+		SelectOperatorViewModelPage viewPage = new SelectOperatorViewModelPage(project, opType);
+		viewPage.setInputPage(inputPage);
+		addPage(opType, viewPage);
+
 		SetMasterSelectionPage msPage = new SetMasterSelectionPage(type, opType);
 		addPage(opType, msPage);
 	}
@@ -165,6 +190,10 @@ public class NewOperatorMethodWizard extends Wizard {
 		inputPage.addRole("master");
 		inputPage.addRole("tx");
 		addPage(opType, inputPage);
+
+		SelectOperatorViewModelPage viewPage = new SelectOperatorViewModelPage(project, opType);
+		viewPage.setInputPage(inputPage);
+		addPage(opType, viewPage);
 
 		SetBranchEnumPage outputPage = new SetBranchEnumPage(type, opType);
 		addPage(opType, outputPage);
@@ -179,6 +208,10 @@ public class NewOperatorMethodWizard extends Wizard {
 		inputPage.addRole("master");
 		inputPage.addRole("tx");
 		addPage(opType, inputPage);
+
+		SelectOperatorViewModelPage viewPage = new SelectOperatorViewModelPage(project, opType);
+		viewPage.setInputPage(inputPage);
+		addPage(opType, viewPage);
 
 		SetMasterSelectionPage msPage = new SetMasterSelectionPage(type, opType);
 		addPage(opType, msPage);
@@ -196,9 +229,13 @@ public class NewOperatorMethodWizard extends Wizard {
 		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, true, true, true);
 		addPage(opType, inputPage);
 
+		SelectOperatorViewModelPage viewPage = new SelectOperatorViewModelPage(project, opType);
+		viewPage.setInputPage(inputPage);
+		addPage(opType, viewPage);
+
 		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType);
 		outputPage.setOutputIsResult(true);
-		outputPage.setInputPage(inputPage);
+		outputPage.setInputPage(inputPage, viewPage);
 		addPage(opType, outputPage);
 
 		SetCacheFieldPage fieldPage = new SetCacheFieldPage(type, opType, null, outputPage, false);
@@ -226,6 +263,10 @@ public class NewOperatorMethodWizard extends Wizard {
 		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, true, false);
 		inputPage.addRole("in/out");
 		addPage(opType, inputPage);
+
+		SelectOperatorViewModelPage viewPage = new SelectOperatorViewModelPage(project, opType);
+		viewPage.setInputPage(inputPage);
+		addPage(opType, viewPage);
 	}
 
 	private void addGroupSortPages() {
@@ -234,9 +275,13 @@ public class NewOperatorMethodWizard extends Wizard {
 		inputPage.addRole("in");
 		addPage(opType, inputPage);
 
+		SelectOperatorViewModelPage viewPage = new SelectOperatorViewModelPage(project, opType);
+		viewPage.setInputPage(inputPage);
+		addPage(opType, viewPage);
+
 		SelectOperatorOutputModelPage outputPage = new SelectOperatorOutputModelPage(project, opType);
 		outputPage.setOutputIsResult(true);
-		outputPage.setInputPage(inputPage);
+		outputPage.setInputPage(inputPage, viewPage);
 		addPage(opType, outputPage);
 
 		SetCacheFieldPage fieldPage = new SetCacheFieldPage(type, opType, null, outputPage, false);
@@ -248,6 +293,10 @@ public class NewOperatorMethodWizard extends Wizard {
 		SelectOperatorInputModelPage inputPage = new SelectOperatorInputModelPage(project, opType, false, false, false);
 		inputPage.addRole("in/out");
 		addPage(opType, inputPage);
+
+		SelectOperatorViewModelPage viewPage = new SelectOperatorViewModelPage(project, opType);
+		viewPage.setInputPage(inputPage);
+		addPage(opType, viewPage);
 	}
 
 	private void addPage(OperatorType opType, IWizardPage page) {

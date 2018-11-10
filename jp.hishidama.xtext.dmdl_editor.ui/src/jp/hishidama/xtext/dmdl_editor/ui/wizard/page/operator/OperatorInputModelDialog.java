@@ -26,8 +26,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
 public class OperatorInputModelDialog extends OperatorModelDialog<OperatorInputModelRow> {
+	public static final String VIEW_CLASS_NAME = "com.asakusafw.runtime.core.View";
+	public static final String GROUP_VIEW_CLASS_NAME = "com.asakusafw.runtime.core.GroupView";
 
 	private boolean hasList;
+	private boolean hasView;
 	private boolean hasKey;
 	private boolean hasOrder;
 
@@ -35,6 +38,7 @@ public class OperatorInputModelDialog extends OperatorModelDialog<OperatorInputM
 	private Map<String, NamePair> oldKeyMap;
 	private Map<String, NamePair> oldOrderMap;
 
+	private Button viewButton;
 	private KeyTable keyTable;
 	private KeyTable orderTable;
 	private Button onceButton;
@@ -47,8 +51,17 @@ public class OperatorInputModelDialog extends OperatorModelDialog<OperatorInputM
 	}
 
 	public OperatorInputModelDialog(Shell parentShell, IProject project, String role, OperatorInputModelRow row, boolean hasList, boolean hasKey, boolean hasOrder, boolean joinOnly) {
-		super(parentShell, "入力データモデル選択", project, role, row, joinOnly, false);
+		this(parentShell, "入力データモデル選択", project, role, row, hasKey, hasOrder, joinOnly);
 		this.hasList = hasList;
+	}
+
+	public OperatorInputModelDialog(Shell parentShell, IProject project, OperatorInputModelRow row) {
+		this(parentShell, "ビューデータモデル選択", project, "view", row, true, true, false);
+		this.hasView = true;
+	}
+
+	private OperatorInputModelDialog(Shell parentShell, String title, IProject project, String role, OperatorInputModelRow row, boolean hasKey, boolean hasOrder, boolean joinOnly) {
+		super(parentShell, title, project, role, row, joinOnly, false);
 		this.hasKey = hasKey;
 		this.hasOrder = hasOrder;
 
@@ -90,6 +103,26 @@ public class OperatorInputModelDialog extends OperatorModelDialog<OperatorInputM
 	protected void createFields(Composite composite) {
 		super.createFields(composite);
 
+		if (hasView) {
+			createLabel(composite, "view type");
+			Composite field = createRowLayout(composite);
+
+			List<Button> list = createRadioField(field, null, "GroupView", "View");
+			viewButton = list.get(1);
+			boolean view = VIEW_CLASS_NAME.equals(row.listClassName);
+			list.get(0).setSelection(!view);
+			list.get(1).setSelection(view);
+			for (Button button : list) {
+				button.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetSelected(SelectionEvent e) {
+						refreshTable();
+					}
+				});
+			}
+
+			createLabel(composite, "");
+		}
 		if (hasKey) {
 			createLabel(composite, "@Key.group");
 			createKeyGroupTable(composite);
@@ -126,6 +159,20 @@ public class OperatorInputModelDialog extends OperatorModelDialog<OperatorInputM
 			boolean iterable = "java.lang.Iterable".equals(row.listClassName);
 			list.get(0).setSelection(!iterable);
 			list.get(1).setSelection(iterable);
+		}
+
+		refreshTable();
+	}
+
+	void refreshTable() {
+		if (hasView) {
+			boolean enable = !viewButton.getSelection();
+			if (keyTable != null) {
+				keyTable.setEnabled(enable);
+			}
+			if (orderTable != null) {
+				orderTable.setEnabled(enable);
+			}
 		}
 	}
 
@@ -343,14 +390,26 @@ public class OperatorInputModelDialog extends OperatorModelDialog<OperatorInputM
 				row.listClassName = "java.util.List";
 			}
 		}
-		if (hasKey) {
+
+		boolean isKey = hasKey;
+		boolean isOrder = hasOrder;
+		if (hasView) {
+			if (viewButton.getSelection()) {
+				row.listClassName = VIEW_CLASS_NAME;
+				isKey = false;
+				isOrder = false;
+			} else {
+				row.listClassName = GROUP_VIEW_CLASS_NAME;
+			}
+		}
+		if (isKey) {
 			row.keyList = new ArrayList<String>();
 			List<KeyRow> list = keyTable.getCheckedElementList();
 			for (KeyRow key : list) {
 				row.keyList.add(key.name);
 			}
 		}
-		if (hasOrder) {
+		if (isOrder) {
 			row.orderList = new ArrayList<String>();
 			List<KeyRow> list = orderTable.getCheckedElementList();
 			for (KeyRow key : list) {

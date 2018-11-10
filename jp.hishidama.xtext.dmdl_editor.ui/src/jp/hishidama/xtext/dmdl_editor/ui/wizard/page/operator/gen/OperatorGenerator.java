@@ -2,6 +2,7 @@ package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.gen;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,8 +16,10 @@ import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.FieldCacheRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorInputModelRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorModelRow;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.OperatorOutputModelRow;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectMasterSelectionTargetPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorInputModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorOutputModelPage;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SelectOperatorViewModelPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetCacheFieldPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetMasterSelectionPage;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator.SetOperatorNamePage;
@@ -278,6 +281,8 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		addJavadocParam(javadoc, "masters", masterLabel);
 		addJavadocParam(javadoc, "tx", txLabel);
 
+		addViewParameters(plist, javadoc, false);
+
 		addJavadocReturn(javadoc, "実際に利用するマスターデータ、利用可能なものがない場合は{@code null}");
 
 		{
@@ -310,6 +315,32 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 			}
 		}
 		throw new IllegalStateException();
+	}
+
+	protected final List<OperatorInputModelRow> getViewModelList() {
+		for (IWizardPage page : pageList) {
+			if (page instanceof SelectOperatorViewModelPage) {
+				return ((SelectOperatorViewModelPage) page).getElementList();
+			}
+			if (page instanceof SelectMasterSelectionTargetPage) {
+				return ((SelectMasterSelectionTargetPage) page).getTargetViewList();
+			}
+		}
+		throw new IllegalStateException();
+	}
+
+	protected final void addViewParameters(List<SingleVariableDeclaration> plist, Javadoc javadoc, boolean key) {
+		List<OperatorInputModelRow> vlist = getViewModelList();
+		for (OperatorInputModelRow row : vlist) {
+			if (key && row.listClassName.endsWith("GroupView")) {
+				List<String> keyList = (row.keyList != null) ? row.keyList : Collections.<String> emptyList();
+				List<String> orderList = (row.orderList != null) ? row.orderList : Collections.<String> emptyList();
+				plist.add(newListParameter(row.listClassName, row.getModelTypeName(), row.name, keyList, orderList, false));
+			} else {
+				plist.add(newListParameter(row.listClassName, row.getModelTypeName(), row.name));
+			}
+			addJavadocParam(javadoc, row.name, row.getLabel());
+		}
 	}
 
 	protected final List<OperatorOutputModelRow> getOutputModelList() {

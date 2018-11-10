@@ -1,7 +1,6 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator;
 
 import java.text.MessageFormat;
-import java.util.Collections;
 import java.util.List;
 
 import jp.hishidama.eclipse_plugin.asakusafw_wrapper.operator.OperatorType;
@@ -23,7 +22,6 @@ import org.eclipse.swt.widgets.Composite;
 public class SelectOperatorOutputModelPage extends SelectOperatorModelPage<OperatorOutputModelRow> {
 
 	private boolean isResult = false;
-	private SelectOperatorInputModelPage inputPage = null;
 
 	public SelectOperatorOutputModelPage(IProject project, OperatorType opType) {
 		this(project, opType, null);
@@ -41,10 +39,6 @@ public class SelectOperatorOutputModelPage extends SelectOperatorModelPage<Opera
 
 	public void setOutputIsResult(boolean b) {
 		this.isResult = b;
-	}
-
-	public void setInputPage(SelectOperatorInputModelPage inputPage) {
-		this.inputPage = inputPage;
 	}
 
 	@Override
@@ -150,8 +144,7 @@ public class SelectOperatorOutputModelPage extends SelectOperatorModelPage<Opera
 
 		@Override
 		protected void editElement(OperatorOutputModelRow element) {
-			OperatorOutputModelDialog dialog = new OperatorOutputModelDialog(getShell(), project, getRoleName(element),
-					element, joinOnly, summarizeOnly);
+			OperatorOutputModelDialog dialog = new OperatorOutputModelDialog(getShell(), project, getRoleName(element), element, joinOnly, summarizeOnly);
 			dialog.open();
 		}
 
@@ -173,16 +166,11 @@ public class SelectOperatorOutputModelPage extends SelectOperatorModelPage<Opera
 
 		int j = 1;
 		for (OperatorInputModelRow inputRow : getInputElementList()) {
-			if (row.name.equals(inputRow.name)) {
-				return MessageFormat.format("変数名{1}が入力ページにある変数名と重複しています。（{0,number,#}行目, 入力ページ{2,number,#}行目）", i,
-						row.name, j);
-			}
 			if (row.projective && inputRow.projective) {
 				if (row.genericsName.equals(inputRow.genericsName)) {
 					if (!row.modelName.equals(inputRow.modelName)) {
 						return MessageFormat
-								.format("型引数{1}の射影モデルが入力ページで指定されている射影モデルと一致していません。（{0,number,#}行目={2}, 入力ページ{3,number,#}行目={4}）",
-										i, row.genericsName, row.modelName, j, inputRow.modelName);
+								.format("型引数{1}の射影モデルが入力ページで指定されている射影モデルと一致していません。（{0,number,#}行目={2}, 入力ページ{3,number,#}行目={4}）", i, row.genericsName, row.modelName, j, inputRow.modelName);
 					}
 					genericsNameFound = true;
 				}
@@ -192,17 +180,9 @@ public class SelectOperatorOutputModelPage extends SelectOperatorModelPage<Opera
 		}
 		if (isResult && row.projective) {
 			if (!genericsNameFound) {
-				return MessageFormat.format("射影モデルを使う場合、型引数が入力ページで定義されている必要があります。（{0,number,#}行目, 型引数名={1}）", i,
-						row.genericsName);
+				return MessageFormat.format("射影モデルを使う場合、型引数が入力ページで定義されている必要があります。（{0,number,#}行目, 型引数名={1}）", i, row.genericsName);
 			}
 		}
 		return null;
-	}
-
-	protected final List<OperatorInputModelRow> getInputElementList() {
-		if (inputPage == null) {
-			return Collections.emptyList();
-		}
-		return inputPage.getElementList();
 	}
 }

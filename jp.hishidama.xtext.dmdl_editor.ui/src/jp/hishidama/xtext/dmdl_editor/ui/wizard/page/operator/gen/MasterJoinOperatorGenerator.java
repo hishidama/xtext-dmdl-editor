@@ -38,6 +38,8 @@ public class MasterJoinOperatorGenerator extends OperatorGenerator {
 			plist.add(newSimpleParameter(row.getModelTypeName(), row.name));
 			addJavadocParam(javadoc, row.name, row.getLabel());
 		}
+
+		addViewParameters(plist, javadoc, true);
 	}
 
 	@Override

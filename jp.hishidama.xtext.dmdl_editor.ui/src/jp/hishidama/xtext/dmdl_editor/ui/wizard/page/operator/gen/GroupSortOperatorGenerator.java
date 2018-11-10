@@ -35,6 +35,8 @@ public class GroupSortOperatorGenerator extends OperatorGenerator {
 			addJavadocParam(javadoc, row.name, row.getLabel());
 		}
 
+		addViewParameters(plist, javadoc, true);
+
 		List<OperatorOutputModelRow> olist = getOutputModelList();
 		for (OperatorOutputModelRow row : olist) {
 			plist.add(newResultParameter(row.getModelTypeName(), row.name));

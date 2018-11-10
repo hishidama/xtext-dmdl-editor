@@ -1,6 +1,7 @@
 package jp.hishidama.xtext.dmdl_editor.ui.wizard.page.operator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -129,5 +130,15 @@ public class SelectMasterSelectionTargetPage extends EditWizardPage {
 
 	public boolean isReplaceSelection() {
 		return check.getSelection();
+	}
+
+	public List<OperatorInputModelRow> getTargetViewList() {
+		IMethod method = getTargetMethod();
+		if (method == null) {
+			return Collections.emptyList();
+		}
+
+		OperatorMethodParser parser = new OperatorMethodParser(method);
+		return parser.getViewList();
 	}
 }
