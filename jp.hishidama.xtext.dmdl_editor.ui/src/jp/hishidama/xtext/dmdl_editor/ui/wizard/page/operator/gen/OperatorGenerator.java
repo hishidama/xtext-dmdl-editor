@@ -338,7 +338,7 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 			if (key && row.listClassName.endsWith("GroupView")) {
 				List<String> keyList = (row.keyList != null) ? row.keyList : Collections.<String> emptyList();
 				List<String> orderList = (row.orderList != null) ? row.orderList : Collections.<String> emptyList();
-				plist.add(newListParameter(row.listClassName, row.getModelTypeName(), row.name, keyList, orderList, false));
+				plist.add(newListParameter(row.listClassName, row.getModelTypeName(), row.name, keyList, orderList, false, false));
 			} else {
 				plist.add(newListParameter(row.listClassName, row.getModelTypeName(), row.name));
 			}
@@ -488,6 +488,13 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		mlist.add(a);
 	}
 
+	private void addSpillAnnotation(SingleVariableDeclaration v) {
+		MarkerAnnotation a = newMarkerAnnotation("com.asakusafw.vocabulary.model.Spill");
+		@SuppressWarnings("unchecked")
+		List<IExtendedModifier> mlist = v.modifiers();
+		mlist.add(a);
+	}
+
 	private void addOnceAnnotation(SingleVariableDeclaration v) {
 		MarkerAnnotation a = newMarkerAnnotation("com.asakusafw.vocabulary.model.Once");
 		@SuppressWarnings("unchecked")
@@ -502,9 +509,12 @@ public abstract class OperatorGenerator extends AstRewriteUtility {
 		return v;
 	}
 
-	protected final SingleVariableDeclaration newListParameter(String listClassName, String typeName, String name, List<String> keyList, List<String> orderList, boolean once) {
+	protected final SingleVariableDeclaration newListParameter(String listClassName, String typeName, String name, List<String> keyList, List<String> orderList, boolean spill, boolean once) {
 		SingleVariableDeclaration v = newListParameter(listClassName, typeName, name);
 		addKeyAnnotation(v, keyList, orderList);
+		if (spill) {
+			addSpillAnnotation(v);
+		}
 		if (once) {
 			addOnceAnnotation(v);
 		}

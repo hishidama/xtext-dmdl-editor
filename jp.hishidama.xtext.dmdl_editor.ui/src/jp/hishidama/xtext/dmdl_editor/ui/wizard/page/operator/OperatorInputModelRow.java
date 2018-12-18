@@ -7,6 +7,7 @@ import jp.hishidama.eclipse_plugin.util.StringUtil;
 public class OperatorInputModelRow extends OperatorModelRow {
 	public List<String> keyList;
 	public List<String> orderList;
+	public boolean spill = false;
 	public boolean once = false;
 	public String listClassName = "java.util.List";
 

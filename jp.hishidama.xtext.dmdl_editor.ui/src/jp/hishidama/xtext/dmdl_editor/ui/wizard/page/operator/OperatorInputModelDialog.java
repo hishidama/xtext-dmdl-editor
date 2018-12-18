@@ -41,6 +41,7 @@ public class OperatorInputModelDialog extends OperatorModelDialog<OperatorInputM
 	private Button viewButton;
 	private KeyTable keyTable;
 	private KeyTable orderTable;
+	private Button spillButton;
 	private Button onceButton;
 	private Button iterableButton;
 
@@ -151,6 +152,8 @@ public class OperatorInputModelDialog extends OperatorModelDialog<OperatorInputM
 		if (hasList) {
 			createLabel(composite, "list type");
 			Composite field = createRowLayout(composite);
+			spillButton = createCheckButton(field, "@Spill");
+			spillButton.setSelection(row.spill);
 			onceButton = createCheckButton(field, "@Once");
 			onceButton.setSelection(row.once);
 
@@ -383,6 +386,7 @@ public class OperatorInputModelDialog extends OperatorModelDialog<OperatorInputM
 	@Override
 	protected void okPressed() {
 		if (hasList) {
+			row.spill = spillButton.getSelection();
 			row.once = onceButton.getSelection();
 			if (iterableButton.getSelection()) {
 				row.listClassName = "java.lang.Iterable";
