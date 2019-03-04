@@ -19,6 +19,7 @@ import jp.hishidama.xtext.dmdl_editor.jdt.hyperlink.OpenKeyDmdlHyperlinkDetector
 import jp.hishidama.xtext.dmdl_editor.ui.internal.InjectorUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.search.DMDLEObjectSearch;
 import jp.hishidama.xtext.dmdl_editor.ui.util.DMDLXtextUiUtil;
+import jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy.property.IndexProperty;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -382,6 +383,9 @@ public class ModelUiUtil {
 	public static boolean openEditor(EObject object) {
 		if (object == null) {
 			return false;
+		}
+		if (object instanceof IndexProperty) {
+			object = ((IndexProperty) object).getProperty();
 		}
 		URI uri = EcoreUtil.getURI(object);
 

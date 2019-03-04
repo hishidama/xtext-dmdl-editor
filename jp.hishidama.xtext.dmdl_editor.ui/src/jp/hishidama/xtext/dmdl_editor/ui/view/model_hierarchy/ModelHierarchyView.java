@@ -10,14 +10,19 @@ import java.util.Set;
 import jp.hishidama.eclipse_plugin.jface.SelectionProviderAdapter;
 import jp.hishidama.xtext.dmdl_editor.dmdl.Attribute;
 import jp.hishidama.xtext.dmdl_editor.dmdl.AttributeList;
+import jp.hishidama.xtext.dmdl_editor.dmdl.CollectionType;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelDefinition;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelProperty;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUiUtil;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil;
-import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
 import jp.hishidama.xtext.dmdl_editor.dmdl.ModelUtil.PropertyFilter;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Property;
+import jp.hishidama.xtext.dmdl_editor.dmdl.PropertyUtil;
+import jp.hishidama.xtext.dmdl_editor.dmdl.Type;
 import jp.hishidama.xtext.dmdl_editor.ui.labeling.DMDLImages;
 import jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy.ModelHierarchy.ModelInfo;
+import jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy.property.IndexProperty;
+import jp.hishidama.xtext.dmdl_editor.ui.view.model_hierarchy.property.IndexPropertyLabelProvider;
 import jp.hishidama.xtext.dmdl_editor.ui.viewer.DMDLTreeLabelProvider;
 
 import org.eclipse.core.resources.IProject;
@@ -272,7 +277,7 @@ public class ModelHierarchyView extends ViewPart {
 		parent.setTopLeft(form2Title);
 
 		table2 = new TableViewer(parent, SWT.MULTI);
-		table2.setLabelProvider(new DMDLTreeLabelProvider());
+		table2.setLabelProvider(new IndexPropertyLabelProvider());
 		table2.setContentProvider(new Tree2ContentProvider());
 		table2.addSelectionChangedListener(new Table2SelectionChangeListener());
 		table2.addDoubleClickListener(new DoubleClickListener());
@@ -388,7 +393,26 @@ public class ModelHierarchyView extends ViewPart {
 				}
 			}
 		}
-		table2.setInput(properties);
+
+		List<IndexProperty> list = new ArrayList<IndexProperty>(properties.size());
+		int row = 1;
+		for (Property property : properties) {
+			IndexProperty ip = IndexProperty.newInstance(property);
+			if (!isCollectionType(property)) {
+				ip.setRowNumber(row++);
+			}
+			list.add(ip);
+		}
+		table2.setInput(list);
+	}
+
+	private static boolean isCollectionType(Property property) {
+		Type type = PropertyUtil.getResolvedDataType(property);
+		if (type != null) {
+			CollectionType ctype = type.getCollectionType();
+			return ctype != null;
+		}
+		return false;
 	}
 
 	private void updateToolTipAndDescription() {
