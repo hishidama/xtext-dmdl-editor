@@ -1754,6 +1754,11 @@
             id="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.JavaEditorCopyDmdlDescription"
             name="Copy DMDL Description">
       </command>
+      <command
+            categoryId="jp.hishidama.xtext.dmdl_editor.jdt.category"
+            id="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.JavaEditorCopyDmdlJavaName"
+            name="Copy DMDL Java Name">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -1818,6 +1823,15 @@
             </with>
          </enabledWhen>
       </handler>
+      <handler
+            class="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.JavaEditorCopyDmdlJavaNameHandler"
+            commandId="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.JavaEditorCopyDmdlJavaName">
+         <enabledWhen>
+            <with variable="activeEditorId">
+               <equals value="org.eclipse.jdt.ui.CompilationUnitEditor" />
+            </with>
+         </enabledWhen>
+      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -1830,6 +1844,10 @@
          </command>
          <command
                commandId="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.JavaEditorCopyDmdlDescription"
+               style="push">
+         </command>
+         <command
+               commandId="jp.hishidama.xtext.dmdl_editor.jdt.editor_menu.JavaEditorCopyDmdlJavaName"
                style="push">
          </command>
       </menuContribution>
