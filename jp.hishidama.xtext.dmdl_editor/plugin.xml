@@ -40,6 +40,9 @@
             class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioTextTabularAttributeDefinition">
       </classpath>
       <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioJsonAttributeDefinition">
+      </classpath>
+      <classpath
             class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.WindgateCsvAttributeDefinition">
       </classpath>
       <classpath
@@ -81,6 +84,9 @@
       </classpath>
       <classpath
             class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioTextTabularAttributeDefinition">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.DirectioJsonAttributeDefinition">
       </classpath>
       <classpath
             class="jp.hishidama.xtext.dmdl_editor.internal.extension.attribute.WindgateCsvAttributeDefinition">
