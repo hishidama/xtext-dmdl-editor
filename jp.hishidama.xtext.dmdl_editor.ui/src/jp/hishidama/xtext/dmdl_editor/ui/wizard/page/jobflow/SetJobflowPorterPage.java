@@ -25,6 +25,7 @@ import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLActivator;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.DMDLVariableTableUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.internal.LogUtil;
 import jp.hishidama.xtext.dmdl_editor.ui.wizard.TypeWizard;
+import jp.hishidama.xtext.dmdl_editor.ui.wizard.page.flowpart.MarkerMessage;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.IJavaProject;
@@ -82,6 +83,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		table.addColumn("class", 256 + 32, SWT.NONE);
 		table.addColumn("model name", 128, SWT.NONE);
 		table.addColumn("model description", 128, SWT.NONE);
+		table.addColumn("marker message", 64, SWT.NONE);
 
 		{
 			createLabel(composite, "");
@@ -115,6 +117,9 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		if (constructor == null) {
 			return list;
 		}
+
+		MarkerMessage markerMessage = new MarkerMessage(type);
+
 		IProject project = type.getJavaProject().getProject();
 		try {
 			Map<String, String> paramJavadoc = JavadocUtil.getParamMap(JavadocUtil.getJavadoc(constructor));
@@ -142,6 +147,8 @@ public class SetJobflowPorterPage extends EditWizardPage {
 					desc = AnnotationUtil.getAnnotationValue(type, param, FlowUtil.EXPORT_NAME, "description");
 				}
 				row.porterClassName = TypeUtil.resolveTypeName(desc, type);
+
+				row.markerMessage = markerMessage.getMessage(type.getField(row.name));
 
 				list.add(row);
 			}
@@ -292,6 +299,8 @@ public class SetJobflowPorterPage extends EditWizardPage {
 				return element.modelName;
 			case 5:
 				return element.modelDescription;
+			case 6:
+				return element.markerMessage;
 			default:
 				throw new UnsupportedOperationException("columnIndex=" + columnIndex);
 			}
@@ -300,8 +309,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 		protected void doAdd1(boolean in) {
 			JobflowPorterRow element = createElement();
 			element.in = in;
-			EditJobflowPorterDialog dialog = new EditJobflowPorterDialog(getShell(), javaProject, element,
-					nameRuleCombo.getText(), 0);
+			EditJobflowPorterDialog dialog = new EditJobflowPorterDialog(getShell(), javaProject, element, nameRuleCombo.getText(), 0);
 			if (dialog.open() == Window.OK) {
 				doAdd(element);
 			}
@@ -380,8 +388,7 @@ public class SetJobflowPorterPage extends EditWizardPage {
 
 		@Override
 		protected void editElement(JobflowPorterRow element) {
-			EditJobflowPorterDialog dialog = new EditJobflowPorterDialog(getShell(), javaProject, element,
-					nameRuleCombo.getText(), 0);
+			EditJobflowPorterDialog dialog = new EditJobflowPorterDialog(getShell(), javaProject, element, nameRuleCombo.getText(), 0);
 			dialog.open();
 		}
 

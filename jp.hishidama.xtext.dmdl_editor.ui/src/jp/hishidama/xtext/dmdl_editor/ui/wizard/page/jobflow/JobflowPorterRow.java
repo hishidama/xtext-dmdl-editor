@@ -10,6 +10,7 @@ public class JobflowPorterRow implements Cloneable {
 	public String modelClassName = "";
 	public String modelName = "";
 	public String modelDescription;
+	public String markerMessage;
 
 	public String getIn() {
 		return in ? "Importer" : "Exporter";

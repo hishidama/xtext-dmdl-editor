@@ -66,6 +66,8 @@ public class FlowPartConstructorParser {
 				genericsMap.put(genericsName, className);
 			}
 
+			MarkerMessage markerMessage = new MarkerMessage(flowPartType);
+
 			Map<String, String> paramJavadoc = JavadocUtil.getParamMap(JavadocUtil.getJavadoc(constructor));
 			for (ILocalVariable param : constructor.getParameters()) {
 				String typeName = TypeUtil.getVariableTypeName(param);
@@ -73,7 +75,7 @@ public class FlowPartConstructorParser {
 				int e = typeName.lastIndexOf('>');
 				if (s >= 0 && e >= 0) {
 					String modelClassName = typeName.substring(s + 1, e);
-					initPort(project, param, typeName, modelClassName, paramJavadoc, genericsMap);
+					initPort(project, param, typeName, modelClassName, paramJavadoc, genericsMap, markerMessage);
 				} else {
 					initArgument(param, typeName, paramJavadoc);
 				}
@@ -83,7 +85,7 @@ public class FlowPartConstructorParser {
 		}
 	}
 
-	private void initPort(IProject project, ILocalVariable param, String typeName, String modelClassName, Map<String, String> paramJavadoc, Map<String, String> genericsMap) {
+	private void initPort(IProject project, ILocalVariable param, String typeName, String modelClassName, Map<String, String> paramJavadoc, Map<String, String> genericsMap, MarkerMessage markerMessage) {
 		FlowpartModelRow row = new FlowpartModelRow();
 		row.in = typeName.startsWith(FlowUtil.IN_NAME);
 		row.name = param.getElementName();
@@ -113,6 +115,8 @@ public class FlowPartConstructorParser {
 		if (desc == null) {
 			desc = AnnotationUtil.getAnnotationValue(flowPartType, param, FlowUtil.EXPORT_NAME, "description");
 		}
+
+		row.markerMessage = markerMessage.getMessage(flowPartType.getField(row.name));
 
 		portList.add(row);
 	}

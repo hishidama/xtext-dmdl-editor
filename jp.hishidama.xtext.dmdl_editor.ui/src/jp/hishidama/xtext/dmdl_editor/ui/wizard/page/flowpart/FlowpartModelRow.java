@@ -15,6 +15,7 @@ public class FlowpartModelRow implements Cloneable, FlowPartClassModifierRow {
 	public String modelName;
 	public String modelDescription;
 	public String genericsName;
+	public String markerMessage;
 
 	public String getIn() {
 		return in ? "in" : "out";

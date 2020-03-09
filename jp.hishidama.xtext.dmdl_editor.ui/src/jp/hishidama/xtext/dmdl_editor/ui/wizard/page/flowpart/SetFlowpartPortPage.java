@@ -69,6 +69,7 @@ public class SetFlowpartPortPage extends EditWizardPage {
 		table.addColumn("comment", 128, SWT.NONE);
 		table.addColumn("model name", 128, SWT.NONE);
 		table.addColumn("model description", 128, SWT.NONE);
+		table.addColumn("marker message", 64, SWT.NONE);
 
 		{
 			createLabel(composite, "");
@@ -231,6 +232,8 @@ public class SetFlowpartPortPage extends EditWizardPage {
 				return element.modelName;
 			case 5:
 				return element.modelDescription;
+			case 6:
+				return element.markerMessage;
 			default:
 				throw new UnsupportedOperationException("columnIndex=" + columnIndex);
 			}
