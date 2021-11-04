@@ -1630,6 +1630,12 @@
             class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.DirectioCsvExporterGenerator">
       </classpath>
       <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.DirectioJsonImporterGenerator">
+      </classpath>
+      <classpath
+            class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.DirectioJsonExporterGenerator">
+      </classpath>
+      <classpath
             class="jp.hishidama.xtext.dmdl_editor.ui.internal.extension.portergen.DirectioLineImporterGenerator">
       </classpath>
       <classpath
